@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { ScrollView, Text, StyleSheet, View } from "react-native";
-import { Video } from 'expo-av';
-import styled from "styled-components/native";
 import { Bookmark } from "../../../components/bookmark/bookmark.component";
 import { MarkCompleteButton } from "../components/mark-complete-button.component";
 

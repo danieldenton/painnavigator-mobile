@@ -3,6 +3,7 @@ import { ScrollView, Text, StyleSheet, View } from "react-native";
 
 export const Header = styled.View`
     flex-direction: row;
+    margin: ${(props) => props.theme.space[3]};
 `;
 
 export const TitleSection = styled.View`
@@ -20,10 +21,13 @@ export const EducationUnitTitle = styled.Text`
 `;
 
 export const SummarySection = styled.View`
+    margin: ${(props) => props.theme.space[3]};
 `;
 
 export const SummaryHeader = styled.Text`
 `;
 
 export const SummaryBody = styled.Text`
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
 `;
