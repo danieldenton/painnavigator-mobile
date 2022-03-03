@@ -1,17 +1,20 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { EducationUnit } from "./src/features/educationModules/screens/education-unit.screen";
+import { SafeArea } from "./src/components/utility/safe-area.component";
+import { EducationModulesNavigator } from "./src/infrastructure/navigation/education-module.navigator";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
+
+import { NavigationContainer } from "@react-navigation/stack";
 
 export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <View style={{ flex: 1, alignItems:"center", justifyContent: "center"}}>
-          <EducationUnit />
-        </View>
+        <NavigationContainer>
+          <EducationModulesNavigator />
+        </NavigationContainer>
       </ThemeProvider>
     </>
   );

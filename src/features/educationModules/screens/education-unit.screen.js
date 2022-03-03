@@ -4,7 +4,7 @@ import { ScrollView, Text, StyleSheet, View } from "react-native";
 import { Bookmark } from "../../../components/bookmark/bookmark.component";
 import { MarkCompleteButton } from "../components/mark-complete-button.component";
 
-import { modules } from "../data/education-module-data.json";
+import { educationModules } from "../data/education-module-data.json";
 
 import { VideoPlayer } from "../components/video-player.component";
 
@@ -19,11 +19,9 @@ import {
     SummaryBody} 
     from "../components/education-unit.styles";
 
-export const EducationUnit = () => {
-    // const video = React.useRef(null);
-    const [educationModuleProgress, setEducationModuleProgress] = useState(0);
+export const EducationUnitScreen = ({ route }) => {
+    const { name, source } = route.params;
     const [moduleComplete, setModuleComplete] = useState(false);
-    const { name, source } = modules[educationModuleProgress];
 
     return (
         <SafeArea>
