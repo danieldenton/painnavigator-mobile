@@ -5,15 +5,23 @@ export const EducationModulesContext = createContext();
 
 export const EducationModulesContextProvider = ({ children }) => {
     const [educationModuleProgress, setEducationModuleProgress] = useState(0);
+    const [moduleComplete, setModuleComplete] = useState(false);
     const nextEducationModule = educationModules[educationModuleProgress];
+
+    const markComplete = () => {
+        //setEducationModuleProgress((prevEducationModuleProgress) => { return ( prevEducationModuleProgress + 1 ) });
+        setModuleComplete(true);
+    };
 
     return (
         <EducationModulesContext.Provider
             value={{
-                nextEducationModule: nextEducationModule,
+                nextEducationModule,
+                moduleComplete,
+                markComplete,
             }}
         >
             {children}
         </EducationModulesContext.Provider>
-    )
-}
+    );
+};

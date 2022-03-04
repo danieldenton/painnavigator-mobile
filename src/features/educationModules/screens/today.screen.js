@@ -12,15 +12,16 @@ const ModuleCard = styled(Card)`
 `;
 
 export const TodayScreen = ({ navigation }) => {
-    const { nextEducationModule } = useContext(EducationModulesContext);
+    const { nextEducationModule, moduleComplete } = useContext(EducationModulesContext);
     const { name, length, source } = nextEducationModule;
     
     return (
         <SafeArea>
             <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", 
                 {
-                    name: name,
-                    source: source,
+                    name,
+                    source,
+                    moduleComplete,
                 })}> 
                 <ModuleCard>
                     <Card.Content>
