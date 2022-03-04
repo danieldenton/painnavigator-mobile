@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import { Text, View } from "react-native";
 
 export const Header = styled.View`
     flex-direction: row;
