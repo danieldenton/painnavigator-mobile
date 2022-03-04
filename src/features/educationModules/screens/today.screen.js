@@ -16,10 +16,7 @@ export const TodayScreen = ({ navigation }) => {
     
     return (
         <SafeArea>
-            <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", {
-                name: name,
-                source: source,
-            })}> 
+            <TouchableOpacity onPress={() => navigation.navigate("EducationUnit")}> 
                 <ModuleCard>
                     <Card.Content>
                         <Text>{name}</Text>
