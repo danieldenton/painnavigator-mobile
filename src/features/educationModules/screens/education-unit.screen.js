@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { ScrollView } from "react-native";
 import { SafeArea } from "../../../components/utility/safe-area.component";
-import { ScrollView, Text, StyleSheet, View } from "react-native";
+import { VideoPlayer } from "../components/video-player.component";
 import { Bookmark } from "../../../components/bookmark/bookmark.component";
 import { MarkCompleteButton } from "../components/mark-complete-button.component";
-import { VideoPlayer } from "../components/video-player.component";
 import { 
     Header, 
     TitleSection, 
@@ -15,11 +15,9 @@ import {
     SummaryBody} 
     from "../components/education-unit.styles";
 
-export const EducationUnitScreen = () => {
-    //const { name, source } = route.params;
+export const EducationUnitScreen = ({ route }) => {
+    const { name, source } = route.params;
     const [moduleComplete, setModuleComplete] = useState(false);
-    const name = "hello"
-    const source = "https://res.cloudinary.com/stephenavocado/video/upload/v1645662155/Suppl.mp4"
 
     return (
         <SafeArea>

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { EducationModulesContextProvider } from "./src/services/educationModules/education-modules.context";
+
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 
@@ -9,7 +11,9 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navigation />
+        <EducationModulesContextProvider>
+          <Navigation />
+        </EducationModulesContextProvider>
       </ThemeProvider>
     </>
   );
