@@ -19,7 +19,7 @@ export const EducationUnit = ({ name, source, setModuleComplete }) => {
                 name={name}
             />
             <MarkCompleteButton
-                onPress={() => setModuleComplete(true)}
+                onPress={() => {setModuleComplete(true); markComplete();}}
             >
                 Mark Complete
             </MarkCompleteButton>

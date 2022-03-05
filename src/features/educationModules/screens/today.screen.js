@@ -12,7 +12,7 @@ const ModuleCard = styled(Card)`
 `;
 
 export const TodayScreen = ({ navigation }) => {
-    const { nextEducationModule, moduleComplete } = useContext(EducationModulesContext);
+    const { nextEducationModule } = useContext(EducationModulesContext);
     const { name, length, source } = nextEducationModule;
     
     return (
@@ -21,7 +21,6 @@ export const TodayScreen = ({ navigation }) => {
                 {
                     name,
                     source,
-                    moduleComplete,
                 })}> 
                 <ModuleCard>
                     <Card.Content>
