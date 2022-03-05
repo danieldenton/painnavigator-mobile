@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { VideoPlayer } from "./video-player.component";
 import { EducationUnitInfo } from "./education-unit-info.component";
-import { MarkCompleteButton } from "./mark-complete-button.component";
+import { Button } from "../../../components/button/button.component";
 import { EducationModulesContext } from "../../../services/educationModules/education-modules.context";
 
 export const EducationUnit = ({ name, source, setModuleComplete }) => {
@@ -18,11 +18,11 @@ export const EducationUnit = ({ name, source, setModuleComplete }) => {
             < EducationUnitInfo 
                 name={name}
             />
-            <MarkCompleteButton
+            <Button
                 onPress={() => {setModuleComplete(true); markComplete();}}
             >
                 Mark Complete
-            </MarkCompleteButton>
+            </Button>
         </SafeArea>
     )
 }

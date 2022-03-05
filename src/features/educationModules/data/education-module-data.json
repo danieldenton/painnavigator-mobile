@@ -3,13 +3,19 @@
         {
             "id": 1,
             "name": "PainNavigator Introduction",
-            "source": "https://res.cloudinary.com/stephenavocado/video/upload/v1645662155/Suppl.mp4",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429073/For%20Mobile%20App/PainNavigator%20Introdution.mp4",
             "length": "7 min"
         },
         {
             "id": 2,
-            "name": "Vicious Cycle of Pain",
-            "source": "https://res.cloudinary.com/stephenavocado/video/upload/v1645662155/Suppl.mp4",
+            "name": "Spine Anatomy",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429118/For%20Mobile%20App/Spine%20Anatomy.mp4",
+            "length": "6 min"
+        },
+        {
+            "id": 3,
+            "name": "Pain Diary",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429090/For%20Mobile%20App/Pain%20Diary.mp4",
             "length": "5 min"
         }
     ]

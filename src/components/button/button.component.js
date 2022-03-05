@@ -1,9 +1,8 @@
-import React from "react";
-import { Button } from "react-native-paper";
+import { Button as ReactPaperButton} from "react-native-paper";
 import styled from "styled-components";
-import { colors } from "../../../../src/infrastructure/theme/colors";
+import { colors } from "../../infrastructure/theme/colors";
 
-export const MarkCompleteButton = styled(Button).attrs({
+export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.inverse,
 })`
     background-color: #262626;

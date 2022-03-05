@@ -1,4 +1,4 @@
-import React, {useState, useEffect, createContext, useContext } from "react";
+import React, {useState, createContext } from "react";
 import { educationModules } from "../../features/educationModules/data/education-module-data.json";
 
 export const EducationModulesContext = createContext();

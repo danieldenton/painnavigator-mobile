@@ -7,14 +7,14 @@ const VideoWrapper = styled.View`
     flex-direction: row;
 `;
 
-const VideoWide = styled(Video)`
+const VideoScreen = styled(Video)`
     width: 100%;
 `;
 
 export const VideoPlayer = ({ source }) => {
     return (
         <VideoWrapper>
-            <VideoWide
+            <VideoScreen
                 source={{
                     uri: source,
                 }}

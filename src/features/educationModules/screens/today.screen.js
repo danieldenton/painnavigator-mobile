@@ -1,23 +1,17 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
-import { EducationModulesContext } from "../../../services/educationModules/education-modules.context";
+import React, { useContext } from "react";
 import { SafeArea } from "../../../components/utility/safe-area.component";
-import { Card } from "react-native-paper";
 
+import { TodayScreenHeader } from "../components/today-screen-header.component";
 import { EducationModuleCard } from "../components/education-module-card.component";
 
-const ModuleCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
-`;
+import { EducationModulesContext } from "../../../services/educationModules/education-modules.context";
 
 export const TodayScreen = ({ navigation }) => {
     const { nextEducationModule } = useContext(EducationModulesContext);
-    const { name, length, source } = nextEducationModule;
     
     return (
         <SafeArea>
+            <TodayScreenHeader headerName="Today's Education"/>
             <EducationModuleCard navigation={navigation} nextEducationModule={nextEducationModule} />
         </SafeArea>
     )

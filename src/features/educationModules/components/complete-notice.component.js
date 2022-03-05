@@ -1,8 +1,23 @@
 import React from "react";
-import { Text } from "react-native";
+import styled from "styled-components/native";
+import { View, Text } from "react-native";
+import { Button } from "../../../components/button/button.component";
 
-export const CompleteNotice = () => {
+const CompleteNoticeView = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const CompleteNotice = ({ navigation }) => {
     return (
-        <Text>Module complete</Text>
+        <>
+            <CompleteNoticeView>
+                <Text>Module complete</Text>
+            </CompleteNoticeView>
+            <Button onPress={() => navigation.navigate("Today")}>
+                Back to Dashboard
+            </Button>
+        </>
     );
 };
