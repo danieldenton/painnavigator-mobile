@@ -4,10 +4,10 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 
 export const TodayScreenHeader = ({ headerName }) => {
     return (
-        <Spacer position="bottom" size="large">
-            <View>
-                <Text>{headerName}</Text>
-            </View>
-        </Spacer>
+        <View>
+            <Text>{headerName}</Text>
+        </View>
     );
 };
+
+// spacer causing android emulator to crash currently

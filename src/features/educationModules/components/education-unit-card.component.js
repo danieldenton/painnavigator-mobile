@@ -8,7 +8,7 @@ const ModuleCard = styled(Card)`
     padding: ${(props) => props.theme.space[3]};
 `;
 
-export const EducationModuleCard = ({navigation, nextEducationModule}) => {
+export const EducationUnitCard = ({navigation, nextEducationModule}) => {
     const { name, length, source } = nextEducationModule;
 
     return ( 
