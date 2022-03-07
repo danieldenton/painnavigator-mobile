@@ -3,22 +3,23 @@ import { EducationUnit } from "../components/education-unit.component";
 import { CompleteNotice } from "../components/complete-notice.component";
 
 export const EducationUnitScreen = ({ route }) => {
-    const { name, source, navigation } = route.params;
+    const { id, name, source, navigation } = route.params;
     const [moduleComplete, setModuleComplete] = useState(false);
     
     return (
         <>
-            { !moduleComplete ? 
+            { !moduleComplete ? (
                 <EducationUnit 
                     name={name} 
-                    source={source} 
+                    source={source}
+                    module_id={id} 
                     setModuleComplete={setModuleComplete} 
-                /> 
-                : 
+                />
+                ) : (
                 <CompleteNotice 
                     navigation={navigation}
                 /> 
-            }
+            )}
         </>
     );
 };

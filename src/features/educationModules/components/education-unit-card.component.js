@@ -9,11 +9,12 @@ const ModuleCard = styled(Card)`
 `;
 
 export const EducationUnitCard = ({navigation, nextEducationModule}) => {
-    const { name, length, source } = nextEducationModule;
+    const { id, name, length, source } = nextEducationModule;
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", 
             {
+                id,
                 name,
                 source,
                 navigation
