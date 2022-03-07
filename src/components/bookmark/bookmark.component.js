@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+
+import { BookmarksContext } from "../../services/bookmarks/bookmarks.context";
 
 export const Bookmark = () => {
     return (

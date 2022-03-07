@@ -9,7 +9,7 @@ export const EducationModulesContextProvider = ({ children }) => {
     const nextEducationModule = educationModules[educationModuleProgress];
 
     const markComplete = (module_id) => {
-        educationModulePostRequestComplete(module_id);
+        //educationModulePostRequestComplete(module_id);
         setEducationModuleProgress((prevEducationModuleProgress) => { return ( prevEducationModuleProgress + 1 ) });
     };
 
