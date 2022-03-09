@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { addBookmarkToDataBase } from "./bookmarks.service";
 
 export const BookmarksContext = createContext();
 
@@ -27,6 +28,7 @@ export const BookmarksContextProvider = ({ children }) => {
   };
 
   const add = (moduleId) => {
+    //addBookmarkToDataBase(moduleId);
     setBookmarks([...bookmarks, moduleId]);
     //console.log(bookmarks);
   };
