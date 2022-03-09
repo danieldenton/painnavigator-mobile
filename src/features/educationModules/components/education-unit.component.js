@@ -7,7 +7,6 @@ import { Button } from "../../../components/button/button.component";
 import { EducationModulesContext } from "../../../services/educationModules/education-modules.context";
 
 export const EducationUnit = ({ module_id, name, source, setModuleComplete }) => {
-    
     const { markComplete } = useContext(EducationModulesContext);
     
     return (
@@ -17,6 +16,7 @@ export const EducationUnit = ({ module_id, name, source, setModuleComplete }) =>
             />
             < EducationUnitInfo 
                 name={name}
+                moduleId={module_id}
             />
             <Button
                 onPress={() => {setModuleComplete(true); markComplete(module_id);}}

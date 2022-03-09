@@ -13,7 +13,7 @@ import {
     SummaryBody 
     } from "./education-unit.styles";
 
-export const EducationUnitInfo = ({ name }) => {
+export const EducationUnitInfo = ({ moduleId, name }) => {
     return(
         <>
             <Header>
@@ -26,7 +26,7 @@ export const EducationUnitInfo = ({ name }) => {
                     </EducationUnitTitle>
                 </TitleSection>
                 <BookmarkSection>
-                    <Bookmark />
+                    <Bookmark moduleId={moduleId} />
                 </BookmarkSection>
             </Header>
             <SummarySection>

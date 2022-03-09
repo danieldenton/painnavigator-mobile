@@ -26,16 +26,18 @@ export const BookmarksContextProvider = ({ children }) => {
     }
   };
 
-  const add = (module) => {
-    setBookmarks([...bookmarks, module]);
+  const add = (moduleId) => {
+    setBookmarks([...bookmarks, moduleId]);
+    //console.log(bookmarks);
   };
 
-  const remove = (module) => {
+  const remove = (moduleId) => {
     const newBookmarks = bookmarks.filter(
-      (x) => x.moduleId !== module.moduleId
+      (x) => x !== moduleId
     );
 
     setBookmarks(newBookmarks);
+    //console.log(bookmarks);
   };
 
   useEffect(() => {
