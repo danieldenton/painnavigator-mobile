@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-import { TodayScreen } from "../../features/educationModules/screens/today.screen";
+import { TodayScreen } from "../../features/today/screens/today.screen";
 import { EducationUnitScreen } from "../../features/educationModules/screens/education-unit.screen";
 
 const EducationModulesStack = createStackNavigator();
