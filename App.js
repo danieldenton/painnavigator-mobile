@@ -2,6 +2,7 @@ import React from "react";
 
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationModulesContextProvider } from "./src/services/educationModules/education-modules.context";
+import { MovementContextProvider } from "./src/services/movement/movement.context";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -14,7 +15,9 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <BookmarksContextProvider>
           <EducationModulesContextProvider>
-            <Navigation />
+            <MovementContextProvider>
+              <Navigation />
+            </MovementContextProvider>
           </EducationModulesContextProvider>
         </BookmarksContextProvider>
       </ThemeProvider>

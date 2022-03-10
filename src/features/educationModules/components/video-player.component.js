@@ -3,8 +3,8 @@ import { Video } from 'expo-av';
 import styled from "styled-components/native";
 
 const VideoWrapper = styled.View`
-    flex: .75;
     flex-direction: row;
+    height: 32.6%;
 `;
 
 const VideoScreen = styled(Video)`

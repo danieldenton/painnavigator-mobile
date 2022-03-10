@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { EducationUnit } from "../components/education-unit.component";
-import { CompleteNotice } from "../components/complete-notice.component";
+import { CompletionScreen } from "../components/completion-screen.component";
 
 export const EducationUnitScreen = ({ route }) => {
     const { id, name, source, navigation } = route.params;
@@ -16,7 +16,7 @@ export const EducationUnitScreen = ({ route }) => {
                     setModuleComplete={setModuleComplete} 
                 />
                 ) : (
-                <CompleteNotice 
+                <CompletionScreen 
                     navigation={navigation}
                 /> 
             )}

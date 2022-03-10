@@ -20,6 +20,9 @@ export const ModuleTypeTitle = styled.Text`
 export const EducationUnitTitle = styled.Text`
 `;
 
+export const UnitSubtitle = styled.Text`
+`;
+
 export const SummarySection = styled.View`
     margin: ${(props) => props.theme.space[3]};
 `;

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { Text, TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
@@ -8,18 +8,11 @@ const ModuleCard = styled(Card)`
     padding: ${(props) => props.theme.space[3]};
 `;
 
-export const EducationUnitCard = ({navigation, nextEducationModule}) => {
-    const { id, name, length, source } = nextEducationModule;
+export const MovementUnitCard = ({navigation, currentMovementModule}) => {
+    const { name, length } = currentMovementModule;
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", 
-            {
-                id,
-                name,
-                source,
-                navigation
-            })}
-        > 
+        <TouchableOpacity onPress={() => navigation.navigate("Movement", { navigation })}> 
             <ModuleCard>
                 <Card.Content>
                     <Text>{name}</Text>

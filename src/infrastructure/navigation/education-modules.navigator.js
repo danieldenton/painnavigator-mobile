@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import { TodayScreen } from "../../features/today/screens/today.screen";
 import { EducationUnitScreen } from "../../features/educationModules/screens/education-unit.screen";
+import { MovementNavigator } from "../navigation/movement.navigator";
 
 const EducationModulesStack = createStackNavigator();
 
@@ -15,6 +16,7 @@ export const EducationModulesNavigator = () => {
             <EducationModulesStack.Navigator screenOptions={{headerShown: false}}>
                 <EducationModulesStack.Screen name="Today" component={TodayScreen} />
                 <EducationModulesStack.Screen name="EducationUnit" component={EducationUnitScreen} />
+                <EducationModulesStack.Screen name="Movement" component={MovementNavigator} />
             </EducationModulesStack.Navigator>
         </NavigationContainer>
     );

@@ -14,7 +14,7 @@ export const EducationUnit = ({ module_id, name, source, setModuleComplete }) =>
             <VideoPlayer 
                 source={source}
             />
-            < EducationUnitInfo 
+            <EducationUnitInfo 
                 name={name}
                 moduleId={module_id}
             />
