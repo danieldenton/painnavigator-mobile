@@ -1,0 +1,69 @@
+{
+    "painJournalQuestions": [
+        {
+            "id": 1,
+            "question": "How is your pain today?",
+            "helpText": "0 is no pain, 10 is pain as bad as you can imagine."
+        },
+        {
+            "id": 2,
+            "questions": [
+                {
+                    "id": 2.1,
+                    "question": "What were you doing when your pain increased?",
+                    "helpText": "Walking down the street one the way to work."
+                },
+                {
+                    "id": 2.2,
+                    "question": "What were you feeling?",
+                    "helpText": "I was feeling anxious because I was running late."
+                },
+                {
+                    "id": 2.3,
+                    "question": "Who were you with?",
+                    "helpText": "I was by myself."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "question": "I tried the following coping strategies:",
+            "options": [
+                {
+                    "id": 1,
+                    "option": "I didn't try any coping strategies"
+                },
+                {
+                    "id": 2,
+                    "option": "Distraction"
+                },
+                {
+                    "id": 3,
+                    "option": "Mindfulness"
+                },
+                {
+                    "id": 4,
+                    "option": "Pacing"
+                },
+                {
+                    "id": 5,
+                    "option": "Quieting the mind"
+                },
+                {
+                    "id": 6,
+                    "option": "Socializing"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "question": "Anything else you'd like to add?",
+            "helpText": "Enter some notes that will be helpful to reflect on."
+        },
+        {
+            "id": 5,
+            "question": "How was your pain after the episode?",
+            "helpText": "0 is no pain, 10 is pain as bad as you can imagine."
+        }
+    ]
+}

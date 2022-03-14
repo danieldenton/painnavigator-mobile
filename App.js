@@ -3,6 +3,7 @@ import React from "react";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationModulesContextProvider } from "./src/services/educationModules/education-modules.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
+import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -18,6 +19,9 @@ export default function App() {
             <MovementContextProvider>
               <Navigation />
             </MovementContextProvider>
+            <PainJournalContextProvider>
+              <Navigation />
+            </PainJournalContextProvider>
           </EducationModulesContextProvider>
         </BookmarksContextProvider>
       </ThemeProvider>
