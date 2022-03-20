@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
-import { EducationModulesContextProvider } from "./src/services/educationModules/education-modules.context";
+import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 
@@ -15,13 +15,13 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <BookmarksContextProvider>
-          <EducationModulesContextProvider>
+          <EducationContextProvider>
             <MovementContextProvider>
               <PainJournalContextProvider>
                 <Navigation />
               </PainJournalContextProvider>
             </MovementContextProvider>
-          </EducationModulesContextProvider>
+          </EducationContextProvider>
         </BookmarksContextProvider>
       </ThemeProvider>
     </>

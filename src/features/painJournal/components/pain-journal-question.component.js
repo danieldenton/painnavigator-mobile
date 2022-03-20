@@ -7,7 +7,7 @@ import { CopingStrategies } from "../components/coping-strategies.component";
 import { OtherNotes } from "../components/other-notes.component";
 import { PainAfter } from "../components/pain-after.component";
 import { SkipQuestion } from "../components/pain-journal.styles";
-import { Button } from "../../../components/button/button.component";
+import { Button } from "../../../components/button.component";
 import { JournalProgress } from "../components/journal-progress.component";
 
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";

@@ -1,6 +1,6 @@
 import React, { useContext }from "react";
 import { Text, View } from "react-native";
-import { Button } from "../../../components/button/button.component";
+import { Button } from "../../../components/button.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const Congratulations = ({ navigation }) => {

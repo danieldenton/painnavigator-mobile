@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-import { DailyActivitiesTile } from "../../../components/dailyActivities/daily-activities-tile.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 
 export const PainJournalScreen = ({ navigation }) => {
     return(

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Text, ScrollView } from "react-native";
-import { SummaryBody} from "../../educationModules/components/education-unit.styles";
+import { SummaryBody} from "../../education/components/education-unit.styles";
 
 const ModuleInfoWrapper = styled.View`
     height: 30%; 

@@ -1,8 +1,8 @@
 import React from "react";
-import { SafeArea } from "../../../components/utility/safe-area.component";
+import { SafeArea } from "../../../components/safe-area.component";
 import { Text } from "react-native";
 
-import { DailyActivitiesTile } from "../../../components/dailyActivities/daily-activities-tile.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 
 export const JournalScreen = ({ navigation }) => {
     return(

@@ -1,7 +1,7 @@
 import React, { useContext }from "react";
 
 import { Question } from "../components/pain-journal.styles";
-import { Slider } from "../../../components/slider/slider.component";
+import { Slider } from "../../../components/slider.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainScore = () => {

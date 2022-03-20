@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import { Modal as PaperModal, Portal, Text } from 'react-native-paper';
-import { Button } from "../../../components/button/button.component";
+import { Button } from "../../../components/button.component";
 
 const Modal = styled(PaperModal)`
     border-radius: 8px;

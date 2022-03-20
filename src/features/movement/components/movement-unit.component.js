@@ -3,11 +3,11 @@ import { ScrollView } from "react-native";
 
 import { movementVideos } from "../data/movement-videos-data.json";
 
-import { SafeArea } from "../../../components/utility/safe-area.component";
-import { VideoPlayer } from "../../educationModules/components/video-player.component";
+import { SafeArea } from "../../../components/safe-area.component";
+import { VideoPlayer } from "../../education/components/video-player.component";
 import { ModuleInfo } from "./module-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
-import { Button } from "../../../components/button/button.component";
+import { Button } from "../../../components/button.component";
 
 export const MovementUnit = ({
     moduleName, 

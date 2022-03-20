@@ -1,16 +1,16 @@
-import React, { useEffect, useContext } from "react";
-import { SafeArea } from "../../../components/utility/safe-area.component";
+import React, { useContext } from "react";
+import { SafeArea } from "../../../components/safe-area.component";
 
 import { TodayScreenHeader } from "../components/today-screen-header.component";
-import { EducationUnitCard } from "../../educationModules/components/education-unit-card.component";
+import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
-import { DailyActivitiesTile } from "../../../components/dailyActivities/daily-activities-tile.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 
-import { EducationModulesContext } from "../../../services/education/education.context";
+import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 export const TodayScreen = ({ navigation }) => {
-    const { nextEducationModule } = useContext(EducationModulesContext);
+    const { nextEducationModule } = useContext(EducationContext);
     const { currentMovementModule } = useContext(MovementContext);
 
     return (

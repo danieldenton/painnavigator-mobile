@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { Provider } from 'react-native-paper';
 
-import { SafeArea } from "../../../components/utility/safe-area.component";
+import { SafeArea } from "../../../components/safe-area.component";
 import { JournalHeader } from "../components/journal-header.component";
 import { PainJournalQuestion } from "../components/pain-journal-question.component";
 import { Congratulations } from "../components/congratulations.component";

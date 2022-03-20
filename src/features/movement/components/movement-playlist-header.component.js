@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Bookmark } from "../../../components/bookmark/bookmark.component";
+import { Bookmark } from "../../../components/bookmark.component";
 
 import { 
     Header, 
@@ -8,7 +8,7 @@ import {
     UnitSubtitle,
     TitleSection, 
     BookmarkSection
-     } from "../../educationModules/components/education-unit.styles";
+     } from "../../education/components/education-unit.styles";
 // these components will move to a shared component folder later
 
 export const MovementPlaylistHeader = ({id, length, name, videos }) => {

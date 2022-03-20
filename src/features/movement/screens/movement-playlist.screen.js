@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SafeArea } from "../../../components/utility/safe-area.component";
+import { SafeArea } from "../../../components/safe-area.component";
 
 import { MovementPlaylistHeader } from "../components/movement-playlist-header.component";
 import { PlayAllButton } from "../components/play-all-button.component";

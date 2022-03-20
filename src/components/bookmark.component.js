@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 //https://icons.expo.fyi/
 
-import { BookmarksContext } from "../../services/bookmarks/bookmarks.context";
+import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
 
 export const Bookmark = ({ moduleId }) => {
     const { bookmarks, addToBookmarks, removeFromBookmarks } = useContext(BookmarksContext);
