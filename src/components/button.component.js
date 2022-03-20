@@ -7,5 +7,6 @@ export const Button = styled(ReactPaperButton).attrs({
 })`
     background-color: #262626;
     padding: ${(props) => props.theme.space[2]};
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
+    margin-bottom: ${(props) => props.theme.space[3]};
 `;

@@ -4,6 +4,7 @@ import { EducationUnitInfo } from "./education-unit-info.component";
 import { VideoPlayer } from "./video-player.component";
 import { SafeArea } from "../../../components/safe-area.component";
 import { Button } from "../../../components/button.component";
+import { ButtonSection } from "../../education/components/education-unit.styles";
 import { EducationContext } from "../../../services/education/education.context";
 
 export const EducationUnit = ({ module_id, name, source, setModuleComplete }) => {
@@ -18,11 +19,13 @@ export const EducationUnit = ({ module_id, name, source, setModuleComplete }) =>
                 name={name}
                 moduleId={module_id}
             />
-            <Button
-                onPress={() => {setModuleComplete(true); markComplete(module_id);}}
-            >
-                Mark Complete
-            </Button>
+            <ButtonSection>
+                <Button
+                    onPress={() => {setModuleComplete(true); markComplete(module_id);}}
+                >
+                    Mark Complete
+                </Button>
+            </ButtonSection>
         </SafeArea>
     )
 }

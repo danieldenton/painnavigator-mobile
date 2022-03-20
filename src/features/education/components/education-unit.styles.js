@@ -33,3 +33,8 @@ export const SummaryBody = styled.Text`
     margin-left: ${(props) => props.theme.space[3]};
     margin-right: ${(props) => props.theme.space[3]};
 `;
+
+export const ButtonSection = styled.View`
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
+`;

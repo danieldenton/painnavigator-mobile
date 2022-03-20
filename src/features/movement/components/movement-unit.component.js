@@ -8,6 +8,7 @@ import { VideoPlayer } from "../../education/components/video-player.component";
 import { ModuleInfo } from "./module-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
 import { Button } from "../../../components/button.component";
+import { ButtonSection } from "../../education/components/education-unit.styles";
 
 export const MovementUnit = ({
     moduleName, 
@@ -42,11 +43,13 @@ export const MovementUnit = ({
             <ScrollView>
                 {playlistTiles}
             </ScrollView>
-            <Button
-                onPress={() => {markVideoComplete(id);}}
-            >
-                Mark {name} Complete
-            </Button>
+            <ButtonSection>
+                <Button
+                    onPress={() => {markVideoComplete(id);}}
+                >
+                    Mark {name} Complete
+                </Button>
+            </ButtonSection>
         </SafeArea>
     );
 };

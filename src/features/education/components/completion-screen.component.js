@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { Text } from "react-native";
 import { Button } from "../../../components/button.component";
+import { ButtonSection } from "../components/education-unit.styles";
 
 const CompletionScreenView = styled.View`
     flex: 1;
@@ -15,9 +16,11 @@ export const CompletionScreen = ({ navigation }) => {
             <CompletionScreenView>
                 <Text>Module complete</Text>
             </CompletionScreenView>
-            <Button onPress={() => {navigation.navigate("Today")}}>
-                Back to Dashboard
-            </Button>
+            <ButtonSection>
+                <Button onPress={() => {navigation.navigate("Today")}}>
+                    Back to Dashboard
+                </Button>
+            </ButtonSection>
         </>
     );
 };

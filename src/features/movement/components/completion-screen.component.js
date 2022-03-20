@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import styled from "styled-components/native";
 import { Text } from "react-native";
 import { Button } from "../../../components/button.component";
+import { ButtonSection } from "../../education/components/education-unit.styles";
 
 import { MovementContext } from "../../../services/movement/movement.context";
 
@@ -19,9 +20,11 @@ export const CompletionScreen = ({ navigation }) => {
             <CompletionScreenView>
                 <Text>Module complete</Text>
             </CompletionScreenView>
-            <Button onPress={() => {navigation.navigate("Today"); resetModuleScreen();}}>
-                Back to Dashboard
-            </Button>
+            <ButtonSection>
+                <Button onPress={() => {navigation.navigate("Today"); resetModuleScreen();}}>
+                    Back to Dashboard
+                </Button>
+            </ButtonSection>
         </>
     );
 };
