@@ -16,14 +16,21 @@ export const TodayScreen = ({ navigation }) => {
     return (
         <SafeArea>
             <TodayScreenHeader headerName="TODAY'S EDUCATION"/>
-            <EducationUnitCard navigation={navigation} nextEducationModule={nextEducationModule} />
+            <EducationUnitCard 
+                navigation={navigation} 
+                nextEducationModule={nextEducationModule} 
+            />
             <TodayScreenHeader headerName="TODAY'S MOVEMENT"/>
             <MovementUnitCard 
                 navigation={navigation} 
                 currentMovementModule={currentMovementModule} 
             />
             <TodayScreenHeader headerName="DAILY ACTIVITIES"/>
-            <DailyActivitiesTile navigation={navigation} destination={"JournalsNavigator"} title={"Make a Journal Entry"}/>
+            <DailyActivitiesTile 
+                navigation={navigation} 
+                destination={"JournalsNavigator"} 
+                title={"Make a Journal Entry"}
+            />
         </SafeArea>
     )
 };

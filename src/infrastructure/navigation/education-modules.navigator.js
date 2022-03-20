@@ -9,7 +9,6 @@ import { EducationUnitScreen } from "../../features/educationModules/screens/edu
 import { MovementNavigator } from "../navigation/movement.navigator";
 import { JournalsNavigator } from "./journals.navigator";
 
-import { JournalsNavigator } from "./journals.navigator";
 const EducationModulesStack = createStackNavigator();
 
 export const EducationModulesNavigator = () => {

@@ -17,11 +17,10 @@ export default function App() {
         <BookmarksContextProvider>
           <EducationModulesContextProvider>
             <MovementContextProvider>
-              <Navigation />
+              <PainJournalContextProvider>
+                <Navigation />
+              </PainJournalContextProvider>
             </MovementContextProvider>
-            <PainJournalContextProvider>
-              <Navigation />
-            </PainJournalContextProvider>
           </EducationModulesContextProvider>
         </BookmarksContextProvider>
       </ThemeProvider>
