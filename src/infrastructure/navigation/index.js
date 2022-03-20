@@ -1,8 +1,8 @@
 import React from "react";
-import { EducationModulesNavigator } from "../navigation/education-modules.navigator";
+import { TodayNavigator } from "../navigation/today.navigator";
 
 export const Navigation = () => {
   return (
-    <EducationModulesNavigator />
+    <TodayNavigator />
   );
 };

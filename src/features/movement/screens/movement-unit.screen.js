@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { MovementUnit } from "../components/movement-unit.component";
-import { CompletionScreen } from "../../educationModules/components/completion-screen.component";
+import { CompletionScreen } from "../components/completion-screen.component";
 
 import { MovementContext } from "../../../services/movement/movement.context";
 

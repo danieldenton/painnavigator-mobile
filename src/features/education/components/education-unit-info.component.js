@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Bookmark } from "../../../components/bookmark/bookmark.component";
+import { Bookmark } from "../../../components/bookmark.component";
 import { ScrollView } from "react-native";
 import { 
     Header, 

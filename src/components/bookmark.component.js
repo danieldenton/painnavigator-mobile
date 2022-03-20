@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 //https://icons.expo.fyi/

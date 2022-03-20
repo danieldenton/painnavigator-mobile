@@ -6,7 +6,7 @@ import { EducationUnitCard } from "../../educationModules/components/education-u
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyActivitiesTile } from "../../../components/dailyActivities/daily-activities-tile.component";
 
-import { EducationModulesContext } from "../../../services/educationModules/education-modules.context";
+import { EducationModulesContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 export const TodayScreen = ({ navigation }) => {

@@ -1,9 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { Text } from "react-native";
-import { Button } from "../../../components/button/button.component";
-
-import { MovementContext } from "../../../services/movement/movement.context";
+import { Button } from "../../../components/button.component";
 
 const CompletionScreenView = styled.View`
     flex: 1;
@@ -12,14 +10,12 @@ const CompletionScreenView = styled.View`
 `;
 
 export const CompletionScreen = ({ navigation }) => {
-    const { resetModuleScreen } = useContext(MovementContext);
-
     return (
         <>
             <CompletionScreenView>
                 <Text>Module complete</Text>
             </CompletionScreenView>
-            <Button onPress={() => {navigation.navigate("Today"); resetModuleScreen();}}>
+            <Button onPress={() => {navigation.navigate("Today")}}>
                 Back to Dashboard
             </Button>
         </>

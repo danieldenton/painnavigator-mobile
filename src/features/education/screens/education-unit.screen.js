@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { EducationUnit } from "../components/education-unit.component";
 import { CompletionScreen } from "../components/completion-screen.component";
 

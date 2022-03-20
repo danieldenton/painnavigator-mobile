@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 
-import { SafeArea } from "../../../components/safe-area.component";
-import { VideoPlayer } from "./video-player.component";
 import { EducationUnitInfo } from "./education-unit-info.component";
+import { VideoPlayer } from "./video-player.component";
+import { SafeArea } from "../../../components/safe-area.component";
 import { Button } from "../../../components/button.component";
 import { EducationModulesContext } from "../../../services/education/education.context";
 

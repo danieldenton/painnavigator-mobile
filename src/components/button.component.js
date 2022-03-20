@@ -1,6 +1,6 @@
 import { Button as ReactPaperButton} from "react-native-paper";
 import styled from "styled-components";
-import { colors } from "../../infrastructure/theme/colors";
+import { colors } from "../infrastructure/theme/colors";
 
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.inverse,

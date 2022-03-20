@@ -1,6 +1,6 @@
 import React, {useState, createContext } from "react";
-import { educationModulePostRequestComplete } from "./education-modules.service";
-import { educationModules } from "../../features/educationModules/data/education-module-data.json";
+import { postEducationModule } from "./education.service";
+import { educationModules } from "../../features/education/data/education-module-data.json";
 
 export const EducationModulesContext = createContext();
 
@@ -9,7 +9,7 @@ export const EducationModulesContextProvider = ({ children }) => {
     const nextEducationModule = educationModules[educationModuleProgress];
 
     const markComplete = (module_id) => {
-        //educationModulePostRequestComplete(module_id);
+        //postEducationModule(module_id);
         setEducationModuleProgress((prevEducationModuleProgress) => { return ( prevEducationModuleProgress + 1 ) });
     };
 

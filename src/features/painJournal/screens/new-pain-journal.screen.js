@@ -20,7 +20,7 @@ export const NewPainJournalScreen = ({ navigation }) => {
         <SafeArea>
             <Provider>
                 <JournalHeader 
-                    journalName={"PAIN JOURNAL"} 
+                    headerName={"PAIN JOURNAL"} 
                     showModal={showModal} 
                     currentQuestion={currentQuestion} 
                     previousQuestion={previousQuestion}
