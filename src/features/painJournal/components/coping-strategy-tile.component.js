@@ -26,7 +26,7 @@ export const CopingStrategyTile = ({ option, copingStrategies, setCopingStrategi
 
     return(
         <CopingStrategy 
-            onPress={() => !isSelected ? add(option.id) : remove(option.id)}
+            onPress={() => isSelected ? remove(option.id) : add(option.id)}
             style={{
                 backgroundColor: isSelected && colors.bg.secondary
             }}
