@@ -5,6 +5,7 @@ import { Text } from "react-native";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 
 export const JournalScreen = ({ navigation }) => {
+
     return(
         <SafeArea>
             <Text>Journal Screen</Text>
