@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Text, TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 
-const DailyActivitiesCard = styled(Card)`
+const JournalCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
     padding: ${(props) => props.theme.space[2]};
 `;
@@ -14,18 +14,14 @@ const CardContentWrapper = styled(Card.Content)`
     justify-content: space-between;
 `;
 
-export const JournalTile = ({ date, destination, summary, navigation, journalData }) => {
+export const JournalTile = ({ date, destination, summary, navigation, item }) => {
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate(destination, {
-            journalData,
-        })}> 
-            <DailyActivitiesCard>
-                <CardContentWrapper>
-                    <Text>{date}</Text>
-                    <Text>{summary}</Text>
-                </CardContentWrapper>
-            </DailyActivitiesCard>
-        </TouchableOpacity>
+        <JournalCard>
+            <CardContentWrapper>
+                <Text>{item}</Text>
+                <Text>{item}</Text>
+            </CardContentWrapper>
+        </JournalCard>
     ); 
 };

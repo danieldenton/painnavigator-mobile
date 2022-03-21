@@ -1,12 +1,16 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { SafeArea } from "../../../components/safe-area.component";
+import { JournalContainer } from "../components/pain-journal.styles";
 
-export const ReviewPainJournal = ({journalData}) => {
+export const ReviewPainJournal = (journal) => {
     return(
-        <View>
-            <Text>
-                {journalData.summary}
-            </Text>
-        </View>
+        <SafeArea>
+            <JournalContainer>
+                <Text>
+                    {journal}
+                </Text>
+            </JournalContainer>
+        </SafeArea>
     );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, FlatList, TouchableOpacity } from "react-native";
 
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalTile } from "../../../components/journal-tile.component";
@@ -14,7 +14,7 @@ const journalData = [
         painFeeling: "Sad",
         whoWith: "Friends",
         copingStrategies: [1, 2, 3],
-        otherNotes: nil,
+        otherNotes: "",
         painAfter: 7
     },
     {
@@ -31,23 +31,35 @@ const journalData = [
     }
 ]
 
-const journalEntries = journalData.map((journalData) => 
-    <JournalTile 
-        date={journalData.date}
-        summary={journalData.summary}
-        destination={"ReviewPainJournal"}
-        journalData={journalData}
-        naviation={navigation}
-    />);
-
 export const PainJournalScreen = ({ navigation }) => {
+
+    const journalEntries = journalData.map((journal) => 
+        <JournalTile 
+            key={journal.id}
+            date={journal.date}
+            summary={journal.summary}
+            journal={journal}
+            destination={"ReviewPainJournal"}
+            navigation={navigation}
+        />);
+
     return(
         <View>
-            <Text>Pain Journal Home</Text> 
             <DailyActivitiesTile title={"New Pain Journal"} destination={"NewPainJournal"} navigation={navigation} />
-            <ScrollView>
-                {journalEntries}
-            </ScrollView>
+            <FlatList 
+                data={journalData}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity onPress={() => navigation.navigate("ReviewPainJournal", {
+                            journal: item,
+                        })}> 
+                            <JournalTile journal={item} />
+                        </TouchableOpacity>
+                    )
+                }}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={{ padding: 16 }}
+            />
         </View>
     );
 };
