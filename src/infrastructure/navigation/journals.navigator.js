@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { JournalScreen } from "../../features/today/screens/journals.screen";
 import { PainJournalScreen } from "../../features/painJournal/screens/pain-journal.screen";
 import { NewPainJournalScreen } from "../../features/painJournal/screens/new-pain-journal.screen";
+import { ReviewPainJournal } from "../../features/painJournal/screens/review-pain-journal.screen";
 
 const JournalsStack = createStackNavigator();
 
@@ -25,6 +26,13 @@ export const JournalsNavigator = () => {
                 component={NewPainJournalScreen}
                 options={{
                     headerShown: false,
+                }}
+            />
+            <JournalsStack.Screen
+                name="ReviewPainJournal"
+                component={ReviewPainJournal}
+                options={{
+                    headerShown: true,
                 }}
             />
         </JournalsStack.Navigator>
