@@ -15,13 +15,14 @@ const CardContentWrapper = styled(Card.Content)`
 `;
 
 export const JournalTile = ({ item }) => {
-    const { date, summary } = item;
+    const { attributes } = item;
+    const { date, painScore } = attributes;
 
     return ( 
         <JournalCard>
             <CardContentWrapper>
                 <Text>{date}</Text>
-                <Text>{summary}</Text>
+                <Text>{`My pain was ${painScore == 8 ? "an" : "a"} ${painScore}`}</Text>
             </CardContentWrapper>
         </JournalCard>
     ); 

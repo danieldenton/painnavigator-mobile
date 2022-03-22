@@ -1,6 +1,6 @@
 import React, {useState, createContext } from "react";
 
-import { postPainJournal } from "./pain-journal.service";
+import { getPainJournals, postPainJournal } from "./pain-journal.service";
 
 import { painJournalQuestions } from "../../features/painJournal/data/pain-journal-question-data.json";
 
@@ -37,7 +37,7 @@ export const PainJournalContextProvider = ({ children }) => {
     };
 
     const completePainJournal = () => {  
-        //postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
+        // postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
         //deactivated until backend is live
         setJournalComplete(true);
         resetJournalState();
