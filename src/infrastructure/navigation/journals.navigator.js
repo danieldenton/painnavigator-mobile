@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 
 import { JournalScreen } from "../../features/today/screens/journals.screen";
 import { PainJournalScreen } from "../../features/painJournal/screens/pain-journal.screen";
@@ -32,7 +32,8 @@ export const JournalsNavigator = () => {
                 name="ReviewPainJournal"
                 component={ReviewPainJournal}
                 options={{
-                    headerShown: true,
+                    headerShown: false,
+                    presentation: `modal`
                 }}
             />
         </JournalsStack.Navigator>

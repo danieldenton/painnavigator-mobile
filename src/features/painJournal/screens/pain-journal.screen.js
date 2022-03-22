@@ -7,8 +7,6 @@ import { JournalTile } from "../../../components/journal-tile.component";
 import { painJournalEntries } from "../../../services/pain-journal/data/pain-journals-data.json";
 
 export const PainJournalScreen = ({ navigation }) => {
-    console.log(painJournalEntries[0].date);
-
     return(
         <View>
             <DailyActivitiesTile title={"New Pain Journal"} destination={"NewPainJournal"} navigation={navigation} />

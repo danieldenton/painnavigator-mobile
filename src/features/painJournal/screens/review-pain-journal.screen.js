@@ -9,6 +9,19 @@ import { painJournalQuestions } from "../data/pain-journal-question-data.json";
 import styled from "styled-components/native";
 
 const ReviewJournalHeader = styled.View`
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    min-height: 64px;
+`;
+
+const DateText = styled.Text`
+    margin-top: ${(props) => props.theme.space[4]};
+    margin-bottom: 33px;
+`;
+
+const EditButton = styled(Button)`
+    padding: 0px;
 `;
 
 const Question = styled.Text`
@@ -18,7 +31,7 @@ const Response = styled.Text`
 `;
 
 export const ReviewPainJournal = ({ route }) => {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(true);
     const { item } = route.params;
     const { 
         date, 
@@ -35,8 +48,8 @@ export const ReviewPainJournal = ({ route }) => {
         <SafeArea>
             <JournalContainer>
                 <ReviewJournalHeader>
-                    <Text>{date}</Text>
-                    <Text>Edit</Text>
+                    <DateText>{date}</DateText>
+                    {!isEditing && <EditButton onPress={() => setIsEditing(true)}>Edit</EditButton>}
                 </ReviewJournalHeader>
                 <ScrollView>
                     <Question>{painJournalQuestions[0].question}</Question>
@@ -48,7 +61,7 @@ export const ReviewPainJournal = ({ route }) => {
                     <Question>{painJournalQuestions[1].questions[2].question}</Question>
                     <Response>{whoWith}</Response>
                 </ScrollView>
-                {isEditing && <Button>Save Changes</Button>}
+                {isEditing && <Button onPress={() => setIsEditing(false)}>Save Changes</Button>}
             </JournalContainer>
         </SafeArea>
     );
