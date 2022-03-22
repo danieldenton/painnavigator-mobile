@@ -14,13 +14,14 @@ const CardContentWrapper = styled(Card.Content)`
     justify-content: space-between;
 `;
 
-export const JournalTile = ({ date, destination, summary, navigation, item }) => {
+export const JournalTile = ({ item }) => {
+    const { date, summary } = item;
 
     return ( 
         <JournalCard>
             <CardContentWrapper>
-                <Text>{item}</Text>
-                <Text>{item}</Text>
+                <Text>{date}</Text>
+                <Text>{summary}</Text>
             </CardContentWrapper>
         </JournalCard>
     ); 
