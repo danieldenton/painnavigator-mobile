@@ -53,7 +53,7 @@ export const postPainJournal = (
     const who_with = whoWith;
     const coping_strategies = String(copingStrategies);
     const other_notes = otherNotes; 
-    const pain_after = painAfter;
+    const pain_after_episode = painAfter;
 
     axios.post(`${baseUrl}/api/v1/pain_journals`, {
         pain_score,
@@ -62,7 +62,7 @@ export const postPainJournal = (
         who_with,
         coping_strategies,
         other_notes,
-        pain_after
+        pain_after_episode
     })
     .then((response) => {
         console.log(response.data);

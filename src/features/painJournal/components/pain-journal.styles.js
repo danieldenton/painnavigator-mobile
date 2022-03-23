@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
+import { Button } from "../../../components/button.component";
 
 export const Input = styled(TextInput)`
     margin-bottom: ${(props) => props.theme.space[3]};
@@ -58,3 +59,22 @@ export const SkipQuestion = ({handlePress}) => {
         </SkipQuestionButton>
     );
 };
+
+export const ReviewJournalHeader = styled.View`
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    min-height: 64px;
+`;
+
+export const DateText = styled.Text`
+    margin-top: ${(props) => props.theme.space[4]};
+    margin-bottom: 33px;
+`;
+
+export const EditButton = styled(Button)`
+    padding: 0px;
+`;
+
+export const Response = styled.Text`
+`;

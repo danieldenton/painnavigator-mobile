@@ -50,10 +50,8 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const completePainJournal = () => {  
         postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
-        //deactivated until backend is live
         setJournalComplete(true);
         resetJournalState();
-        loadPainJournals();
     };
 
     const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
