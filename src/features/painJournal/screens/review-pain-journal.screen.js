@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ScrollView } from "react-native";
 import { SafeArea } from "../../../components/safe-area.component";
 import { Slider } from "../../../components/slider.component";
@@ -33,57 +33,71 @@ const Response = styled.Text`
 `;
 
 export const ReviewPainJournal = ({ route }) => {
+    const { journal, journalId } = route.params;
     const { updatePainJournal } = useContext(PainJournalContext);
     const [isEditing, setIsEditing] = useState(false);
-    const [journalUpdate, setJournalUpdate] = useState({
-        pain_score: 6,
-        other_notes: "Yes, yes, yes"
-    });
-    const { journal, journalId } = route.params;
-    const { 
-        date, 
-        painScore,
-        painSetting,
-        painFeeling,
-        whoWith,
-        copingStrategies,
-        otherNotes,
-        painAfter } = journal;
+    const [painJournal, setPainJournal] = useState(journal);
+
+    const handleChange = (change, name) => {
+        setPainJournal(journal => ({
+            ...journal,
+            [name]: change
+        }));
+    };
 
     return(
         <SafeArea>
             <JournalContainer>
                 <ReviewJournalHeader>
-                    <DateText>{date}</DateText>
+                    <DateText>{painJournal.date}</DateText>
                     {!isEditing && <EditButton onPress={() => setIsEditing(true)}>Edit</EditButton>}
                 </ReviewJournalHeader>
                 <ScrollView>
                     <Question>{painJournalQuestions[0].question}</Question>
-                    {isEditing ? <Slider value={painScore} /> : <Response>{painScore}</Response>}
+                    {isEditing ? <Slider value={painJournal.painScore} /> : <Response>{painJournal.painScore}</Response>}
 
                     <Question>{painJournalQuestions[1].questions[0].question}</Question>
-                    <Input value={painSetting} disabled={!isEditing && true}/>
+                    <Input 
+                        value={painJournal.painSetting} 
+                        disabled={!isEditing && true}
+                        onChangeText={(change) => handleChange(change, "painSetting")}
+                    />
 
                     <Question>{painJournalQuestions[1].questions[1].question}</Question>
-                    <Input value={painFeeling} disabled={!isEditing && true}/>
+                    <Input 
+                        value={painJournal.painFeeling} 
+                        disabled={!isEditing && true}
+                        onChangeText={(change) => handleChange(change, "painFeeling")}
+                    />
 
                     <Question>{painJournalQuestions[1].questions[2].question}</Question>
-                    <Input value={whoWith} disabled={!isEditing && true}/>
+                    <Input 
+                        value={painJournal.whoWith} 
+                        disabled={!isEditing && true} 
+                        onChangeText={(change) => handleChange(change, "whoWith")}
+                    />
 
                     <Question>{painJournalQuestions[2].question}</Question>
-                    <Input value={copingStrategies} disabled={!isEditing && true}/>
+                    <Input 
+                        value={painJournal.copingStrategies} 
+                        disabled={!isEditing && true}
+                    />
 
                     <Question>{painJournalQuestions[3].question}</Question>
-                    <Input value={otherNotes} disabled={!isEditing && true}/>
+                    <Input 
+                        value={painJournal.otherNotes} 
+                        disabled={!isEditing && true}
+                        onChangeText={(change) => handleChange(change, "otherNotes")}
+                    />
 
                     <Question>{painJournalQuestions[4].question}</Question>
-                    {isEditing ? <Slider value={painAfter} /> : <Response>{painAfter}</Response>}
+                    {isEditing ? <Slider value={painJournal.painAfter} /> : <Response>{painJournal.painAfter}</Response>}
                 </ScrollView>
                 {isEditing && 
                     <Button 
                         onPress={() => {
                             setIsEditing(false);
-                            updatePainJournal(journalId, journalUpdate);
+                            updatePainJournal(journalId, painJournal);
                         }}
                     >
                             Save Changes
