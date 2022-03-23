@@ -1,6 +1,6 @@
 import React, {useState, createContext } from "react";
 
-import { getPainJournals, postPainJournal } from "./pain-journal.service";
+import { getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
 
 import { painJournalQuestions } from "../../features/painJournal/data/pain-journal-question-data.json";
 
@@ -16,6 +16,9 @@ export const PainJournalContextProvider = ({ children }) => {
     const [copingStrategies, setCopingStrategies] = useState([]);
     const [otherNotes, setOtherNotes] = useState("");
     const [painAfter, setPainAfter] = useState(5);
+
+    const [painJournals, setPainJournals] = useState({});
+    const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
     
     const nextQuestion = () => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
@@ -36,11 +39,21 @@ export const PainJournalContextProvider = ({ children }) => {
         setCurrentQuestion(1);
     };
 
+    const loadPainJournals = () => {
+        getPainJournals(setPainJournals, setPainJournalsLoaded);
+    };
+
+    const updatePainJournal = (journalId, journalUpdate) => {
+        patchPainJournal(journalId, journalUpdate);
+        getPainJournals(setPainJournals, setPainJournalsLoaded);
+    };
+
     const completePainJournal = () => {  
-        // postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
+        postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
         //deactivated until backend is live
         setJournalComplete(true);
         resetJournalState();
+        loadPainJournals();
     };
 
     const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
@@ -61,6 +74,10 @@ export const PainJournalContextProvider = ({ children }) => {
                 previousQuestion,
                 journalComplete, setJournalComplete,
                 resetJournalState,
+                loadPainJournals,
+                painJournals,
+                painJournalsLoaded,
+                updatePainJournal,
                 completePainJournal
             }}
         >

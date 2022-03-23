@@ -14,9 +14,8 @@ const CardContentWrapper = styled(Card.Content)`
     justify-content: space-between;
 `;
 
-export const JournalTile = ({ item }) => {
-    const { attributes } = item;
-    const { date, painScore } = attributes;
+export const JournalTile = ({ journal }) => {
+    const { date, painScore } = journal;
 
     return ( 
         <JournalCard>

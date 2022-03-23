@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ScrollView } from "react-native";
 import { SafeArea } from "../../../components/safe-area.component";
 import { Slider } from "../../../components/slider.component";
@@ -8,6 +8,7 @@ import { JournalContainer, Input } from "../components/pain-journal.styles";
 import { painJournalQuestions } from "../data/pain-journal-question-data.json";
 
 import styled from "styled-components/native";
+import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 const ReviewJournalHeader = styled.View`
     flex-direction: row;
@@ -32,19 +33,22 @@ const Response = styled.Text`
 `;
 
 export const ReviewPainJournal = ({ route }) => {
+    const { updatePainJournal } = useContext(PainJournalContext);
     const [isEditing, setIsEditing] = useState(false);
-    const [painScoreResponse, setPainScoreResponse] = useState(painScore);
-    const { item } = route.params;
+    const [journalUpdate, setJournalUpdate] = useState({
+        pain_score: 6,
+        other_notes: "Yes, yes, yes"
+    });
+    const { journal, journalId } = route.params;
     const { 
         date, 
-        summary, 
         painScore,
         painSetting,
         painFeeling,
         whoWith,
         copingStrategies,
         otherNotes,
-        painAfter } = item;
+        painAfter } = journal;
 
     return(
         <SafeArea>
@@ -75,7 +79,15 @@ export const ReviewPainJournal = ({ route }) => {
                     <Question>{painJournalQuestions[4].question}</Question>
                     {isEditing ? <Slider value={painAfter} /> : <Response>{painAfter}</Response>}
                 </ScrollView>
-                {isEditing && <Button onPress={() => setIsEditing(false)}>Save Changes</Button>}
+                {isEditing && 
+                    <Button 
+                        onPress={() => {
+                            setIsEditing(false);
+                            updatePainJournal(journalId, journalUpdate);
+                        }}
+                    >
+                            Save Changes
+                    </Button>}
             </JournalContainer>
         </SafeArea>
     );

@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
 
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalTile } from "../../../components/journal-tile.component";
 
-import { painJournalEntries } from "../../../services/pain-journal/data/pain-journals-data.json";
-import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
+// import { painJournalEntries } from "../../../services/pain-journal/data/pain-journals-data.json";
+import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainJournalScreen = ({ navigation }) => {
-    const [painJournals, setPainJournals] = useState({});
-    const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
-
-    useEffect(() => {
-        getPainJournals(setPainJournals, setPainJournalsLoaded);
-    }, [])
-
-    useEffect(() => {
-        console.log(JSON.stringify(painJournals));
-        console.log(painJournalsLoaded);
-    }, [painJournals])
+    const { painJournals } = useContext(PainJournalContext);
 
     return(
         <View>
@@ -28,9 +18,10 @@ export const PainJournalScreen = ({ navigation }) => {
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity onPress={() => navigation.navigate("ReviewPainJournal", {
-                            item: item,
+                            journal: item.attributes,
+                            journalId: item.id
                         })}> 
-                            <JournalTile item={item} />
+                            <JournalTile journal={item.attributes} />
                         </TouchableOpacity>
                     )
                 }}

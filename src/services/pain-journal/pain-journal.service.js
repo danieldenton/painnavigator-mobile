@@ -12,6 +12,15 @@ export const getPainJournals = (setPainJournals, setPainJournalsLoaded) => {
     .catch(resp => console.log(resp))
 };
 
+export const patchPainJournal = (journalId, journalUpdate) => {
+    axios.patch(`${baseUrl}/api/v1/pain_journals/${journalId}`, {
+        pain_journal: journalUpdate
+    })
+    .then((response) => {
+        console.log(response.data);
+    });
+};
+
 export const postPainJournal = (
     painScore, 
     painSetting, 
@@ -28,7 +37,7 @@ export const postPainJournal = (
     const who_with = whoWith;
     const coping_strategies = String(copingStrategies);
     const other_notes = otherNotes; 
-    const pain_after_episode = painAfter;
+    const pain_after = painAfter;
 
     axios.post(`${baseUrl}/api/v1/pain_journals`, {
         pain_score,
@@ -37,7 +46,7 @@ export const postPainJournal = (
         who_with,
         coping_strategies,
         other_notes,
-        pain_after_episode
+        pain_after
     })
     .then((response) => {
         console.log(response.data);

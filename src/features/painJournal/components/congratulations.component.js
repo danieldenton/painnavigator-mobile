@@ -1,13 +1,14 @@
 import React, { useContext }from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { Button } from "../../../components/button.component";
+import { JournalContainer } from "../components/pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const Congratulations = ({ navigation }) => {
     const { setJournalComplete } = useContext(PainJournalContext);
 
     return(
-        <View>
+        <JournalContainer>
             <Text>Congratulations</Text>
             <Button 
                 onPress={() => {
@@ -16,6 +17,6 @@ export const Congratulations = ({ navigation }) => {
                 }}>
                     Next
             </Button>
-        </View>
+        </JournalContainer>
     );
 };
