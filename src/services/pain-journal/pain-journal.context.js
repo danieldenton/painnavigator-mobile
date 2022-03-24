@@ -7,7 +7,9 @@ export const PainJournalContext = createContext();
 export const PainJournalContextProvider = ({ children }) => {
     const [journalComplete, setJournalComplete] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [painJournal, setPainJournal] = useState({
+    const [painJournals, setPainJournals] = useState({});
+    const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
+    const [newPainJournal, setNewPainJournal] = useState({
         painScore: 5, 
         painSetting: "", 
         painFeeling: "", 
@@ -16,19 +18,11 @@ export const PainJournalContextProvider = ({ children }) => {
         otherNotes: "", 
         painAfter: 5
     });
-    const [painJournals, setPainJournals] = useState({});
-    const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
-    
-    const nextQuestion = () => {
-        setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
-    };
 
-    const previousQuestion = () => {
-        setCurrentQuestion((prevQuestion) => { return ( prevQuestion - 1 ) });
-    };
+    const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
 
     const resetPainJournal = () => {
-        setPainJournal({ painScore: 5, 
+        setNewPainJournal({ painScore: 5, 
             painSetting: "", 
             painFeeling: "", 
             whoWith: "", 
@@ -48,23 +42,19 @@ export const PainJournalContextProvider = ({ children }) => {
     };
 
     const completePainJournal = () => {  
-        postPainJournal(painJournal);
+        postPainJournal(newPainJournal);
         setJournalComplete(true);
         resetPainJournal();
     };
 
-    const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
-
     return (
         <PainJournalContext.Provider
             value={{
-                painJournal,
-                setPainJournal,
+                newPainJournal,
+                setNewPainJournal,
                 currentQuestion, 
                 setCurrentQuestion,
                 currentQuestionData,
-                nextQuestion,
-                previousQuestion,
                 journalComplete, 
                 setJournalComplete,
                 completePainJournal,

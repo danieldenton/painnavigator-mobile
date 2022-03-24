@@ -4,11 +4,11 @@ import { Question } from "./pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainAfter = () => {
-    const { currentQuestionData, painJournal, setPainJournal } = useContext(PainJournalContext);
+    const { currentQuestionData, newPainJournal, setNewPainJournal } = useContext(PainJournalContext);
     const { question } = currentQuestionData;
 
     const handleChange = (change) => {
-        setPainJournal(journal => ({
+        setNewPainJournal(journal => ({
             ...journal,
             ["painAfter"]: change
         }));
@@ -17,7 +17,7 @@ export const PainAfter = () => {
     return(
         <>
             <Question question={question} />
-            <Slider value={painJournal.painAfter} onValueChange={handleChange} />
+            <Slider value={newPainJournal.painAfter} onValueChange={handleChange} />
         </>
     );
 };

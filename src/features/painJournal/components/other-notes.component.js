@@ -3,11 +3,11 @@ import { Question, Input } from "./pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const OtherNotes = () => {
-    const { currentQuestionData, painJournal, setPainJournal } = useContext(PainJournalContext);
+    const { currentQuestionData, newPainJournal, setNewPainJournal } = useContext(PainJournalContext);
     const { question } = currentQuestionData;
 
     const handleChange = (change) => {
-        setPainJournal(journal => ({
+        setNewPainJournal(journal => ({
             ...journal,
             ["otherNotes"]: change
         }));
@@ -17,7 +17,7 @@ export const OtherNotes = () => {
         <>
             <Question question={question} />
             <Input
-                value={painJournal.otherNotes}
+                value={newPainJournal.otherNotes}
                 onChangeText={(change) => handleChange(change)}
                 style={{ height: 150 }}
             />

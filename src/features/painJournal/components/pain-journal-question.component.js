@@ -1,5 +1,4 @@
 import React, { useContext} from "react";
-
 import { JournalContainer, QuestionSection, ButtonSection } from "../components/pain-journal.styles";
 import { PainScore } from "../components/pain-score.component";
 import { PainSetting } from "../components/pain-setting.component";
@@ -9,11 +8,14 @@ import { PainAfter } from "../components/pain-after.component";
 import { SkipQuestion } from "../components/pain-journal.styles";
 import { Button } from "../../../components/button.component";
 import { JournalProgress } from "../components/journal-progress.component";
-
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainJournalQuestion = () => {
-    const { currentQuestion, nextQuestion, completePainJournal } = useContext(PainJournalContext);
+    const { currentQuestion, setCurrentQuestion, completePainJournal } = useContext(PainJournalContext);
+
+    const nextQuestion = () => {
+        setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
+    };
 
     return(
         <>

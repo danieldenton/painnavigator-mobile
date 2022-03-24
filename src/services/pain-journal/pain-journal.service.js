@@ -19,8 +19,8 @@ export const patchPainJournal = (journalId, painJournal) => {
     });
 };
 
-export const postPainJournal = (painJournal) => {
-    axios.post(`${baseUrl}/api/v1/pain_journals`, { pain_journal: painJournal })
+export const postPainJournal = (newPainJournal) => {
+    axios.post(`${baseUrl}/api/v1/pain_journals`, { pain_journal: newPainJournal })
     .then((response) => {
         console.log(response.data);
     });
