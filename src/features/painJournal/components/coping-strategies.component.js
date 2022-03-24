@@ -7,15 +7,15 @@ import { CopingStrategyTile } from "./coping-strategy-tile.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const CopingStrategies = () => {
-    const { currentQuestionData, copingStrategies, setCopingStrategies } = useContext(PainJournalContext);
+    const { currentQuestionData, painJournal, setPainJournal } = useContext(PainJournalContext);
     const { question, options } = currentQuestionData;
 
     const copingStrategyOptions = options.map((option) => 
         <CopingStrategyTile 
             key={option.id}
             option={option} 
-            copingStrategies={copingStrategies} 
-            setCopingStrategies={setCopingStrategies} 
+            painJournal={painJournal} 
+            setPainJournal={setPainJournal} 
         />
     );
 

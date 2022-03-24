@@ -1,7 +1,5 @@
-import React, {useState, createContext } from "react";
-
+import React, { useState, createContext } from "react";
 import { getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
-
 import { painJournalQuestions } from "../../features/painJournal/data/pain-journal-question-data.json";
 
 export const PainJournalContext = createContext();
@@ -9,14 +7,15 @@ export const PainJournalContext = createContext();
 export const PainJournalContextProvider = ({ children }) => {
     const [journalComplete, setJournalComplete] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [painScore, setPainScore] = useState(5);
-    const [painSetting, setPainSetting] = useState("");
-    const [painFeeling, setPainFeeling] = useState("");
-    const [whoWith, setWhoWith] = useState("");
-    const [copingStrategies, setCopingStrategies] = useState([]);
-    const [otherNotes, setOtherNotes] = useState("");
-    const [painAfter, setPainAfter] = useState(5);
-
+    const [painJournal, setPainJournal] = useState({
+        painScore: 5, 
+        painSetting: "", 
+        painFeeling: "", 
+        whoWith: "", 
+        copingStrategies: [], 
+        otherNotes: "", 
+        painAfter: 5
+    });
     const [painJournals, setPainJournals] = useState({});
     const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
     
@@ -28,15 +27,15 @@ export const PainJournalContextProvider = ({ children }) => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion - 1 ) });
     };
 
-    const resetJournalState = () => {
-        setPainScore(5);
-        setPainSetting("");
-        setPainFeeling("");
-        setWhoWith("");
-        setCopingStrategies([]);
-        setOtherNotes("");
-        setPainAfter(5);
-        setCurrentQuestion(1);
+    const resetPainJournal = () => {
+        setPainJournal({ painScore: 5, 
+            painSetting: "", 
+            painFeeling: "", 
+            whoWith: "", 
+            copingStrategies: [], 
+            otherNotes: "", 
+            painAfter: 5
+        });
     };
 
     const loadPainJournals = () => {
@@ -49,9 +48,9 @@ export const PainJournalContextProvider = ({ children }) => {
     };
 
     const completePainJournal = () => {  
-        postPainJournal(painScore, painSetting, painFeeling, whoWith, copingStrategies, otherNotes, painAfter);
+        postPainJournal(painJournal);
         setJournalComplete(true);
-        resetJournalState();
+        resetPainJournal();
     };
 
     const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
@@ -59,24 +58,21 @@ export const PainJournalContextProvider = ({ children }) => {
     return (
         <PainJournalContext.Provider
             value={{
+                painJournal,
+                setPainJournal,
+                currentQuestion, 
+                setCurrentQuestion,
                 currentQuestionData,
-                currentQuestion, setCurrentQuestion,
-                painScore, setPainScore,
-                painSetting, setPainSetting,
-                painFeeling, setPainFeeling,
-                whoWith, setWhoWith,
-                copingStrategies, setCopingStrategies,
-                otherNotes, setOtherNotes,
-                painAfter, setPainAfter,
                 nextQuestion,
                 previousQuestion,
-                journalComplete, setJournalComplete,
-                resetJournalState,
+                journalComplete, 
+                setJournalComplete,
+                completePainJournal,
+                resetPainJournal,
                 loadPainJournals,
                 painJournals,
                 painJournalsLoaded,
-                updatePainJournal,
-                completePainJournal
+                updatePainJournal
             }}
         >
             {children}

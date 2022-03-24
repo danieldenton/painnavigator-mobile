@@ -1,24 +1,25 @@
 import React, { useContext } from "react";
-
+import { Question, Input } from "./pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
-import { Question, Input } from "./pain-journal.styles";
-
 export const OtherNotes = () => {
-    const { currentQuestionData, otherNotes, setOtherNotes } = useContext(PainJournalContext);
+    const { currentQuestionData, painJournal, setPainJournal } = useContext(PainJournalContext);
     const { question } = currentQuestionData;
+
+    const handleChange = (change) => {
+        setPainJournal(journal => ({
+            ...journal,
+            ["otherNotes"]: change
+        }));
+    };
 
     return(
         <>
             <Question question={question} />
             <Input
-                value={otherNotes}
-                onChangeText={(text) => {
-                    setOtherNotes(text);
-                }}
-                style={{
-                    height: 150
-                }}
+                value={painJournal.otherNotes}
+                onChangeText={(change) => handleChange(change)}
+                style={{ height: 150 }}
             />
         </>
     );

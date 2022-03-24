@@ -9,19 +9,27 @@ const CopingStrategy = styled(TouchableOpacity)`
     margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
-export const CopingStrategyTile = ({ option, copingStrategies, setCopingStrategies }) => {
-    const isSelected = copingStrategies.find((selected) => selected === option.id)
+export const CopingStrategyTile = ({ option, painJournal, setPainJournal }) => {
+    const isSelected = painJournal.copingStrategies.find((selected) => selected === option.id)
+    const copingStrategies = painJournal.copingStrategies; 
     
     const add = (optionId) => {
-        setCopingStrategies([...copingStrategies, optionId]);
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: [...copingStrategies, optionId]
+        }));
+        //setCopingStrategies([...copingStrategies, optionId]);
     };
     
     const remove = (optionId) => {
         const newCopingStrategies = copingStrategies.filter(
           (x) => x !== optionId
         );
-    
-        setCopingStrategies(newCopingStrategies);
+
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: newCopingStrategies
+        }));    
     };
 
     return(
