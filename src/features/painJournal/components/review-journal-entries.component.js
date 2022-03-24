@@ -1,8 +1,7 @@
 import React from "react";
-import { ScrollView } from "react-native";
 import { Slider } from "../../../components/slider.component";
 import { Input, Question, Response } from "./pain-journal.styles";
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { painJournalQuestions } from "../data/pain-journal-question-data.json";
 
 export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) => {
@@ -15,7 +14,7 @@ export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) =
     const painAfterQuestion = painJournalQuestions[4].question;
 
     return(
-        <ScrollView>
+        <KeyboardAwareScrollView>
             <Question question={painScoreQuestion} />
             {isEditing ? <Slider value={painJournal.painScore} /> : <Response>{painJournal.painScore}</Response>}
 
@@ -55,6 +54,6 @@ export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) =
 
             <Question question={painAfterQuestion} />
             {isEditing ? <Slider value={painJournal.painAfter} /> : <Response>{painJournal.painAfter}</Response>}
-        </ScrollView>
+        </KeyboardAwareScrollView>
     ); 
 };

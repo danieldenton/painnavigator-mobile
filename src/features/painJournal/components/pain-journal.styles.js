@@ -60,7 +60,7 @@ export const SkipQuestion = ({handlePress}) => {
     );
 };
 
-export const ReviewJournalHeader = styled.View`
+export const HeaderRow = styled.View`
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
@@ -75,6 +75,15 @@ export const DateText = styled.Text`
 export const EditButton = styled(Button)`
     padding: 0px;
 `;
+
+export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
+    return(
+        <HeaderRow>
+            <DateText>{date}</DateText>
+            {!isEditing && <EditButton onPress={() => setIsEditing(true)}>Edit</EditButton>}
+        </HeaderRow>
+    );
+};
 
 export const Response = styled.Text`
 `;

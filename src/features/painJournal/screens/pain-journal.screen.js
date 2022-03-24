@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
-
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalTile } from "../../../components/journal-tile.component";
-
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainJournalScreen = ({ navigation }) => {

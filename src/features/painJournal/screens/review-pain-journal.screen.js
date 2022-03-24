@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { SafeArea } from "../../../components/safe-area.component";
 import { ReviewJournalEntries } from "../components/review-journal-entries.component";
 import { Button } from "../../../components/button.component";
-import { JournalContainer, ReviewJournalHeader, DateText, EditButton } from "../components/pain-journal.styles";
+import { JournalContainer, ReviewJournalHeader } from "../components/pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const ReviewPainJournal = ({ route }) => {
@@ -21,19 +21,13 @@ export const ReviewPainJournal = ({ route }) => {
     return(
         <SafeArea>
             <JournalContainer>
-                <ReviewJournalHeader>
-                    <DateText>{painJournal.date}</DateText>
-                    {!isEditing && <EditButton onPress={() => setIsEditing(true)}>Edit</EditButton>}
-                </ReviewJournalHeader>
+                <ReviewJournalHeader date={painJournal.date} isEditing={isEditing} setIsEditing={setIsEditing} />
                 <ReviewJournalEntries isEditing={isEditing} painJournal={painJournal} handleChange={handleChange}/>
                 {isEditing && 
                     <Button 
-                        onPress={() => {
-                            setIsEditing(false);
-                            updatePainJournal(journalId, painJournal);
-                        }}
+                        onPress={() => { setIsEditing(false); updatePainJournal(journalId, painJournal); }}
                     >
-                            Save Changes
+                        Save Changes
                     </Button>}
             </JournalContainer>
         </SafeArea>

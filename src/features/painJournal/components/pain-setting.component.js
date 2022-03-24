@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 // TODO: find something less janky than keyboardawarescrollview
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Question, Input } from "./pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
