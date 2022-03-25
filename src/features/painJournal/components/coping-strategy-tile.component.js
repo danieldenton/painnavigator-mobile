@@ -3,25 +3,31 @@ import styled from "styled-components/native";
 import { Text, TouchableOpacity } from "react-native";
 import { colors } from "../../../infrastructure/theme/colors";
 
-
 const CopingStrategy = styled(TouchableOpacity)`
     padding: ${(props) => props.theme.space[3]};
     margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
-export const CopingStrategyTile = ({ option, copingStrategies, setCopingStrategies }) => {
-    const isSelected = copingStrategies.find((selected) => selected === option.id)
+export const CopingStrategyTile = ({ option, newPainJournal, setNewPainJournal }) => {
+    const copingStrategies = newPainJournal.copingStrategies; 
+    const isSelected = copingStrategies.find((selected) => selected === option.id);
     
     const add = (optionId) => {
-        setCopingStrategies([...copingStrategies, optionId]);
+        setNewPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: [...copingStrategies, optionId]
+        }));
     };
     
     const remove = (optionId) => {
         const newCopingStrategies = copingStrategies.filter(
           (x) => x !== optionId
         );
-    
-        setCopingStrategies(newCopingStrategies);
+
+        setNewPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: newCopingStrategies
+        }));    
     };
 
     return(

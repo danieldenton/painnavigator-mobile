@@ -21,7 +21,9 @@ const HeaderName = styled.Text`
 const RightSection = styled(TouchableOpacity)`
 `;
 
-export const JournalHeader = ({ currentQuestion, headerName, previousQuestion, showModal }) => {
+export const JournalHeader = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
+    const showModal = () => setVisible(true);
+
     return(
         <HeaderContainer>
             <LeftSection onPress={currentQuestion > 1 ? previousQuestion : showModal} >
@@ -30,7 +32,7 @@ export const JournalHeader = ({ currentQuestion, headerName, previousQuestion, s
             <HeaderName>
                 {headerName}
             </HeaderName>
-            <RightSection onPress={showModal} >
+            <RightSection onPress={() => setVisible(true)} >
                 <MaterialCommunityIcons name="cancel" size={24} color="black" />
             </RightSection>
         </HeaderContainer>
