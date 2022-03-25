@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeArea } from "../../../components/safe-area.component";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 
 export const OnboardScreen = () => {
     return(
