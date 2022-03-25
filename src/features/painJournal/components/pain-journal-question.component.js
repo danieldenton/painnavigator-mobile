@@ -11,9 +11,10 @@ import { JournalProgress } from "../components/journal-progress.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainJournalQuestion = () => {
-    const { currentQuestion, setCurrentQuestion, completePainJournal } = useContext(PainJournalContext);
+    const { currentQuestion, setCurrentQuestion, completePainJournal, newPainJournal } = useContext(PainJournalContext);
 
     const nextQuestion = () => {
+        console.log(newPainJournal);
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
 
@@ -21,11 +22,11 @@ export const PainJournalQuestion = () => {
         <>
             <JournalContainer>
                 <QuestionSection>
-                {currentQuestion === 1 && <PainScore />}
-                {currentQuestion === 2 && <PainSetting />}
-                {currentQuestion === 3 && <CopingStrategies />}
-                {currentQuestion === 4 && <OtherNotes />}
-                {currentQuestion === 5 && <PainAfter />}
+                    {currentQuestion === 1 && <PainScore />}
+                    {currentQuestion === 2 && <PainSetting />}
+                    {currentQuestion === 3 && <CopingStrategies />}
+                    {currentQuestion === 4 && <OtherNotes />}
+                    {currentQuestion === 5 && <PainAfter />}
                 </QuestionSection>
                 <ButtonSection>
                     {currentQuestion < 5 && <Button onPress={nextQuestion}>Next</Button>}

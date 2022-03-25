@@ -17,7 +17,6 @@ export const CopingStrategyTile = ({ option, newPainJournal, setNewPainJournal }
             ...journal,
             ["copingStrategies"]: [...copingStrategies, optionId]
         }));
-        //setCopingStrategies([...copingStrategies, optionId]);
     };
     
     const remove = (optionId) => {
