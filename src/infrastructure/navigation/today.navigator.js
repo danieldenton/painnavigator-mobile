@@ -2,7 +2,6 @@ import React from "react";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { NavigationContainer } from "@react-navigation/native";
 
 import { TodayScreen } from "../../features/today/screens/today.screen";
 import { EducationUnitScreen } from "../../features/education/screens/education-unit.screen";
