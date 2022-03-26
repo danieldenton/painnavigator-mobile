@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { Button } from "../../../components/button.component";
 
+// TODO: change to InputSecion later on. Input component added to global components folder.
 export const Input = styled(TextInput)`
     margin-bottom: ${(props) => props.theme.space[3]};
 `;

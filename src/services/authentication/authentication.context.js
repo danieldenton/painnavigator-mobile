@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
-import { loginRequest } from "./authentication.service";
+import { loginRequest, postUser } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -19,10 +19,15 @@ export const AuthenticationContextProvider = ({ children }) => {
         }).catch((e) => {
             setIsLoading(false);
             setError(e.toString());
-        });
+        })
     };
 
-    const onRegister = (email, password, repeatedPassword) => {
+    const onRegister = (name, email, password, repeatedPassword) => {
+        if(!name) {
+            setError("Error: Please provide your name");
+            return;
+        }
+        
         if(password !== repeatedPassword) {
             setError("Error: Passwords do not match");
             return;
@@ -33,7 +38,9 @@ export const AuthenticationContextProvider = ({ children }) => {
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
                 setUser(u);
+                postUser(u.user.uid, name);
                 setIsLoading(false);
+                console.log(JSON.stringify(u.user.uid));
             }).catch((e) => {
                 setIsLoading(false);
                 setError(e.toString());
