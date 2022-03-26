@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
@@ -32,15 +33,17 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <BookmarksContextProvider>
-            <EducationContextProvider>
-              <MovementContextProvider>
-                <PainJournalContextProvider>
-                  <Navigation />
-                </PainJournalContextProvider>
-              </MovementContextProvider>
-            </EducationContextProvider>
-          </BookmarksContextProvider>
+          <ProfileContextProvider>
+            <BookmarksContextProvider>
+              <EducationContextProvider>
+                <MovementContextProvider>
+                  <PainJournalContextProvider>
+                    <Navigation />
+                  </PainJournalContextProvider>
+                </MovementContextProvider>
+              </EducationContextProvider>
+            </BookmarksContextProvider>
+          </ProfileContextProvider>
         </AuthenticationContextProvider>
       </ThemeProvider>
     </>

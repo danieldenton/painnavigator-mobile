@@ -12,4 +12,4 @@ export const postUser = (uid, name) => {
   .then((response) => {
       console.log(response.data);
   });
-};
+}
