@@ -9,20 +9,26 @@ const Modal = styled(PaperModal)`
     margin: ${(props) => props.theme.space[3]};
 `;
 
-export const ExitModal = ({ visible, setVisible, navigation, resetJournal }) => {
+export const ExitModal = ({ visible, setVisible, navigation, destination, resetJournal, changes }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 10};
+    const hideModal = () => setVisible(false);
 
     return(
         <Portal>
             <Modal visible={visible} onDismiss={() => setVisible(false)} contentContainerStyle={containerStyle}>
-                <Text>Are you sure you want to exit? This journal won't be saved.</Text>
+                <Text>
+                    Are you sure you want to exit? {changes ? "Your changes" : "This journal"} won't be saved.
+                </Text>
                 <Button 
-                    onPress={() => { navigation.navigate("PainJournal"); resetJournal(); }}
+                    onPress={() => {
+                        navigation.navigate(destination); 
+                        {resetJournal && resetJournal();} 
+                    }}
                 >
                     Yes, Exit
                 </Button>
                 <Button 
-                    onPress={() => setVisible(false)}
+                    onPress={hideModal}
                 >
                     No, Keep Going
                 </Button>

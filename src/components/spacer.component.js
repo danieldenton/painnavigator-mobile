@@ -29,3 +29,8 @@ Spacer.defaultProps = {
   position: "top",
   size: "small",
 };
+
+export const SmallSpacer = styled.View`
+  margin-top: ${(props) => props.theme.space[3]};
+  margin-bottom: ${(props) => props.theme.space[3]};
+`

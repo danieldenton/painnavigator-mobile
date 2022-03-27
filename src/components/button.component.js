@@ -1,5 +1,5 @@
-import { Button as ReactPaperButton} from "react-native-paper";
 import styled from "styled-components";
+import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 
 export const Button = styled(ReactPaperButton).attrs({

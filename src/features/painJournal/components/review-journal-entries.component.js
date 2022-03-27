@@ -4,7 +4,7 @@ import { Input, Question, Response } from "./pain-journal.styles";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { painJournalQuestions } from "../data/pain-journal-question-data.json";
 
-export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) => {
+export const ReviewJournalEntries = ({ isEditing, painJournal, painJournalUpdate, handleChange }) => {
     const painScoreQuestion = painJournalQuestions[0].question;
     const painSettingQuestion = painJournalQuestions[1].questions[0].question;
     const painFeelingQuestion = painJournalQuestions[1].questions[1].question;
@@ -20,21 +20,21 @@ export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) =
 
             <Question question={painSettingQuestion} />
             <Input 
-                value={painJournal.painSetting} 
+                value={painJournalUpdate.painSetting} 
                 disabled={!isEditing && true}
                 onChangeText={(change) => handleChange(change, "painSetting")}
             />
 
             <Question question={painFeelingQuestion} />
             <Input 
-                value={painJournal.painFeeling} 
+                value={painJournalUpdate.painFeeling} 
                 disabled={!isEditing && true}
                 onChangeText={(change) => handleChange(change, "painFeeling")}
             />
 
             <Question question={whoWithQuestion} />
             <Input 
-                value={painJournal.whoWith} 
+                value={painJournalUpdate.whoWith} 
                 disabled={!isEditing && true} 
                 onChangeText={(change) => handleChange(change, "whoWith")}
             />
@@ -47,7 +47,7 @@ export const ReviewJournalEntries = ({ isEditing, painJournal, handleChange }) =
 
             <Question question={otherNotesQuestion} />
             <Input 
-                value={painJournal.otherNotes} 
+                value={painJournalUpdate.otherNotes} 
                 disabled={!isEditing && true}
                 onChangeText={(change) => handleChange(change, "otherNotes")}
             />

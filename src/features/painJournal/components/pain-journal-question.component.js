@@ -14,7 +14,7 @@ export const PainJournalQuestion = () => {
     const { currentQuestion, setCurrentQuestion, completePainJournal, newPainJournal } = useContext(PainJournalContext);
 
     const nextQuestion = () => {
-        console.log(newPainJournal);
+        console.log(JSON.stringify(newPainJournal));
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
 
