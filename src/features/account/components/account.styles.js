@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 
 export const AccountContainer = styled.View`
+    flex: 1;
     padding: ${(props) => props.theme.space[3]};
     margin-top: ${(props) => props.theme.space[2]};
 ` 

@@ -7,18 +7,18 @@ import { EducationUnitCard } from "../../education/components/education-unit-car
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { ProfileContext } from "../../../services/profile/profile-context";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 export const TodayScreen = ({ navigation }) => {
-    const { user } = useContext(AuthenticationContext);
+    const { userInfo } = useContext(ProfileContext);
     const { nextEducationModule } = useContext(EducationContext);
     const { currentMovementModule } = useContext(MovementContext);
 
     return (
         <SafeArea>
-            <Text>{JSON.stringify(user.user.uid)}</Text>
+            <Text>Good morning, {userInfo.name}</Text>
             <TodayScreenHeader headerName="TODAY'S EDUCATION"/>
             <EducationUnitCard 
                 navigation={navigation} 

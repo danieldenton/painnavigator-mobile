@@ -5,11 +5,11 @@ import { Button } from "../../../components/button.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 
 export const AvgPainPreStart = () => {
-    const { avePainPreStart, setAvgPainPreStart, nextQuestion } = useContext(ProfileContext);
+    const { avgPainPreStart, setAvgPainPreStart, nextQuestion } = useContext(ProfileContext);
 
     return(
         <>
-            <Slider value={avePainPreStart} onValueChange={setAvgPainPreStart} />
+            <Slider value={avgPainPreStart} onValueChange={setAvgPainPreStart} />
             <SmallSpacer>
                 <Button onPress={nextQuestion}>
                     Next

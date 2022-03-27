@@ -4,7 +4,7 @@ import { Slider } from "../../../components/slider.component";
 import { Button } from "../../../components/button.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 
-export const AvgPainPreStart = () => {
+export const ProgramPaceGoal = () => {
     const { programPaceGoal, setProgramPaceGoal, nextQuestion } = useContext(ProfileContext);
 
     return(

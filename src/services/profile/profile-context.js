@@ -1,13 +1,13 @@
 import React, { useState, createContext, useContext } from "react";
-
 import { patchUser } from "./profile-service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const ProfileContext = createContext();
 
 export const ProfileContextProvider = ({ children }) => {
+    const [userInfo, setUserInfo] = useState({});
     const [profileProgress, setProfileProgress] = useState(1);
-    const [avePainPreStart, setAvgPainPreStart] = useState(5);
+    const [avgPainPreStart, setAvgPainPreStart] = useState(5);
     const [programPaceGoal, setProgramPaceGoal] = useState(1);
     const [profileComplete, setProfileComplete] = useState(false);
     const { uid } = useContext(AuthenticationContext);
@@ -21,24 +21,30 @@ export const ProfileContextProvider = ({ children }) => {
     };
 
     const completeProfile = () => {
-        const userUpdate = { uid, avePainPreStart, programPaceGoal };
-        setProfileComplete(true);
-        patchUser(userUpdate);
+        const userUpdate = { avgPainPreStart: avgPainPreStart, programPaceGoal: programPaceGoal };
+        patchUser(uid, userUpdate, setUserInfo);
     };  
+
+    const completeOnboarding = () => {
+        setProfileComplete(true);
+    };
 
     return (
         <ProfileContext.Provider
             value={{
+                userInfo,
+                setUserInfo,
                 profileProgress,
                 setProfileProgress,
                 nextQuestion,
                 previousQuestion,
-                avePainPreStart,
+                avgPainPreStart,
                 setAvgPainPreStart,
                 programPaceGoal,
                 setProgramPaceGoal,
                 profileComplete,
-                completeProfile
+                completeProfile,
+                completeOnboarding
             }}
         >
             {children}
