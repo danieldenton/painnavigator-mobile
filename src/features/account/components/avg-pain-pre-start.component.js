@@ -7,7 +7,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 export const AvgPainPreStart = () => {
     const { avgPainPreStart, setAvgPainPreStart, nextQuestion } = useContext(ProfileContext);
 
-    return(
+    return (
         <>
             <Slider value={avgPainPreStart} onValueChange={setAvgPainPreStart} />
             <SmallSpacer>

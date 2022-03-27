@@ -32,10 +32,10 @@ export const Slider = ({ value, onValueChange, min, max, step, variant }) => {
             <Slide 
                 value={value} 
                 onValueChange={value => onValueChange(Number(value))} 
-                step={step || 1}
+                step={typeof step === 'number' && !isNaN(step) ? step : 1}
                 //should try to make step smaller and add a smoother function that only shows whole numbers above
-                minimumValue={min || 0}
-                maximumValue={max || 10}
+                minimumValue={typeof min === 'number' && !isNaN(min) ? min : 0}
+                maximumValue={typeof max === 'number' && !isNaN(max) ? max : 10}
             />
         </SliderWrapper>
     );

@@ -49,6 +49,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 postUser(u.user.uid, name);
                 setIsLoading(false);
             }).catch((e) => {
+                // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
                 setIsLoading(false);
                 setError(e.toString());
             });
