@@ -10,7 +10,7 @@ export const ProfileContextProvider = ({ children }) => {
     const [avgPainPreStart, setAvgPainPreStart] = useState(5);
     const [programPaceGoal, setProgramPaceGoal] = useState(1);
     const [profileComplete, setProfileComplete] = useState(false);
-    const { uid } = useContext(AuthenticationContext);
+    const { user } = useContext(AuthenticationContext);
 
     const nextQuestion = () => {
         setProfileProgress((prevQuestion) => { return ( prevQuestion + 1 ) });
@@ -22,7 +22,7 @@ export const ProfileContextProvider = ({ children }) => {
 
     const completeProfile = () => {
         const userUpdate = { avgPainPreStart: avgPainPreStart, programPaceGoal: programPaceGoal };
-        patchUser(uid, userUpdate, setUserInfo);
+        patchUser(user.user.uid, userUpdate, setUserInfo);
     };  
 
     const completeOnboarding = () => {
