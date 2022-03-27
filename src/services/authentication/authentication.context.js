@@ -8,6 +8,7 @@ export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(null);
+    // user set to true for testing
     const [user, setUser] = useState(true);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -47,8 +48,10 @@ export const AuthenticationContextProvider = ({ children }) => {
             .then((u) => {
                 setUser(u);
                 postUser(u.user.uid, name);
+            }).then(() => {
                 setIsLoading(false);
-            }).catch((e) => {
+            })
+            .catch((e) => {
                 // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
                 setIsLoading(false);
                 setError(e.toString());
