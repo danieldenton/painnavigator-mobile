@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { SafeArea } from "../../../components/safe-area.component";
-import { Text } from "react-native";
 
 import { TodayScreenHeader } from "../components/today-screen-header.component";
 import { Greeting } from "../components/greeting.component";
