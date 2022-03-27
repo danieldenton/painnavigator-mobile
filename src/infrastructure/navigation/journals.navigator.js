@@ -33,7 +33,7 @@ export const JournalsNavigator = () => {
                 component={ReviewPainJournal}
                 options={{
                     headerShown: false,
-                    presentation: `modal`
+                    //presentation: `modal`
                 }}
             />
         </JournalsStack.Navigator>
