@@ -32,6 +32,7 @@ export const ReviewPainJournal = ({ route, navigation }) => {
                     setVisible={setVisible} 
                     changes={changes}
                     destination={"PainJournal"}
+                    navigation={navigation} 
                 />
                 <JournalContainer>
                     <ReviewJournalHeader date={painJournal.date} isEditing={isEditing} setIsEditing={setIsEditing} />

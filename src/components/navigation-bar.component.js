@@ -28,12 +28,15 @@ const RightSection = styled(TouchableOpacity)`
     flex: .33;
 `;
 
-export const NavigationBar = ({ headerName, destination, changes, setVisible }) => {
+export const NavigationBar = ({ navigation, headerName, destination, changes, setVisible }) => {
     const showModal = () => setVisible(true);
 
     return(
         <HeaderContainer>
-            <LeftSection onPress={showModal}>
+            <LeftSection 
+                onPress={() => {
+                    {changes ? showModal() : navigation.navigate(destination)} 
+                }}>
                 <Ionicons name="chevron-back-outline" size={24} color="black" />
             </LeftSection>
             <MiddleSection>

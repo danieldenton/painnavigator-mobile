@@ -38,7 +38,15 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const updatePainJournal = (journalId, journalUpdate) => {
         patchPainJournal(journalId, journalUpdate);
-        getPainJournals(setPainJournals, setPainJournalsLoaded);
+        
+        const currentJournal = painJournals.filter(journal => journal.id === journalId);
+
+        setPainJournals(journal => ({
+            ...journal,
+            [name]: change
+        }))
+        
+        //getPainJournals(setPainJournals, setPainJournalsLoaded);
     };
 
     const completePainJournal = () => {

@@ -30,6 +30,7 @@ export const NewPainJournalScreen = ({ navigation }) => {
                     visible={visible} 
                     setVisible={setVisible}
                     resetJournal={resetPainJournal}
+                    destination={"PainJournal"}
                 />
             </Provider>
         </SafeArea>
