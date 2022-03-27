@@ -41,8 +41,18 @@ export const PainJournalContextProvider = ({ children }) => {
         getPainJournals(setPainJournals, setPainJournalsLoaded);
     };
 
-    const completePainJournal = () => {  
-        postPainJournal(newPainJournal);
+    const completePainJournal = () => {
+        const snakifiedPainJournal = {
+            pain_score: newPainJournal.painScore,
+            pain_setting: newPainJournal.painSetting, 
+            pain_feeling: newPainJournal.painFeeling, 
+            who_with: newPainJournal.whoWith, 
+            coping_strategies: String(newPainJournal.copingStrategies), 
+            other_notes: newPainJournal.otherNotes, 
+            pain_after: newPainJournal.painAfter
+        }
+
+        postPainJournal(snakifiedPainJournal);
         setJournalComplete(true);
         resetPainJournal();
     };

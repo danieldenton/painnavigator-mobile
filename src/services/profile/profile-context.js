@@ -5,11 +5,11 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const ProfileContext = createContext();
 
 export const ProfileContextProvider = ({ children }) => {
-    const [userInfo, setUserInfo] = useState({});
+    const [userInfo, setUserInfo] = useState({name: "Stephen"});
     const [profileProgress, setProfileProgress] = useState(1);
     const [avgPainPreStart, setAvgPainPreStart] = useState(5);
     const [programPaceGoal, setProgramPaceGoal] = useState(1);
-    const [profileComplete, setProfileComplete] = useState(false);
+    const [profileComplete, setProfileComplete] = useState(true);
     const { user } = useContext(AuthenticationContext);
 
     const nextQuestion = () => {
