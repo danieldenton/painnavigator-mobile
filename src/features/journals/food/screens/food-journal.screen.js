@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import React from "react";
+import { SafeArea } from "../../../../components/safe-area.component";
+import { FlatList, TouchableOpacity } from "react-native";
 import { NewJournalEntry } from "../../../../components/new-journal-entry.component";
 import { JournalTile } from "../../../../components/journal-tile.component";
 
@@ -7,7 +8,7 @@ export const FoodJournalScreen = ({ navigation }) => {
     const foodJournals = [];
 
     return(
-        <View>
+        <SafeArea>
             <NewJournalEntry title={"Today's Food Journal"} destination={"TodaysFoodJournal"} navigation={navigation} />
             <FlatList 
                 data={foodJournals}
@@ -23,6 +24,6 @@ export const FoodJournalScreen = ({ navigation }) => {
                 }}
                 keyExtractor={(item) => item.id}
             />
-        </View>
+        </SafeArea>
     );
 };

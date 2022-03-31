@@ -8,6 +8,7 @@ import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.con
 import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
+import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -38,7 +39,9 @@ export default function App() {
               <EducationContextProvider>
                 <MovementContextProvider>
                   <PainJournalContextProvider>
-                    <Navigation />
+                    <FoodJournalContextProvider>
+                      <Navigation />
+                    </FoodJournalContextProvider>
                   </PainJournalContextProvider>
                 </MovementContextProvider>
               </EducationContextProvider>

@@ -1,28 +1,23 @@
 import React, { useState, useContext } from "react";
 import { Provider } from 'react-native-paper';
 import { SafeArea } from "../../../../components/safe-area.component";
-import { JournalHeader } from "../components/journal-header.component";
-import { FoodJournalQuestion } from "../components/pain-journal-question.component";
-import { Congratulations } from "../components/congratulations.component";
+import { NavigationBar } from "../../components/navigation-bar.component";
+import { FoodJournalQuestion } from "../components/food-journal-question.component";
+import { Congratulations } from "../../components/congratulations.component";
 import { ExitModal } from "../../components/exit-modal.component";
 import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
 
-export const NewFoodJournalScreen = ({ navigation }) => {
+export const NewFoodJournalScreen = ({ navigation, route }) => {
+    const { title } = route.params;
     const { journalComplete, resetFoodJournal } = useContext(FoodJournalContext);
     const [visible, setVisible] = useState(false);
-
-    const previousQuestion = () => {
-        setCurrentQuestion((prevQuestion) => { return ( prevQuestion - 1 ) });
-    };
     
     return(
         <SafeArea>
             <Provider>
-                <JournalHeader 
-                    headerName={"PAIN JOURNAL"} 
+                <NavigationBar 
+                    headerName={title.toUpperCase()} 
                     setVisible={setVisible} 
-                    currentQuestion={currentQuestion} 
-                    previousQuestion={previousQuestion}
                 />
                 {journalComplete ? <Congratulations navigation={navigation} /> : <FoodJournalQuestion />}
                 <ExitModal 

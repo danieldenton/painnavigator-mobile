@@ -1,22 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Text } from "react-native";
 import { Button } from "../../../components/button.component";
-import { JournalContainer } from "../components/pain-journal.styles";
-import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { JournalContainer } from "./journal.styles";
 
-export const Congratulations = ({ navigation }) => {
-    const { loadPainJournals, setJournalComplete } = useContext(PainJournalContext);
+export const Congratulations = ({ destination, navigation, setJournalComplete, loadJournals }) => {
 
     return(
         <JournalContainer>
             <Text>Congratulations</Text>
             <Button 
                 onPress={() => {
-                    loadPainJournals();
-                    navigation.navigate("PainJournal"); 
+                    loadJournals();
+                    navigation.navigate(destination); 
                     setTimeout(() => {setJournalComplete(false)}, 1000);
                 }}>
-                    Next
+                    Return Home
             </Button>
         </JournalContainer>
     );
