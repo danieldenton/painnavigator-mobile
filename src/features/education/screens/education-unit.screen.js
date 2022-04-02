@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { EducationUnit } from "../components/education-unit.component";
 import { CompletionScreen } from "../components/completion-screen.component";
+import { EducationContext } from "../../../services/education/education.context";
 
 export const EducationUnitScreen = ({ route }) => {
     const { id, name, source, navigation } = route.params;
-    const [moduleComplete, setModuleComplete] = useState(false);
+    const { moduleComplete } = useContext(EducationContext);
     
     return (
         <>
@@ -13,7 +14,6 @@ export const EducationUnitScreen = ({ route }) => {
                     name={name} 
                     source={source}
                     module_id={id} 
-                    setModuleComplete={setModuleComplete} 
                 />
                 ) : (
                 <CompletionScreen 

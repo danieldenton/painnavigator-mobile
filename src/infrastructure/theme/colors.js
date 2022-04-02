@@ -1,6 +1,6 @@
 export const colors = {
   brand: {
-    primary: "#696AC3",
+    primary: 'hsl(170, 76%, 37%)',
     secondary: "#5D6CC6",
     muted: "#C6DAF7",
   },
@@ -21,7 +21,7 @@ export const colors = {
     primary: "#262626",
     secondary: "#757575",
     disabled: "#9C9C9C",
-    inverse: "#FFFFFF",
+    white: "#FFFFFF",
     error: "#D0421B",
     success: "#138000",
   },

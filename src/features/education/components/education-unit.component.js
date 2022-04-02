@@ -21,7 +21,7 @@ export const EducationUnit = ({ module_id, name, source, setModuleComplete }) =>
             />
             <ButtonSection>
                 <Button
-                    onPress={() => {setModuleComplete(true); markComplete(module_id);}}
+                    onPress={() => {markComplete(module_id);}}
                 >
                     Mark Complete
                 </Button>
