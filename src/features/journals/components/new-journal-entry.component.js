@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { Card } from "react-native-paper";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { colors } from "../../../infrastructure/theme/colors";
 
 const NewJournalEntryCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
     padding: ${(props) => props.theme.space[3]};
+    border-radius: 15px;
 `;
 
 const CardContentWrapper = styled(Card.Content)`
@@ -15,16 +17,14 @@ const CardContentWrapper = styled(Card.Content)`
     justify-content: space-between;
 `;
 
-export const NewJournalEntry = ({ meal, title, destination, navigation }) => {
+export const NewJournalEntry = ({ title }) => {
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate(destination, { title: title, meal: meal })}> 
-            <NewJournalEntryCard>
-                <CardContentWrapper>
-                    <Text>{title}</Text>
-                    <MaterialCommunityIcons name="pencil-circle-outline" size={36} color="black" />
-                </CardContentWrapper>
-            </NewJournalEntryCard>
-        </TouchableOpacity>
+        <NewJournalEntryCard>
+            <CardContentWrapper>
+                <Text>{title}</Text>
+                <AntDesign name="pluscircleo" size={36} color={colors.brand.primary} />
+            </CardContentWrapper>
+        </NewJournalEntryCard>
     ); 
 };

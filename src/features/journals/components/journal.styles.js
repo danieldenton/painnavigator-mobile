@@ -1,11 +1,7 @@
 import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { Button } from "../../../components/button.component";
-
-// TODO: change to InputSecion later on. Input component added to global components folder.
-export const Input = styled(TextInput)`
-    margin-bottom: ${(props) => props.theme.space[3]};
-`;
+import { colors } from "../../../infrastructure/theme/colors";
 
 export const JournalContainer = styled.View`
     flex: 1;
@@ -41,6 +37,15 @@ export const Question = ({ question, helpText }) => {
         </QuestionWrapper>
     );
 };
+
+export const Input = styled(TextInput).attrs({
+    mode: "outlined",
+    numberOfLines: 4,
+    outlineColor: colors.ui.inputOutline
+})`
+    margin-bottom: ${(props) => props.theme.space[3]};
+    height: 119px;
+`;
 
 export const SkipQuestionButton = styled.TouchableOpacity`
     padding: ${(props) => props.theme.space[2]};

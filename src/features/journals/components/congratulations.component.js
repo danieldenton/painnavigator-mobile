@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import { Button } from "../../../components/button.component";
 import { JournalContainer } from "./journal.styles";
 
-export const Congratulations = ({ destination, navigation, setJournalComplete, loadJournals }) => {
+export const Congratulations = ({ navigation, setJournalComplete, loadJournals }) => {
 
     return(
         <JournalContainer>
@@ -11,7 +11,7 @@ export const Congratulations = ({ destination, navigation, setJournalComplete, l
             <Button 
                 onPress={() => {
                     loadJournals();
-                    navigation.navigate(destination); 
+                    navigation.navigate("Today"); 
                     setTimeout(() => {setJournalComplete(false)}, 1000);
                 }}>
                     Return Home

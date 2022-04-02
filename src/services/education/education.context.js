@@ -13,6 +13,7 @@ export const EducationContextProvider = ({ children }) => {
         //postEducationModule(module_id);
         setEducationProgress((prevEducationProgress) => { return ( prevEducationProgress + 1 ) });
         setModuleComplete(true);
+        setTimeout(() => setModuleComplete(false), 1000);
     };
 
     return (

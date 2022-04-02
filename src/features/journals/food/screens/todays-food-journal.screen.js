@@ -1,14 +1,14 @@
 import React from "react";
 import { SafeArea } from "../../../../components/safe-area.component";
-import { NewJournalEntry } from "../../components/new-journal-entry.component";
+import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
 
 export const TodaysFoodJournalScreen = ({ navigation }) => {
     return(
         <SafeArea>
-            <NewJournalEntry title={"Breakfast"} destination={"NewFoodJournal"} navigation={navigation} meal={0} />
-            <NewJournalEntry title={"Lunch"} destination={"NewFoodJournal"} navigation={navigation} meal={1} />
-            <NewJournalEntry title={"Dinner"} destination={"NewFoodJournal"} navigation={navigation} meal={2} />
-            <NewJournalEntry title={"Snacks"} destination={"NewFoodJournal"} navigation={navigation} meal={3} />
+            <NewFoodJournalEntry meal={"Breakfast"} destination={"NewFoodJournal"} navigation={navigation}/>
+            <NewFoodJournalEntry meal={"Lunch"} destination={"NewFoodJournal"} navigation={navigation}/>
+            <NewFoodJournalEntry meal={"Dinner"} destination={"NewFoodJournal"} navigation={navigation}/>
+            <NewFoodJournalEntry meal={"Snacks"} destination={"NewFoodJournal"} navigation={navigation}/>
         </SafeArea>
     );
 };

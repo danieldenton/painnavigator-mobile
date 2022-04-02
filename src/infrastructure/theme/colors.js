@@ -12,6 +12,7 @@ export const colors = {
     disabled: "#DEDEDE",
     error: "#D0421B",
     success: "#138000",
+    inputOutline: "hsl(216, 7%, 69%)"
   },
   bg: {
     primary: "#FFFFFF",
@@ -25,4 +26,9 @@ export const colors = {
     error: "#D0421B",
     success: "#138000",
   },
+  feelingFaces: {
+    sad: "hsl(46, 100%, 50%)",
+    neutral: "hsl(46, 100%, 50%)",
+    happy: "hsl(171, 61%, 55%)"
+  }
 };

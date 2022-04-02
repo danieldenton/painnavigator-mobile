@@ -6,15 +6,18 @@ export const FoodJournalContext = createContext();
 export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState({});
     const [journalComplete, setJournalComplete] = useState(false);
+    const [meal, setMeal] = useState("");
     const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({
-        meal: 0,
         food: "", 
-        feelingBefore: 0, 
-        feelingAfter: 0, 
+        feelingBefore: "", 
+        feelingAfter: "", 
     });
 
     const completeFoodJournal = () => {
-        postFoodJournal(newFoodJournalEntry);
+        const journalEntry = {
+            [meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)
+        };
+        postFoodJournal(journalEntry);
         setJournalComplete(true);
         resetFoodJournal();
     };
@@ -24,8 +27,9 @@ export const FoodJournalContextProvider = ({ children }) => {
     };
 
     const resetFoodJournal = () => {
+        setMeal("");
+
         setNewFoodJournalEntry({ 
-            meal: 0,
             food: "", 
             feelingBefore: "", 
             feelingAfter: "", 
@@ -42,7 +46,9 @@ export const FoodJournalContextProvider = ({ children }) => {
             value={{
                 completeFoodJournal,
                 foodJournals,
-                journalComplete, 
+                journalComplete,
+                meal,
+                setMeal, 
                 newFoodJournalEntry,
                 loadFoodJournals,
                 resetFoodJournal,
