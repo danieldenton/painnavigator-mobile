@@ -7,7 +7,6 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState({});
     const [journalComplete, setJournalComplete] = useState(false);
     const [meal, setMeal] = useState("");
-
     const [todaysJournal, setTodaysJournal] = useState(null);
 
     const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({
