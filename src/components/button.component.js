@@ -12,3 +12,11 @@ export const Button = styled(ReactPaperButton).attrs({
     border-radius: 8px;
     justify-content: center;
 `;
+
+export const OutlineButton = styled(Button).attrs({
+    mode: "outlined",
+    color: colors.text.primary
+})`
+    border: 2px ${colors.brand.primary} solid; 
+    background-color: ${colors.text.white};
+`;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Modal as PaperModal, Portal, Text } from 'react-native-paper';
-import { Button } from "../../../components/button.component";
+import { Button, OutlineButton } from "../../../components/button.component";
 
 const Modal = styled(PaperModal)`
     border-radius: 8px;
@@ -18,14 +18,14 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, resetJ
                 <Text>
                     Are you sure you want to exit? {changes ? "Your changes" : "This journal"} won't be saved.
                 </Text>
-                <Button 
+                <OutlineButton 
                     onPress={() => {
                         navigation.navigate(destination); 
                         {resetJournal && resetJournal();} 
                     }}
                 >
                     Yes, Exit
-                </Button>
+                </OutlineButton>
                 <Button 
                     onPress={hideModal}
                 >

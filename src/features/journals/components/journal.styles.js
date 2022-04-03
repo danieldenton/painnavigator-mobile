@@ -8,6 +8,11 @@ export const JournalContainer = styled.View`
     margin: ${(props) => props.theme.space[3]};
 `;
 
+export const JournalScrollContainer = styled.ScrollView`
+    flex: 1;
+    padding: ${(props) => props.theme.space[3]};
+`;
+
 export const QuestionSection = styled.View`
     flex: 1;
     width: 100%;

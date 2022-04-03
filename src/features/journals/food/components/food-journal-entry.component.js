@@ -1,38 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { ScrollView } from "react-native";
 import { JournalContainer, QuestionSection, Question, Input, ButtonSection } from "../../components/journal.styles";
 import { Button } from "../../../../components/button.component";
 import { FeelingFaces } from "./feeling-faces.component";
+import { SmallSpacer } from "../../../../components/spacer.component";
 import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
 
 export const FoodJournalEntry = () => {
-    const { completeFoodJournal, meal, newFoodJournalEntry, setNewFoodJournalEntry } = useContext(FoodJournalContext);
-
-    const handleChange = (change, name) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            [name]: change
-        }));
-    };
-
-    const setFeelingBefore = (feelingBefore) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            feelingBefore: feelingBefore
-        }));
-    };
-
-    const setFeelingAfter = (feelingAfter) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            feelingAfter: feelingAfter
-        }));
-    };
-
-    useEffect(() => {
-    }, [newFoodJournalEntry]);
+    const { 
+        completeFoodJournal, 
+        newEntryInTodaysJournal,
+        meal, 
+        newFoodJournalEntry,
+        handleChange,
+        setFeelingBefore,
+        setFeelingAfter,
+        todaysJournal
+    } = useContext(FoodJournalContext);
 
     return(
         <JournalContainer>
+            <ScrollView>
             <QuestionSection>
                 <Question 
                     question={`What did you have for ${meal}?`} 
@@ -47,22 +35,24 @@ export const FoodJournalEntry = () => {
                     helpText={"This could include your mood, how your body felt, or your level of pain"}
                 />
                 <FeelingFaces 
-                    setter={setFeelingBefore} 
                     feeling={newFoodJournalEntry.feelingBefore}
+                    setFeeling={setFeelingBefore} 
                 />
+                <SmallSpacer />
                 <Question 
                     question={"How did you feel after you ate?"} 
                     helpText={"This could include your mood, how your body felt, or your level of pain"}
                 />
                 <FeelingFaces 
-                    setter={setFeelingAfter} 
                     feeling={newFoodJournalEntry.feelingAfter}
+                    setFeeling={setFeelingAfter} 
                 />
             </QuestionSection>
+            </ScrollView>
             <ButtonSection>
                 <Button 
-                    onPress={completeFoodJournal}
-                    //TODO: Confirm policy for disabled submit button
+                    onPress={() => {todaysJournal ? newEntryInTodaysJournal() : completeFoodJournal()}}
+                    //TODO: Confirm policy with client for disabled submit button
                     disabled={
                         !newFoodJournalEntry.food ||
                         !newFoodJournalEntry.feelingBefore ||

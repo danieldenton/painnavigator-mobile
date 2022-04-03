@@ -7,16 +7,41 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState({});
     const [journalComplete, setJournalComplete] = useState(false);
     const [meal, setMeal] = useState("");
+
+    const [todaysJournal, setTodaysJournal] = useState(null);
+
     const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({
         food: "", 
         feelingBefore: "", 
         feelingAfter: "", 
     });
 
+    const journalEntry = {
+        [meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)
+    };
+
+    const handleChange = (change, name) => {
+        setNewFoodJournalEntry(journal => ({
+            ...journal,
+            [name]: change
+        }));
+    };
+
+    const setFeelingBefore = (feelingBefore) => {
+        setNewFoodJournalEntry(journal => ({
+            ...journal,
+            feelingBefore: feelingBefore
+        }));
+    };
+
+    const setFeelingAfter = (feelingAfter) => {
+        setNewFoodJournalEntry(journal => ({
+            ...journal,
+            feelingAfter: feelingAfter
+        }));
+    };
+
     const completeFoodJournal = () => {
-        const journalEntry = {
-            [meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)
-        };
         postFoodJournal(journalEntry);
         setJournalComplete(true);
         resetFoodJournal();
@@ -35,6 +60,10 @@ export const FoodJournalContextProvider = ({ children }) => {
             feelingAfter: "", 
         });
     };
+
+    const newEntryInTodaysJournal = () => {
+        patchFoodJournal(todaysJournal.id, journalEntry);
+    };
     
     const updateFoodJournal = (journalId, journalUpdate) => {
         patchFoodJournal(journalId, journalUpdate);
@@ -44,16 +73,21 @@ export const FoodJournalContextProvider = ({ children }) => {
     return (
         <FoodJournalContext.Provider
             value={{
-                completeFoodJournal,
+                todaysJournal,
                 foodJournals,
                 journalComplete,
+                setJournalComplete,
                 meal,
-                setMeal, 
+                setMeal,
+                handleChange,
+                setFeelingBefore,
+                setFeelingAfter,
                 newFoodJournalEntry,
+                setNewFoodJournalEntry,
+                newEntryInTodaysJournal,
+                completeFoodJournal,
                 loadFoodJournals,
                 resetFoodJournal,
-                setJournalComplete,
-                setNewFoodJournalEntry,
                 updateFoodJournal
             }}
         >

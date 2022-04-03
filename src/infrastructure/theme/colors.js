@@ -19,7 +19,7 @@ export const colors = {
     secondary: 'hsl(196, 4%, 60%)',
   },
   text: {
-    primary: "#262626",
+    primary: 'hsl(170, 76%, 37%)',
     secondary: "#757575",
     disabled: "#9C9C9C",
     white: "#FFFFFF",
@@ -27,7 +27,7 @@ export const colors = {
     success: "#138000",
   },
   feelingFaces: {
-    sad: "hsl(46, 100%, 50%)",
+    sad: "hsl(232, 89%, 68%)",
     neutral: "hsl(46, 100%, 50%)",
     happy: "hsl(171, 61%, 55%)"
   }

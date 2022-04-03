@@ -9,14 +9,14 @@ import { FoodJournalContext } from "../../../../services/food-journal/food-journ
 
 export const NewFoodJournalScreen = ({ navigation }) => {
     const { meal, journalComplete, loadFoodJournals, resetFoodJournal, setJournalComplete } = useContext(FoodJournalContext);
-    const [visible, setVisible] = useState(false);
+    const [exitModalVisible, setExitModalVisible] = useState(false);
     
     return(
         <SafeArea>
             <Provider>
                 <NavigationBar 
                     headerName={meal.toUpperCase()} 
-                    setVisible={setVisible} 
+                    setVisible={setExitModalVisible} 
                 />
                 {journalComplete ? (
                     <Congratulations 
@@ -30,8 +30,8 @@ export const NewFoodJournalScreen = ({ navigation }) => {
                 }
                 <ExitModal 
                     navigation={navigation} 
-                    visible={visible} 
-                    setVisible={setVisible}
+                    visible={exitModalVisible} 
+                    setVisible={setExitModalVisible}
                     resetJournal={resetFoodJournal}
                     destination={"FoodJournal"}
                 />

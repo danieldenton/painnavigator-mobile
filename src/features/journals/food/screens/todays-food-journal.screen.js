@@ -3,12 +3,15 @@ import { SafeArea } from "../../../../components/safe-area.component";
 import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
 
 export const TodaysFoodJournalScreen = ({ navigation }) => {
+    const meals = ["Breakfast", "Lunch", "Dinner", "Snacks"];
+
+    const FoodJournalEntryOptions = meals.map((meal, index) => 
+        <NewFoodJournalEntry key={index} meal={meal} destination={"NewFoodJournal"} navigation={navigation} />
+    );
+
     return(
         <SafeArea>
-            <NewFoodJournalEntry meal={"Breakfast"} destination={"NewFoodJournal"} navigation={navigation}/>
-            <NewFoodJournalEntry meal={"Lunch"} destination={"NewFoodJournal"} navigation={navigation}/>
-            <NewFoodJournalEntry meal={"Dinner"} destination={"NewFoodJournal"} navigation={navigation}/>
-            <NewFoodJournalEntry meal={"Snacks"} destination={"NewFoodJournal"} navigation={navigation}/>
+            {FoodJournalEntryOptions}
         </SafeArea>
     );
 };

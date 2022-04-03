@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from "../../../../infrastructure/theme/colors";
-import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
 
 const FeelingFacesRow = styled.View`
     flex-direction: row;
@@ -14,16 +13,17 @@ const FeelingFacesRow = styled.View`
 const FeelingFaceWrapper = styled(TouchableOpacity)`
     border-radius: 100px;
     padding: 12px;
+    margin-left: 27px;
+    margin-right: 27px;
 `;
 
-export const FeelingFaces = ({ feeling, setter }) => {
-    console.log(feeling);
+export const FeelingFaces = ({ feeling, setFeeling }) => { 
 
     return (
         <FeelingFacesRow>
             <FeelingFaceWrapper
-                onPress={() => setter("sad")}
-                style={{ backgroundColor: `${feeling === "sad" && colors.feelingFaces.sad}` }}
+                onPress={() => setFeeling("sad")}
+                style={feeling === "sad" && { backgroundColor: colors.feelingFaces.sad }}
             >
                 <MaterialCommunityIcons 
                     name="emoticon-sad-outline" 
@@ -32,12 +32,8 @@ export const FeelingFaces = ({ feeling, setter }) => {
                 />
             </FeelingFaceWrapper>
             <FeelingFaceWrapper
-                onPress={() => {setter("neutral"); console.log(feeling);}}
-                style={{ 
-                    backgroundColor: `${feeling === "neutral" && colors.feelingFaces.neutral}`, 
-                    marginLeft: 27,
-                    marginRight: 27
-                }}
+                onPress={() => setFeeling("neutral")}
+                style={feeling === "neutral" && { backgroundColor: colors.feelingFaces.neutral }}
             >
                 <MaterialCommunityIcons 
                     name="emoticon-neutral-outline" 
@@ -46,8 +42,8 @@ export const FeelingFaces = ({ feeling, setter }) => {
                 />
             </FeelingFaceWrapper>
             <FeelingFaceWrapper
-                onPress={() => setter("happy")}
-                style={{ backgroundColor: `${feeling === "happy" && colors.feelingFaces.happy}` }}
+                onPress={() => setFeeling("happy")}
+                style={feeling === "happy" && { backgroundColor: colors.feelingFaces.happy }}
             >
                 <MaterialCommunityIcons 
                     name="emoticon-happy-outline" 

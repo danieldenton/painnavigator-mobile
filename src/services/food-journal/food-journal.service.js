@@ -11,16 +11,16 @@ export const getFoodJournals = () => {
     .catch(response => console.log(response))
 };
 
-export const patchFoodJournal = (journalId, foodJournal) => {
-    axios.patch(`${baseUrl}/api/v1/food_journals/${journalId}`, { food_journal: foodJournal })
+export const patchFoodJournal = (journalId, journalEntry) => {
+    axios.patch(`${baseUrl}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })
     .then((response) => {
-        console.log(response.data);
+        return(camelize(response.data.data));
     });
 };
 
-export const postFoodJournal = (newFoodJournalEntry) => {
-    axios.post(`${baseUrl}/api/v1/food_journals`, { food_journal: newFoodJournalEntry })
+export const postFoodJournal = (journalEntry) => {
+    axios.post(`${baseUrl}/api/v1/food_journals`, { food_journal: journalEntry })
     .then((response) => {
-        console.log(response.data);
+        return(camelize(response.data.data));
     });
 };
