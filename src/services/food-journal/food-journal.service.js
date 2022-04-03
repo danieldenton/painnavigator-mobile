@@ -3,10 +3,10 @@ import camelize from "camelize";
 
 const baseUrl = 'https://3000-silver-slug-ggyxd3yy.ws-us38.gitpod.io';
 
-export const getFoodJournals = () => {
+export const getFoodJournals = (setFoodJournals) => {
     axios.get(`${baseUrl}/api/v1/food_journals`)
     .then((response) => {
-        return(camelize(response.data.data));
+        setFoodJournals(camelize(response.data.data));
     })
     .catch(response => console.log(response))
 };
@@ -21,6 +21,7 @@ export const patchFoodJournal = (journalId, journalEntry) => {
 export const postFoodJournal = (journalEntry) => {
     axios.post(`${baseUrl}/api/v1/food_journals`, { food_journal: journalEntry })
     .then((response) => {
+        console.log(response.data.data);
         return(camelize(response.data.data));
     });
 };

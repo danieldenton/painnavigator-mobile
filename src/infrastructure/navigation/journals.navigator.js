@@ -11,6 +11,7 @@ import { ReviewPainJournal } from "../../features/painJournal/screens/review-pai
 import { FoodJournalScreen } from "../../features/journals/food/screens/food-journal.screen";
 import { TodaysFoodJournalScreen } from "../../features/journals/food/screens/todays-food-journal.screen";
 import { NewFoodJournalScreen } from "../../features/journals/food/screens/new-food-journal.screen";
+import { AddMealScreen } from "../../features/journals/food/screens/add-meal.screen";
 import { ReviewFoodJournalScreen } from "../../features/journals/food/screens/review-food-journal.screen";
 
 const JournalsStack = createStackNavigator();
@@ -40,22 +41,22 @@ export const JournalsNavigator = () => {
             <JournalsStack.Screen 
                 name="FoodJournal" 
                 component={FoodJournalScreen} 
-                options={{ headerShown: false }}
             />
             <JournalsStack.Screen 
                 name="TodaysFoodJournal" 
                 component={TodaysFoodJournalScreen} 
-                options={{ headerShown: false }}
             />
             <JournalsStack.Screen 
                 name="NewFoodJournal" 
                 component={NewFoodJournalScreen} 
-                options={{ headerShown: false }}
+            />
+            <JournalsStack.Screen 
+                name="AddMeal" 
+                component={AddMealScreen} 
             />
             <JournalsStack.Screen 
                 name="ReviewFoodJournal" 
                 component={ReviewFoodJournalScreen} 
-                options={{ headerShown: false }}
             />
         </JournalsStack.Navigator>
     );

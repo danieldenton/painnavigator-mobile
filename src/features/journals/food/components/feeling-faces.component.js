@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from "../../../../infrastructure/theme/colors";
+import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
 
 const FeelingFacesRow = styled.View`
     flex-direction: row;
@@ -17,12 +18,13 @@ const FeelingFaceWrapper = styled(TouchableOpacity)`
     margin-right: 27px;
 `;
 
-export const FeelingFaces = ({ feeling, setFeeling }) => { 
+export const FeelingFaces = ({ feeling, name }) => {
+    const { handleChange } = useContext(FoodJournalContext);
 
     return (
         <FeelingFacesRow>
             <FeelingFaceWrapper
-                onPress={() => setFeeling("sad")}
+                onPress={() => handleChange("sad", name)}
                 style={feeling === "sad" && { backgroundColor: colors.feelingFaces.sad }}
             >
                 <MaterialCommunityIcons 
@@ -32,7 +34,7 @@ export const FeelingFaces = ({ feeling, setFeeling }) => {
                 />
             </FeelingFaceWrapper>
             <FeelingFaceWrapper
-                onPress={() => setFeeling("neutral")}
+                onPress={() => handleChange("neutral", name)}
                 style={feeling === "neutral" && { backgroundColor: colors.feelingFaces.neutral }}
             >
                 <MaterialCommunityIcons 
@@ -42,7 +44,7 @@ export const FeelingFaces = ({ feeling, setFeeling }) => {
                 />
             </FeelingFaceWrapper>
             <FeelingFaceWrapper
-                onPress={() => setFeeling("happy")}
+                onPress={() => handleChange("happy", name)}
                 style={feeling === "happy" && { backgroundColor: colors.feelingFaces.happy }}
             >
                 <MaterialCommunityIcons 

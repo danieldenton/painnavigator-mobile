@@ -6,9 +6,9 @@ import { FeelingFaces } from "./feeling-faces.component";
 import { SmallSpacer } from "../../../../components/spacer.component";
 import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
 
-export const FoodJournalEntry = () => {
+export const AddMealEntry = ({ journalId }) => {
     const { 
-        completeFoodJournal, 
+        addFoodJournalEntry, 
         meal, 
         newFoodJournalEntry, 
         handleChange, 
@@ -42,7 +42,7 @@ export const FoodJournalEntry = () => {
             </QuestionSection>
             </ScrollView>
             <ButtonSection>
-                <Button onPress={completeFoodJournal} disabled={canSubmit}>
+                <Button onPress={() => addFoodJournalEntry(journalId)} disabled={canSubmit}>
                     Log Meal
                 </Button>
             </ButtonSection>

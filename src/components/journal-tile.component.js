@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { Card } from "react-native-paper";
+import { Entypo } from '@expo/vector-icons';
 
 const JournalCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[2]};
+    padding-left: ${(props) => props.theme.space[2]};
+    padding-right: ${(props) => props.theme.space[2]};
+    height: 62px;
+    border-radius: 15px;
 `;
 
 const CardContentWrapper = styled(Card.Content)`
@@ -15,13 +19,13 @@ const CardContentWrapper = styled(Card.Content)`
 `;
 
 export const JournalTile = ({ journal }) => {
-    const { date, painScore } = journal;
+    const { date } = journal;
 
     return ( 
         <JournalCard>
             <CardContentWrapper>
                 <Text>{date}</Text>
-                <Text>{`My pain was ${painScore == 8 ? "an" : "a"} ${painScore}`}</Text>
+                <Entypo name="chevron-small-right" size={32} color="black" />
             </CardContentWrapper>
         </JournalCard>
     ); 

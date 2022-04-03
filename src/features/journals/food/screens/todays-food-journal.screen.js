@@ -5,13 +5,13 @@ import { NewFoodJournalEntry } from "../components/new-food-journal-entry.compon
 export const TodaysFoodJournalScreen = ({ navigation }) => {
     const meals = ["Breakfast", "Lunch", "Dinner", "Snacks"];
 
-    const FoodJournalEntryOptions = meals.map((meal, index) => 
+    const foodJournalEntryOptions = meals.map((meal, index) => 
         <NewFoodJournalEntry key={index} meal={meal} destination={"NewFoodJournal"} navigation={navigation} />
     );
 
     return(
         <SafeArea>
-            {FoodJournalEntryOptions}
+            {foodJournalEntryOptions}
         </SafeArea>
     );
 };

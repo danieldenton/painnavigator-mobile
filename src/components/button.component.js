@@ -20,3 +20,13 @@ export const OutlineButton = styled(Button).attrs({
     border: 2px ${colors.brand.primary} solid; 
     background-color: ${colors.text.white};
 `;
+
+export const OutlineButtonCondensed = styled(Button).attrs({
+    mode: "outlined",
+    color: colors.text.primary
+})`
+    border: 2px ${colors.brand.primary} solid; 
+    background-color: ${colors.text.white};
+    padding: 0px;
+`;
+

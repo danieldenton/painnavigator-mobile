@@ -5,11 +5,12 @@ import { Card } from "react-native-paper";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const NewJournalEntryCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    height: 88px;
+    border-radius: 15px;
 `;
 
 const CardContentWrapper = styled(Card.Content)`
+    flex: 1;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

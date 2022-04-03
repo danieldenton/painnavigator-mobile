@@ -4,12 +4,15 @@ import { Text } from "react-native";
 
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 export const JournalScreen = ({ navigation }) => {
     const { loadPainJournals } = useContext(PainJournalContext);
+    const { loadFoodJournals } = useContext(FoodJournalContext);
 
     useEffect(() => {
         loadPainJournals();
+        loadFoodJournals();
     }, [])
 
     return(

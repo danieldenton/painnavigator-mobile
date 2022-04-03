@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { SafeArea } from "../../../../components/safe-area.component";
+import { JournalContainer } from "../../components/journal.styles";
 import { FlatList, TouchableOpacity } from "react-native";
 import { NewJournalEntry } from "../../../../components/new-journal-entry.component";
 import { JournalTile } from "../../../../components/journal-tile.component";
@@ -16,8 +17,7 @@ export const FoodJournalScreen = ({ navigation }) => {
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity onPress={() => navigation.navigate("ReviewFoodJournal", {
-                            journal: item.attributes,
-                            journalId: item.id
+                            journal: item.attributes
                         })}> 
                             <JournalTile journal={item.attributes} />
                         </TouchableOpacity>

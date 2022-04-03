@@ -8,17 +8,12 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [journalComplete, setJournalComplete] = useState(false);
     const [meal, setMeal] = useState("");
     const [todaysJournal, setTodaysJournal] = useState(null);
-
     const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({
         food: "", 
         feelingBefore: "", 
         feelingAfter: "", 
     });
-
-    const journalEntry = {
-        [meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)
-    };
-
+    
     const handleChange = (change, name) => {
         setNewFoodJournalEntry(journal => ({
             ...journal,
@@ -26,28 +21,17 @@ export const FoodJournalContextProvider = ({ children }) => {
         }));
     };
 
-    const setFeelingBefore = (feelingBefore) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            feelingBefore: feelingBefore
-        }));
-    };
-
-    const setFeelingAfter = (feelingAfter) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            feelingAfter: feelingAfter
-        }));
-    };
+    const journalEntry = {[meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)};
 
     const completeFoodJournal = () => {
         postFoodJournal(journalEntry);
         setJournalComplete(true);
+        loadFoodJournals();
         resetFoodJournal();
     };
     
     const loadFoodJournals = () => {
-        setFoodJournals(getFoodJournals());
+        getFoodJournals(setFoodJournals);
     };
 
     const resetFoodJournal = () => {
@@ -60,8 +44,10 @@ export const FoodJournalContextProvider = ({ children }) => {
         });
     };
 
-    const newEntryInTodaysJournal = () => {
-        patchFoodJournal(todaysJournal.id, journalEntry);
+    const addFoodJournalEntry = (journalId) => {
+        patchFoodJournal(journalId, journalEntry);
+        setJournalComplete(true);
+        loadFoodJournals();
     };
     
     const updateFoodJournal = (journalId, journalUpdate) => {
@@ -79,11 +65,9 @@ export const FoodJournalContextProvider = ({ children }) => {
                 meal,
                 setMeal,
                 handleChange,
-                setFeelingBefore,
-                setFeelingAfter,
                 newFoodJournalEntry,
                 setNewFoodJournalEntry,
-                newEntryInTodaysJournal,
+                addFoodJournalEntry,
                 completeFoodJournal,
                 loadFoodJournals,
                 resetFoodJournal,
