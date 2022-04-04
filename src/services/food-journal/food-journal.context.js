@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { getFoodJournals, patchFoodJournal, postFoodJournal } from "./food-journal.service";
 
 export const FoodJournalContext = createContext();
@@ -7,27 +7,33 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState({});
     const [journalComplete, setJournalComplete] = useState(false);
     const [meal, setMeal] = useState("");
-    const [todaysJournal, setTodaysJournal] = useState(null);
     const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({
         food: "", 
         feelingBefore: "", 
         feelingAfter: "", 
     });
-    
+
+    const journalEntry = {[meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)};
+
+    const addFoodJournalEntry = (journalId) => {
+        patchFoodJournal(journalId, journalEntry);
+        setJournalComplete(true);
+        resetFoodJournal();
+        loadFoodJournals();
+    };
+
+    const completeFoodJournal = () => {
+        postFoodJournal(journalEntry);
+        setJournalComplete(true);
+        resetFoodJournal();
+        loadFoodJournals();
+    };
+
     const handleChange = (change, name) => {
         setNewFoodJournalEntry(journal => ({
             ...journal,
             [name]: change
         }));
-    };
-
-    const journalEntry = {[meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)};
-
-    const completeFoodJournal = () => {
-        postFoodJournal(journalEntry);
-        setJournalComplete(true);
-        loadFoodJournals();
-        resetFoodJournal();
     };
     
     const loadFoodJournals = () => {
@@ -44,12 +50,6 @@ export const FoodJournalContextProvider = ({ children }) => {
         });
     };
 
-    const addFoodJournalEntry = (journalId) => {
-        patchFoodJournal(journalId, journalEntry);
-        setJournalComplete(true);
-        loadFoodJournals();
-    };
-    
     const updateFoodJournal = (journalId, journalUpdate) => {
         patchFoodJournal(journalId, journalUpdate);
         loadFoodJournals();
@@ -58,7 +58,6 @@ export const FoodJournalContextProvider = ({ children }) => {
     return (
         <FoodJournalContext.Provider
             value={{
-                todaysJournal,
                 foodJournals,
                 journalComplete,
                 setJournalComplete,

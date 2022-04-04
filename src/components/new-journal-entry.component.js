@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components/native";
 import { Text, TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { colors } from "../infrastructure/theme/colors";
 
 const NewJournalEntryCard = styled(Card)`
     height: 88px;
+    margin: ${(props) => props.theme.space[3]};
     border-radius: 15px;
 `;
 
@@ -23,7 +25,7 @@ export const NewJournalEntry = ({ title, destination, navigation }) => {
             <NewJournalEntryCard>
                 <CardContentWrapper>
                     <Text>{title}</Text>
-                    <MaterialCommunityIcons name="pencil-circle-outline" size={36} color="black" />
+                    <AntDesign name="pluscircleo" size={36} color={colors.brand.primary} />
                 </CardContentWrapper>
             </NewJournalEntryCard>
         </TouchableOpacity>

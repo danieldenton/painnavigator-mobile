@@ -1,6 +1,5 @@
 import React from "react";
 import { SafeArea } from "../../../../components/safe-area.component";
-import { Text } from "react-native";
 import { FoodJournalEntryCard } from "../components/food-journal-entry-card.componet";
 import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
 
@@ -14,13 +13,13 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         { meal: "Snacks", entry: journal.snacks },
     ];
 
-    const foodJournalEntryOptions = meals.map((meal) => 
+    const foodJournalEntryOptions = meals.map((meal, index) => 
         String(meal.entry) !== "null" ? ( 
-            <FoodJournalEntryCard meal={meal} /> 
+            <FoodJournalEntryCard meal={meal} key={index} /> 
         ) : (
             <NewFoodJournalEntry 
                 meal={meal.meal} 
-                destination={"AddMeal"} 
+                key={index}
                 navigation={navigation} 
                 journalId={journal.id}
             />
@@ -29,7 +28,6 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
 
     return (        
         <SafeArea>
-            <Text>{journal.id}</Text>
             {foodJournalEntryOptions}
         </SafeArea>
     );
