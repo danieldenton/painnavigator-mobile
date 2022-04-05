@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Text } from "react-native";
 import { Card } from "react-native-paper";
 import { AntDesign } from '@expo/vector-icons';
-import { colors } from "../../../infrastructure/theme/colors";
+import { colors } from "../../infrastructure/theme/colors";
 
 const NewJournalEntryCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};

@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Provider } from 'react-native-paper';
-import { SafeArea } from "../../../../components/safe-area.component";
-import { NavigationBar } from "../../components/navigation-bar.component";
+import { SafeArea } from "../../../components/safe-area.component";
+import { NavigationBar } from "../../../components/journals/navigation-bar.component";
 import { FoodJournalEntry } from "../components/food-journal-entry.component";
-import { Congratulations } from "../../components/congratulations.component";
-import { ExitModal } from "../../components/exit-modal.component";
-import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
+import { Congratulations } from "../../../components/journals/congratulations.component";
+import { ExitModal } from "../../../components/journals/exit-modal.component";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
-export const NewFoodJournalScreen = ({ navigation, route }) => {
+export const FoodJournalEntryScreen = ({ navigation, route }) => {
     const { journalId } = route.params;
     const { meal, journalComplete, loadFoodJournals, resetFoodJournal, setJournalComplete } = useContext(FoodJournalContext);
     const [exitModalVisible, setExitModalVisible] = useState(false);
@@ -31,7 +31,7 @@ export const NewFoodJournalScreen = ({ navigation, route }) => {
                     visible={exitModalVisible} 
                     setVisible={setExitModalVisible}
                     resetJournal={resetFoodJournal}
-                    destination={"FoodJournal"}
+                    destination={"FoodJournalHome"}
                 />
             </Provider>
         </SafeArea>

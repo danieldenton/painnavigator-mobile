@@ -1,10 +1,14 @@
 import React from "react";
-import { Button } from "../../../components/button.component";
+import { Text } from "react-native"
+import { Button } from "../button.component";
 import { JournalContainer } from "./journal.styles";
 
 export const Congratulations = ({ navigation, setJournalComplete, loadJournals }) => {
     return(
         <JournalContainer>
+            <Text>
+                Congratulations
+            </Text>
             <Button 
                 onPress={() => {
                     loadJournals();

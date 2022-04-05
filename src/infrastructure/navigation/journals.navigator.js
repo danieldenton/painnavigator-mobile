@@ -8,10 +8,9 @@ import { PainJournalScreen } from "../../features/painJournal/screens/pain-journ
 import { NewPainJournalScreen } from "../../features/painJournal/screens/new-pain-journal.screen";
 import { ReviewPainJournal } from "../../features/painJournal/screens/review-pain-journal.screen";
 
-import { FoodJournalScreen } from "../../features/journals/food/screens/food-journal.screen";
-import { TodaysFoodJournalScreen } from "../../features/journals/food/screens/todays-food-journal.screen";
-import { NewFoodJournalScreen } from "../../features/journals/food/screens/new-food-journal.screen";
-import { ReviewFoodJournalScreen } from "../../features/journals/food/screens/review-food-journal.screen";
+import { FoodJournalHomeScreen } from "../../features/food-journal/screens/food-journal-home.screen";
+import { FoodJournalEntryScreen } from "../../features/food-journal/screens/food-journal-entry.screen";
+import { ReviewFoodJournalScreen } from "../../features/food-journal/screens/review-food-journal.screen";
 
 const JournalsStack = createStackNavigator();
 
@@ -38,16 +37,12 @@ export const JournalsNavigator = () => {
                 options={{ headerShown: false }}
             />
             <JournalsStack.Screen 
-                name="FoodJournal" 
-                component={FoodJournalScreen} 
+                name="FoodJournalHome" 
+                component={FoodJournalHomeScreen} 
             />
             <JournalsStack.Screen 
-                name="TodaysFoodJournal" 
-                component={TodaysFoodJournalScreen} 
-            />
-            <JournalsStack.Screen 
-                name="NewFoodJournal" 
-                component={NewFoodJournalScreen} 
+                name="FoodJournalEntry" 
+                component={FoodJournalEntryScreen} 
                 options={{ headerShown: false }}
             />
             <JournalsStack.Screen 

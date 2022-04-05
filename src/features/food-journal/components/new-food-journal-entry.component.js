@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
-import { NewJournalEntry } from "../../components/new-journal-entry.component";
-import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
+import { NewJournalEntry } from "../../../components/journals/new-journal-entry.component";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 export const NewFoodJournalEntry = ({ meal, navigation, journalId }) => {
     const { setMeal } = useContext(FoodJournalContext);
@@ -10,7 +10,7 @@ export const NewFoodJournalEntry = ({ meal, navigation, journalId }) => {
         <TouchableOpacity 
             onPress={() => 
                 {
-                    navigation.navigate("NewFoodJournal", { journalId: journalId ? journalId : null});
+                    navigation.navigate("FoodJournalEntry", { journalId: journalId ? journalId : null});
                     setMeal(meal);
                 }}
         >

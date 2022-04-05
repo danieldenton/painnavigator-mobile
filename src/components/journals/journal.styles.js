@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
-import { Button } from "../../../components/button.component";
-import { colors } from "../../../infrastructure/theme/colors";
+import { Button } from "../button.component";
+import { colors } from "../../infrastructure/theme/colors";
 
 export const JournalContainer = styled.View`
     flex: 1;

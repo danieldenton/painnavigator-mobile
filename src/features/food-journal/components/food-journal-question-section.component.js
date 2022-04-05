@@ -1,7 +1,7 @@
 import React from "react";
-import { QuestionSection, Question, Input } from "../../components/journal.styles";
+import { QuestionSection, Question, Input } from "../../../components/journals/journal.styles";
 import { FeelingFaces } from "./feeling-faces.component";
-import { SmallSpacer } from "../../../../components/spacer.component";
+import { SmallSpacer } from "../../../components/spacer.component";
 
 export const FoodJournalQuestionSection = ({ meal, handleChange, newFoodJournalEntry }) => {
     return (

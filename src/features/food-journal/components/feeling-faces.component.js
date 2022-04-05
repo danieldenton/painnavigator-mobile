@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { colors } from "../../../../infrastructure/theme/colors";
-import { FoodJournalContext } from "../../../../services/food-journal/food-journal.context";
+import { colors } from "../../../infrastructure/theme/colors";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 const FeelingFacesRow = styled.View`
     flex-direction: row;
