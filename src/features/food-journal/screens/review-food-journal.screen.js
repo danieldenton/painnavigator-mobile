@@ -18,12 +18,7 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         String(meal.entry) !== "null" ? ( 
             <CompletedEntryCard meal={meal} key={index} navigation={navigation} /> 
         ) : (
-            <NewFoodJournalEntry 
-                meal={meal.meal} 
-                key={index}
-                navigation={navigation} 
-                journalId={journal.id}
-            />
+            <NewFoodJournalEntry meal={meal.meal} key={index} navigation={navigation} journalId={journal.id} />
         )
     );
 

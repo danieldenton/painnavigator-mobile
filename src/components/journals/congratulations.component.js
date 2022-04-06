@@ -15,7 +15,7 @@ export const Congratulations = ({ navigation, setJournalComplete, loadJournals }
                     navigation.navigate("Today"); 
                     setTimeout(() => {setJournalComplete(false)}, 1000);
                 }}>
-                    Return Home
+                    RETURN HOME
             </Button>
         </JournalContainer>
     );
