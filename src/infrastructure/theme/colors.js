@@ -14,6 +14,10 @@ export const colors = {
     success: "#138000",
     inputOutline: "hsl(216, 7%, 69%)"
   },
+  textInput: {
+    active: "hsl(170, 76%, 36%)",
+    inactive: "hsl(218, 44%, 86%)"
+  },
   bg: {
     primary: "#FFFFFF",
     secondary: 'hsl(196, 4%, 60%)',

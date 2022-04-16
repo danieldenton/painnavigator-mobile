@@ -9,7 +9,7 @@ import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const MoodJournalEntryPage = () => {
-    const { currentPage } = useContext(MoodJournalContext);
+    const { currentPage, nextPage } = useContext(MoodJournalContext);
 
     return (
         <JournalContainer>
@@ -21,7 +21,7 @@ export const MoodJournalEntryPage = () => {
                 {currentPage === 5 && <CognitiveDistortions />}
             </QuestionSection>
             <ButtonSection>
-                
+                <Button onPress={nextPage}>Next</Button>
             </ButtonSection>
         </JournalContainer>
     );
