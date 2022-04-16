@@ -3,15 +3,26 @@ import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 
 export const Button = styled(ReactPaperButton).attrs({
-    color: colors.text.white
+    color: colors.text.white,
 })`
     background-color: ${colors.brand.primary};
-    margin-top: ${(props) => props.theme.space[3]};
-    margin-bottom: ${(props) => props.theme.space[3]};
-    height: 57px;
+    margin-top: ${(props) => props.theme.space[4]};
+    margin-bottom: ${(props) => props.theme.space[4]};
     border-radius: 8px;
     justify-content: center;
 `;
+
+export const JournalButton = ({title, onPress}) => {
+    return (
+        <Button 
+            contentStyle={{ height: 57 }}
+            labelStyle={{ color: "white", fontSize: 18 }}
+            onPress={onPress}    
+        >
+            {title}
+        </Button>
+    );
+}; 
 
 export const OutlineButton = styled(Button).attrs({
     mode: "outlined",

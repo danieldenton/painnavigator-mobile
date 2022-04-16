@@ -6,9 +6,13 @@ const QuestionWrapper = styled.View`
 `;
 
 const QuestionText = styled.Text`
+    font-size: 25px;
 `;
 
 const HelpText = styled.Text`
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 9px;
 `;
 
 export const JournalQuestion = ({ question, helpText }) => {
