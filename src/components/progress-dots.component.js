@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 
 const ProgressDotsContainer = styled.View`
     flex-direction: row;
-    margin: ${(props) => props.theme.space[2]};
     align-items: center;
     justify-content: center;
 `;
@@ -12,6 +11,8 @@ const ProgressDot = styled.View`
     border-radius: 100px;
     margin-left: 6px;
     margin-right: 6px;
+    margin-top: 17px;
+    margin-bottom: 20px;
     padding: 4px;
 `;
 
