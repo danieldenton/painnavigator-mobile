@@ -1,4 +1,5 @@
 import React, { useContext} from "react";
+import { Button } from "../../../components/button.component";
 import { ButtonSection, JournalContainer, QuestionSection, SkipQuestion } from "../../../components/journals/journal.styles";
 import Feeling from "./feeling.component";
 import Intensity from "./intensity.component";
@@ -15,9 +16,10 @@ export const MoodJournalEntryPage = () => {
                 {currentPage === 3 && <Situation />}
                 {currentPage === 4 && <PrimaryThought />}
                 {currentPage === 5 && <CognitiveDistortions />}
-
-
             </QuestionSection>
+            <ButtonSection>
+                
+            </ButtonSection>
         </JournalContainer>
     );
 };

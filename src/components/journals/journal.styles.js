@@ -3,6 +3,7 @@ import { TextInput } from "react-native-paper";
 import { Button } from "../button.component";
 import { colors } from "../../infrastructure/theme/colors";
 
+// TODO: Change to PageContainer
 export const JournalContainer = styled.View`
     flex: 1;
     margin: ${(props) => props.theme.space[3]};
@@ -13,6 +14,7 @@ export const JournalScrollContainer = styled.ScrollView`
     padding: ${(props) => props.theme.space[3]};
 `;
 
+// TODO: Change to EntrySection
 export const QuestionSection = styled.View`
     flex: 1;
     width: 100%;
