@@ -2,16 +2,17 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { Button } from "../button.component";
 import { colors } from "../../infrastructure/theme/colors";
+import { space } from "../../infrastructure/theme/spacing";
 
 // TODO: Change to PageContainer
 export const JournalContainer = styled.View`
     flex: 1;
-    margin: ${(props) => props.theme.space[3]};
+    margin: ${space.large};
 `;
 
 export const JournalScrollContainer = styled.ScrollView`
     flex: 1;
-    padding: ${(props) => props.theme.space[3]};
+    padding: ${space.large};
 `;
 
 // TODO: Change to EntrySection
@@ -27,7 +28,7 @@ export const ButtonSection = styled.View`
 `;
 
 export const QuestionWrapper = styled.View`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-bottom: ${space.large};
 `;
 
 export const QuestionText = styled.Text`
@@ -50,12 +51,12 @@ export const Input = styled(TextInput).attrs({
     numberOfLines: 4,
     outlineColor: colors.ui.inputOutline
 })`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-bottom: ${space.large};
     height: 119px;
 `;
 
 export const SkipQuestionButton = styled.TouchableOpacity`
-    padding: ${(props) => props.theme.space[2]};
+    padding: ${space.medium};
 `;
 
 export const SkipQuestionText = styled.Text`
@@ -81,13 +82,11 @@ export const HeaderRow = styled.View`
 `;
 
 export const DateText = styled.Text`
-    margin-top: ${(props) => props.theme.space[4]};
+    margin-top: ${space.xl};
     margin-bottom: 33px;
 `;
 
-export const EditButton = styled(Button)`
-    padding: 0px;
-`;
+
 
 export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
     return(

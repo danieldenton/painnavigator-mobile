@@ -19,6 +19,7 @@ export const JournalScreen = ({ navigation }) => {
         <SafeArea>
             <Text>Journal Screen</Text>
             <DailyActivitiesTile title={"Pain Journal"} destination={"PainJournal"} navigation={navigation} />
+            <DailyActivitiesTile title={"Mood Journal"} destination={"MoodJournal"} navigation={navigation} />
             <DailyActivitiesTile title={"Food Journal"} destination={"FoodJournal"} navigation={navigation} />
         </SafeArea>
     );

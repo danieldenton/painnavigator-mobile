@@ -9,6 +9,7 @@ import { EducationContextProvider } from "./src/services/education/education.con
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
+import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -40,7 +41,9 @@ export default function App() {
                 <MovementContextProvider>
                   <PainJournalContextProvider>
                     <FoodJournalContextProvider>
-                      <Navigation />
+                      <MoodJournalContextProvider>
+                        <Navigation />
+                      </MoodJournalContextProvider>
                     </FoodJournalContextProvider>
                   </PainJournalContextProvider>
                 </MovementContextProvider>
