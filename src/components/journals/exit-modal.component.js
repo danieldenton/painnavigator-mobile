@@ -6,7 +6,7 @@ import { Modal as PaperModal, Portal, Text } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 
 const Modal = styled(PaperModal)`
-    border-radius: 8px;
+    border-radius: 15px;
     margin: ${(props) => props.theme.space[3]};
 `;
 
@@ -19,15 +19,20 @@ const ExitButtonContainer = styled(TouchableOpacity)`
 
 const ExitModalTextContainer = styled.View`
     align-items: center;
-    margin-top: 31px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 `;
 
 const ExitModalText = styled.Text`
     font-size: 18px;
 `;
 
+const ButtonContainer = styled.View`
+    margin-bottom: 89px;
+`;
+
 export const ExitModal = ({ visible, setVisible, navigation, destination, resetJournal, changes }) => {
-    const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 10};
+    const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
 
     return(
@@ -42,15 +47,17 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, resetJ
                     <ExitModalText>Are you sure you want to exit?</ExitModalText>
                     <ExitModalText>{changes ? "Your changes" : "This journal"} won't be saved.</ExitModalText>
                 </ExitModalTextContainer>
-                <JournalButtonOutline 
-                    onPress={() => {
-                        navigation.navigate(destination); 
-                        {resetJournal && resetJournal();} 
-                    }}
-                    title={"Yes, Exit"}
-                    fontSize={16}
-                />
-                <JournalButton title={"No, Keep Going"} onPress={hideModal} fontSize={16} />
+                <ButtonContainer>
+                    <JournalButtonOutline 
+                        onPress={() => {
+                            navigation.navigate(destination); 
+                            {resetJournal && resetJournal();} 
+                        }}
+                        title={"Yes, Exit"}
+                        fontSize={16}
+                    />
+                    <JournalButton title={"No, Keep Going"} onPress={hideModal} fontSize={16} />
+                </ButtonContainer>
             </Modal>
         </Portal>
     );

@@ -10,7 +10,6 @@ export const Feeling = () => {
         <>
             <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText} />
             <TextInput 
-                placeholder={"Feeling"}
                 value={moodJournalEntry.feeling}
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}
             />

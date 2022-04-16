@@ -8,13 +8,18 @@ import { Congratulations } from "../../../components/journals/congratulations.co
 import { MoodJournalEntryPage } from "../components/mood-journal-entry-page.component";
 
 export const NewMoodJournalScreen = ({ navigation }) => {
-    const { journalComplete, resetMoodJournal } = useContext(MoodJournalContext);
+    const { currentPage, journalComplete, previousPage, resetMoodJournal } = useContext(MoodJournalContext);
     const [exitModalVisible, setExitModalVisible] = useState(false);
 
     return (
         <SafeArea>
             <Provider>
-                <NavigationBar headerName={"Mood Journal"} setVisible={setExitModalVisible} />
+                <NavigationBar 
+                    currentQuestion={currentPage} 
+                    headerName={"Mood Journal"} 
+                    setVisible={setExitModalVisible} 
+                    previousQuestion={previousPage}
+                />
                 {journalComplete ? <Congratulations navigation={navigation} /> : <MoodJournalEntryPage />}
                 <ExitModal 
                     navigation={navigation} 
