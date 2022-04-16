@@ -22,10 +22,10 @@ export const MoodJournalContextProvider = ({ children }) => {
         setCurrentPageData(moodJournalQuestions.find(data => data.page === currentPage));
     }, [currentPage]);
 
-    const changeEntry = (change, entry) => {
+    const changeEntry = (change, state) => {
         setMoodJournalEntry(journal => ({
             ...journal,
-            [entry]: change
+            [state]: change
         }));
     };
 
@@ -56,7 +56,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     };
 
     const resetMoodJournal = () => {
-        moodJournalEntry({ 
+        setMoodJournalEntry({ 
             feeling: "", 
             intensity: 5, 
             situation: "", 

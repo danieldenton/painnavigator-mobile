@@ -5,35 +5,40 @@
             "id": 1,
             "question": "How are you feeling today?",
             "helpText": "For example: happy, anxious, lonely, sad",
-            "options": null
+            "options": null,
+            "state": "feeling"
         },
         {
             "page": 2,
             "id": 2,
             "question": "How intense is this feeling?",
             "helpText": "0 is not intense at all, 10 is extremely intense",
-            "options": null
+            "options": null,
+            "state": "intensity"
         },
         {
             "page": 3,
             "id": 3,
             "question": "What was the situation when you first noticed this feeling?",
             "helpText": "For example: At home making coffee",
-            "options": null
+            "options": null,
+            "state": "situation"
         },
         {
             "page": 3,
             "id": 4,
             "question": "Who were you with?",
             "helpText": "For example: By myself, with family, with friends",
-            "options": null
+            "options": null,
+            "state": "whoIWasWith"
         },
         {
             "page": 4,
             "id": 5,
             "question": "What was the primary thought that gave rise to this feeling?",
             "helpText": null,
-            "options": null
+            "options": null,
+            "state": "primaryThought"
         }
         ,
         {
@@ -102,7 +107,8 @@
                     "option": "Personalization",
                     "helpText": "They were acting weird, it must be because of me"
                 }
-            ]
+            ],
+        "state": "cognitiveDistortions"
         }
     ]
 }

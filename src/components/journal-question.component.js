@@ -3,6 +3,7 @@ import { space } from "../infrastructure/theme/spacing";
 
 const QuestionWrapper = styled.View`
     margin-bottom: ${space[3]};
+    margin-top: 34px;
 `;
 
 const QuestionText = styled.Text`

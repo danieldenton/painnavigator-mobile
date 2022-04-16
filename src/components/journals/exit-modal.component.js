@@ -1,11 +1,29 @@
 import React from "react";
 import styled from "styled-components/native";
+import { TouchableOpacity } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 import { Modal as PaperModal, Portal, Text } from 'react-native-paper';
-import { Button, OutlineButton } from "../button.component";
+import { JournalButton, JournalButtonOutline } from "../button.component";
 
 const Modal = styled(PaperModal)`
     border-radius: 8px;
     margin: ${(props) => props.theme.space[3]};
+`;
+
+const ExitButtonRow = styled.View`
+    align-items: flex-end;
+`;
+
+const ExitButtonContainer = styled(TouchableOpacity)`
+`;
+
+const ExitModalTextContainer = styled.View`
+    align-items: center;
+    margin-top: 31px;
+`;
+
+const ExitModalText = styled.Text`
+    font-size: 18px;
 `;
 
 export const ExitModal = ({ visible, setVisible, navigation, destination, resetJournal, changes }) => {
@@ -15,22 +33,24 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, resetJ
     return(
         <Portal>
             <Modal visible={visible} onDismiss={() => setVisible(false)} contentContainerStyle={containerStyle}>
-                <Text>
-                    Are you sure you want to exit? {changes ? "Your changes" : "This journal"} won't be saved.
-                </Text>
-                <OutlineButton 
+                <ExitButtonRow>
+                    <ExitButtonContainer onPress={() => setVisible(false)}>
+                        <AntDesign name="close" size={24} color="black" />  
+                    </ExitButtonContainer>
+                </ExitButtonRow>
+                <ExitModalTextContainer>
+                    <ExitModalText>Are you sure you want to exit?</ExitModalText>
+                    <ExitModalText>{changes ? "Your changes" : "This journal"} won't be saved.</ExitModalText>
+                </ExitModalTextContainer>
+                <JournalButtonOutline 
                     onPress={() => {
                         navigation.navigate(destination); 
                         {resetJournal && resetJournal();} 
                     }}
-                >
-                    Yes, Exit
-                </OutlineButton>
-                <Button 
-                    onPress={hideModal}
-                >
-                    No, Keep Going
-                </Button>
+                    title={"Yes, Exit"}
+                    fontSize={16}
+                />
+                <JournalButton title={"No, Keep Going"} onPress={hideModal} fontSize={16} />
             </Modal>
         </Portal>
     );

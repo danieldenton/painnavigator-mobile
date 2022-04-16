@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
-
+import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const HeaderContainer = styled.View`
     padding: ${(props) => props.theme.space[3]};
@@ -16,6 +15,7 @@ const LeftSection = styled(TouchableOpacity)`
 `;
 
 const HeaderName = styled.Text`
+    font-size: 14px;
 `;
 
 const RightSection = styled(TouchableOpacity)`
@@ -30,10 +30,10 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
                 <Ionicons name="chevron-back-outline" size={24} color="black" />
             </LeftSection>
             <HeaderName>
-                {headerName}
+                {headerName.toUpperCase()}
             </HeaderName>
             <RightSection onPress={showModal} >
-                <MaterialCommunityIcons name="cancel" size={24} color="black" />
+                <AntDesign name="close" size={24} color="black" />  
             </RightSection>
         </HeaderContainer>
     );

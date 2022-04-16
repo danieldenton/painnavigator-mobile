@@ -14,7 +14,7 @@ export const MoodJournalNavigator = () => {
             <MoodJournalStack.Screen 
                 name="NewMoodJournal" 
                 component={NewMoodJournalScreen} 
-                // options={{ headerShown: false }}
+                options={{ headerShown: false }}
             />
             <MoodJournalStack.Screen 
                 name="MoodJournalHome" 
