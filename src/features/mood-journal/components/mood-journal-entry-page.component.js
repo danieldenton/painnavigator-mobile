@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { ButtonSection, JournalContainer, QuestionSection, SkipQuestion } from "../../../components/journals/journal.styles";
+import { ButtonSection, JournalContainer, QuestionSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
+import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { Feeling } from "./feeling.component";
 import { Intensity } from "./intensity.component";
@@ -25,6 +26,7 @@ export const MoodJournalEntryPage = () => {
             </QuestionSection>
             <ButtonSection>
                 <JournalButton title={"Next"} onPress={nextPage} />
+                {currentPage > 4 && <SkipQuestion onPress={nextPage} />}
                 <ProgressDots progress={currentPage} total={6} />
             </ButtonSection>
         </JournalContainer>

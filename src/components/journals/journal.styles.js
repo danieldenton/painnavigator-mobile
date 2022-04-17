@@ -19,12 +19,14 @@ export const JournalScrollContainer = styled.ScrollView`
 export const QuestionSection = styled.View`
     flex: 1;
     width: 100%;
+    overflow: hidden;
 `;
 
 export const ButtonSection = styled.View`
     width: 100%;
     position: absolute;
     bottom: 0;
+    background-color: ${colors.bg.primary};
 `;
 
 export const QuestionWrapper = styled.View`

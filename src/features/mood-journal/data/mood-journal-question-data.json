@@ -108,7 +108,7 @@
                     "helpText": "They were acting weird, it must be because of me"
                 }
             ],
-        "state": "cognitiveDistortions"
+            "state": "cognitiveDistortions"
         }
     ]
 }

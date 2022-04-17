@@ -28,7 +28,7 @@ const ExitModalText = styled.Text`
 `;
 
 const ButtonContainer = styled.View`
-    margin-bottom: 89px;
+    margin-bottom: 45px;
 `;
 
 export const ExitModal = ({ visible, setVisible, navigation, destination, resetJournal, changes }) => {

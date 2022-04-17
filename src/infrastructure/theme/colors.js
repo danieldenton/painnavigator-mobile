@@ -19,7 +19,7 @@ export const colors = {
     inactive: "hsl(218, 44%, 86%)"
   },
   bg: {
-    primary: "#FFFFFF",
+    primary: "hsl(216, 38%, 97%)",
     secondary: 'hsl(196, 4%, 60%)',
   },
   text: {
