@@ -13,7 +13,7 @@ export const PrimaryThought = () => {
                 blurOnSubmit
                 multiline 
                 numberOfLines={6}
-                value={moodJournalEntry.whoIWasWith}
+                value={moodJournalEntry.primaryThought}
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}    
                 textAlignVertical={"top"}
                 style={{textAlignVertical: "top", height: 186}}

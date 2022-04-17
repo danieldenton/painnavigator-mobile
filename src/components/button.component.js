@@ -5,18 +5,19 @@ import { colors } from "../infrastructure/theme/colors";
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.white,
 })`
-    background-color: ${colors.brand.primary};
     margin-top: 19px;
     border-radius: 8px;
     justify-content: center;
 `;
 
-export const JournalButton = ({title, onPress, fontSize}) => {
+export const JournalButton = ({ disabled, title, onPress, fontSize }) => {
     return (
         <Button 
             contentStyle={{ height: 57 }}
+            disabled={disabled}
             labelStyle={{ color: "white", fontSize: fontSize || 18 }}
-            onPress={onPress}    
+            onPress={onPress}
+            style={{ backgroundColor: disabled ? colors.brand.disabled : colors.brand.primary}}
         >
             {title}
         </Button>

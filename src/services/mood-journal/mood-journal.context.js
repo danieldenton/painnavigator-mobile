@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 import { getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
 
@@ -15,7 +15,7 @@ export const MoodJournalContextProvider = ({ children }) => {
         situation: "", 
         whoIWasWith: "", 
         primaryThought: "", 
-        cognitiveDistortions: [] 
+        cognitiveDistortions: new Array()
     });
 
     const changeEntry = (change, state) => {
@@ -32,7 +32,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             situation: moodJournalEntry.situation, 
             who_i_was_with: moodJournalEntry.whoIWasWith,
             primary_thought: moodJournalEntry.primaryThought,
-            cognitive_distortions: JSON.stringify(moodJournalEntry.cognitiveDistortions)
+            cognitive_distortions: String(moodJournalEntry.cognitiveDistortions)
         };
         postMoodJournal(newMoodJournal);
         setJournalComplete(true);
@@ -57,8 +57,8 @@ export const MoodJournalContextProvider = ({ children }) => {
             intensity: 5, 
             situation: "", 
             whoIWasWith: "", 
-            PrimaryThought: "", 
-            CognitiveDistortions: [] 
+            primaryThought: "", 
+            cognitiveDistortions: new Array() 
         });
         setCurrentPage(1);
     };

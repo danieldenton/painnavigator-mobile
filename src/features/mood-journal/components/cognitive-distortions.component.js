@@ -6,6 +6,7 @@ import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.c
 import { ScrollView } from "react-native";
 
 const MultiSelectScroll = styled(ScrollView)`
+    flex: .60;
 `;
 
 export const CognitiveDistortions = () => {

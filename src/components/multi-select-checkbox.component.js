@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -8,7 +8,6 @@ const CheckBoxPressableArea = styled.TouchableOpacity`
     flex-direction: row;
     margin-bottom:  22px;
     margin-left:  2px;
-    width: 75%;
 `;
 
 const CheckCircleArea = styled.View`
@@ -33,6 +32,7 @@ const CheckedCircle = styled.View`
 
 const CheckBoxTextContentArea = styled.View`
     height: 100%;
+    width: 75%;
 `;
 
 const Option = styled.Text`
@@ -47,8 +47,8 @@ const HelpText = styled.Text`
 
 export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }) => {
     const { helpText, id, option } = optionData;
-    const selected = selectedOptions.find((selected) => selected === id);
-
+    const selected = selectedOptions.find((optionId) => optionId === id);
+        
     return (
         <CheckBoxPressableArea
             activeOpacity={0.5}

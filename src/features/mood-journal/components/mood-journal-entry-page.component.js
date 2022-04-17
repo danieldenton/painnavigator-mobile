@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { ButtonSection, JournalContainer, QuestionSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
@@ -12,11 +12,35 @@ import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const MoodJournalEntryPage = () => {
-    const { completeMoodJournal, currentPage, nextPage } = useContext(MoodJournalContext);
+    const { completeMoodJournal, currentPage, moodJournalEntry, nextPage } = useContext(MoodJournalContext);
+    const [canSubmit, setCanSubmit] = useState(true);
+    
+    useEffect(() => {
+        const { feeling, situation } = moodJournalEntry;
+        if (currentPage === 1) {
+            return !feeling ? setCanSubmit(false) : setCanSubmit(true)
+        }   else if (currentPage === 3) {
+            return !situation ? setCanSubmit(false) : setCanSubmit(true)
+        }   else {
+            return setCanSubmit(true)
+        };
+    }, [moodJournalEntry, currentPage]);
 
+    const canhSubmit = () => {
+        if (currentPage === 1) {
+            return !feeling ? "true" : "false"
+        }   else if (currentPage === 2) {
+            return true
+        }   else if (currentPage === 3) {
+            return !situation ? "true" : "false"
+        }   else {
+            return true
+        }
+    }; 
+    
     return (
         <JournalContainer>
-            <QuestionSection style={currentPage === 6 && { marginRight: -24 }}>
+            <QuestionSection>
                 {currentPage === 1 && <Feeling />}
                 {currentPage === 2 && <Intensity />}
                 {currentPage === 3 && <Situation />}
@@ -25,8 +49,8 @@ export const MoodJournalEntryPage = () => {
                 {currentPage === 6 && <CognitiveDistortions />}
             </QuestionSection>
             <ButtonSection>
-                <JournalButton title={"Next"} onPress={currentPage === 6 ? completeMoodJournal : nextPage} />
-                {currentPage > 4 && <SkipQuestion onPress={currentPage === 6 ? completeMoodJournal : nextPage} />}
+                <JournalButton disabled={!canSubmit} title={"Next"} onPress={currentPage === 6 ? completeMoodJournal : nextPage} />
+                {currentPage > 3 && <SkipQuestion onPress={currentPage === 6 ? completeMoodJournal : nextPage} />}
                 <ProgressDots progress={currentPage} total={6} />
             </ButtonSection>
         </JournalContainer>

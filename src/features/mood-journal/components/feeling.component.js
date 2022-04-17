@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { TextInput } from "../../../components/text-input.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { Text } from "react-native"; 
 
 export const Feeling = () => {
     const { changeEntry, currentPageData, moodJournalEntry } = useContext(MoodJournalContext);
