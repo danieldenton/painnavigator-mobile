@@ -5,6 +5,7 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { Feeling } from "./feeling.component";
 import { Intensity } from "./intensity.component";
 import { Situation } from "./situation.component";
+import { WhoIWasWith } from "./who-i-was-with.component";
 import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
@@ -18,12 +19,13 @@ export const MoodJournalEntryPage = () => {
                 {currentPage === 1 && <Feeling />}
                 {currentPage === 2 && <Intensity />}
                 {currentPage === 3 && <Situation />}
-                {currentPage === 4 && <PrimaryThought />}
-                {currentPage === 5 && <CognitiveDistortions />}
+                {currentPage === 4 && <WhoIWasWith />}
+                {currentPage === 5 && <PrimaryThought />}
+                {currentPage === 6 && <CognitiveDistortions />}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton title={"Next"} onPress={nextPage} />
-                <ProgressDots progress={currentPage} total={5} />
+                <ProgressDots progress={currentPage} total={6} />
             </ButtonSection>
         </JournalContainer>
     );

@@ -3,7 +3,7 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { TextInput } from "../../../components/text-input.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
-export const Situation = () => {
+export const WhoIWasWith = () => {
     const { changeEntry, currentPageData, moodJournalEntry } = useContext(MoodJournalContext);
     
     return (
@@ -13,7 +13,7 @@ export const Situation = () => {
                 blurOnSubmit
                 multiline 
                 numberOfLines={4}
-                value={moodJournalEntry.situation}
+                value={moodJournalEntry.whoIWasWith}
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}    
                 textAlignVertical={"top"}
                 style={{textAlignVertical: "top", height: 119}}

@@ -25,7 +25,7 @@
             "state": "situation"
         },
         {
-            "page": 3,
+            "page": 4,
             "id": 4,
             "question": "Who were you with?",
             "helpText": "For example: By myself, with family, with friends",
@@ -33,7 +33,7 @@
             "state": "whoIWasWith"
         },
         {
-            "page": 4,
+            "page": 5,
             "id": 5,
             "question": "What was the primary thought that gave rise to this feeling?",
             "helpText": null,
@@ -42,7 +42,7 @@
         }
         ,
         {
-            "page": 5,
+            "page": 6,
             "id": 6,
             "question": "Identify any cognitive distortions",
             "helpText": null,
