@@ -12,17 +12,18 @@ export const MoodJournalNavigator = () => {
     return (
         <MoodJournalStack.Navigator>
             <MoodJournalStack.Screen 
+                name="MoodJournalHome" 
+                component={MoodJournalHomeScreen} 
+            />
+            <MoodJournalStack.Screen 
                 name="NewMoodJournal" 
                 component={NewMoodJournalScreen} 
                 options={{ headerShown: false }}
             />
             <MoodJournalStack.Screen 
-                name="MoodJournalHome" 
-                component={MoodJournalHomeScreen} 
-            />
-            <MoodJournalStack.Screen 
                 name="ReviewMoodJournal" 
                 component={ReviewMoodJournalScreen} 
+                options={{ headerShown: false }}
             />
         </MoodJournalStack.Navigator>
     );

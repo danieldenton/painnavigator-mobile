@@ -1,7 +1,6 @@
 import axios from 'axios';
 import camelize from "camelize";
-
-const baseUrl = 'https://3000-silver-slug-ggyxd3yy.ws-us38.gitpod.io';
+import { baseUrl } from '../../infrastructure/config';
 
 export const getPainJournals = (setPainJournals, setPainJournalsLoaded) => {
     axios.get(`${baseUrl}/api/v1/pain_journals`)

@@ -5,7 +5,9 @@ import { Card } from "react-native-paper";
 import { Entypo } from '@expo/vector-icons';
 
 const JournalCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: 12px;
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
     padding-left: ${(props) => props.theme.space[2]};
     padding-right: ${(props) => props.theme.space[2]};
     height: 62px;
@@ -24,8 +26,8 @@ export const JournalTile = ({ journal }) => {
     return ( 
         <JournalCard>
             <CardContentWrapper>
-                <Text>{date}</Text>
-                <Entypo name="chevron-small-right" size={32} color="black" />
+                <Text style={{ fontSize: 18 }}>{date}</Text>
+                <Entypo name="chevron-small-right" size={32} color="black" style={{ marginRight: -16 }}/>
             </CardContentWrapper>
         </JournalCard>
     ); 

@@ -91,8 +91,6 @@ export const DateText = styled.Text`
     margin-bottom: 33px;
 `;
 
-
-
 export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
     return(
         <HeaderRow>
@@ -103,4 +101,7 @@ export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
 };
 
 export const Response = styled.Text`
+`;
+
+export const CompletedEntriesSection = styled.View`
 `;

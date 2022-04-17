@@ -1,12 +1,19 @@
 import React from "react";
+import { JournalContainer } from "../../../components/journals/journal.styles";
+import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
 import { Text, View } from "react-native";
 
-export const ReviewMoodJournalScreen = () => {
+export const ReviewMoodJournalScreen = ({ navigation }) => {
     return (
-        <View>
+        <JournalContainer>
+            <ReviewJournalNavigationBar 
+                headerName={"MOOD JOURNAL"} 
+                destination={"MoodJournalHome"}
+                navigation={navigation} 
+            />
             <Text>
-                ReviewMoodJournalScreen
+                ReMoodJournalScreen
             </Text>
-        </View>
+        </JournalContainer>
     )
 }; 

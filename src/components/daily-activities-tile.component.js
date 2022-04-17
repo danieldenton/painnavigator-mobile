@@ -6,8 +6,15 @@ import { Card } from "react-native-paper";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const DailyActivitiesCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    border-radius: 15px;
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
+    padding: ${(props) => props.theme.space[2]};
+`;
+
+const TitleText = styled.Text`
+    font-size: 18px;
 `;
 
 const CardContentWrapper = styled(Card.Content)`
@@ -22,7 +29,7 @@ export const DailyActivitiesTile = ({ destination, title, navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
             <DailyActivitiesCard>
                 <CardContentWrapper>
-                    <Text>{title}</Text>
+                    <TitleText>{title}</TitleText>
                     <MaterialCommunityIcons name="pencil-circle-outline" size={36} color="black" />
                 </CardContentWrapper>
             </DailyActivitiesCard>
