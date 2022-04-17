@@ -4,11 +4,11 @@ import { colors } from "../infrastructure/theme/colors";
 import { FontAwesome5 } from '@expo/vector-icons';
 
 const CheckBoxPressableArea = styled.TouchableOpacity`
-
     align-items: center;
     flex-direction: row;
     margin-bottom:  22px;
     margin-left:  2px;
+    width: 75%;
 `;
 
 const CheckCircleArea = styled.View`
@@ -53,6 +53,7 @@ export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }
         <CheckBoxPressableArea
             activeOpacity={0.5}
             onPress={() => selected ? remove(id) : add(id)}
+            role={"checkbox"}
         >
             <CheckCircleArea>
                 {selected ? 

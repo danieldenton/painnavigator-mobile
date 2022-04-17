@@ -12,7 +12,6 @@ const ProgressDot = styled.View`
     margin-left: 6px;
     margin-right: 6px;
     margin-top: 17px;
-    margin-bottom: 20px;
     padding: 4px;
 `;
 

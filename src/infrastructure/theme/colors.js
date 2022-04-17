@@ -20,7 +20,9 @@ export const colors = {
   },
   bg: {
     primary: "hsl(216, 38%, 97%)",
-    secondary: 'hsl(196, 4%, 60%)',
+    secondary: "hsla(216, 38%, 97%, .9)",
+    tertiary: "hsla(216, 38%, 97%, .90)",
+    quaternary: "hsla(216, 38%, 97%, .95)",
   },
   text: {
     primary: 'hsl(170, 76%, 37%)',

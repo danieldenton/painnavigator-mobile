@@ -61,7 +61,6 @@ export const MoodJournalContextProvider = ({ children }) => {
             CognitiveDistortions: [] 
         });
         setCurrentPage(1);
-        setJournalComplete(false);
     };
 
     const updateMoodJournal = (journalId) => {
@@ -82,6 +81,7 @@ export const MoodJournalContextProvider = ({ children }) => {
                 nextPage,
                 previousPage,
                 resetMoodJournal,
+                setJournalComplete,
                 setMoodJournalEntry,
                 updateMoodJournal
             }}

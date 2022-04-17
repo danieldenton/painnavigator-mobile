@@ -17,16 +17,19 @@ export const JournalScrollContainer = styled.ScrollView`
 
 // TODO: Change to EntrySection
 export const QuestionSection = styled.View`
-    flex: 1;
+    flex: .69;
+    height: 100%;
     width: 100%;
     overflow: hidden;
 `;
 
 export const ButtonSection = styled.View`
+    flex: 1;
     width: 100%;
     position: absolute;
     bottom: 0;
-    background-color: ${colors.bg.primary};
+    padding-bottom: 34px;
+    background-color: ${colors.bg.secondary};
 `;
 
 export const QuestionWrapper = styled.View`

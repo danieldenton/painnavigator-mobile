@@ -8,7 +8,7 @@ import { Congratulations } from "../../../components/journals/congratulations.co
 import { MoodJournalEntryPage } from "../components/mood-journal-entry-page.component";
 
 export const NewMoodJournalScreen = ({ navigation }) => {
-    const { currentPage, journalComplete, previousPage, resetMoodJournal } = useContext(MoodJournalContext);
+    const { currentPage, journalComplete, loadMoodJournals, previousPage, resetMoodJournal, setJournalComplete } = useContext(MoodJournalContext);
     const [exitModalVisible, setExitModalVisible] = useState(false);
 
     return (
@@ -20,7 +20,16 @@ export const NewMoodJournalScreen = ({ navigation }) => {
                     setVisible={setExitModalVisible} 
                     previousQuestion={previousPage}
                 />
-                {journalComplete ? <Congratulations navigation={navigation} /> : <MoodJournalEntryPage />}
+                {journalComplete ? 
+                    <Congratulations 
+                        journalType={"Mood"} 
+                        loadJournals={loadMoodJournals}
+                        navigation={navigation}
+                        setJournalComplete={setJournalComplete}
+                    /> 
+                    : 
+                    <MoodJournalEntryPage />
+                }
                 <ExitModal 
                     navigation={navigation} 
                     visible={exitModalVisible} 
