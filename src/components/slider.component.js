@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import Slider from '@react-native-community/slider';
 import { colors } from "../infrastructure/theme/colors";
+import { space } from "../infrastructure/theme/spacing";
 
 //TODO: complete ProgramPaceGraphic
 const ProgramPaceGraphic = styled.View`
@@ -9,7 +10,7 @@ const ProgramPaceGraphic = styled.View`
 
 const SliderWrapper = styled.View`
     flex: 1;
-    margin: ${(props) => props.theme.space[3]};
+    margin: ${space[3]};
 `;
 
 const SliderValueWindow = styled.View`

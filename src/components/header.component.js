@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+import { space } from "../infrastructure/theme/spacing";
 
 const HeaderContainer = styled.View`
-    padding: ${(props) => props.theme.space[3]};
+    padding: ${space[3]};
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

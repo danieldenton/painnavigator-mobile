@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "jest-expo",
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
     ],
@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
     "@miblanchard/react-native-slider": "^2.1.0",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/slider": "4.1.12",
@@ -41,9 +42,10 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-    "react-native-gesture-handler": "~2.1.0",
+    "react-native-gesture-handler": "^2.4.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-paper": "^4.11.2",
+    "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-svg": "12.1.1",

@@ -25,18 +25,6 @@ export const MoodJournalEntryPage = () => {
             return setCanSubmit(true)
         };
     }, [moodJournalEntry, currentPage]);
-
-    const canhSubmit = () => {
-        if (currentPage === 1) {
-            return !feeling ? "true" : "false"
-        }   else if (currentPage === 2) {
-            return true
-        }   else if (currentPage === 3) {
-            return !situation ? "true" : "false"
-        }   else {
-            return true
-        }
-    }; 
     
     return (
         <JournalContainer>

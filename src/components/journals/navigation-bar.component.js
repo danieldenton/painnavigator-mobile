@@ -4,9 +4,10 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { space } from "../../infrastructure/theme/spacing";
 
 const HeaderContainer = styled.View`
-    padding: ${(props) => props.theme.space[3]};
+    padding: ${space[3]};
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -27,7 +28,7 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
 
     return(
         <HeaderContainer>
-            <LeftSection onPress={currentQuestion > 1 ? previousQuestion : showModal} >
+            <LeftSection testID={"previous-page"} onPress={currentQuestion > 1 ? previousQuestion : showModal} >
                 <Ionicons name="chevron-back-outline" size={24} color="black" />
             </LeftSection>
             <HeaderName>

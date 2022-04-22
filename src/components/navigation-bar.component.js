@@ -4,9 +4,10 @@ import { TouchableOpacity } from "react-native";
 
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { space } from "../infrastructure/theme/spacing";
 
 const HeaderContainer = styled.View`
-    padding: ${(props) => props.theme.space[3]};
+    padding: ${space[3]};
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
