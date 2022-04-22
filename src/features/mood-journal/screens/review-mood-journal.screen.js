@@ -9,10 +9,10 @@ export const ReviewMoodJournalScreen = ({ navigation }) => {
             <ReviewJournalNavigationBar 
                 headerName={"MOOD JOURNAL"} 
                 destination={"MoodJournalHome"}
-                navigation={navigation} 
+                navigation={navigation}
             />
             <Text>
-                ReMoodJournalScreen
+                Review Mood Journal Screen
             </Text>
         </JournalContainer>
     )

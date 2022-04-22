@@ -27,7 +27,7 @@ export const colors = {
   },
   text: {
     primary: 'hsl(170, 76%, 37%)',
-    secondary: "#757575",
+    secondary: 'hsl(233, 89%, 60%)',
     disabled: "#9C9C9C",
     white: "#FFFFFF",
     error: "#D0421B",
