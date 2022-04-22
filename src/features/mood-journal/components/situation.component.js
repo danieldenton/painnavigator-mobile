@@ -17,7 +17,7 @@ export const Situation = () => {
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}   
                 testID={"situation"}
                 textAlignVertical={"top"}
-                style={{textAlignVertical: "top", height: 119}}
+                style={{ textAlignVertical: "top", height: 119 }}
             />
         </>
     );

@@ -6,18 +6,18 @@ import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
 
 const QuestionWrapper = styled.View`
-    border-top: .5px hsl(218, 44%, 86%) solid;
-    border-botton: .5px hsl(218, 44%, 86%) solid;
+    border-bottom-width: .5px;
+    border-bottom-color: hsl(218, 44%, 86%);
     padding-top: ${space[3]};
     padding-bottom: ${space[3]};
 `;
 
-const QuestionText = styled.View`
+const QuestionText = styled.Text`
     font-size: 12px;
     color: ${colors.text.secondary};
 `;
 
-const ResponseText = styled.View`
+const ResponseText = styled.Text`
     font-size: 18px;
     margin-top: ${space[3]};
 `;
@@ -49,7 +49,7 @@ export const IntensityQuestion = ({ editing, entry }) => {
             {editing ? 
                 <EditIntensity value={response} />
                 : 
-                <ResponseText>{response}</ResponseText>
+                <ResponseText>{response} out of 10</ResponseText>
             }
         </QuestionWrapper>
     );

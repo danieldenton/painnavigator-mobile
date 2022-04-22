@@ -1,44 +1,47 @@
 import React, { useState } from "react";
+import { JournalContainer } from "../../../components/journals/journal.styles";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 
-export const ReviewMoodJournalEntry = () => {
+export const ReviewMoodJournalEntry = ({ journal }) => {
     const [editing, setEditing] = useState(false);
+
+    const dateEntry = { question: "DATE", response: journal.date };
 
     const journalEntry = [
         {
             question: "FEELING",
-            response: "Happy",
+            response: journal.feeling,
             type: "input",
             state: "feeling"
         },
         {
             question: "FEELING INTENSITY",
-            response: 5,
+            response: journal.intensity,
             type: "intensity",
             state: "intensity"
         },
         {
             question: "SITUATION",
-            response: "At home",
+            response: journal.situation,
             type: "input",
             state: "situation"
         },
         {
             question: "WHO I WAS WITH",
-            response: "My family",
+            response: journal.whoIWasWith || "...",
             type: "input",
             state: "whoIWasWith"
         },
         {
             question: "PRIMARY THOUGHT",
-            response: "I will never",
+            response: journal.primaryThought,
             type: "input",
             state: "primaryThought"
         },
         {
             question: "COGNITIVE DISTORTIONS",
-            response: "Catastrophizing, Emotional reasoning",
+            response: journal.cognitiveDistortions,
             type: "input",
             state: "cognitiveDistortions"
         }
@@ -46,7 +49,7 @@ export const ReviewMoodJournalEntry = () => {
 
     const journalEntryResponses = journalEntry.map((entry) => {
         return (
-            type === "input" ? 
+            entry.type === "input" ? 
                 <InputQuestion 
                     editing={editing}
                     entry={entry} 
@@ -60,8 +63,11 @@ export const ReviewMoodJournalEntry = () => {
     });
 
     return (
-        <KeyboardAwareScrollView>
-            {journalEntryResponses}
+        <KeyboardAwareScrollView style={{ margin: -16 }}>
+            <JournalContainer>
+                <InputQuestion entry={dateEntry} />
+                {journalEntryResponses}
+            </JournalContainer>
         </KeyboardAwareScrollView>
     );
 };

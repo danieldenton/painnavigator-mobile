@@ -5,15 +5,23 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { space } from "../../infrastructure/theme/spacing";
+import { Back, More } from "../../icons";
 
 const HeaderContainer = styled.View`
-    padding: ${space[3]};
+    padding-top: ${space[3]};
+    padding-bottom: ${space[3]};
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 `;
 
 const LeftSection = styled(TouchableOpacity)`
+    flex: .15;
+    align-items: flex-start;
+`;
+
+const HeaderSection = styled.View`
+    flex: .7;
+    align-items: center;
 `;
 
 const HeaderName = styled.Text`
@@ -21,6 +29,8 @@ const HeaderName = styled.Text`
 `;
 
 const RightSection = styled(TouchableOpacity)`
+    flex: .15;
+    align-items: flex-end;
 `;
 
 export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
@@ -29,13 +39,15 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
     return(
         <HeaderContainer>
             <LeftSection testID={"previous-page"} onPress={currentQuestion > 1 ? previousQuestion : showModal} >
-                <Ionicons name="chevron-back-outline" size={24} color="black" />
+                <Ionicons name="chevron-back-outline" size={30} color="black" />
             </LeftSection>
-            <HeaderName>
-                {headerName.toUpperCase()}
-            </HeaderName>
+            <HeaderSection>
+                <HeaderName>
+                    {headerName.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
             <RightSection onPress={showModal} >
-                <AntDesign name="close" size={24} color="black" />
+                <AntDesign name="close" size={30} color="black" />
             </RightSection>
         </HeaderContainer>
     );
@@ -46,13 +58,15 @@ export const ReviewJournalNavigationBar = ({ destination, navigation, headerName
     return(
         <HeaderContainer>
             <LeftSection  onPress={() => navigation.navigate(destination)} >
-                <Ionicons name="chevron-back-outline" size={24} color="black" />
+                <Back />
             </LeftSection>
-            <HeaderName>
-                {headerName.toUpperCase()}
-            </HeaderName>
+            <HeaderSection>
+                <HeaderName>
+                    {headerName.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
             <RightSection>
-                <MaterialCommunityIcons name="dots-horizontal" size={24} color="black" />  
+                <More />  
             </RightSection>
         </HeaderContainer>
     );
