@@ -53,10 +53,6 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
         }
     ];
 
-    const JournalScrollView = styled(KeyboardAwareScrollView)`
-        flex: .9;
-    `;
-
     const journalEntryResponses = journalEntry.map((entry) => {
         return (
             entry.type === "input" ? 
@@ -75,11 +71,11 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
     });
 
     return (
-        <JournalScrollView style={{ margin: -16 }}>
+        <KeyboardAwareScrollView style={{ margin: -16 }}>
             <JournalContainer>
                 <InputQuestion entry={dateEntry} />
                 {journalEntryResponses}
             </JournalContainer>
-        </JournalScrollView>
+        </KeyboardAwareScrollView>
     );
 };

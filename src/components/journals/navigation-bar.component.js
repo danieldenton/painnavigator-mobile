@@ -28,7 +28,7 @@ const HeaderName = styled.Text`
 `;
 
 const RightSection = styled(TouchableOpacity)`
-    flex: .25;
+    flex: .15;
     width: 100%;
     align-items: flex-end;
     padding-left: ${space[3]};
