@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { space } from "../../infrastructure/theme/spacing";
-import { Back, More } from "../../icons";
+import { Back, Close, More } from "../../icons";
 
 const HeaderContainer = styled.View`
     padding-top: ${space[3]};
     padding-bottom: ${space[3]};
+    margin-left: ${space[3]};
+    margin-right: ${space[3]};
     flex-direction: row;
     align-items: center;
 `;
@@ -38,7 +38,7 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
     return(
         <HeaderContainer>
             <LeftSection testID={"previous-page"} onPress={currentQuestion > 1 ? previousQuestion : showModal} >
-                <Ionicons name="chevron-back-outline" size={30} color="black" />
+                <Back />
             </LeftSection>
             <HeaderSection>
                 <HeaderName>
@@ -46,7 +46,7 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
                 </HeaderName>
             </HeaderSection>
             <RightSection onPress={showModal} >
-                <AntDesign name="close" size={30} color="black" />
+                <Close />
             </RightSection>
         </HeaderContainer>
     );

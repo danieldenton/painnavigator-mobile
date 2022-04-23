@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeArea } from "../../../components/safe-area.component";
 import { FlatList, Text, TouchableOpacity } from "react-native";
 import { NewJournalEntry } from "../../../components/new-journal-entry.component";
@@ -7,6 +7,9 @@ import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.
 
 export const MoodJournalHomeScreen = ({ navigation }) => {
     const { moodJournals } = useContext(MoodJournalContext);
+
+    useEffect(() => {
+    }, [moodJournals])
 
     return(
         <SafeArea>
