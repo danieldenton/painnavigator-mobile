@@ -5,6 +5,7 @@ import { moodJournalQuestions } from "../../features/mood-journal/data/mood-jour
 export const MoodJournalContext = createContext();
 
 export const MoodJournalContextProvider = ({ children }) => {
+    const [editingMoodJournal, setEditingMoodJournal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const currentPageData = moodJournalQuestions[currentPage - 1];
     const [journalComplete, setJournalComplete] = useState(false);
@@ -61,6 +62,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             cognitiveDistortions: new Array() 
         });
         setCurrentPage(1);
+        setEditingMoodJournal(false);
     };
 
     const updateMoodJournal = (journalId) => {
@@ -70,6 +72,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     return (
         <MoodJournalContext.Provider
             value={{
+                editingMoodJournal,
                 changeEntry,
                 completeMoodJournal,
                 currentPage,
@@ -81,6 +84,7 @@ export const MoodJournalContextProvider = ({ children }) => {
                 nextPage,
                 previousPage,
                 resetMoodJournal,
+                setEditingMoodJournal,
                 setJournalComplete,
                 setMoodJournalEntry,
                 updateMoodJournal

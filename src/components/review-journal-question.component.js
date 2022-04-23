@@ -40,14 +40,14 @@ export const InputQuestion = ({ changeEntry, editing, entry }) => {
     );
 };
 
-export const IntensityQuestion = ({ editing, entry }) => {
-    const { question, response } = entry;
+export const IntensityQuestion = ({ changeEntry, editing, entry }) => {
+    const { question, response, state } = entry;
 
     return (
         <QuestionWrapper>
             <QuestionText>{question}</QuestionText>
             {editing ? 
-                <EditIntensity value={response} />
+                <EditIntensity response={response} changeEntry={changeEntry} state={state} />
                 : 
                 <ResponseText>{response} out of 10</ResponseText>
             }

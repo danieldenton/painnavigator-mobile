@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { space } from "../../infrastructure/theme/spacing";
 import { Back, More } from "../../icons";
 
@@ -54,10 +53,10 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
 };
 
 
-export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, setVisible }) => {
+export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, setEditing, resetJournal }) => {
     return(
         <HeaderContainer>
-            <LeftSection  onPress={() => navigation.navigate(destination)} >
+            <LeftSection  onPress={() => {navigation.navigate(destination); resetJournal()}} >
                 <Back />
             </LeftSection>
             <HeaderSection>
@@ -65,7 +64,7 @@ export const ReviewJournalNavigationBar = ({ destination, navigation, headerName
                     {headerName.toUpperCase()}
                 </HeaderName>
             </HeaderSection>
-            <RightSection>
+            <RightSection onPress={() => setEditing(true)}>
                 <More />  
             </RightSection>
         </HeaderContainer>

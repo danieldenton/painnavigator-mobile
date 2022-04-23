@@ -1,47 +1,52 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { JournalContainer } from "../../../components/journals/journal.styles";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const ReviewMoodJournalEntry = ({ journal }) => {
-    const [editing, setEditing] = useState(false);
+    const { changeEntry, editingMoodJournal, moodJournalEntry, setMoodJournalEntry } = useContext(MoodJournalContext);
 
-    const dateEntry = { question: "DATE", response: journal.date };
+    useEffect(() => {
+        setMoodJournalEntry(journal);
+    }, [journal])
+
+    const dateEntry = { question: "DATE", response: moodJournalEntry.date };
 
     const journalEntry = [
         {
             question: "FEELING",
-            response: journal.feeling,
+            response: moodJournalEntry.feeling,
             type: "input",
             state: "feeling"
         },
         {
             question: "FEELING INTENSITY",
-            response: journal.intensity,
+            response: moodJournalEntry.intensity,
             type: "intensity",
             state: "intensity"
         },
         {
             question: "SITUATION",
-            response: journal.situation,
+            response: moodJournalEntry.situation,
             type: "input",
             state: "situation"
         },
         {
             question: "WHO I WAS WITH",
-            response: journal.whoIWasWith || "...",
+            response: moodJournalEntry.whoIWasWith || "...",
             type: "input",
             state: "whoIWasWith"
         },
         {
             question: "PRIMARY THOUGHT",
-            response: journal.primaryThought,
+            response: moodJournalEntry.primaryThought,
             type: "input",
             state: "primaryThought"
         },
         {
             question: "COGNITIVE DISTORTIONS",
-            response: journal.cognitiveDistortions,
+            response: moodJournalEntry.cognitiveDistortions,
             type: "input",
             state: "cognitiveDistortions"
         }
@@ -51,19 +56,21 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
         return (
             entry.type === "input" ? 
                 <InputQuestion 
-                    editing={editing}
+                    changeEntry={changeEntry}
+                    editing={editingMoodJournal}
                     entry={entry} 
                 /> 
                 : 
                 <IntensityQuestion 
-                    editing={editing} 
+                    changeEntry={changeEntry}
+                    editing={editingMoodJournal} 
                     entry={entry} 
                 />
         );
     });
 
     return (
-        <KeyboardAwareScrollView style={{ margin: -16 }}>
+        <KeyboardAwareScrollView style={{ margin: -16, flex: .6 }}>
             <JournalContainer>
                 <InputQuestion entry={dateEntry} />
                 {journalEntryResponses}
