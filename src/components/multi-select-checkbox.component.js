@@ -37,10 +37,12 @@ const CheckBoxTextContentArea = styled.View`
 `;
 
 const Option = styled.Text`
+    font-family: Inter_500Medium;
     font-size: 18px;
 `;
 
 const HelpText = styled.Text`
+    font-family: Inter_300Light;
     font-size: 14px;
     font-style: italic;
     margin-top: 4px;
