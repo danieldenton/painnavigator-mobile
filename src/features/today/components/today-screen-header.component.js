@@ -4,6 +4,8 @@ import { Text } from "react-native";
 
 const Header = styled.View`
     margin-left: ${(props) => props.theme.space[3]};
+    font-family: Inter_500Medium;
+    font-size: 14px;
 `;
 
 export const TodayScreenHeader = ({ headerName }) => {

@@ -6,7 +6,10 @@ const GreetingWrapper = styled.View`
     margin: ${(props) => props.theme.space[3]};
 `;
 
-const GreetingText = styled.Text``;
+const GreetingText = styled.Text`
+    font-family: Poppins_500Medium;
+    font-size: 31px;
+`;
 
 export const Greeting = ({ timeOfDay, name }) => {
     return(

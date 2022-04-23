@@ -3,6 +3,7 @@ import { JournalContainer } from "../../../components/journals/journal.styles";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import styled from "styled-components/native";
 
 export const ReviewMoodJournalEntry = ({ journal }) => {
     const { changeEntry, editingMoodJournal, moodJournalEntry, setMoodJournalEntry } = useContext(MoodJournalContext);
@@ -52,6 +53,10 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
         }
     ];
 
+    const JournalScrollView = styled(KeyboardAwareScrollView)`
+        flex: .9;
+    `;
+
     const journalEntryResponses = journalEntry.map((entry) => {
         return (
             entry.type === "input" ? 
@@ -70,11 +75,11 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
     });
 
     return (
-        <KeyboardAwareScrollView style={{ margin: -16, flex: .6 }}>
+        <JournalScrollView style={{ margin: -16 }}>
             <JournalContainer>
                 <InputQuestion entry={dateEntry} />
                 {journalEntryResponses}
             </JournalContainer>
-        </KeyboardAwareScrollView>
+        </JournalScrollView>
     );
 };

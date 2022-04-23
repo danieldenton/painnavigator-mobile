@@ -28,8 +28,10 @@ const HeaderName = styled.Text`
 `;
 
 const RightSection = styled(TouchableOpacity)`
-    flex: .15;
+    flex: .25;
+    width: 100%;
     align-items: flex-end;
+    padding-left: ${space[3]};
 `;
 
 export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
@@ -56,7 +58,7 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
 export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, setEditing, resetJournal }) => {
     return(
         <HeaderContainer>
-            <LeftSection  onPress={() => {navigation.navigate(destination); resetJournal()}} >
+            <LeftSection  onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} >
                 <Back />
             </LeftSection>
             <HeaderSection>

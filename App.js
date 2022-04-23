@@ -2,6 +2,17 @@ import React from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
+import {
+  useFonts as usePoppins,
+  Poppins_500Medium,
+} from "@expo-google-fonts/poppins";
+
+import {
+  useFonts as useInter,
+  Inter_500Medium,
+  Inter_400Regular
+} from "@expo-google-fonts/inter";
+
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
@@ -31,6 +42,19 @@ if(!firebase.apps.length) {
 }
 
 export default function App() {
+  const [poppinsLoaded] = usePoppins({
+    Poppins_500Medium,
+  });
+
+  const [interLoaded] = useInter({
+    Inter_500Medium,
+    Inter_400Regular
+  });
+
+  if (!poppinsLoaded || !interLoaded) {
+    return null;
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>

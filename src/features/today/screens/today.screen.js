@@ -14,7 +14,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 export const TodayScreen = ({ navigation }) => {
     const { name } = useContext(ProfileContext).userInfo;
     const { nextEducationModule } = useContext(EducationContext);
-    const { currentMovementModule } = useContext(MovementContext);
+    const { currentMovementModule, videos, videosCompleted } = useContext(MovementContext);
 
     return (
         <SafeArea>
@@ -28,6 +28,8 @@ export const TodayScreen = ({ navigation }) => {
             <MovementUnitCard 
                 navigation={navigation} 
                 currentMovementModule={currentMovementModule} 
+                videosCompleted={videosCompleted}
+                videos={videos}
             />
             <TodayScreenHeader headerName="DAILY ACTIVITIES"/>
             <DailyActivitiesTile 

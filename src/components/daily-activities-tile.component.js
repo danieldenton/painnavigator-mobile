@@ -1,26 +1,41 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { JournalEntryIcon } from "../icons";
 
 const DailyActivitiesCard = styled(Card)`
+    margin: ${(props) => props.theme.space[3]};
     border-radius: 15px;
-    margin-left: ${(props) => props.theme.space[3]};
-    margin-right: ${(props) => props.theme.space[3]};
-    margin-top: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[2]};
+    padding: 21px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
 `;
 
-const TitleText = styled.Text`
+const ModuleCardContent = styled(Card.Content)`
+    flex-direction: row;
+    padding: 0px;
+    align-items: center;
+`;
+
+const CardTextSection = styled.View`
+    flex: .8;
+`;
+
+const CardHeader = styled.Text`
+    font-family: Inter_500Medium;
     font-size: 18px;
 `;
 
-const CardContentWrapper = styled(Card.Content)`
-    flex-direction: row;
+const CardSubHeader = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 12px;
+    margin-top: 8px;
+`;
+
+const CardIconSection = styled.View`
+    flex: .2;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 `;
 
 export const DailyActivitiesTile = ({ destination, title, navigation }) => {
@@ -28,10 +43,14 @@ export const DailyActivitiesTile = ({ destination, title, navigation }) => {
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
             <DailyActivitiesCard>
-                <CardContentWrapper>
-                    <TitleText>{title}</TitleText>
-                    <MaterialCommunityIcons name="pencil-circle-outline" size={36} color="black" />
-                </CardContentWrapper>
+                <ModuleCardContent>
+                    <CardTextSection>
+                        <CardHeader>{title}</CardHeader>
+                    </CardTextSection>
+                    <CardIconSection>
+                        <JournalEntryIcon />
+                    </CardIconSection>
+                </ModuleCardContent>
             </DailyActivitiesCard>
         </TouchableOpacity>
     ); 
