@@ -3,54 +3,24 @@ import { JournalContainer } from "../../../components/journals/journal.styles";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
-import styled from "styled-components/native";
 
 export const ReviewMoodJournalEntry = ({ journal }) => {
     const { changeEntry, editingMoodJournal, moodJournalEntry, setMoodJournalEntry } = useContext(MoodJournalContext);
+    const { date, feeling, intensity, situation, whoIWasWith, primaryThought, cognitiveDistortions } = moodJournalEntry;
 
     useEffect(() => {
         setMoodJournalEntry(journal);
     }, [journal])
 
-    const dateEntry = { question: "DATE", response: moodJournalEntry.date };
+    const dateEntry = { question: "DATE", response: date };
 
     const journalEntry = [
-        {
-            question: "FEELING",
-            response: moodJournalEntry.feeling,
-            type: "input",
-            state: "feeling"
-        },
-        {
-            question: "FEELING INTENSITY",
-            response: moodJournalEntry.intensity,
-            type: "intensity",
-            state: "intensity"
-        },
-        {
-            question: "SITUATION",
-            response: moodJournalEntry.situation,
-            type: "input",
-            state: "situation"
-        },
-        {
-            question: "WHO I WAS WITH",
-            response: moodJournalEntry.whoIWasWith || "...",
-            type: "input",
-            state: "whoIWasWith"
-        },
-        {
-            question: "PRIMARY THOUGHT",
-            response: moodJournalEntry.primaryThought,
-            type: "input",
-            state: "primaryThought"
-        },
-        {
-            question: "COGNITIVE DISTORTIONS",
-            response: moodJournalEntry.cognitiveDistortions,
-            type: "input",
-            state: "cognitiveDistortions"
-        }
+        { question: "FEELING", response: feeling, type: "input", state: "feeling" },
+        { question: "FEELING INTENSITY", response: intensity, type: "intensity", state: "intensity" },
+        { question: "SITUATION", response: situation, type: "input", state: "situation" },
+        { question: "WHO I WAS WITH", response: whoIWasWith, type: "input", state: "whoIWasWith" },
+        { question: "PRIMARY THOUGHT", response: primaryThought, type: "input", state: "primaryThought" },
+        { question: "COGNITIVE DISTORTIONS", response: cognitiveDistortions, type: "input", state: "cognitiveDistortions" }
     ];
 
     const journalEntryResponses = journalEntry.map((entry) => {
@@ -59,13 +29,15 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
                 <InputQuestion 
                     changeEntry={changeEntry}
                     editing={editingMoodJournal}
-                    entry={entry} 
+                    entry={entry}
+                    key={entry.state} 
                 /> 
                 : 
                 <IntensityQuestion 
                     changeEntry={changeEntry}
                     editing={editingMoodJournal} 
                     entry={entry} 
+                    key={entry.state} 
                 />
         );
     });
