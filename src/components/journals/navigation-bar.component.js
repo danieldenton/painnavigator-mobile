@@ -24,6 +24,7 @@ const HeaderSection = styled.View`
 `;
 
 const HeaderName = styled.Text`
+    font-family: Inter_500Medium
     font-size: 14px;
 `;
 
@@ -31,7 +32,6 @@ const RightSection = styled(TouchableOpacity)`
     flex: .15;
     width: 100%;
     align-items: flex-end;
-    padding-left: ${space[3]};
 `;
 
 export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {

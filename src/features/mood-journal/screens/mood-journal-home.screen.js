@@ -1,20 +1,18 @@
-import React, { useContext, useEffect } from "react";
-import { SafeArea } from "../../../components/safe-area.component";
-import { FlatList, Text, TouchableOpacity } from "react-native";
-import { NewJournalEntry } from "../../../components/new-journal-entry.component";
+import React, { useContext } from "react";
+import { FlatList, TouchableOpacity } from "react-native";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { NewJournalEntry } from "../../../components/new-journal-entry.component";
+import { SafeArea } from "../../../components/safe-area.component";
+import { SubHeader } from "../../../components/typography.component"
 
 export const MoodJournalHomeScreen = ({ navigation }) => {
     const { moodJournals } = useContext(MoodJournalContext);
 
-    useEffect(() => {
-    }, [moodJournals])
-
     return(
         <SafeArea>
             <NewJournalEntry title={"Add New Entry"} destination={"NewMoodJournal"} navigation={navigation} />
-            <Text style={{ marginLeft: 16, marginTop: 24 }}>PREVIOUS ENTRIES</Text>
+            <SubHeader title={"PREVIOUS ENTRIES"} size={14} />
             <FlatList 
                 data={moodJournals}
                 renderItem={({ item }) => {

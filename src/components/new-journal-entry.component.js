@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { Add } from "../icons";
 import { Card } from "react-native-paper";
-import { AntDesign } from '@expo/vector-icons';
-import { colors } from "../infrastructure/theme/colors";
+import { SubHeader } from "../components/typography.component"; 
+import { TouchableOpacity } from "react-native";
 
 const NewJournalEntryCard = styled(Card)`
     height: 88px;
@@ -16,6 +16,7 @@ const CardContentWrapper = styled(Card.Content)`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-left: -8px;
 `;
 
 export const NewJournalEntry = ({ title, destination, navigation }) => {
@@ -24,8 +25,8 @@ export const NewJournalEntry = ({ title, destination, navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
             <NewJournalEntryCard>
                 <CardContentWrapper>
-                    <Text>{title}</Text>
-                    <AntDesign name="pluscircleo" size={36} color={colors.brand.primary} />
+                    <SubHeader title={title} size={18} />
+                    <Add />
                 </CardContentWrapper>
             </NewJournalEntryCard>
         </TouchableOpacity>

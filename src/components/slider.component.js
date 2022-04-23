@@ -20,6 +20,7 @@ const SliderValueWindow = styled.View`
 `;
 
 const SliderValue = styled.Text`
+    font-family: Poppins_600SemiBold;
     font-size: 96px;
     color: ${colors.brand.primary};
 `;
@@ -44,6 +45,7 @@ const SliderSection = styled.View`
 `;
 
 const SliderEndText = styled.Text`
+    font-family: Inter_400Regular;
     font-size: 16px;
     color: hsl(215, 15%, 52%);
 `;

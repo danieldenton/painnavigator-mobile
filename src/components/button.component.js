@@ -15,7 +15,7 @@ export const JournalButton = ({ disabled, title, onPress, fontSize }) => {
         <Button 
             contentStyle={{ height: 57 }}
             disabled={disabled}
-            labelStyle={{ color: "white", fontSize: fontSize || 18 }}
+            labelStyle={{ color: "white", fontSize: fontSize || 18, fontFamily: "Poppins_600SemiBold" }}
             onPress={onPress}
             style={{ backgroundColor: disabled ? colors.brand.disabled : colors.brand.primary}}
         >
@@ -36,7 +36,7 @@ export const JournalButtonOutline = ({title, onPress, fontSize }) => {
     return (
         <OutlineButton 
             contentStyle={{ height: 57 }}
-            labelStyle={{ fontSize: fontSize || 18 }}
+            labelStyle={{ fontSize: fontSize || 18, fontFamily: "Poppins_600SemiBold" }}
             onPress={onPress}    
         >
             {title}

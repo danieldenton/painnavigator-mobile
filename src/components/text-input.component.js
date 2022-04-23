@@ -9,4 +9,6 @@ export const TextInput = styled(Input).attrs({
     outlineColor: colors.textInput.inactive
 })`
     margin-bottom: ${space[3]};
+    font-family: Inter_500Medium;
+    font-size: 18px;
 `;

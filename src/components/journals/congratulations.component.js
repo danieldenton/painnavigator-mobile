@@ -8,13 +8,16 @@ const CongratulationsSection = styled.View`
 `;
 
 const CongratulationsHeader = styled.Text`
+    font-family: Poppins_500Medium;
     font-size: 25px;
     margin-bottom: 32px;
 `;
 
 const CongratulationsMessage = styled.Text`
+    font-family: Inter_400Regular;
     font-size: 18px;
     margin-bottom: 4px;
+    line-height: 26px;
 `;
 
 export const Congratulations = ({ journalType, navigation, setJournalComplete, loadJournals }) => {

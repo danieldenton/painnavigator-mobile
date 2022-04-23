@@ -7,12 +7,15 @@ const QuestionWrapper = styled.View`
 `;
 
 const QuestionText = styled.Text`
+    font-family: Poppins_500Medium;
     font-size: 25px;
+    width: 90%;
 `;
 
 const HelpText = styled.Text`
-    font-size: 14px;
+    font-family: Inter_300Light;
     font-style: italic;
+    font-size: 14px;
     margin-top: 9px;
 `;
 

@@ -1,6 +1,16 @@
 import React from "react";
 import Svg, { Circle, Path, Mask, Rect } from 'react-native-svg';
 
+export const Add = () => {
+    return (
+        <Svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="22" cy="22" r="20.75" stroke="#16A28B" strokeWidth="2.5"/>
+            <Path d="M22 11V22V33" stroke="#16A28B" strokeWidth="2.5" strokeLinecap="round"/>
+            <Path d="M33 22L22 22L11 22" stroke="#16A28B" strokeWidth="2.5" strokeLinecap="round"/>
+        </Svg>
+    );  
+};
+
 export const Back = () => {
     return (
         <Svg width="12" height="20" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,6 +37,14 @@ export const Close = () => {
         </Svg>
     ); 
 }; 
+
+export const Next = () => {
+    return (
+        <Svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 14L8 7.68571L4.5 4.34286L1 1" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    ); 
+};
 
 export const EducationModuleIcon = () => {
     return (
@@ -65,6 +83,31 @@ export const JournalEntryIcon = () => {
             <Path d="M34.7075 15.5176L41.2386 22.957" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M21.1421 31.501L34.4268 19.8383" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M23.4746 34.1573L36.7594 22.4946" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const Selected = () => {
+    return (
+        <Svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="18" cy="18" r="17" fill="#16A28B" stroke="#16A28B" strokeWidth="2"/>
+            <Path d="M11 17.5L15.5 22L24.5 13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
+export const ProgressDotFilled = () => {
+    return (
+        <Svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="4" cy="4" r="4" fill="#27374E"/>
+        </Svg>
+    );
+};
+
+export const ProgressDotUnfilled = () => {
+    return (
+        <Svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="4" cy="4" r="4" fill="#CBD7EB"/>
         </Svg>
     );
 };

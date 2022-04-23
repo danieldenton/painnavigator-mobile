@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Close } from "../../icons";
 import { TouchableOpacity } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
-import { Modal as PaperModal, Portal, Text } from 'react-native-paper';
+import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 
 const Modal = styled(PaperModal)`
@@ -24,7 +24,9 @@ const ExitModalTextContainer = styled.View`
 `;
 
 const ExitModalText = styled.Text`
+    font-family: Inter_500Medium;
     font-size: 18px;
+    line-height: 26px;
 `;
 
 const ButtonContainer = styled.View`
@@ -40,7 +42,7 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, resetJ
             <Modal visible={visible} onDismiss={() => setVisible(false)} contentContainerStyle={containerStyle}>
                 <ExitButtonRow>
                     <ExitButtonContainer onPress={() => setVisible(false)}>
-                        <AntDesign name="close" size={24} color="black" />  
+                        <Close />  
                     </ExitButtonContainer>
                 </ExitButtonRow>
                 <ExitModalTextContainer>

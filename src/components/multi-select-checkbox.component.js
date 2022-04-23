@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { FontAwesome5 } from '@expo/vector-icons';
+import { Selected } from "../icons";
 
 const CheckBoxPressableArea = styled.TouchableOpacity`
     align-items: center;
@@ -57,9 +58,7 @@ export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }
         >
             <CheckCircleArea>
                 {selected ? 
-                    <CheckedCircle>
-                        <FontAwesome5 name="check" size={16} color="white" />
-                    </CheckedCircle> 
+                    <Selected />
                     : 
                     <UncheckedCheckCircle />
                 }

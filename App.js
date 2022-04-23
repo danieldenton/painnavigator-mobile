@@ -4,13 +4,15 @@ import 'firebase/compat/auth';
 
 import {
   useFonts as usePoppins,
-  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_500Medium
 } from "@expo-google-fonts/poppins";
 
 import {
   useFonts as useInter,
   Inter_500Medium,
-  Inter_400Regular
+  Inter_400Regular,
+  Inter_300Light
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
@@ -43,12 +45,14 @@ if(!firebase.apps.length) {
 
 export default function App() {
   const [poppinsLoaded] = usePoppins({
-    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_500Medium
   });
 
   const [interLoaded] = useInter({
     Inter_500Medium,
-    Inter_400Regular
+    Inter_400Regular,
+    Inter_300Light
   });
 
   if (!poppinsLoaded || !interLoaded) {

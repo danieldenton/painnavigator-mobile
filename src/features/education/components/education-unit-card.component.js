@@ -8,7 +8,6 @@ const ModuleCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding: 21px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
 `;
 
 const ModuleCardContent = styled(Card.Content)`

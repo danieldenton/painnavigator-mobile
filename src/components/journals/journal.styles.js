@@ -28,7 +28,7 @@ export const ButtonSection = styled.View`
     width: 100%;
     position: absolute;
     bottom: 0;
-    padding-bottom: 34px;
+    padding-bottom: 14px;
     background-color: ${colors.bg.secondary};
 `;
 
