@@ -5,35 +5,58 @@ import { theme } from "../../../infrastructure/theme";
 
 describe('Mood journal pages are correct', () => {
     test('First page loads with correct data', () => {
-        const { getByText, getByRole, getByTestId } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
-        const feelingQuestion = getByText('How are you feeling today?');
-        const feelingInput = getByTestId('feeling');
+        const { getByText, getByRole, getByLabelText } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
+        expect(getByText('How are you feeling today?')).toBeDefined();
+        const feelingInput = getByLabelText('feeling-input');
+        expect(feelingInput.props.value).toBe('');
         const nextButton = getByRole('button', { name: /next/i });
+        expect(nextButton.props.disabled).toBeUndefined();
     });
 
     test('User can enter feeling on page 1', () => {
-        const { getByTestId, getByDisplayValue } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
-        const feelingInput = getByTestId('feeling');
+        const { getByLabelText, getByRole } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
+        
+        // User can enter text which will enable submit button
+        const feelingInput = getByLabelText('feeling-input');
         fireEvent.changeText(feelingInput, 'Happy');
-        const response = getByDisplayValue('Happy')
+        expect(feelingInput.props.value).toBe('Happy');
+        const nextButton = getByRole('button', { name: /next/i });
+        expect(nextButton.props.disabled).toBeFalsy();
+
+        // Clearing text will disable submit button
+        fireEvent.changeText(feelingInput, '');
+        expect(feelingInput.props.value).toBe('');
+        expect(nextButton.props.disabled).toBeUndefined();
     });
 
-    test('User can navigate between pages', () => {
-        const { getByTestId, getByText, getByRole } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
+    test('User can navigate between mood journal pages', () => {
+        const { getByLabelText, getByText, getByRole } = renderWithContext(<NewMoodJournalScreen theme={theme} />);
         const nextButton = getByRole('button', { name: /next/i });
-        
-        const feelingInput = getByTestId('feeling');
+
+        // User enters text into feeling input and presses 'next'
+        const feelingInput = getByLabelText('feeling-input');
         fireEvent.changeText(feelingInput, 'Happy');
-        
-        fireEvent.press(nextButton);
-        const intensityQuestion = getByText('How intense is this feeling?');
         fireEvent.press(nextButton);
 
-        const previousPageButton = getByTestId('previous-page');
+        // Page 2 loads feeling intensity question - default value of 5 is displayed
+        expect(getByText('How intense is this feeling?')).toBeDefined();
+        const intensitySlider = getByLabelText('intensity-slider');
+        expect(intensitySlider.props.value).toBe(5);
+        // TODO: .change resulting in "fireEvent.change is not a function" error 
+        // fireEvent.change(intensitySlider, { target: { value: 8 } });
+        // expect(intensitySlider.props.value).toBe(8);
+        fireEvent.press(nextButton);
+
+        // Expect to be on page 3
+        expect(getByText('What was the situation when you first noticed this feeling?')).toBeDefined();
+
+        // User presses previous page button and expects to be on page 2
+        const previousPageButton = getByLabelText('previous-page');
         fireEvent.press(previousPageButton);
+        expect(getByText('How intense is this feeling?')).toBeDefined();
 
-        const intensityValue = getByText('5');
         fireEvent.press(nextButton);
+        
         
         const situationQuestion = getByText('What was the situation when you first noticed this feeling?');
         const situationInput = getByTestId('situation');

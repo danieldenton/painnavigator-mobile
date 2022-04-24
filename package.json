@@ -60,6 +60,7 @@
     "@babel/core": "^7.12.9",
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^9.1.0",
+    "@testing-library/user-event": "^14.1.1",
     "react-test-renderer": "17"
   },
   "private": true

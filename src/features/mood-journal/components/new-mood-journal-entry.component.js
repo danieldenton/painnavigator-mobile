@@ -11,18 +11,18 @@ import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
-export const MoodJournalEntryPage = () => {
+export const NewMoodJournalEntry = () => {
     const { completeMoodJournal, currentPage, moodJournalEntry, nextPage } = useContext(MoodJournalContext);
-    const [canSubmit, setCanSubmit] = useState(true);
+    const [submitDisabled, setSubmitDisabled] = useState(true);
     
     useEffect(() => {
         const { feeling, situation } = moodJournalEntry;
         if (currentPage === 1) {
-            return !feeling ? setCanSubmit(false) : setCanSubmit(true)
+            return feeling ? setSubmitDisabled(false) : setSubmitDisabled(true)
         }   else if (currentPage === 3) {
-            return !situation ? setCanSubmit(false) : setCanSubmit(true)
+            return situation ? setSubmitDisabled(false) : setSubmitDisabled(true)
         }   else {
-            return setCanSubmit(true)
+            return setSubmitDisabled(false)
         };
     }, [moodJournalEntry, currentPage]);
     
@@ -37,7 +37,7 @@ export const MoodJournalEntryPage = () => {
                 {currentPage === 6 && <CognitiveDistortions />}
             </QuestionSection>
             <ButtonSection>
-                <JournalButton disabled={!canSubmit} title={"Next"} onPress={currentPage === 6 ? completeMoodJournal : nextPage} />
+                <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 6 ? completeMoodJournal : nextPage} />
                 {currentPage > 3 && <SkipQuestion onPress={currentPage === 6 ? completeMoodJournal : nextPage} />}
                 <ProgressDots progress={currentPage} total={6} />
             </ButtonSection>

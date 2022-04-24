@@ -29,7 +29,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                 headerName={"MOOD JOURNAL"} 
                 destination={"MoodJournalHome"}
                 navigation={navigation}
-                setEditing={handlePresentModalPress}
+                showBottomMenu={handlePresentModalPress}
                 resetJournal={resetMoodJournal}
             />
             <JournalContainer>

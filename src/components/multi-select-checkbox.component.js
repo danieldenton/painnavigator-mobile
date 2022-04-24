@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
-import { FontAwesome5 } from '@expo/vector-icons';
 import { Selected } from "../icons";
 
 const CheckBoxPressableArea = styled.TouchableOpacity`

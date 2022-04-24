@@ -5,7 +5,7 @@ import { Provider } from 'react-native-paper';
 import { SafeArea } from "../../../components/safe-area.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { Congratulations } from "../../../components/journals/congratulations.component";
-import { MoodJournalEntryPage } from "../components/mood-journal-entry-page.component";
+import { NewMoodJournalEntry } from "../components/new-mood-journal-entry.component";
 
 export const NewMoodJournalScreen = ({ navigation }) => {
     const { currentPage, journalComplete, loadMoodJournals, previousPage, resetMoodJournal, setJournalComplete } = useContext(MoodJournalContext);
@@ -17,8 +17,8 @@ export const NewMoodJournalScreen = ({ navigation }) => {
                 <NavigationBar 
                     currentQuestion={currentPage} 
                     headerName={"Mood Journal"} 
-                    setVisible={setExitModalVisible} 
                     previousQuestion={previousPage}
+                    setVisible={setExitModalVisible} 
                 />
                 {journalComplete ? 
                     <Congratulations 
@@ -28,14 +28,14 @@ export const NewMoodJournalScreen = ({ navigation }) => {
                         setJournalComplete={setJournalComplete}
                     /> 
                     : 
-                    <MoodJournalEntryPage />
+                    <NewMoodJournalEntry />
                 }
                 <ExitModal 
-                    navigation={navigation} 
-                    visible={exitModalVisible} 
-                    setVisible={setExitModalVisible}
-                    resetJournal={resetMoodJournal}
                     destination={"Today"}
+                    navigation={navigation} 
+                    resetJournal={resetMoodJournal}
+                    setVisible={setExitModalVisible}
+                    visible={exitModalVisible} 
                 />
             </Provider>
         </SafeArea>

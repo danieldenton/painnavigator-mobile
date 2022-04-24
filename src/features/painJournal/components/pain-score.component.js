@@ -1,6 +1,6 @@
 import React, { useContext }from "react";
 import { Question } from "../components/pain-journal.styles";
-import { Slider } from "../../../components/slider.component";
+import { IntensitySlider } from "../../../components/slider.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const PainScore = () => {
@@ -17,7 +17,7 @@ export const PainScore = () => {
     return(
         <>
             <Question question={question} helpText={helpText} />
-            <Slider value={newPainJournal.painScore} onValueChange={handleChange} />
+            <IntensitySlider value={newPainJournal.painScore} onValueChange={handleChange} />
         </>
     );
 };

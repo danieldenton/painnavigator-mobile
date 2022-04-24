@@ -14,12 +14,12 @@ const HeaderContainer = styled.View`
 `;
 
 const LeftSection = styled(TouchableOpacity)`
-    flex: .15;
+    flex: .25;
     align-items: flex-start;
 `;
 
 const HeaderSection = styled.View`
-    flex: .7;
+    flex: .5;
     align-items: center;
 `;
 
@@ -28,10 +28,15 @@ const HeaderName = styled.Text`
     font-size: 14px;
 `;
 
-const RightSection = styled(TouchableOpacity)`
-    flex: .15;
-    width: 100%;
+const RightSection = styled.View`
+    flex: .25;
     align-items: flex-end;
+`;
+
+const RightPressableArea = styled.TouchableOpacity`
+    border-radius: 100px;
+    margin-right: -16px;
+    padding: 16px;
 `;
 
 export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
@@ -39,7 +44,10 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
 
     return(
         <HeaderContainer>
-            <LeftSection testID={"previous-page"} onPress={currentQuestion > 1 ? previousQuestion : showModal} >
+            <LeftSection 
+                accessibilityLabel={currentQuestion > 1 ? "previous-page" : "exit-journal"} 
+                onPress={currentQuestion > 1 ? previousQuestion : showModal} 
+            >
                 <Back />
             </LeftSection>
             <HeaderSection>
@@ -47,7 +55,10 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
                     {headerName.toUpperCase()}
                 </HeaderName>
             </HeaderSection>
-            <RightSection onPress={showModal} >
+            <RightSection 
+                accessibilityLabel={"exit-journal"}
+                onPress={showModal} 
+            >
                 <Close />
             </RightSection>
         </HeaderContainer>
@@ -55,10 +66,13 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
 };
 
 
-export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, setEditing, resetJournal }) => {
+export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, showBottomMenu, resetJournal }) => {
     return(
         <HeaderContainer>
-            <LeftSection  onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} >
+            <LeftSection 
+                accessibilityLabel={"exit-journal"}
+                onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} 
+            >
                 <Back />
             </LeftSection>
             <HeaderSection>
@@ -66,8 +80,13 @@ export const ReviewJournalNavigationBar = ({ destination, navigation, headerName
                     {headerName.toUpperCase()}
                 </HeaderName>
             </HeaderSection>
-            <RightSection onPress={() => setEditing(true)}>
-                <More />  
+            <RightSection>
+                <RightPressableArea 
+                    accessibilityLabel={"more-options"}
+                    onPress={() => showBottomMenu(true)}
+                >
+                    <More />    
+                </RightPressableArea>
             </RightSection>
         </HeaderContainer>
     );
