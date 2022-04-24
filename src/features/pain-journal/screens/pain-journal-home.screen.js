@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { SafeArea } from "../../../components/safe-area.component";
+import { FlatList, TouchableOpacity } from "react-native";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
-export const PainJournalScreen = ({ navigation }) => {
+export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
 
     return(
-        <View>
-            <DailyActivitiesTile title={"New Pain Journal"} destination={"NewPainJournal"} navigation={navigation} />
+        <SafeArea>
+            <DailyActivitiesTile title={"Add New Entry"} destination={"NewPainJournal"} navigation={navigation} />
             <FlatList 
                 data={painJournals}
                 renderItem={({ item }) => {
@@ -24,6 +25,6 @@ export const PainJournalScreen = ({ navigation }) => {
                 }}
                 keyExtractor={(item) => item.id}
             />
-        </View>
+        </SafeArea>
     );
 };

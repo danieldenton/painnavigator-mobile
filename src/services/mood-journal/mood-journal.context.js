@@ -10,7 +10,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     const currentPageData = moodJournalQuestions[currentPage - 1];
     const [journalComplete, setJournalComplete] = useState(false);
     const [moodJournals, setMoodJournals] = useState({});
-    const [moodJournalEntry, setMoodJournalEntry] = useState({
+    const [moodJournal, setMoodJournal] = useState({
         feeling: "", 
         intensity: 5, 
         situation: "", 
@@ -20,7 +20,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     });
 
     const changeEntry = (change, state) => {
-        setMoodJournalEntry(journal => ({
+        setMoodJournal(journal => ({
             ...journal,
             [state]: change
         }));
@@ -28,12 +28,12 @@ export const MoodJournalContextProvider = ({ children }) => {
 
     const completeMoodJournal = () => {
         const newMoodJournal = {
-            feeling: moodJournalEntry.feeling,
-            intensity: moodJournalEntry.intensity, 
-            situation: moodJournalEntry.situation, 
-            who_i_was_with: moodJournalEntry.whoIWasWith,
-            primary_thought: moodJournalEntry.primaryThought,
-            cognitive_distortions: String(moodJournalEntry.cognitiveDistortions)
+            feeling: moodJournal.feeling,
+            intensity: moodJournal.intensity, 
+            situation: moodJournal.situation, 
+            who_i_was_with: moodJournal.whoIWasWith,
+            primary_thought: moodJournal.primaryThought,
+            cognitive_distortions: String(moodJournal.cognitiveDistortions)
         };
         postMoodJournal(newMoodJournal);
         setJournalComplete(true);
@@ -53,7 +53,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     };
 
     const resetMoodJournal = () => {
-        setMoodJournalEntry({ 
+        setMoodJournal({ 
             feeling: "", 
             intensity: 5, 
             situation: "", 
@@ -66,7 +66,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     };
 
     const updateMoodJournal = (journalId) => {
-        patchMoodJournal(journalId, moodJournalEntry);
+        patchMoodJournal(journalId, moodJournal);
     };
 
     return (
@@ -79,14 +79,14 @@ export const MoodJournalContextProvider = ({ children }) => {
                 currentPageData,
                 journalComplete, 
                 moodJournals, 
-                moodJournalEntry,
+                moodJournal,
                 loadMoodJournals,
                 nextPage,
                 previousPage,
                 resetMoodJournal,
                 setEditingMoodJournal,
                 setJournalComplete,
-                setMoodJournalEntry,
+                setMoodJournal,
                 updateMoodJournal
             }}
         >

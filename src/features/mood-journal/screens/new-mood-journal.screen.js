@@ -15,9 +15,9 @@ export const NewMoodJournalScreen = ({ navigation }) => {
         <SafeArea>
             <Provider>
                 <NavigationBar 
-                    currentQuestion={currentPage} 
+                    currentPage={currentPage} 
                     headerName={"Mood Journal"} 
-                    previousQuestion={previousPage}
+                    previousPage={previousPage}
                     setVisible={setExitModalVisible} 
                 />
                 {journalComplete ? 

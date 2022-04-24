@@ -4,7 +4,7 @@ import { TextInput } from "../../../components/text-input.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const Situation = () => {
-    const { changeEntry, currentPageData, moodJournalEntry } = useContext(MoodJournalContext);
+    const { changeEntry, currentPageData, moodJournal } = useContext(MoodJournalContext);
     
     return (
         <>
@@ -13,7 +13,7 @@ export const Situation = () => {
                 blurOnSubmit
                 multiline 
                 numberOfLines={4}
-                value={moodJournalEntry.situation}
+                value={moodJournal.situation}
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}   
                 testID={"situation"}
                 textAlignVertical={"top"}

@@ -4,14 +4,14 @@ import { TextInput } from "../../../components/text-input.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const Feeling = () => {
-    const { changeEntry, currentPageData, moodJournalEntry } = useContext(MoodJournalContext);
+    const { changeEntry, currentPageData, moodJournal } = useContext(MoodJournalContext);
 
     return (
         <>
             <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText} />
             <TextInput 
                 accessibilityLabel={"feeling-input"}
-                value={moodJournalEntry.feeling}
+                value={moodJournal.feeling}
                 onChangeText={(change) => changeEntry(change, currentPageData.state)}
             />
         </>

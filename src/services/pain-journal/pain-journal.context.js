@@ -1,85 +1,95 @@
 import React, { useState, createContext } from "react";
 import { getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
-import { painJournalQuestions } from "../../features/painJournal/data/pain-journal-question-data.json";
+import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 
 export const PainJournalContext = createContext();
 
 export const PainJournalContextProvider = ({ children }) => {
+    const [editingPainJournal, setEditingPainJournal] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentPageData = painJournalQuestions[currentPage - 1];
     const [journalComplete, setJournalComplete] = useState(false);
-    const [currentQuestion, setCurrentQuestion] = useState(1);
     const [painJournals, setPainJournals] = useState({});
-    const [painJournalsLoaded, setPainJournalsLoaded] = useState(false);
-    const [newPainJournal, setNewPainJournal] = useState({
-        painScore: 5, 
-        painSetting: "", 
-        painFeeling: "", 
-        whoWith: "", 
+    const [painJournal, setPainJournal] = useState({
+        score: 5, 
+        setting: "", 
+        feeling: "", 
+        whoIWasWith: "", 
         copingStrategies: [], 
-        otherNotes: "", 
+        notes: "", 
         painAfter: 5
     });
 
-    const currentQuestionData = painJournalQuestions.find(question => question.id === currentQuestion);
-
-    const resetPainJournal = () => {
-        setNewPainJournal({ painScore: 5, 
-            painSetting: "", 
-            painFeeling: "", 
-            whoWith: "", 
-            copingStrategies: [], 
-            otherNotes: "", 
-            painAfter: 5
-        });
-    };
-
-    const loadPainJournals = () => {
-        getPainJournals(setPainJournals, setPainJournalsLoaded);
-    };
-
-    const updatePainJournal = (journalId, journalUpdate) => {
-        patchPainJournal(journalId, journalUpdate);
-        
-        const currentJournal = painJournals.filter(journal => journal.id === journalId);
-
-        setPainJournals(journal => ({
+    const changeEntry = (change, state) => {
+        setPainJournal(journal => ({
             ...journal,
-            [name]: change
-        }))
-        
-        //getPainJournals(setPainJournals, setPainJournalsLoaded);
+            [state]: change
+        }));
     };
 
     const completePainJournal = () => {
-        const snakifiedPainJournal = {
-            pain_score: newPainJournal.painScore,
-            pain_setting: newPainJournal.painSetting, 
-            pain_feeling: newPainJournal.painFeeling, 
-            who_with: newPainJournal.whoWith, 
-            coping_strategies: String(newPainJournal.copingStrategies), 
-            other_notes: newPainJournal.otherNotes, 
-            pain_after: newPainJournal.painAfter
+        const newPainJournal = {
+            pain_score: painJournal.score,
+            pain_setting: painJournal.setting, 
+            pain_feeling: painJournal.feeling, 
+            who_with: painJournal.whoIWasWith, 
+            coping_strategies: String(painJournal.copingStrategies), 
+            other_notes: painJournal.notes, 
+            pain_after: painJournal.painAfter
         }
-
-        postPainJournal(snakifiedPainJournal);
+        postPainJournal(newPainJournal);
         setJournalComplete(true);
         resetPainJournal();
+    };
+
+    const loadPainJournals = () => {
+        getPainJournals(setPainJournals);
+    };
+
+    const nextPage = () => {
+        setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const previousPage = () => {
+        setCurrentPage(prevPage => prevPage - 1);
+    };
+
+    const resetPainJournal = () => {
+        setPainJournal({ 
+            score: 5, 
+            setting: "", 
+            feeling: "", 
+            whoIWasWith: "", 
+            copingStrategies: [], 
+            notes: "", 
+            painAfter: 5
+        });
+        setCurrentPage(1);
+        setEditingPainJournal(false);
+    };
+
+    const updatePainJournal = (journalId) => {
+        patchPainJournal(journalId, painJournal);
     };
 
     return (
         <PainJournalContext.Provider
             value={{
-                newPainJournal,
-                setNewPainJournal,
-                currentQuestion, 
-                setCurrentQuestion,
-                currentQuestionData,
-                journalComplete, 
-                setJournalComplete,
+                editingPainJournal,
+                changeEntry,
                 completePainJournal,
-                resetPainJournal,
+                currentPage,
+                currentPageData,
+                journalComplete, 
+                painJournals, 
+                painJournal,
                 loadPainJournals,
-                painJournals,
-                painJournalsLoaded,
+                nextPage,
+                previousPage,
+                resetPainJournal,
+                setEditingPainJournal,
+                setJournalComplete,
+                setPainJournal,
                 updatePainJournal
             }}
         >

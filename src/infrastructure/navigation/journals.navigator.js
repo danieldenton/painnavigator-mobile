@@ -4,9 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { JournalScreen } from "../../features/today/screens/journals.screen";
 import { FoodJournalNavigator } from "./food-journal.navigator";
 import { MoodJournalNavigator } from "./mood-journal.navigator";
-import { PainJournalScreen } from "../../features/painJournal/screens/pain-journal.screen";
-import { NewPainJournalScreen } from "../../features/painJournal/screens/new-pain-journal.screen";
-import { ReviewPainJournal } from "../../features/painJournal/screens/review-pain-journal.screen";
+import { PainJournalNavigator } from "./pain-journal.navigator";
 
 const JournalsStack = createStackNavigator();
 
@@ -18,18 +16,9 @@ export const JournalsNavigator = () => {
                 name="Journals" 
                 component={JournalScreen}
             />
-            <JournalsStack.Screen 
-                name="PainJournal" 
-                component={PainJournalScreen} 
-            />
             <JournalsStack.Screen
-                name="NewPainJournal"
-                component={NewPainJournalScreen}
-                options={{ headerShown: false }}
-            />
-            <JournalsStack.Screen
-                name="ReviewPainJournal"
-                component={ReviewPainJournal}
+                name="PainJournal"
+                component={PainJournalNavigator}
                 options={{ headerShown: false }}
             />
             <JournalsStack.Screen 

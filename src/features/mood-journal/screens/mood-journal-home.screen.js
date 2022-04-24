@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { FlatList, TouchableOpacity } from "react-native";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
-import { NewJournalEntry } from "../../../components/new-journal-entry.component";
 import { SafeArea } from "../../../components/safe-area.component";
 import { SubHeader } from "../../../components/typography.component"
 
@@ -11,7 +11,7 @@ export const MoodJournalHomeScreen = ({ navigation }) => {
 
     return(
         <SafeArea>
-            <NewJournalEntry title={"Add New Entry"} destination={"NewMoodJournal"} navigation={navigation} />
+            <DailyActivitiesTile title={"Add New Entry"} destination={"NewMoodJournal"} navigation={navigation} />
             <SubHeader title={"PREVIOUS ENTRIES"} size={14} />
             <FlatList 
                 data={moodJournals}

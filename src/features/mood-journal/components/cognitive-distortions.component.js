@@ -10,12 +10,12 @@ const MultiSelectScroll = styled(ScrollView)`
 `;
 
 export const CognitiveDistortions = () => {
-    const { currentPageData, moodJournalEntry, setMoodJournalEntry } = useContext(MoodJournalContext);
+    const { currentPageData, moodJournal, setMoodJournal } = useContext(MoodJournalContext);
     const { options } = currentPageData;
-    const selectedCognitiveDistortions = moodJournalEntry.cognitiveDistortions;
+    const selectedCognitiveDistortions = moodJournal.cognitiveDistortions;
 
     const add = (optionId) => {
-        setMoodJournalEntry(journal => ({
+        setMoodJournal(journal => ({
             ...journal,
             ["cognitiveDistortions"]: [...selectedCognitiveDistortions, optionId]
         }));
@@ -26,7 +26,7 @@ export const CognitiveDistortions = () => {
           (x) => x !== optionId
         );
 
-        setMoodJournalEntry(journal => ({
+        setMoodJournal(journal => ({
             ...journal,
             ["cognitiveDistortions"]: newCognitiveDistortions
         }));    

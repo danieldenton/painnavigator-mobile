@@ -2,11 +2,10 @@ import axios from 'axios';
 import camelize from "camelize";
 import { baseUrl } from '../../infrastructure/config';
 
-export const getPainJournals = (setPainJournals, setPainJournalsLoaded) => {
+export const getPainJournals = (setPainJournals) => {
     axios.get(`${baseUrl}/api/v1/pain_journals`)
     .then( resp => {
         setPainJournals(camelize(resp.data.data)); 
-        setPainJournalsLoaded(true);
     })
     //.catch(resp => console.log(resp))
 };

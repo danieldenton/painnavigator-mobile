@@ -12,11 +12,11 @@ import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const NewMoodJournalEntry = () => {
-    const { completeMoodJournal, currentPage, moodJournalEntry, nextPage } = useContext(MoodJournalContext);
+    const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
     
     useEffect(() => {
-        const { feeling, situation } = moodJournalEntry;
+        const { feeling, situation } = moodJournal;
         if (currentPage === 1) {
             return feeling ? setSubmitDisabled(false) : setSubmitDisabled(true)
         }   else if (currentPage === 3) {
@@ -24,7 +24,7 @@ export const NewMoodJournalEntry = () => {
         }   else {
             return setSubmitDisabled(false)
         };
-    }, [moodJournalEntry, currentPage]);
+    }, [moodJournal, currentPage]);
     
     return (
         <JournalContainer>

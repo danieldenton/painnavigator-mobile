@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { JournalEntryIcon } from "../icons";
+import { 
+    Add,
+    FoodJournalIcon,
+    JournalEntryIcon, 
+    MoodJournalIcon,  
+    PainJournalIcon 
+} from "../icons";
 
 const DailyActivitiesCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
@@ -47,7 +53,11 @@ export const DailyActivitiesTile = ({ destination, title, navigation }) => {
                         <CardHeader>{title}</CardHeader>
                     </CardTextSection>
                     <CardIconSection>
-                        <JournalEntryIcon />
+                        {title === "Add New Entry" && <Add />}
+                        {title === "Make a Journal Entry" && <JournalEntryIcon />}
+                        {title === "Pain Journal" && <PainJournalIcon />}
+                        {title === "Mood Journal" && <MoodJournalIcon />}
+                        {title === "Food Journal" && <FoodJournalIcon />}
                     </CardIconSection>
                 </ModuleCardContent>
             </DailyActivitiesCard>

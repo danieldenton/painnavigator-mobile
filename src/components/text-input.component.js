@@ -12,3 +12,15 @@ export const TextInput = styled(Input).attrs({
     font-family: Inter_500Medium;
     font-size: 18px;
 `;
+
+export const MultilineTextInput = () => {
+    return (
+        <TextInput 
+            blurOnSubmit
+            multiline 
+            numberOfLines={4}
+            textAlignVertical={"top"}
+            style={{textAlignVertical: "top", height: 119}}
+        />
+    );
+}; 

@@ -5,11 +5,11 @@ import { InputQuestion, IntensityQuestion } from "../../../components/review-jou
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const ReviewMoodJournalEntry = ({ journal }) => {
-    const { changeEntry, editingMoodJournal, moodJournalEntry, setMoodJournalEntry } = useContext(MoodJournalContext);
-    const { date, feeling, intensity, situation, whoIWasWith, primaryThought, cognitiveDistortions } = moodJournalEntry;
+    const { changeEntry, editingMoodJournal, moodJournal, setMoodJournal } = useContext(MoodJournalContext);
+    const { date, feeling, intensity, situation, whoIWasWith, primaryThought, cognitiveDistortions } = moodJournal;
 
     useEffect(() => {
-        setMoodJournalEntry(journal);
+        setMoodJournal(journal);
     }, [journal])
 
     const dateEntry = { question: "DATE", response: date };

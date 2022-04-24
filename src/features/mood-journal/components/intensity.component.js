@@ -4,12 +4,12 @@ import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.
 import { IntensitySlider } from "../../../components/slider.component";
  
 export const Intensity = () => {
-    const { changeEntry, currentPageData, moodJournalEntry } = useContext(MoodJournalContext);
+    const { changeEntry, currentPageData, moodJournal } = useContext(MoodJournalContext);
 
     return (
         <>
             <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText}/>
-            <IntensitySlider value={moodJournalEntry.intensity} onValueChange={changeEntry} state={currentPageData.state}/>
+            <IntensitySlider value={moodJournal.intensity} onValueChange={changeEntry} state={currentPageData.state}/>
         </>
     );
 }; 

@@ -39,14 +39,14 @@ const RightPressableArea = styled.TouchableOpacity`
     padding: 16px;
 `;
 
-export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
+export const NavigationBar = ({ currentPage, headerName, previousPage, setVisible }) => {
     const showModal = () => setVisible(true);
 
     return(
         <HeaderContainer>
             <LeftSection 
-                accessibilityLabel={currentQuestion > 1 ? "previous-page" : "exit-journal"} 
-                onPress={currentQuestion > 1 ? previousQuestion : showModal} 
+                accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
+                onPress={currentPage > 1 ? previousPage : showModal} 
             >
                 <Back />
             </LeftSection>
@@ -55,11 +55,13 @@ export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, s
                     {headerName.toUpperCase()}
                 </HeaderName>
             </HeaderSection>
-            <RightSection 
-                accessibilityLabel={"exit-journal"}
-                onPress={showModal} 
-            >
-                <Close />
+            <RightSection>
+                <RightPressableArea
+                    accessibilityLabel={"exit-journal"}
+                    onPress={showModal} 
+                >
+                    <Close />
+                </RightPressableArea>
             </RightSection>
         </HeaderContainer>
     );
