@@ -1,11 +1,40 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
+import { EducationModuleIcon } from "../../../icons";
 
 const ModuleCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    border-radius: 15px;
+    padding: 21px;
+`;
+
+const ModuleCardContent = styled(Card.Content)`
+    flex-direction: row;
+    padding: 0px;
+    align-items: center;
+`;
+
+const CardTextSection = styled.View`
+    flex: .8;
+`;
+
+const CardHeader = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
+`;
+
+const CardSubHeader = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 12px;
+    margin-top: 8px;
+`;
+
+const CardIconSection = styled.View`
+    flex: .2;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const EducationUnitCard = ({navigation, nextEducationModule}) => {
@@ -21,10 +50,15 @@ export const EducationUnitCard = ({navigation, nextEducationModule}) => {
             })}
         > 
             <ModuleCard>
-                <Card.Content>
-                    <Text>{name}</Text>
-                    <Text>{length}</Text>
-                </Card.Content>
+                <ModuleCardContent>
+                    <CardTextSection>
+                        <CardHeader>{name}</CardHeader>
+                        <CardSubHeader>{length.toUpperCase()}</CardSubHeader>
+                    </CardTextSection>
+                    <CardIconSection>
+                        <EducationModuleIcon />
+                    </CardIconSection>
+                </ModuleCardContent>
             </ModuleCard>
         </TouchableOpacity>
     ); 

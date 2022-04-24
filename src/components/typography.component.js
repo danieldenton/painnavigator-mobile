@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
 
 const Header = styled.View`
     margin-left: ${(props) => props.theme.space[3]};
 `;
 
-export const TodayScreenHeader = ({ headerName }) => {
+const InterHeader = styled.Text`
+    font-family: Inter_500Medium;
+`;
+
+export const SubHeader = ({ title, size }) => {
     return (
         <Header>
-            <Text>{headerName}</Text>
+            <InterHeader style={{ fontSize: size}}>{title}</InterHeader>
         </Header>
     );
 };

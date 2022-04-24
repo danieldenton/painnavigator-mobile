@@ -1,40 +1,96 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
-
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { space } from "../../infrastructure/theme/spacing";
+import { Back, Close, More } from "../../icons";
 
 const HeaderContainer = styled.View`
-    padding: ${(props) => props.theme.space[3]};
+    padding-top: ${space[3]};
+    padding-bottom: ${space[3]};
+    margin-left: ${space[3]};
+    margin-right: ${space[3]};
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 `;
 
 const LeftSection = styled(TouchableOpacity)`
+    flex: .25;
+    align-items: flex-start;
+`;
+
+const HeaderSection = styled.View`
+    flex: .5;
+    align-items: center;
 `;
 
 const HeaderName = styled.Text`
+    font-family: Inter_500Medium
+    font-size: 14px;
 `;
 
-const RightSection = styled(TouchableOpacity)`
+const RightSection = styled.View`
+    flex: .25;
+    align-items: flex-end;
 `;
 
-export const NavigationBar = ({ currentQuestion, headerName, previousQuestion, setVisible }) => {
+const RightPressableArea = styled.TouchableOpacity`
+    border-radius: 100px;
+    margin-right: -16px;
+    padding: 16px;
+`;
+
+export const NavigationBar = ({ currentPage, headerName, previousPage, setVisible }) => {
     const showModal = () => setVisible(true);
 
     return(
         <HeaderContainer>
-            <LeftSection onPress={currentQuestion > 1 ? previousQuestion : showModal} >
-                <Ionicons name="chevron-back-outline" size={24} color="black" />
+            <LeftSection 
+                accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
+                onPress={currentPage > 1 ? previousPage : showModal} 
+            >
+                <Back />
             </LeftSection>
-            <HeaderName>
-                {headerName}
-            </HeaderName>
-            <RightSection onPress={showModal} >
-                <MaterialCommunityIcons name="cancel" size={24} color="black" />
+            <HeaderSection>
+                <HeaderName>
+                    {headerName.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
+            <RightSection>
+                <RightPressableArea
+                    accessibilityLabel={"exit-journal"}
+                    onPress={showModal} 
+                >
+                    <Close />
+                </RightPressableArea>
             </RightSection>
         </HeaderContainer>
     );
 };
+
+
+export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, showBottomMenu, resetJournal }) => {
+    return(
+        <HeaderContainer>
+            <LeftSection 
+                accessibilityLabel={"exit-journal"}
+                onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} 
+            >
+                <Back />
+            </LeftSection>
+            <HeaderSection>
+                <HeaderName>
+                    {headerName.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
+            <RightSection>
+                <RightPressableArea 
+                    accessibilityLabel={"more-options"}
+                    onPress={() => showBottomMenu(true)}
+                >
+                    <More />    
+                </RightPressableArea>
+            </RightSection>
+        </HeaderContainer>
+    );
+};
+

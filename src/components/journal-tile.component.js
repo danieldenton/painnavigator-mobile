@@ -1,21 +1,22 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
+import { Next } from "../icons";
+import { SubHeader } from "./typography.component";
 import { Card } from "react-native-paper";
-import { Entypo } from '@expo/vector-icons';
 
 const JournalCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
-    padding-left: ${(props) => props.theme.space[2]};
-    padding-right: ${(props) => props.theme.space[2]};
-    height: 62px;
     border-radius: 15px;
+    margin-top: 12px;
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
 `;
 
 const CardContentWrapper = styled(Card.Content)`
-    flex-direction: row;
     align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+    margin-left: -8px;
+    padding: 21px;
 `;
 
 export const JournalTile = ({ journal }) => {
@@ -24,8 +25,8 @@ export const JournalTile = ({ journal }) => {
     return ( 
         <JournalCard>
             <CardContentWrapper>
-                <Text>{date}</Text>
-                <Entypo name="chevron-small-right" size={32} color="black" />
+                <SubHeader title={date} size={18} />
+                <Next />
             </CardContentWrapper>
         </JournalCard>
     ); 

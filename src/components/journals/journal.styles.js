@@ -2,30 +2,38 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { Button } from "../button.component";
 import { colors } from "../../infrastructure/theme/colors";
+import { space } from "../../infrastructure/theme/spacing";
 
+// TODO: Change to PageContainer
 export const JournalContainer = styled.View`
     flex: 1;
-    margin: ${(props) => props.theme.space[3]};
+    margin: ${space[3]};
 `;
 
 export const JournalScrollContainer = styled.ScrollView`
     flex: 1;
-    padding: ${(props) => props.theme.space[3]};
+    padding: ${space[3]};
 `;
 
+// TODO: Change to EntrySection
 export const QuestionSection = styled.View`
     flex: 1;
+    height: 100%;
     width: 100%;
+    overflow: hidden;
 `;
 
 export const ButtonSection = styled.View`
+    flex: 1;
     width: 100%;
     position: absolute;
     bottom: 0;
+    padding-bottom: 14px;
+    background-color: ${colors.bg.secondary};
 `;
 
 export const QuestionWrapper = styled.View`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-bottom: ${space[3]};
 `;
 
 export const QuestionText = styled.Text`
@@ -48,12 +56,12 @@ export const Input = styled(TextInput).attrs({
     numberOfLines: 4,
     outlineColor: colors.ui.inputOutline
 })`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-bottom: ${space[3]};
     height: 119px;
 `;
 
 export const SkipQuestionButton = styled.TouchableOpacity`
-    padding: ${(props) => props.theme.space[2]};
+    padding: ${space[2]};
 `;
 
 export const SkipQuestionText = styled.Text`
@@ -79,12 +87,8 @@ export const HeaderRow = styled.View`
 `;
 
 export const DateText = styled.Text`
-    margin-top: ${(props) => props.theme.space[4]};
+    margin-top: ${space[4]};
     margin-bottom: 33px;
-`;
-
-export const EditButton = styled(Button)`
-    padding: 0px;
 `;
 
 export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
@@ -97,4 +101,7 @@ export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
 };
 
 export const Response = styled.Text`
+`;
+
+export const CompletedEntriesSection = styled.View`
 `;

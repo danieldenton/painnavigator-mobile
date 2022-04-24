@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeArea } from "../../../components/safe-area.component";
 import { SmallSpacer } from "../../../components/spacer.component";
-import { Input } from "../../../components/input.component";
+import { TextInput } from "../../../components/text-input.component";
 import { Button } from "../../../components/button.component";
 import { Text } from "../../../components/text.component";
 import { AccountContainer, ErrorContainer } from "../components/account.styles";
@@ -17,14 +17,14 @@ export const Signup = () => {
     return(
         <SafeArea>
             <AccountContainer>
-                <Input
+                <TextInput
                     label="Name"
                     value={name}
                     textContentType="name"
                     onChangeText={(n) => setName(n)}
                 />
                 <SmallSpacer>
-                    <Input
+                    <TextInput
                         label="Email"
                         value={email}
                         textContentType="emailAddress"
@@ -34,7 +34,7 @@ export const Signup = () => {
                     />
                 </SmallSpacer>
                 <SmallSpacer>
-                    <Input
+                    <TextInput
                         label="Password"
                         value={password}
                         textContentType="password"
@@ -44,7 +44,7 @@ export const Signup = () => {
                     />
                 </SmallSpacer>
                 <SmallSpacer>
-                    <Input
+                    <TextInput
                         label="Repeat Password"
                         value={repeatedPassword}
                         textContentType="password"

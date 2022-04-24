@@ -1,19 +1,46 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { 
+    Add,
+    FoodJournalIcon,
+    JournalEntryIcon, 
+    MoodJournalIcon,  
+    PainJournalIcon 
+} from "../icons";
 
 const DailyActivitiesCard = styled(Card)`
     margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    border-radius: 15px;
+    padding: 21px;
 `;
 
-const CardContentWrapper = styled(Card.Content)`
+const ModuleCardContent = styled(Card.Content)`
     flex-direction: row;
+    padding: 0px;
     align-items: center;
-    justify-content: space-between;
+`;
+
+const CardTextSection = styled.View`
+    flex: .8;
+`;
+
+const CardHeader = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
+`;
+
+const CardSubHeader = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 12px;
+    margin-top: 8px;
+`;
+
+const CardIconSection = styled.View`
+    flex: .2;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const DailyActivitiesTile = ({ destination, title, navigation }) => {
@@ -21,10 +48,18 @@ export const DailyActivitiesTile = ({ destination, title, navigation }) => {
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
             <DailyActivitiesCard>
-                <CardContentWrapper>
-                    <Text>{title}</Text>
-                    <MaterialCommunityIcons name="pencil-circle-outline" size={36} color="black" />
-                </CardContentWrapper>
+                <ModuleCardContent>
+                    <CardTextSection>
+                        <CardHeader>{title}</CardHeader>
+                    </CardTextSection>
+                    <CardIconSection>
+                        {title === "Add New Entry" && <Add />}
+                        {title === "Make a Journal Entry" && <JournalEntryIcon />}
+                        {title === "Pain Journal" && <PainJournalIcon />}
+                        {title === "Mood Journal" && <MoodJournalIcon />}
+                        {title === "Food Journal" && <FoodJournalIcon />}
+                    </CardIconSection>
+                </ModuleCardContent>
             </DailyActivitiesCard>
         </TouchableOpacity>
     ); 

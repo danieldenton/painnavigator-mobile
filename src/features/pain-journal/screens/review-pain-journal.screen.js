@@ -4,11 +4,11 @@ import { Provider } from 'react-native-paper';
 import { ReviewJournalEntries } from "../components/review-journal-entries.component";
 import { Button } from "../../../components/button.component";
 import { NavigationBar } from "../../../components/navigation-bar.component";
-import { ExitModal } from "../components/exit-modal.component";
+import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { JournalContainer, ReviewJournalHeader } from "../components/pain-journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
-export const ReviewPainJournal = ({ route, navigation }) => {
+export const ReviewPainJournalScreen = ({ route, navigation }) => {
     const { journal, journalId } = route.params;
     const { updatePainJournal } = useContext(PainJournalContext);
     const [isEditing, setIsEditing] = useState(false);

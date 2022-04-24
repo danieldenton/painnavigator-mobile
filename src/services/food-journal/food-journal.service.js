@@ -1,8 +1,6 @@
 import axios from 'axios';
 import camelize from "camelize";
-
-const baseUrl = 'https://3000-silver-slug-ggyxd3yy.ws-us38.gitpod.io';
-// TODO: baseUrl will be stored in environmental variable or initializer file 
+import { baseUrl } from '../../infrastructure/config';
 
 export const getFoodJournals = (setFoodJournals) => {
     axios.get(`${baseUrl}/api/v1/food_journals`)

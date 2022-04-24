@@ -2,6 +2,19 @@ import React from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
+import {
+  useFonts as usePoppins,
+  Poppins_600SemiBold,
+  Poppins_500Medium
+} from "@expo-google-fonts/poppins";
+
+import {
+  useFonts as useInter,
+  Inter_500Medium,
+  Inter_400Regular,
+  Inter_300Light
+} from "@expo-google-fonts/inter";
+
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
@@ -9,6 +22,7 @@ import { EducationContextProvider } from "./src/services/education/education.con
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
+import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
 
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
@@ -30,6 +44,21 @@ if(!firebase.apps.length) {
 }
 
 export default function App() {
+  const [poppinsLoaded] = usePoppins({
+    Poppins_600SemiBold,
+    Poppins_500Medium
+  });
+
+  const [interLoaded] = useInter({
+    Inter_500Medium,
+    Inter_400Regular,
+    Inter_300Light
+  });
+
+  if (!poppinsLoaded || !interLoaded) {
+    return null;
+  }
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -40,7 +69,9 @@ export default function App() {
                 <MovementContextProvider>
                   <PainJournalContextProvider>
                     <FoodJournalContextProvider>
-                      <Navigation />
+                      <MoodJournalContextProvider>
+                        <Navigation />
+                      </MoodJournalContextProvider>
                     </FoodJournalContextProvider>
                   </PainJournalContextProvider>
                 </MovementContextProvider>
