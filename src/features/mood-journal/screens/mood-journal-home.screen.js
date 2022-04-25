@@ -12,7 +12,7 @@ export const MoodJournalHomeScreen = ({ navigation }) => {
     return(
         <SafeArea>
             <DailyActivitiesTile title={"Add New Entry"} destination={"NewMoodJournal"} navigation={navigation} />
-            <SubHeader title={"PREVIOUS ENTRIES"} size={14} />
+            <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />
             <FlatList 
                 data={moodJournals}
                 renderItem={({ item }) => {

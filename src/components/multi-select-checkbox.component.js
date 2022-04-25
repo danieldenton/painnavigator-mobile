@@ -21,23 +21,14 @@ const UncheckedCheckCircle = styled.View`
     width: 36px;
 `;
 
-const CheckedCircle = styled.View`
-    align-items: center;
-    justify-content: center;
-    background-color: ${colors.brand.primary};
-    border-radius: 100px;
-    height: 36px;
-    width: 36px;
-`;
-
 const CheckBoxTextContentArea = styled.View`
-    height: 100%;
-    width: 75%;
+    flex: 1;
 `;
 
 const Option = styled.Text`
     font-family: Inter_500Medium;
     font-size: 18px;
+    width: 80%;
 `;
 
 const HelpText = styled.Text`
@@ -45,6 +36,7 @@ const HelpText = styled.Text`
     font-size: 14px;
     font-style: italic;
     margin-top: 4px;
+    width: 80%;
 `;
 
 export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }) => {
@@ -66,7 +58,7 @@ export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }
             </CheckCircleArea>
             <CheckBoxTextContentArea>
                 <Option>{option}</Option>
-                <HelpText>{helpText}</HelpText>
+                {helpText && <HelpText>{helpText}</HelpText>}
             </CheckBoxTextContentArea>
         </CheckBoxPressableArea>
     );

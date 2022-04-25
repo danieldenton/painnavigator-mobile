@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInput } from "../../../components/text-input.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { TextInput } from "../../../components/text-input.component";
 
 export const PrimaryThought = () => {
     const { changeEntry, currentPageData, moodJournal } = useContext(MoodJournalContext);

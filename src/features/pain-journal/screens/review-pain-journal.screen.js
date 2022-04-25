@@ -1,65 +1,48 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useCallback, useRef } from "react";
+import { BottomModal } from "../../../components/bottom-modal.component";
 import { SafeArea } from "../../../components/safe-area.component";
-import { Provider } from 'react-native-paper';
-import { ReviewJournalEntries } from "../components/review-journal-entries.component";
-import { Button } from "../../../components/button.component";
-import { NavigationBar } from "../../../components/navigation-bar.component";
-import { ExitModal } from "../../../components/journals/exit-modal.component";
-import { JournalContainer, ReviewJournalHeader } from "../components/pain-journal.styles";
+import { JournalButton } from "../../../components/button.component";
+import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
+import { JournalContainer, ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { ReviewPainJournalEntry } from "../components/review-pain-journal-entry.component";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 export const ReviewPainJournalScreen = ({ route, navigation }) => {
-    const { journal, journalId } = route.params;
-    const { updatePainJournal } = useContext(PainJournalContext);
-    const [isEditing, setIsEditing] = useState(false);
-    const [painJournal, setPainJournal] = useState(journal);
-    const [painJournalUpdate, setPainJournalUpdate] = useState(journal);
-    const [visible, setVisible] = useState(false);
-    const changes = false;
+    const { journal } = route.params;
+    const { editingPainJournal, setEditingPainJournal, resetPainJournal, updatePainJournal } = useContext(PainJournalContext);
 
-    const handleChange = (change, name) => {
-        setPainJournalUpdate(journal => ({
-            ...journal,
-            [name]: change
-        }));
-    };
+    const reviewPainJournalOptions = useRef(null);
+
+    const handlePresentModalPress = useCallback(() => {
+    reviewPainJournalOptions.current?.present();
+    }, []);
 
     return(
-        <SafeArea>
-            <Provider>
-                <NavigationBar 
+        <BottomSheetModalProvider>
+            <SafeArea>
+                <ReviewJournalNavigationBar 
+                    destination={"PainJournalHome"}
                     headerName={"PAIN JOURNAL"} 
-                    setVisible={setVisible} 
-                    changes={changes}
-                    destination={"PainJournal"}
                     navigation={navigation} 
+                    showBottomMenu={handlePresentModalPress}
+                    resetJournal={resetPainJournal}
                 />
                 <JournalContainer>
-                    <ReviewJournalHeader date={painJournal.date} isEditing={isEditing} setIsEditing={setIsEditing} />
-                    <ReviewJournalEntries 
-                        isEditing={isEditing} 
-                        painJournal={painJournal} 
-                        painJournalUpdate={painJournalUpdate}
-                        handleChange={handleChange}
-                    />
-                    {isEditing && 
-                        <Button 
-                            onPress={() => { 
-                                setIsEditing(false); 
-                                {changes && updatePainJournal(journalId, painJournalUpdate)};
-                            }}
-                        >
-                            Save Changes
-                        </Button>}
+                    <QuestionSection>
+                        <ReviewPainJournalEntry journal={journal} />
+                    </QuestionSection>
+                    {editingPainJournal && 
+                        <ButtonSection>
+                            <JournalButton 
+                                title={"Save Changes"}
+                                onPress={() => {updatePainJournal(journal.id); setEditingPainJournal(false);}}
+                            />
+                        </ButtonSection>
+                    }
                 </JournalContainer>
-                <ExitModal 
-                    navigation={navigation} 
-                    visible={visible} 
-                    setVisible={setVisible}
-                    changes={changes}
-                    destination={"PainJournal"}
-                />
-            </Provider>
-        </SafeArea>
+                <BottomModal ref={reviewPainJournalOptions} />
+            </SafeArea>
+        </BottomSheetModalProvider>
     );
 };

@@ -4,7 +4,7 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { MultilineTextInput } from "../../../components/text-input.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
-export const PainSetting = () => {
+export const Situation = () => {
     const { changeEntry, currentPageData, painJournal } = useContext(PainJournalContext);
     const { questions } = currentPageData;
     const painSettingQuestion = questions[0];
@@ -15,8 +15,8 @@ export const PainSetting = () => {
         <KeyboardAwareScrollView>
             <JournalQuestion question={painSettingQuestion.question} helpText={painSettingQuestion.helpText} />
             <MultilineTextInput 
-                value={painJournal.setting}
-                onChangeText={(change) => changeEntry(change, "setting")}
+                value={painJournal.situation}
+                onChangeText={(change) => changeEntry(change, "situation")}
             />
             <JournalQuestion question={painFeelingQuestion.question} helpText={painFeelingQuestion.helpText} />
             <MultilineTextInput

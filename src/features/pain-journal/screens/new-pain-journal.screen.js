@@ -8,7 +8,7 @@ import { Congratulations } from "../../../components/journals/congratulations.co
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const NewPainJournalScreen = ({ navigation }) => {
-    const { currentPage, journalComplete, previousPage, resetPainJournal, setJournalComplete } = useContext(PainJournalContext);
+    const { currentPage, journalComplete, loadPainJournals, previousPage, resetPainJournal, setJournalComplete } = useContext(PainJournalContext);
     const [visible, setVisible] = useState(false);
 
     return(
@@ -23,6 +23,7 @@ export const NewPainJournalScreen = ({ navigation }) => {
                 {journalComplete ? 
                     <Congratulations
                         journalType={"Pain"} 
+                        loadJournals={loadPainJournals}
                         navigation={navigation} 
                         setJournalComplete={setJournalComplete}
                     /> 

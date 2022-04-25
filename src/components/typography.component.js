@@ -9,9 +9,9 @@ const InterHeader = styled.Text`
     font-family: Inter_500Medium;
 `;
 
-export const SubHeader = ({ title, size }) => {
+export const SubHeader = ({ title, size, marginTop, marginBottom }) => {
     return (
-        <Header>
+        <Header style={{ marginTop: marginTop, marginBottom: marginBottom }}>
             <InterHeader style={{ fontSize: size}}>{title}</InterHeader>
         </Header>
     );

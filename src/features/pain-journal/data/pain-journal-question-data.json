@@ -28,27 +28,51 @@
             "options": [
                 {
                     "id": 1,
-                    "option": "I didn't try any coping strategies"
-                },
-                {
-                    "id": 2,
                     "option": "Distraction"
                 },
                 {
-                    "id": 3,
+                    "id": 2,
                     "option": "Mindfulness"
                 },
                 {
-                    "id": 4,
+                    "id": 3,
                     "option": "Pacing"
                 },
                 {
-                    "id": 5,
+                    "id": 4,
                     "option": "Quieting the mind"
                 },
                 {
-                    "id": 6,
+                    "id": 5,
                     "option": "Socializing"
+                },
+                {
+                    "id": 6,
+                    "option": "Belly Breathing"
+                },
+                {
+                    "id": 7,
+                    "option": "Stretching"
+                },
+                {
+                    "id": 8,
+                    "option": "Ice/Heat"
+                },
+                {
+                    "id": 9,
+                    "option": "Electrical Stimulation"
+                },
+                {
+                    "id": 10,
+                    "option": "Massage"
+                },
+                {
+                    "id": 11,
+                    "option": "Exercise"
+                },
+                {
+                    "id": 12,
+                    "option": "I didn't try any coping strategies"
                 }
             ]
         },

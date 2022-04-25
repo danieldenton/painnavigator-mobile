@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { JournalContainer, QuestionSection, ButtonSection } from "./pain-journal.styles";
-import { PainScore } from "./pain-score.component";
-import { PainSetting } from "./pain-setting.component";
+import { JournalContainer, QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
+import { Intensity } from "./intensity.component";
+import { Situation } from "./situation.component";
 import { CopingStrategies } from "./coping-strategies.component";
-import { OtherNotes } from "./other-notes.component";
-import { PainAfter } from "./pain-after.component";
+import { Notes } from "./notes.component";
+import { IntensityAfter } from "./intensity-after.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { JournalButton } from "../../../components/button.component";
@@ -12,32 +12,33 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 
 export const NewPainJournalEntry = () => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
+    const [submitDisabled, setSubmitDisabled] = useState(false);
 
-    useEffect(() => {
-        const { setting, copingStrategies } = painJournal;
-        if (currentPage === 2) {
-            return setting ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 3) {
-            return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else {
-            return setSubmitDisabled(false)
-        };
-    }, [painJournal, currentPage]);
+    // TODO
+    //useEffect(() => {
+        //const { feeling, copingStrategies } = painJournal;
+        //if (currentPage === 2) {
+            //return feeling.length ? setSubmitDisabled(false) : setSubmitDisabled(true)
+        //}   else if (currentPage === 3) {
+            //return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
+        //}   else {
+            //return setSubmitDisabled(false)
+        //};
+    //}, [painJournal, currentPage]);
 
     return(
         <>
             <JournalContainer>
                 <QuestionSection>
-                    {currentPage === 1 && <PainScore />}
-                    {currentPage === 2 && <PainSetting />}
+                    {currentPage === 1 && <Intensity />}
+                    {currentPage === 2 && <Situation />}
                     {currentPage === 3 && <CopingStrategies />}
-                    {currentPage === 4 && <OtherNotes />}
-                    {currentPage === 5 && <PainAfter />}
+                    {currentPage === 4 && <Notes />}
+                    {currentPage === 5 && <IntensityAfter />}
                 </QuestionSection>
                 <ButtonSection>
                     <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 6 ? completePainJournal : nextPage} />
-                    {currentPage > 3 && <SkipQuestion onPress={currentPage > 2 ? completePainJournal : nextPage} />}
+                    {currentPage > 2 && <SkipQuestion onPress={currentPage === 6 ? completePainJournal : nextPage} />}
                     <ProgressDots progress={currentPage} total={5}/>
                 </ButtonSection>
             </JournalContainer>        

@@ -1,28 +1,55 @@
 import React, { useContext } from "react";
-import { ScrollView } from "react-native";
-import { Question } from "./pain-journal.styles";
-import { CopingStrategyTile } from "./coping-strategy-tile.component";
+import styled from "styled-components/native";
+import { JournalQuestion } from "../../../components/journal-question.component";
+import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { ScrollView } from "react-native";
+
+const MultiSelectScroll = styled(ScrollView)`
+    flex: .65;
+`;
 
 export const CopingStrategies = () => {
-    const { currentQuestionData, newPainJournal, setNewPainJournal } = useContext(PainJournalContext);
-    const { question, options } = currentQuestionData;
+    const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);
+    const { options } = currentPageData;
+    const selectedCopingStrategies = painJournal.copingStrategies;
 
-    const copingStrategyOptions = options.map((option) => 
-        <CopingStrategyTile 
-            key={option.id}
-            option={option} 
-            newPainJournal={newPainJournal} 
-            setNewPainJournal={setNewPainJournal} 
-        />
-    );
+    const add = (optionId) => {
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: [...selectedCopingStrategies, optionId]
+        }));
+    };
+    
+    const remove = (optionId) => {
+        const newCopingStrategies = selectedCopingStrategies.filter(
+          (x) => x !== optionId
+        );
 
-    return(
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: newCopingStrategies
+        }));    
+    };
+
+    const copingStrategies = options.map((option) => {
+        return (
+            <MultiSelectCheckBox 
+                add={add}
+                key={option.id}
+                optionData={option} 
+                remove={remove}
+                selectedOptions={selectedCopingStrategies}
+            />            
+        );
+    });
+
+    return (
         <>
-            <Question question={question} />
-            <ScrollView>
-                {copingStrategyOptions}
-            </ScrollView>
+            <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText} />
+            <MultiSelectScroll>
+                {copingStrategies}
+            </MultiSelectScroll>
         </>
     );
-};
+}; 

@@ -11,13 +11,13 @@ export const PainJournalContextProvider = ({ children }) => {
     const [journalComplete, setJournalComplete] = useState(false);
     const [painJournals, setPainJournals] = useState({});
     const [painJournal, setPainJournal] = useState({
-        score: 5, 
-        setting: "", 
+        intensity: 5, 
+        situation: "", 
         feeling: "", 
         whoIWasWith: "", 
-        copingStrategies: [], 
+        copingStrategies: new Array(), 
         notes: "", 
-        painAfter: 5
+        intensityAfter: 5
     });
 
     const changeEntry = (change, state) => {
@@ -29,13 +29,13 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const completePainJournal = () => {
         const newPainJournal = {
-            pain_score: painJournal.score,
-            pain_setting: painJournal.setting, 
+            pain_score: painJournal.intensity,
+            pain_setting: painJournal.situation, 
             pain_feeling: painJournal.feeling, 
             who_with: painJournal.whoIWasWith, 
             coping_strategies: String(painJournal.copingStrategies), 
             other_notes: painJournal.notes, 
-            pain_after: painJournal.painAfter
+            pain_after: painJournal.intensityAfter
         }
         postPainJournal(newPainJournal);
         setJournalComplete(true);
@@ -56,13 +56,13 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const resetPainJournal = () => {
         setPainJournal({ 
-            score: 5, 
-            setting: "", 
+            intensity: 5, 
+            situation: "", 
             feeling: "", 
             whoIWasWith: "", 
-            copingStrategies: [], 
+            copingStrategies: new Array(), 
             notes: "", 
-            painAfter: 5
+            intensityAfter: 5
         });
         setCurrentPage(1);
         setEditingPainJournal(false);
