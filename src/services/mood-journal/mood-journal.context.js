@@ -1,6 +1,11 @@
 import React, { useState, createContext } from "react";
-import { getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
+import { 
+    destroyMoodJournal, 
+    getMoodJournals, 
+    patchMoodJournal, 
+    postMoodJournal 
+} from "./mood-journal.service";
 
 export const MoodJournalContext = createContext();
 
@@ -39,6 +44,10 @@ export const MoodJournalContextProvider = ({ children }) => {
         setJournalComplete(true);
         resetMoodJournal();
     };
+
+    const deleteMoodJournal = (journalId) => {
+        destroyMoodJournal(journalId);
+    };
     
     const loadMoodJournals = () => {
         getMoodJournals(setMoodJournals);
@@ -66,7 +75,15 @@ export const MoodJournalContextProvider = ({ children }) => {
     };
 
     const updateMoodJournal = (journalId) => {
-        patchMoodJournal(journalId, moodJournal);
+        const updatedMoodJournal = {
+            feeling: moodJournal.feeling,
+            intensity: moodJournal.intensity, 
+            situation: moodJournal.situation, 
+            who_i_was_with: moodJournal.whoIWasWith,
+            primary_thought: moodJournal.primaryThought,
+            cognitive_distortions: String(moodJournal.cognitiveDistortions)
+        };
+        patchMoodJournal(journalId, updatedMoodJournal);
     };
 
     return (
@@ -77,6 +94,7 @@ export const MoodJournalContextProvider = ({ children }) => {
                 completeMoodJournal,
                 currentPage,
                 currentPageData,
+                deleteMoodJournal,
                 journalComplete, 
                 moodJournals, 
                 moodJournal,

@@ -2,6 +2,13 @@ import axios from 'axios';
 import camelize from "camelize";
 import { baseUrl } from '../../infrastructure/config';
 
+export const destroyPainJournal = (journalId) => {
+    axios.delete(`${baseUrl}/api/v1/pain_journals/${journalId}`)
+    .then((response) => {
+        //console.log(response.data);
+    });
+};
+
 export const getPainJournals = (setPainJournals) => {
     axios.get(`${baseUrl}/api/v1/pain_journals`)
     .then( resp => {

@@ -1,6 +1,11 @@
 import React, { useState, createContext } from "react";
-import { getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
+import { 
+    destroyPainJournal, 
+    getPainJournals, 
+    patchPainJournal, 
+    postPainJournal 
+} from "./pain-journal.service";
 
 export const PainJournalContext = createContext();
 
@@ -42,6 +47,10 @@ export const PainJournalContextProvider = ({ children }) => {
         resetPainJournal();
     };
 
+    const deletePainJournal = (journalId) => {
+        destroyPainJournal(journalId);
+    };
+
     const loadPainJournals = () => {
         getPainJournals(setPainJournals);
     };
@@ -69,7 +78,16 @@ export const PainJournalContextProvider = ({ children }) => {
     };
 
     const updatePainJournal = (journalId) => {
-        patchPainJournal(journalId, painJournal);
+        const updatedPainJournal = {
+            pain_score: painJournal.intensity,
+            pain_setting: painJournal.situation, 
+            pain_feeling: painJournal.feeling, 
+            who_with: painJournal.whoIWasWith, 
+            coping_strategies: String(painJournal.copingStrategies), 
+            other_notes: painJournal.notes, 
+            pain_after: painJournal.intensityAfter
+        }
+        patchPainJournal(journalId, updatedPainJournal);
     };
 
     return (
@@ -80,6 +98,7 @@ export const PainJournalContextProvider = ({ children }) => {
                 completePainJournal,
                 currentPage,
                 currentPageData,
+                deletePainJournal,
                 journalComplete, 
                 painJournals, 
                 painJournal,

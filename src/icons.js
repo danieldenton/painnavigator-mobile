@@ -18,6 +18,62 @@ export const Back = () => {
         </Svg>
     );
 };
+ 
+export const Close = () => {
+    return (
+        <Svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M15 1L1 15" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+            <Path d="M15 15L1 0.999999" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    ); 
+}; 
+
+export const Delete = () => {
+    return (
+        <Svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M8.17212 4.58611L8.78339 1H16.1186L17.1374 4.58611" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M1 4.58594H24.3097" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+            <Path d="M3.6897 7.27539L5.43902 26.999H19.8709L21.6202 7.27539" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M8.17212 9.06836L9.06865 23.4128" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+            <Path d="M16.241 23.4121L17.1375 9.06767" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+            <Path d="M12.655 9.06836V23.4128" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
+export const Edit = () => {
+    return (
+        <Svg width="28" height="27" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 25.5664H27" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+            <Path d="M19.4594 1.14146L3.44378 15.2016L1.08892 22.4431L8.46723 21.0648L24.4826 7.00478C25.1006 3.43792 22.5596 0.95674 19.4594 1.14146Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M3.89355 14.9316L8.92538 20.6633" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M17.8132 2.71094L22.8451 8.44256" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const Happy = () => {
+    return (
+        <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="16" cy="16" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="11.3333" cy="12.666" r="2" fill="black"/>
+            <Circle cx="20.6667" cy="12.666" r="2" fill="black"/>
+            <Path d="M9.33325 20C14.1817 23.6771 18.3029 23.4319 22.6666 20" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
+export const HappySelected = () => {
+    return (
+        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="28" cy="28" r="28" fill="#45D2BC"/>
+            <Circle cx="28" cy="28" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="23.3333" cy="24.666" r="2" fill="black"/>
+            <Circle cx="32.6667" cy="24.666" r="2" fill="black"/>
+            <Path d="M21.3333 32C26.1817 35.6771 30.3029 35.4319 34.6666 32" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
 
 export const More = () => {
     return (
@@ -28,15 +84,6 @@ export const More = () => {
         </Svg>
     );
 };
- 
-export const Close = () => {
-    return (
-        <Svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <Path d="M15 1L1 15" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-            <Path d="M15 15L1 0.999999" stroke="black" strokeWidth="2" strokeLinecap="round"/>
-        </Svg>
-    ); 
-}; 
 
 export const Next = () => {
     return (
@@ -146,6 +193,29 @@ export const ProgressDotUnfilled = () => {
     return (
         <Svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="4" cy="4" r="4" fill="#CBD7EB"/>
+        </Svg>
+    );
+};
+
+export const Sad = () => {
+    return (
+        <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="16" cy="16" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="11.3333" cy="12.666" r="2" fill="black"/>
+            <Circle cx="20.6667" cy="12.666" r="2" fill="black"/>
+            <Path d="M22.6665 22.666C17.818 18.9889 13.6968 19.2341 9.33317 22.666" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
+export const SadSelected = () => {
+    return (
+        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="28" cy="28" r="28" fill="#6A7AEF"/>
+            <Circle cx="28" cy="28" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="23.3333" cy="24.666" r="2" fill="black"/>
+            <Circle cx="32.6667" cy="24.666" r="2" fill="black"/>
+            <Path d="M34.6665 34.666C29.818 30.9889 25.6968 31.2341 21.3332 34.666" stroke="black" strokeWidth="2" strokeLinecap="round"/>
         </Svg>
     );
 };

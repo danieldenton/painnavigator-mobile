@@ -2,6 +2,13 @@ import axios from 'axios';
 import camelize from "camelize";
 import { baseUrl } from '../../infrastructure/config';
 
+export const destroyMoodJournal = (journalId) => {
+    axios.delete(`${baseUrl}/api/v1/mood_journals/${journalId}`)
+    .then((response) => {
+        //console.log(response.data);
+    });
+};
+
 export const getMoodJournals = (setMoodJournals) => {
     axios.get(`${baseUrl}/api/v1/mood_journals`)
     .then( resp => {
@@ -13,13 +20,13 @@ export const getMoodJournals = (setMoodJournals) => {
 export const patchMoodJournal = (journalId, moodJournal) => {
     axios.patch(`${baseUrl}/api/v1/mood_journals/${journalId}`, { mood_journal: moodJournal })
     .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
     });
 };
 
 export const postMoodJournal = (newMoodJournal) => {
     axios.post(`${baseUrl}/api/v1/mood_journals`, { mood_journal: newMoodJournal })
     .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
     });
 };

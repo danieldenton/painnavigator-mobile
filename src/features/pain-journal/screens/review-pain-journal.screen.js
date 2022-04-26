@@ -1,16 +1,16 @@
 import React, { useContext, useCallback, useRef } from "react";
-import { BottomModal } from "../../../components/bottom-modal.component";
 import { SafeArea } from "../../../components/safe-area.component";
 import { JournalButton } from "../../../components/button.component";
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
 import { JournalContainer, ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { ReviewPainJournalEntry } from "../components/review-pain-journal-entry.component";
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { ReviewJournalModal } from "../../../components/review-journal-modal.component";
+import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 export const ReviewPainJournalScreen = ({ route, navigation }) => {
     const { journal } = route.params;
-    const { editingPainJournal, setEditingPainJournal, resetPainJournal, updatePainJournal } = useContext(PainJournalContext);
+    const { deletePainJournal, editingPainJournal, setEditingPainJournal, resetPainJournal, updatePainJournal } = useContext(PainJournalContext);
 
     const reviewPainJournalOptions = useRef(null);
 
@@ -41,7 +41,18 @@ export const ReviewPainJournalScreen = ({ route, navigation }) => {
                         </ButtonSection>
                     }
                 </JournalContainer>
-                <BottomModal ref={reviewPainJournalOptions} />
+                <BottomSheetModal
+                    index={0}
+                    ref={reviewPainJournalOptions}
+                    snapPoints={['35%']}
+                >
+                    <ReviewJournalModal 
+                        deleteJournal={deletePainJournal} 
+                        editJournal={setEditingPainJournal} 
+                        journalId={journal.id}
+                        navigation={navigation}
+                    />
+                </BottomSheetModal>
             </SafeArea>
         </BottomSheetModalProvider>
     );
