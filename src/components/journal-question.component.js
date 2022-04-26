@@ -17,6 +17,7 @@ const HelpText = styled.Text`
     font-style: italic;
     font-size: 14px;
     margin-top: 9px;
+    width: 90%;
 `;
 
 export const JournalQuestion = ({ question, helpText }) => {

@@ -4,7 +4,7 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { SafeArea } from "../../../components/safe-area.component";
-import { SubHeader } from "../../../components/typography.component"
+import { SubHeader } from "../../../components/typography.component";
 
 export const MoodJournalHomeScreen = ({ navigation }) => {
     const { moodJournals } = useContext(MoodJournalContext);

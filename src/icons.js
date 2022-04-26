@@ -52,7 +52,7 @@ export const Edit = () => {
     );
 };
 
-export const Happy = () => {
+export const HappyFace = () => {
     return (
         <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="16" cy="16" r="15" fill="white" stroke="black" strokeWidth="2"/>
@@ -63,7 +63,7 @@ export const Happy = () => {
     );
 };
 
-export const HappySelected = () => {
+export const HappyFaceSelected = () => {
     return (
         <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#45D2BC"/>
@@ -158,6 +158,29 @@ export const MovementModuleIcon = () => {
     );
 };
 
+export const NeutralFace = () => {
+    return (
+        <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="16" cy="16" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="11.3333" cy="12.666" r="2" fill="black"/>
+            <Circle cx="20.6667" cy="12.666" r="2" fill="black"/>
+            <Path d="M9 21H23" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
+export const NeutralFaceSelected = () => {
+    return (
+        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="28" cy="28" r="28" fill="#FFD60A"/>
+            <Circle cx="28" cy="28" r="15" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="23.3333" cy="24.666" r="2" fill="black"/>
+            <Circle cx="32.6667" cy="24.666" r="2" fill="black"/>
+            <Path d="M21 33H35" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
 export const JournalEntryIcon = () => {
     return (
         <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +220,7 @@ export const ProgressDotUnfilled = () => {
     );
 };
 
-export const Sad = () => {
+export const SadFace = () => {
     return (
         <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="16" cy="16" r="15" fill="white" stroke="black" strokeWidth="2"/>
@@ -208,7 +231,7 @@ export const Sad = () => {
     );
 };
 
-export const SadSelected = () => {
+export const SadFaceSelected = () => {
     return (
         <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#6A7AEF"/>

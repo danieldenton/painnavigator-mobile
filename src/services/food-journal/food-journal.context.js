@@ -8,8 +8,11 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [journalComplete, setJournalComplete] = useState(false);
     const [hasJourneledToday, setHasJournaledToday] = useState(false);
     const [meal, setMeal] = useState("");
-    const [newFoodJournalEntry, setNewFoodJournalEntry] = useState({ food: "", feelingBefore: "", feelingAfter: "" });
-    const journalEntry = {[meal.toLowerCase()]: JSON.stringify(newFoodJournalEntry)};
+    const [foodJournal, setFoodJournal] = useState({ 
+        food: "", 
+        feelingBefore: "", 
+        feelingAfter: "" 
+    });
 
     const addFoodJournalEntry = (journalId) => {
         patchFoodJournal(journalId, journalEntry);
@@ -18,8 +21,18 @@ export const FoodJournalContextProvider = ({ children }) => {
         loadFoodJournals();
     };
 
+    const changeEntry = (change, state) => {
+        setFoodJournal(journal => ({
+            ...journal,
+            [state]: change
+        }));
+    };
+
     const completeFoodJournal = () => {
-        postFoodJournal(journalEntry);
+        const mealEntry = {
+            [meal.toLowerCase()]: JSON.stringify(foodJournal)
+        };
+        postFoodJournal(mealEntry);
         setJournalComplete(true);
         // TODO: In the future, setHasJournalToday will be moved to the food journal fetch request 
         // which will contain a boolean value for journaledToday from the backend.
@@ -28,38 +41,35 @@ export const FoodJournalContextProvider = ({ children }) => {
         loadFoodJournals();
     };
 
-    const handleChange = (change, name) => {
-        setNewFoodJournalEntry(journal => ({
-            ...journal,
-            [name]: change
-        }));
-    };
-    
     const loadFoodJournals = () => {
         getFoodJournals(setFoodJournals);
     };
 
     const resetFoodJournal = () => {
         setMeal("");
-        setNewFoodJournalEntry({ food: "", feelingBefore: "", feelingAfter: "" });
+        setFoodJournal({ 
+            food: "", 
+            feelingBefore: "", 
+            feelingAfter: "" 
+        });
     };
     
     return (
         <FoodJournalContext.Provider
             value={{
                 addFoodJournalEntry,
+                changeEntry,
                 completeFoodJournal,
+                foodJournal,
                 foodJournals,
-                handleChange,
                 hasJourneledToday,
                 journalComplete,
                 loadFoodJournals,
                 meal,
-                newFoodJournalEntry,
                 resetFoodJournal,
+                setFoodJournal,
                 setJournalComplete,
                 setMeal,
-                setNewFoodJournalEntry
             }}
         >
             {children}

@@ -1,30 +1,32 @@
 import React from "react";
-import { QuestionSection, Question, Input } from "../../../components/journals/journal.styles";
+import { JournalQuestion } from "../../../components/journal-question.component";
+import { MultilineTextInput } from "../../../components/text-input.component";
 import { FeelingFaces } from "./feeling-faces.component";
 import { SmallSpacer } from "../../../components/spacer.component";
+import { ScrollView } from "react-native";
 
-export const FoodJournalQuestionSection = ({ meal, handleChange, newFoodJournalEntry }) => {
+export const FoodJournalQuestionSection = ({ meal, changeEntry, foodJournal }) => {
     return (
-        <QuestionSection>
-            <Question 
+        <ScrollView style={{ marginBottom: 120 }}>
+            <JournalQuestion 
                 question={`What did you have for ${meal}?`} 
                 helpText={"For example: Oatmeal with raisins and walnuts and a cup of coffee with cream"}
             />
-            <Input 
-                value={newFoodJournalEntry.food} 
-                onChangeText={(change) => handleChange(change, "food")}
+            <MultilineTextInput 
+                value={foodJournal.food} 
+                onChangeText={(change) => changeEntry(change, "food")}
             />
-            <Question 
+            <JournalQuestion 
                 question={"How did you feel before you ate?"} 
                 helpText={"This could include your mood, how your body felt, or your level of pain"}
             />
-            <FeelingFaces name={"feelingBefore"} feeling={newFoodJournalEntry.feelingBefore} />
+            <FeelingFaces name={"feelingBefore"} feeling={foodJournal.feelingBefore} />
             <SmallSpacer />
-            <Question 
+            <JournalQuestion 
                 question={"How did you feel after you ate?"} 
                 helpText={"This could include your mood, how your body felt, or your level of pain"}
             />
-            <FeelingFaces name={"feelingAfter"} feeling={newFoodJournalEntry.feelingAfter} />
-        </QuestionSection>
+            <FeelingFaces name={"feelingAfter"} feeling={foodJournal.feelingAfter} />
+        </ScrollView>
     );
 };

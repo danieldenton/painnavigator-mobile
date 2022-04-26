@@ -1,27 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { JournalContainer, ButtonSection } from "../../../components/journals/journal.styles";
-import { Button } from "../../../components/button.component";
+import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 export const FoodJournalEntry = ({ journalId }) => {
-    const { addFoodJournalEntry, completeFoodJournal, meal, newFoodJournalEntry, handleChange } = useContext(FoodJournalContext);
-    const canSubmit = !newFoodJournalEntry.food || !newFoodJournalEntry.feelingBefore || !newFoodJournalEntry.feelingAfter
+    const { addFoodJournalEntry, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
+    const { food, feelingBefore, feelingAfter } = foodJournal; 
+    const [submitDisabled, setSubmitDisabled] = useState(true);
+
+    useEffect(() => {
+        if (feelingBefore.length !== 0 & feelingAfter.length !== 0) {
+            setSubmitDisabled(false);
+        }   else {
+            setSubmitDisabled(true);
+        };
+    }, [foodJournal]);
 
     return(
         <JournalContainer>
             <FoodJournalQuestionSection 
                 meal={meal}
-                handleChange={handleChange}
-                newFoodJournalEntry={newFoodJournalEntry}
+                changeEntry={changeEntry}
+                foodJournal={foodJournal}
             />
             <ButtonSection>
-                <Button 
+                <JournalButton 
+                    title={"Log Meal"}
                     onPress={() => { journalId ? addFoodJournalEntry(journalId) : completeFoodJournal() }} 
-                    disabled={canSubmit}
-                >
-                    Log Meal
-                </Button>
+                    disabled={submitDisabled}
+                />
             </ButtonSection>
         </JournalContainer>        
     );
