@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { space } from "../../infrastructure/theme/spacing";
-import { Back, Close, More } from "../../icons";
+import { Back, Close, MenuIcon, MessageIcon, More } from "../../icons";
 
 const NavContainer = styled.View`
     padding-top: ${space[3]};
@@ -61,6 +61,28 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
                     onPress={showModal} 
                 >
                     <Close />
+                </RightPressableArea>
+            </RightSection>
+        </NavContainer>
+    );
+};
+
+export const TodayNavBar = () => {
+
+    return(
+        <NavContainer>
+            <LeftSection 
+                accessibilityLabel={"menu"} 
+            >
+                <MenuIcon />
+            </LeftSection>
+            <HeaderSection>
+            </HeaderSection>
+            <RightSection>
+                <RightPressableArea
+                    accessibilityLabel={"messages"}
+                >
+                    <MessageIcon />
                 </RightPressableArea>
             </RightSection>
         </NavContainer>

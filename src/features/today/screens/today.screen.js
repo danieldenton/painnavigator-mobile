@@ -8,6 +8,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { SubHeader } from "../../../components/typography.component"; 
+import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 
 export const TodayScreen = ({ navigation }) => {
     const { name } = useContext(ProfileContext).userInfo;
@@ -16,6 +17,7 @@ export const TodayScreen = ({ navigation }) => {
 
     return (
         <SafeArea>
+            <TodayNavBar />
             <Greeting timeOfDay={"Morning"} name={name} />
             <SubHeader title={"TODAY'S EDUCATION"} size={14} />
             <EducationUnitCard 
