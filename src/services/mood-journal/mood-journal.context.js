@@ -47,6 +47,8 @@ export const MoodJournalContextProvider = ({ children }) => {
 
     const deleteMoodJournal = (journalId) => {
         destroyMoodJournal(journalId);
+        removeMoodJournal(journalId);
+        resetMoodJournal();
     };
     
     const loadMoodJournals = () => {
@@ -84,6 +86,22 @@ export const MoodJournalContextProvider = ({ children }) => {
             cognitive_distortions: String(moodJournal.cognitiveDistortions)
         };
         patchMoodJournal(journalId, updatedMoodJournal);
+        replaceMoodJournal(journalId);
+    };
+
+    const removeMoodJournal = (journalId) => {
+        moodJournals.filter(
+            (journal) => journal.id !== journalId
+        );
+
+    };
+
+    const replaceMoodJournal = (journalId) => {
+        const copyMoodJournals = [...moodJournals];
+        //removeMoodJournal(journalId);
+        //moodJournals.unshift(moodJournal);
+        const updatedMoodJournals = copyMoodJournals.map(journal => journal.id !== journalId ? journal : moodJournal);
+        setMoodJournals(updatedMoodJournals);
     };
 
     return (

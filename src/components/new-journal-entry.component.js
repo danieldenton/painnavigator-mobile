@@ -7,7 +7,7 @@ import { TouchableOpacity } from "react-native";
 
 const NewJournalEntryCard = styled(Card)`
     height: 88px;
-    margin: ${(props) => props.theme.space[3]};
+    margin-left: ${(props) => props.theme.space[3]};
     border-radius: 15px;
 `;
 

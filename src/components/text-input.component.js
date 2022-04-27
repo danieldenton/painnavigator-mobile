@@ -13,6 +13,22 @@ export const TextInput = styled(Input).attrs({
     font-size: 18px;
 `;
 
+export const TextInputMedium = styled(Input).attrs({
+    mode: "outlined",
+    activeOutlineColor: colors.textInput.active,
+    outlineColor: colors.textInput.inactive,
+    blurOnSubmit: true,
+    multiline: true,
+    numberOfLines: 4,
+    textAlignVertical: "top",
+})`
+    margin-bottom: ${space[3]};
+    font-family: Inter_500Medium;
+    font-size: 18px;
+    text-align-vertical: top;
+    height: 119;
+`;
+
 export const MultilineTextInput = () => {
     return (
         <TextInput 

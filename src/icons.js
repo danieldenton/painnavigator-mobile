@@ -220,6 +220,15 @@ export const ProgressDotUnfilled = () => {
     );
 };
 
+export const RightArrow = () => {
+    return (
+        <Svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M12 14L19 7.68571L15.5 4.34286L12 1" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M18.5 7.5H1" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
 export const SadFace = () => {
     return (
         <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

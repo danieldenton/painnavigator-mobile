@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { Card, Text } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { FeelingsDiagram } from "./feelings-diagram.component";
 import { EditButton } from "./edit-button.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 const EntryCard = styled(Card)`
     flex: 1;
-    margin: ${(props) => props.theme.space[3]};
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
+    margin-bottom: 21px;
     padding: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     min-height: 169px;
@@ -15,32 +17,53 @@ const EntryCard = styled(Card)`
 
 const EntryInfoSection = styled.View`
     flex: 1;
+    margin-left: 5px;
 `;
 
 const BottomSection = styled.View`
     flex-direction: row;
-    align-items: baseline;
-    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+`;
+
+const ButtonSection = styled.View`
+    position: absolute;
+    right: 7px;
+    bottom: 5px;
+`;
+
+const Meal = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
+    margin-top: 16px;
+`;
+
+const Food = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+    margin-top: 5px;
 `;
 
 export const CompletedEntryCard = ({ meal, navigation }) => {
     const { food, feelingBefore, feelingAfter } = JSON.parse(meal.entry);
-    const { setMeal, setNewFoodJournalEntry } = useContext(FoodJournalContext);
+    const { setMeal, setFoodJournal } = useContext(FoodJournalContext);
 
     return (
         <EntryCard>
             <EntryInfoSection>
-                <Text>{meal.meal}</Text> 
-                <Text>{food}</Text> 
+                <Meal>{meal.meal}</Meal> 
+                <Food>{food}</Food> 
             </EntryInfoSection>
             <BottomSection>
                 <FeelingsDiagram feelingBefore={feelingBefore} feelingAfter={feelingAfter}/>
-                <EditButton 
-                    meal={meal} 
-                    navigation={navigation} 
-                    setMeal={setMeal} 
-                    setNewFoodJournalEntry={setNewFoodJournalEntry}
-                />
+                <ButtonSection>
+                    <EditButton 
+                        meal={meal} 
+                        navigation={navigation} 
+                        setMeal={setMeal} 
+                        setFoodJournal={setFoodJournal}
+                    />
+                </ButtonSection>
             </BottomSection>
         </EntryCard>
     );

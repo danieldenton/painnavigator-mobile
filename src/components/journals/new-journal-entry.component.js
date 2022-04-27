@@ -1,30 +1,50 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
 import { Card } from "react-native-paper";
-import { AntDesign } from '@expo/vector-icons';
 import { colors } from "../../infrastructure/theme/colors";
+import { Add } from "../../icons";
+
+const CardContent = styled(Card.Content)`
+    flex-direction: row;
+    padding: 0px;
+    align-items: center;
+`;
+
+const CardTextSection = styled.View`
+    flex: .8;
+`;
+
+const CardIconSection = styled.View`
+    flex: .2;
+    align-items: center;
+    justify-content: center;
+`;
 
 const NewJournalEntryCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    margin-left: ${(props) => props.theme.space[3]};
+    margin-right: ${(props) => props.theme.space[3]};
+    margin-bottom: 21px;
+    padding: 24px 21px;
     border-radius: 15px;
 `;
 
-const CardContentWrapper = styled(Card.Content)`
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+const Title = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
 `;
 
 export const NewJournalEntry = ({ title }) => {
 
     return ( 
         <NewJournalEntryCard>
-            <CardContentWrapper>
-                <Text>{title}</Text>
-                <AntDesign name="pluscircleo" size={36} color={colors.brand.primary} />
-            </CardContentWrapper>
+            <CardContent>
+                <CardTextSection>
+                    <Title>{title}</Title>
+                </CardTextSection>
+                <CardIconSection>
+                    <Add />
+                </CardIconSection>
+            </CardContent>
         </NewJournalEntryCard>
     ); 
 };

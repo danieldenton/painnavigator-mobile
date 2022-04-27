@@ -48,6 +48,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                 >
                     <ReviewJournalModal 
                         deleteJournal={deleteMoodJournal} 
+                        destination={"MoodJournalHome"}
                         editJournal={setEditingMoodJournal} 
                         journalId={journal.id}
                         navigation={navigation}

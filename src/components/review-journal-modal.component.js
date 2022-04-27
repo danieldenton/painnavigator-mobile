@@ -22,7 +22,7 @@ const OptionText = styled.Text`
     margin-left: ${space[4]};
 `;
 
-export const ReviewJournalModal = ({ deleteJournal, editJournal, journalId, navigation }) => {
+export const ReviewJournalModal = ({ deleteJournal, destination, editJournal, journalId, navigation }) => {
     return (
         <>
             <OptionButton
@@ -34,7 +34,7 @@ export const ReviewJournalModal = ({ deleteJournal, editJournal, journalId, navi
                 <OptionText>Edit</OptionText>
             </OptionButton>
             <OptionButton 
-                onPress={() => {deleteJournal(journalId); navigation.navigate("Today")}}
+                onPress={() => {deleteJournal(journalId); navigation.navigate(destination)}}
                 style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: .5 }}
             >
                 <OptionIconSection>

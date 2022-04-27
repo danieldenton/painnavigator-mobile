@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
+import { Pressable } from "react-native";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { 
     HappyFace, 
@@ -18,7 +18,7 @@ const FeelingFacesRow = styled.View`
     margin-top: 14px;
 `;
 
-const FeelingFaceWrapper = styled(TouchableOpacity)`
+const FeelingFaceWrapper = styled(Pressable)`
     flex: 1;
     align-items: center;
     justify-content: center;
@@ -33,13 +33,19 @@ export const FeelingFaces = ({ feeling, name }) => {
 
     return (
         <FeelingFacesRow>
-            <FeelingFaceWrapper onPress={() => changeEntry("sad", name)}>
+            <FeelingFaceWrapper 
+                onPress={() => { feeling === "sad" ? changeEntry("", name) : changeEntry("sad", name) }}
+            >
                 {feeling === "sad" ? <SadFaceSelected /> : <SadFace />}
             </FeelingFaceWrapper>
-            <FeelingFaceWrapper onPress={() => changeEntry("neutral", name)}>
+            <FeelingFaceWrapper 
+                onPress={() => { feeling === "neutral" ? changeEntry("", name) : changeEntry("neutral", name) }}
+            >
                 {feeling === "neutral" ? <NeutralFaceSelected /> : <NeutralFace />}
             </FeelingFaceWrapper>
-            <FeelingFaceWrapper onPress={() => changeEntry("happy", name)}>
+            <FeelingFaceWrapper 
+                onPress={() => { feeling === "happy" ? changeEntry("", name) : changeEntry("happy", name) }}
+            >
                 {feeling === "happy" ? <HappyFaceSelected /> : <HappyFace />}
             </FeelingFaceWrapper>
         </FeelingFacesRow>

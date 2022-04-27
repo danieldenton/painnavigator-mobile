@@ -10,6 +10,7 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
 
     useEffect(() => {
         setMoodJournal(journal);
+        console.log("color")
     }, [journal])
 
     const dateEntry = { question: "DATE", response: date };
