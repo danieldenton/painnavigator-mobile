@@ -15,6 +15,7 @@ export const JournalsNavigator = () => {
             <JournalsStack.Screen 
                 name="Journals" 
                 component={JournalScreen}
+                options={{ headerShown: false }}
             />
             <JournalsStack.Screen
                 name="PainJournal"

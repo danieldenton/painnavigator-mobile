@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { space } from "../../infrastructure/theme/spacing";
 import { Back, Close, More } from "../../icons";
 
-const HeaderContainer = styled.View`
+const NavContainer = styled.View`
     padding-top: ${space[3]};
     padding-bottom: ${space[3]};
     margin-left: ${space[3]};
@@ -43,7 +43,7 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     const showModal = () => setVisible(true);
 
     return(
-        <HeaderContainer>
+        <NavContainer>
             <LeftSection 
                 accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
                 onPress={currentPage > 1 ? previousPage : showModal} 
@@ -63,14 +63,14 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
                     <Close />
                 </RightPressableArea>
             </RightSection>
-        </HeaderContainer>
+        </NavContainer>
     );
 };
 
 
 export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, showBottomMenu, resetJournal }) => {
     return(
-        <HeaderContainer>
+        <NavContainer>
             <LeftSection 
                 accessibilityLabel={"exit-journal"}
                 onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} 
@@ -90,7 +90,26 @@ export const ReviewJournalNavigationBar = ({ destination, navigation, headerName
                     <More />    
                 </RightPressableArea>
             </RightSection>
-        </HeaderContainer>
+        </NavContainer>
     );
 };
 
+export const NavigationBarLeft = ({ destination, navigation, screen }) => {
+    return (
+        <NavContainer>
+            <LeftSection 
+                accessibilityLabel={`go-to-${destination}`} 
+                onPress={() => navigation.navigate(destination)} 
+            >
+                <Back />
+            </LeftSection>
+            <HeaderSection>
+                <HeaderName>
+                    {screen.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
+            <RightSection>
+            </RightSection>
+        </NavContainer>
+    );
+};

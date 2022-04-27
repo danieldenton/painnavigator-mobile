@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { MultilineTextInput } from "../../../components/text-input.component";
+import { TextInputMedium } from "../../../components/text-input.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const Notes = () => {
@@ -10,7 +10,7 @@ export const Notes = () => {
     return(
         <>
             <JournalQuestion question={question} />
-            <MultilineTextInput
+            <TextInputMedium
                 value={painJournal.notes}
                 onChangeText={(change) => changeEntry(change, "notes")}
             />

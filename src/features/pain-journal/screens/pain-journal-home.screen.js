@@ -5,12 +5,14 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { JournalTile } from "../../../components/journal-tile.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { SubHeader } from "../../../components/typography.component"
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
 
     return(
         <SafeArea>
+            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Pain Journal"} />
             <DailyActivitiesTile title={"Add New Entry"} destination={"NewPainJournal"} navigation={navigation} />
             <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />
             <FlatList 

@@ -15,9 +15,10 @@ export const FoodJournalEntryScreen = ({ navigation, route }) => {
     return(
         <SafeArea>
             <Provider>
-                <NavigationBar headerName={meal.toUpperCase()} setVisible={setExitModalVisible} />
+                <NavigationBar headerName={journalComplete ? "Food Journal" : String(meal)} setVisible={setExitModalVisible} />
                 {journalComplete ? (
                     <Congratulations 
+                        journalType={"Food"} 
                         navigation={navigation} 
                         loadJournals={loadFoodJournals}
                         setJournalComplete={setJournalComplete}

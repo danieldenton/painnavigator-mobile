@@ -14,17 +14,16 @@ export const NewPainJournalEntry = () => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
 
-    // TODO
-    //useEffect(() => {
-        //const { feeling, copingStrategies } = painJournal;
-        //if (currentPage === 2) {
-            //return feeling.length ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        //}   else if (currentPage === 3) {
-            //return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        //}   else {
-            //return setSubmitDisabled(false)
-        //};
-    //}, [painJournal, currentPage]);
+    useEffect(() => {
+        const { situation, copingStrategies } = painJournal;
+        if (currentPage === 2) {
+            return situation.length ? setSubmitDisabled(false) : setSubmitDisabled(true)
+        }   else if (currentPage === 3) {
+            return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
+        }   else {
+            return setSubmitDisabled(false)
+        };
+    }, [painJournal, currentPage]);
 
     return(
         <>
@@ -37,8 +36,8 @@ export const NewPainJournalEntry = () => {
                     {currentPage === 5 && <IntensityAfter />}
                 </QuestionSection>
                 <ButtonSection>
-                    <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 6 ? completePainJournal : nextPage} />
-                    {currentPage > 2 && <SkipQuestion onPress={currentPage === 6 ? completePainJournal : nextPage} />}
+                    <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 5 ? completePainJournal : nextPage} />
+                    {currentPage > 2 && <SkipQuestion onPress={currentPage === 5 ? completePainJournal : nextPage} />}
                     <ProgressDots progress={currentPage} total={5}/>
                 </ButtonSection>
             </JournalContainer>        

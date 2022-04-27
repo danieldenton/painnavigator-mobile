@@ -5,12 +5,14 @@ import { NewJournalEntry } from "../../../components/journals/new-journal-entry.
 import { JournalTile } from "../../../components/journal-tile.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { SubHeader } from "../../../components/typography.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const FoodJournalHomeScreen = ({ navigation }) => {
     const { foodJournals, hasJourneledToday } = useContext(FoodJournalContext);
 
     return(
         <SafeArea>
+            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Food Journal"} />
             <TouchableOpacity 
                 onPress={() => navigation.navigate("ReviewFoodJournal", 
                     { 

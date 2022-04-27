@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { MultilineTextInput } from "../../../components/text-input.component";
+import { TextInputMedium } from "../../../components/text-input.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const Situation = () => {
@@ -12,19 +12,19 @@ export const Situation = () => {
     const whoWithQuestion = questions[2];
 
     return(
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
             <JournalQuestion question={painSettingQuestion.question} helpText={painSettingQuestion.helpText} />
-            <MultilineTextInput 
+            <TextInputMedium 
                 value={painJournal.situation}
                 onChangeText={(change) => changeEntry(change, "situation")}
             />
             <JournalQuestion question={painFeelingQuestion.question} helpText={painFeelingQuestion.helpText} />
-            <MultilineTextInput
+            <TextInputMedium
                 value={painJournal.feeling}
                 onChangeText={(change) => changeEntry(change, "feeling")}
             />
             <JournalQuestion question={whoWithQuestion.question} helpText={whoWithQuestion.helpText} />
-            <MultilineTextInput 
+            <TextInputMedium 
                 value={painJournal.whoIWasWith}
                 onChangeText={(change) => changeEntry(change, "whoIWasWith")}
             />

@@ -26,17 +26,21 @@ export const TextInputMedium = styled(Input).attrs({
     font-family: Inter_500Medium;
     font-size: 18px;
     text-align-vertical: top;
-    height: 119;
+    height: 119px;
 `;
 
-export const MultilineTextInput = () => {
-    return (
-        <TextInput 
-            blurOnSubmit
-            multiline 
-            numberOfLines={4}
-            textAlignVertical={"top"}
-            style={{textAlignVertical: "top", height: 119}}
-        />
-    );
-}; 
+export const TextInputLarge = styled(Input).attrs({
+    mode: "outlined",
+    activeOutlineColor: colors.textInput.active,
+    outlineColor: colors.textInput.inactive,
+    blurOnSubmit: true,
+    multiline: true,
+    numberOfLines: 6,
+    textAlignVertical: "top",
+})`
+    margin-bottom: ${space[3]};
+    font-family: Inter_500Medium;
+    font-size: 18px;
+    text-align-vertical: top;
+    height: 186px;
+`;

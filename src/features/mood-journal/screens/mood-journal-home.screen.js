@@ -6,6 +6,7 @@ import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.
 import { SafeArea } from "../../../components/safe-area.component";
 import { SubHeader } from "../../../components/typography.component";
 import { useIsFocused } from '@react-navigation/native';
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const MoodJournalHomeScreen = ({ navigation }) => {
     const { moodJournal, moodJournals } = useContext(MoodJournalContext);
@@ -25,6 +26,7 @@ export const MoodJournalHomeScreen = ({ navigation }) => {
 
     return(
         <SafeArea>
+            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Mood Journal"} />
             <DailyActivitiesTile title={"Add New Entry"} destination={"NewMoodJournal"} navigation={navigation} />
             <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />
             <FlatList 

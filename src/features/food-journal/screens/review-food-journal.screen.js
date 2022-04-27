@@ -3,6 +3,7 @@ import { SafeArea } from "../../../components/safe-area.component";
 import { ScrollView } from "react-native";
 import { CompletedEntryCard } from "../components/completed-entry-card.component";
 import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const ReviewFoodJournalScreen = ({ route, navigation }) => {
     const { journal } = route.params;
@@ -24,6 +25,7 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
 
     return (        
         <SafeArea>
+            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Food Journal"} />
             <ScrollView>
                 {foodJournalEntryOptions}  
             </ScrollView>

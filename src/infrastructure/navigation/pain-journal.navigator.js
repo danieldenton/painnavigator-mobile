@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import { PainJournalHomeScreen } from "../../features/pain-journal/screens/pain-journal-home.screen";
 import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pain-journal.screen";
 import { ReviewPainJournalScreen } from "../../features/pain-journal/screens/review-pain-journal.screen";
@@ -14,6 +13,7 @@ export const PainJournalNavigator = () => {
             <PainJournalStack.Screen 
                 name="PainJournalHome" 
                 component={PainJournalHomeScreen} 
+                options={{ headerShown: false }}
             />
             <PainJournalStack.Screen 
                 name="NewPainJournal" 

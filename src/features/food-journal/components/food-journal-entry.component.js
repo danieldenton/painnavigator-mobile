@@ -6,11 +6,10 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 
 export const FoodJournalEntry = ({ journalId }) => {
     const { addFoodJournalEntry, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
-    const { food } = foodJournal; 
     const [submitDisabled, setSubmitDisabled] = useState(true);
 
     useEffect(() => {
-        if (food.length !== 0) {
+        if (foodJournal.food.length !== 0) {
             setSubmitDisabled(false);
         }   else {
             setSubmitDisabled(true);

@@ -18,9 +18,6 @@ export const JournalScrollContainer = styled.ScrollView`
 // TODO: Change to EntrySection
 export const QuestionSection = styled.View`
     flex: 1;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
 `;
 
 export const ButtonSection = styled.View`
