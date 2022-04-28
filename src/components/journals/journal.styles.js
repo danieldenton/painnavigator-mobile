@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
-import { Button } from "../button.component";
 import { colors } from "../../infrastructure/theme/colors";
 import { space } from "../../infrastructure/theme/spacing";
 
