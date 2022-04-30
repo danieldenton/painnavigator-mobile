@@ -1,11 +1,6 @@
 import React, { useState, createContext } from "react";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
-import { 
-    destroyMoodJournal, 
-    getMoodJournals, 
-    patchMoodJournal, 
-    postMoodJournal 
-} from "./mood-journal.service";
+import { destroyMoodJournal, getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
 
 export const MoodJournalContext = createContext();
 

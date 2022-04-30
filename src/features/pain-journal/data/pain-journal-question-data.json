@@ -24,7 +24,8 @@
         },
         {
             "page": 3,
-            "question": "I tried the following coping strategies:",
+            "question": "Did you try any coping strategies?",
+            "helpText": "Tap the circle to select",
             "options": [
                 {
                     "id": 1,

@@ -47,7 +47,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
     const reviewMoodJournalOptions = useRef(null);
 
     const showModal = useCallback(() => {
-    reviewMoodJournalOptions.current?.present();
+        reviewMoodJournalOptions.current?.present();
     }, []);
 
     return (

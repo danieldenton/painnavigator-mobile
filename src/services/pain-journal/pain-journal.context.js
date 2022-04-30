@@ -1,11 +1,6 @@
 import React, { useState, createContext } from "react";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
-import { 
-    destroyPainJournal, 
-    getPainJournals, 
-    patchPainJournal, 
-    postPainJournal 
-} from "./pain-journal.service";
+import { destroyPainJournal, getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
 
 export const PainJournalContext = createContext();
 

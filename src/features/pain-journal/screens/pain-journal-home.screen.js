@@ -16,7 +16,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
             <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Pain Journal"} />
             <PainGraph />
             <DailyActivitiesTile title={"Add New Entry"} destination={"NewPainJournal"} navigation={navigation} />
-            <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />
+            <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />
             <FlatList 
                 data={painJournals}
                 renderItem={({ item }) => {

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { Selected } from "../icons";
 
-const CheckBoxPressableArea = styled.TouchableOpacity`
+const CheckBoxPressableArea = styled.Pressable`
     align-items: center;
     flex-direction: row;
     margin-bottom:  22px;
