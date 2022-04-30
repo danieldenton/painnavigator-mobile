@@ -32,13 +32,15 @@ export const MoodJournalContextProvider = ({ children }) => {
     };
 
     const completeMoodJournal = () => {
+        const cognitiveDistortions = findCognitiveDistortions();
+        
         const newMoodJournal = {
             feeling: moodJournal.feeling,
             intensity: moodJournal.intensity, 
             situation: moodJournal.situation, 
             who_i_was_with: moodJournal.whoIWasWith,
             primary_thought: moodJournal.primaryThought,
-            cognitive_distortions: String(moodJournal.cognitiveDistortions)
+            cognitive_distortions: cognitiveDistortions
         };
         postMoodJournal(newMoodJournal);
         setJournalComplete(true);
@@ -49,6 +51,14 @@ export const MoodJournalContextProvider = ({ children }) => {
         destroyMoodJournal(journalId);
         removeMoodJournal(journalId);
         resetMoodJournal();
+    };
+
+    const findCognitiveDistortions = () => {
+        const selectedCognitiveDistortions = moodJournal.cognitiveDistortions;
+        const options = moodJournalQuestions[4].options;
+        const text = options.filter(option => selectedCognitiveDistortions.includes(option.id));
+        const cognitiveDistortions = text.map((option) => option.option);
+        return String(cognitiveDistortions).replace(/,/g, ', ');
     };
     
     const loadMoodJournals = () => {
@@ -93,7 +103,6 @@ export const MoodJournalContextProvider = ({ children }) => {
         moodJournals.filter(
             (journal) => journal.id !== journalId
         );
-
     };
 
     const replaceMoodJournal = (journalId) => {

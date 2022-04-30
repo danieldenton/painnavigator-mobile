@@ -33,12 +33,14 @@ export const PainJournalContextProvider = ({ children }) => {
     };
 
     const completePainJournal = () => {
+        const copingStrategies = findCopingStrategies();
+
         const newPainJournal = {
             pain_score: painJournal.intensity,
             pain_setting: painJournal.situation, 
             pain_feeling: painJournal.feeling, 
             who_with: painJournal.whoIWasWith, 
-            coping_strategies: String(painJournal.copingStrategies), 
+            coping_strategies: copingStrategies, 
             other_notes: painJournal.notes, 
             pain_after: painJournal.intensityAfter
         }
@@ -49,6 +51,14 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const deletePainJournal = (journalId) => {
         destroyPainJournal(journalId);
+    };
+
+    const findCopingStrategies = () => {
+        const selectedCopingStrategies = painJournal.copingStrategies;
+        const options = painJournalQuestions[2].options;
+        const text = options.filter(option => selectedCopingStrategies.includes(option.id));
+        const copingStrategies = text.map((option) => option.option);
+        return String(copingStrategies).replace(/,/g, ', ');
     };
 
     const loadPainJournals = () => {

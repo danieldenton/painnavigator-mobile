@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
@@ -43,15 +43,6 @@ export const CognitiveDistortions = () => {
             />            
         );
     });
-
-    const findDistortions = () => {
-        return options.filter(option => selectedCognitiveDistortions.includes(option.id));
-    };
-
-    useEffect(() => {
-        console.log(findDistortions());
-    }, [selectedCognitiveDistortions])
-   
 
     return (
         <>

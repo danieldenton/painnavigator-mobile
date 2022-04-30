@@ -9,7 +9,7 @@ const EntryCard = styled(Card)`
     flex: 1;
     margin-left: ${(props) => props.theme.space[3]};
     margin-right: ${(props) => props.theme.space[3]};
-    margin-bottom: 21px;
+    margin-top: ${(props) => props.theme.space[3]};
     padding: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     min-height: 169px;

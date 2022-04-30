@@ -15,7 +15,10 @@ export const FoodJournalContextProvider = ({ children }) => {
     });
 
     const addFoodJournalEntry = (journalId) => {
-        patchFoodJournal(journalId, journalEntry);
+        const mealEntry = {
+            [meal.toLowerCase()]: JSON.stringify(foodJournal)
+        };
+        patchFoodJournal(journalId, mealEntry);
         setJournalComplete(true);
         resetFoodJournal();
         loadFoodJournals();
@@ -69,7 +72,7 @@ export const FoodJournalContextProvider = ({ children }) => {
                 resetFoodJournal,
                 setFoodJournal,
                 setJournalComplete,
-                setMeal,
+                setMeal
             }}
         >
             {children}
