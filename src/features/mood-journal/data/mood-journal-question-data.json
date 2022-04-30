@@ -16,20 +16,23 @@
         },
         {
             "page": 3,
-            "question": "What was the situation when you first noticed this feeling?",
-            "helpText": "For example: At home making coffee",
-            "options": null,
-            "state": "situation"
+            "questions": [
+                {
+                    "question": "What was the situation when you first noticed this feeling?",
+                    "helpText": "For example: At home making coffee",
+                    "options": null,
+                    "state": "situation"
+                },
+                {
+                    "question": "Who were you with?",
+                    "helpText": "For example: By myself, with family, with friends",
+                    "options": null,
+                    "state": "whoIWasWith"
+                }
+            ]
         },
         {
             "page": 4,
-            "question": "Who were you with?",
-            "helpText": "For example: By myself, with family, with friends",
-            "options": null,
-            "state": "whoIWasWith"
-        },
-        {
-            "page": 5,
             "question": "What was the primary thought that gave rise to this feeling?",
             "helpText": null,
             "options": null,
@@ -37,7 +40,7 @@
         }
         ,
         {
-            "page": 6,
+            "page": 5,
             "question": "Identify any cognitive distortions",
             "helpText": null,
             "options": [

@@ -17,7 +17,7 @@ export const PainGraph = () => {
             <VictoryAxis
                 style={{
                     grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
-                    tickLabels: { fontFamily: "Inter_400Regular", fontSize: 12 }
+                    tickLabels: { fontFamily: "", fontSize: 12 }
                 }}
             />
             <VictoryLine

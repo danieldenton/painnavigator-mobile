@@ -10,8 +10,7 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
 
     useEffect(() => {
         setMoodJournal(journal);
-        console.log("color")
-    }, [journal])
+    }, [journal]);
 
     const dateEntry = { question: "DATE", response: date };
 
@@ -45,7 +44,7 @@ export const ReviewMoodJournalEntry = ({ journal }) => {
 
     return (
         <KeyboardAwareScrollView style={{ margin: -16 }}>
-            <JournalContainer>
+            <JournalContainer style={{ marginBottom: editingMoodJournal ? 120 : 0 }}>
                 <InputQuestion entry={dateEntry} />
                 {journalEntryResponses}
             </JournalContainer>

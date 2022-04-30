@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Card } from "react-native-paper";
-import { colors } from "../../infrastructure/theme/colors";
-import { Add } from "../../icons";
+import { Add, FoodJournalIcon } from "../../icons";
 
 const CardContent = styled(Card.Content)`
     flex-direction: row;
@@ -23,7 +22,7 @@ const CardIconSection = styled.View`
 const NewJournalEntryCard = styled(Card)`
     margin-left: ${(props) => props.theme.space[3]};
     margin-right: ${(props) => props.theme.space[3]};
-    margin-bottom: 21px;
+    margin-top: 16px;
     padding: 24px 21px;
     border-radius: 15px;
 `;
@@ -42,7 +41,7 @@ export const NewJournalEntry = ({ title }) => {
                     <Title>{title}</Title>
                 </CardTextSection>
                 <CardIconSection>
-                    <Add />
+                    {title === "Today's Food Journal" ? <FoodJournalIcon /> :  <Add />}
                 </CardIconSection>
             </CardContent>
         </NewJournalEntryCard>

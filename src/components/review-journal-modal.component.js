@@ -1,7 +1,18 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Edit, Delete } from "../icons";
+import { Close, Delete, Edit } from "../icons";
 import { space } from "../infrastructure/theme/spacing";
+
+const CloseButtonRow = styled.View`
+    margin-left: ${space[3]};
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: flex-end;
+`; 
+
+const CloseButton = styled.TouchableOpacity`
+    padding: 16px;
+`;
 
 const OptionButton = styled.TouchableOpacity`
     align-items: center;
@@ -9,6 +20,7 @@ const OptionButton = styled.TouchableOpacity`
     border-top-width: .5px;
     flex-direction: row;
     margin-left: ${space[3]};
+    margin-right: ${space[3]};
     height: 53px;
 `;
 
@@ -22,9 +34,14 @@ const OptionText = styled.Text`
     margin-left: ${space[4]};
 `;
 
-export const ReviewJournalModal = ({ deleteJournal, destination, editJournal, journalId, navigation }) => {
+export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal }) => {
     return (
         <>
+            <CloseButtonRow>
+                <CloseButton onPress={closeModal}>
+                    <Close />
+                </CloseButton>
+            </CloseButtonRow>
             <OptionButton
                 onPress={() => editJournal(true)}
             >
@@ -34,7 +51,7 @@ export const ReviewJournalModal = ({ deleteJournal, destination, editJournal, jo
                 <OptionText>Edit</OptionText>
             </OptionButton>
             <OptionButton 
-                onPress={() => {deleteJournal(journalId); navigation.navigate(destination)}}
+                onPress={requestDelete}
                 style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: .5 }}
             >
                 <OptionIconSection>

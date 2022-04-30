@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
-import { TextInput } from "../components/text-input.component";
+import { ReviewTextInput } from "../components/text-input.component";
 import { EditIntensity } from "../components/edit-intensity.component";
 import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
 
 const QuestionWrapper = styled.View`
-    border-bottom-width: .5px;
-    border-bottom-color: hsl(218, 44%, 86%);
+    border-top-color: hsl(218, 44%, 86%);
     padding-top: ${space[3]};
     padding-bottom: ${space[3]};
 `;
@@ -26,10 +25,10 @@ export const InputQuestion = ({ changeEntry, editing, entry }) => {
     const { question, response, state } = entry;
 
     return (
-        <QuestionWrapper>
+        <QuestionWrapper style={{ borderTopWidth: editing ? 0 : .5 }}>
             <QuestionText>{question}</QuestionText>
             {editing ? 
-                <TextInput
+                <ReviewTextInput
                     value={response}
                     onChangeText={(change) => changeEntry(change, state)}
                 />
@@ -44,7 +43,7 @@ export const IntensityQuestion = ({ changeEntry, editing, entry }) => {
     const { question, response, state } = entry;
 
     return (
-        <QuestionWrapper>
+        <QuestionWrapper style={{ borderTopWidth: editing ? 0 : .5 }}>
             <QuestionText>{question}</QuestionText>
             {editing ? 
                 <EditIntensity response={response} changeEntry={changeEntry} state={state} />

@@ -33,7 +33,7 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const ExitModal = ({ visible, setVisible, navigation, destination, resetJournal, changes }) => {
+export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, journalId }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
 
@@ -46,19 +46,20 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, resetJ
                     </ExitButtonContainer>
                 </ExitButtonRow>
                 <ExitModalTextContainer>
-                    <ExitModalText>Are you sure you want to exit?</ExitModalText>
+                    <ExitModalText>Are you sure you want to {deleteJournal ? "delete" : "exit"}?</ExitModalText>
                     <ExitModalText>{changes ? "Your changes" : "This journal"} won't be saved.</ExitModalText>
                 </ExitModalTextContainer>
                 <ButtonContainer>
                     <JournalButtonOutline 
                         onPress={() => {
-                            navigation.navigate(destination); 
+                            navigation.navigate(destination);
+                            {deleteJournal && deleteJournal(journalId);} 
                             {resetJournal && resetJournal();} 
                         }}
-                        title={"Yes, Exit"}
+                        title={deleteJournal ? "Yes, Delete" : "Yes, Exit"}
                         fontSize={16}
                     />
-                    <JournalButton title={"No, Keep Going"} onPress={hideModal} fontSize={16} />
+                    <JournalButton title={deleteJournal ? "No, Save Journal" : "No, Keep Going"} onPress={hideModal} fontSize={16} />
                 </ButtonContainer>
             </Modal>
         </Portal>

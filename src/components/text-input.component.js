@@ -3,6 +3,16 @@ import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
 import { TextInput as Input } from "react-native-paper";
 
+export const ReviewTextInput = styled(Input).attrs({
+    mode: "outlined",
+    activeOutlineColor: colors.textInput.active,
+    outlineColor: colors.textInput.inactive
+})`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+    height: 39px;
+`;
+
 export const TextInput = styled(Input).attrs({
     mode: "outlined",
     activeOutlineColor: colors.textInput.active,
