@@ -1,42 +1,24 @@
 import React from "react";
-
 import { Bookmark } from "../../../components/bookmark.component";
-import { ScrollView } from "react-native";
-import { 
-    Header, 
-    TitleSection, 
-    BookmarkSection, 
-    ModuleTypeTitle, 
-    EducationUnitTitle, 
-    SummarySection, 
-    SummaryHeader, 
-    SummaryBody 
-    } from "./education-unit.styles";
+import { Header, TitleSection, BookmarkSection, ModuleTypeTitle, UnitTitle, Summary } from "./education-unit.styles";
 
-export const EducationUnitInfo = ({ moduleId, name }) => {
+export const EducationUnitInfo = ({ id, name }) => {
     return(
         <>
+            <ModuleTypeTitle>EDUCATION</ModuleTypeTitle>
             <Header>
                 <TitleSection>
-                    <ModuleTypeTitle>
-                        Education
-                    </ModuleTypeTitle>
-                    <EducationUnitTitle>
+                    <UnitTitle>
                         {name}
-                    </EducationUnitTitle>
+                    </UnitTitle>
                 </TitleSection>
                 <BookmarkSection>
-                    <Bookmark moduleId={moduleId} />
+                    <Bookmark id={id} />
                 </BookmarkSection>
             </Header>
-            <SummarySection>
-                <SummaryHeader>
-                    Summary
-                </SummaryHeader>
-            </SummarySection>
-            <ScrollView>
-                <SummaryBody>Video information</SummaryBody>     
-            </ScrollView>
+            <Summary>
+                Learn about the benefits of PainNavigator and step-by-step instructions of how to complete it. 
+            </Summary>
         </>
     );
 };

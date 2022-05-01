@@ -18,6 +18,22 @@ export const Back = () => {
         </Svg>
     );
 };
+
+export const BookmarkIcon = () => {
+    return (
+        <Svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M15 18.9724V1.01C15 1.00448 14.9955 1 14.99 1H1.01C1.00448 1 1 1.00448 1 1.01V18.9724C1 18.9817 1.01169 18.986 1.01768 18.9788L7.99232 10.6092C7.99632 10.6044 8.00368 10.6044 8.00768 10.6092L14.9823 18.9788C14.9883 18.986 15 18.9817 15 18.9724Z" stroke="black" strokeWidth="2"/>
+        </Svg>
+    );
+};
+
+export const BookmarkedIcon = () => {
+    return (
+        <Svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M15 18.9724V1.01C15 1.00448 14.9955 1 14.99 1H1.01C1.00448 1 1 1.00448 1 1.01V18.9724C1 18.9817 1.01169 18.986 1.01768 18.9788L7.99232 10.6092C7.99632 10.6044 8.00368 10.6044 8.00768 10.6092L14.9823 18.9788C14.9883 18.986 15 18.9817 15 18.9724Z" fill="black" stroke="black" strokeWidth="2"/>
+        </Svg>        
+    )
+};
  
 export const Close = () => {
     return (
@@ -27,6 +43,16 @@ export const Close = () => {
         </Svg>
     ); 
 }; 
+
+export const CompletedUnit = () => {
+    return (
+        <Svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="24" cy="24" r="24" fill="#6A7AEF"/>
+            <Circle cx="24" cy="24" r="12" fill="white" stroke="black" strokeWidth="2"/>
+            <Path d="M18 24L22 28L30 20" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+};
 
 export const Delete = () => {
     return (
@@ -139,6 +165,17 @@ export const FoodJournalIcon = () => {
             <Path d="M18.4157 26.6569C16.675 25.8067 17.0297 21.8538 17.0297 20H25C25 23.893 24.8487 26.0309 23.5672 26.6569C22.6305 27.1144 19.3523 27.1144 18.4157 26.6569Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M33.8149 45.254L34.4228 27.0195H36.854L37.4618 45.254H33.8149Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M40.3386 19.1172C40.3386 21.5223 39.7522 23.6634 38.8433 25.1782C37.9255 26.708 36.7619 27.4845 35.6183 27.4845C34.4746 27.4845 33.3111 26.708 32.3933 25.1782C31.4844 23.6634 30.8979 21.5223 30.8979 19.1172C30.8979 16.7121 31.4844 14.5711 32.3933 13.0562C33.3111 11.5265 34.4746 10.75 35.6183 10.75C36.7619 10.75 37.9255 11.5265 38.8433 13.0562C39.7522 14.5711 40.3386 16.7121 40.3386 19.1172Z" fill="white" stroke="black" strokeWidth="1.5"/>
+        </Svg>
+    );
+};
+
+export const Locked = () => {
+    return (
+        <Svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M17.5926 9.14811C17.5926 11.4728 16.8666 13.541 15.7388 15.0071C14.6119 16.4721 13.1243 17.2962 11.5556 17.2962C9.98686 17.2962 8.49923 16.4721 7.37227 15.0071C6.24448 13.541 5.51855 11.4728 5.51855 9.14811C5.51855 6.82338 6.24448 4.75525 7.37227 3.28913C8.49923 1.82409 9.98686 1 11.5556 1C13.1243 1 14.6119 1.82409 15.7388 3.28913C16.8666 4.75525 17.5926 6.82338 17.5926 9.14811Z" stroke="#606C81" strokeWidth="2"/>
+            <Rect x="1" y="9" width="20.6667" height="15.3333" rx="1" fill="#EDF1F5" stroke="#606C81" strokeWidth="2"/>
+            <Path d="M11.4287 15.1426L11.4287 17.9997" stroke="#606C81" strokeWidth="2" strokeLinecap="round"/>
+            <Circle cx="11.4286" cy="14.4286" r="1.42857" fill="#606C81"/>
         </Svg>
     );
 };

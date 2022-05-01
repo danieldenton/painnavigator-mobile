@@ -7,8 +7,6 @@ import { Back, Close, MenuIcon, MessageIcon, More } from "../../icons";
 const NavContainer = styled.View`
     padding-top: ${space[3]};
     padding-bottom: ${space[3]};
-    margin-left: ${space[3]};
-    margin-right: ${space[3]};
     flex-direction: row;
     align-items: center;
 `;

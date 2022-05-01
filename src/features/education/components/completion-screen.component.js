@@ -1,25 +1,34 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
-import { Button } from "../../../components/button.component";
-import { ButtonSection } from "../components/education-unit.styles";
+import { ButtonSection } from "../../../components/journals/journal.styles";
+import { ModuleButton } from "../../../components/button.component";
 
-const CompletionScreenView = styled.View`
-    flex: 1;
+const CongratulationsSection = styled.View`
     align-items: center;
-    justify-content: center;
 `;
 
-export const CompletionScreen = ({ navigation }) => {
+const CongratulationsHeader = styled.Text`
+    font-family: Poppins_500Medium;
+    font-size: 25px;
+    margin-bottom: 32px;
+`;
+
+const CongratulationsMessage = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 18px;
+    margin-bottom: 4px;
+    line-height: 26px;
+`;
+
+export const CompletionScreen = ({ navigation, resetModule }) => {
     return (
         <>
-            <CompletionScreenView>
-                <Text>Module complete</Text>
-            </CompletionScreenView>
+            <CongratulationsSection>
+                <CongratulationsHeader>Congratulations</CongratulationsHeader>
+                <CongratulationsMessage>You completed your first education unit! You’re on your way to mastering new skills and redefining your relationship with pain. </CongratulationsMessage>
+            </CongratulationsSection>
             <ButtonSection>
-                <Button onPress={() => {navigation.navigate("Today")}}>
-                    Back to Dashboard
-                </Button>
+                <ModuleButton onPress={() => {navigation.navigate("Today"); resetModule();}} title={"Back to Dashboard"} />
             </ButtonSection>
         </>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 const Header = styled.View`
-    margin-left: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
 `;
 
 const InterHeader = styled.Text`
@@ -11,7 +11,7 @@ const InterHeader = styled.Text`
 
 export const SubHeader = ({ title, size, marginTop, marginBottom }) => {
     return (
-        <Header style={{ marginTop: marginTop, marginBottom: marginBottom }}>
+        <Header>
             <InterHeader style={{ fontSize: size}}>{title}</InterHeader>
         </Header>
     );

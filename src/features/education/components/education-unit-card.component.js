@@ -5,7 +5,7 @@ import { Card } from "react-native-paper";
 import { EducationModuleIcon } from "../../../icons";
 
 const ModuleCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding: 21px;
 `;

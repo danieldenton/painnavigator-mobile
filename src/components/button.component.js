@@ -10,6 +10,19 @@ export const Button = styled(ReactPaperButton).attrs({
     justify-content: center;
 `;
 
+export const ModuleButton = ({ onPress, title }) => {
+    return (
+        <Button 
+            contentStyle={{ height: 57 }}
+            labelStyle={{ color: "white", fontSize: 18, fontFamily: "Poppins_600SemiBold" }}
+            onPress={onPress}
+            style={{ backgroundColor: colors.brand.primary, marginBottom: 16 }}
+        >
+            {title}
+        </Button>
+    );
+}; 
+
 export const JournalButton = ({ disabled, title, onPress, fontSize }) => {
     return (
         <Button 
@@ -43,13 +56,3 @@ export const JournalButtonOutline = ({title, onPress, fontSize }) => {
         </OutlineButton>
     );
 }; 
-
-export const OutlineButtonCondensed = styled(Button).attrs({
-    mode: "outlined",
-    color: colors.text.primary
-})`
-    border: 2px ${colors.brand.primary} solid; 
-    background-color: ${colors.text.white};
-    padding: 0px;
-`;
-

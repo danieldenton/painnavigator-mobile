@@ -11,7 +11,7 @@ import {
 } from "../icons";
 
 const DailyActivitiesCard = styled(Card)`
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding: 21px;
 `;
@@ -39,8 +39,8 @@ const CardSubHeader = styled.Text`
 
 const CardIconSection = styled.View`
     flex: .2;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-end;
 `;
 
 export const DailyActivitiesTile = ({ destination, title, navigation }) => {

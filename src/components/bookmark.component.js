@@ -1,23 +1,17 @@
 import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
-//https://icons.expo.fyi/
-
+import { BookmarkIcon, BookmarkedIcon } from "../icons";
 import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
 
-export const Bookmark = ({ moduleId }) => {
+export const Bookmark = ({ id }) => {
     const { bookmarks, addToBookmarks, removeFromBookmarks } = useContext(BookmarksContext);
-    const isBookmarked = bookmarks.find((b) => b === moduleId)
+    const isBookmarked = bookmarks.find((b) => b === id)
 
     return (
         <TouchableOpacity
-            onPress={() => !isBookmarked ? addToBookmarks(moduleId) : removeFromBookmarks(moduleId)}
+            onPress={() => !isBookmarked ? addToBookmarks(id) : removeFromBookmarks(id)}
         >
-            <Ionicons 
-                name={isBookmarked ? "bookmark" : "bookmark-outline"} 
-                size={24} 
-                color="black" 
-            />
+           {isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />} 
         </TouchableOpacity>
     );
 };

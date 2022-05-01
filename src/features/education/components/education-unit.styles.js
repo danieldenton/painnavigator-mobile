@@ -1,8 +1,12 @@
 import styled from "styled-components/native";
 
+export const UnitInfoWrapper = styled.View`
+    margin: ${(props) => props.theme.space[3]};
+`; 
+
 export const Header = styled.View`
     flex-direction: row;
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: 8px;
 `;
 
 export const TitleSection = styled.View`
@@ -10,13 +14,19 @@ export const TitleSection = styled.View`
 `;
 
 export const BookmarkSection = styled.View`
-    align-self: flex-end;
+    align-self: flex-start;
+    margin-top: 8px;
 `;
 
 export const ModuleTypeTitle = styled.Text`
+    font-size: 12px;
+    font-family: Inter_500Medium;
+    margin-top: 16px;
 `;
 
-export const EducationUnitTitle = styled.Text`
+export const UnitTitle = styled.Text`
+    font-size: 25px;
+    font-family: Poppins_600SemiBold;
 `;
 
 export const UnitSubtitle = styled.Text`
@@ -26,12 +36,10 @@ export const SummarySection = styled.View`
     margin: ${(props) => props.theme.space[3]};
 `;
 
-export const SummaryHeader = styled.Text`
-`;
-
-export const SummaryBody = styled.Text`
-    margin-left: ${(props) => props.theme.space[3]};
-    margin-right: ${(props) => props.theme.space[3]};
+export const Summary = styled.Text`
+    margin-top: 16px;
+    font-size: 16px;
+    font-family: Inter_400Regular;
 `;
 
 export const ButtonSection = styled.View`

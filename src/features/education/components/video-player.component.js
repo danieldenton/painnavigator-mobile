@@ -4,7 +4,9 @@ import styled from "styled-components/native";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
-    height: 32.6%;
+    height: 211px;
+    margin-left: -16px;
+    margin-right: -16px;
 `;
 
 const VideoScreen = styled(Video)`
@@ -21,6 +23,7 @@ export const VideoPlayer = ({ source }) => {
                 useNativeControls
                 resizeMode="contain"
                 isLooping
+                shouldPlay={true}
             />
         </VideoWrapper>
     )
