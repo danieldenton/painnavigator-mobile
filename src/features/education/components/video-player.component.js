@@ -22,7 +22,6 @@ export const VideoPlayer = ({ source }) => {
                 }}
                 useNativeControls
                 resizeMode="contain"
-                isLooping
                 shouldPlay={true}
             />
         </VideoWrapper>

@@ -29,7 +29,6 @@ export const TodayScreen = ({ navigation }) => {
                     navigation={navigation} 
                     nextEducationModule={nextEducationModule} 
                 />
-                <LockedModule />
                 <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                 <MovementUnitCard 
                     navigation={navigation} 
@@ -37,6 +36,7 @@ export const TodayScreen = ({ navigation }) => {
                     videosCompleted={videosCompleted}
                     videos={videos}
                 />
+                <LockedModule />
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <DailyActivitiesTile 
                     navigation={navigation} 

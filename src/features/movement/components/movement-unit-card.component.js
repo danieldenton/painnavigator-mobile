@@ -54,7 +54,7 @@ export const MovementUnitCard = ({ navigation, currentMovementModule, videosComp
                 <ModuleCardContent>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{length.toUpperCase()}</CardSubHeader>
+                        <CardSubHeader>{length} MIN</CardSubHeader>
                         {numVideosCompleted > 0 && 
                             <UnitProgress> 
                                 {numVideosCompleted}/{totalVideos} Videos Completed

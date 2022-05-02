@@ -30,6 +30,9 @@ export const UnitTitle = styled.Text`
 `;
 
 export const UnitSubtitle = styled.Text`
+    font-size: 12px;
+    font-family: Inter_500Medium;
+    margin-top: 8px;
 `;
 
 export const SummarySection = styled.View`
@@ -46,3 +49,28 @@ export const ButtonSection = styled.View`
     margin-left: ${(props) => props.theme.space[3]};
     margin-right: ${(props) => props.theme.space[3]};
 `;
+
+const NextUpWrapper = styled.View`
+    border-top-width: .5px;
+    border-top-color: #8999AF;
+    margin-left: -16px; 
+    margin-right: -16px;
+    margin-top: 16px;
+`;
+
+const NextUpText = styled.Text`
+    font-size: 14px;
+    font-family: Inter_500Medium;
+    margin-left: 16px;
+    margin-top: 16px;
+`;
+
+export const NextUp = () => {
+    return (
+        <NextUpWrapper>
+            <NextUpText>
+                NEXT UP
+            </NextUpText>
+        </NextUpWrapper>
+    );
+};

@@ -14,10 +14,12 @@ export const MovementNavigator = () => {
             <MovementStack.Screen 
                 name="MovementPlaylist" 
                 component={MovementPlaylistScreen} 
+                options={{ headerShown: false }}
             />
             <MovementStack.Screen 
                 name="MovementUnit" 
                 component={MovementUnitScreen}
+                options={{ headerShown: false }}
             />
         </MovementStack.Navigator>
     );

@@ -1,22 +1,14 @@
 import React from "react";
 import { ScrollView } from "react-native";
-
 import { movementVideos } from "../data/movement-videos-data.json";
-
-import { SafeArea } from "../../../components/safe-area.component";
 import { VideoPlayer } from "../../education/components/video-player.component";
 import { ModuleInfo } from "./module-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
-import { Button } from "../../../components/button.component";
-import { ButtonSection } from "../../education/components/education-unit.styles";
+import { ModuleButton } from "../../../components/button.component";
+import { ButtonSection } from "../../../components/journals/journal.styles";
+import { NextUp } from "../../education/components/education-unit.styles";
 
-export const MovementUnit = ({
-    moduleName, 
-    videosRemaining,
-    currentVideo,
-    setCurrentVideo,
-    markVideoComplete,
-    }) => {
+export const MovementUnit = ({ moduleName, videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
     const {id, source, name, length, videoInfo} = movementVideos.find(video => video.id === currentVideo);
 
     const playlistTiles = videosRemaining
@@ -30,7 +22,7 @@ export const MovementUnit = ({
         ));
 
     return(
-        <SafeArea>
+        <>
             <VideoPlayer 
                 source={source}
             />
@@ -40,16 +32,16 @@ export const MovementUnit = ({
                 videoInfo={videoInfo}
                 moduleName={moduleName}
             />
-            <ScrollView>
+            {videosRemaining.length > 1 && <NextUp />}
+            <ScrollView style={{ marginBottom: 120 }} showsVerticalScrollIndicator={false} >
                 {playlistTiles}
             </ScrollView>
             <ButtonSection>
-                <Button
+                <ModuleButton
                     onPress={() => {markVideoComplete(id);}}
-                >
-                    Mark {name} Complete
-                </Button>
+                    title={`Mark ${name} Complete`}
+                />
             </ButtonSection>
-        </SafeArea>
+        </>
     );
 };

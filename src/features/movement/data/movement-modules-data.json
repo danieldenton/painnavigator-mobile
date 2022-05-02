@@ -4,21 +4,21 @@
             "id": 4,
             "name": "Movement Module 1",
             "videos": [1, 2, 3],
-            "length": "5 min",
+            "length": "5",
             "moduleInformation": "Module 1: This module will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
         },
         {
             "id": 5,
             "name": "Movement Module 2",
             "videos": [1, 2, 3, 4],
-            "length": "6 min",
+            "length": "6",
             "moduleInformation": "Module 2: This module will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
         },
         {
             "id": 6,
             "name": "Movement Module 3",
             "videos": [1, 2, 4],
-            "length": "4 min",
+            "length": "4",
             "moduleInformation": "Module 3: This module will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
         }
     ]

@@ -1,6 +1,4 @@
 import React from "react";
-import { ScrollView } from "react-native";
-
 import { PlaylistTile } from "./playlist-tile.component";
 
 export const MovementPlaylist = ({ navigation, setCurrentVideo, videoTransform }) => {
@@ -16,8 +14,8 @@ export const MovementPlaylist = ({ navigation, setCurrentVideo, videoTransform }
     ));
 
     return (
-        <ScrollView>
+        <>
             {playlistTiles}
-        </ScrollView>
+        </>
     );
 };

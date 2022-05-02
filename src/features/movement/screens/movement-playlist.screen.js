@@ -1,26 +1,22 @@
 import React, { useContext } from "react";
-import { SafeArea } from "../../../components/safe-area.component";
-
+import { SafeView } from "../../../components/safe-area.component";
 import { MovementPlaylistHeader } from "../components/movement-playlist-header.component";
-import { PlayAllButton } from "../components/play-all-button.component";
 import { MovementPlaylist } from "../components/movement-playlist.component";
-
 import { MovementContext } from "../../../services/movement/movement.context";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const MovementPlaylistScreen = ({ navigation }) => {
     const { currentMovementModule, setCurrentVideo, videoTransform } = useContext(MovementContext);
     const { id, length, name, videos } = currentMovementModule;
     
     return (
-        <SafeArea>
+        <SafeView>
+            <NavigationBarLeft screen={"Movement"} navigation={navigation} destination={"Today"} />
             <MovementPlaylistHeader 
                 id={id}
                 length={length}
                 name={name}
                 videos={videos}
-            />
-            <PlayAllButton
-                navigation={navigation}
             />
             <MovementPlaylist
                 navigation={navigation}
@@ -28,6 +24,6 @@ export const MovementPlaylistScreen = ({ navigation }) => {
                 videoTransform={videoTransform}
                 setCurrentVideo={setCurrentVideo}
             />
-        </SafeArea> 
+        </SafeView> 
     );
 };

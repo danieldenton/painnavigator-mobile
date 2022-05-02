@@ -1,46 +1,29 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, ScrollView } from "react-native";
-import { SummaryBody} from "../../education/components/education-unit.styles";
+import { ModuleTypeTitle, UnitTitle } from "../../education/components/education-unit.styles";
 
 const ModuleInfoWrapper = styled.View`
-    height: 30%; 
 `;
 
 const HeaderRow = styled.View`
     flex-direction: row;
     align-items: stretch;
     margin-top: ${(props) => props.theme.space[3]};
-    margin-left: ${(props) => props.theme.space[3]};
-    margin-right: ${(props) => props.theme.space[3]};
-`;
-
-const VideoNameSection = styled.Text`
-    flex: 1;
-`;
-
-const VideoLengthSection = styled.Text`
-    align-self: flex-end;
 `;
 
 const SubheaderRow = styled.View`
-    margin: ${(props) => props.theme.space[3]};
+    margin-top: 8px;
 `;
 
-export const ModuleInfo = ({videoName, videoLength, moduleName, videoInfo}) => {
+export const ModuleInfo = ({ moduleName }) => {
     return (
         <ModuleInfoWrapper>
             <HeaderRow>
-                <VideoNameSection>{videoName}</VideoNameSection>
-                <VideoLengthSection>{videoLength} min</VideoLengthSection>
+                <ModuleTypeTitle>FOUNDATIONS 1</ModuleTypeTitle>
             </HeaderRow>
             <SubheaderRow>
-                <Text>MOVEMENT</Text>
-                <Text>{moduleName}</Text>
+                <UnitTitle>{moduleName}</UnitTitle>
             </SubheaderRow>
-            <ScrollView>
-                <SummaryBody>{videoInfo}</SummaryBody>
-            </ScrollView>
         </ModuleInfoWrapper>
     );
 };
