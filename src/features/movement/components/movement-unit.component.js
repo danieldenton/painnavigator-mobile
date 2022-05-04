@@ -8,8 +8,8 @@ import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { NextUp } from "../../education/components/education-unit.styles";
 
-export const MovementUnit = ({ moduleName, videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
-    const {id, source, name, length, videoInfo} = movementVideos.find(video => video.id === currentVideo);
+export const MovementUnit = ({ videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
+    const {id, chapter, source, name } = movementVideos.find(video => video.id === currentVideo);
 
     const playlistTiles = videosRemaining
         .filter((video) => video !== currentVideo)
@@ -27,10 +27,9 @@ export const MovementUnit = ({ moduleName, videosRemaining, currentVideo, setCur
                 source={source}
             />
             <ModuleInfo 
+                chapter={chapter}
                 videoName={name}
-                videoLength={length}
-                videoInfo={videoInfo}
-                moduleName={moduleName}
+                videoId={id}
             />
             {videosRemaining.length > 1 && <NextUp />}
             <ScrollView style={{ marginBottom: 120 }} showsVerticalScrollIndicator={false} >

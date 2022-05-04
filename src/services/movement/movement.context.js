@@ -5,10 +5,8 @@ export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(0);
-    
     const currentMovementModule = movementModules[movementProgress];
     const { videos } = currentMovementModule;
-    
     const [moduleComplete, setModuleComplete] = useState(false);
     const [videosCompleted, setVideosCompleted] = useState([]);
     const [videosRemaining, setVideosRemaining] = useState(videos);

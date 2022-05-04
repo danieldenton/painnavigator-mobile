@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { ModuleTypeTitle, UnitTitle } from "../../education/components/education-unit.styles";
+import { Bookmark } from "../../../components/bookmark.component";
+import { BookmarkSection, Header, ModuleTypeTitle, UnitTitle, TitleSection } from "../../education/components/education-unit.styles";
 
 const ModuleInfoWrapper = styled.View`
 `;
@@ -12,18 +13,23 @@ const HeaderRow = styled.View`
 `;
 
 const SubheaderRow = styled.View`
+    flex-direction: row;
     margin-top: 8px;
 `;
 
-export const ModuleInfo = ({ moduleName }) => {
+export const ModuleInfo = ({ chapter, videoName, videoId }) => {
+
     return (
         <ModuleInfoWrapper>
-            <HeaderRow>
-                <ModuleTypeTitle>FOUNDATIONS 1</ModuleTypeTitle>
-            </HeaderRow>
-            <SubheaderRow>
-                <UnitTitle>{moduleName}</UnitTitle>
-            </SubheaderRow>
+            <ModuleTypeTitle>{chapter.toUpperCase()}</ModuleTypeTitle>
+            <Header>
+                <TitleSection>
+                    <UnitTitle>{videoName}</UnitTitle>
+                </TitleSection>
+                <BookmarkSection>
+                    <Bookmark id={videoId} />
+                </BookmarkSection>
+            </Header>
         </ModuleInfoWrapper>
     );
 };

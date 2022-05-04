@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Header, UnitTitle,UnitSubtitle,TitleSection } from "../../education/components/education-unit.styles";
+import { Header, UnitTitle, UnitSubtitle, TitleSection } from "../../education/components/education-unit.styles";
 
 export const MovementPlaylistHeader = ({ length, name, videos }) => {
     return(
-        <Header>
+        <Header style={{ marginBottom: 8 }}>
             <TitleSection>
                 <UnitTitle>
                     {name}

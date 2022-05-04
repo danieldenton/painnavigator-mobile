@@ -57,36 +57,83 @@ const Thumbnail = styled.Image`
     border-radius: 8px;
 `;
 
-export const PlaylistTile = ({ videoId, navigation, completed, setCurrentVideo }) => {
+export const PlaylistTile = ({ videoId, navigation, setCurrentVideo }) => {
     const videoIndex = videoId - 1;
-    const { name, length } = movementVideos[videoIndex];
+    const { name, length, thumbnail } = movementVideos[videoIndex];
+
+    // source={require("../assets/exercise_1.png")}
 
     return(
         <TouchableOpacity
             onPress={() => {
-                !completed && setCurrentVideo(videoId); 
-                navigation && navigation.navigate("MovementUnit", { navigation})
+                setCurrentVideo(videoId); 
+                navigation && navigation.navigate("MovementUnit", { navigation })
                 }
             }
         >
-            <PlaylistTileCard style={{ backgroundColor: completed ? "#CDEBE6" : "white" }}>
+            <PlaylistTileCard>
                 <PlaylistTileCardContent>
-                    {!completed && 
-                        <ThumbnailWrapper>
-                            <Thumbnail source={require("../assets/exercise_1.png")}/>
-                        </ThumbnailWrapper>
-                    }
+                    <ThumbnailWrapper>
+                        <Thumbnail source={{ uri: thumbnail }} />
+                    </ThumbnailWrapper>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
                         <CardSubHeader>{length} MIN</CardSubHeader>
                     </CardTextSection>
-                    {completed  && 
-                        <CardIconSection>
-                            <Selected />
-                        </CardIconSection>
-                    }
                 </PlaylistTileCardContent>
             </PlaylistTileCard>
         </TouchableOpacity>
     );
+};
+
+const CompletedModuleCard = styled(Card)`
+    margin-top: ${(props) => props.theme.space[3]};
+    border-radius: 15px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 21px;
+    padding-right: 22px;
+    background-color: #CDEBE6;
+    max-height: 92px;
+`;
+
+const CompletedModuleCardContent = styled(Card.Content)`
+    flex-direction: row;
+    padding: 0px;
+    align-items: center;
+`;
+
+const TextSection = styled.View`
+    flex: .8;
+    margin-left: 8px;
+`;
+
+const Header = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
+`;
+
+const IconSection = styled.View`
+    flex: .2;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+export const CompletedPlaylistTile = ({ videoId }) => {
+    const videoIndex = videoId - 1;
+    const { name, length } = movementVideos[videoIndex];
+
+    return (
+        <CompletedModuleCard style={{ backgroundColor: "#CDEBE6" }}>
+            <CompletedModuleCardContent>
+                <TextSection>
+                    <Header>{name}</Header>
+                    <CardSubHeader>{length} MIN</CardSubHeader>
+                </TextSection>
+                <IconSection>
+                    <Selected />
+                </IconSection>
+            </CompletedModuleCardContent>
+        </CompletedModuleCard>
+    ); 
 };
