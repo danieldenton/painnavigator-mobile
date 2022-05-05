@@ -65,23 +65,22 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     );
 };
 
-export const TodayNavBar = () => {
+export const TodayNavBar = ({ navigation }) => {
 
     return(
         <NavContainer>
             <LeftSection 
                 accessibilityLabel={"menu"} 
+                onPress={() => navigation.openDrawer()}
             >
                 <MenuIcon />
             </LeftSection>
             <HeaderSection>
             </HeaderSection>
-            <RightSection>
-                <RightPressableArea
-                    accessibilityLabel={"messages"}
-                >
-                    <MessageIcon />
-                </RightPressableArea>
+            <RightSection
+                accessibilityLabel={"messages"}
+            >
+                <MessageIcon />
             </RightSection>
         </NavContainer>
     );

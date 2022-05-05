@@ -20,7 +20,7 @@ export const TodayScreen = ({ navigation }) => {
 
     return (
         <SafeView>
-            <TodayNavBar />
+            <TodayNavBar navigation={navigation} />
             <Scroll>
                 <Greeting timeOfDay={"Morning"} name={name} />
                 <SubHeader title={"TODAY'S EDUCATION"} size={14} />
