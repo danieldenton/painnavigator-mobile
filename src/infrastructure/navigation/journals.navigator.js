@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
 import { JournalScreen } from "../../features/today/screens/journals.screen";
 import { FoodJournalNavigator } from "./food-journal.navigator";
 import { MoodJournalNavigator } from "./mood-journal.navigator";

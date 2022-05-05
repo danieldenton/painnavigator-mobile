@@ -57,32 +57,87 @@ const Thumbnail = styled.Image`
     border-radius: 8px;
 `;
 
-export const PlaylistTile = ({ videoId, navigation, setCurrentVideo }) => {
+const IncompleteDot = styled.View`
+    border-radius: 100px;
+    border: 2px #CBD7EB solid;
+    background-color: #F6F8FB;
+    height: 18px;
+    width: 18px;
+    margin-right: 12px;
+    margin-top: 12px;
+`;
+
+const IncompleteBridge = styled.View`
+    position: absolute;
+    top: 30px;
+    left: 8px;
+    width: 2px;
+    height: 90px;
+    border-radius: 5px;
+    border: #CBD7EB dashed;
+`;
+
+const CompleteDot = styled.View`
+    border-radius: 100px;
+    border: 2px #16A28B solid;
+    background-color: #16A28B;
+    height: 18px;
+    width: 18px;
+    margin-right: 12px;
+    margin-top: 12px;
+`;
+
+const CompleteBridge = styled.View`
+    position: absolute;
+    top: 30px;
+    left: 8px;
+    width: 2px;
+    height: 90px;
+    border: #16A28B solid;
+`;
+
+const PlaylistTileWrapper = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+const ProgressTrackWrapper = styled.View`
+`
+
+
+export const PlaylistTile = ({ videoId, lastInList, navigation, setCurrentVideo }) => {
     const videoIndex = videoId - 1;
     const { name, length, thumbnail } = movementVideos[videoIndex];
 
     // source={require("../assets/exercise_1.png")}
 
     return(
-        <TouchableOpacity
-            onPress={() => {
-                setCurrentVideo(videoId); 
-                navigation && navigation.navigate("MovementUnit", { navigation })
+        <PlaylistTileWrapper>
+            <ProgressTrackWrapper>
+                <IncompleteDot />
+                {!lastInList && <IncompleteBridge />}
+            </ProgressTrackWrapper>
+            <TouchableOpacity
+                onPress={() => {
+                    setCurrentVideo(videoId); 
+                    navigation && navigation.navigate("MovementUnit", { navigation })
+                    }
                 }
-            }
-        >
-            <PlaylistTileCard>
-                <PlaylistTileCardContent>
-                    <ThumbnailWrapper>
-                        <Thumbnail source={{ uri: thumbnail }} />
-                    </ThumbnailWrapper>
-                    <CardTextSection>
-                        <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{length} MIN</CardSubHeader>
-                    </CardTextSection>
-                </PlaylistTileCardContent>
-            </PlaylistTileCard>
-        </TouchableOpacity>
+                style={{ flex: 1 }}
+            >
+                <PlaylistTileCard>
+                    <PlaylistTileCardContent>
+                        <ThumbnailWrapper>
+                            <Thumbnail source={{ uri: thumbnail }} />
+                        </ThumbnailWrapper>
+                        <CardTextSection>
+                            <CardHeader>{name}</CardHeader>
+                            <CardSubHeader>{length} MIN</CardSubHeader>
+                        </CardTextSection>
+                    </PlaylistTileCardContent>
+                </PlaylistTileCard>
+            </TouchableOpacity>
+        </PlaylistTileWrapper>
     );
 };
 
@@ -124,16 +179,22 @@ export const CompletedPlaylistTile = ({ videoId }) => {
     const { name, length } = movementVideos[videoIndex];
 
     return (
-        <CompletedModuleCard style={{ backgroundColor: "#CDEBE6" }}>
-            <CompletedModuleCardContent>
-                <TextSection>
-                    <Header>{name}</Header>
-                    <CardSubHeader>{length} MIN</CardSubHeader>
-                </TextSection>
-                <IconSection>
-                    <Selected />
-                </IconSection>
-            </CompletedModuleCardContent>
-        </CompletedModuleCard>
+        <PlaylistTileWrapper>
+            <ProgressTrackWrapper>
+                <CompleteDot />
+                <CompleteBridge />
+            </ProgressTrackWrapper>
+            <CompletedModuleCard style={{ backgroundColor: "#CDEBE6", flex: 1 }}>
+                <CompletedModuleCardContent>
+                    <TextSection>
+                        <Header>{name}</Header>
+                        <CardSubHeader>{length} MIN</CardSubHeader>
+                    </TextSection>
+                    <IconSection>
+                        <Selected />
+                    </IconSection>
+                </CompletedModuleCardContent>
+            </CompletedModuleCard>
+        </PlaylistTileWrapper>
     ); 
 };
