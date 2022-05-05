@@ -1,14 +1,23 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TodayNavigator } from "../navigation/today.navigator";
-import { JournalsNavigator } from '../navigation/journals.navigator';
+import { SideMenu } from '../../components/side-menu.component';
 
-const SideMenu = createDrawerNavigator();
+const SideMenuDrawer = createDrawerNavigator();
 
 export const SideMenuNavigator = () => {
   return (
-      <SideMenu.Navigator initialRouteName="Today" screenOptions={{headerShown: false}}>
-        <SideMenu.Screen name="Journals" component={TodayNavigator} />
-      </SideMenu.Navigator>
+      <SideMenuDrawer.Navigator 
+        drawerContent={(props) => <SideMenu {...props} />}
+        initialRouteName="Today" 
+        screenOptions={{ headerShown: false }}
+        useLegacyImplementation
+      >
+        <SideMenuDrawer.Screen 
+          name="Journals" 
+          component={TodayNavigator}   
+          options={{ drawerItemStyle: { height: 0 } }}
+        />
+      </SideMenuDrawer.Navigator>
   );
 };

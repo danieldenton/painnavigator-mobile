@@ -318,3 +318,12 @@ export const Selected = () => {
         </Svg>
     );
 };
+
+export const Settings = () => {
+    return (
+        <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M7.93 4.15L5.41 2.68L2.68 5.41L3.94 7.3L3.52 8.56L1 9.4V13.18L3.52 13.81L3.94 15.07L2.47 17.59L5.2 20.32L7.51 18.85L8.77 19.48L9.4 22H13.18L13.6 19.48L15.28 18.85L17.38 20.32L20.11 17.59L18.85 15.49L19.27 14.23L22 13.6V9.82L19.27 9.19L18.85 7.93L20.32 5.41L17.8 2.68L15.28 4.15L14.23 3.73L13.39 1H9.82L9.19 3.31L7.93 4.15Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Circle cx="11.5001" cy="11.4993" r="3.3587" stroke="black" strokeWidth="1.5"/>
+        </Svg>
+    );
+};
