@@ -31,7 +31,7 @@ export const MovementContextProvider = ({ children }) => {
             return {
                 video,
                 completed: videosCompleted.includes(video)
-              };
+            };
         }));
     }, [videosCompleted])
 

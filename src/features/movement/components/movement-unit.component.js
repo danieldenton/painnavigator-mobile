@@ -11,15 +11,15 @@ import { NextUp } from "../../education/components/education-unit.styles";
 export const MovementUnit = ({ videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
     const {id, chapter, source, name } = movementVideos.find(video => video.id === currentVideo);
 
-    const playlistTiles = videosRemaining
-        .filter((video) => video !== currentVideo)
-        .map((video) => (
-            <PlaylistTile 
-                videoId={video}
-                setCurrentVideo={setCurrentVideo}
-                key={video}
-            />
-        ));
+    const upNext = videosRemaining.filter((video) => video !== currentVideo);
+    const playlistTiles = upNext.map((video, index) => (
+        <PlaylistTile 
+            key={video}
+            lastInList={index === upNext.length - 1 ? true : false}
+            setCurrentVideo={setCurrentVideo}
+            videoId={video}
+        />
+    ));
 
     return(
         <>
