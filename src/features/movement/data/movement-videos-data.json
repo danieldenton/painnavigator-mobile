@@ -8,8 +8,7 @@
             "reps": 15,
             "thumbnail": "https://res.cloudinary.com/stephenavocado/image/upload/v1651624952/Intro_Thumbnail_awi76k.png",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650999568/For%20Mobile%20App/Exercise/Foundations%201/Intro%20to%20Exercises.mp4",
-            "length": 7,
-            "videoInfo": "Video 1: This video will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
+            "length": 7
         },
         {
             "id": 2,
@@ -19,8 +18,7 @@
             "reps": 20,
             "thumbnail": "https://res.cloudinary.com/stephenavocado/image/upload/v1651624952/Intro_Thumbnail_awi76k.png",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650999628/For%20Mobile%20App/Exercise/Foundations%201/Warm%20Up:%20Standing%20backbend%2C%20Marching.mp4",
-            "length": 6,
-            "videoInfo": "Video 2: This video will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
+            "length": 6
         },
         {
             "id": 3,
@@ -30,8 +28,7 @@
             "reps": 10,
             "thumbnail": "https://res.cloudinary.com/stephenavocado/image/upload/v1651624952/Intro_Thumbnail_awi76k.png",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650999676/For%20Mobile%20App/Exercise/Foundations%201/Lower%20Ab%20Squeeze.mp4",
-            "length": 5,
-            "videoInfo": "Video 3: This video will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
+            "length": 5
         },
         {
             "id": 4,
@@ -41,8 +38,7 @@
             "reps": 25,
             "thumbnail": "https://res.cloudinary.com/stephenavocado/image/upload/v1651624952/Intro_Thumbnail_awi76k.png",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429118/For%20Mobile%20App/Spine%20Anatomy.mp4",
-            "length": 2,
-            "videoInfo": "Video 4: This video will walk you through the basics of movement module 1. Movement module 1 is a really great module to learn the basics of Module 1. Module 2 is after module 1, and once you complete module 1, you will move to module 2."
+            "length": 2
         }
     ]
 }

@@ -8,28 +8,19 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
 export const MovementPlaylistScreen = ({ navigation }) => {
-    const { currentMovementModule, setCurrentVideo, videoTransform, videosCompleted } = useContext(MovementContext);
-    const { id, length, name, videos } = currentMovementModule;
+    const { currentModule } = useContext(MovementContext);
+    const { videos } = currentModule;
+    const numVideosCompleted = videos.filter(video => video.completed).length;
     
     return (
         <SafeView>
             <NavigationBarLeft screen={"Movement"} navigation={navigation} destination={"Today"} />
-            <MovementPlaylistHeader 
-                id={id}
-                length={length}
-                name={name}
-                videos={videos}
-            />
-            <MovementPlaylist
-                navigation={navigation}
-                videos={videos}
-                videoTransform={videoTransform}
-                setCurrentVideo={setCurrentVideo}
-            />
+            <MovementPlaylistHeader />
+            <MovementPlaylist navigation={navigation} />
             <ButtonSection>
                 <ModuleButton 
                     onPress={() => navigation.navigate("MovementUnit", { navigation })}
-                    title={videosCompleted.length > 0 ? "Play Next" : "Play All"} 
+                    title={numVideosCompleted > 0 ? "Play Next" : "Play All"} 
                 />
             </ButtonSection>
         </SafeView> 

@@ -1,61 +1,70 @@
-import React, {useState, useEffect, createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
+import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
 
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(0);
-    const currentMovementModule = movementModules[movementProgress];
-    const { videos } = currentMovementModule;
     const [moduleComplete, setModuleComplete] = useState(false);
-    const [videosCompleted, setVideosCompleted] = useState([]);
-    const [videosRemaining, setVideosRemaining] = useState(videos);
-    const [videoTransform, setVideoTransform] = useState({});
-    const [currentVideo, setCurrentVideo] = useState(videosRemaining[0]);
+    const [currentModule, setCurrentModule] = useState(movementModules[movementProgress]);
+    const completeVideos = currentModule.videos.filter(video => video.completed);
+    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
+    const [currentVideo, setCurrentVideo] = useState(movementVideos.find(video => video.id === incompleteVideos[0].id));
+
+    useEffect(() => {
+        setCurrentModule(movementModules[movementProgress]);
+    }, [movementProgress]);
+
+    useEffect(() => {
+        const currentVideoData = movementVideos.find(video => video.id === incompleteVideos[0].id);
+        setCurrentVideo(currentVideoData);
+    }, [currentModule]);
     
-    const markVideoComplete = (videoId) => {
-        const numVideosCompleted = videosCompleted.length;
-        if(numVideosCompleted === videos.length - 1){
+    const completeVideo = () => {
+
+        const allVideosCompleted = Object.values(currentModule.videos).every(
+            value => value.completed === true
+        );
+
+        if(allVideosCompleted){
             setModuleComplete(true);
             setMovementProgress((prevMovementProgress) => { return ( prevMovementProgress + 1 ) });
-            setVideosCompleted([]);
             return;
         };
-        setVideosCompleted(prevVideosCompleted => [...prevVideosCompleted, videoId]);
+
+        const newVideos = currentModule.videos.map(video => 
+            video.id === currentVideo.id ? {
+                ...video, 
+                completed: true
+            }
+            :
+            video
+        );
+
+        setCurrentModule({...currentModule, videos: newVideos})
     };
 
-    useEffect(() => {
-        const newVideosRemaining = videos.filter(video => !videosCompleted.includes(video));
-        setVideosRemaining(newVideosRemaining);
-        setVideoTransform(videos.map((video) => {
-            return {
-                video,
-                completed: videosCompleted.includes(video)
-            };
-        }));
-    }, [videosCompleted])
-
-    useEffect(() => {
-        setCurrentVideo(videosRemaining[0]);
-    }, [videosRemaining])
-
     const resetModuleScreen = () => {
-        setTimeout(() => {setModuleComplete(false)}, 1000);
+        setTimeout(() => { setModuleComplete(false) }, 1000);
     }
+
+    const switchVideo = (videoId) => {
+        const newVideoData = movementVideos.find(video => video.id === videoId);
+        setCurrentVideo(newVideoData);
+    };
 
     return (
         <MovementContext.Provider
             value={{
-                currentMovementModule,
-                videosCompleted,
-                markVideoComplete,
-                videosRemaining,
-                setVideosRemaining,
-                videoTransform,
+                completeVideo,
+                completeVideos,
+                currentModule,
                 currentVideo,
-                setCurrentVideo,
+                incompleteVideos,
                 moduleComplete,
-                resetModuleScreen
+                resetModuleScreen,
+                switchVideo
             }}
         >
             {children}

@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { Pressable } from "react-native";
 import { Pause, Play } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { movementVideos } from "../../movement/data/movement-videos-data.json";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
@@ -18,8 +17,8 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = ({ source }) => {
-    const { currentVideo, markVideoComplete } = useContext(MovementContext);
-    const { id } = movementVideos.find(video => video.id === currentVideo);
+    const { currentVideo, completeVideo } = useContext(MovementContext);
+    const { id } = currentVideo;
     const video = useRef(null);
     const [status, setStatus] = useState({});
 
@@ -32,7 +31,7 @@ export const VideoPlayer = ({ source }) => {
             return;
         };
 
-        markVideoComplete(id);
+        completeVideo();
         video.current.setStatusAsync({ positionMillis: 0 });
 
     }, [status.didJustFinish]);

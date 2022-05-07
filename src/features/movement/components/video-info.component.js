@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { Bookmark } from "../../../components/bookmark.component";
 import { BookmarkSection, Header, ModuleTypeTitle, UnitTitle, TitleSection } from "../../education/components/education-unit.styles";
+import { MovementContext } from "../../../services/movement/movement.context";
 
 const ModuleInfoWrapper = styled.View`
 `;
@@ -17,17 +18,19 @@ const SubheaderRow = styled.View`
     margin-top: 8px;
 `;
 
-export const ModuleInfo = ({ chapter, videoName, videoId }) => {
+export const VideoInfo = () => {
+    const { currentVideo } = useContext(MovementContext);
+    const { id, chapter, name } = currentVideo;
 
     return (
         <ModuleInfoWrapper>
             <ModuleTypeTitle>{chapter.toUpperCase()}</ModuleTypeTitle>
             <Header>
                 <TitleSection>
-                    <UnitTitle>{videoName}</UnitTitle>
+                    <UnitTitle>{name}</UnitTitle>
                 </TitleSection>
                 <BookmarkSection>
-                    <Bookmark id={videoId} />
+                    <Bookmark id={id} />
                 </BookmarkSection>
             </Header>
         </ModuleInfoWrapper>

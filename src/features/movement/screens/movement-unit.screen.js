@@ -6,40 +6,18 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { SafeView } from "../../../components/safe-area.component";
 
 export const MovementUnitScreen = ({ navigation }) => {
-    const { 
-        currentMovementModule,
-        videosCompleted,
-        markVideoComplete,
-        videosRemaining,
-        setVideosRemaining,
-        currentVideo,
-        setCurrentVideo,
-        moduleComplete,
-        setModuleComplete
-        } = useContext(MovementContext);
-
-    const { videos, name } = currentMovementModule;
+    const { moduleComplete, setModuleComplete } = useContext(MovementContext);
 
     return(
         <SafeView>
             <NavigationBarLeft screen={"Movement"} navigation={navigation} destination={"MovementPlaylist"} />
-            { !moduleComplete ? (
-                <MovementUnit 
-                    moduleName={name}
-                    videos={videos}
-                    videosCompleted={videosCompleted}
-                    videosRemaining={videosRemaining}
-                    setVideosRemaining={setVideosRemaining}
-                    currentVideo={currentVideo}
-                    setCurrentVideo={setCurrentVideo}
-                    markVideoComplete={markVideoComplete}
-
-                />
-                ) : (
+            {moduleComplete ? (
                 <CompletionScreen 
-                    navigation={navigation}
-                    setModuleComplete={setModuleComplete}
+                  navigation={navigation}
+                  setModuleComplete={setModuleComplete}
                 /> 
+                ) : (
+                <MovementUnit />
             )}
         </SafeView>
     );

@@ -1,38 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ScrollView } from "react-native";
-import { movementVideos } from "../data/movement-videos-data.json";
+import { MovementContext } from "../../../services/movement/movement.context";
 import { VideoPlayer } from "../../education/components/video-player.component";
-import { ModuleInfo } from "./module-info.component";
+import { VideoInfo } from "./video-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
-import { ModuleButton } from "../../../components/button.component";
-import { ButtonSection } from "../../../components/journals/journal.styles";
 import { NextUp } from "../../education/components/education-unit.styles";
 
-export const MovementUnit = ({ videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
-    const {id, chapter, source, name } = movementVideos.find(video => video.id === currentVideo);
+export const MovementUnit = () => {
+    const { currentVideo, incompleteVideos, switchVideo } = useContext(MovementContext);
+    const { source } = currentVideo;
 
-    const upNextList = videosRemaining.filter((video) => video !== currentVideo);
+    const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
     const playlistTiles = upNextList.map((video, index) => (
         <PlaylistTile 
-            key={video}
+            key={video.id}
             upLast={index === upNextList.length - 1 ? true : false}
             upNext={index === 0 && true}
-            setCurrentVideo={setCurrentVideo}
-            videoId={video}
+            switchVideo={switchVideo}
+            videoId={video.id}
         />
     ));
 
     return(
         <>
-            <VideoPlayer 
-                source={source}
-            />
-            <ModuleInfo 
-                chapter={chapter}
-                videoName={name}
-                videoId={id}
-            />
-            {videosRemaining.length > 1 && <NextUp />}
+            <VideoPlayer source={source} />
+            <VideoInfo />
+            {incompleteVideos.length > 1 && <NextUp />}
             <ScrollView showsVerticalScrollIndicator={false} >
                 {playlistTiles}
             </ScrollView>

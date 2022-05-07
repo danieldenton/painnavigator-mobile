@@ -43,9 +43,9 @@ const CardIconSection = styled.View`
     justify-content: center;
 `;
 
-export const MovementUnitCard = ({ navigation, currentMovementModule, videosCompleted }) => {
-    const { name, length, videos } = currentMovementModule;
-    const numVideosCompleted = videosCompleted.length;
+export const MovementUnitCard = ({ navigation, currentModule }) => {
+    const { name, length, videos } = currentModule;
+    const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;
 
     return ( 
