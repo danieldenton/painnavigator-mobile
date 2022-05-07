@@ -8,21 +8,13 @@ export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(0);
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentModule, setCurrentModule] = useState(movementModules[movementProgress]);
-    const completeVideos = currentModule.videos.filter(video => video.completed);
-    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
-    const [currentVideo, setCurrentVideo] = useState(movementVideos.find(video => video.id === incompleteVideos[0].id));
+    const [currentVideo, setCurrentVideo] = useState(movementVideos.find(video => video.id === currentModule.videos[0].id));
 
     useEffect(() => {
         setCurrentModule(movementModules[movementProgress]);
     }, [movementProgress]);
 
     useEffect(() => {
-        const currentVideoData = movementVideos.find(video => video.id === incompleteVideos[0].id);
-        setCurrentVideo(currentVideoData);
-    }, [currentModule]);
-    
-    const completeVideo = () => {
-
         const allVideosCompleted = Object.values(currentModule.videos).every(
             value => value.completed === true
         );
@@ -33,6 +25,12 @@ export const MovementContextProvider = ({ children }) => {
             return;
         };
 
+        const nextVideo = currentModule.videos.filter(video => !video.completed)[0];
+        const currentVideoData = movementVideos.find(video => video.id === nextVideo.id);
+        setCurrentVideo(currentVideoData);
+    }, [currentModule]);
+    
+    const completeVideo = () => {
         const newVideos = currentModule.videos.map(video => 
             video.id === currentVideo.id ? {
                 ...video, 
@@ -58,10 +56,8 @@ export const MovementContextProvider = ({ children }) => {
         <MovementContext.Provider
             value={{
                 completeVideo,
-                completeVideos,
                 currentModule,
                 currentVideo,
-                incompleteVideos,
                 moduleComplete,
                 resetModuleScreen,
                 switchVideo

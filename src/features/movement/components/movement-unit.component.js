@@ -7,8 +7,9 @@ import { PlaylistTile } from "./playlist-tile.component";
 import { NextUp } from "../../education/components/education-unit.styles";
 
 export const MovementUnit = () => {
-    const { currentVideo, incompleteVideos, switchVideo } = useContext(MovementContext);
+    const { currentModule, currentVideo, switchVideo } = useContext(MovementContext);
     const { source } = currentVideo;
+    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
 
     const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
     const playlistTiles = upNextList.map((video, index) => (

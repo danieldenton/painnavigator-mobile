@@ -4,7 +4,8 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { Scroll } from "../../../components/scroll.component";
 
 export const MovementPlaylist = ({ navigation }) => {
-    const { currentModule, incompleteVideos, switchVideo } = useContext(MovementContext);
+    const { currentModule, switchVideo } = useContext(MovementContext);
+    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
 
     const playlistTiles = currentModule.videos.map((video, index) => (
         video.completed ? (
