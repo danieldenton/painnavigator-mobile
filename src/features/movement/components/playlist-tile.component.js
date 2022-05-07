@@ -6,7 +6,7 @@ import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 
 const PlaylistTileCard = styled(Card)`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -36,12 +36,6 @@ const CardSubHeader = styled.Text`
     font-family: Inter_500Medium;
     font-size: 12px;
     margin-top: 8px;
-`;
-
-const CardIconSection = styled.View`
-    flex: .2;
-    align-items: flex-end;
-    justify-content: center;
 `;
 
 const ThumbnailWrapper = styled.View`
@@ -104,7 +98,7 @@ const PlaylistTileWrapper = styled.View`
 const ProgressTrackWrapper = styled.View`
 `;
 
-export const PlaylistTile = ({ videoId, upLast, upNext, firstInPlaylist, navigation, switchVideo }) => {
+export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
     const videoIndex = videoId - 1;
     const { name, length, thumbnail } = movementVideos[videoIndex];
 
@@ -113,8 +107,9 @@ export const PlaylistTile = ({ videoId, upLast, upNext, firstInPlaylist, navigat
     return(
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
-                {upNext || firstInPlaylist ? <CompleteDot /> : <IncompleteDot />}
+                {upNext ? <CompleteDot /> : <IncompleteDot />}
                 {!upNext && <IncompleteBridge />}
+                {upNext && !firstVideo && <CompleteBridge />}
             </ProgressTrackWrapper>
             <TouchableOpacity
                 onPress={() => {
@@ -141,7 +136,7 @@ export const PlaylistTile = ({ videoId, upLast, upNext, firstInPlaylist, navigat
 };
 
 const CompletedModuleCard = styled(Card)`
-    margin-bottom: ${(props) => props.theme.space[3]};
+    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -173,7 +168,7 @@ const IconSection = styled.View`
     justify-content: center;
 `;
 
-export const CompletedPlaylistTile = ({ videoId, firstInPlaylist }) => {
+export const CompletedPlaylistTile = ({ videoId, firstVideo }) => {
     const videoIndex = videoId - 1;
     const { name, length } = movementVideos[videoIndex];
 
@@ -181,7 +176,7 @@ export const CompletedPlaylistTile = ({ videoId, firstInPlaylist }) => {
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
                 <CompleteDot />
-                {!firstInPlaylist && <CompleteBridge />}
+                {!firstVideo && <CompleteBridge />}
             </ProgressTrackWrapper>
             <CompletedModuleCard style={{ backgroundColor: "#CDEBE6", flex: 1 }}>
                 <CompletedModuleCardContent>

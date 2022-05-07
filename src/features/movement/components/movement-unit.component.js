@@ -14,8 +14,8 @@ export const MovementUnit = () => {
     const playlistTiles = upNextList.map((video, index) => (
         <PlaylistTile 
             key={video.id}
-            upLast={index === upNextList.length - 1 ? true : false}
             upNext={index === 0 && true}
+            firstVideo={index === 0 && true}
             switchVideo={switchVideo}
             videoId={video.id}
         />

@@ -12,21 +12,15 @@ import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { LockedModule } from "../components/locked-module.component";
 import { Scroll } from "../../../components/scroll.component";
-import { View, Text } from "react-native";
 
 export const TodayScreen = ({ navigation }) => {
     const { name } = useContext(ProfileContext).userInfo;
     const { nextEducationModule } = useContext(EducationContext);
-    const { currentModule, currentVideo } = useContext(MovementContext);
+    const { currentModule } = useContext(MovementContext);
 
     return (
         <SafeView>
             <TodayNavBar navigation={navigation} />
-            <View>
-                <Text>
-                    {JSON.stringify(currentVideo)}
-                </Text>
-            </View>
             <Scroll>
                 <Greeting timeOfDay={"Morning"} name={name} />
                 <SubHeader title={"TODAY'S EDUCATION"} size={14} />
