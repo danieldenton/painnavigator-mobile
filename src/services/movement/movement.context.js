@@ -19,15 +19,16 @@ export const MovementContextProvider = ({ children }) => {
             value => value.completed === true
         );
 
-        if(allVideosCompleted){
+        if(allVideosCompleted) {
             setModuleComplete(true);
             setMovementProgress((prevMovementProgress) => { return ( prevMovementProgress + 1 ) });
             return;
         };
 
-        const nextVideo = currentModule.videos.filter(video => !video.completed)[0];
-        const currentVideoData = movementVideos.find(video => video.id === nextVideo.id);
-        setCurrentVideo(currentVideoData);
+        const nextVideoId = currentModule.videos.filter(video => !video.completed)[0].id;
+        const nextVideoData = movementVideos.find(video => video.id === nextVideoId);
+        setCurrentVideo(nextVideoData);
+
     }, [currentModule]);
     
     const completeVideo = () => {
@@ -39,11 +40,10 @@ export const MovementContextProvider = ({ children }) => {
             :
             video
         );
-
         setCurrentModule({...currentModule, videos: newVideos})
     };
 
-    const resetModuleScreen = () => {
+    const resetModule = () => {
         setTimeout(() => { setModuleComplete(false) }, 1000);
     }
 
@@ -59,7 +59,7 @@ export const MovementContextProvider = ({ children }) => {
                 currentModule,
                 currentVideo,
                 moduleComplete,
-                resetModuleScreen,
+                resetModule,
                 switchVideo
             }}
         >

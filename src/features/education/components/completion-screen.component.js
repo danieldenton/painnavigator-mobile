@@ -24,7 +24,7 @@ export const CompletionScreen = ({ navigation, resetModule }) => {
     return (
         <>
             <CongratulationsSection>
-                <CongratulationsHeader>Congratulations</CongratulationsHeader>
+                <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                 <CongratulationsMessage>You completed your first education unit! You’re on your way to mastering new skills and redefining your relationship with pain. </CongratulationsMessage>
             </CongratulationsSection>
             <ButtonSection>

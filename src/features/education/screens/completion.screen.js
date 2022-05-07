@@ -1,9 +1,8 @@
-import React, {useContext} from "react";
+import React from "react";
 import styled from "styled-components/native";
-import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
-
-import { MovementContext } from "../../../services/movement/movement.context";
+import { ModuleButton } from "../../../components/button.component";
+import { SafeView } from "../../../components/safe-area.component";
 
 const CongratulationsSection = styled.View`
     align-items: center;
@@ -23,20 +22,18 @@ const CongratulationsMessage = styled.Text`
 `;
 
 export const CompletionScreen = ({ navigation }) => {
-    const { resetModule } = useContext(MovementContext);
-
     return (
-        <>
+        <SafeView>
             <CongratulationsSection>
                 <CongratulationsHeader>Congratulations!</CongratulationsHeader>
-                <CongratulationsMessage>You completed your first movement unit! You’re on your way to mastering new skills and redefining your relationship with pain. </CongratulationsMessage>
+                <CongratulationsMessage>
+                    You completed your first education unit! 
+                    You’re on your way to mastering new skills and redefining your relationship with pain. 
+                </CongratulationsMessage>
             </CongratulationsSection>
             <ButtonSection>
-                <ModuleButton 
-                    title={"Back to Dashboard"} 
-                    onPress={() => { navigation.navigate("Today"); resetModule(); }} 
-                />
+                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Back to Dashboard"} />
             </ButtonSection>
-        </>
+        </SafeView>
     );
 };

@@ -10,7 +10,6 @@ export const MovementUnit = () => {
     const { currentModule, currentVideo, switchVideo } = useContext(MovementContext);
     const { source } = currentVideo;
     const incompleteVideos = currentModule.videos.filter(video => !video.completed);
-
     const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
     const playlistTiles = upNextList.map((video, index) => (
         <PlaylistTile 

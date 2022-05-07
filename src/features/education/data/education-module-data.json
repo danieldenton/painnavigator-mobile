@@ -4,19 +4,22 @@
             "id": 1,
             "name": "PainNavigator Introduction",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904560/For%20Mobile%20App/Education/PainNavigator%20Introduction.mp4",
-            "length": "7 min"
+            "length": "7 min",
+            "type": "video"
         },
         {
             "id": 2,
             "name": "Spine Anatomy",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429118/For%20Mobile%20App/Spine%20Anatomy.mp4",
-            "length": "6 min"
+            "length": "6 min",
+            "type": "video"
         },
         {
             "id": 3,
             "name": "Pain Diary",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429090/For%20Mobile%20App/Pain%20Diary.mp4",
-            "length": "5 min"
+            "length": "5 min",
+            "type": "video"
         }
     ]
 }

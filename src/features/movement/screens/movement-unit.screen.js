@@ -6,16 +6,13 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { SafeView } from "../../../components/safe-area.component";
 
 export const MovementUnitScreen = ({ navigation }) => {
-    const { moduleComplete, setModuleComplete } = useContext(MovementContext);
+    const { moduleComplete } = useContext(MovementContext);
 
     return(
         <SafeView>
             <NavigationBarLeft screen={"Movement"} navigation={navigation} destination={"MovementPlaylist"} />
             {moduleComplete ? (
-                <CompletionScreen 
-                  navigation={navigation}
-                  setModuleComplete={setModuleComplete}
-                /> 
+                <CompletionScreen navigation={navigation} /> 
                 ) : (
                 <MovementUnit />
             )}

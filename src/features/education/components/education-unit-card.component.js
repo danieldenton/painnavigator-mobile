@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { EducationModuleIcon } from "../../../icons";
+import { EducationContext } from "../../../services/education/education.context";
 
 const ModuleCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -37,11 +38,12 @@ const CardIconSection = styled.View`
     justify-content: center;
 `;
 
-export const EducationUnitCard = ({navigation, nextEducationModule}) => {
-    const { id, name, length, source } = nextEducationModule;
+export const EducationUnitCard = ({ navigation }) => {
+    const { currentModule } = useContext(EducationContext);
+    const { id, name, length, source } = currentModule;
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", 
+        <TouchableOpacity onPress={() => navigation.navigate("Education", 
             {
                 id,
                 name,

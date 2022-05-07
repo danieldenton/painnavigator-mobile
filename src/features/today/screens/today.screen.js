@@ -25,10 +25,7 @@ export const TodayScreen = ({ navigation }) => {
                 <Greeting timeOfDay={"Morning"} name={name} />
                 <SubHeader title={"TODAY'S EDUCATION"} size={14} />
                 <DailyGoalCompleted />
-                <EducationUnitCard 
-                    navigation={navigation} 
-                    nextEducationModule={nextEducationModule} 
-                />
+                <EducationUnitCard navigation={navigation} />
                 <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                 <MovementUnitCard 
                     navigation={navigation} 

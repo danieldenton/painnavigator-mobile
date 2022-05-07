@@ -5,18 +5,16 @@ import { educationModules } from "../../features/education/data/education-module
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
-    const [moduleComplete, setModuleComplete] = useState(false);
     const [educationProgress, setEducationProgress] = useState(0);
-    const [nextEducationModule, setNextEducationModule] = useState(educationModules[educationProgress]);
+    const [currentModule, setCurrentModule] = useState(educationModules[educationProgress]);
 
     useEffect(() => {
-        setNextEducationModule(educationModules[educationProgress]);
+        setCurrentModule(educationModules[educationProgress]);
     }, [educationProgress])
 
-    const markComplete = () => {
+    const completeModule = () => {
         //postEducationModule(module_id);
         setEducationProgress((prevEducationProgress) => { return ( prevEducationProgress + 1 ) });
-        setModuleComplete(true);
     };
 
     const resetModule = () => {
@@ -26,9 +24,8 @@ export const EducationContextProvider = ({ children }) => {
     return (
         <EducationContext.Provider
             value={{
-                moduleComplete,
-                nextEducationModule,
-                markComplete,
+                currentModule,
+                completeModule,
                 resetModule
             }}
         >
