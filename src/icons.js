@@ -262,6 +262,23 @@ export const PainJournalIcon = () => {
     );
 };
 
+export const Pause = () => {
+    return (
+        <Svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 1V13" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+            <Path d="M7.85718 1V13" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    );
+}
+
+export const Play = () => {
+    return (
+        <Svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 1L11 7.68571L1 14L1 1Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};  
+
 export const ProgressDotFilled = () => {
     return (
         <Svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -11,11 +11,12 @@ import { NextUp } from "../../education/components/education-unit.styles";
 export const MovementUnit = ({ videosRemaining, currentVideo, setCurrentVideo, markVideoComplete }) => {
     const {id, chapter, source, name } = movementVideos.find(video => video.id === currentVideo);
 
-    const upNext = videosRemaining.filter((video) => video !== currentVideo);
-    const playlistTiles = upNext.map((video, index) => (
+    const upNextList = videosRemaining.filter((video) => video !== currentVideo);
+    const playlistTiles = upNextList.map((video, index) => (
         <PlaylistTile 
             key={video}
-            lastInList={index === upNext.length - 1 ? true : false}
+            upLast={index === upNextList.length - 1 ? true : false}
+            upNext={index === 0 && true}
             setCurrentVideo={setCurrentVideo}
             videoId={video}
         />
@@ -32,15 +33,9 @@ export const MovementUnit = ({ videosRemaining, currentVideo, setCurrentVideo, m
                 videoId={id}
             />
             {videosRemaining.length > 1 && <NextUp />}
-            <ScrollView style={{ marginBottom: 120 }} showsVerticalScrollIndicator={false} >
+            <ScrollView showsVerticalScrollIndicator={false} >
                 {playlistTiles}
             </ScrollView>
-            <ButtonSection>
-                <ModuleButton
-                    onPress={() => {markVideoComplete(id);}}
-                    title={`Mark ${name} Complete`}
-                />
-            </ButtonSection>
         </>
     );
 };

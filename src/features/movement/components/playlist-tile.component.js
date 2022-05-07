@@ -6,7 +6,7 @@ import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 
 const PlaylistTileCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-bottom: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -69,7 +69,7 @@ const IncompleteDot = styled.View`
 
 const IncompleteBridge = styled.View`
     position: absolute;
-    top: 30px;
+    top: -78px;
     left: 8px;
     width: 2px;
     height: 90px;
@@ -89,7 +89,7 @@ const CompleteDot = styled.View`
 
 const CompleteBridge = styled.View`
     position: absolute;
-    top: 30px;
+    top: -78px;
     left: 8px;
     width: 2px;
     height: 90px;
@@ -102,10 +102,9 @@ const PlaylistTileWrapper = styled.View`
 `;
 
 const ProgressTrackWrapper = styled.View`
-`
+`;
 
-
-export const PlaylistTile = ({ videoId, lastInList, navigation, setCurrentVideo }) => {
+export const PlaylistTile = ({ videoId, upLast, upNext, firstInPlaylist, navigation, setCurrentVideo }) => {
     const videoIndex = videoId - 1;
     const { name, length, thumbnail } = movementVideos[videoIndex];
 
@@ -114,8 +113,8 @@ export const PlaylistTile = ({ videoId, lastInList, navigation, setCurrentVideo 
     return(
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
-                <IncompleteDot />
-                {!lastInList && <IncompleteBridge />}
+                {upNext || firstInPlaylist ? <CompleteDot /> : <IncompleteDot />}
+                {!upNext && <IncompleteBridge />}
             </ProgressTrackWrapper>
             <TouchableOpacity
                 onPress={() => {
@@ -142,7 +141,7 @@ export const PlaylistTile = ({ videoId, lastInList, navigation, setCurrentVideo 
 };
 
 const CompletedModuleCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-bottom: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -174,7 +173,7 @@ const IconSection = styled.View`
     justify-content: center;
 `;
 
-export const CompletedPlaylistTile = ({ videoId }) => {
+export const CompletedPlaylistTile = ({ videoId, firstInPlaylist }) => {
     const videoIndex = videoId - 1;
     const { name, length } = movementVideos[videoIndex];
 
@@ -182,7 +181,7 @@ export const CompletedPlaylistTile = ({ videoId }) => {
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
                 <CompleteDot />
-                <CompleteBridge />
+                {!firstInPlaylist && <CompleteBridge />}
             </ProgressTrackWrapper>
             <CompletedModuleCard style={{ backgroundColor: "#CDEBE6", flex: 1 }}>
                 <CompletedModuleCardContent>

@@ -1,5 +1,6 @@
 import React from "react";
 import { CompletedPlaylistTile, PlaylistTile } from "./playlist-tile.component";
+import { Scroll } from "../../../components/scroll.component";
 
 export const MovementPlaylist = ({ navigation, setCurrentVideo, videoTransform }) => {
 
@@ -7,13 +8,16 @@ export const MovementPlaylist = ({ navigation, setCurrentVideo, videoTransform }
         video.completed ? 
         <CompletedPlaylistTile
             key={video.video}
-            lastInList={index === videoTransform.length - 1 ? true : false}
+            firstInPlaylist={index === 0 && true}
+            upLast={index === videoTransform.length - 1 ? true : false}
             videoId={video.video}
         />
         :
         <PlaylistTile 
             key={video.video}
-            lastInList={index === videoTransform.length - 1 ? true : false}
+            upLast={index === videoTransform.length - 1 ? true : false}
+            upNext={index === 0 && true}
+            firstInPlaylist={index === 0 && true}
             navigation={navigation}
             setCurrentVideo={setCurrentVideo}
             videoId={video.video}
@@ -21,8 +25,8 @@ export const MovementPlaylist = ({ navigation, setCurrentVideo, videoTransform }
     ));
 
     return (
-        <>
+        <Scroll style={{ marginTop: 16 }}>
             {playlistTiles}
-        </>
+        </Scroll>
     );
 };
