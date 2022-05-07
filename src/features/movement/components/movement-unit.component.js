@@ -7,7 +7,7 @@ import { PlaylistTile } from "./playlist-tile.component";
 import { NextUp } from "../../education/components/education-unit.styles";
 
 export const MovementUnit = () => {
-    const { currentModule, currentVideo, switchVideo } = useContext(MovementContext);
+    const { completeVideo, currentModule, currentVideo, switchVideo } = useContext(MovementContext);
     const { source } = currentVideo;
     const incompleteVideos = currentModule.videos.filter(video => !video.completed);
     const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
@@ -23,7 +23,7 @@ export const MovementUnit = () => {
 
     return(
         <>
-            <VideoPlayer source={source} />
+            <VideoPlayer source={source} currentVideo={currentVideo} completeVideo={completeVideo} />
             <VideoInfo />
             {incompleteVideos.length > 1 && <NextUp />}
             <ScrollView showsVerticalScrollIndicator={false} >
