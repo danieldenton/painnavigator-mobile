@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Video } from 'expo-av';
 import styled from "styled-components/native";
 import { Pressable } from "react-native";
 import { Pause, Play } from "../../../icons";
+import { MovementContext } from "../../../services/movement/movement.context";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
@@ -16,11 +17,22 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = ({ source }) => {
-    const educationVideo = useRef(null);
+    const { completeVideo, currentVideo } = useContext(MovementContext);
+    const video = useRef(null);
     const [status, setStatus] = useState({});
 
     useEffect(() => {
-        educationVideo.current.setStatusAsync({ positionMillis: 0 });
+        video.current.setStatusAsync({ positionMillis: 0 });
+    }, [currentVideo]);
+
+    useEffect(() => {
+        if(!status.didJustFinish) {
+            return;
+        };
+
+        completeVideo();
+        video.current.setStatusAsync({ positionMillis: 0 });
+
     }, [status.didJustFinish]);
 
     return (
@@ -29,13 +41,13 @@ export const VideoPlayer = ({ source }) => {
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={true}
-                    ref={educationVideo}
+                    ref={video}
                     resizeMode="contain"
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
             </VideoWrapper>
-            <Pressable onPress={() => status.isPlaying ? educationVideo.current.pauseAsync() : educationVideo.current.playAsync()} style={{ marginTop: 16 }}>
+            <Pressable onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()} style={{ marginTop: 16 }}>
                 {status.isPlaying ? <Pause /> : <Play />}
             </Pressable>
         </>

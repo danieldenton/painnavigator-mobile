@@ -16,7 +16,7 @@ export const EducationUnitScreen = ({ navigation }) => {
             {currentModule.type === "video" ? <VideoUnit /> : <TextUnit />}
             <ButtonSection>
                 <ModuleButton 
-                    onPress={() => { completeModule(); navigation.navigate("Completion")}} 
+                    onPress={() => { navigation.navigate("Completion"); completeModule(); }} 
                     title={"Mark Complete"} 
                 />
             </ButtonSection>

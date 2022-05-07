@@ -2,7 +2,7 @@ import React from "react";
 import { Bookmark } from "../../../components/bookmark.component";
 import { Header, TitleSection, BookmarkSection, ModuleTypeTitle, UnitTitle, Summary } from "./education-unit.styles";
 
-export const EducationUnitInfo = ({ id, name }) => {
+export const EducationUnitInfo = ({ id, name, summary }) => {
     return(
         <>
             <ModuleTypeTitle>EDUCATION</ModuleTypeTitle>
@@ -17,7 +17,7 @@ export const EducationUnitInfo = ({ id, name }) => {
                 </BookmarkSection>
             </Header>
             <Summary>
-                Learn about the benefits of PainNavigator and step-by-step instructions of how to complete it. 
+                {summary} 
             </Summary>
         </>
     );

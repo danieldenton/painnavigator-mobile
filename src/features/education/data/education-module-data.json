@@ -5,21 +5,44 @@
             "name": "PainNavigator Introduction",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904560/For%20Mobile%20App/Education/PainNavigator%20Introduction.mp4",
             "length": "7 min",
-            "type": "video"
+            "type": "video",
+            "skippable": true
         },
         {
             "id": 2,
-            "name": "Spine Anatomy",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429118/For%20Mobile%20App/Spine%20Anatomy.mp4",
-            "length": "6 min",
-            "type": "video"
+            "name": "Pacing Summary",
+            "length": "2 min",
+            "type": "text",
+            "skippable": false,
+            "summary": "Pacing involves respecting your limits, conserving energy, avoiding flare-ups, increasing your tolerance, and improving your functioning. /n Use your pain diary to help identify ways you can better utilize our pacing strategies.",
+            "steps": [
+                {
+                    "id": 1,
+                    "header": "First, establish your baseline:",
+                    "bullets": [
+                        "Know your pain: Know when your pain moves from being “manageable” to “uncomfortable”",
+                        "Create some limits: Establish time limits and baselines for each activity that keep you at a “manageable” level",
+                        "Here’s an example: It takes Sue 10 minutes of vacuuming before her pain becomes uncomfortable. She divides that number in half (5 minutes) to establish an initial baseline."
+                    ]
+                },
+                {
+                    "id": 2,
+                    "header": "Here’s some tips to implement pacing in your life:",
+                    "bullets": [
+                        "Break it down: take incremental steps and frequent breaks so you don’t overdo it",
+                        "Gradually increase: increase the time spent in an activity by a set time each week. Example: if the baseline is 5 minutes, only increase it by 30 seconds to 1 minute each week.",
+                        "Use SMART Goals: develop SMART Goals you would like to accomplish and pace your way through them"
+                    ]
+                }
+            ]
         },
         {
             "id": 3,
             "name": "Pain Diary",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429090/For%20Mobile%20App/Pain%20Diary.mp4",
             "length": "5 min",
-            "type": "video"
+            "type": "video",
+            "skippable": true
         }
     ]
 }

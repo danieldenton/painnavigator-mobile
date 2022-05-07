@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ScrollView } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { VideoPlayer } from "../../education/components/video-player.component";
+import { VideoPlayer } from "./video-player.component";
 import { VideoInfo } from "./video-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
 import { NextUp } from "../../education/components/education-unit.styles";
