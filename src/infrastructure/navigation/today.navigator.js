@@ -11,6 +11,7 @@ export const TodayNavigator = () => {
     return (
         <TodayStack.Navigator screenOptions={{headerShown: false}}>
             <TodayStack.Screen name="Today" component={TodayScreen} />
+            <TodayStack.Screen name="Education" component={EducationNavigator} />
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
         </TodayStack.Navigator>

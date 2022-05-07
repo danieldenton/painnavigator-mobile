@@ -15,7 +15,6 @@ import { Scroll } from "../../../components/scroll.component";
 
 export const TodayScreen = ({ navigation }) => {
     const { name } = useContext(ProfileContext).userInfo;
-    const { nextEducationModule } = useContext(EducationContext);
     const { currentModule } = useContext(MovementContext);
 
     return (

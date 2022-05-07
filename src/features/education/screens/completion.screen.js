@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 
 const CongratulationsSection = styled.View`
@@ -24,6 +25,7 @@ const CongratulationsMessage = styled.Text`
 export const CompletionScreen = ({ navigation }) => {
     return (
         <SafeView>
+            <NavigationBarLeft screen={"Education"} destination={"Today"} navigation={navigation} />
             <CongratulationsSection>
                 <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                 <CongratulationsMessage>

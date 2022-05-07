@@ -7,8 +7,7 @@ import { SafeView } from "../../../components/safe-area.component";
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
-export const EducationUnitScreen = ({ route }) => {
-    const { navigation } = route.params;
+export const EducationUnitScreen = ({ navigation }) => {
     const { completeModule, currentModule } = useContext(EducationContext);
     
     return (

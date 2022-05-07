@@ -43,7 +43,7 @@ export const EducationUnitCard = ({ navigation }) => {
     const { name, length } = currentModule;
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("EducationUnit", { navigation })}> 
+        <TouchableOpacity onPress={() => navigation.navigate("Education", { navigation })}> 
             <ModuleCard>
                 <ModuleCardContent>
                     <CardTextSection>
