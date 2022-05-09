@@ -15,22 +15,12 @@ const VideoScreen = styled(Video)`
     width: 100%;
 `;
 
-export const VideoPlayer = ({ source, completeVideo, currentVideo }) => {
-    const video = useRef(null);
+export const VideoPlayer = ({ source }) => {
+    const replayVideo = useRef(null);
     const [status, setStatus] = useState({});
 
     useEffect(() => {
-        video.current.setStatusAsync({ positionMillis: 0 });
-    }, [currentVideo]);
-
-    useEffect(() => {
-        if(!status.didJustFinish) {
-            return;
-        };
-
-        video.current.setStatusAsync({ positionMillis: 0 });
-        completeVideo();
-
+        replayVideo.current.setStatusAsync({ positionMillis: 0 });
     }, [status.didJustFinish]);
 
     return (
@@ -39,15 +29,15 @@ export const VideoPlayer = ({ source, completeVideo, currentVideo }) => {
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={true}
-                    ref={video}
+                    ref={replayVideo}
                     resizeMode="contain"
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
             </VideoWrapper>
-            <Pressable onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()} style={{ marginTop: 16 }}>
+            <Pressable onPress={() => status.isPlaying ? replayVideo.current.pauseAsync() : replayVideo.current.playAsync()} style={{ marginTop: 16 }}>
                 {status.isPlaying ? <Pause /> : <Play />}
             </Pressable>
         </>
-    )
-}
+    );
+};

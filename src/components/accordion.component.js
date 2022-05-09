@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components/native";
 import { List } from 'react-native-paper';
 import { Scroll } from "./scroll.component";
@@ -37,10 +37,10 @@ export const Accordion = ({ steps }) => {
     const accordionSections = steps.map((step) => {
         const { id, title, titleNumberOfLines } = step; 
 
-        const bullets = step.bullets.map((bullet) => {
+        const bullets = step.bullets.map((bullet, index) => {
         
             return (
-                <BulletSection>     
+                <BulletSection key={index}>     
                     <Bullet />
                     <BulletTextSection>
                         <BulletText>
@@ -58,15 +58,22 @@ export const Accordion = ({ steps }) => {
                 titleNumberOfLines={titleNumberOfLines}
                 id={id}
                 style={{ padding: 0, marginTop: 16 }}
+                key={id}
             >
                 {bullets}
             </List.Accordion>
         );
     });
 
+    const scroll = useRef(null);
 
     return (
-        <Scroll style={{ marginBottom: 120, marginTop: 32 }}>
+
+        <Scroll 
+            style={{ marginBottom: 120, marginTop: 32 }} 
+            onContentSizeChange={() => scroll.current.scrollTo({y: 0})}
+            ref={scroll}
+        >
             <AccordionSection>
                 {accordionSections}
             </AccordionSection>

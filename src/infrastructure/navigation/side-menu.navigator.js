@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TodayNavigator } from "../navigation/today.navigator";
-import { SideMenu } from '../../components/side-menu.component';
+import { SideMenu } from '../../components/side-menu/side-menu.component';
 
 const SideMenuDrawer = createDrawerNavigator();
 
@@ -10,11 +10,11 @@ export const SideMenuNavigator = () => {
       <SideMenuDrawer.Navigator 
         drawerContent={(props) => <SideMenu {...props} />}
         initialRouteName="Today" 
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ headerShown: false, swipeEdgeWidth: 0 }}
         useLegacyImplementation
       >
         <SideMenuDrawer.Screen 
-          name="Journals" 
+          name="Home" 
           component={TodayNavigator}   
           options={{ drawerItemStyle: { height: 0 } }}
         />

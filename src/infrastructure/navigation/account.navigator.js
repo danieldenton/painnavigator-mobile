@@ -10,7 +10,7 @@ const AccountStack = createStackNavigator();
 
 export const AccountNavigator = () => {
     return (
-        <AccountStack.Navigator screenOptions={{headerShown: false}}>
+        <AccountStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <AccountStack.Screen name="Register" component={RegisterScreen} />
             <AccountStack.Screen name="Main" component={OnboardScreen} />
             <AccountStack.Screen name="Login" component={LoginScreen} />

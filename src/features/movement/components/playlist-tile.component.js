@@ -6,7 +6,6 @@ import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 
 const PlaylistTileCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -22,7 +21,6 @@ const PlaylistTileCardContent = styled(Card.Content)`
 `;
 
 const CardTextSection = styled.View`
-    flex: .8;
     margin-left: 16px;
     justify-content: center;
 `;
@@ -58,12 +56,11 @@ const IncompleteDot = styled.View`
     height: 18px;
     width: 18px;
     margin-right: 12px;
-    margin-top: 12px;
 `;
 
 const IncompleteBridge = styled.View`
     position: absolute;
-    top: -78px;
+    top: -90px;
     left: 8px;
     width: 2px;
     height: 90px;
@@ -78,12 +75,11 @@ const CompleteDot = styled.View`
     height: 18px;
     width: 18px;
     margin-right: 12px;
-    margin-top: 12px;
 `;
 
 const CompleteBridge = styled.View`
     position: absolute;
-    top: -78px;
+    top: -90px;
     left: 8px;
     width: 2px;
     height: 90px;
@@ -93,13 +89,15 @@ const CompleteBridge = styled.View`
 const PlaylistTileWrapper = styled.View`
     flex-direction: row;
     align-items: center;
+    margin-top: ${(props) => props.theme.space[2]};
+    margin-bottom: ${(props) => props.theme.space[2]};
 `;
 
 const ProgressTrackWrapper = styled.View`
 `;
 
 export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
-    const videoIndex = videoId - 1;
+    const videoIndex = videoId - 63;
     const { name, length, thumbnail } = movementVideos[videoIndex];
 
     // source={require("../assets/exercise_1.png")}
@@ -136,7 +134,6 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
 };
 
 const CompletedModuleCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding-top: 24px;
     padding-bottom: 24px;
@@ -169,7 +166,7 @@ const IconSection = styled.View`
 `;
 
 export const CompletedPlaylistTile = ({ videoId, firstVideo }) => {
-    const videoIndex = videoId - 1;
+    const videoIndex = videoId - 63;
     const { name, length } = movementVideos[videoIndex];
 
     return (

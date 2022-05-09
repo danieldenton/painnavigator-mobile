@@ -9,7 +9,7 @@ const PainJournalStack = createStackNavigator();
 export const PainJournalNavigator = () => {
 
     return (
-        <PainJournalStack.Navigator>
+        <PainJournalStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <PainJournalStack.Screen 
                 name="PainJournalHome" 
                 component={PainJournalHomeScreen} 

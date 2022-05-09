@@ -48,7 +48,7 @@ export const EducationUnitCard = ({ navigation }) => {
                 <ModuleCardContent>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{length.toUpperCase()}</CardSubHeader>
+                        <CardSubHeader>{length} MIN</CardSubHeader>
                     </CardTextSection>
                     <CardIconSection>
                         <EducationModuleIcon />

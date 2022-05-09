@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
+import { MovementContext } from "../../../services/movement/movement.context";
 
 const ModuleCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -43,7 +44,8 @@ const CardIconSection = styled.View`
     justify-content: center;
 `;
 
-export const MovementUnitCard = ({ navigation, currentModule }) => {
+export const MovementUnitCard = ({ navigation }) => {
+    const { currentModule } = useContext(MovementContext);
     const { name, length, videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;

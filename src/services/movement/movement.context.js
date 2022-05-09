@@ -9,6 +9,9 @@ export const MovementContextProvider = ({ children }) => {
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentModule, setCurrentModule] = useState(movementModules[movementProgress]);
     const [currentVideo, setCurrentVideo] = useState(movementVideos.find(video => video.id === currentModule.videos[0].id));
+    const [nextModule, setNextModule] = useState(movementModules[movementProgress + 1]);
+    const [completedMovementModules, setCompletedMovementModules] = useState([]);
+    const [skippedMovementModules, setSkippedMovementModules] = useState([63]);
 
     useEffect(() => {
         setCurrentModule(movementModules[movementProgress]);
@@ -21,17 +24,21 @@ export const MovementContextProvider = ({ children }) => {
 
         if(allVideosCompleted) {
             setModuleComplete(true);
-            setMovementProgress((prevMovementProgress) => { return ( prevMovementProgress + 1 ) });
+            advanceProgress();
             return;
         };
 
         const nextVideoId = currentModule.videos.filter(video => !video.completed)[0].id;
         const nextVideoData = movementVideos.find(video => video.id === nextVideoId);
         setCurrentVideo(nextVideoData);
-
     }, [currentModule]);
+
+    const advanceProgress = () => {
+        setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
+    };
     
     const completeVideo = () => {
+        setCompletedMovementModules(prevCompleted => [...prevCompleted, currentVideo.id]);
         const newVideos = currentModule.videos.map(video => 
             video.id === currentVideo.id ? {
                 ...video, 
@@ -43,9 +50,21 @@ export const MovementContextProvider = ({ children }) => {
         setCurrentModule({...currentModule, videos: newVideos})
     };
 
+    const completeSkippedUnit = (unitId) => {
+        const newCompletedModules = [...completedMovementModules, unitId];
+        const sortedData = newCompletedModules.sort(function(a, b){return a-b});
+        setCompletedMovementModules(sortedData);
+        setSkippedMovementModules(prevSkipped => prevSkipped.filter(unit => unit !== unitId));
+    };
+
     const resetModule = () => {
         setTimeout(() => { setModuleComplete(false) }, 1000);
-    }
+    };
+
+    const skipVideo = () => {
+        setSkippedMovementModules(prevSkipped => [...prevSkipped, currentVideo.id]);
+        setTimeout(() => { advanceProgress() }, 1000);
+    };
 
     const switchVideo = (videoId) => {
         const newVideoData = movementVideos.find(video => video.id === videoId);
@@ -56,10 +75,16 @@ export const MovementContextProvider = ({ children }) => {
         <MovementContext.Provider
             value={{
                 completeVideo,
+                completedMovementModules,
+                completeSkippedUnit,
                 currentModule,
                 currentVideo,
                 moduleComplete,
+                movementProgress,
+                nextModule,
                 resetModule,
+                skippedMovementModules,
+                skipVideo,
                 switchVideo
             }}
         >

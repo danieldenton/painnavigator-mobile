@@ -2,19 +2,72 @@
     "educationModules": [
         {
             "id": 1,
-            "name": "PainNavigator Introduction",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904560/For%20Mobile%20App/Education/PainNavigator%20Introduction.mp4",
-            "length": "7 min",
             "type": "video",
-            "skippable": true
+            "name": "PainNavigator Introduction",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904560/For%20Mobile%20App/Education/PainNavigator%20Introduction.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn about the benefits of PainNavigator and step-by-step instructions of how to complete it."
         },
         {
             "id": 2,
-            "name": "Pacing Summary",
-            "length": "2 min",
-            "type": "text",
+            "type": "video",
+            "name": "Vicious Cycle of Pain",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569041/For%20Mobile%20App/Education/Vicious%20Cycle%20of%20Pain.mp4",
+            "length": 5,
+            "post_video_destination": null,
             "skippable": false,
-            "summary": "Pacing involves respecting your limits, conserving energy, avoiding flare-ups, increasing your tolerance, and improving your functioning. /n Use your pain diary to help identify ways you can better utilize our pacing strategies.",
+            "summary": "Learn about the Vicious Cycle of Pain and where you might be caught in it. Consider steps you can take to break your Cycle."
+        },
+        {
+            "id": 3,
+            "type": "text",
+            "name": "VCOP",
+            "chapter": 1,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": ""
+        },
+        {
+            "id": 4,
+            "type": "video",
+            "name": "Pain Journal",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568919/For%20Mobile%20App/Education/Pain%20Journal.mp4",
+            "length": 4,
+            "post_video_destination": "NewPainJournal",
+            "skippable": false,
+            "summary": "Learn about the benefits of when and how to complete a Pain Journal. Learn how to use data obtained from your Pain Journal."
+        },
+        {
+            "id": 5,
+            "type": "video",
+            "name": "Pacing",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569367/For%20Mobile%20App/Education/Pacing.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn about the benefits of Pacing. Learn how pacing can help you engage in activities and avoid a pain flare-up."
+        },
+        {
+            "id": 6,
+            "type": "text",
+            "name": "Pacing Summary",
+            "chapter": 1,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": [
+                "Pacing involves respecting your limits, conserving energy, avoiding flare-ups, increasing your tolerance, and improving your functioning.",
+                "Use your pain diary to help identify ways you can better utilize our pacing strategies."
+            ],
             "steps": [
                 {
                     "id": 1,
@@ -39,12 +92,728 @@
             ]
         },
         {
-            "id": 3,
-            "name": "Pain Diary",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429090/For%20Mobile%20App/Pain%20Diary.mp4",
-            "length": "5 min",
+            "id": 7,
             "type": "video",
-            "skippable": true
+            "name": "SMART Goals",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570183/For%20Mobile%20App/Education/SMART%20Goal.mp4",
+            "length": 6,
+            "post_video_destination": "NewSmartGoal",
+            "skippable": false,
+            "summary": "Learn about the benefits of and how to establish a SMART Goal. Learn how to overcome barriers to completing SMART Goals."
+        },
+        {
+            "id": 8,
+            "type": "text",
+            "name": "Practical tips",
+            "chapter": 1,
+            "source": "",
+            "length": 1,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": ["14 practical tips for you to better live with your back pain. Check in with your Wellness Coach if you have any questions and keep up the great work with PainNavigator!"],
+            "steps": [
+                {
+                    "id": 1,
+                    "title": "Is your pain worse in the morning? Get your muscles loose as early and as often as needed",
+                    "titleNumberOfLines": 2,
+                    "bullets": [
+                        "Start with back extensions and bring your knees to your chest while in bed.", 
+                        "Shower with hot water as soon as you wake up.",
+                        "Do a PainNavigator movement module in the morning.",
+                        "Keep track of which stretches help you and perform them throughout the day."
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "If pain happens while unloading groceries…",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "Use more bags of lower weight.",
+                        "Make multiple trips, bringing only a couple bags each time.",
+                        "Consider using a folding shopping cart for bringing groceries into the house."
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "If pain happens while vacuuming or mowing the lawn, consider buying an upright vacuum or lawn mower that lets you stand up straight instead of hunching over.",
+                    "titleNumberOfLines": 3,
+                    "bullets": []
+                },
+                {
+                    "id": 4,
+                    "title": "Give heat or ice a try!",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "Ice/heat are complementary–they should not replace exercise.",
+                        "Heat is good for muscles, ice is good for joint pain, like arthritis.",
+                        "If your back pain worsens or you feel soreness after exercising, use ice for 24 hours then convert to heat. If that doesn’t work, go straight to heat."
+                    ]
+                },
+                {
+                    "id": 5,
+                    "title": "Limit or avoid using a back brace. Over time, they can weaken your muscles so only wear them while doing an activity that requires extra support.",
+                    "titleNumberOfLines": 3,
+                    "bullets": []
+                },
+                {
+                    "id": 6,
+                    "title": "Avoid bending at the waist. Bending should be done with the knees while keeping your back straight.",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "If you’re going to be working on the floor or doing something like gardening, buy a small stool so you can sit with your back straight.",
+                        "If you find yourself in a bending position for extended periods, stretch before and after. Use the stretches that you’ve found most helpful."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "type": "video",
+            "name": "Spine Anatomy",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1646429118/For%20Mobile%20App/Education/Spine%20Anatomy.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn why it's important to understand your spine's anatomy. Learn the fundamentals of your spine's anatomy."
+        },
+        {
+            "id": 10,
+            "type": "video",
+            "name": "Common Causes of Low Back Pain",
+            "chapter": 1,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905359/For%20Mobile%20App/Education/Common%20Causes%20of%20Low%20Back%20Pain.mp4",
+            "length": 10,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the difference between acute and chronic pain and how to minimize effects of chronic low back pain."
+        },
+        {
+            "id": 11,
+            "type": "video",
+            "name": "Pain Pathways",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905596/For%20Mobile%20App/Education/Pain_Pathways_POC_wm9axf.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn why it might be difficult to reduce chronic pain. Learn about two pain pathways that affect chronic pain."
+        },
+        {
+            "id": 12,
+            "type": "text",
+            "name": "Ascending/Descending Pathways",
+            "chapter": 2,
+            "source": "",
+            "length": 5,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ["Many of the factors that affect the ascending and descending pathways can be controlled, which will result in better pain management. In chronic pain, the ascending pathway stays on and overpowers the descending pathway, making pain feel worse. But what causes the ascending pathway to stay on?"],
+            "steps": [
+                {
+                    "id": 1,
+                    "title": "Your body gets into a physical pain loop. Your body and brain is doing everything the right way, but the cause of the pain is not being addressed.",
+                    "titleNumberOfLines": 2,
+                    "bullets": [
+                        "For example: If you have pain due to arthritis in your low back, then your brain will send signals to the descending pathway to reduce your pain and tensen your back muscles to overcome the arthritis. This is normal, and if your back muscles are strong and healthy, they will compensate for the arthritis, which turns off the ascending pathway and reduces your pain.",
+                        "But, if your muscles are weak or overused from strain, over time, they will start ramping up the pain signals along the ascending pathway resulting in a gradual increase in your low back pain."
+                    ]
+                },
+                {
+                    "id": 2,
+                    "title": "Negative mood and behavior, like depression, anxiety, and insomnia, cause imbalances in brain chemicals resulting in increased signals in the ascending pathway, heightening your pain.",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "There is concrete scientific evidence that the parts of the brain that control your function, mood, and behavior affect your chronic pain signals."
+                    ]
+                },
+                {
+                    "id": 3,
+                    "title": "Lifestyle choices like stress, physical and non-physical, can turn the descending pathway off, leaving the ascending pathway unchecked.",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "Weak low back, core muscles",
+                        "Obesity",
+                        "Chronic medical diseases"
+                    ]
+                },
+                {
+                    "id": 4,
+                    "title": "Give heat or ice a try!",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "Ice/heat are complementary–they should not replace exercise.",
+                        "Heat is good for muscles, ice is good for joint pain, like arthritis.",
+                        "If your back pain worsens or you feel soreness after exercising, use ice for 24 hours then convert to heat. If that doesn’t work, go straight to heat."
+                    ]
+                },
+                {
+                    "id": 5,
+                    "title": "Limit or avoid using a back brace. Over time, they can weaken your muscles so only wear them while doing an activity that requires extra support.",
+                    "titleNumberOfLines": 3,
+                    "bullets": []
+                },
+                {
+                    "id": 6,
+                    "title": "Avoid bending at the waist. Bending should be done with the knees while keeping your back straight.",
+                    "titleNumberOfLines": 3,
+                    "bullets": [
+                        "If you’re going to be working on the floor or doing something like gardening, buy a small stool so you can sit with your back straight.",
+                        "If you find yourself in a bending position for extended periods, stretch before and after. Use the stretches that you’ve found most helpful."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "type": "video",
+            "name": "Worst Pain Ever",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905721/For%20Mobile%20App/Education/Worst%20Pain%20Ever.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn why it can be so difficult to rate your pain. Learn how to rate the quality of your pain."
+        },
+        {
+            "id": 14,
+            "type": "video",
+            "name": "Pain Score",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905999/For%20Mobile%20App/Education/Pain%20Score.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "What does a pain score communicate? Learn how to rate your pain on a scale from 0 to 10."
+        },
+        {
+            "id": 15,
+            "type": "video",
+            "name": "Chronic Pain & Stress",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650906327/For%20Mobile%20App/Education/Chronic%20Pain%20and%20Stress.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the relationship between stress and chronic pain. What is stress and how does it relate to the fight or flight response? Learn the steps you can take to reduce stress in your life."
+        },
+        {
+            "id": 16,
+            "type": "video",
+            "name": "Quieting the Mind: Introduction",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570212/For%20Mobile%20App/Education/Quieting%20the%20Mind:%20Introduction.mp4",
+            "length": 3,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the relationship between worrisome thoughts and pain."
+        },
+        {
+            "id": 17,
+            "type": "video",
+            "name": "Quieting the Mind: Steps",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569350/For%20Mobile%20App/Education/Quieting%20the%20Mind:%20Steps.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about two types of worrisome thoughts. Learn the steps you can take to reduce worrisome thoughts."
+        },
+        {
+            "id": 18,
+            "type": "text",
+            "name": "Quieting the Mind Steps Summary",
+            "chapter": 2,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 19,
+            "type": "video",
+            "name": "Weight, Nutrition, and Chronic Pain 1",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904490/For%20Mobile%20App/Education/Weight%2C%20Nutrition%2C%20and%20Chronic%20Pain%201.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the link between weight and chronic pain. Learn about excess vs. non-excess weight and measurement tools such as the Body Mass Index (BMI)."
+        },
+        {
+            "id": 20,
+            "type": "text",
+            "name": "Healthy Ways to Gain Weight",
+            "chapter": 2,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 21,
+            "type": "video",
+            "name": "Weight, Nutrition, and Chronic Pain 2",
+            "chapter": 2,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904493/For%20Mobile%20App/Education/Weight%2C%20Nutrition%2C%20and%20Chronic%20Pain%202.mp4",
+            "length": 5,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the impact of excess weight on chronic pain."
+        },
+        {
+            "id": 22,
+            "type": "video",
+            "name": "Passive Muscle Relaxation Intro",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914237/For%20Mobile%20App/Education/Passive%20Muscle%20Relaxation%20Intro.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about Passive Muscle Relaxation. Engage in a Passive Muscle Relaxation exercise."
+        },
+        {
+            "id": 23,
+            "type": "video",
+            "name": "Passive Muscle Relaxation Practice",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914242/For%20Mobile%20App/Education/Passive%20Muscle%20Relaxation%20Practice.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about Passive Muscle Relaxation. Engage in a Passive Muscle Relaxation exercise."
+        },
+        {
+            "id": 24,
+            "type": "text",
+            "name": "Lifestyle Changes",
+            "chapter": 3,
+            "source": "",
+            "length": 7,
+            "post_video_destination": "FoodJournalHome",
+            "skippable": true,
+            "summary": "Learn weight management steps that will help you eat healthier, feel better and lose excess weight. Learn how to use a food journal."
+        },
+        {
+            "id": 25,
+            "type": "video",
+            "name": "Imagery Intro",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914470/For%20Mobile%20App/Education/Imagery%20Intro.m4a",
+            "length": 9,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
+        },
+        {
+            "id": 26,
+            "type": "video",
+            "name": "Imagery Practice",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914474/For%20Mobile%20App/Education/Imagery%20Practice.m4a",
+            "length": 9,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
+        },
+        {
+            "id": 27,
+            "type": "video",
+            "name": "Anti-inflammatory foods",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904522/For%20Mobile%20App/Education/Anti-Inflammatory%20Foods.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "What is inflammation? Is it always bad? Learn about types of anti-inflammatory foods that can have a positive impact on your chronic pain."
+        },
+        {
+            "id": 28,
+            "type": "text",
+            "name": "Anti-inflmamatory Meal Ideas",
+            "chapter": 3,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 29,
+            "type": "video",
+            "name": "Mindfulness (Intro)",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914848/For%20Mobile%20App/Education/Mindfulness%20Intro.m4a",
+            "length": 3,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the practice Mindfulness before having two relaxation exercises available that utilize Mindfulness."
+        },
+        {
+            "id": 30,
+            "type": "video",
+            "name": "Mindfulness (Practice): Listening",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914849/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Listening.m4a",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about listening."
+        },
+        {
+            "id": 31,
+            "type": "video",
+            "name": "Mindfulness (Practice): Your Body",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914852/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Your%20Body.m4a",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about your body."
+        },
+        {
+            "id": 32,
+            "type": "video",
+            "name": "Sleep Efficiency: Introduction",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570200/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Introduction.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about sleep disturbance, including insomnia and the relationship it has with chronic pain. Learn about 2 factors that can contribute to sleep disturbance."
+        },
+        {
+            "id": 33,
+            "type": "video",
+            "name": "Sleep Efficiency: Stimulus Control",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650910063/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Stimulus%20Control.mp4",
+            "length": 5,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "How does stimulus control improve your sleep efficiency? /n Learn the steps of stimulus control."
+        },
+        {
+            "id": 34,
+            "type": "video",
+            "name": "Sleep Efficiency: Processing Strategies",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569381/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Processing%20Strategies.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "How can processing strategies imrpove your sleep efficiency? Learn how to keep an \"active brain\" out of bed!"
+        },
+        {
+            "id": 35,
+            "type": "text",
+            "name": "Improve Your Sleep",
+            "chapter": 3,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 36,
+            "type": "video",
+            "name": "Extended Relaxation Exercise (Intro)",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919131/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Intro.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in an extended Relaxation Exercise."
+        },
+        {
+            "id": 37,
+            "type": "video",
+            "name": "Extended Relaxation Exercise (Practice)",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919136/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Practice.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in an extended Relaxation Exercise."
+        },
+        {
+            "id": 38,
+            "type": "video",
+            "name": "Pleasant Activities",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569333/For%20Mobile%20App/Education/Pleasant%20Activities.mp4",
+            "length": 7,
+            "post_video_destination": "PleasantActivitiesHome",
+            "skippable": true,
+            "summary": "Identify activities you can do in moderation that might prevent disability from setting in. Learn how to engage in those activities safely and learn how to work around obstacles that might get in the way of you participating in activities."
+        },
+        {
+            "id": 39,
+            "type": "video",
+            "name": "SMART Goal Renewal 1",
+            "chapter": 3,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650910238/For%20Mobile%20App/Education/SMART%20Goal%20Renewal%201.mp4",
+            "length": 4,
+            "post_video_destination": "NewSmartGoal",
+            "skippable": true,
+            "summary": "Review the process involved in completing your first PainNavigator SMART Goal and reflect on your goal. Establish a SMART Goal you can complete in 2-weeks."
+        },
+        {
+            "id": 40,
+            "type": "video",
+            "name": "TFA! 1",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569099/For%20Mobile%20App/Education/TFA%21%201.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Introduction to Thoughts, Feelings, Action!- a multi step technique that will help you identify problematic thoughts that impact your mood and pain. Learn about common errors in your thinking that can impact your mood and pain."
+        },
+        {
+            "id": 41,
+            "type": "video",
+            "name": "Medical Approach to Chronic Pain 1",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650912369/For%20Mobile%20App/Education/Medical%20Approach%20to%20Chronic%20Pain%201.mp4",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the most common treatments for chronic pain including medications and injections."
+        },
+        {
+            "id": 42,
+            "type": "video",
+            "name": "Medical Approach to Chronic Pain 2",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650912395/For%20Mobile%20App/Education/Medical%20Approach%20to%20Chronic%20Pain%202.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about surgery and its role in low back pain management."
+        },
+        {
+            "id": 43,
+            "type": "video",
+            "name": "TFA! 2",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
+            "length": 6,
+            "post_video_destination": "PainJournalHome",
+            "skippable": false,
+            "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 44,
+            "type": "video",
+            "name": "Medications for Chronic Pain",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904510/For%20Mobile%20App/Education/Medications%20for%20Chronic%20Pain.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about over the counter and prescription non-opioid medications used to treat chronic pain."
+        },
+        {
+            "id": 45,
+            "type": "video",
+            "name": "Communication Styles",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919322/For%20Mobile%20App/Education/Communication%20Styles.m4a",
+            "length": 6,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn how to effectively communicate your thoughts and feelings and how to avoid the pitfalls of inneffective communication styles."
+        },
+        {
+            "id": 46,
+            "type": "text",
+            "name": "Communication Styles Summary",
+            "chapter": 4,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 47,
+            "type": "video",
+            "name": "Opioid Medications 1",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919439/For%20Mobile%20App/Education/Opioid%20Medications%201.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Overview about the potential risks and benefits of opioid medications."
+        },
+        {
+            "id": 48,
+            "type": "video",
+            "name": "Opioid Medications 2",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919460/For%20Mobile%20App/Education/Opioid%20Medications%202.mp4",
+            "length": 5,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Understand the potential role of opioid therapy in the treatment of your chronic pain."
+        },
+        {
+            "id": 49,
+            "type": "video",
+            "name": "TFA! 3",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570135/For%20Mobile%20App/Education/TFA%21%203.mp4",
+            "length": 3,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the first 4-steps of Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 50,
+            "type": "video",
+            "name": "Complementary Therapies - Modalities",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919795/For%20Mobile%20App/Education/Complementary%20Therapies:%20Modalities.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn proven complementary therapies that are accepted by the medical community: Acupuncture, Tai Chi, Qi Gong, Spinal Manipulation and Massage."
+        },
+        {
+            "id": 51,
+            "type": "video",
+            "name": "TFA! 4",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569055/For%20Mobile%20App/Education/TFA%21%204.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the next 3-steps of Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 52,
+            "type": "video",
+            "name": "Complementary Therapies: Supplements",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904524/For%20Mobile%20App/Education/Complementary%20Therapies:%20Supplements.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about the role of natural supplements on chronic low back pain."
+        },
+        {
+            "id": 53,
+            "type": "text",
+            "name": "Additional Supplements",
+            "chapter": 4,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 54,
+            "type": "video",
+            "name": "Expectations for Medical Treatment",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569025/For%20Mobile%20App/Education/Expectations%20for%20Medical%20Treatment.mp4",
+            "length": 8,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Identify expectations you may have of health care providers and their treatment recommendations. Learn how to communicate the way chronic pain affects your functioning."
+        },
+        {
+            "id": 55,
+            "type": "text",
+            "name": "Expectations for Medical Treatment Summary",
+            "chapter": 4,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 56,
+            "type": "video",
+            "name": "TFA! 5",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569068/For%20Mobile%20App/Education/TFA%21%205.mp4",
+            "length": 3,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the final 3-steps of Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 57,
+            "type": "video",
+            "name": "Ergonomics and Pain",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904455/For%20Mobile%20App/Education/Ergonomics%20and%20Chronic%20Pain.mp4",
+            "length": 10,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about ergonimics and pain in a dynamic interview with an Occupational Therapist."
+        },
+        {
+            "id": 58,
+            "type": "text",
+            "name": "OT-Recommended Daily Lifestyle Changes",
+            "chapter": 4,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": ""
+        },
+        {
+            "id": 59,
+            "type": "video",
+            "name": "TFA! 6",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569409/For%20Mobile%20App/Education/TFA%21%206.mp4",
+            "length": 8,
+            "post_video_destination": "MoodJournalHome",
+            "skippable": false,
+            "summary": "Review the steps involved in Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 60,
+            "type": "video",
+            "name": "SMART Goal Renewal 2",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569079/For%20Mobile%20App/Education/SMART%20Goal%20Renewal%202.mp4",
+            "length": 3,
+            "post_video_destination": "NewSmartGoal",
+            "skippable": true,
+            "summary": "Address areas where pain controls how you spend your time. Establish a third PainNaivgator SMART Goal."
+        },
+        {
+            "id": 61,
+            "type": "video",
+            "name": "My PainNavigator",
+            "chapter": 4,
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568989/For%20Mobile%20App/Education/My%20PainNavigator.mp4",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "PainNavigator wrap up! /n Learn how to apply the skills learned in PainNavigator into your daily routine."
+        },
+        {
+            "id": 62,
+            "type": "text",
+            "name": "My PainNavigator Summary",
+            "chapter": 4,
+            "source": "",
+            "length": 0,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": ""
         }
     ]
 }

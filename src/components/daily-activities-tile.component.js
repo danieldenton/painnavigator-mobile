@@ -12,6 +12,7 @@ import {
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
+    margin-bottom: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding: 21px;
 `;
@@ -43,7 +44,8 @@ const CardIconSection = styled.View`
     justify-content: flex-end;
 `;
 
-export const DailyActivitiesTile = ({ destination, title, navigation }) => {
+
+export const DailyActivitiesTile = ({ destination, title, navigation, icon }) => {
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
@@ -59,6 +61,7 @@ export const DailyActivitiesTile = ({ destination, title, navigation }) => {
                         {title === "Mood Journal" && <MoodJournalIcon />}
                         {title === "Food Journal" && <FoodJournalIcon />}
                         {title === "Today's Food Journal" && <FoodJournalIcon />}
+                        {icon}
                     </CardIconSection>
                 </ModuleCardContent>
             </DailyActivitiesCard>

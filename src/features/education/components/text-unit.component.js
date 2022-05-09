@@ -5,11 +5,11 @@ import { EducationUnitInfo } from "./education-unit-info.component";
 
 export const TextUnit = () => {
     const { currentModule } = useContext(EducationContext);
-    const { id, name, summary, steps } = currentModule;
+    const { id, name, summary, steps, type } = currentModule;
 
     return (
         <>
-            <EducationUnitInfo id={id} name={name} summary={summary} />
+            <EducationUnitInfo id={id} name={name} summary={summary} type={type} />
             <Accordion steps={steps} />
         </>
     );

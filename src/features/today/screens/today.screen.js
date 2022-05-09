@@ -15,7 +15,6 @@ import { Scroll } from "../../../components/scroll.component";
 
 export const TodayScreen = ({ navigation }) => {
     const { name } = useContext(ProfileContext).userInfo;
-    const { currentModule } = useContext(MovementContext);
 
     return (
         <SafeView>
@@ -26,10 +25,7 @@ export const TodayScreen = ({ navigation }) => {
                 <DailyGoalCompleted />
                 <EducationUnitCard navigation={navigation} />
                 <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                <MovementUnitCard 
-                    navigation={navigation} 
-                    currentModule={currentModule} 
-                />
+                <MovementUnitCard navigation={navigation} />
                 <LockedModule />
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <DailyActivitiesTile 

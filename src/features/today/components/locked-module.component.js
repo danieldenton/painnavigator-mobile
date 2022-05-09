@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { Locked } from "../../../icons";
+import { MovementContext } from "../../../services/movement/movement.context";
 
 const LockedCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -43,14 +44,17 @@ const CardIconSection = styled.View`
 `;
 
 export const LockedModule = () => {
+    const { nextModule } = useContext(MovementContext);
+    const { name, length } = nextModule;
+
     return (
         <LockedCard>
             <LockedCardContent>
                 <CardTextSection>
                     <CardHeader>
-                        PainNavigator Introduction
+                        {name}
                     </CardHeader>
-                    <CardSubHeader>15 MIN</CardSubHeader>
+                    <CardSubHeader>{length} MIN</CardSubHeader>
                 </CardTextSection>
                 <CardIconSection>
                     <Locked />

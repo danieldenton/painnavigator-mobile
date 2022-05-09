@@ -10,7 +10,7 @@ const MoodJournalStack = createStackNavigator();
 export const MoodJournalNavigator = () => {
 
     return (
-        <MoodJournalStack.Navigator>
+        <MoodJournalStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <MoodJournalStack.Screen 
                 name="MoodJournalHome" 
                 component={MoodJournalHomeScreen} 

@@ -10,7 +10,7 @@ const MovementStack = createStackNavigator();
 export const MovementNavigator = () => {
 
     return (
-        <MovementStack.Navigator>
+        <MovementStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <MovementStack.Screen 
                 name="MovementPlaylist" 
                 component={MovementPlaylistScreen} 

@@ -10,7 +10,7 @@ const JournalsStack = createStackNavigator();
 export const JournalsNavigator = () => {
 
     return (
-        <JournalsStack.Navigator>
+        <JournalsStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <JournalsStack.Screen 
                 name="Journals" 
                 component={JournalScreen}

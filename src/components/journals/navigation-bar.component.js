@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { space } from "../../infrastructure/theme/spacing";
 import { Back, Close, MenuIcon, MessageIcon, More } from "../../icons";
+import { Bookmark } from "../bookmark.component";
 
 const NavContainer = styled.View`
     padding-top: ${space[3]};
@@ -111,6 +112,28 @@ export const ReviewJournalNavigationBar = ({ destination, navigation, headerName
             </RightSection>
         </NavContainer>
     );
+};
+
+export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
+    return (
+        <NavContainer>
+            <LeftSection 
+                accessibilityLabel={`go-to-${destination}`} 
+                onPress={() => navigation.navigate(destination)} 
+            >
+                <Back />
+            </LeftSection>
+            <HeaderSection>
+                <HeaderName>
+                    {screen.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
+            <RightSection>
+                <Bookmark id={id} />
+            </RightSection>
+        </NavContainer>
+    );
+
 };
 
 export const NavigationBarLeft = ({ destination, navigation, screen }) => {

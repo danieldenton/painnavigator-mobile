@@ -5,12 +5,12 @@ import { EducationContext } from "../../../services/education/education.context"
 
 export const VideoUnit = () => {
     const { currentModule } = useContext(EducationContext);
-    const { source, id, name } = currentModule;
+    const { source, id, name, type, summary } = currentModule;
     
     return (
         <> 
             <VideoPlayer source={source} />
-            <EducationUnitInfo id={id} name={name} />
+            <EducationUnitInfo id={id} name={name} type={type} summary={summary} />
         </>
     )
 };

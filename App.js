@@ -1,6 +1,11 @@
 import React from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 import {
   useFonts as usePoppins,
@@ -10,6 +15,7 @@ import {
 
 import {
   useFonts as useInter,
+  Inter_700Bold,
   Inter_500Medium,
   Inter_400Regular,
   Inter_300Light
@@ -50,6 +56,7 @@ export default function App() {
   });
 
   const [interLoaded] = useInter({
+    Inter_700Bold,
     Inter_500Medium,
     Inter_400Regular,
     Inter_300Light

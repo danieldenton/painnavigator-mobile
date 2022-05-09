@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Circle, Path, Mask, Rect } from 'react-native-svg';
+import Svg, { Circle, Mask, Path, Rect } from 'react-native-svg';
 
 export const Add = () => {
     return (
@@ -53,6 +53,7 @@ export const CompletedUnit = () => {
         </Svg>
     );
 };
+
 
 export const Delete = () => {
     return (
@@ -253,6 +254,15 @@ export const JournalEntryIcon = () => {
     );
 };
 
+export const JournalMenuIcon = () => {
+    return (
+        <Svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M10.5 3.45507C8.17241 0.738656 3.28017 0.814112 1.125 1.19139V14.4904C5.52155 13.585 9.2069 16.0939 10.5 17.32V3.45507Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M10.5 3.32769C12.8276 0.58633 17.7198 0.855651 19.875 1.2364V14.6576C15.4784 13.7438 11.7931 16.0826 10.5 17.32V3.32769Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
 export const PainJournalIcon = () => {
     return (
         <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,6 +305,25 @@ export const ProgressDotUnfilled = () => {
     );
 };
 
+export const ProgressMenuIcon = () => {
+    return (
+        <Svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M0.999945 2.00089L13.1333 7.2809L0.999946 12.2676L0.999945 2.00089Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M1 1L1 22.7778" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Circle cx="1" cy="1" r="1" fill="black"/>
+        </Svg>
+    );
+};
+
+export const PurpleCheckMark = () => {
+    return (
+        <Svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="18" cy="18" r="17" fill="#4056F4" stroke="#4056F4" strokeWidth="2"/>
+            <Path d="M11 17.5L15.5 22L24.5 13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+        </Svg>
+    )
+} 
+
 export const RightArrow = () => {
     return (
         <Svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -327,6 +356,15 @@ export const SadFaceSelected = () => {
     );
 };
 
+export const SavedUnit = () => {
+    return (
+        <Svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="24" cy="24" r="24" fill="#45D2BC"/>
+            <Path d="M31 32.9724V15.01C31 15.0045 30.9955 15 30.99 15H17.01C17.0045 15 17 15.0045 17 15.01V32.9724C17 32.9817 17.0117 32.986 17.0177 32.9788L23.9923 24.6092C23.9963 24.6044 24.0037 24.6044 24.0077 24.6092L30.9823 32.9788C30.9883 32.986 31 32.9817 31 32.9724Z" fill="white" stroke="black" strokeWidth="2"/>
+        </Svg>
+    );
+};
+
 export const Selected = () => {
     return (
         <Svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,6 +379,25 @@ export const Settings = () => {
         <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Path d="M7.93 4.15L5.41 2.68L2.68 5.41L3.94 7.3L3.52 8.56L1 9.4V13.18L3.52 13.81L3.94 15.07L2.47 17.59L5.2 20.32L7.51 18.85L8.77 19.48L9.4 22H13.18L13.6 19.48L15.28 18.85L17.38 20.32L20.11 17.59L18.85 15.49L19.27 14.23L22 13.6V9.82L19.27 9.19L18.85 7.93L20.32 5.41L17.8 2.68L15.28 4.15L14.23 3.73L13.39 1H9.82L9.19 3.31L7.93 4.15Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Circle cx="11.5001" cy="11.4993" r="3.3587" stroke="black" strokeWidth="1.5"/>
+        </Svg>
+    );
+};
+
+export const SkippedUnit = () => {
+    return (
+        <Svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="24" cy="24" r="24" fill="#FFD60A"/>
+            <Path d="M31 15V32" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+            <Path d="M30 23.7297L17 15V32L30 23.7297Z" fill="white" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const Units = () => {
+    return (
+        <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="11.5" cy="11.5" r="10.75" stroke="black" strokeWidth="1.5"/>
+            <Path d="M9.94505 6.31239L16.633 11.0417C17.0625 11.3455 17.054 11.9856 16.6165 12.2778L9.92856 16.7444C9.43019 17.0772 8.76202 16.72 8.76202 16.1207L8.76202 11.4996L8.76202 6.92475C8.76202 6.31635 9.4483 5.96111 9.94505 6.31239Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </Svg>
     );
 };

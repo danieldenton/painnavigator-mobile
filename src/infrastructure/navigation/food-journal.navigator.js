@@ -9,7 +9,7 @@ const FoodJournalStack = createStackNavigator();
 export const FoodJournalNavigator = () => {
 
     return (
-        <FoodJournalStack.Navigator>
+        <FoodJournalStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <FoodJournalStack.Screen 
                 name="FoodJournalHome" 
                 component={FoodJournalHomeScreen} 

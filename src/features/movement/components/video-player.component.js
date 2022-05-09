@@ -17,13 +17,13 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = ({ source }) => {
-    const { completeVideo, currentVideo } = useContext(MovementContext);
-    const video = useRef(null);
+    const { completeVideo, currentModule, switchVideo } = useContext(MovementContext);
+    const movementVideo = useRef(null);
     const [status, setStatus] = useState({});
 
     useEffect(() => {
-        video.current.setStatusAsync({ positionMillis: 0 });
-    }, [currentVideo]);
+        movementVideo.current.setStatusAsync({ positionMillis: 0 });
+    }, [switchVideo]);
 
     useEffect(() => {
         if(!status.didJustFinish) {
@@ -31,7 +31,16 @@ export const VideoPlayer = ({ source }) => {
         };
 
         completeVideo();
-        video.current.setStatusAsync({ positionMillis: 0 });
+
+        const numVideosCompleted = currentModule.videos.filter(video => video.completed).length;
+        const numVideosInPlaylist = currentModule.videos.length; 
+
+        // HELP: Getting "Can't perform a React state update on an unmounted component" error
+        // assume it's because I am calling this setStatusAsync function to reset the video position to 0 after 
+        // the video changes. This conditional should prevent it from being called on the last video. 
+        if(numVideosCompleted !== numVideosInPlaylist) {
+            movementVideo.current.setStatusAsync({ positionMillis: 0 });
+        };
 
     }, [status.didJustFinish]);
 
@@ -41,13 +50,13 @@ export const VideoPlayer = ({ source }) => {
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={true}
-                    ref={video}
+                    ref={movementVideo}
                     resizeMode="contain"
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
             </VideoWrapper>
-            <Pressable onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()} style={{ marginTop: 16 }}>
+            <Pressable onPress={() => status.isPlaying ? movementVideo.current.pauseAsync() : movementVideo.current.playAsync()} style={{ marginTop: 16 }}>
                 {status.isPlaying ? <Pause /> : <Play />}
             </Pressable>
         </>
