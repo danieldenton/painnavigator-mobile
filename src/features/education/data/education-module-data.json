@@ -18,7 +18,8 @@
             "steps": [
                 {
                     "id": 1,
-                    "header": "First, establish your baseline:",
+                    "title": "First, establish your baseline:",
+                    "titleNumberOfLines": 2,
                     "bullets": [
                         "Know your pain: Know when your pain moves from being “manageable” to “uncomfortable”",
                         "Create some limits: Establish time limits and baselines for each activity that keep you at a “manageable” level",
@@ -27,7 +28,8 @@
                 },
                 {
                     "id": 2,
-                    "header": "Here’s some tips to implement pacing in your life:",
+                    "title": "Here’s some tips to implement pacing in your life:",
+                    "titleNumberOfLines": 3,
                     "bullets": [
                         "Break it down: take incremental steps and frequent breaks so you don’t overdo it",
                         "Gradually increase: increase the time spent in an activity by a set time each week. Example: if the baseline is 5 minutes, only increase it by 30 seconds to 1 minute each week.",

@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.white,
 })`
-    margin-top: 19px;
+    margin-top: 8px;
     border-radius: 8px;
     justify-content: center;
 `;
