@@ -23,6 +23,7 @@ const PlaylistTileCardContent = styled(Card.Content)`
 const CardTextSection = styled.View`
     margin-left: 16px;
     justify-content: center;
+    flex: .9;
 `;
 
 const CardHeader = styled.Text`
