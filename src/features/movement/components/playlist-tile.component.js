@@ -23,7 +23,7 @@ const PlaylistTileCardContent = styled(Card.Content)`
 const CardTextSection = styled.View`
     margin-left: 16px;
     justify-content: center;
-    flex: .9;
+    flex: 1;
 `;
 
 const CardHeader = styled.Text`
@@ -98,8 +98,7 @@ const ProgressTrackWrapper = styled.View`
 `;
 
 export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
-    const videoIndex = videoId - 63;
-    const { name, length, thumbnail } = movementVideos[videoIndex];
+    const { name, length, thumbnail } = movementVideos.find(video => video.id === videoId);
 
     // source={require("../assets/exercise_1.png")}
 
@@ -167,8 +166,7 @@ const IconSection = styled.View`
 `;
 
 export const CompletedPlaylistTile = ({ videoId, firstVideo }) => {
-    const videoIndex = videoId - 63;
-    const { name, length } = movementVideos[videoIndex];
+    const { name, length } = movementVideos.find(video => video.id === videoId);
 
     return (
         <PlaylistTileWrapper>

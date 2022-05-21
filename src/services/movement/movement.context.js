@@ -5,16 +5,17 @@ import { movementVideos } from "../../features/movement/data/movement-videos-dat
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-    const [movementProgress, setMovementProgress] = useState(0);
+    const [movementProgress, setMovementProgress] = useState(1);
     const [moduleComplete, setModuleComplete] = useState(false);
-    const [currentModule, setCurrentModule] = useState(movementModules[movementProgress]);
-    const [currentVideo, setCurrentVideo] = useState(movementVideos.find(video => video.id === currentModule.videos[0].id));
+    const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
+    const [currentVideo, setCurrentVideo] = useState();
     const [nextModule, setNextModule] = useState(movementModules[movementProgress + 1]);
     const [completedMovementModules, setCompletedMovementModules] = useState([]);
     const [skippedMovementModules, setSkippedMovementModules] = useState([63]);
 
     useEffect(() => {
-        setCurrentModule(movementModules[movementProgress]);
+        const module = movementModules.find(module => module.id === movementProgress);
+        setCurrentModule(module);
     }, [movementProgress]);
 
     useEffect(() => {
