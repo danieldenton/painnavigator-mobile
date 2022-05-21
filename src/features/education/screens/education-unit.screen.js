@@ -7,10 +7,19 @@ import { SafeView } from "../../../components/safe-area.component";
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { SkipQuestion } from "../../../components/skip-question.component";
+import { StackActions } from '@react-navigation/native';
 
 export const EducationUnitScreen = ({ navigation }) => {
     const { completeModule, currentModule, skipModule } = useContext(EducationContext);
     const { post_video_destination, type, skippable, id } = currentModule;
+
+    const postVideoAction = () => {
+        navigation.dispatch(
+            StackActions.replace('Why', {
+                post_video_destination: post_video_destination,
+            })
+        );
+    };
     
     return (
         <SafeView>
@@ -20,8 +29,12 @@ export const EducationUnitScreen = ({ navigation }) => {
             {type === "text" && <TextUnit />}
             <ButtonSection>
                 <ModuleButton 
-                    onPress={() => { 
-                        navigation.navigate(post_video_destination ? post_video_destination : "Completion"); 
+                    onPress={() => {
+                    {   post_video_destination ?
+                        postVideoAction()
+                        :
+                        navigation.dispatch(StackActions.replace("Completion"))
+                    }
                         completeModule();
                     }}
                     title={"Mark Complete"} 
@@ -29,7 +42,12 @@ export const EducationUnitScreen = ({ navigation }) => {
                 {skippable && 
                     <SkipQuestion 
                         module={true}
-                        onPress={() => { navigation.navigate(post_video_destination ? post_video_destination : "Skipped"); skipModule(); }} 
+                        onPress={() => 
+                            {
+                                navigation.dispatch(StackActions.replace("Skipped"));
+                                skipModule();
+                            }
+                        }
                     />
                 }
             </ButtonSection>

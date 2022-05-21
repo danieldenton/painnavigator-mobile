@@ -6,12 +6,15 @@ export const ProfileContext = createContext();
 
 export const ProfileContextProvider = ({ children }) => {
     // userInfo set for testing
-    const [userInfo, setUserInfo] = useState({name: "Stephen"});
+    const [userInfo, setUserInfo] = useState({ 
+        //name: "Stephen", 
+        //uid: "4TN47zasIcgy7zezXDn8g2rPRCG2" 
+    });
     const [profileProgress, setProfileProgress] = useState(1);
     const [avgPainPreStart, setAvgPainPreStart] = useState(5);
     const [programPaceGoal, setProgramPaceGoal] = useState(1);
     // profileComplete set to true for testing
-    const [profileComplete, setProfileComplete] = useState(true);
+    const [profileComplete, setProfileComplete] = useState(false);
     const { user } = useContext(AuthenticationContext);
 
     const nextQuestion = () => {

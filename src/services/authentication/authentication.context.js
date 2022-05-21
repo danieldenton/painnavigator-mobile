@@ -9,7 +9,7 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(null);
     // user set to true for testing
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
     const [avePainPreStart, setAvgPainPreStart] = useState(5);

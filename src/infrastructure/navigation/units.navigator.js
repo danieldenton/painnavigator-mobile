@@ -11,7 +11,7 @@ export const UnitsNavigator = () => {
     return (
         <UnitsStack.Navigator screenOptions={{ gestureEnabled: false }}>
             <UnitsStack.Screen 
-                name="Units" 
+                name="UnitsHome" 
                 component={UnitsScreen} 
                 options={{ headerShown: false }}
             />

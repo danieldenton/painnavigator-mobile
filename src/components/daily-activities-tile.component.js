@@ -2,17 +2,10 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { 
-    Add,
-    FoodJournalIcon,
-    JournalEntryIcon, 
-    MoodJournalIcon,  
-    PainJournalIcon 
-} from "../icons";
+import { Add, FoodJournalIcon, JournalEntryIcon, MoodJournalIcon, PainJournalIcon } from "../icons";
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
-    margin-bottom: ${(props) => props.theme.space[3]};
     border-radius: 15px;
     padding: 21px;
 `;
@@ -45,10 +38,14 @@ const CardIconSection = styled.View`
 `;
 
 
-export const DailyActivitiesTile = ({ destination, title, navigation, icon }) => {
+export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams }) => {
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate(destination)}> 
+        <TouchableOpacity onPress={() => navigation.navigate(destination, { 
+                screen: screen,
+                params: { type: screenParams }
+            }
+        )}> 
             <DailyActivitiesCard>
                 <ModuleCardContent>
                     <CardTextSection>
@@ -56,7 +53,6 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon }) =>
                     </CardTextSection>
                     <CardIconSection>
                         {title === "Add New Entry" && <Add />}
-                        {title === "Make a Journal Entry" && <JournalEntryIcon />}
                         {title === "Pain Journal" && <PainJournalIcon />}
                         {title === "Mood Journal" && <MoodJournalIcon />}
                         {title === "Food Journal" && <FoodJournalIcon />}

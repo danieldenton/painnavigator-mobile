@@ -7,7 +7,11 @@ import { EducationModuleIcon, MovementModuleIcon } from "../../../icons";
 export const UnitsScreen = ({ navigation }) => {
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Units"} destination={"Today"} navigation={navigation} />
+            <NavigationBarLeft 
+                screen={"Units"} 
+                destination={"Today"} 
+                navigation={navigation} 
+            />
             <DailyActivitiesTile 
                 destination={"EducationUnits"} 
                 navigation={navigation} 

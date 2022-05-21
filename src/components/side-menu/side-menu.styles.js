@@ -23,7 +23,7 @@ const LogoImage = styled.Image`
 export const Logo = () => {
     return (
         <LogoContainer>
-            <LogoImage source={require('../../../assets/splash.png')}/>        
+            <LogoImage source={require('../../../assets/logo.png')}/>        
         </LogoContainer>
     );
 };
@@ -59,11 +59,10 @@ const MenuButtonLabel = styled.Text`
     font-size: 18px;
 `;
 
-export const MenuButton = ({navigation, option, index}) => {
+export const MenuButton = ({ navigation, option }) => {
     return (
         <MenuButtonPressable
             onPress={() => navigation.navigate(option.destination)}
-            key={index}
         >
             <MenuButtonIconSection>
                 {option.icon}

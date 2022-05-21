@@ -24,7 +24,7 @@ export const ButtonSection = styled.View`
     width: 100%;
     position: absolute;
     bottom: 0;
-    padding-bottom: 14px;
+    padding-bottom: 16px;
     background-color: ${colors.bg.secondary};
 `;
 
@@ -65,7 +65,7 @@ export const SkipQuestionText = styled.Text`
     align-self: center;
 `;
 
-export const SkipQuestion = ({handlePress}) => {
+export const SkipQuestion = ({ handlePress }) => {
     return(
         <SkipQuestionButton onPress={() => handlePress()}>
             <SkipQuestionText>

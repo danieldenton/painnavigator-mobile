@@ -43,7 +43,7 @@ export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal }) =
                 </CloseButton>
             </CloseButtonRow>
             <OptionButton
-                onPress={() => editJournal(true)}
+                onPress={editJournal}
             >
                 <OptionIconSection>
                     <Edit />

@@ -4,10 +4,12 @@ import { PurpleCheckMark } from "../../../icons";
 import { 
     ProgressTrackWrapper, 
     ProgressTrackHeader, 
+    CurrentChapterCircle,
     ChapterCircle,
     ChapterSection, 
     ChapterText, 
-    MovementLineSegment 
+    MovementLineSegmentCompleted,
+    MovementLineSegment
 } from "./progress.styles";
 
 export const MovementProgress = () => {
@@ -17,32 +19,32 @@ export const MovementProgress = () => {
         <ProgressTrackWrapper>
             <ProgressTrackHeader>Movement</ProgressTrackHeader>
             <ChapterSection>
-                {movementProgress === 6 ? <PurpleCheckMark /> : <ChapterCircle chapter={1} />}
+                {movementProgress > 5 ? <PurpleCheckMark /> : <CurrentChapterCircle chapter={1} type={"movement"} />}
                 <ChapterText>Foundations</ChapterText>
             </ChapterSection>
-            <MovementLineSegment />
-             <ChapterSection>
-                {movementProgress === 12 ? <PurpleCheckMark /> : <ChapterCircle chapter={2} />}
+            {movementProgress > 5 ? <MovementLineSegmentCompleted /> : <MovementLineSegment />}
+            <ChapterSection>
+                {movementProgress > 11 ? <PurpleCheckMark /> : movementProgress > 5 ? <CurrentChapterCircle chapter={2} type={"movement"} /> : <ChapterCircle chapter={2} />}
                 <ChapterText>Progressing</ChapterText>
             </ChapterSection>
-            <MovementLineSegment />
+            {movementProgress > 11 ? <MovementLineSegmentCompleted /> : <MovementLineSegment />}
              <ChapterSection>
-                {movementProgress === 18 ? <PurpleCheckMark /> : <ChapterCircle chapter={3} />}
+                {movementProgress > 17 ? <PurpleCheckMark /> : movementProgress > 11 ? <CurrentChapterCircle chapter={3} type={"movement"} /> : <ChapterCircle chapter={3} />}
                 <ChapterText>Strength</ChapterText>
             </ChapterSection>
-            <MovementLineSegment />
+            {movementProgress > 17 ? <MovementLineSegmentCompleted /> : <MovementLineSegment />}
              <ChapterSection>
-                {movementProgress === 24 ? <PurpleCheckMark /> : <ChapterCircle chapter={4} />}
+                {movementProgress > 23 ? <PurpleCheckMark /> : movementProgress > 17 ? <CurrentChapterCircle chapter={4} type={"movement"} /> : <ChapterCircle chapter={4} />}
                 <ChapterText>Endurance</ChapterText>
             </ChapterSection>
-            <MovementLineSegment />
+            {movementProgress > 23 ? <MovementLineSegmentCompleted /> : <MovementLineSegment />}
              <ChapterSection>
-                {movementProgress === 30 ? <PurpleCheckMark /> : <ChapterCircle chapter={5} />}
+                {movementProgress > 29 ? <PurpleCheckMark /> : movementProgress > 23 ? <CurrentChapterCircle chapter={5} type={"movement"} /> : <ChapterCircle chapter={5} />}
                 <ChapterText>Core</ChapterText>
             </ChapterSection>
-            <MovementLineSegment />
+            {movementProgress > 29 ? <MovementLineSegmentCompleted /> : <MovementLineSegment />}
              <ChapterSection>
-                {movementProgress === 36 ? <PurpleCheckMark /> : <ChapterCircle chapter={6} />}
+                {movementProgress > 35 ? <PurpleCheckMark /> : movementProgress > 29 ? <CurrentChapterCircle chapter={6} type={"movement"} /> : <ChapterCircle chapter={6} />}
                 <ChapterText>Mastering</ChapterText>
             </ChapterSection>
         </ProgressTrackWrapper>

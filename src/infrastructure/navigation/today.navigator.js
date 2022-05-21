@@ -6,6 +6,7 @@ import { UnitsNavigator } from "./units.navigator";
 import { EducationNavigator } from "./education.navigator";
 import { MovementNavigator } from "./movement.navigator";
 import { JournalsNavigator } from "./journals.navigator";
+import { SmartGoalNavigator } from "./smart-goal.navigator";
 
 const TodayStack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
             <TodayStack.Screen name="Progress" component={MyProgress} />
+            <TodayStack.Screen name="SmartGoals" component={SmartGoalNavigator} />
         </TodayStack.Navigator>
     );
 };

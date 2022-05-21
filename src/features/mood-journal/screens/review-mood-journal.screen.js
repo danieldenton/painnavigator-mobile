@@ -52,46 +52,46 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
 
     return (
         <Provider>
-        <BottomSheetModalProvider>
-            <SafeArea>
-                <ReviewJournalNavigationBar 
-                    destination={"MoodJournalHome"}
-                    headerName={"MOOD JOURNAL"} 
-                    navigation={navigation}
-                    showBottomMenu={showModal}
-                    resetJournal={resetMoodJournal}
-                />
-                <JournalContainer>
-                    <QuestionSection>
-                        <ReviewMoodJournalEntry journal={journal} />
-                    </QuestionSection>
-                    {editingMoodJournal && 
-                        <ButtonSection>
-                            <JournalButton 
-                                title={"Save Changes"}
-                                onPress={() => {updateMoodJournal(journal.id); setEditingMoodJournal(false);}}
-                            />
-                        </ButtonSection>
-                    }
-                </JournalContainer>
-                <BottomSheetModal
-                    backgroundComponent={props => <BottomSheetBackground {...props} />}
-                    enablePanDownToClose={false}
-                    handleComponent={null}
-                    ref={reviewMoodJournalOptions}
-                    snapPoints={['35%']}
-                >
-                    <ReviewJournalModal 
-                        closeModal={closeModal}
-                        requestDelete={requestDelete} 
+            <BottomSheetModalProvider>
+                <SafeArea>
+                    <ReviewJournalNavigationBar 
                         destination={"MoodJournalHome"}
-                        editJournal={editJournal} 
-                        journalId={journal.id}
+                        headerName={"MOOD JOURNAL"} 
                         navigation={navigation}
+                        showBottomMenu={showModal}
+                        resetJournal={resetMoodJournal}
                     />
-                </BottomSheetModal>
-            </SafeArea>
-        </BottomSheetModalProvider>
+                    <JournalContainer>
+                        <QuestionSection>
+                            <ReviewMoodJournalEntry journal={journal} />
+                        </QuestionSection>
+                        {editingMoodJournal && 
+                            <ButtonSection>
+                                <JournalButton 
+                                    title={"Save Changes"}
+                                    onPress={() => {updateMoodJournal(journal.id); setEditingMoodJournal(false);}}
+                                />
+                            </ButtonSection>
+                        }
+                    </JournalContainer>
+                    <BottomSheetModal
+                        backgroundComponent={props => <BottomSheetBackground {...props} />}
+                        enablePanDownToClose={false}
+                        handleComponent={null}
+                        ref={reviewMoodJournalOptions}
+                        snapPoints={['35%']}
+                    >
+                        <ReviewJournalModal 
+                            closeModal={closeModal}
+                            requestDelete={requestDelete} 
+                            destination={"MoodJournalHome"}
+                            editJournal={editJournal} 
+                            journalId={journal.id}
+                            navigation={navigation}
+                        />
+                    </BottomSheetModal>
+                </SafeArea>
+            </BottomSheetModalProvider>
             <ExitModal 
                 deleteJournal={deleteMoodJournal}
                 destination={"Today"}

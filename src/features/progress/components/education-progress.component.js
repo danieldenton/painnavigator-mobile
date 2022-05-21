@@ -4,10 +4,12 @@ import { Selected } from "../../../icons";
 import { 
     ProgressTrackWrapper, 
     ProgressTrackHeader, 
+    CurrentChapterCircle,
     ChapterCircle,
     ChapterSection, 
     ChapterText, 
-    EducationLineSegment 
+    EducationLineSegment,
+    EducationLineSegmentCompleted
 } from "./progress.styles";
 
 export const EducationProgress = () => {
@@ -17,22 +19,22 @@ export const EducationProgress = () => {
         <ProgressTrackWrapper>
             <ProgressTrackHeader>Education</ProgressTrackHeader>
             <ChapterSection>
-                {educationProgress === 10 ? <Selected /> : <ChapterCircle chapter={1} />}
+                {educationProgress > 9 ? <Selected /> : <CurrentChapterCircle chapter={1} type={"education"} />}
                 <ChapterText>Introduction</ChapterText>
             </ChapterSection>
-            <EducationLineSegment />
+            {educationProgress > 9 ? <EducationLineSegmentCompleted /> : <EducationLineSegment />}
             <ChapterSection>
-                {educationProgress === 22 ? <Selected /> : <ChapterCircle chapter={2} />}
+                {educationProgress > 21 ? <Selected /> : educationProgress > 9 ? <CurrentChapterCircle chapter={2} type={"education"} /> : <ChapterCircle chapter={2} />}
                 <ChapterText>Influences</ChapterText>
             </ChapterSection>
-            <EducationLineSegment />
+            {educationProgress > 21 ? <EducationLineSegmentCompleted /> : <EducationLineSegment />}
             <ChapterSection>
-                {educationProgress === 39 ? <Selected /> : <ChapterCircle chapter={3} />}
+                {educationProgress > 38 ? <Selected /> : <ChapterCircle chapter={3} />}
                 <ChapterText>Strategies</ChapterText>
             </ChapterSection>
-            <EducationLineSegment />
+            {educationProgress > 38 ? <EducationLineSegmentCompleted /> : <EducationLineSegment />}
             <ChapterSection>
-                {educationProgress === 62 ? <Selected /> : <ChapterCircle chapter={4} />}
+                {educationProgress > 61 ? <Selected /> : <ChapterCircle chapter={4} />}
                 <ChapterText>Behaviors</ChapterText>
             </ChapterSection>
         </ProgressTrackWrapper>

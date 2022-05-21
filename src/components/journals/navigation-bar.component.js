@@ -6,7 +6,7 @@ import { Back, Close, MenuIcon, MessageIcon, More } from "../../icons";
 import { Bookmark } from "../bookmark.component";
 
 const NavContainer = styled.View`
-    padding-top: ${space[3]};
+    padding-top: 12px;
     padding-bottom: ${space[3]};
     flex-direction: row;
     align-items: center;
@@ -88,12 +88,18 @@ export const TodayNavBar = ({ navigation }) => {
 };
 
 
-export const ReviewJournalNavigationBar = ({ destination, navigation, headerName, showBottomMenu, resetJournal }) => {
+export const ReviewJournalNavigationBar = ({ changes, destination, navigation, headerName, showBottomMenu, resetJournal, setVisible }) => {
+    const showModal = () => setVisible(true);
+    const leave = () => {
+        navigation.navigate(destination);
+        resetJournal && setTimeout(() => {resetJournal()}, 500);
+    };
+
     return(
         <NavContainer>
             <LeftSection 
                 accessibilityLabel={"exit-journal"}
-                onPress={() => {navigation.navigate(destination); setTimeout(() => {resetJournal()}, 500)}} 
+                onPress={() => {changes ? showModal() : leave()}} 
             >
                 <Back />
             </LeftSection>

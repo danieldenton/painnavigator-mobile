@@ -1,7 +1,7 @@
 {
     "educationModules": [
         {
-            "id": 6,
+            "id": 1,
             "type": "video",
             "name": "PainNavigator Introduction",
             "chapter": 1,
@@ -56,7 +56,7 @@
             "summary": "Learn about the benefits of Pacing. Learn how pacing can help you engage in activities and avoid a pain flare-up."
         },
         {
-            "id": 1,
+            "id": 6,
             "type": "text",
             "name": "Pacing Summary",
             "chapter": 1,

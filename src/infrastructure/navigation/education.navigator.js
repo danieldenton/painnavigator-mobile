@@ -3,7 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { CompletionScreen } from "../../features/education/screens/completion.screen";
 import { EducationUnitScreen } from "../../features/education/screens/education-unit.screen";
 import { SkippedScreen } from "../../features/education/screens/skipped.screen";
-import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pain-journal.screen"; 
+import { Why } from "../../features/post-video-actions/screens/why.screen";
+import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pain-journal.screen";
+import { NewSmartGoalScreen } from "../../features/smart-goals/screens/new-smart-goal.screen"; 
+import { NewMoodJournalScreen } from "../../features/mood-journal/screens/new-mood-journal.screen";
+import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart-goal-created.screen";
 
 const EducationStack = createStackNavigator();
 
@@ -14,22 +18,34 @@ export const EducationNavigator = () => {
             <EducationStack.Screen 
                 name="EducationUnit" 
                 component={EducationUnitScreen} 
-                options={{ headerShown: false }}
             />
             <EducationStack.Screen 
                 name="Completion" 
                 component={CompletionScreen}
-                options={{ headerShown: false }}
             />
             <EducationStack.Screen 
                 name="Skipped" 
                 component={SkippedScreen}
-                options={{ headerShown: false }}
+            />
+            <EducationStack.Screen 
+                name="Why" 
+                component={Why} 
             />
             <EducationStack.Screen 
                 name="NewPainJournal" 
                 component={NewPainJournalScreen} 
-                options={{ headerShown: false }}
+            />
+            <EducationStack.Screen 
+                name="NewSmartGoal" 
+                component={NewSmartGoalScreen} 
+            />
+            <EducationStack.Screen 
+                name="NewMoodJournal" 
+                component={NewMoodJournalScreen} 
+            />
+            <EducationStack.Screen 
+                name="SmartGoalCreated" 
+                component={SmartGoalCreatedScreen} 
             />
         </EducationStack.Navigator>
     );

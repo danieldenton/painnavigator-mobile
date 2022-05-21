@@ -46,7 +46,11 @@ export const EducationUnitsScreen = ({ navigation }) => {
 
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Education Units"} destination={"Units"} navigation={navigation} />
+            <NavigationBarLeft 
+                screen={"Education Units"} 
+                destination={"UnitsHome"} 
+                navigation={navigation} 
+            />
             <ExpandableCard
                 moduleType={"Education"}
                 navigation={navigation}

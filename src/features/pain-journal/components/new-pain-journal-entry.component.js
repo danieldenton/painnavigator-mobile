@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { JournalContainer, QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
+import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
 import { Intensity } from "./intensity.component";
 import { Situation } from "./situation.component";
 import { CopingStrategies } from "./coping-strategies.component";
@@ -27,20 +27,18 @@ export const NewPainJournalEntry = () => {
 
     return(
         <>
-            <JournalContainer>
-                <QuestionSection>
-                    {currentPage === 1 && <Intensity />}
-                    {currentPage === 2 && <Situation />}
-                    {currentPage === 3 && <CopingStrategies />}
-                    {currentPage === 4 && <Notes />}
-                    {currentPage === 5 && <IntensityAfter />}
-                </QuestionSection>
-                <ButtonSection>
-                    <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 5 ? completePainJournal : nextPage} />
-                    {currentPage > 2 && <SkipQuestion onPress={currentPage === 5 ? completePainJournal : nextPage} />}
-                    <ProgressDots progress={currentPage} total={5}/>
-                </ButtonSection>
-            </JournalContainer>        
+            <QuestionSection>
+                {currentPage === 1 && <Intensity />}
+                {currentPage === 2 && <Situation />}
+                {currentPage === 3 && <CopingStrategies />}
+                {currentPage === 4 && <Notes />}
+                {currentPage === 5 && <IntensityAfter />}
+            </QuestionSection>
+            <ButtonSection>
+                <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 5 ? completePainJournal : nextPage} />
+                {currentPage > 2 && <SkipQuestion onPress={currentPage === 5 ? completePainJournal : nextPage} />}
+                <ProgressDots progress={currentPage} total={5}/>
+            </ButtonSection>       
         </>
     );
 };

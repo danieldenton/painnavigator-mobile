@@ -1,4 +1,5 @@
 import React from "react";
+import DashedLine from 'react-native-dashed-line';
 import styled from "styled-components/native";
 
 export const ProgressScreenWrapper = styled.View`
@@ -10,7 +11,7 @@ export const ProgressScreenWrapper = styled.View`
 export const ProgressTrackWrapper = styled.View`
     flex: 1;
     align-items: flex-start;
-    margin-left: 16px;
+    margin-left: 8px;
 `;
 
 export const ProgressTrackHeader = styled.Text`
@@ -28,11 +29,23 @@ export const EducationLineSegment = styled.View`
     margin-left: 16px;
 `;
 
+export const EducationLineSegmentCompleted = styled.View`
+    border: 2px #16A28B;
+    height: 111px;
+    margin-left: 15px;
+`;
+
 export const MovementLineSegment = styled.View`
     border: #CBD7EB dashed;
     border-radius: 1px;
     height: 63px;
     margin-left: 16px;
+`;
+
+export const MovementLineSegmentCompleted = styled.View`
+    border: 2px #6A7AEF;
+    height: 63px;
+    margin-left: 15px;
 `;
 
 export const ChapterSection = styled.View`
@@ -70,5 +83,30 @@ export const ChapterCircle = ({ chapter }) => {
                 {chapter}
             </ChapterCircleText>
         </ChapterCircleWrapper>
+    );
+};
+
+const CurrentChapterCircleWrapper = styled.View`
+    align-items: center;
+    justify-content: center;
+    border: 3px;
+    border-radius: 100px;
+    height: 33px;
+    width: 33px;
+    margin-left: .5px;
+`;
+
+const CurrentChapterText = styled.Text`
+    font-family: Inter_700Bold;
+    font-size: 16px;
+`;
+
+export const CurrentChapterCircle = ({ chapter, type }) => {
+    return (
+        <CurrentChapterCircleWrapper style={{ borderColor: type === "education" ? "#16A28B" : "#6A7AEF" }}>
+            <CurrentChapterText style={{ color: type === "education" ? "#16A28B" : "#6A7AEF" }}>
+                {chapter}
+            </CurrentChapterText>
+        </CurrentChapterCircleWrapper>
     );
 };

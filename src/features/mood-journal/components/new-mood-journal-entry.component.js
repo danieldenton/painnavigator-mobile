@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { ButtonSection, JournalContainer, QuestionSection } from "../../../components/journals/journal.styles";
+import { ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -26,7 +26,7 @@ export const NewMoodJournalEntry = () => {
     }, [moodJournal, currentPage]);
     
     return (
-        <JournalContainer>
+        <>
             <QuestionSection>
                 {currentPage === 1 && <Feeling />}
                 {currentPage === 2 && <Intensity />}
@@ -39,6 +39,6 @@ export const NewMoodJournalEntry = () => {
                 {currentPage > 3 && <SkipQuestion onPress={currentPage === 5 ? completeMoodJournal : nextPage} />}
                 <ProgressDots progress={currentPage} total={5} />
             </ButtonSection>
-        </JournalContainer>
+        </>
     );
 };

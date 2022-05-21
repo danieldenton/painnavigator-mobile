@@ -29,10 +29,9 @@ import { MovementContextProvider } from "./src/services/movement/movement.contex
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
 import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
-
+import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
-
 import { Navigation } from "./src/infrastructure/navigation/index";
 
 const firebaseConfig = {
@@ -74,13 +73,15 @@ export default function App() {
             <BookmarksContextProvider>
               <EducationContextProvider>
                 <MovementContextProvider>
-                  <PainJournalContextProvider>
-                    <FoodJournalContextProvider>
-                      <MoodJournalContextProvider>
-                        <Navigation />
-                      </MoodJournalContextProvider>
-                    </FoodJournalContextProvider>
-                  </PainJournalContextProvider>
+                  <SmartGoalContextProvider>
+                    <PainJournalContextProvider>
+                      <FoodJournalContextProvider>
+                        <MoodJournalContextProvider>
+                          <Navigation />
+                        </MoodJournalContextProvider>
+                      </FoodJournalContextProvider>
+                    </PainJournalContextProvider>
+                  </SmartGoalContextProvider>
                 </MovementContextProvider>
               </EducationContextProvider>
             </BookmarksContextProvider>
@@ -89,4 +90,4 @@ export default function App() {
       </ThemeProvider>
     </>
   );
-}
+};

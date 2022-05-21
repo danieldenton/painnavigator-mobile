@@ -289,6 +289,16 @@ export const Play = () => {
     );
 };  
 
+export const Profile = () => {
+    return (
+        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="28" cy="28" r="28" fill="#FFD60A"/>
+            <Circle cx="28" cy="20" r="7.25" fill="white" stroke="black" strokeWidth="1.5"/>
+            <Path d="M27.76 30C15.2906 30.0001 14.0999 37.1502 14.0071 43.0009C13.9983 43.5531 14.4477 44 15 44H41C41.5523 44 42.0017 43.5527 41.991 43.0005C41.8703 36.7557 40.3638 29.9999 27.76 30Z" fill="white" stroke="black" strokeWidth="1.5"/>
+        </Svg>
+    );
+};
+
 export const ProgressDotFilled = () => {
     return (
         <Svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -389,6 +399,23 @@ export const SkippedUnit = () => {
             <Circle cx="24" cy="24" r="24" fill="#FFD60A"/>
             <Path d="M31 15V32" stroke="black" strokeWidth="2" strokeLinecap="round"/>
             <Path d="M30 23.7297L17 15V32L30 23.7297Z" fill="white" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const SmartGoalDailyActivity = () => {
+    return (
+        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="28" cy="28" r="28" fill="#6A7AEF"/>
+            <Path d="M11 33.25V40H41V13H33.5V19.75H26V26.5H18.5V33.25H11Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const SmartGoalMenuIcon = () => {
+    return (
+        <Svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 13.75V18H20V1H15.25V5.25H10.5V9.5H5.75V13.75H1Z" stroke="black" strokeWidth="1.5" strokeLinejoin="round" />
         </Svg>
     );
 };

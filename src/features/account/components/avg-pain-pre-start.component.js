@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SmallSpacer } from "../../../components/spacer.component";
-import { Slider } from "../../../components/slider.component";
-import { Button } from "../../../components/button.component";
+import { IntensitySlider } from "../../../components/slider.component";
+import { JournalButton } from "../../../components/button.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 
 export const AvgPainPreStart = () => {
@@ -9,11 +9,9 @@ export const AvgPainPreStart = () => {
 
     return (
         <>
-            <Slider value={avgPainPreStart} onValueChange={setAvgPainPreStart} />
+            <IntensitySlider value={avgPainPreStart} onValueChange={setAvgPainPreStart} />
             <SmallSpacer>
-                <Button onPress={nextQuestion}>
-                    Next
-                </Button>
+                <JournalButton title={"Next"} onPress={nextQuestion} />
             </SmallSpacer>
         </> 
     );
