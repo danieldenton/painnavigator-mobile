@@ -2,19 +2,19 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { space } from "../../infrastructure/theme/spacing";
-import { Back, Close, MenuIcon, MessageIcon, More } from "../../icons";
+import { Back, Close, MenuIcon, MessageIcon, More, UnreadMessageIcon } from "../../icons";
 import { Bookmark } from "../bookmark.component";
 
 const NavContainer = styled.View`
-    padding-top: 12px;
-    padding-bottom: ${space[3]};
     flex-direction: row;
     align-items: center;
 `;
 
-const LeftSection = styled(TouchableOpacity)`
+const LeftPressableArea = styled(TouchableOpacity)`
     flex: .25;
     align-items: flex-start;
+    margin-left: -16px;
+    padding: 16px;
 `;
 
 const HeaderSection = styled.View`
@@ -30,6 +30,7 @@ const HeaderName = styled.Text`
 const RightSection = styled.View`
     flex: .25;
     align-items: flex-end;
+    height: 100%;
 `;
 
 const RightPressableArea = styled.TouchableOpacity`
@@ -43,12 +44,12 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
 
     return(
         <NavContainer>
-            <LeftSection 
+            <LeftPressableArea 
                 accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
                 onPress={currentPage > 1 ? previousPage : showModal} 
             >
                 <Back />
-            </LeftSection>
+            </LeftPressableArea>
             <HeaderSection>
                 <HeaderName>
                     {headerName.toUpperCase()}
@@ -66,27 +67,29 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     );
 };
 
-export const TodayNavBar = ({ navigation }) => {
+export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
 
     return(
         <NavContainer>
-            <LeftSection 
+            <LeftPressableArea 
                 accessibilityLabel={"menu"} 
                 onPress={() => navigation.openDrawer()}
             >
                 <MenuIcon />
-            </LeftSection>
+            </LeftPressableArea>
             <HeaderSection>
             </HeaderSection>
-            <RightSection
-                accessibilityLabel={"messages"}
-            >
-                <MessageIcon />
+            <RightSection>
+                <RightPressableArea
+                   accessibilityLabel={"messages"}
+                   onPress={() => {navigation.navigate("WellnessCoach")}}
+                >
+                    {hasUnreadMessages ? <UnreadMessageIcon /> : <MessageIcon />}
+                </RightPressableArea>
             </RightSection>
         </NavContainer>
     );
 };
-
 
 export const ReviewJournalNavigationBar = ({ changes, destination, navigation, headerName, showBottomMenu, resetJournal, setVisible }) => {
     const showModal = () => setVisible(true);
@@ -97,12 +100,12 @@ export const ReviewJournalNavigationBar = ({ changes, destination, navigation, h
 
     return(
         <NavContainer>
-            <LeftSection 
+            <LeftPressableArea 
                 accessibilityLabel={"exit-journal"}
                 onPress={() => {changes ? showModal() : leave()}} 
             >
                 <Back />
-            </LeftSection>
+            </LeftPressableArea>
             <HeaderSection>
                 <HeaderName>
                     {headerName.toUpperCase()}
@@ -123,12 +126,12 @@ export const ReviewJournalNavigationBar = ({ changes, destination, navigation, h
 export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
     return (
         <NavContainer>
-            <LeftSection 
+            <LeftPressableArea 
                 accessibilityLabel={`go-to-${destination}`} 
                 onPress={() => navigation.navigate(destination)} 
             >
                 <Back />
-            </LeftSection>
+            </LeftPressableArea>
             <HeaderSection>
                 <HeaderName>
                     {screen.toUpperCase()}
@@ -142,15 +145,15 @@ export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
 
 };
 
-export const NavigationBarLeft = ({ destination, navigation, screen }) => {
+export const NavigationBarLeft = ({ destination, navigation, screen, previousPage }) => {
     return (
         <NavContainer>
-            <LeftSection 
+            <LeftPressableArea 
                 accessibilityLabel={`go-to-${destination}`} 
-                onPress={() => navigation.navigate(destination)} 
+                onPress={() => {previousPage ? previousPage() : navigation.navigate(destination)}} 
             >
                 <Back />
-            </LeftSection>
+            </LeftPressableArea>
             <HeaderSection>
                 <HeaderName>
                     {screen.toUpperCase()}

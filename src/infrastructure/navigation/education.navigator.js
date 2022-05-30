@@ -8,6 +8,8 @@ import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pa
 import { NewSmartGoalScreen } from "../../features/smart-goals/screens/new-smart-goal.screen"; 
 import { NewMoodJournalScreen } from "../../features/mood-journal/screens/new-mood-journal.screen";
 import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart-goal-created.screen";
+import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/screens/new-favorite-activities.screen";
+import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
 
 const EducationStack = createStackNavigator();
 
@@ -40,12 +42,20 @@ export const EducationNavigator = () => {
                 component={NewSmartGoalScreen} 
             />
             <EducationStack.Screen 
+                name="SmartGoalCreated" 
+                component={SmartGoalCreatedScreen} 
+            />
+            <EducationStack.Screen 
                 name="NewMoodJournal" 
                 component={NewMoodJournalScreen} 
             />
             <EducationStack.Screen 
-                name="SmartGoalCreated" 
-                component={SmartGoalCreatedScreen} 
+                name="NewFavoriteActivities" 
+                component={NewFavoriteActivitiesScreen} 
+            />
+            <EducationStack.Screen 
+                name="FavoriteActivitiesCompleted" 
+                component={FavoriteActivitiesCompletedScreen} 
             />
         </EducationStack.Navigator>
     );

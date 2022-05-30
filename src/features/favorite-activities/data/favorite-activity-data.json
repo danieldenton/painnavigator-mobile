@@ -1,0 +1,14 @@
+{
+    "options": [
+        {
+            "id": 1,
+            "option": "Drawing/Painting",
+            "helpText": null
+        },
+        {
+            "id": 2,
+            "option": "Crafting",
+            "helpText": null
+        }
+    ]
+}

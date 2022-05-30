@@ -12,7 +12,13 @@ export const CongratulationsHeader = styled.Text`
     font-size: 25px;
 `;
 
+export const CongratulationsMessageWrapper = styled.View`
+    align-items: center;
+    margin-top: 12px; 
+`;
+
 export const CongratulationsMessage = styled.Text`
+    align-items: center;
     font-family: Inter_400Regular;
     font-size: 18px;
     margin-bottom: 4px;

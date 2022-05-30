@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
@@ -9,7 +9,7 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(null);
     // user set to true for testing
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(true);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
     const [avePainPreStart, setAvgPainPreStart] = useState(5);

@@ -3,6 +3,7 @@ import { space } from "../infrastructure/theme/spacing";
 
 export const SkipQuestionButton = styled.TouchableOpacity`
     padding: ${space[2]};
+    margin-top: 8px;
 `;
 
 export const SkipQuestionText = styled.Text`

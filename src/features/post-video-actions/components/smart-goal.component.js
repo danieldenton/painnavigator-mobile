@@ -1,12 +1,16 @@
 import React from "react";
-import { Wrapper, Header, BodyLine, Body, Bolded } from "./post-video-actions.styles";
+import { Wrapper, Header, BodyLine, Body, Bolded, GraphicWrapper } from "./post-video-actions.styles";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
+import { GoalGraphic } from "../../../graphics";
 
 export const SmartGoal = ({ navigation }) => {
     return (
         <>
             <Wrapper>
+                <GraphicWrapper style={{ marginRight: 32 }}>
+                    <GoalGraphic />
+                </GraphicWrapper>
                 <Header>Let’s Make Your SMART Goal!</Header>
                 <Body>Remember, SMART goals are:</Body>
                 <BodyLine>

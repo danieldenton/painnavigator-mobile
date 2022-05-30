@@ -1,13 +1,21 @@
 import React from "react";
 import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
+import styled from "styled-components/native";
+
+const GraphWrapper = styled.View`
+    margin-bottom: 16px;
+    margin-top: 16px;
+`;
 
 export const PainGraph = () => {
     return (
+        <GraphWrapper>
+
         <VictoryChart
             maxDomain={{ y: 11 }}
             minDomain={{ y: 0 }}
-            padding={{ top: 0, bottom: 25, left: 35, right: 20 }}
+            padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
             domainPadding={{ x: 40, y: 40 }}
             style={{
                 grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
@@ -72,6 +80,6 @@ export const PainGraph = () => {
                 size={6}
             />
         </VictoryChart>
-
+        </GraphWrapper>
     );
 };

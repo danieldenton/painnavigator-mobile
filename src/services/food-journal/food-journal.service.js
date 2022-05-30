@@ -10,16 +10,29 @@ export const getFoodJournals = (setFoodJournals) => {
     .catch(response => console.log(response))
 };
 
-export const patchFoodJournal = (journalId, journalEntry) => {
+export const patchFoodJournal = (journalId, journalEntry, setFoodJournals) => {
     axios.patch(`${baseUrl}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })
     .then((response) => {
-        return(camelize(response.data.data));
+        const updatedJournal = camelize(response.data.data);
+        setFoodJournals(prevFoodJournals => prevFoodJournals.map(
+            journal => journal.attributes.id === journalId ?
+                updatedJournal
+                :
+                journal
+        ));
     });
 };
 
-export const postFoodJournal = (journalEntry) => {
+export const postFoodJournal = (journalEntry, setFoodJournals) => {
     axios.post(`${baseUrl}/api/v1/food_journals`, { food_journal: journalEntry })
     .then((response) => {
-        return(camelize(response.data.data));
+        const newJournal = camelize(response.data.data);
+        console.log(newJournal);
+        setFoodJournals(prevJournals => (
+            [
+                newJournal,
+                ...prevJournals
+            ]
+        ))
     });
 };

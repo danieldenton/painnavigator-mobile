@@ -16,6 +16,7 @@ import {
 import {
   useFonts as useInter,
   Inter_700Bold,
+  Inter_600SemiBold,
   Inter_500Medium,
   Inter_400Regular,
   Inter_300Light
@@ -27,9 +28,11 @@ import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.con
 import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
+import { FavoriteActivitiesContextProvider } from "./src/services/favorite-activities/favorite-activities.context";
 import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
 import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
+import { WellnessCoachContextProvider } from "./src/services/wellness-coach/wellness-coach.context";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
@@ -56,6 +59,7 @@ export default function App() {
 
   const [interLoaded] = useInter({
     Inter_700Bold,
+    Inter_600SemiBold,
     Inter_500Medium,
     Inter_400Regular,
     Inter_300Light
@@ -77,7 +81,11 @@ export default function App() {
                     <PainJournalContextProvider>
                       <FoodJournalContextProvider>
                         <MoodJournalContextProvider>
-                          <Navigation />
+                          <WellnessCoachContextProvider>
+                            <FavoriteActivitiesContextProvider>
+                              <Navigation />
+                            </FavoriteActivitiesContextProvider>
+                          </WellnessCoachContextProvider>
                         </MoodJournalContextProvider>
                       </FoodJournalContextProvider>
                     </PainJournalContextProvider>

@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Video } from 'expo-av';
 import styled from "styled-components/native";
-import { Pressable } from "react-native";
+import { Pressable, useWindowDimensions } from "react-native";
 import { Pause, Play } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
-    height: 211px;
     margin-left: -16px;
     margin-right: -16px;
 `;
@@ -20,6 +19,8 @@ export const VideoPlayer = ({ source }) => {
     const { completeVideo, currentModule, switchVideo } = useContext(MovementContext);
     const movementVideo = useRef(null);
     const [status, setStatus] = useState({});
+    const window = useWindowDimensions();
+    const height = window.width / 1280 * 720;
 
     useEffect(() => {
         movementVideo.current.setStatusAsync({ positionMillis: 0 });
@@ -34,10 +35,7 @@ export const VideoPlayer = ({ source }) => {
 
         const numVideosCompleted = currentModule.videos.filter(video => video.completed).length;
         const numVideosInPlaylist = currentModule.videos.length; 
-
-        // HELP: Getting "Can't perform a React state update on an unmounted component" error
-        // assume it's because I am calling this setStatusAsync function to reset the video position to 0 after 
-        // the video changes. This conditional should prevent it from being called on the last video. 
+        
         if(numVideosCompleted !== numVideosInPlaylist) {
             movementVideo.current.setStatusAsync({ positionMillis: 0 });
         };
@@ -46,7 +44,7 @@ export const VideoPlayer = ({ source }) => {
 
     return (
         <>
-            <VideoWrapper>
+            <VideoWrapper style={{ height: height}}>
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={true}

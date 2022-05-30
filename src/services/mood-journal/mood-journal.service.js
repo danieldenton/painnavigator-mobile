@@ -24,9 +24,16 @@ export const patchMoodJournal = (journalId, moodJournal) => {
     });
 };
 
-export const postMoodJournal = (newMoodJournal) => {
-    axios.post(`${baseUrl}/api/v1/mood_journals`, { mood_journal: newMoodJournal })
+export const postMoodJournal = (moodJournal, setMoodJournals) => {
+    axios.post(`${baseUrl}/api/v1/mood_journals`, { mood_journal: moodJournal })
     .then((response) => {
-        //console.log(response.data);
+        const newJournal = response.data.data;
+        console.log(newJournal);
+        setMoodJournals(prevJournals => (
+            [
+                newJournal,
+                ...prevJournals
+            ]
+        ))
     });
 };

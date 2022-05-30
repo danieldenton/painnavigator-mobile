@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { Selected } from "../icons";
@@ -41,6 +41,7 @@ const HelpText = styled.Text`
 
 export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }) => {
     const { helpText, id, option } = optionData;
+
     const selected = selectedOptions.find((optionId) => optionId === id);
         
     return (

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { JournalContainer, ButtonSection } from "../../../components/journals/journal.styles";
+import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
-export const FoodJournalEntry = ({ journalId }) => {
-    const { addFoodJournalEntry, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
+export const FoodJournalEntry = ({ journalId, navigation }) => {
+    const { updateFoodJournal, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
     const { food, feelingBefore, feelingAfter } = foodJournal;
     const [submitDisabled, setSubmitDisabled] = useState(true);
 
@@ -18,7 +18,7 @@ export const FoodJournalEntry = ({ journalId }) => {
     }, [foodJournal]);
 
     return(
-        <JournalContainer>
+        <>
             <FoodJournalQuestionSection 
                 meal={meal}
                 changeEntry={changeEntry}
@@ -27,10 +27,22 @@ export const FoodJournalEntry = ({ journalId }) => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Meal"}
-                    onPress={() => { journalId ? addFoodJournalEntry(journalId) : completeFoodJournal() }} 
+                    onPress={() => {
+                        { journalId ? 
+                            (
+                                updateFoodJournal(journalId),
+                                navigation.navigate("JournalUpdated", { type: "Food" })
+                            ) 
+                            : 
+                            (
+                                completeFoodJournal(),
+                                navigation.navigate("JournalCreated", { type: "Food" })
+                            ) 
+                        }
+                    }} 
                     disabled={submitDisabled}
                 />
             </ButtonSection>
-        </JournalContainer>        
+        </>        
     );
 };

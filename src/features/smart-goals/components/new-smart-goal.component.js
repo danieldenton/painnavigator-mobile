@@ -40,7 +40,7 @@ export const NewSmartGoal = ({ navigation }) => {
                             :
                             nextPage()
                         }
-                        }}
+                    }}
                 />
                 <ProgressDots progress={currentPage} total={3} />
             </ButtonSection>

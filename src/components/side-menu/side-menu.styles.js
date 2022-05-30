@@ -5,7 +5,6 @@ export const DrawerContainer = styled.View`
     width: 100%;
     height: 100%;
     background-color: #F6F8FB;
-    padding-top: 20px;
 `;
 
 const LogoContainer = styled.View`
@@ -59,7 +58,7 @@ const MenuButtonLabel = styled.Text`
     font-size: 18px;
 `;
 
-export const MenuButton = ({ navigation, option }) => {
+export const MenuButton = ({ navigation, option, hidden }) => {
     return (
         <MenuButtonPressable
             onPress={() => navigation.navigate(option.destination)}

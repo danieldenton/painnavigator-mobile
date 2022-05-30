@@ -34,7 +34,7 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, journalId, type }) => {
+export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
 
@@ -48,17 +48,21 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                 </ExitButtonRow>
                 <ExitModalTextContainer>
                     <ExitModalText>Are you sure you want to {deleteJournal ? "delete" : "exit"}?</ExitModalText>
-                    <ExitModalText>{changes ? "Your changes" : type === "goal" ? "Your goal" : "This journal"} won't be saved.</ExitModalText>
+                    {type === "Profile" ? 
+                        <ExitModalText>Your profile won't be saved.</ExitModalText>
+                        :
+                        <ExitModalText>{changes ? "Your changes" : type === "goal" ? "Your goal" : "This journal"} won't be saved.</ExitModalText>
+                    }
                 </ExitModalTextContainer>
                 <ButtonContainer>
                     <JournalButtonOutline 
                         onPress={() => {
                             {deleteJournal ? 
-                                navigation.dispatch(StackActions.replace(destination))
+                                navigation.navigate(destination, { type: type })
                                 :
                                 navigation.navigate(destination);
                             }
-                            {deleteJournal && setTimeout(() => {deleteJournal(journalId)}, 500);} 
+                            {deleteJournal && setTimeout(() => {deleteJournal()}, 500);} 
                             {resetJournal && resetJournal();} 
                         }}
                         title={deleteJournal ? "Yes, Delete" : "Yes, Exit"}

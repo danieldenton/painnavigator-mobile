@@ -7,11 +7,11 @@ import { SideMenuNavigator } from "./side-menu.navigator";
 
 export const Navigation = () => {
   const { isAuthenticated } = useContext(AuthenticationContext);
-  const { profileComplete } = useContext(ProfileContext);
+  const { onboardingComplete } = useContext(ProfileContext);
 
   return (
     <NavigationContainer>
-      {isAuthenticated & profileComplete ? <SideMenuNavigator /> : <AccountNavigator />}
+      {isAuthenticated & onboardingComplete ? <SideMenuNavigator /> : <AccountNavigator />}
     </NavigationContainer>
   );
 };

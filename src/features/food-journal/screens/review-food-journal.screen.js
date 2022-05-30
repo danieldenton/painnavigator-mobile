@@ -1,9 +1,9 @@
 import React from "react";
-import { SafeArea } from "../../../components/safe-area.component";
-import { ScrollView } from "react-native";
 import { CompletedEntryCard } from "../components/completed-entry-card.component";
-import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
+import { SafeView } from "../../../components/safe-area.component";
+import { Scroll } from "../../../components/scroll.component";
 
 export const ReviewFoodJournalScreen = ({ route, navigation }) => {
     const { journal } = route.params;
@@ -24,11 +24,11 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
     );
 
     return (        
-        <SafeArea>
-            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Food Journal"} />
-            <ScrollView>
+        <SafeView>
+            <NavigationBarLeft navigation={navigation} destination={"FoodJournalHome"} screen={"Food Journal"} />
+            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 {foodJournalEntryOptions}  
-            </ScrollView>
-        </SafeArea>
+            </Scroll>
+        </SafeView>
     );
 };

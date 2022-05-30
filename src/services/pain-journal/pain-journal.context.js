@@ -1,15 +1,18 @@
-import React, { useState, createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 import { destroyPainJournal, getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
+import startOfToday from 'date-fns/startOfToday';
+import format from 'date-fns/format';
+import isToday from 'date-fns/isToday';
 
 export const PainJournalContext = createContext();
 
 export const PainJournalContextProvider = ({ children }) => {
-    const [editingPainJournal, setEditingPainJournal] = useState(false);
+    const [changes, setChanges] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const currentPageData = painJournalQuestions[currentPage - 1];
-    const [journalComplete, setJournalComplete] = useState(false);
-    const [painJournals, setPainJournals] = useState({});
+    const [painJournals, setPainJournals] = useState([]);
     const [painJournal, setPainJournal] = useState({
         intensity: 5, 
         situation: "", 
@@ -19,6 +22,25 @@ export const PainJournalContextProvider = ({ children }) => {
         notes: "", 
         intensityAfter: 5
     });
+    const [reviewJournal, setReviewJournal] = useState({});
+    const [journaledToday, setJournaledToday] = useState(false);
+
+    useEffect(() => {
+
+        if(painJournals.length === 0) {
+            return
+        };
+
+        const lastIndex = painJournals.length - 1;
+        const lastJournalDate = painJournals[lastIndex].attributes.created_at;
+
+        setJournaledToday(isToday(lastJournalDate));
+    }, []);
+
+    const cancelEdits = () => {
+        setReviewJournal({});
+        setChanges("");
+    };
 
     const changeEntry = (change, state) => {
         setPainJournal(journal => ({
@@ -31,21 +53,33 @@ export const PainJournalContextProvider = ({ children }) => {
         const copingStrategies = findCopingStrategies();
 
         const newPainJournal = {
-            pain_score: painJournal.intensity,
-            pain_setting: painJournal.situation, 
-            pain_feeling: painJournal.feeling, 
-            who_with: painJournal.whoIWasWith, 
+            intensity: painJournal.intensity,
+            situation: painJournal.situation, 
+            feeling: painJournal.feeling, 
+            who_i_was_with: painJournal.whoIWasWith, 
             coping_strategies: copingStrategies, 
-            other_notes: painJournal.notes, 
-            pain_after: painJournal.intensityAfter
+            notes: painJournal.notes, 
+            intensity_after: painJournal.intensityAfter
         }
-        postPainJournal(newPainJournal);
-        setJournalComplete(true);
-        resetPainJournal();
+        postPainJournal(newPainJournal, setPainJournals);
+        setTimeout(() => {resetPainJournal(false)}, 1000);
     };
 
-    const deletePainJournal = (journalId) => {
-        destroyPainJournal(journalId);
+    const deletePainJournal = () => {
+        const id = reviewJournal.id;
+        destroyPainJournal(id);
+        const newPainJournals = painJournals.filter(journal => journal.attributes.id !== id)
+        setPainJournals(newPainJournals);
+    };
+
+    const editJournal = (change, state) => {
+        setReviewJournal(prevJournal => (
+            {
+                ...prevJournal,
+                [state]: change
+            }
+        ));
+        setChanges(change);
     };
 
     const findCopingStrategies = () => {
@@ -79,41 +113,86 @@ export const PainJournalContextProvider = ({ children }) => {
             intensityAfter: 5
         });
         setCurrentPage(1);
-        setEditingPainJournal(false);
     };
 
-    const updatePainJournal = (journalId) => {
-        const updatedPainJournal = {
-            pain_score: painJournal.intensity,
-            pain_setting: painJournal.situation, 
-            pain_feeling: painJournal.feeling, 
-            who_with: painJournal.whoIWasWith, 
-            coping_strategies: String(painJournal.copingStrategies), 
-            other_notes: painJournal.notes, 
-            pain_after: painJournal.intensityAfter
-        }
-        patchPainJournal(journalId, updatedPainJournal);
+    const saveEdits = () => {
+        const newJournals = painJournals.map(
+            journal => journal.attributes.id === reviewJournal.id ?
+                {
+                    ...journal,
+                    attributes: reviewJournal
+                }
+                :
+                journal
+        );
+        setPainJournals(newJournals);
+        updatePainJournal();
+        setChanges("");
     };
+
+    const saveJournals = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem("@pain_journals", jsonValue);
+        } catch (e) {
+          console.log("error storing", e);
+        }
+    };
+    
+    const loadJournals = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@pain_journals");
+            if (value !== null) {
+            setPainJournals(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading", e);
+        }
+    };
+
+    const updatePainJournal = () => {
+        const updatedPainJournal = {
+            intensity: reviewJournal.intensity,
+            situation: reviewJournal.situation, 
+            feeling: reviewJournal.feeling, 
+            who_i_was_with: reviewJournal.whoIWasWith, 
+            coping_strategies: String(reviewJournal.copingStrategies), 
+            notes: reviewJournal.notes, 
+            intensity_after: reviewJournal.intensityAfter
+        }
+        patchPainJournal(reviewJournal.id, updatedPainJournal);
+    };
+
+    useEffect(() => {
+        loadJournals();
+      }, []);
+    
+    useEffect(() => {
+    saveJournals(painJournals);
+    }, [painJournals]);
 
     return (
         <PainJournalContext.Provider
             value={{
-                editingPainJournal,
+                cancelEdits,
+                changes,
                 changeEntry,
                 completePainJournal,
                 currentPage,
                 currentPageData,
                 deletePainJournal,
-                journalComplete, 
+                editJournal,
+                loadPainJournals,
+                journaledToday,
+                nextPage,
                 painJournals, 
                 painJournal,
-                loadPainJournals,
-                nextPage,
                 previousPage,
                 resetPainJournal,
-                setEditingPainJournal,
-                setJournalComplete,
+                reviewJournal,
+                saveEdits,
                 setPainJournal,
+                setReviewJournal,
                 updatePainJournal
             }}
         >

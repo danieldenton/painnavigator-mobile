@@ -30,8 +30,7 @@ export const ProfileSetup = ({ navigation }) => {
     return (
         <DailyActivitiesTile 
             navigation={navigation}
-            // TODO: replace destination with ProfileSetup once feature is added
-            destination={"Journals"}
+            destination={"Profile"}
             title={"Finish Setting Up Profile"}
             icon={<Profile />}
         />

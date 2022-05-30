@@ -4,39 +4,29 @@ import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { Provider } from 'react-native-paper';
 import { SafeView } from "../../../components/safe-area.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
-import { Congratulations } from "../../../components/journals/congratulations.component";
 import { NewMoodJournalEntry } from "../components/new-mood-journal-entry.component";
 
 export const NewMoodJournalScreen = ({ navigation }) => {
-    const { currentPage, journalComplete, loadMoodJournals, previousPage, resetMoodJournal, setJournalComplete } = useContext(MoodJournalContext);
-    const [exitModalVisible, setExitModalVisible] = useState(false);
+    const { currentPage, previousPage, resetMoodJournal } = useContext(MoodJournalContext);
+    const [visible, setVisible] = useState(false);
 
     return (
         <Provider>
             <SafeView>
-                    <NavigationBar 
-                        currentPage={currentPage} 
-                        headerName={"Mood Journal"} 
-                        previousPage={previousPage}
-                        setVisible={setExitModalVisible} 
-                    />
-                    {journalComplete ? 
-                        <Congratulations 
-                            journalType={"Mood"} 
-                            loadJournals={loadMoodJournals}
-                            navigation={navigation}
-                            setJournalComplete={setJournalComplete}
-                        /> 
-                        : 
-                        <NewMoodJournalEntry />
-                    }
-                    <ExitModal 
-                        destination={"Today"}
-                        navigation={navigation} 
-                        resetJournal={resetMoodJournal}
-                        setVisible={setExitModalVisible}
-                        visible={exitModalVisible} 
-                    />
+                <NavigationBar 
+                    currentPage={currentPage} 
+                    headerName={"Mood Journal"} 
+                    previousPage={previousPage}
+                    setVisible={setVisible} 
+                />
+                <NewMoodJournalEntry navigation={navigation} />
+                <ExitModal 
+                    destination={"Today"}
+                    navigation={navigation} 
+                    resetJournal={resetMoodJournal}
+                    setVisible={setVisible}
+                    visible={visible} 
+                />
             </SafeView>
         </Provider>
     )

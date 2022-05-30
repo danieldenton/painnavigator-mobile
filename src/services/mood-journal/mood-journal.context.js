@@ -1,15 +1,15 @@
-import React, { useState, createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
 import { destroyMoodJournal, getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
 
 export const MoodJournalContext = createContext();
 
 export const MoodJournalContextProvider = ({ children }) => {
-    const [editingMoodJournal, setEditingMoodJournal] = useState(false);
+    const [changes, setChanges] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const currentPageData = moodJournalQuestions[currentPage - 1];
-    const [journalComplete, setJournalComplete] = useState(false);
-    const [moodJournals, setMoodJournals] = useState({});
+    const [moodJournals, setMoodJournals] = useState([]);
     const [moodJournal, setMoodJournal] = useState({
         feeling: "", 
         intensity: 5, 
@@ -18,6 +18,26 @@ export const MoodJournalContextProvider = ({ children }) => {
         primaryThought: "", 
         cognitiveDistortions: new Array()
     });
+    const [reviewJournal, setReviewJournal] = useState({});
+    const [journaledToday, setJournaledToday] = useState(false);
+
+    useEffect(() => {
+
+        if(moodJournals.length === 0) {
+            return
+        };
+
+        const lastIndex = moodJournals.length - 1;
+        const lastJournalDate = moodJournals[lastIndex].attributes.date;
+        const today = format(new startOfToday(), 'M/d/yy');
+
+        setJournaledToday(lastJournalDate === "6/3/22" ? true : false);
+    }, []);
+
+    const cancelEdits = () => {
+        setReviewJournal({});
+        setChanges("");
+    };
 
     const changeEntry = (change, state) => {
         setMoodJournal(journal => ({
@@ -37,15 +57,25 @@ export const MoodJournalContextProvider = ({ children }) => {
             primary_thought: moodJournal.primaryThought,
             cognitive_distortions: cognitiveDistortions
         };
-        postMoodJournal(newMoodJournal);
-        setJournalComplete(true);
-        resetMoodJournal();
+        postMoodJournal(newMoodJournal, setMoodJournals);
+        setTimeout(() => {resetMoodJournal(false)}, 1000);
     };
 
-    const deleteMoodJournal = (journalId) => {
-        destroyMoodJournal(journalId);
-        removeMoodJournal(journalId);
-        resetMoodJournal();
+    const deleteMoodJournal = () => {
+        const id = reviewJournal.id;
+        destroyMoodJournal(id);
+        const newMoodJournals = moodJournals.filter(journal => journal.attributes.id !== id);
+        setMoodJournals(newMoodJournals);
+    };
+
+    const editJournal = (change, state) => {
+        setReviewJournal(prevJournal => (
+            {
+                ...prevJournal,
+                [state]: change
+            }
+        ));
+        setChanges(change);
     };
 
     const findCognitiveDistortions = () => {
@@ -78,10 +108,9 @@ export const MoodJournalContextProvider = ({ children }) => {
             cognitiveDistortions: new Array() 
         });
         setCurrentPage(1);
-        setEditingMoodJournal(false);
     };
 
-    const updateMoodJournal = (journalId) => {
+    const updateMoodJournal = () => {
         const updatedMoodJournal = {
             feeling: moodJournal.feeling,
             intensity: moodJournal.intensity, 
@@ -90,8 +119,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             primary_thought: moodJournal.primaryThought,
             cognitive_distortions: String(moodJournal.cognitiveDistortions)
         };
-        patchMoodJournal(journalId, updatedMoodJournal);
-        replaceMoodJournal(journalId);
+        patchMoodJournal(reviewJournal.id, updatedMoodJournal);
     };
 
     const removeMoodJournal = (journalId) => {
@@ -100,33 +128,71 @@ export const MoodJournalContextProvider = ({ children }) => {
         );
     };
 
-    const replaceMoodJournal = (journalId) => {
-        const copyMoodJournals = [...moodJournals];
-        //removeMoodJournal(journalId);
-        //moodJournals.unshift(moodJournal);
-        const updatedMoodJournals = copyMoodJournals.map(journal => journal.id !== journalId ? journal : moodJournal);
-        setMoodJournals(updatedMoodJournals);
+    const saveEdits = () => {
+        const newJournals = moodJournals.map(
+            journal => journal.attributes.id === reviewJournal.id ?
+                {
+                    ...journal,
+                    attributes: reviewJournal
+                }
+                :
+                journal
+        );
+        setMoodJournals(newJournals);
+        updateMoodJournal();
+        setChanges("");
     };
+
+    const saveJournals = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem("@mood_journals", jsonValue);
+        } catch (e) {
+          console.log("error storing", e);
+        }
+    };
+    
+    const loadJournals = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@mood_journals");
+            if (value !== null) {
+            setMoodJournals(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading", e);
+        }
+    };
+
+    useEffect(() => {
+        loadJournals();
+      }, []);
+    
+    useEffect(() => {
+    saveJournals(moodJournals);
+    }, [moodJournals]);
 
     return (
         <MoodJournalContext.Provider
             value={{
-                editingMoodJournal,
+                cancelEdits,
+                changes,
                 changeEntry,
                 completeMoodJournal,
                 currentPage,
                 currentPageData,
                 deleteMoodJournal,
-                journalComplete, 
+                editJournal,
+                journaledToday,
+                loadMoodJournals,
                 moodJournals, 
                 moodJournal,
-                loadMoodJournals,
                 nextPage,
                 previousPage,
                 resetMoodJournal,
-                setEditingMoodJournal,
-                setJournalComplete,
+                reviewJournal,
+                saveEdits,
                 setMoodJournal,
+                setReviewJournal,
                 updateMoodJournal
             }}
         >

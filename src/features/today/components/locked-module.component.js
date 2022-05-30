@@ -54,7 +54,7 @@ export const LockedModule = () => {
                     <CardHeader>
                         {name}
                     </CardHeader>
-                    <CardSubHeader>{length} MIN</CardSubHeader>
+                    <CardSubHeader>5 MIN</CardSubHeader>
                 </CardTextSection>
                 <CardIconSection>
                     <Locked />

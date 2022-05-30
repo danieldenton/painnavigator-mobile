@@ -50,13 +50,12 @@ const SliderEndText = styled.Text`
     color: hsl(215, 15%, 52%);
 `;
 
-export const IntensitySlider = ({ value, onValueChange, min, max, step, variant, state }) => {
+export const IntensitySlider = ({ value, onValueChange, min, max, step, state }) => {
     return(
         <SliderWrapper>
             <SliderValueWindow>
                 <SliderValue>{value}</SliderValue>
             </SliderValueWindow>
-            {variant === "ProgramPace" && <ProgramPaceGraphic />}
             <SliderRow>
                 <LeftSection>
                     <SliderEndText>{typeof min === 'number' && !isNaN(min) ? min : 0}</SliderEndText>
@@ -79,5 +78,28 @@ export const IntensitySlider = ({ value, onValueChange, min, max, step, variant,
                 </RightSection>
             </SliderRow>
         </SliderWrapper>
+    );
+};
+
+const PaceSliderWrapper = styled.View`
+    margin-right: 12px;
+    margin-left: 12px;
+`;
+
+export const PaceSlider = ({ value, onValueChange, min, max, step, state }) => {
+    return (
+        <PaceSliderWrapper>
+            <Slider
+                accessibilityLabel={"intensity-slider"}
+                maximumTrackTintColor="hsl(216, 44%, 86%)"
+                maximumValue={typeof max === 'number' && !isNaN(max) ? max : 10}
+                minimumTrackTintColor="hsl(216, 19%, 61%)"
+                minimumValue={typeof min === 'number' && !isNaN(min) ? min : 0}
+                onValueChange={value => onValueChange(Number(value), state)} 
+                step={typeof step === 'number' && !isNaN(step) ? step : 1}
+                thumbTintColor="hsl(210, 25%, 17%)"
+                value={value} 
+                />
+        </PaceSliderWrapper>
     );
 };

@@ -10,7 +10,7 @@ import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
-export const NewMoodJournalEntry = () => {
+export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
     
@@ -35,8 +35,35 @@ export const NewMoodJournalEntry = () => {
                 {currentPage === 5 && <CognitiveDistortions />}
             </QuestionSection>
             <ButtonSection>
-                <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 5 ? completeMoodJournal : nextPage} />
-                {currentPage > 3 && <SkipQuestion onPress={currentPage === 5 ? completeMoodJournal : nextPage} />}
+                <JournalButton 
+                    disabled={submitDisabled} 
+                    title={"Next"} 
+                    onPress={() => {
+                        {   currentPage === 5 ? 
+                            (
+                                completeMoodJournal(),
+                                navigation.navigate("JournalCreated", { type: "Mood" })
+                            )
+                            :
+                            nextPage()
+                        }
+                    }}
+                />
+                {currentPage > 3 && 
+                    <SkipQuestion 
+                        onPress={() => {
+                            {   currentPage === 5 ? 
+                                (
+                                    completeMoodJournal(),
+                                    navigation.navigate("JournalCreated", {
+                                        type: "Mood"
+                                    })
+                                )
+                                :
+                                nextPage()
+                            }
+                        }} 
+                    />}
                 <ProgressDots progress={currentPage} total={5} />
             </ButtonSection>
         </>

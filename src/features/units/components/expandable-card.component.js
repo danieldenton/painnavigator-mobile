@@ -32,7 +32,7 @@ const AccordionContent = styled.View`
 
 const AccordionCard = styled(Card)`
     border-radius: 15px;
-    margin-bottom: 16px;
+    margin-top: 16px;
 `;
 
 const OptionButtonsList = styled.FlatList`
@@ -95,7 +95,7 @@ export const ExpandableCard = ({ completeSkippedUnit, moduleType, navigation, ti
                     </AccordionIconSection>
                 </AccordionPressableSection>
                 {expanded &&
-                    <AccordionContent style={{ marginTop: units.length > 0 ? 12 : 0, marginBottom: units.length > 0 ? 6 : 0}}>
+                    <AccordionContent style={{ marginTop: units.length > 0 ? 12 : 0, marginBottom: 0}}>
                         {unitsPresent ? 
                             <OptionButtonsList 
                                 data={units}

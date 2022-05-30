@@ -45,14 +45,14 @@ const DailyGoalMessage = styled.Text`
     font-family: Inter_400Regular;
 `
 
-export const DailyGoalCompleted = () => {
+export const DailyGoalCompleted = ({ type }) => {
     return (
         <>
             <DailyGoalCard>
                 <DailyGoalCardContent>
                     <CardTextSection>
                         <CardHeader>
-                            PainNavigator Introduction
+                            {type === "module" ? "PainNavigator Introduction" : `${type} Journal Logged`}
                         </CardHeader>
                     </CardTextSection>
                     <CardIconSection>
@@ -61,11 +61,11 @@ export const DailyGoalCompleted = () => {
                 </DailyGoalCardContent>
             </DailyGoalCard>
 
-            <DailyGoalMessageSection>
+            {type === "module" && <DailyGoalMessageSection>
                 <DailyGoalMessage>
                     Daily goal reached! Keep going?
                 </DailyGoalMessage>
-            </DailyGoalMessageSection>
+            </DailyGoalMessageSection>}
         </>
     );
 };

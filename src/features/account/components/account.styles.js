@@ -1,9 +1,8 @@
+import React from "react";
 import styled from "styled-components/native";
 
-export const AccountContainer = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-  margin-top: ${(props) => props.theme.space[2]};
+export const InputWrapper = styled.View`
+  margin-top: 24px;
 `;
 
 const ErrorContainer = styled.View`
@@ -29,3 +28,32 @@ export const ErrorMessage = ({ error }) => {
     </ErrorContainer>
   );
 };
+
+const SignUpOptionsWrapper = styled.View`
+  align-items: center;
+`;
+
+const SignUpText = styled.Text`
+  font-family: Inter_300Light;
+  font-size: 14px;
+  margin-top: 16px;
+`;
+
+const OptionImageWrapper = styled.View`
+`;
+
+export const SignUpOptions = () => {
+  return (
+    <SignUpOptionsWrapper>
+      <SignUpText>
+        or
+      </SignUpText>
+      <OptionImageWrapper>
+      </OptionImageWrapper>
+    </SignUpOptionsWrapper>
+  );
+};
+
+export const OnboardGraphicWrapper = styled.View`
+  align-items: center;
+`;

@@ -53,9 +53,6 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon, scre
                     </CardTextSection>
                     <CardIconSection>
                         {title === "Add New Entry" && <Add />}
-                        {title === "Pain Journal" && <PainJournalIcon />}
-                        {title === "Mood Journal" && <MoodJournalIcon />}
-                        {title === "Food Journal" && <FoodJournalIcon />}
                         {title === "Today's Food Journal" && <FoodJournalIcon />}
                         {icon}
                     </CardIconSection>

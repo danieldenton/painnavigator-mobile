@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Video } from 'expo-av';
 import styled from "styled-components/native";
-import { Pressable } from "react-native";
+import { Pressable, useWindowDimensions } from "react-native";
 import { Pause, Play } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
-    height: 211px;
     margin-left: -16px;
     margin-right: -16px;
 `;
@@ -21,6 +20,8 @@ export const VideoPlayer = () => {
     const [status, setStatus] = useState({});
     const { currentModule } = useContext(EducationContext);
     const { source } = currentModule;
+    const window = useWindowDimensions();
+    const height = window.width / 1280 * 720;
 
     useEffect(() => {
         educationVideo.current.setStatusAsync({ positionMillis: 0 });
@@ -28,7 +29,7 @@ export const VideoPlayer = () => {
 
     return (
         <>
-            <VideoWrapper>
+            <VideoWrapper style={{ height: height}}>
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={true}

@@ -24,9 +24,16 @@ export const patchPainJournal = (journalId, painJournal) => {
     });
 };
 
-export const postPainJournal = (snakifiedPainJournal) => {
-    axios.post(`${baseUrl}/api/v1/pain_journals`, { pain_journal: snakifiedPainJournal })
+export const postPainJournal = (painJournal, setPainJournals) => {
+    axios.post(`${baseUrl}/api/v1/pain_journals`, { pain_journal: painJournal })
     .then((response) => {
-        console.log(response.data);
+        const newJournal = response.data.data;
+        console.log(newJournal);
+        setPainJournals(prevJournals => (
+            [
+                newJournal,
+                ...prevJournals
+            ]
+        ))
     });
 };

@@ -11,7 +11,7 @@ const PlaylistTileCard = styled(Card)`
     padding-bottom: 16px;
     padding-left: 21px;
     padding-right: 22px;
-    height: 92px;
+    height: 91px;
 `;
 
 const PlaylistTileCardContent = styled(Card.Content)`
@@ -100,8 +100,6 @@ const ProgressTrackWrapper = styled.View`
 export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
     const { name, length, thumbnail } = movementVideos.find(video => video.id === videoId);
 
-    // source={require("../assets/exercise_1.png")}
-
     return(
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
@@ -124,7 +122,7 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
                         </ThumbnailWrapper>
                         <CardTextSection>
                             <CardHeader>{name}</CardHeader>
-                            <CardSubHeader>{length} MIN</CardSubHeader>
+                            <CardSubHeader>{Math.ceil(length / 60)} MIN</CardSubHeader>
                         </CardTextSection>
                     </PlaylistTileCardContent>
                 </PlaylistTileCard>

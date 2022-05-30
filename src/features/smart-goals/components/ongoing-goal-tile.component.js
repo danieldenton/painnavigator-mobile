@@ -27,9 +27,7 @@ const GoalText = styled.Text`
 
 export const OngoingGoalTile = ({ goal, navigation }) => {
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("ReviewSmartGoal", {
-            goal: goal
-        })}> 
+        <TouchableOpacity onPress={() => navigation.navigate("ReviewSmartGoal")}> 
             <GoalCard>
                 <CardContentWrapper>
                     <GoalTextSection>

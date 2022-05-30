@@ -6,6 +6,8 @@ const Wrapper = styled.View`
     bottom: 42px;
     right: 0px;
     left: 0px;
+    flex-direction: row;
+    flex-wrap: wrap;
 `;
 
 const Body = styled.Text`
@@ -30,7 +32,7 @@ export const TermsAndConditions = () => {
             <Body>
                 By continuing, you are agreeing to Pain Navigator’s 
             </Body>
-            <LinkWrapper>
+            <LinkWrapper style={{ marginRight: 4 }}>
                 <Link>
                     Terms and conditions
                 </Link>
@@ -38,7 +40,7 @@ export const TermsAndConditions = () => {
             <Body>
                 and
             </Body>
-            <LinkWrapper>
+            <LinkWrapper style={{ marginLeft: 4 }}>
                 <Link>
                     Privacy Policy
                 </Link>

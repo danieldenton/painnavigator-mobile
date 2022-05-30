@@ -34,7 +34,7 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
 
     return (
         <>
-            <GoalProgress startDate={start_date} endDate={end_date} />
+            <GoalProgress endDate={end_date} />
             <KeyboardView>
                 <GoalWrapper>
                     <GoalTextSection 

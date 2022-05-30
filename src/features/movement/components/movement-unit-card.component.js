@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { movementVideos } from "../data/movement-videos-data.json";
 
 const ModuleCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -53,9 +54,20 @@ const Icon = styled.View`
 export const MovementUnitCard = ({ navigation }) => {
     const { currentModule } = useContext(MovementContext);
     const { name, length, videos } = currentModule;
-    const numVideosCompleted = 1 //videos.filter(video => video.completed).length;
-    const totalVideos = 4 //videos.length;
+    const numVideosCompleted = videos.filter(video => video.completed).length;
+    const totalVideos = videos.length;
     const moduleProgress = numVideosCompleted / totalVideos;
+
+    //useEffect(() => {
+        //const length = currentModule.videos.map((moduleVideo) => 
+                //{
+                    //const the_video = movementVideos.find(video => video.id === moduleVideo);
+                    //const video_length = Math.ceil(the_video / 60);
+                    
+                    //return (
+                        //video_length
+                    //)});
+    //}, [])
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("Movement", { navigation })}> 
@@ -63,7 +75,7 @@ export const MovementUnitCard = ({ navigation }) => {
                 <ModuleCardContent>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{length} MIN</CardSubHeader>
+                        <CardSubHeader>{} MIN</CardSubHeader>
                         {numVideosCompleted > 0 && 
                             <UnitProgress> 
                                 {numVideosCompleted}/{totalVideos} Videos Completed

@@ -10,7 +10,7 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { JournalButton } from "../../../components/button.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
-export const NewPainJournalEntry = () => {
+export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
 
@@ -35,8 +35,35 @@ export const NewPainJournalEntry = () => {
                 {currentPage === 5 && <IntensityAfter />}
             </QuestionSection>
             <ButtonSection>
-                <JournalButton disabled={submitDisabled} title={"Next"} onPress={currentPage === 5 ? completePainJournal : nextPage} />
-                {currentPage > 2 && <SkipQuestion onPress={currentPage === 5 ? completePainJournal : nextPage} />}
+                <JournalButton 
+                    disabled={submitDisabled} 
+                    title={"Next"} 
+                    onPress={() => {
+                        {   currentPage === 5 ? 
+                            (
+                                completePainJournal(),
+                                navigation.navigate("JournalCreated", { type: "Pain" })
+                            )
+                            :
+                            nextPage()
+                        }
+                    }} 
+                />
+                {currentPage > 2 && 
+                    <SkipQuestion 
+                        onPress={() => {
+                            {   currentPage === 5 ? 
+                                (
+                                    completePainJournal(),
+                                    navigation.navigate("JournalCreated", {
+                                        type: "Pain"
+                                    })
+                                )
+                                :
+                                nextPage()
+                            }
+                        }} 
+                    />}
                 <ProgressDots progress={currentPage} total={5}/>
             </ButtonSection>       
         </>

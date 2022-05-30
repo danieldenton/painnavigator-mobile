@@ -13,14 +13,10 @@ export const ReviewTextInput = styled(Input).attrs({
     height: 39px;
 `;
 
-const InputWrapper = styled.View`
-    margin-bottom: 16px;
-`;
-
-const InputLabel = styled.Text`
-  margin-bottom: 8px;
-  font-family: Inter_500Medium;
-  font-size: 18px;
+export const InputLabel = styled.Text`
+    margin-bottom: 8px;
+    font-family: Inter_600SemiBold;
+    font-size: 18px;
 `;
 
 export const AuthTextInput = styled(Input).attrs({
@@ -31,6 +27,7 @@ export const AuthTextInput = styled(Input).attrs({
     font-family: Inter_400Regular;
     font-size: 16px;
     height: 39px;
+    margin-bottom: 16px;
 `;
 
 export const TextInput = styled(Input).attrs({

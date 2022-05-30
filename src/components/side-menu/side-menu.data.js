@@ -29,7 +29,7 @@ export const menuOptions = [
     {
         id: 5,
         label: "Settings",
-        destination: "JournalsNavigator",
+        destination: "Settings",
         icon: <Settings />
     }
 ];

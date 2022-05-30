@@ -20,7 +20,7 @@ const CongratulationsMessage = styled.Text`
     line-height: 26px;
 `;
 
-export const Congratulations = ({ journalType, navigation, setJournalComplete, loadJournals }) => {
+export const Congratulations = ({ journalType, navigation, setJournalComplete }) => {
     const journalCount = 0;
 
     return(
@@ -33,7 +33,6 @@ export const Congratulations = ({ journalType, navigation, setJournalComplete, l
             <ButtonSection>
                 <JournalButton 
                     onPress={() => {
-                        loadJournals();
                         navigation.navigate("Today"); 
                         setTimeout(() => {setJournalComplete(false)}, 1000);
                     }}

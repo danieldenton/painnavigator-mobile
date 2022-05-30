@@ -16,7 +16,7 @@ export const ModuleButton = ({ onPress, title }) => {
             contentStyle={{ height: 57 }}
             labelStyle={{ color: "white", fontSize: 18, fontFamily: "Poppins_600SemiBold" }}
             onPress={onPress}
-            style={{ backgroundColor: colors.brand.primary, marginBottom: 16 }}
+            style={{ backgroundColor: colors.brand.primary }}
         >
             {title}
         </Button>

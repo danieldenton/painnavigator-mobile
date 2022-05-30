@@ -20,8 +20,6 @@ const CardIconSection = styled.View`
 `;
 
 const NewJournalEntryCard = styled(Card)`
-    margin-left: ${(props) => props.theme.space[3]};
-    margin-right: ${(props) => props.theme.space[3]};
     margin-top: 16px;
     padding: 24px 21px;
     border-radius: 15px;

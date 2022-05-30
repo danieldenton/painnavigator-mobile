@@ -7,49 +7,99 @@ export const ProfileContext = createContext();
 export const ProfileContextProvider = ({ children }) => {
     // userInfo set for testing
     const [userInfo, setUserInfo] = useState({ 
-        //name: "Stephen", 
-        //uid: "4TN47zasIcgy7zezXDn8g2rPRCG2" 
+        name: "Stephen", 
+        uid: "4TN47zasIcgy7zezXDn8g2rPRCG2" 
     });
-    const [profileProgress, setProfileProgress] = useState(1);
-    const [avgPainPreStart, setAvgPainPreStart] = useState(5);
-    const [programPaceGoal, setProgramPaceGoal] = useState(1);
-    // profileComplete set to true for testing
+    const [onboardStep, setOnboardStep] = useState(1);
+    const [onboardingData, setOnboardingData] = useState({
+        starting_pain_score: 5,
+        pace: 1,
+        commitment: 5
+    });
+    const [onboardingComplete, setOnboardingComplete] = useState(true);
+    const [profileData, setProfileData] = useState({
+        phone: "",
+        dob: "",
+        starting_pain_duration: 0,
+        gender: 0,
+        activity_level: 0
+    })
+    const [profileStep, setProfileStep] = useState(1);
     const [profileComplete, setProfileComplete] = useState(false);
     const { user } = useContext(AuthenticationContext);
 
-    const nextQuestion = () => {
-        setProfileProgress((prevQuestion) => { return ( prevQuestion + 1 ) });
+    const nextOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
     };
 
-    const previousQuestion = () => {
-        setProfileProgress((prevQuestion) => { return ( prevQuestion - 1 ) });
+    const previousOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
+    };
+
+    const nextProfileStep = () => {
+        setProfileStep((prevPage) => { return ( prevPage + 1 ) });
+    };
+
+    const previousProfileStep = () => {
+        setProfileStep((prevPage) => { return ( prevPage - 1 ) });
     };
 
     const completeProfile = () => {
-        const userUpdate = { avgPainPreStart: avgPainPreStart, programPaceGoal: programPaceGoal };
-        patchUser(user.user.uid, userUpdate, setUserInfo);
-    };  
-
-    const completeOnboarding = () => {
         setProfileComplete(true);
+        setTimeout(() => {resetProfileStep(false)}, 1000);
+    };  
+    
+    const completeOnboarding = () => {
+        patchUser(user.user.uid, onboardingData, setUserInfo);
+        setOnboardingComplete(true);
+    };
+
+    const changeOnboardEntry = (change, state) => {
+        setOnboardingData(journal => ({
+            ...journal,
+            [state]: change
+        }));
+    };
+
+    const changeProfileEntry = (change, state) => {
+        setProfileData(journal => ({
+            ...journal,
+            [state]: change
+        }));
+    };
+
+    const resetProfileStep = () => {
+        setProfileData({
+            phone: "",
+            dob: "",
+            starting_pain_duration: 0,
+            gender: 0,
+            activity_level: 0
+        });
+        setProfileStep(1);
     };
 
     return (
         <ProfileContext.Provider
             value={{
-                userInfo,
-                setUserInfo,
-                profileProgress,
-                setProfileProgress,
-                nextQuestion,
-                previousQuestion,
-                avgPainPreStart,
-                setAvgPainPreStart,
-                programPaceGoal,
-                setProgramPaceGoal,
-                profileComplete,
+                changeOnboardEntry,
+                changeProfileEntry,
+                completeOnboarding,
                 completeProfile,
-                completeOnboarding
+                nextOnboardingStep,
+                nextProfileStep,
+                onboardingData,
+                onboardStep,
+                onboardingComplete,
+                previousOnboardingStep,
+                previousProfileStep,
+                profileComplete,
+                profileData,
+                profileStep,
+                resetProfileStep,
+                setUserInfo,
+                setOnboardStep,
+                userInfo,
             }}
         >
             {children}

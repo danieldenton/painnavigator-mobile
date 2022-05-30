@@ -17,7 +17,7 @@ export const Why = ({ navigation, route }) => {
             {post_video_destination === "NewPainJournal" && <PainJournal navigation={navigation} />}
             {post_video_destination === "NewMoodJournal" && <MoodJournal navigation={navigation} />}
             {post_video_destination === "NewFoodJournal" && <FoodJournal navigation={navigation} />}
-            {post_video_destination === "UpdateFavoriteActivities" && <FavoriteActivities navigation={navigation} />}
+            {post_video_destination === "FavoriteActivities" && <FavoriteActivities navigation={navigation} />}
         </SafeView>
     );
 };

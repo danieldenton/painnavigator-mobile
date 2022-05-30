@@ -15,7 +15,7 @@ const EndDateText = styled.Text`
     letter-spacing: .5px;
 `;
 
-export const GoalProgress = ({ startDate, endDate }) => {
+export const GoalProgress = ({ endDate }) => {
     const daysLeft = differenceInDays(
         new Date(endDate),
         new startOfToday()

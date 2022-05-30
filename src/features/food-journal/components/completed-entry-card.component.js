@@ -7,8 +7,6 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 
 const EntryCard = styled(Card)`
     flex: 1;
-    margin-left: ${(props) => props.theme.space[3]};
-    margin-right: ${(props) => props.theme.space[3]};
     margin-top: ${(props) => props.theme.space[3]};
     padding: ${(props) => props.theme.space[3]};
     border-radius: 15px;
@@ -35,7 +33,7 @@ const ButtonSection = styled.View`
 const Meal = styled.Text`
     font-family: Inter_500Medium;
     font-size: 18px;
-    margin-top: 16px;
+    margin-top: 8px;
 `;
 
 const Food = styled.Text`

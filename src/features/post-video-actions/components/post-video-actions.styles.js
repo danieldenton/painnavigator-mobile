@@ -30,3 +30,9 @@ export const BodyLine = styled.View`
     flex-direction: row;
     margin-top: 2px;
 `;
+
+export const GraphicWrapper = styled.View`
+    align-items: center;
+    margin-bottom: 64px;
+    margin-top: 32px;
+`;

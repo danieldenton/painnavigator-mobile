@@ -102,6 +102,28 @@ export const HappyFaceSelected = () => {
     );
 };
 
+export const JustRightPace = () => {
+    return (
+        <Svg width="35" height="43" viewBox="0 0 35 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M10.1831 18.288L13.1056 11.8585L19.5352 10.6895L23.6268 11.8585L26.5493 16.5345L32.9789 15.3655" stroke="black" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M19.5352 11.2734L17.1972 24.7171L12.5211 29.9777L2 30.5622" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M21.8732 12.4434L19.5352 24.718L25.3802 29.9786L24.2112 40.4997" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            <Circle cx="23.0422" cy="4.25952" r="4.09155" fill="black"/>
+        </Svg>
+    );
+};
+
+export const LeisurelyPace = () => {
+    return (
+        <Svg width="26" height="43" viewBox="0 0 26 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="14.2747" cy="4.09155" r="4.09155" fill="black"/>
+            <Path d="M3.16895 24.5491L3.75345 16.9505L10.183 11.1055L14.8591 11.69L17.7816 19.2886L24.2112 21.6266" stroke="black" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M10.1831 12.2754L8.42958 23.381L7.84507 30.9796L2 40.3317" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M12.5211 12.2754L10.7676 25.7191L16.0281 30.9796L18.3662 40.9162" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
 export const MenuIcon = () => {
     return (
         <Svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -384,6 +406,16 @@ export const Selected = () => {
     );
 };
 
+export const SendIcon = () => {
+    return (
+        <Svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Circle cx="13.5" cy="13.5" r="13.5" fill="#16A28B"/>
+            <Path d="M13.5 7V20" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <Path d="M8 12.5L13.5 7L19 12.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+        </Svg>
+    );
+};
+
 export const Settings = () => {
     return (
         <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -425,6 +457,32 @@ export const Units = () => {
         <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="11.5" cy="11.5" r="10.75" stroke="black" strokeWidth="1.5"/>
             <Path d="M9.94505 6.31239L16.633 11.0417C17.0625 11.3455 17.054 11.9856 16.6165 12.2778L9.92856 16.7444C9.43019 17.0772 8.76202 16.72 8.76202 16.1207L8.76202 11.4996L8.76202 6.92475C8.76202 6.31635 9.4483 5.96111 9.94505 6.31239Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const UnreadMessageIcon = () => {
+    return (
+        <Svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M1 19.4889V9C1 6.79086 2.79086 5 5 5H23C25.2091 5 27 6.79086 27 9V19.4889C27 21.698 25.2091 23.4889 23 23.4889H13.3139C13.031 23.4889 12.7614 23.6087 12.5718 23.8187L6.95805 30.0353C6.65121 30.3751 6.08696 30.1581 6.08696 29.7002V23.9889C6.08696 23.7127 5.8631 23.4889 5.58696 23.4889H5C2.79086 23.4889 1 21.698 1 19.4889Z" fill="white" stroke="black" strokeWidth="2"/>
+            <Circle cx="8.25" cy="14.25" r="1.25" fill="black"/>
+            <Circle cx="14.25" cy="14.25" r="1.25" fill="black"/>
+            <Circle cx="20.25" cy="14.25" r="1.25" fill="black"/>
+            <Circle cx="26" cy="6" r="6" fill="#45D2BC"/>
+        </Svg>
+    );
+};
+
+export const ZoomingPace = () => {
+    return (
+        <Svg width="49" height="40" viewBox="0 0 49 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M17.9507 12.6121L24.3803 7.35156L31.3943 8.52058L34.9014 11.4431L37.8239 17.2882H46.5915" stroke="black" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M31.3944 9.68945L19.1782 27.2247L9.18311 26.6767" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M33.1479 10.8594L25.5493 22.5495L33.1479 28.3946L29.0564 37.1622" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            <Circle cx="37.824" cy="4.42944" r="4.09155" fill="black"/>
+            <Path d="M14.4436 5.59766H6.84497" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M9.1832 15.5352H3.33813" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M12.6901 10.8594H1" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </Svg>
     );
 };

@@ -1,32 +1,21 @@
 import React, { useState, useContext } from "react";
 import { Provider } from 'react-native-paper';
-import { SafeArea } from "../../../components/safe-area.component";
+import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBar } from "../../../components/journals/navigation-bar.component";
 import { FoodJournalEntry } from "../components/food-journal-entry.component";
-import { Congratulations } from "../../../components/journals/congratulations.component";
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 
 export const FoodJournalEntryScreen = ({ navigation, route }) => {
     const { journalId } = route.params;
-    const { meal, journalComplete, loadFoodJournals, resetFoodJournal, setJournalComplete } = useContext(FoodJournalContext);
+    const { meal, resetFoodJournal } = useContext(FoodJournalContext);
     const [exitModalVisible, setExitModalVisible] = useState(false);
     
     return(
-        <SafeArea>
-            <Provider>
-                <NavigationBar headerName={journalComplete ? "Food Journal" : String(meal)} setVisible={setExitModalVisible} />
-                {journalComplete ? (
-                    <Congratulations 
-                        journalType={"Food"} 
-                        navigation={navigation} 
-                        loadJournals={loadFoodJournals}
-                        setJournalComplete={setJournalComplete}
-                    /> 
-                    ) : (
-                    <FoodJournalEntry journalId={journalId} /> 
-                    )
-                }
+        <Provider>
+            <SafeView>
+                <NavigationBar headerName={String(meal)} setVisible={setExitModalVisible} />
+                <FoodJournalEntry journalId={journalId} navigation={navigation} /> 
                 <ExitModal 
                     navigation={navigation} 
                     visible={exitModalVisible} 
@@ -34,7 +23,7 @@ export const FoodJournalEntryScreen = ({ navigation, route }) => {
                     resetJournal={resetFoodJournal}
                     destination={"FoodJournalHome"}
                 />
-            </Provider>
-        </SafeArea>
+            </SafeView>
+        </Provider>
     );
 };

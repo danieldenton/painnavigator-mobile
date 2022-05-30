@@ -547,7 +547,7 @@
             "chapter": 3,
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569333/For%20Mobile%20App/Education/Pleasant%20Activities.mp4",
             "length": 7,
-            "post_video_destination": "PleasantActivitiesHome",
+            "post_video_destination": "FavoriteActivities",
             "skippable": true,
             "summary": "Identify activities you can do in moderation that might prevent disability from setting in. Learn how to engage in those activities safely and learn how to work around obstacles that might get in the way of you participating in activities."
         },
@@ -802,7 +802,7 @@
             "length": 7,
             "post_video_destination": null,
             "skippable": false,
-            "summary": "PainNavigator wrap up! /n Learn how to apply the skills learned in PainNavigator into your daily routine."
+            "summary": "PainNavigator wrap up! Learn how to apply the skills learned in PainNavigator into your daily routine."
         },
         {
             "id": 62,
