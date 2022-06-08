@@ -40,7 +40,7 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                     </GraphicSection>
                     <MessageSection>
                         <CongratulationsHeaderWrapper>
-                            <CongratulationsHeader>Welcome to Pain Navigator!</CongratulationsHeader>
+                            <CongratulationsHeader>Welcome to PainNavigator!</CongratulationsHeader>
                         </CongratulationsHeaderWrapper>
                         <CongratulationsMessageWrapper>
                             <CongratulationsMessage>

@@ -41,7 +41,7 @@ export const TodayScreen = ({ navigation }) => {
 
         if(time_number < 12) {
             setTimeOfDay("Morning")
-        } else if(time_number > 12 & time_number < 6) {
+        } else if(time_number > 12 & time_number < 17) {
             setTimeOfDay("Afternoon")
         } else {
             setTimeOfDay("Evening")

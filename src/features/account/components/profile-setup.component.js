@@ -11,18 +11,18 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
 export const ProfileSetup = ({ navigation }) => {
-    const { profileProgress, previousQuestion, nextQuestion } = useContext(ProfileContext);
+    const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(ProfileContext);
 
     return(
         <>
-            <NavigationBarLeft navigation={navigation} screen={"Sign Up"} previousPage={previousQuestion} />
-            {profileProgress === 1 && <AvgPainPreStart /> }
-            {profileProgress === 2 && <Commitment />}
-            {profileProgress === 3 && <ProgramPaceGoal />}
-            {profileProgress === 4 && <Congratulations />}
+            <NavigationBarLeft navigation={navigation} screen={"Sign Up"} previousPage={previousOnboardingStep} />
+            {onboardStep === 1 && <AvgPainPreStart /> }
+            {onboardStep === 2 && <Commitment />}
+            {onboardStep === 3 && <ProgramPaceGoal />}
+            {onboardStep === 4 && <Congratulations />}
             <ButtonSection>
-                <JournalButton title={"Next"} onPress={nextQuestion} />
-                <ProgressDots progress={profileProgress} total={3} />
+                <JournalButton title={"Next"} onPress={nextOnboardingStep} />
+                <ProgressDots progress={onboardStep} total={3} />
             </ButtonSection>
         </>
     );

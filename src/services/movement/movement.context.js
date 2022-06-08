@@ -5,7 +5,7 @@ import { movementVideos } from "../../features/movement/data/movement-videos-dat
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-    const [movementProgress, setMovementProgress] = useState(1);
+    const [movementProgress, setMovementProgress] = useState(13);
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
     const [currentVideo, setCurrentVideo] = useState();
