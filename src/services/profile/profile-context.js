@@ -46,6 +46,7 @@ export const ProfileContextProvider = ({ children }) => {
 
     const completeProfile = () => {
         setProfileComplete(true);
+        patchUser(1, profileData);
         setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
     

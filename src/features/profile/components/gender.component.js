@@ -48,7 +48,7 @@ export const Gender = () => {
     return (
         <>
             <JournalQuestion 
-                question={"How long have you been experiencing back pain?"} 
+                question={"What is your gender identity?"} 
                 helpText={"Tap the circles to select"} 
             />
             <View style={{ marginTop: 16 }}>

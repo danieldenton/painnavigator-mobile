@@ -1,14 +1,11 @@
 import axios from 'axios';
-// for getUser
 import camelize from "camelize";
+import { baseUrl } from '../../infrastructure/config';
 
-const baseUrl = 'https://3000-silver-slug-ggyxd3yy.ws-us38.gitpod.io';
-
-//TODO: getUser
-
-export const patchUser = (uid, userUpdate, setUserInfo) => {
-  axios.patch(`${baseUrl}/api/v1/users/${uid}`, { user: userUpdate })
+export const patchUser = (id, userUpdate, setUserInfo) => {
+  axios.patch(`${baseUrl}/api/v1/users/${id}`, { user: userUpdate })
   .then((response) => {
-    setUserInfo(camelize(response.data.data.attributes));
+    //setUserInfo(camelize(response.data.data.attributes));
+    console.log(response.data.data.attributes);
   });
 };
