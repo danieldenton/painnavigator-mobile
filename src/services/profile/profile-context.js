@@ -16,7 +16,7 @@ export const ProfileContextProvider = ({ children }) => {
         pace: 1,
         commitment: 5
     });
-    const [onboardingComplete, setOnboardingComplete] = useState(true);
+    const [onboardingComplete, setOnboardingComplete] = useState(false);
     const [profileData, setProfileData] = useState({
         phone: "",
         dob: "",
