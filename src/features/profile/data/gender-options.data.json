@@ -1,0 +1,24 @@
+{
+    "genderOptions": [
+        {
+            "id": 1,
+            "option": "Man",
+            "helpText": null
+        }, 
+        {
+            "id": 2,
+            "option": "Woman",
+            "helpText": null
+        }, 
+        {
+            "id": 3,
+            "option": "Nonbinary",
+            "helpText": null
+        }, 
+        {
+            "id": 4,
+            "option": "Other",
+            "helpText": null
+        }
+    ]
+}

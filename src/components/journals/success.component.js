@@ -13,29 +13,31 @@ import {
 import { ThumbsUpGraphic } from "../../graphics";
 
 export const Success = ({ deleted, navigation, type }) => {
+    const screen = type.replace(/[A-Z]/g, ' $&').trim();
+
     return (
         <SafeView>
-            <NavigationBarLeft screen={`${type} Journal`} navigation={navigation} destination={"Today"} />
+            <NavigationBarLeft screen={screen} navigation={navigation} destination={"Today"} />
             <GraphicWrapper>
                 <ThumbsUpGraphic />
             </GraphicWrapper>
             <CongratulationsHeaderWrapper>
                 <CongratulationsHeader>
-                    {deleted ? "Journal Deleted" : "Changes Saved!"}
+                    {deleted ? `${screen} Deleted` : "Changes Saved!"}
                 </CongratulationsHeader>
                 <CongratulationsMessageWrapper>
                     <CongratulationsMessage>
                         You successfully {deleted ? "deleted" : "updated"} your
                     </CongratulationsMessage>
                     <CongratulationsMessage>
-                        {type} Journal.
+                        {screen}.
                     </CongratulationsMessage>
                 </CongratulationsMessageWrapper>
             </CongratulationsHeaderWrapper>
             <ButtonSection>
                 <JournalButton 
-                    title={"Return to Journal"}
-                    onPress={() => {navigation.navigate(`${type}JournalHome`);}}
+                    title={`Return to ${screen}`}
+                    onPress={() => {navigation.navigate(`${type}Home`);}}
                 />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}}

@@ -19,6 +19,7 @@ import { View, Text } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/daily-activities.component";
 import * as Localization from 'expo-localization';
 import { formatInTimeZone } from 'date-fns-tz';
+import { Audio } from 'expo-av';
 
 export const TodayScreen = ({ navigation }) => {
     const { userInfo, profileComplete } = useContext(ProfileContext);
@@ -33,26 +34,31 @@ export const TodayScreen = ({ navigation }) => {
     const last_message_id = messagesRecieved[messagesRecievedIndex].id;
     
     //TODO: move this to a helper file
-    useEffect(() => {
-        const time_zone = Localization.timezone;
-        const date = new Date ();
-        const time_zoned_date = formatInTimeZone(date, time_zone, 'HH')
-        const time_number = Number(time_zoned_date);
+    //useEffect(() => {
+        //const time_zone = Localization.timezone;
+        // TODO: fix RangeError: Invalid time value
+        //const date = new Date ();
+        //const time_zoned_date = formatInTimeZone(date, time_zone, 'HH');
+        //const time_number = Number(time_zoned_date);
 
-        if(time_number < 12) {
-            setTimeOfDay("Morning")
-        } else if(time_number > 12 & time_number < 17) {
-            setTimeOfDay("Afternoon")
-        } else {
-            setTimeOfDay("Evening")
-        }
+        //if(time_number < 12) {
+            //setTimeOfDay("Morning")
+        //} else if(time_number > 12 & time_number < 17) {
+            //setTimeOfDay("Afternoon")
+        //} else {
+            //setTimeOfDay("Evening")
+        //}
+    //}, []);
+
+    useEffect(() => { 
+        Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
     }, []);
 
     return (
         <SafeView>
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-                <Greeting timeOfDay={timeOfDay} name={userInfo.name} />
+                <Greeting timeOfDay={"timeOfDay"} name={userInfo.first_name} />
                 <SubHeader title={"TODAY'S EDUCATION"} size={14} />
                 <DailyGoalCompleted type={"module"} />
                 <EducationUnitCard navigation={navigation} />

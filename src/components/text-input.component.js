@@ -10,7 +10,7 @@ export const ReviewTextInput = styled(Input).attrs({
 })`
     font-family: Inter_400Regular;
     font-size: 16px;
-    height: 39px;
+    height: 42px;
 `;
 
 export const InputLabel = styled.Text`
@@ -26,7 +26,7 @@ export const AuthTextInput = styled(Input).attrs({
 })`
     font-family: Inter_400Regular;
     font-size: 16px;
-    height: 39px;
+    height: 42px;
     margin-bottom: 16px;
 `;
 

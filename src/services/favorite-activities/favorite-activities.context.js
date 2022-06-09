@@ -1,55 +1,109 @@
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { patch, post } from "../favorite-activities/favorite-activities.service";
 
 export const FavoriteActivitiesContext = createContext();
 
 export const FavoriteActivitiesContextProvider = ({ children }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedActivities, setSelectedActivities] = useState([]);
     const [favoriteActivities, setFavoriteActivities] = useState([]);
-    const [additionalActivities, setAdditionalActivities] = useState({});
+    const [additionalActivities, setAdditionalActivities] = useState([
+        {
+            id: 1,
+            option: "",
+            selected: true
+        },
+        {
+            id: 2,
+            option: "",
+            selected: true
+        },
+        {
+            id: 3,
+            option: "",
+            selected: true
+        },
+        {
+            id: 4,
+            option: "",
+            selected: true
+        },
+        {
+            id: 5,
+            option: "",
+            selected: true
+        }
+    ]);
+    const [reviewActivities, setReviewActivities] = useState([]);
     const [inputsShown, setInputsShown] = useState(1);
+
+    useEffect(() => {
+        setReviewActivities(selectedActivities);
+    }, [selectedActivities]);
 
     const addInput = () => {
         setInputsShown(prev => prev + 1);
     };
 
-    const changeAdditionalActivities = (change, state) => {
-        setAdditionalActivities(activity => ({
-            ...activity,
-            [state]: change
-        }));
+    const changeAdditionalActivities = (change, inputId) => {
+        const newActivities = additionalActivities.map(item => item.id === inputId ?
+            {
+                ...item,
+                option: change
+            }
+            :
+            item
+        );
+        setAdditionalActivities(newActivities);
+    };
+
+    const completeActivities = () => {
+        setFavoriteActivities(reviewActivities);
+        setTimeout(() => {resetActivities(false)}, 1000);
+        post({activities: JSON.stringify(reviewActivities)});
     };
 
     const addActivity = (activityId) => {
-        setFavoriteActivities(prevActivities => [...prevActivities, activityId]);
+        setSelectedActivities(prevActivities => [...prevActivities, activityId]);
+    };
+
+    const reAddActivity = (activityId) => {
+        setReviewActivities(prevActivities => [...prevActivities, activityId]);
     };
 
     const removeActivity = (activityId) => {
-        const newActivities = favoriteActivities.filter(activity => activity !== activityId);
-        setFavoriteActivities(newActivities);
+        const newActivities = selectedActivities.filter(activity => activity !== activityId);
+        setSelectedActivities(newActivities);
     };
 
-    const completePleasantActivities = () => {
-        const cognitiveDistortions = findCognitiveDistortions();
-        
-        const newFavoriteActivities = {
-            feeling: moodJournal.feeling,
-            intensity: moodJournal.intensity, 
-            situation: moodJournal.situation, 
-            who_i_was_with: moodJournal.whoIWasWith,
-            primary_thought: moodJournal.primaryThought,
-            cognitive_distortions: cognitiveDistortions
-        };
-        postFavoriteActivities(newFavoriteActivities, setFavoriteActivitiess);
-        setTimeout(() => {resetFavoriteActivities(false)}, 1000);
+    const removeAddedActivity = (id) => {
+        const newActivities = additionalActivities.map(item => item.id === id ?
+            {
+                ...item,
+                selected: false
+            }
+            :
+            item
+        );
+        setAdditionalActivities(newActivities);
     };
 
-    const findCognitiveDistortions = () => {
-        const selectedCognitiveDistortions = moodJournal.cognitiveDistortions;
-        const options = moodJournalQuestions[4].options;
-        const text = options.filter(option => selectedCognitiveDistortions.includes(option.id));
-        const cognitiveDistortions = text.map((option) => option.option);
-        return String(cognitiveDistortions).replace(/,/g, ', ');
+    const reAddAddedActivity = (id) => {
+        const newActivities = additionalActivities.map(item => item.id === id ?
+            {
+                ...item,
+                selected: true
+            }
+            :
+            item
+        );
+        setAdditionalActivities(newActivities);
+    }
+
+    const removeReviewActivity = (activityId) => {
+        const newActivities = reviewActivities.filter(activity => activity !== activityId);
+        setReviewActivities(newActivities);
     };
 
     const nextPage = () => {
@@ -60,8 +114,9 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
         setCurrentPage(prevPage => prevPage - 1);
     };
 
-    const resetFavoriteActivities = () => {
+    const resetActivities = () => {
         setCurrentPage(1);
+        setSelectedActivities([]);
     };
 
     return (
@@ -71,12 +126,20 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
                 additionalActivities,
                 addInput,
                 changeAdditionalActivities,
+                completeActivities,
                 currentPage,
                 favoriteActivities,
                 inputsShown,
                 nextPage,
                 previousPage,
-                removeActivity
+                removeActivity,
+                removeAddedActivity,
+                removeReviewActivity,
+                reAddActivity,
+                reAddAddedActivity,
+                resetActivities,
+                reviewActivities,
+                selectedActivities
             }}
         >
             {children}

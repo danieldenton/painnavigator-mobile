@@ -5,18 +5,17 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const ProfileContext = createContext();
 
 export const ProfileContextProvider = ({ children }) => {
+    const [changes, setChanges] = useState("");
     // userInfo set for testing
-    const [userInfo, setUserInfo] = useState({ 
-        name: "Stephen", 
-        uid: "4TN47zasIcgy7zezXDn8g2rPRCG2" 
-    });
+    const [userInfo, setUserInfo] = useState({});
+    const [reviewProfile, setReviewProfile] = useState({});
     const [onboardStep, setOnboardStep] = useState(1);
     const [onboardingData, setOnboardingData] = useState({
         starting_pain_score: 5,
         pace: 1,
         commitment: 5
     });
-    const [onboardingComplete, setOnboardingComplete] = useState(false);
+    const [onboardingComplete, setOnboardingComplete] = useState(true);
     const [profileData, setProfileData] = useState({
         phone: "",
         dob: "",
@@ -28,30 +27,19 @@ export const ProfileContextProvider = ({ children }) => {
     const [profileComplete, setProfileComplete] = useState(false);
     const { user } = useContext(AuthenticationContext);
 
-    const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
-    };
-
-    const previousOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
-    };
-
-    const nextProfileStep = () => {
-        setProfileStep((prevPage) => { return ( prevPage + 1 ) });
-    };
-
-    const previousProfileStep = () => {
-        setProfileStep((prevPage) => { return ( prevPage - 1 ) });
-    };
+    const cancelEdits = () => {
+        setReviewProfile(userInfo);
+        setChanges("");
+    }
 
     const completeProfile = () => {
         setProfileComplete(true);
-        patchUser(1, profileData);
+        updateProfile(2, profileData);
         setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
     
     const completeOnboarding = () => {
-        patchUser(user.user.uid, onboardingData, setUserInfo);
+        updateProfile(2, onboardingData);
         setOnboardingComplete(true);
     };
 
@@ -69,6 +57,32 @@ export const ProfileContextProvider = ({ children }) => {
         }));
     };
 
+    const editProfile = (change, state) => {
+        setReviewProfile(prevProfile => (
+            {
+                ...prevProfile,
+                [state]: change
+            }
+        ));
+        setChanges(change);
+    };
+
+    const nextOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
+    };
+
+    const nextProfileStep = () => {
+        setProfileStep((prevPage) => { return ( prevPage + 1 ) });
+    };
+
+    const previousOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
+    };
+
+    const previousProfileStep = () => {
+        setProfileStep((prevPage) => { return ( prevPage - 1 ) });
+    };
+
     const resetProfileStep = () => {
         setProfileData({
             phone: "",
@@ -80,13 +94,25 @@ export const ProfileContextProvider = ({ children }) => {
         setProfileStep(1);
     };
 
+    const saveEdits = () => {
+        updateProfile(2, reviewProfile);
+        setChanges("");
+    }
+
+    const updateProfile = (userId, data) => {
+        patchUser(userId, data, setUserInfo);
+    };
+
     return (
         <ProfileContext.Provider
             value={{
+                cancelEdits,
+                changes,
                 changeOnboardEntry,
                 changeProfileEntry,
                 completeOnboarding,
                 completeProfile,
+                editProfile,
                 nextOnboardingStep,
                 nextProfileStep,
                 onboardingData,
@@ -98,8 +124,12 @@ export const ProfileContextProvider = ({ children }) => {
                 profileData,
                 profileStep,
                 resetProfileStep,
+                reviewProfile,
+                saveEdits,
+                setReviewProfile,
                 setUserInfo,
                 setOnboardStep,
+                updateProfile,
                 userInfo,
             }}
         >

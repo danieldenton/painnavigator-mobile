@@ -11,7 +11,7 @@ const MultiSelectScroll = styled(ScrollView)`
 `;
 
 export const SelectActivities = () => {
-    const { addActivity, removeActivity, favoriteActivities } = useContext(FavoriteActivitiesContext);
+    const { addActivity, removeActivity, selectedActivities } = useContext(FavoriteActivitiesContext);
 
     const favoriteActivityOptions = options.map((option) => {
         return (
@@ -20,7 +20,7 @@ export const SelectActivities = () => {
                 key={option.id}
                 optionData={option} 
                 remove={removeActivity}
-                selectedOptions={favoriteActivities}
+                selectedOptions={selectedActivities}
             />            
         );
     });

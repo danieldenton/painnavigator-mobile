@@ -5,9 +5,11 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
 import { TermsAndConditions } from "./terms-and-conditions.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const Signup = ({ navigation }) => {
-    const [name, setName] = useState("");
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
@@ -17,14 +19,23 @@ export const Signup = ({ navigation }) => {
         <>
             <NavigationBarLeft screen={"Sign up"} destination={"Onboard"} navigation={navigation} />
             <InputWrapper>
-                <InputLabel>Name</InputLabel>
+                <InputLabel>First Name</InputLabel>
                 <AuthTextInput
-                    value={name}
+                    accessibilityLabel={"first-name-input"}
+                    value={first_name}
                     textContentType="name"
-                    onChangeText={(n) => setName(n)}
+                    onChangeText={(first) => setFirstName(first)}
+                />
+                <InputLabel>Last Name</InputLabel>
+                <AuthTextInput
+                    accessibilityLabel={"last-name-input"}
+                    value={last_name}
+                    textContentType="name"
+                    onChangeText={(last) => setLastName(last)}
                 />
                 <InputLabel>Email</InputLabel>
                 <AuthTextInput
+                    accessibilityLabel={"email-input"}
                     value={email}
                     textContentType="emailAddress"
                     keyboardType="email-address"
@@ -33,6 +44,7 @@ export const Signup = ({ navigation }) => {
                 />
                 <InputLabel>Password</InputLabel>
                 <AuthTextInput
+                    accessibilityLabel={"password-input"}
                     value={password}
                     textContentType="password"
                     secureTextEntry
@@ -41,6 +53,7 @@ export const Signup = ({ navigation }) => {
                 />
                 <InputLabel>Repeat Password</InputLabel>
                 <AuthTextInput
+                    accessibilityLabel={"repeat-password-input"}
                     value={repeatedPassword}
                     textContentType="password"
                     secureTextEntry
@@ -49,7 +62,10 @@ export const Signup = ({ navigation }) => {
                 />
             </InputWrapper>
             {error && <ErrorMessage error={error} />}
-            <JournalButton title={"Create Account"} onPress={() => onRegister(name, email, password, repeatedPassword)} />
+            <JournalButton 
+                accessibilityLabel={"create-account-button"}
+                title={"Create Account"} 
+                onPress={() => onRegister(first_name, last_name, email, password, repeatedPassword)} />
             <SignUpOptions />
             <TermsAndConditions />
         </>

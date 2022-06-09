@@ -15,12 +15,31 @@ const ProgressDot = styled.View`
 `;
 
 export const ProgressDots = ({ progress, total }) => {
-    const completedDots = [...Array(progress)].map((elem, index) => <ProgressDot key={index}><ProgressDotFilled /></ProgressDot>);
-    const remainingDots = [...Array(total - progress)].map((elem, index) => <ProgressDot key={index}><ProgressDotUnfilled /></ProgressDot>);
+    const completedDots = [...Array(progress)].map((dot, index) => <ProgressDot key={index}><ProgressDotFilled /></ProgressDot>);
+    const remainingDots = [...Array(total - progress)].map((dot, index) => <ProgressDot key={index}><ProgressDotUnfilled /></ProgressDot>);
 
     return(
         <ProgressDotsContainer>
             {completedDots}{remainingDots}
+        </ProgressDotsContainer>
+    );
+};
+
+export const SwiperDots = ({ progress, total }) => {
+    const dots = [...Array(total)].map((dot, index) => {
+        const currentDot = progress === index + 1 ? true : false;
+
+        return (
+            <ProgressDot key={index}>
+                {currentDot ? <ProgressDotFilled /> : <ProgressDotUnfilled />}
+            </ProgressDot>
+        );
+
+    });
+
+    return(
+        <ProgressDotsContainer>
+            {dots}
         </ProgressDotsContainer>
     );
 };

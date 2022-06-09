@@ -10,6 +10,7 @@ import { NewMoodJournalScreen } from "../../features/mood-journal/screens/new-mo
 import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart-goal-created.screen";
 import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/screens/new-favorite-activities.screen";
 import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
+import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities/screens/favorite-activities-home.screen";
 
 const EducationStack = createStackNavigator();
 
@@ -56,6 +57,10 @@ export const EducationNavigator = () => {
             <EducationStack.Screen 
                 name="FavoriteActivitiesCompleted" 
                 component={FavoriteActivitiesCompletedScreen} 
+            />
+            <EducationStack.Screen
+                name="FavoriteActivitiesHome"
+                component={FavoriteActivitiesHomeScreen}
             />
         </EducationStack.Navigator>
     );

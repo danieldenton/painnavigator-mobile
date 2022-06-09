@@ -31,8 +31,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
 
-    const onRegister = (name, email, password, repeatedPassword) => {
-        if(!name) {
+    const onRegister = (first_name, last_name, email, password, repeatedPassword) => {
+        if(!first_name || !last_name) {
             setError("Error: Please provide your name");
             return;
         }
@@ -47,7 +47,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
                 setUser(u);
-                postUser(u.user.uid, name);
+                postUser(u.user.uid, first_name, last_name, email);
             }).then(() => {
                 setIsLoading(false);
             })

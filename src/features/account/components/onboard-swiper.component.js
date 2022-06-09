@@ -34,7 +34,10 @@ export const OnboardSwiper = ({ onPageScroll }) => {
     return (
         <SwiperSection>
             <OnboardPagerView initialPage={0} onPageScroll={onPageScroll}>
-                <OnboardGraphicWrapper key={"1"}>
+                <OnboardGraphicWrapper 
+                    accessibilityLabel={"pain-navigator-introduction-graphic"} 
+                    key={"1"}
+                >
                     <GraphicSection>
                         <WelcomeGraphic />
                     </GraphicSection>
@@ -55,7 +58,10 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         </CongratulationsMessageWrapper>
                     </MessageSection>
                 </OnboardGraphicWrapper>
-                <OnboardGraphicWrapper key="2">
+                <OnboardGraphicWrapper 
+                    accessibilityLabel={"movement-and-education-units-graphic"} 
+                    key="2"
+                >
                     <GraphicSection>
                         <MovementGraphic />
                     </GraphicSection>
@@ -74,7 +80,10 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         </CongratulationsMessageWrapper>
                     </MessageSection>
                 </OnboardGraphicWrapper>
-                <OnboardGraphicWrapper key="3">
+                <OnboardGraphicWrapper 
+                    accessibilityLabel={"pain-mood-food-journal-logging-graphic"}
+                    key="3"
+                >
                     <GraphicSection>
                         <GraphGraphic />
                     </GraphicSection>
@@ -96,7 +105,10 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         </CongratulationsMessageWrapper>
                     </MessageSection>
                 </OnboardGraphicWrapper>
-                <OnboardGraphicWrapper key="4">
+                <OnboardGraphicWrapper 
+                    accessibilityLabel={"get-started-graphic"}
+                    key="4"
+                >
                     <GraphicSection>
                         <ShoesGraphic />
                     </GraphicSection>

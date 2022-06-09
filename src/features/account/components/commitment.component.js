@@ -4,7 +4,8 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { JournalQuestion } from "../../../components/journal-question.component";
 
 export const Commitment = () => {
-    const { commitment, setCommitment } = useContext(ProfileContext);
+    const { onboardingData, changeOnboardEntry } = useContext(ProfileContext);
+    const { commitment } = onboardingData;
 
     return (
         <>
@@ -12,7 +13,11 @@ export const Commitment = () => {
                 question={"How commited are to redefining your relationship with pain?"}
                 helpText={"0 is not commited at all, 10 is you will dedicate yourself to doing whatever you need to do to accomplish your goals"}
             />
-            <IntensitySlider value={commitment} onValueChange={setCommitment} />
+            <IntensitySlider 
+                value={commitment} 
+                onValueChange={changeOnboardEntry} 
+                state={"commitment"}
+            />
         </> 
     );
 };

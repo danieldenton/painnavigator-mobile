@@ -44,23 +44,26 @@ export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal }) =
             </CloseButtonRow>
             <OptionButton
                 onPress={editJournal}
+                style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: requestDelete ? 0 : .5 }}
             >
                 <OptionIconSection>
                     <Edit />
                 </OptionIconSection>
                 <OptionText>Edit</OptionText>
             </OptionButton>
-            <OptionButton 
-                onPress={requestDelete}
-                style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: .5 }}
-            >
-                <OptionIconSection>
-                    <Delete />
-                </OptionIconSection>
-                <OptionText>
-                    Delete
-                </OptionText>
-            </OptionButton>
+            {requestDelete && 
+                <OptionButton 
+                    onPress={requestDelete}
+                    style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: .5 }}
+                >
+                    <OptionIconSection>
+                        <Delete />
+                    </OptionIconSection>
+                    <OptionText>
+                        Delete
+                    </OptionText>
+                </OptionButton>
+            }
         </>
     );
 };

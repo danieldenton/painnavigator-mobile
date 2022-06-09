@@ -33,7 +33,9 @@ export const TermsAndConditions = () => {
                 By continuing, you are agreeing to Pain Navigator’s 
             </Body>
             <LinkWrapper style={{ marginRight: 4 }}>
-                <Link>
+                <Link
+                    accessibilityLabel={"terms-and-conditions-link"}
+                >
                     Terms and conditions
                 </Link>
             </LinkWrapper>
@@ -41,7 +43,9 @@ export const TermsAndConditions = () => {
                 and
             </Body>
             <LinkWrapper style={{ marginLeft: 4 }}>
-                <Link>
+                <Link
+                    accessibilityLabel={"privacy-policy-link"}
+                >
                     Privacy Policy
                 </Link>
             </LinkWrapper>

@@ -9,6 +9,196 @@
             "id": 2,
             "option": "Crafting",
             "helpText": null
+        },
+        {
+            "id": 3,
+            "option": "Relaxing Bath",
+            "helpText": null
+        },
+        {
+            "id": 4,
+            "option": "Language Learning",
+            "helpText": null
+        },
+        {
+            "id": 5,
+            "option": "Volunteering",
+            "helpText": null
+        },
+        {
+            "id": 6,
+            "option": "Cooking/Baking",
+            "helpText": null
+        },
+        {
+            "id": 7,
+            "option": "Relaxing Bath",
+            "helpText": null
+        },
+        {
+            "id": 8,
+            "option": "Meditation",
+            "helpText": null
+        },
+        {
+            "id": 9,
+            "option": "Reading",
+            "helpText": null
+        },
+        {
+            "id": 10,
+            "option": "Sex",
+            "helpText": null
+        },
+        {
+            "id": 11,
+            "option": "Massage",
+            "helpText": null
+        },
+        {
+            "id": 12,
+            "option": "Going to a Museum",
+            "helpText": null
+        },
+        {
+            "id": 13,
+            "option": "Redecorating",
+            "helpText": null
+        },
+        {
+            "id": 14,
+            "option": "Fishing",
+            "helpText": null
+        },
+        {
+            "id": 15,
+            "option": "Swimming",
+            "helpText": null
+        },
+        {
+            "id": 16,
+            "option": "Walking",
+            "helpText": null
+        },
+        {
+            "id": 17,
+            "option": "Listening to Music",
+            "helpText": null
+        },
+        {
+            "id": 18,
+            "option": "Gardening",
+            "helpText": null
+        },
+        {
+            "id": 19,
+            "option": "Bird Watching",
+            "helpText": null
+        },
+        {
+            "id": 20,
+            "option": "Bike Riding",
+            "helpText": null
+        },
+        {
+            "id": 21,
+            "option": "Socializing",
+            "helpText": null
+        },
+        {
+            "id": 22,
+            "option": "Traveling",
+            "helpText": null
+        },
+        {
+            "id": 23,
+            "option": "Video Games",
+            "helpText": null
+        },
+        {
+            "id": 24,
+            "option": "Hiking",
+            "helpText": null
+        },
+        {
+            "id": 25,
+            "option": "Going to the Zoo",
+            "helpText": null
+        },
+        {
+            "id": 26,
+            "option": "Woodworking",
+            "helpText": null
+        },
+        {
+            "id": 27,
+            "option": "Going to a Play / Concert",
+            "helpText": null
+        },
+        {
+            "id": 28,
+            "option": "Watching TV",
+            "helpText": null
+        },
+        {
+            "id": 29,
+            "option": "Being Outside",
+            "helpText": null
+        },
+        {
+            "id": 30,
+            "option": "Stretching",
+            "helpText": null
+        },
+        {
+            "id": 31,
+            "option": "Playing with my Pet",
+            "helpText": null
+        },
+        {
+            "id": 32,
+            "option": "Going to the Movies",
+            "helpText": null
+        },
+        {
+            "id": 33,
+            "option": "Journaling",
+            "helpText": null
+        },
+        {
+            "id": 34,
+            "option": "Shopping",
+            "helpText": null
+        },
+        {
+            "id": 35,
+            "option": "Housekeeping",
+            "helpText": null
+        },
+        {
+            "id": 36,
+            "option": "Tai Chi",
+            "helpText": null
+        },
+        {
+            "id": 37,
+            "option": "Yoga",
+            "helpText": null
+        },
+        {
+            "id": 38,
+            "option": "Going out to Eat",
+            "helpText": null
+        },
+        {
+            "id": 39,
+            "option": "Going for a Drive",
+            "helpText": null
+        },
+        {
+            "id": 40,
+            "option": "Manicure/Pedicure",
+            "helpText": null
         }
     ]
 }

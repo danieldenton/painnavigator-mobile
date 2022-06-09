@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { Selected } from "../icons";
+import * as Haptics from 'expo-haptics';
+
+export const MultiSelectScroll = styled.ScrollView`
+    flex: .75;
+`;
 
 const CheckBoxPressableArea = styled.Pressable`
     align-items: center;
@@ -39,6 +44,23 @@ const HelpText = styled.Text`
     width: 80%;
 `;
 
+export const SelectedCheckBox = ({ value }) => {
+    return (
+        <CheckBoxPressableArea
+            accessibilityLabel={`${value}-checkbox`}
+            activeOpacity={0.5}
+            role={"checkbox"}
+        >
+            <CheckCircleArea>
+                <Selected />
+            </CheckCircleArea>
+            <CheckBoxTextContentArea>
+                <Option>{value}</Option>
+            </CheckBoxTextContentArea>
+        </CheckBoxPressableArea>
+    );
+};
+
 export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }) => {
     const { helpText, id, option } = optionData;
 
@@ -46,8 +68,42 @@ export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }
         
     return (
         <CheckBoxPressableArea
+            accessibilityLabel={`${option}-checkbox`}
             activeOpacity={0.5}
-            onPress={() => selected ? remove(id) : add(id)}
+            onPress={() => {
+                selected ? remove(id) : add(id);
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+            }}
+            role={"checkbox"}
+        >
+            <CheckCircleArea>
+                {selected ? 
+                    <Selected />
+                    : 
+                    <UncheckedCheckCircle />
+                }
+            </CheckCircleArea>
+            <CheckBoxTextContentArea>
+                <Option>{option}</Option>
+                {helpText && <HelpText>{helpText}</HelpText>}
+            </CheckBoxTextContentArea>
+        </CheckBoxPressableArea>
+    );
+};
+
+export const AdditionalItemsCheckBox = ({ add, optionData, remove, selectedOptions }) => {
+    const { helpText, id, option } = optionData;
+
+    const selected = selectedOptions.find((optionId) => optionId.id === id);
+        
+    return (
+        <CheckBoxPressableArea
+            accessibilityLabel={`${option}-checkbox`}
+            activeOpacity={0.5}
+            onPress={() => {
+                selected ? remove(id) : add(id);
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+            }}
             role={"checkbox"}
         >
             <CheckCircleArea>

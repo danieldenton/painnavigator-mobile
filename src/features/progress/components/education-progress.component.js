@@ -29,12 +29,12 @@ export const EducationProgress = () => {
             </ChapterSection>
             {educationProgress > 21 ? <EducationLineSegmentCompleted /> : <EducationLineSegment />}
             <ChapterSection>
-                {educationProgress > 38 ? <Selected /> : <ChapterCircle chapter={3} />}
+                {educationProgress > 38 ? <Selected /> : educationProgress > 21 ? <CurrentChapterCircle chapter={3} type={"education"}/> : <ChapterCircle chapter={3} />}
                 <ChapterText>Strategies</ChapterText>
             </ChapterSection>
             {educationProgress > 38 ? <EducationLineSegmentCompleted /> : <EducationLineSegment />}
             <ChapterSection>
-                {educationProgress > 61 ? <Selected /> : <ChapterCircle chapter={4} />}
+                {educationProgress > 61 ? <Selected /> : educationProgress > 38 ? <CurrentChapterCircle chapter={4} type={"education"}/> : <ChapterCircle chapter={4} />}
                 <ChapterText>Behaviors</ChapterText>
             </ChapterSection>
         </ProgressTrackWrapper>

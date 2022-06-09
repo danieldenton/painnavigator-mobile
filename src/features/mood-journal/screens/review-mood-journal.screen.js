@@ -76,7 +76,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                                     saveEdits(); 
                                     setTimeout(() => {setEditing(false)}, 1000);
                                     navigation.navigate("JournalUpdated", {
-                                        type: "Mood"
+                                        type: "MoodJournal"
                                     });
                                 }}
                             />
@@ -107,7 +107,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                 navigation={navigation} 
                 setVisible={setShowDeleteModal}
                 visible={showDeleteModal}
-                type={"Mood"}
+                type={"MoodJournal"}
             />
             <ExitModal 
                 changes={changes}

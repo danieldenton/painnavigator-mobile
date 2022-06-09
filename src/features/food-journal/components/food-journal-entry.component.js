@@ -31,12 +31,12 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
                         { journalId ? 
                             (
                                 updateFoodJournal(journalId),
-                                navigation.navigate("JournalUpdated", { type: "Food" })
+                                navigation.navigate("JournalUpdated", { type: "FoodJournal" })
                             ) 
                             : 
                             (
                                 completeFoodJournal(),
-                                navigation.navigate("JournalCreated", { type: "Food" })
+                                navigation.navigate("JournalCreated", { type: "FoodJournal" })
                             ) 
                         }
                     }} 

@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
-import { ThumbsUpGraphic } from "../../../graphics";
+import { SentGraphic } from "../../../graphics";
 import { JournalButton } from "../../../components/button.component";
 import { 
     CongratulationsHeaderWrapper, 
@@ -16,7 +16,7 @@ export const MessageSentScreen = ({ navigation }) => {
         <SafeView>
             <NavigationBarLeft destination={"Today"} navigation={navigation} screen={"Wellness Coach"}/>
             <GraphicWrapper>
-                <ThumbsUpGraphic />
+                <SentGraphic />
             </GraphicWrapper>
             <CongratulationsHeaderWrapper>
                 <CongratulationsHeader>

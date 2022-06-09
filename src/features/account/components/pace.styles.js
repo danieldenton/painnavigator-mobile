@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LeisurelyPace, JustRightPace, ZoomingPace } from "../../../icons";
 import styled from "styled-components/native";
+import format from 'date-fns/format';
+import add from 'date-fns/add';
 
 const PaceIndicatorWrapper = styled.View`
     flex-direction: row;
@@ -80,24 +82,34 @@ export const PaceSelectionInfo = ({ pace }) => {
                 :
             </PaceHeader>
             <PaceBody>
-                {pace === 0 && "Leisurely"}
-                {pace === 1 && "Just Right"}
-                {pace === 2 && "Zooming"}
+                {pace === 0 && "4x/week, 15 minutes per session"}
+                {pace === 1 && "5x/week, 15 minutes per session"}
+                {pace === 2 && "7x/week (everyday), 15 minutes per session"}
             </PaceBody>
         </PaceInfoWrapper>
     );
 };
 
 export const ProjectedEndDate = ({ pace }) => {
+
+    const leisurelyResult = add(new Date(), { weeks: 12 });
+    const leisurelyEndDate = format(leisurelyResult, "MMMM do, yyyy");
+
+    const justRightResult = add(new Date(), { weeks: 9 });
+    const justRightEndDate = format(justRightResult, "MMMM do, yyyy");
+
+    const zoomingResult = add(new Date(), { weeks: 6 });
+    const zoomingEndDate = format(zoomingResult, "MMMM do, yyyy");
+
     return (
         <PaceInfoWrapper>
             <PaceHeader>
                 Projected End Date:
             </PaceHeader>
             <PaceBody>
-                {pace === 0 && "Leisurely"}
-                {pace === 1 && "Just Right"}
-                {pace === 2 && "Zooming"}
+                {pace === 0 && leisurelyEndDate}
+                {pace === 1 && justRightEndDate}
+                {pace === 2 && zoomingEndDate}
             </PaceBody>
         </PaceInfoWrapper>
     );

@@ -8,7 +8,7 @@ import { FavoriteActivitiesContext } from "../../../services/favorite-activities
 
 export const NewFavoriteActivitiesScreen = ({ navigation }) => {
     const [visible, setVisible] = useState(false);
-    const { currentPage, previousPage } = useContext(FavoriteActivitiesContext);
+    const { currentPage, previousPage, resetActivities } = useContext(FavoriteActivitiesContext);
 
     return (
         <Provider>
@@ -23,7 +23,7 @@ export const NewFavoriteActivitiesScreen = ({ navigation }) => {
                 <ExitModal 
                     destination={"Today"}
                     navigation={navigation} 
-                    //resetJournal={resetMoodJournal}
+                    resetJournal={resetActivities}
                     setVisible={setVisible}
                     visible={visible} 
                 />

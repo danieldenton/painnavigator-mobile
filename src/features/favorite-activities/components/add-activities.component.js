@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { TextInput } from "../../../components/text-input.component";
 import { View, Text } from "react-native";
@@ -43,17 +43,18 @@ const AddButton = ({ addInput }) => {
 };
 
 export const AddActivities = () => {
-    const { additionalActivities, addInput, changeAdditionalActivities, inputsShown } = useContext(FavoriteActivitiesContext);
+    const { addedFavoriteActivities, additionalActivities, addInput, changeAdditionalActivities, inputsShown } = useContext(FavoriteActivitiesContext);
 
-    const inputElements = [...Array(inputsShown)].map((activity, index) => {
-            const activityNumber = `activity=${index + 1}`
+    const inputElements = [...Array(inputsShown)].map((inputId, index) => {
+            const id = index + 1;
+            const activity = additionalActivities.find(item => item.id === id);
 
             return (
                 <TextInput 
-                    accessibilityLabel={`additional-${activityNumber}`}
-                    value={additionalActivities[activityNumber]}
-                    onChangeText={(change) => changeAdditionalActivities(change, activityNumber)}
-                    key={index}
+                    accessibilityLabel={`additional-activity-${id}`}
+                    value={activity.option}
+                    onChangeText={(change) => changeAdditionalActivities(change, id)}
+                    key={id}
                 />
             );
         }
@@ -67,7 +68,7 @@ export const AddActivities = () => {
             <Scroll style={{ padding: 16 }}>
                 <View style={{ marginBottom: 120 }}>
                     {inputElements}
-                    <AddButton addInput={addInput} />
+                    {inputsShown < 5 && <AddButton addInput={addInput} />}
                 </View>
             </Scroll>
         </>

@@ -5,7 +5,7 @@ import { educationModules } from "../../features/education/data/education-module
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
-    const [educationProgress, setEducationProgress] = useState(7);
+    const [educationProgress, setEducationProgress] = useState(38);
     const [currentModule, setCurrentModule] = useState({});
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);

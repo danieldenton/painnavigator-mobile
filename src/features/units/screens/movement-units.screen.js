@@ -14,34 +14,19 @@ export const MovementUnitsScreen = ({ navigation }) => {
     const [skippedMovementModuleData, setSkippedMovementModuleData] = useState({});
 
     useEffect(() => {
-        if (bookmarks.length === 0) {
-            return
-        };
-
-        const movementBookmarks = bookmarks.filter(bookmark => bookmark > 62);
+        const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
         const data = movementBookmarks.map(bookmark => movementVideos.find(item => item.id === bookmark));
         setBookmarkedMovementModuleData(data);
-
     }, [bookmarks]);
 
     useEffect(() => {
-        if (completedMovementModules.length === 0) {
-            return
-        };
-
-        const data = completedMovementModules.map(module => movementVideos.find(item => item.id === module));
+        const data = completedMovementModules?.map(module => movementVideos.find(item => item.id === module));
         setCompletedMovementModuleData(data);
-
     }, [completedMovementModules]);
 
     useEffect(() => {
-        if (skippedMovementModules.length === 0) {
-            return
-        };
-
-        const data = skippedMovementModules.map(module => movementVideos.find(item => item.id === module));
+        const data = skippedMovementModules?.map(module => movementVideos.find(item => item.id === module));
         setSkippedMovementModuleData(data);
-
     }, [skippedMovementModules]);
 
     return (

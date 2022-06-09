@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { ReviewTextInput } from "../components/text-input.component";
-import { EditIntensity } from "../components/edit-intensity.component";
+import { EditIntensity, EditSelect } from "../components/edit-intensity.component";
 import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
+import { Next } from "../icons";
+import { genderOptions } from "../features/profile/data/gender-options.data.json";
+import { painDurationOptions } from "../features/profile/data/pain-duration-options.data.json";
+import { activityLevelOptions } from "../features/profile/data/activity-level-options.data.json";
 
 const QuestionWrapper = styled.View`
     border-top-color: hsl(218, 44%, 86%);
@@ -14,11 +18,27 @@ const QuestionWrapper = styled.View`
 const QuestionText = styled.Text`
     font-size: 12px;
     color: ${colors.text.secondary};
+    font-family: Inter_500Medium;
 `;
 
+
 const ResponseText = styled.Text`
+font-size: 18px;
+margin-top: ${space[3]};
+font-family: Inter_400Regular;
+`;
+
+const QuestionButtonPressable = styled.Pressable`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+`;
+
+const QuestionButtonText = styled.Text`
+    font-family: Inter_600SemiBold;
     font-size: 18px;
-    margin-top: ${space[3]};
 `;
 
 export const InputQuestion = ({ changeEntry, editing, entry }) => {
@@ -50,6 +70,62 @@ export const IntensityQuestion = ({ changeEntry, editing, entry }) => {
                 : 
                 <ResponseText>{response} out of 10</ResponseText>
             }
+        </QuestionWrapper>
+    );
+};
+
+export const SelectQuestion = ({ changeEntry, editing, entry }) => {
+    const { max, question, response, state } = entry;
+    const [textResponse, setTextResponse] = useState("");
+
+    useEffect(() => {
+        if (response === 0) {
+            return setTextResponse("Choose not to provide");
+        };
+
+        if (state === "gender") {
+            let textResponse = genderOptions.find(option => option.id === response).option;
+            setTextResponse(textResponse);
+        } else if (state === "activity_level") {
+            let textResponse = activityLevelOptions.find(option => option.id === response).option;
+            setTextResponse(textResponse);
+        } else if (state === "starting_pain_duration") {
+            let textResponse = painDurationOptions.find(option => option.id === response).option;
+            setTextResponse(textResponse);
+        };
+
+    }, [response]);
+
+    return (
+        <QuestionWrapper style={{ borderTopWidth: editing ? 0 : .5 }}>
+            <QuestionText>{question}</QuestionText>
+            {editing ? 
+                <EditSelect 
+                    changeEntry={changeEntry} 
+                    max={max}
+                    min={0}
+                    response={response} 
+                    state={state} 
+                    textResponse={textResponse} 
+                />
+                : 
+                <ResponseText>{textResponse}</ResponseText>
+            }
+        </QuestionWrapper>
+    );
+};
+
+export const ReviewOptionButton = ({ destination, option, navigation }) => {
+    return (
+        <QuestionWrapper style={{ borderTopWidth: .5 }}>
+            <QuestionButtonPressable
+                onPress={() => navigation.navigate(destination)}
+            >
+                <QuestionButtonText>
+                    {option}
+                </QuestionButtonText>
+                <Next />
+            </QuestionButtonPressable>
         </QuestionWrapper>
     );
 };

@@ -9,7 +9,7 @@ import { ReviewActivities } from "./review-activities.component";
 import { FavoriteActivitiesContext } from "../../../services/favorite-activities/favorite-activities.context";
 
 export const NewFavoriteActivities = ({ navigation }) => {
-    const { currentPage, nextPage } = useContext(FavoriteActivitiesContext);
+    const { completeActivities, currentPage, nextPage } = useContext(FavoriteActivitiesContext);
     
     return (
         <>
@@ -24,7 +24,7 @@ export const NewFavoriteActivities = ({ navigation }) => {
                     onPress={() => {
                         {   currentPage === 3 ? 
                             (
-                                //completeMoodJournal(),
+                                completeActivities(),
                                 navigation.navigate("FavoriteActivitiesCompleted")
                             )
                             :
@@ -36,7 +36,7 @@ export const NewFavoriteActivities = ({ navigation }) => {
                     onPress={() => {
                         {   currentPage === 3 ? 
                             (
-                                //completeMoodJournal(),
+                                completeActivities(),
                                 navigation.navigate("FavoriteActivitiesCreated")
                             )
                             :

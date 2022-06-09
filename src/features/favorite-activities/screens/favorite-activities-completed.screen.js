@@ -39,7 +39,7 @@ export const FavoriteActivitiesCompletedScreen = ({ navigation }) => {
             <ButtonSection>
                 <JournalButton 
                     title={"See my list!"}
-                    onPress={() => {navigation.navigate("Today")}}
+                    onPress={() => {navigation.navigate('Settings', { screen: 'FavoriteActivities' });}}
                 />
             </ButtonSection>
         </SafeView>

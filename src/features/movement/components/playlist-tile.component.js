@@ -176,7 +176,7 @@ export const CompletedPlaylistTile = ({ videoId, firstVideo }) => {
                 <CompletedModuleCardContent>
                     <TextSection>
                         <Header>{name}</Header>
-                        <CardSubHeader>{length} MIN</CardSubHeader>
+                        <CardSubHeader>{Math.ceil(length / 60)} MIN</CardSubHeader>
                     </TextSection>
                     <IconSection>
                         <Selected />

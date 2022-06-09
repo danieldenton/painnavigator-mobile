@@ -14,34 +14,19 @@ export const EducationUnitsScreen = ({ navigation }) => {
     const [skippedEducationModuleData, setSkippedEducationModuleData] = useState({});
 
     useEffect(() => {
-        if (bookmarks.length === 0) {
-            return
-        };
-
-        const educationBookmarks = bookmarks.filter(bookmark => bookmark < 63);
+        const educationBookmarks = bookmarks?.filter(bookmark => bookmark < 63);
         const data = educationBookmarks.map(bookmark => educationModules.find(item => item.id === bookmark));
         setBookmarkedEducationModuleData(data);
-
     }, [bookmarks]);
 
     useEffect(() => {
-        if (completedEducationModules.length === 0) {
-            return
-        };
-
-        const data = completedEducationModules.map(module => educationModules.find(item => item.id === module));
+        const data = completedEducationModules?.map(module => educationModules.find(item => item.id === module));
         setCompletedEducationModuleData(data);
-
     }, [completedEducationModules]);
 
     useEffect(() => {
-        if (skippedEducationModules.length === 0) {
-            return
-        };
-
-        const data = skippedEducationModules.map(module => educationModules.find(item => item.id === module));
+        const data = skippedEducationModules?.map(module => educationModules.find(item => item.id === module));
         setSkippedEducationModuleData(data);
-
     }, [skippedEducationModules]);
 
     return (

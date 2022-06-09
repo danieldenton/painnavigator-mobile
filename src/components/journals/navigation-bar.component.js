@@ -20,6 +20,7 @@ const LeftPressableArea = styled(TouchableOpacity)`
 const HeaderSection = styled.View`
     flex: .5;
     align-items: center;
+    padding: 16px;
 `;
 
 const HeaderName = styled.Text`
@@ -36,6 +37,12 @@ const RightSection = styled.View`
 const RightPressableArea = styled.TouchableOpacity`
     border-radius: 100px;
     margin-right: -16px;
+    padding: 16px;
+`;
+
+const CenterHeader = styled.View`
+    align-items: center;
+    flex: 1;
     padding: 16px;
 `;
 
@@ -161,6 +168,18 @@ export const NavigationBarLeft = ({ destination, navigation, screen, previousPag
             </HeaderSection>
             <RightSection>
             </RightSection>
+        </NavContainer>
+    );
+};
+
+export const HeaderBar = ({ screen }) => {
+    return (
+        <NavContainer>
+            <CenterHeader>
+                <HeaderName>
+                    {screen.toUpperCase()}
+                </HeaderName>
+            </CenterHeader>
         </NavContainer>
     );
 };

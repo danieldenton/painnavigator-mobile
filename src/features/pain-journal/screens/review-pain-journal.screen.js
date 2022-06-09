@@ -17,7 +17,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 export const ReviewPainJournalScreen = ({ navigation, route }) => {
     const { journal } = route.params;
-    const { cancelEdits, changes, deletePainJournal, saveEdits, reviewJournal, painJournals } = useContext(PainJournalContext);
+    const { cancelEdits, changes, deletePainJournal, saveEdits } = useContext(PainJournalContext);
     const [editing, setEditing] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
@@ -76,7 +76,7 @@ export const ReviewPainJournalScreen = ({ navigation, route }) => {
                                     saveEdits(); 
                                     setTimeout(() => {setEditing(false)}, 1000);
                                     navigation.navigate("JournalUpdated", {
-                                        type: "Pain"
+                                        type: "PainJournal"
                                     });
                                 }}
                             />
@@ -107,7 +107,7 @@ export const ReviewPainJournalScreen = ({ navigation, route }) => {
                 navigation={navigation} 
                 setVisible={setShowDeleteModal}
                 visible={showDeleteModal}
-                type={"Pain"}
+                type={"PainJournal"}
             />
             <ExitModal 
                 changes={changes}

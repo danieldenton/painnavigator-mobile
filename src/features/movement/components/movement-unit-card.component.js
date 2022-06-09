@@ -53,21 +53,19 @@ const Icon = styled.View`
 
 export const MovementUnitCard = ({ navigation }) => {
     const { currentModule } = useContext(MovementContext);
-    const { name, length, videos } = currentModule;
+    const { name, videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;
     const moduleProgress = numVideosCompleted / totalVideos;
+    const videoArray = videos.map((video) => {
+        const the_video = movementVideos.find(item => item.id === video.id);
+        const length = Math.ceil(the_video.length / 60);
 
-    //useEffect(() => {
-        //const length = currentModule.videos.map((moduleVideo) => 
-                //{
-                    //const the_video = movementVideos.find(video => video.id === moduleVideo);
-                    //const video_length = Math.ceil(the_video / 60);
-                    
-                    //return (
-                        //video_length
-                    //)});
-    //}, [])
+        return(
+            length
+        );
+    });
+    const videoLength = videoArray.reduce((a, b) => a + b, 0);
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("Movement", { navigation })}> 
@@ -75,7 +73,7 @@ export const MovementUnitCard = ({ navigation }) => {
                 <ModuleCardContent>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{} MIN</CardSubHeader>
+                        <CardSubHeader>{videoLength} MIN</CardSubHeader>
                         {numVideosCompleted > 0 && 
                             <UnitProgress> 
                                 {numVideosCompleted}/{totalVideos} Videos Completed
@@ -94,7 +92,7 @@ export const MovementUnitCard = ({ navigation }) => {
                                     lineCap="round"
                                     rotation={360}
                                     delay={2000}
-                                    duration={1000}
+                                    duration={3000}
                                 >
                                     {(fill) => (<MovementModuleIcon />)}
                                 </AnimatedCircularProgress>

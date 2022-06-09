@@ -3,6 +3,7 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from "react-native";
+import { genderOptions } from "../data/gender-options.data.json";
 
 export const Gender = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
@@ -11,30 +12,7 @@ export const Gender = () => {
         changeProfileEntry(optionId, "gender");
     };
 
-    const options = [
-        {
-            id: 1,
-            option: "Man",
-            helpText: null
-        }, 
-        {
-            id: 2,
-            option: "Woman",
-            helpText: null
-        }, 
-        {
-            id: 3,
-            option: "Nonbinary",
-            helpText: null
-        }, 
-        {
-            id: 4,
-            option: "Other",
-            helpText: null
-        }
-    ];
-
-    const questionOptions = options.map((option) => {
+    const questionOptions = genderOptions.map((option) => {
         return (
             <SingleSelectCheckBox 
                 add={add}

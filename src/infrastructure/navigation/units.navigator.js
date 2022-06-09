@@ -4,6 +4,7 @@ import { UnitsScreen } from "../../features/units/screens/units.screen";
 import { EducationUnitsScreen } from "../../features/units/screens/education-units.screen";
 import { MovementUnitsScreen } from "../../features/units/screens/movement-units.screen";
 import { ReplayUnitScreen } from "../../features/units/screens/replay-unit.screen";
+import { CompletionScreen } from "../../features/education/screens/completion.screen";
 
 const UnitsStack = createStackNavigator();
 
@@ -28,6 +29,11 @@ export const UnitsNavigator = () => {
             <UnitsStack.Screen 
                 name="ReplayUnit" 
                 component={ReplayUnitScreen} 
+                options={{ headerShown: false }}
+            />
+            <UnitsStack.Screen 
+                name="UnitCompleted" 
+                component={CompletionScreen} 
                 options={{ headerShown: false }}
             />
         </UnitsStack.Navigator>

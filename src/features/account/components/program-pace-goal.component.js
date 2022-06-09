@@ -5,23 +5,25 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { PaceSelectionIndicator, PaceSelectionInfo, ProjectedEndDate } from "./pace.styles";
 
 export const ProgramPaceGoal = () => {
-    const { programPaceGoal, setProgramPaceGoal } = useContext(ProfileContext);
+    const { onboardingData, changeOnboardEntry } = useContext(ProfileContext);
+    const { pace } = onboardingData;
 
     return(
         <>
             <JournalQuestion 
                 question={"How quickly would you like to move through this program?"}
             />
+            <PaceSelectionInfo pace={pace}/>
+            <ProjectedEndDate pace={pace}/>
             <PaceSelectionIndicator />
             <PaceSlider 
-                value={programPaceGoal} 
-                onValueChange={setProgramPaceGoal}
+                value={pace} 
+                onValueChange={changeOnboardEntry}
+                state={"pace"}
                 min={0}
                 max={2}
                 step={1}
             />
-            <PaceSelectionInfo pace={programPaceGoal}/>
-            <ProjectedEndDate pace={programPaceGoal}/>
         </> 
     );
 };

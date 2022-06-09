@@ -29,7 +29,7 @@ export const ReviewPainJournalEntry = ({ editing, journal }) => {
         {question: "WHO I WAS WITH", response: editing ? editWhoIWasWith : who_i_was_with, type: "input", state: "who_i_was_with"},
         {question: "COPING STRATEGIES", response: editing ? editCopingStrategies : coping_strategies, type: "input", state: "coping_strategies"},
         {question: "NOTES", response: editing ? editNotes : notes, type: "input", state: "notes"},
-        {question: "PAIN INTESITY AFTER EPISODE", response: editing ? editIntensityAfter : intensity_after, type: "intensity", state: "intensity_after"}
+        {question: "PAIN INTENSITY AFTER EPISODE", response: editing ? editIntensityAfter : intensity_after, type: "intensity", state: "intensity_after"}
     ];
 
     const journalEntryResponses = journalEntry.map((entry) => {

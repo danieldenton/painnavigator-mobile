@@ -4,6 +4,7 @@ import { NavigationBarLeft, TextModuleNavBar } from "../../../components/journal
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { VideoUnit } from "../components/video-unit.component";
+import { StackActions } from '@react-navigation/native';
 
 export const ReplayUnitScreen = ({ route, navigation }) => {
     const { completeSkippedUnit, moduleType, title, unit } = route.params;
@@ -16,9 +17,15 @@ export const ReplayUnitScreen = ({ route, navigation }) => {
             {type === "video" && <VideoUnit unit={unit} />}
             <ButtonSection>
                 <ModuleButton 
-                    onPress={() => { 
-                        navigation.navigate("Today"); 
-                        {title === "Skipped" && completeSkippedUnit(id)};
+                    onPress={() => {
+                        {   title === "Skipped" ? 
+                            (
+                                completeSkippedUnit(id),
+                                navigation.dispatch(StackActions.replace("UnitCompleted"))
+                            )
+                            :
+                            navigation.navigate("Today"); 
+                        } 
                     }}
                     title={title === "Skipped" ? "Mark Complete" : "Back to Dashboard"} 
                 />

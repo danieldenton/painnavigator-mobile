@@ -57,3 +57,35 @@ export const EditIntensity = ({ response, changeEntry, state }) => {
         </ResponseWrapper>
     );
 };
+
+export const EditSelect = ({ response, changeEntry, state, textResponse, max }) => {
+    const [value, setValue] = useState(response);
+
+    useEffect(() => {
+        changeEntry(value, state);
+    }, [value])
+
+    const add = () => {
+        setValue(prevValue => prevValue + 1);
+    };
+
+    const subtract = () => {
+        setValue(prevValue => prevValue - 1);
+    };
+
+    return (
+        <ResponseWrapper>
+            <ResponseTextWrapper>
+                <ResponseText>{textResponse}</ResponseText>
+            </ResponseTextWrapper>
+            <ButtonSection>
+                <ButtonWrapper onPress={subtract} disabled={response === 0 && true}>
+                    <AntDesign name="minuscircleo" size={22} color={response > 0 ? colors.text.secondary : colors.textInput.inactive} />
+                </ButtonWrapper>
+                <ButtonWrapper onPress={add} disabled={response === max && true}>
+                    <AntDesign name="pluscircleo" size={22} color={response < max ? colors.text.secondary : colors.textInput.inactive} />
+                </ButtonWrapper>
+            </ButtonSection>
+        </ResponseWrapper>
+    );
+};

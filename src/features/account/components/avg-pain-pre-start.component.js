@@ -5,6 +5,7 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 
 export const AvgPainPreStart = () => {
     const { onboardingData, changeOnboardEntry } = useContext(ProfileContext);
+    const { starting_pain_score } = onboardingData;
 
     return (
         <>
@@ -13,7 +14,7 @@ export const AvgPainPreStart = () => {
                 helpText={"0 is no pain, 10 is the worst pain you can imagine"}
             />
             <IntensitySlider 
-                value={onboardingData.starting_pain_score} 
+                value={starting_pain_score} 
                 onValueChange={changeOnboardEntry} 
                 state={"starting_pain_score"}
             />
