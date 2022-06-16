@@ -21,7 +21,7 @@ export const MoodJournal = ({ navigation }) => {
             </Wrapper>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate("NewMoodJournal")}
+                    onPress={() => navigation.navigate("MoodJournal")}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>

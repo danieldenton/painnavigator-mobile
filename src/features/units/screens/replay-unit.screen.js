@@ -4,6 +4,7 @@ import { NavigationBarLeft, TextModuleNavBar } from "../../../components/journal
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { VideoUnit } from "../components/video-unit.component";
+import { TextUnit } from "../components/text-unit.component";
 import { StackActions } from '@react-navigation/native';
 
 export const ReplayUnitScreen = ({ route, navigation }) => {
@@ -13,8 +14,9 @@ export const ReplayUnitScreen = ({ route, navigation }) => {
     return (
         <SafeView>
             {type === "video" && <NavigationBarLeft screen={moduleType} destination={`${moduleType}Units`} navigation={navigation} />}
-            {type === "text" && <TextModuleNavBar screen={"Education"} destination={"EducationUnits"} navigation={navigation} id={id} />}
             {type === "video" && <VideoUnit unit={unit} />}
+            {type === "text" && <TextModuleNavBar screen={"Education"} destination={"EducationUnits"} navigation={navigation} id={id} />}
+            {type === "text" && <TextUnit unit={unit} />}
             <ButtonSection>
                 <ModuleButton 
                     onPress={() => {

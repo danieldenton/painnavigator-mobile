@@ -6,10 +6,7 @@ import { GoalTextSection } from "../components/goal-text-section.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
-import { 
-    CongratulationsHeaderWrapper, 
-    CongratulationsHeader 
-} from "../../../components/completion/components/completion.styles";
+import { CongratulationsHeaderWrapper, CongratulationsHeader } from "../../../components/completion/components/completion.styles";
 
 export const SmartGoalCreatedScreen = ({ navigation }) => {
     const { smartGoal, resetSmartGoal } = useContext(SmartGoalContext);
@@ -19,13 +16,7 @@ export const SmartGoalCreatedScreen = ({ navigation }) => {
             <NavigationBarLeft screen={"Smart Goal"} navigation={navigation} destination={"Today"} />
             <CongratulationsHeaderWrapper>
                 <CongratulationsHeader>
-                    Congratulations!
-                </CongratulationsHeader>
-                <CongratulationsHeader>
-                    You Created a New 
-                </CongratulationsHeader>
-                <CongratulationsHeader>
-                    SMART Goal!
+                    Goal created!
                 </CongratulationsHeader>
             </CongratulationsHeaderWrapper>
             <GoalTextSection header={"Your SMART Goal is:"} body={smartGoal.goal} />
@@ -39,5 +30,5 @@ export const SmartGoalCreatedScreen = ({ navigation }) => {
                 <ProgressDots progress={3} total={3} />
             </ButtonSection>
         </SafeView>
-    )
+    );
 };

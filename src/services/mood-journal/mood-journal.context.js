@@ -22,16 +22,10 @@ export const MoodJournalContextProvider = ({ children }) => {
     const [journaledToday, setJournaledToday] = useState(false);
 
     useEffect(() => {
+        const lastIndex = moodJournals?.length - 1;
+        const lastJournalDate = moodJournals[lastIndex]?.attributes.date;
 
-        if(moodJournals.length === 0) {
-            return
-        };
-
-        const lastIndex = moodJournals.length - 1;
-        const lastJournalDate = moodJournals[lastIndex].attributes.date;
-        const today = format(new startOfToday(), 'M/d/yy');
-
-        setJournaledToday(lastJournalDate === "6/3/22" ? true : false);
+        setJournaledToday(lastJournalDate);
     }, []);
 
     const cancelEdits = () => {

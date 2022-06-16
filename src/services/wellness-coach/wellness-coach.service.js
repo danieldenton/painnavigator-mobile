@@ -1,21 +1,22 @@
 import axios from 'axios';
 import { baseUrl } from '../../infrastructure/config';
 
-export const getMessages = (recipient_id, last_message_id, setMessages) => {
-    axios.get(`${baseUrl}/api/v1/new_messages/?recipient_id=${recipient_id}&last_message_id=${last_message_id}`)
+export const getMessages = (recipient_id, setMessages) => {
+    axios.get(`${baseUrl}/api/v1/get_conversation/${recipient_id}`)
     .then( resp => {
-        console.log(resp.data.data);
         const newMessages = resp.data.data;
         const newMessagesAttributes = newMessages.map(message => message.attributes);
-        console.log(newMessages);
-        //setMessages(prevMessages => (
-            //[
-                //...prevMessages,
-                //...newMessagesAttributes
-            //]
-        //)); 
+        //console.log(newMessages);
+        setMessages(newMessagesAttributes); 
     })
-    //.catch(resp => console.log(resp))
+    .catch(resp => console.log(resp))
+};
+
+export const patchMessage = (recipient_id) => {
+    axios.patch(`${baseUrl}/api/v1/mark_conversation_read/${recipient_id}`)
+    .then((response) => {
+        console.log(response.data);
+    });
 };
 
 export const postMessage = (message, setMessages) => {

@@ -26,15 +26,10 @@ export const PainJournalContextProvider = ({ children }) => {
     const [journaledToday, setJournaledToday] = useState(false);
 
     useEffect(() => {
+        const lastIndex = painJournals?.length - 1;
+        const lastJournalDate = painJournals[lastIndex]?.attributes.date;
 
-        if(painJournals.length === 0) {
-            return
-        };
-
-        const lastIndex = painJournals.length - 1;
-        const lastJournalDate = painJournals[lastIndex].attributes.created_at;
-
-        setJournaledToday(isToday(lastJournalDate));
+        setJournaledToday(lastJournalDate);
     }, []);
 
     const cancelEdits = () => {
@@ -88,10 +83,6 @@ export const PainJournalContextProvider = ({ children }) => {
         const text = options.filter(option => selectedCopingStrategies.includes(option.id));
         const copingStrategies = text.map((option) => option.option);
         return String(copingStrategies).replace(/,/g, ', ');
-    };
-
-    const loadPainJournals = () => {
-        getPainJournals(setPainJournals);
     };
 
     const nextPage = () => {
@@ -182,7 +173,6 @@ export const PainJournalContextProvider = ({ children }) => {
                 currentPageData,
                 deletePainJournal,
                 editJournal,
-                loadPainJournals,
                 journaledToday,
                 nextPage,
                 painJournals, 

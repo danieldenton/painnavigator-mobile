@@ -2,10 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
+import { formatDate } from "../../../infrastructure/helpers";
 
 export const ReviewMoodJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(MoodJournalContext);
-    const { date, feeling, intensity, situation, who_i_was_with, primary_thought, cognitive_distortions } = journal;
+    const { date_time_value, feeling, intensity, situation, who_i_was_with, primary_thought, cognitive_distortions } = journal;
     const { 
         feeling: editFeeling, 
         intensity: editIntensity, 
@@ -19,7 +20,7 @@ export const ReviewMoodJournalEntry = ({ editing, journal }) => {
         setReviewJournal(journal);
     }, []);
 
-    const dateEntry = { question: "DATE", response: date };
+    const dateEntry = { question: "DATE", response: formatDate(date_time_value) };
 
     const journalEntry = [
         { question: "FEELING", response: editing ? editFeeling : feeling, type: "input", state: "feeling" },

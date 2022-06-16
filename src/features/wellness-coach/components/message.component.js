@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import format from 'date-fns/format';
 
 const SentMessageWrapper = styled.View`
     background-color: #CDEBE6;
@@ -38,7 +39,7 @@ export const SentMessage = ({ body, timeStamp }) => {
         <>
             <TimeStampWrapper>
                 <TimeStamp>
-                    {timeStamp}
+                    {format(new Date(timeStamp), 'E h:mm a')}
                 </TimeStamp>
             </TimeStampWrapper>
             <SentMessageWrapper>
@@ -55,7 +56,7 @@ export const RecievedMessage = ({ body, timeStamp }) => {
         <>
             <TimeStampWrapper>
                 <TimeStamp>
-                    {timeStamp}
+                    {format(new Date(timeStamp), 'E h:mm a')}
                 </TimeStamp>
             </TimeStampWrapper>
             <RecievedMessageWrapper>

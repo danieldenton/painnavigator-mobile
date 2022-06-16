@@ -10,10 +10,10 @@ const GreetingText = styled.Text`
     font-size: 31px;
 `;
 
-export const Greeting = ({ timeOfDay, name }) => {
+export const Greeting = ({ greeting, name }) => {
     return(
         <GreetingWrapper>
-            <GreetingText>Good {timeOfDay},</GreetingText>
+            <GreetingText>{greeting},</GreetingText>
             <GreetingText>{name}</GreetingText>
         </GreetingWrapper> 
     )

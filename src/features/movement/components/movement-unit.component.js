@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { ScrollView } from "react-native";
+import { View } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { VideoPlayer } from "./video-player.component";
 import { VideoInfo } from "./video-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
 import { NextUp } from "../../education/components/education-unit.styles";
+import { Scroll } from "../../../components/scroll.component";
 
 export const MovementUnit = () => {
     const { completeVideo, currentModule, currentVideo, switchVideo } = useContext(MovementContext);
@@ -26,9 +27,9 @@ export const MovementUnit = () => {
             <VideoPlayer source={source} currentVideo={currentVideo} completeVideo={completeVideo} />
             <VideoInfo />
             {incompleteVideos.length > 1 && <NextUp />}
-            <ScrollView showsVerticalScrollIndicator={false} >
+            <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16 }} >
                 {playlistTiles}
-            </ScrollView>
+            </Scroll>
         </>
     );
 };

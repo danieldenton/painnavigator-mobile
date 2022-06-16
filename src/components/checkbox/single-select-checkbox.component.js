@@ -9,6 +9,7 @@ import {
     Option,
     HelpText
 } from "./styles";
+import * as Haptics from 'expo-haptics';
 
 export const SingleSelectCheckBox = ({ add, optionData, selectedOption }) => {
     const { id, helpText, option } = optionData;
@@ -17,7 +18,10 @@ export const SingleSelectCheckBox = ({ add, optionData, selectedOption }) => {
         <CheckBoxPressableArea
             activeOpacity={0.5}
             accessibilityLabel={`select-${option}`}
-            onPress={() => add(id)}
+            onPress={() => {
+                add(id);
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+            }}
             role={"checkbox"}
         >
             <CheckCircleArea>

@@ -17,14 +17,10 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [journaledToday, setJournaledToday] = useState(false);
 
     useEffect(() => {
-        if(foodJournals.length === 0) {
-            return
-        };
+        const lastIndex = foodJournals?.length - 1;
+        const lastJournalDate = foodJournals[lastIndex]?.attributes.date;
 
-        const lastJournalDate = foodJournals[0].attributes.date;
-        const today = format(new startOfToday(), 'M/d/yy');
-
-        setJournaledToday(lastJournalDate === today ? true : false);
+        setJournaledToday(lastJournalDate);
     }, []);
 
     const updateFoodJournal = (journalId) => {

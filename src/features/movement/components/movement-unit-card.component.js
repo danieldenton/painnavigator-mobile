@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { movementVideos } from "../data/movement-videos-data.json";
 
 const ModuleCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -52,28 +51,19 @@ const Icon = styled.View`
 `; 
 
 export const MovementUnitCard = ({ navigation }) => {
-    const { currentModule } = useContext(MovementContext);
+    const { currentModule, getPlaylistLength } = useContext(MovementContext);
     const { name, videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;
     const moduleProgress = numVideosCompleted / totalVideos;
-    const videoArray = videos.map((video) => {
-        const the_video = movementVideos.find(item => item.id === video.id);
-        const length = Math.ceil(the_video.length / 60);
-
-        return(
-            length
-        );
-    });
-    const videoLength = videoArray.reduce((a, b) => a + b, 0);
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("Movement", { navigation })}> 
+        <TouchableOpacity onPress={() => navigation.navigate("Movement")}> 
             <ModuleCard>
                 <ModuleCardContent>
                     <CardTextSection>
                         <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{videoLength} MIN</CardSubHeader>
+                        <CardSubHeader>{getPlaylistLength(videos)} MIN</CardSubHeader>
                         {numVideosCompleted > 0 && 
                             <UnitProgress> 
                                 {numVideosCompleted}/{totalVideos} Videos Completed

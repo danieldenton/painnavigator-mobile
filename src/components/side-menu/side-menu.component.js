@@ -1,7 +1,8 @@
 import React from "react";
 import { DrawerContainer, Logo } from "./side-menu.styles";
 import { MenuButtons } from "./side-menu-buttons.component";
-import { SafeAreaView } from "react-native";
+import { AltMenuButtons } from "./side-menu-alt-buttons.component";
+import { SafeAreaView, View } from "react-native";
 
 export const SideMenu = ({ navigation }) => {
     return (
@@ -9,6 +10,8 @@ export const SideMenu = ({ navigation }) => {
             <DrawerContainer>
                 <Logo />
                 <MenuButtons navigation={navigation} />
+                <View style={{ marginTop: 64 }}></View>
+                <AltMenuButtons navigation={navigation} />
             </DrawerContainer>
         </SafeAreaView>
     );

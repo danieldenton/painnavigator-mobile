@@ -22,11 +22,10 @@ export const ProgressTrackHeader = styled.Text`
     align-self: center;
 `;
 
-export const EducationLineSegment = styled.View`
-    border: #CBD7EB dashed;
-    border-radius: 1px;
+export const IncompleteBridge = styled.View`
     height: 111px;
-    margin-left: 16px;
+    margin-left: 8px;
+    margin-top: 3px;
 `;
 
 export const EducationLineSegmentCompleted = styled.View`
@@ -36,16 +35,18 @@ export const EducationLineSegmentCompleted = styled.View`
 `;
 
 export const MovementLineSegment = styled.View`
-    border: #CBD7EB dashed;
-    border-radius: 1px;
     height: 63px;
-    margin-left: 16px;
+    margin-left: 8px;
+    margin-top: 3px;
 `;
 
 export const MovementLineSegmentCompleted = styled.View`
-    border: 2px #6A7AEF;
+    border: #4056F4 solid;
+    border-left-width: 2px;
+    border-right-width: 2px;
     height: 63px;
-    margin-left: 15px;
+    width: 2.5px;
+    margin-left: 15.3px;
 `;
 
 export const ChapterSection = styled.View`
@@ -103,8 +104,8 @@ const CurrentChapterText = styled.Text`
 
 export const CurrentChapterCircle = ({ chapter, type }) => {
     return (
-        <CurrentChapterCircleWrapper style={{ borderColor: type === "education" ? "#16A28B" : "#6A7AEF" }}>
-            <CurrentChapterText style={{ color: type === "education" ? "#16A28B" : "#6A7AEF" }}>
+        <CurrentChapterCircleWrapper style={{ borderColor: type === "education" ? "#16A28B" : "#4056F4" }}>
+            <CurrentChapterText style={{ color: type === "education" ? "#16A28B" : "#4056F4" }}>
                 {chapter}
             </CurrentChapterText>
         </CurrentChapterCircleWrapper>

@@ -23,9 +23,10 @@ export const ModuleButton = ({ onPress, title }) => {
     );
 }; 
 
-export const JournalButton = ({ disabled, title, onPress, fontSize }) => {
+export const JournalButton = ({ disabled, icon, title, onPress, fontSize }) => {
     return (
         <Button 
+            icon={icon}
             contentStyle={{ height: 57 }}
             disabled={disabled}
             labelStyle={{ color: "white", fontSize: fontSize || 18, fontFamily: "Poppins_600SemiBold" }}

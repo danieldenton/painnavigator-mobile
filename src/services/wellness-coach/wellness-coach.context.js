@@ -1,38 +1,20 @@
 import React, { useEffect, useState, createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getMessages, postMessage } from "./wellness-coach.service";
+import { getMessages, patchMessage, postMessage } from "./wellness-coach.service";
 
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
     const [recipientId, setRecipientId] = useState(1);
-    const [userId, setUserId] = useState(2);
+    const [userId, setUserId] = useState(10);
     const [message, setMessage] = useState({
         sender_id: userId,
         recipient_id: recipientId,
         body: "",
         status: 0
     });
-    const [messages, setMessages] = useState([
-        {
-            id: 0,
-            body: "Hi Jessie! Welcome to Pain Navigator. My name’s Kelly and I’m here to help you get the most out of this program. Do you have any questions or comments you’d like to discuss?",
-            recipient_id: 2,
-            sender_id: 1,
-            status: "unread",
-            time_stamp: "Sat 10:00 AM"
-        },
-        {
-            id: 2,
-            body: "Hi Kelly! Thanks for the message. I don’t have any questions right now. ",
-            recipient_id: 1,
-            sender_id: 2,
-            status: "unread",
-            time_stamp: "Sat 10:30 AM"
-        }
-    ]);
+    const [messages, setMessages] = useState([]);
     const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
-    const [lastMessageId, setLastMessageId] = useState(0);
 
     useEffect(() => {
         const messagesRecieved = messages.filter(message => message.sender_id === 1);
@@ -46,23 +28,11 @@ export const WellnessCoachContextProvider = ({ children }) => {
     }, [messages]);
 
     useEffect(() => {
-        //setTimeout(() => {checkForNewMessages(22)}, 3000);
-    }, [])
-
-    useEffect(() => {
-        //const messagesRecieved = messages.filter(message => message.sender_id === 1);
-        //const messagesRecievedIndex = messagesRecieved.length - 1;
-        //const last_message_id = messagesRecieved[messagesRecievedIndex].id;
-        //console.log(last_message_id);
-        //setLastMessageId(last_message_id);
-    }, [messages])
+        checkForNewMessages();
+    }, []);
     
-    const checkForNewMessages = (last_message_id) => {
-        //const messagesRecieved = messages.filter(message => message.sender_id === 1);
-        //const messagesRecievedIndex = messagesRecieved.length - 1;
-        //const last_message_id = messagesRecieved[messagesRecievedIndex].id;
-
-        getMessages(userId, last_message_id, setMessages); 
+    const checkForNewMessages = () => {
+        getMessages(userId, setMessages);  
     };
 
     const clearUnreadMessages = () => {
@@ -76,6 +46,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
         );
 
         setMessages(newMessages);
+        patchMessage(userId);
     };
 
     const loadMessages = async () => {

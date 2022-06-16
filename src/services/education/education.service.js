@@ -1,11 +1,12 @@
 import axios from 'axios';
-const baseUrl = 'https://3000-silver-slug-ggyxd3yy.ws-us34.gitpod.io';
+import { baseUrl } from "../../infrastructure/config";
 
-export const postEducationModule = (moduleId, status) => {
-    // TODO: update to post status of module record (0: completed, 1: skipped)
-    axios.post(`${baseUrl}/api/v1/education_modules`, { moduleId })
+export const postEducationModule = (module, setLastCompletedModule, uid) => {
+    axios.post(`${baseUrl}/api/v1/education_modules`, { education_module: module, uid: uid })
     .then((response) => {
-        console.log(response.data);
+        const moduleData = response.data.data;
+        console.log(moduleData);
+        setLastCompletedModule(moduleData.attributes);
     });
 };
 

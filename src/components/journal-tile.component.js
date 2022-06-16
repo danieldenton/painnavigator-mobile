@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { Next } from "../icons";
 import { Card } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
+import { formatDate } from "../infrastructure/helpers";
 
 const JournalCard = styled(Card)`
     border-radius: 15px;
@@ -29,7 +30,7 @@ const JournalText = styled.Text`
 `;
 
 export const JournalTile = ({ destination, journal, navigation }) => {
-    const { date } = journal;
+    const { date_time_value } = journal;
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate(destination, {
@@ -39,7 +40,7 @@ export const JournalTile = ({ destination, journal, navigation }) => {
                 <CardContentWrapper>
                     <JournalTextSection>
                         <JournalText>
-                            {date}
+                            {formatDate(date_time_value)}
                         </JournalText>
                     </JournalTextSection>
                     <Next />

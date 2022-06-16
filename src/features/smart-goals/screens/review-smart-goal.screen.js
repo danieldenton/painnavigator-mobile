@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback, useRef, useMemo } from "react";
+import React, { useEffect, useState, useContext, useCallback, useRef, useMemo } from "react";
 import { BottomSheetBackground } from "../../../components/bottom-sheet/background.component";
 import { BottomSheetModal, BottomSheetModalProvider, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
 import { ExitModal } from "../../../components/journals/exit-modal.component";
@@ -8,13 +8,30 @@ import { ReviewJournalModal } from "../../../components/review-journal-modal.com
 import { ReviewSmartGoal } from "../components/review-smart-goal.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
+import { StackActions } from '@react-navigation/native';
+import add from "date-fns/add";
+import format from 'date-fns/format';
 
 export const ReviewSmartGoalScreen = ({ navigation }) => {
-    const { activeGoal, cancelEdits, changes, deleteGoal } = useContext(SmartGoalContext);
+    const { activeGoal, cancelEdits, changes, deleteGoal, finishGoal } = useContext(SmartGoalContext);
+    const { created_date_time } = activeGoal;
     const [editing, setEditing] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const reviewSmartGoalOptions = useRef(null);
+
+    useEffect(() => {
+        const end = add(new Date(created_date_time), {weeks: 4});
+        const formattedEndDate = format(end, 'MM/dd/yyyy');
+        const today = format(new Date(), 'MM/dd/yyyy');
+
+        if(today === today) {
+            setTimeout(() => {
+                navigation.dispatch(StackActions.replace("SmartGoalCompleted"));
+                finishGoal()
+            }, 3000);
+        };
+    }, []);
 
     const closeModal = () => {
         reviewSmartGoalOptions.current?.close();

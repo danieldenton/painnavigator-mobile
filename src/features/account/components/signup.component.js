@@ -5,6 +5,7 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
 import { TermsAndConditions } from "./terms-and-conditions.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { ActivityIndicator } from 'react-native-paper';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const Signup = ({ navigation }) => {
@@ -13,11 +14,12 @@ export const Signup = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
-    const { onRegister, error } = useContext(AuthenticationContext);
+    const { onRegister, error, userLoading } = useContext(AuthenticationContext);
 
     return(
         <>
             <NavigationBarLeft screen={"Sign up"} destination={"Onboard"} navigation={navigation} />
+            <KeyboardAwareScrollView>
             <InputWrapper>
                 <InputLabel>First Name</InputLabel>
                 <AuthTextInput
@@ -63,11 +65,13 @@ export const Signup = ({ navigation }) => {
             </InputWrapper>
             {error && <ErrorMessage error={error} />}
             <JournalButton 
+                icon={userLoading && <ActivityIndicator animating={true} color={"red"} />}
                 accessibilityLabel={"create-account-button"}
                 title={"Create Account"} 
                 onPress={() => onRegister(first_name, last_name, email, password, repeatedPassword)} />
             <SignUpOptions />
-            <TermsAndConditions />
+                </KeyboardAwareScrollView>
+            <TermsAndConditions navigation={navigation} />
         </>
     ); 
 };

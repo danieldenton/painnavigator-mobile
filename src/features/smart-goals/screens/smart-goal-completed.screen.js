@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
@@ -12,10 +11,10 @@ import {
 } from "../../../components/completion/components/completion.styles";
 import { CongratsGraphic } from "../../../graphics";
 
-export const CompletionScreen = ({ navigation }) => {
+export const SmartGoalCompletedScreen = ({ navigation }) => {
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Education"} destination={"Today"} navigation={navigation} />
+            <NavigationBarLeft screen={"Smart Goal"} destination={"Today"} navigation={navigation} />
             <GraphicWrapper>
                 <CongratsGraphic />
             </GraphicWrapper>
@@ -24,9 +23,10 @@ export const CompletionScreen = ({ navigation }) => {
             </CongratulationsHeaderWrapper>
             <CongratulationsMessageWrapper>
                 <CongratulationsMessage>
-                    You completed an education unit! 
-                    You’re on your way to mastering new skills 
-                    and redefining your relationship with pain.
+                    We’re marking your SMART goal complete as it’s been four weeks!
+                </CongratulationsMessage>
+                <CongratulationsMessage>
+                    Wherever you are, you’ve done a great job. Now, take a moment to refelct on your experience.
                 </CongratulationsMessage>
             </CongratulationsMessageWrapper>
             <ButtonSection>

@@ -9,14 +9,15 @@ import { FavoriteActivities } from "../components/favorite-activities.component"
 
 export const Why = ({ navigation, route }) => {
     const { post_video_destination } = route.params;
+    const screen = post_video_destination.replace(/[A-Z]/g, ' $&').trim();
 
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Smart Goal"} navigation={navigation} destination={"Today"} />
-            {post_video_destination === "NewSmartGoal" && <SmartGoal navigation={navigation} />}
-            {post_video_destination === "NewPainJournal" && <PainJournal navigation={navigation} />}
-            {post_video_destination === "NewMoodJournal" && <MoodJournal navigation={navigation} />}
-            {post_video_destination === "NewFoodJournal" && <FoodJournal navigation={navigation} />}
+            <NavigationBarLeft screen={screen} navigation={navigation} destination={"Today"} />
+            {post_video_destination === "SmartGoal" && <SmartGoal navigation={navigation} />}
+            {post_video_destination === "PainJournal" && <PainJournal navigation={navigation} />}
+            {post_video_destination === "MoodJournal" && <MoodJournal navigation={navigation} />}
+            {post_video_destination === "FoodJournal" && <FoodJournal navigation={navigation} />}
             {post_video_destination === "FavoriteActivities" && <FavoriteActivities navigation={navigation} />}
         </SafeView>
     );

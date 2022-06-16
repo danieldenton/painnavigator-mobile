@@ -12,7 +12,8 @@ export const postSmartGoal = (smartGoal, setActiveGoal) => {
     axios.post(`${baseUrl}/api/v1/smart_goals`, { smart_goal: smartGoal })
     .then((response) => {
         console.log(response.data.data);
-        setActiveGoal(response.data.data);
+        const goal = response.data.data;
+        setActiveGoal(goal.attributes);
     });
 };
 
@@ -24,6 +25,7 @@ export const postSmartGoalUpdate = (id, smartGoalUpdate, setActiveGoal) => {
     )
     .then((response) => {
         console.log(response.data.data);
-        setActiveGoal(response.data.data);
+        const goal = response.data.data;
+        setActiveGoal(goal.attributes);
     });
 };

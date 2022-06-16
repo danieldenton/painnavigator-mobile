@@ -12,9 +12,9 @@ import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
 import format from 'date-fns/format';
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
-    const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, start_date, smart_goal_updates: activeUpdates } = goal.attributes;
+    const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, created_date_time, smart_goal_updates: activeUpdates } = goal;
     const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
-    const { goal: editingGoal, steps: editSteps, reward: editReward, smart_goal_updates: editUpdates } = reviewGoal.attributes;
+    const { goal: editingGoal, steps: editSteps, reward: editReward, smart_goal_updates: editUpdates } = reviewGoal;
     
     const updates = editing ? editUpdates : activeUpdates;
     
@@ -34,7 +34,7 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
 
     return (
         <>
-            <GoalProgress endDate={end_date} />
+            <GoalProgress endDate={end_date} created_date_time={created_date_time} />
             <KeyboardView>
                 <GoalWrapper>
                     <GoalTextSection 

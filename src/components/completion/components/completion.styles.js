@@ -15,6 +15,8 @@ export const CongratulationsHeader = styled.Text`
 export const CongratulationsMessageWrapper = styled.View`
     align-items: center;
     margin-top: 12px; 
+    margin-left: 4px;
+    margin-right: 4px;
 `;
 
 export const CongratulationsMessage = styled.Text`

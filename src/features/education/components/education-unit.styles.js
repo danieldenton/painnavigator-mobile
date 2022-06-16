@@ -10,7 +10,7 @@ export const Header = styled.View`
 `;
 
 export const TitleSection = styled.View`
-    flex: 1;
+    flex: .95;
 `;
 
 export const BookmarkSection = styled.View`
@@ -43,6 +43,7 @@ export const Summary = styled.Text`
     margin-top: 16px;
     font-size: 16px;
     font-family: Inter_400Regular;
+    line-height: 28px;
 `;
 
 export const ButtonSection = styled.View`
@@ -56,6 +57,7 @@ const NextUpWrapper = styled.View`
     margin-left: -16px; 
     margin-right: -16px;
     margin-top: 16px;
+    margin-bottom: 16px;
 `;
 
 const NextUpText = styled.Text`

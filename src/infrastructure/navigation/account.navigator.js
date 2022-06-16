@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { OnboardScreen } from "../../features/account/screens/onboard.screen";
 import { LoginScreen } from "../../features/account/screens/login.screen";
 import { RegisterScreen } from "../../features/account/screens/register.screen";
+import { Privacy } from "../../features/account/screens/privacy-policy.screen";
+import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 
 const AccountStack = createStackNavigator();
 
@@ -11,6 +13,10 @@ export const AccountNavigator = () => {
         <AccountStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <AccountStack.Screen name="Onboard" component={OnboardScreen} />
             <AccountStack.Screen name="Register" component={RegisterScreen} />
+            <AccountStack.Group screenOptions={{ presentation: 'modal' }}>
+                <AccountStack.Screen name="Privacy" component={Privacy} />
+                <AccountStack.Screen name="Terms" component={TermsOfUse} />
+            </AccountStack.Group>
             <AccountStack.Screen name="Login" component={LoginScreen} />
         </AccountStack.Navigator>
     )

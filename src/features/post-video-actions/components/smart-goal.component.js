@@ -31,7 +31,7 @@ export const SmartGoal = ({ navigation }) => {
             </Wrapper>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate("NewSmartGoal")}
+                    onPress={() => navigation.navigate("SmartGoal")}
                     title={"Let's do it!"} 
                 />
             </ButtonSection>

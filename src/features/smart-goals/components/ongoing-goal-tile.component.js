@@ -32,7 +32,7 @@ export const OngoingGoalTile = ({ goal, navigation }) => {
                 <CardContentWrapper>
                     <GoalTextSection>
                         <GoalText>
-                            "{goal.attributes.goal}"
+                            "{goal.goal}"
                         </GoalText>
                     </GoalTextSection>
                     <Next />

@@ -4,20 +4,20 @@ import { movementVideos } from "../data/movement-videos-data.json";
 import { Card } from "react-native-paper";
 import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
+import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 
 const PlaylistTileCard = styled(Card)`
     border-radius: 15px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 21px;
-    padding-right: 22px;
-    height: 91px;
+    height: 112px;
+    flex-direction: row;
+    align-items: center;
 `;
 
 const PlaylistTileCardContent = styled(Card.Content)`
     flex-direction: row;
     padding: 0px;
     align-items: center;
+    margin-left: 18.5px;
 `;
 
 const CardTextSection = styled.View`
@@ -40,14 +40,14 @@ const CardSubHeader = styled.Text`
 const ThumbnailWrapper = styled.View`
     align-items: center;
     justify-content: center;
-    height: 60px;
-    width: 95px;
+    height: 61.25px;
+    width: 92px;
 `;
 
 const Thumbnail = styled.Image`
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 2px;
 `;
 
 const IncompleteDot = styled.View`
@@ -61,12 +61,10 @@ const IncompleteDot = styled.View`
 
 const IncompleteBridge = styled.View`
     position: absolute;
-    top: -90px;
-    left: 8px;
+    top: -123px;
+    left: 0px;
     width: 2px;
     height: 90px;
-    border-radius: 5px;
-    border: #CBD7EB dashed;
 `;
 
 const CompleteDot = styled.View`
@@ -80,18 +78,17 @@ const CompleteDot = styled.View`
 
 const CompleteBridge = styled.View`
     position: absolute;
-    top: -90px;
+    top: -126px;
     left: 8px;
     width: 2px;
-    height: 90px;
+    height: 126px;
     border: #16A28B solid;
 `;
 
 const PlaylistTileWrapper = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-top: ${(props) => props.theme.space[2]};
-    margin-bottom: ${(props) => props.theme.space[2]};
+    margin-bottom: 32px;
 `;
 
 const ProgressTrackWrapper = styled.View`
@@ -100,11 +97,17 @@ const ProgressTrackWrapper = styled.View`
 export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
     const { name, length, thumbnail } = movementVideos.find(video => video.id === videoId);
 
+    const dots = [...Array(10)].map((element, index) => {
+        return (
+            <DottedLineSegement key={index} />
+        );
+    });
+
     return(
         <PlaylistTileWrapper>
             <ProgressTrackWrapper>
+                {!upNext && <IncompleteBridge>{dots}</IncompleteBridge>}
                 {upNext ? <CompleteDot /> : <IncompleteDot />}
-                {!upNext && <IncompleteBridge />}
                 {upNext && !firstVideo && <CompleteBridge />}
             </ProgressTrackWrapper>
             <TouchableOpacity
@@ -133,23 +136,22 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
 
 const CompletedModuleCard = styled(Card)`
     border-radius: 15px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    padding-left: 21px;
-    padding-right: 22px;
+    height: 112px;
+    flex-direction: row;
+    align-items: center;
     background-color: #CDEBE6;
-    max-height: 92px;
 `;
 
 const CompletedModuleCardContent = styled(Card.Content)`
     flex-direction: row;
     padding: 0px;
     align-items: center;
+    margin-left: 18.5px;
+    margin-right: 18.5px;
 `;
 
 const TextSection = styled.View`
     flex: .8;
-    margin-left: 8px;
 `;
 
 const Header = styled.Text`

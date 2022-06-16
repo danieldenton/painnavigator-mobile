@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 
 const SmartGoalWrapper = styled.View`
     align-items: center;
+    margin-top: 16px;
 `;
 
 const SmartGoal = styled.Text`

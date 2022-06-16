@@ -35,7 +35,7 @@ const AccordionCard = styled(Card)`
     margin-top: 16px;
 `;
 
-const OptionButtonsList = styled.FlatList`
+const OptionButtonsList = styled.View`
     border-bottom-color: hsl(218, 44%, 86%);
     border-bottom-width: .5px;
 `;
@@ -56,6 +56,10 @@ const OptionIconSection = styled.View`
     margin-right: 7px;
 `;
 
+const OptionTextSection = styled.View`
+    flex: .95;
+`;
+
 const OptionText = styled.Text`
     font-family: Inter_400Regular;
     font-size: 16px;
@@ -69,6 +73,29 @@ const NextRotated = styled.View`
 export const ExpandableCard = ({ completeSkippedUnit, moduleType, navigation, title, units }) => {
     const [expanded, setExpanded] = useState(false);
     const unitsPresent = units.length;
+
+    const unitButtons = units?.map((unit) => {
+        return (
+            <OptionButton 
+                onPress={() => navigation.navigate("ReplayUnit", 
+                    { 
+                        completeSkippedUnit: completeSkippedUnit,
+                        moduleType: moduleType,
+                        unit: unit, 
+                        title: title 
+                    }
+                )}
+                key={unit.id}
+            > 
+                <OptionTextSection>
+                    <OptionText>{unit.name}</OptionText>
+                </OptionTextSection>
+                <OptionIconSection>
+                    <Next />
+                </OptionIconSection>
+            </OptionButton>
+        );
+    });
 
     return (
         <AccordionCard>
@@ -96,28 +123,10 @@ export const ExpandableCard = ({ completeSkippedUnit, moduleType, navigation, ti
                 </AccordionPressableSection>
                 {expanded &&
                     <AccordionContent style={{ marginTop: units.length > 0 ? 12 : 0, marginBottom: 0}}>
-                        {unitsPresent ? 
-                            <OptionButtonsList 
-                                data={units}
-                                renderItem={({ item }) => {
-                                    return (
-                                        <OptionButton onPress={() => navigation.navigate("ReplayUnit", 
-                                            { 
-                                                completeSkippedUnit: completeSkippedUnit,
-                                                moduleType: moduleType,
-                                                unit: item, 
-                                                title: title 
-                                            }
-                                        )}> 
-                                            <OptionText>{item.name}</OptionText>
-                                            <OptionIconSection>
-                                                <Next />
-                                            </OptionIconSection>
-                                        </OptionButton>
-                                    );
-                                }}
-                                keyExtractor={(item) => item.id}
-                            />
+                        {unitsPresent ?
+                            <OptionButtonsList>
+                                {unitButtons}
+                            </OptionButtonsList> 
                             :
                             <OptionText style={{ marginTop: 12 }}>You have no {title.toLowerCase()} units.</OptionText>
                         }    

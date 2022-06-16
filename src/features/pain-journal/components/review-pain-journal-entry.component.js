@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { View } from "react-native";
+import { formatDate } from "../../../infrastructure/helpers";
 
 export const ReviewPainJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(PainJournalContext);
-    const { date, intensity, situation, feeling, who_i_was_with, coping_strategies, notes, intensity_after } = journal;
+    const { date_time_value, intensity, situation, feeling, who_i_was_with, coping_strategies, notes, intensity_after } = journal;
     const { 
         intensity: editIntensity, 
         situation: editSituation, 
@@ -20,7 +22,7 @@ export const ReviewPainJournalEntry = ({ editing, journal }) => {
         setReviewJournal(journal);
     }, []);
 
-    const dateEntry = { question: "DATE", response: date };
+    const dateEntry = { question: "DATE", response: formatDate(date_time_value) };
 
     const journalEntry = [
         {question: "PAIN INTENSITY", response: editing ? editIntensity : intensity, type: "intensity", state: "intensity"},
@@ -53,8 +55,10 @@ export const ReviewPainJournalEntry = ({ editing, journal }) => {
 
     return (
         <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
-            <InputQuestion entry={dateEntry} />
-            {journalEntryResponses}
+            <View style={{ marginBottom: 120 }}>
+                <InputQuestion entry={dateEntry} />
+                {journalEntryResponses}
+            </View>
         </KeyboardAwareScrollView>
     );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { Selected } from "../../../icons";
+import { educationModules } from "../../education/data/education-module-data.json";
 
 const DailyGoalCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -45,14 +46,16 @@ const DailyGoalMessage = styled.Text`
     font-family: Inter_400Regular;
 `
 
-export const DailyGoalCompleted = ({ type }) => {
+export const DailyGoalCompleted = ({ type, moduleId }) => {
+    const module = moduleId ? educationModules.find(module => module.id === moduleId) : "";
+
     return (
         <>
             <DailyGoalCard>
                 <DailyGoalCardContent>
                     <CardTextSection>
                         <CardHeader>
-                            {type === "module" ? "PainNavigator Introduction" : `${type} Journal Logged`}
+                            {type === "module" ? module.name : `${type} Journal Logged`}
                         </CardHeader>
                     </CardTextSection>
                     <CardIconSection>

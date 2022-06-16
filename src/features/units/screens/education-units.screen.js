@@ -5,13 +5,15 @@ import { ExpandableCard } from "../components/expandable-card.component";
 import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
 import { EducationContext } from "../../../services/education/education.context";
 import { educationModules } from "../../education/data/education-module-data.json";
+import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
     const { completedEducationModules, completeSkippedUnit, skippedEducationModules } = useContext(EducationContext);
-    const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState({});
-    const [completedEducationModuleData, setCompletedEducationModuleData] = useState({});
-    const [skippedEducationModuleData, setSkippedEducationModuleData] = useState({});
+    const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
+    const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
+    const [skippedEducationModuleData, setSkippedEducationModuleData] = useState([]);
 
     useEffect(() => {
         const educationBookmarks = bookmarks?.filter(bookmark => bookmark < 63);
@@ -36,25 +38,28 @@ export const EducationUnitsScreen = ({ navigation }) => {
                 destination={"UnitsHome"} 
                 navigation={navigation} 
             />
-            <ExpandableCard
-                moduleType={"Education"}
-                navigation={navigation}
-                title={"Saved"}
-                units={bookmarkedEducationModuleData} 
-            />
-            <ExpandableCard 
-                completeSkippedUnit={completeSkippedUnit}
-                moduleType={"Education"}
-                navigation={navigation} 
-                title={"Skipped"} 
-                units={skippedEducationModuleData} 
-            />
-            <ExpandableCard 
-                moduleType={"Education"}
-                navigation={navigation} 
-                title={"Completed"} 
-                units={completedEducationModuleData} 
-            />
+            <Scroll style={{ paddingLeft: 16, paddingRight: 16, paddingBottom: 40 }}>
+                <ExpandableCard
+                    moduleType={"Education"}
+                    navigation={navigation}
+                    title={"Saved"}
+                    units={bookmarkedEducationModuleData} 
+                />
+                <ExpandableCard 
+                    completeSkippedUnit={completeSkippedUnit}
+                    moduleType={"Education"}
+                    navigation={navigation} 
+                    title={"Skipped"} 
+                    units={skippedEducationModuleData} 
+                />
+                <ExpandableCard 
+                    moduleType={"Education"}
+                    navigation={navigation} 
+                    title={"Completed"} 
+                    units={completedEducationModuleData} 
+                />
+                <View style={{ marginBottom: 12 }}></View>
+            </Scroll>
         </SafeView>
     );
 };

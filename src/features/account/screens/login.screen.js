@@ -5,11 +5,12 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
+import { ActivityIndicator } from 'react-native-paper';
 
 export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { onLogin, error } = useContext(AuthenticationContext);
+    const { onLogin, error, userLoading } = useContext(AuthenticationContext);
 
     return(
         <SafeView>
@@ -33,7 +34,11 @@ export const LoginScreen = ({ navigation }) => {
                 />
             </InputWrapper>
             {error && <ErrorMessage error={error} />}
-            <JournalButton title={"Login"} onPress={() => onLogin(email, password)} />
+            <JournalButton 
+                icon={userLoading && "loading"}
+                title={"Login"} 
+                onPress={() => onLogin(email, password)} 
+            />
             <SignUpOptions />
         </SafeView>
     ); 

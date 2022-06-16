@@ -1,7 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
-import { sampleSmartGoal } from "./smart-goal-data.json";
-import { finishedGoalData } from "./finished-smart-goals.data.json";
 
 export const SmartGoalContext = createContext();
 
@@ -9,7 +8,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     const [activeGoal, setActiveGoal] = useState(null);
     const [changes, setChanges] = useState("");
     const [reviewGoal, setReviewGoal] = useState(null);
-    const [finishedGoals, setFinishedGoals] = useState(finishedGoalData);
+    const [finishedGoals, setFinishedGoals] = useState([]);
     const [smartGoal, setSmartGoal] = useState({
         goal: "",
         steps: "",
@@ -54,26 +53,25 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const deleteGoal = () => {
         destroyGoal(activeGoal.id);
-        setActiveGoal(null);
+        //setActiveGoal(null);
+        setTimeout(() => {setActiveGoal(null)}, 1000);
     };
 
     const editGoal = (change, state) => {
-        setReviewGoal(prevGoal => ({
-            ...prevGoal,
-            attributes: {
-                ...prevGoal.attributes,
+        setReviewGoal(prevGoal => (
+            {
+                ...prevGoal,
                 [state]: change
             }
-        }));
+        ));
         setChanges(change);
     };
 
     const editGoalUpdate = (change, updateId) => {
-        setReviewGoal(prevGoal => ({
-            ...prevGoal,
-            attributes: {
-                ...prevGoal.attributes,
-                smart_goal_updates: prevGoal.attributes.smart_goal_updates.map(
+        setReviewGoal(prevGoal => (
+            {
+                ...prevGoal,
+                smart_goal_updates: prevGoal.smart_goal_updates.map(
                     update => update.id === updateId ?
                         {
                             ...update,
@@ -83,11 +81,12 @@ export const SmartGoalContextProvider = ({ children }) => {
                         update
                 )
             }
-        }));
+        ));
     };
     
     const finishGoal = () => {
-
+        setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
+        setTimeout(() => {setActiveGoal(null)}, 1000);
     };
 
     const nextPage = () => {
@@ -112,6 +111,59 @@ export const SmartGoalContextProvider = ({ children }) => {
         setChanges("");
     };
 
+    const saveActiveGoal = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem("@active_goal", jsonValue);
+        } catch (e) {
+          console.log("error storing", e);
+        }
+    };
+    
+    const loadActiveGoal = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@active_goal");
+            if (value !== null) {
+                setActiveGoal(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading", e);
+        }
+    };
+
+    const saveFinishedGoals = async () => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@finished_goals", jsonValue);
+        } catch (e) {
+            console.log("error storing", e);
+        }
+    };
+
+    const loadFinishedGoals = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@finished_goals");
+            if (value !== null) {
+                setFinishedGoals(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading", e);
+        }
+    };
+
+    useEffect(() => {
+        loadActiveGoal();
+        loadFinishedGoals();
+    }, []);
+    
+    useEffect(() => {
+        saveActiveGoal(activeGoal);
+    }, [activeGoal]);
+
+    useEffect(() => {
+        saveFinishedGoals(finishedGoals);
+    }, [finishedGoals]);
+
     return (
         <SmartGoalContext.Provider
             value={{
@@ -126,6 +178,7 @@ export const SmartGoalContextProvider = ({ children }) => {
                 createSmartGoal,
                 createSmartGoalUpdate,
                 currentPage,
+                finishGoal,
                 finishedGoals,
                 nextPage,
                 previousPage,

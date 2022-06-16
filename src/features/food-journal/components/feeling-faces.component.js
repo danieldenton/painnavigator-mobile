@@ -10,6 +10,7 @@ import {
     SadFace, 
     SadFaceSelected 
 } from "../../../icons";
+import * as Haptics from 'expo-haptics';
 
 const FeelingFacesRow = styled.View`
     align-items: center;
@@ -34,17 +35,26 @@ export const FeelingFaces = ({ feeling, name }) => {
     return (
         <FeelingFacesRow>
             <FeelingFaceWrapper 
-                onPress={() => { feeling === "sad" ? changeEntry("", name) : changeEntry("sad", name) }}
+                onPress={() => { 
+                    feeling === "sad" ? changeEntry("", name) : changeEntry("sad", name);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                }}
             >
                 {feeling === "sad" ? <SadFaceSelected /> : <SadFace />}
             </FeelingFaceWrapper>
             <FeelingFaceWrapper 
-                onPress={() => { feeling === "neutral" ? changeEntry("", name) : changeEntry("neutral", name) }}
+                onPress={() => { 
+                    feeling === "neutral" ? changeEntry("", name) : changeEntry("neutral", name);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                }}
             >
                 {feeling === "neutral" ? <NeutralFaceSelected /> : <NeutralFace />}
             </FeelingFaceWrapper>
             <FeelingFaceWrapper 
-                onPress={() => { feeling === "happy" ? changeEntry("", name) : changeEntry("happy", name) }}
+                onPress={() => { 
+                    feeling === "happy" ? changeEntry("", name) : changeEntry("happy", name);
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                }}
             >
                 {feeling === "happy" ? <HappyFaceSelected /> : <HappyFace />}
             </FeelingFaceWrapper>

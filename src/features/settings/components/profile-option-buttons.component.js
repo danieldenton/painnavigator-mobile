@@ -22,13 +22,7 @@ export const ProfileOptionsButtons = ({ navigation, profileComplete, educationPr
             option: "Sign Out",
             destination: "FavoriteActivities",
             show: true
-        },
-        {
-            id: 4,
-            option: "Delete Account",
-            destination: "FavoriteActivities",
-            show: true
-        },
+        }
     ];
 
     const profileButtons = profileButtonOptions.map(option => option.show === true ?

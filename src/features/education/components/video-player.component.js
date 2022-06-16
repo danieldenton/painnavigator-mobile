@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Video } from 'expo-av';
 import styled from "styled-components/native";
 import { Pressable, useWindowDimensions } from "react-native";
-import { Pause, Play } from "../../../icons";
+import { Pause, Play, FullScreenButton } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
 
 const VideoWrapper = styled.View`

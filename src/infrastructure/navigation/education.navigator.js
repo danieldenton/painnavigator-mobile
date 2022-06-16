@@ -11,6 +11,7 @@ import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart
 import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/screens/new-favorite-activities.screen";
 import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
 import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities/screens/favorite-activities-home.screen";
+import { FoodJournalNavigator } from "../navigation/food-journal.navigator";
 
 const EducationStack = createStackNavigator();
 
@@ -35,11 +36,11 @@ export const EducationNavigator = () => {
                 component={Why} 
             />
             <EducationStack.Screen 
-                name="NewPainJournal" 
+                name="PainJournal" 
                 component={NewPainJournalScreen} 
             />
             <EducationStack.Screen 
-                name="NewSmartGoal" 
+                name="SmartGoal" 
                 component={NewSmartGoalScreen} 
             />
             <EducationStack.Screen 
@@ -47,11 +48,11 @@ export const EducationNavigator = () => {
                 component={SmartGoalCreatedScreen} 
             />
             <EducationStack.Screen 
-                name="NewMoodJournal" 
+                name="MoodJournal" 
                 component={NewMoodJournalScreen} 
             />
             <EducationStack.Screen 
-                name="NewFavoriteActivities" 
+                name="FavoriteActivities" 
                 component={NewFavoriteActivitiesScreen} 
             />
             <EducationStack.Screen 
@@ -61,6 +62,10 @@ export const EducationNavigator = () => {
             <EducationStack.Screen
                 name="FavoriteActivitiesHome"
                 component={FavoriteActivitiesHomeScreen}
+            />
+            <EducationStack.Screen
+                name="NewFoodJournal"
+                component={FoodJournalNavigator}
             />
         </EducationStack.Navigator>
     );

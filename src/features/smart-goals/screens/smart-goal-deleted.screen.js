@@ -16,7 +16,7 @@ export const SmartGoalDeletedScreen = ({ navigation }) => {
             <NavigationBarLeft screen={"Smart Goal"} navigation={navigation} destination={"Today"} />
             <CongratulationsHeaderWrapper>
                 <CongratulationsHeader>
-                    Goal deleted!
+                    Goal deleted
                 </CongratulationsHeader>
             </CongratulationsHeaderWrapper>
             <ButtonSection>

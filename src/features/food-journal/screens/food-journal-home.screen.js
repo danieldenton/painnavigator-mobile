@@ -9,10 +9,12 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
+import { time_zoned_todays_date, formatDate } from "../../../infrastructure/helpers";
 
 export const FoodJournalHomeScreen = ({ navigation }) => {
-    const { foodJournals, journaledToday } = useContext(FoodJournalContext);
-
+    const { foodJournals } = useContext(FoodJournalContext);
+    const last_food_journal_date = formatDate(foodJournals[foodJournals.length - 1]?.attributes.date_time_value);
+    
     const foodJournalElements = foodJournals?.map((journal) => {
         return (
             <JournalTile 
@@ -33,7 +35,7 @@ export const FoodJournalHomeScreen = ({ navigation }) => {
             <TouchableOpacity 
                 onPress={() => navigation.navigate("ReviewFoodJournal", 
                     { 
-                        journal: journaledToday && foodJournals[0].attributes 
+                        journal: last_food_journal_date === time_zoned_todays_date && foodJournals[0].attributes 
                     }
                 )}
             > 

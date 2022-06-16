@@ -3,7 +3,12 @@ import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
 import { TextInput as Input } from "react-native-paper";
 
-export const ReviewTextInput = styled(Input).attrs({
+const BaseInput = styled(Input).attrs({
+    autoCorrect: false
+})`
+`;
+
+export const ReviewTextInput = styled(BaseInput).attrs({
     mode: "outlined",
     activeOutlineColor: colors.textInput.active,
     outlineColor: colors.textInput.inactive
@@ -30,7 +35,7 @@ export const AuthTextInput = styled(Input).attrs({
     margin-bottom: 16px;
 `;
 
-export const TextInput = styled(Input).attrs({
+export const TextInput = styled(BaseInput).attrs({
     mode: "outlined",
     activeOutlineColor: colors.textInput.active,
     outlineColor: colors.textInput.inactive
@@ -40,7 +45,7 @@ export const TextInput = styled(Input).attrs({
     font-size: 18px;
 `;
 
-export const TextInputMedium = styled(Input).attrs({
+export const TextInputMedium = styled(BaseInput).attrs({
     mode: "outlined",
     activeOutlineColor: colors.textInput.active,
     outlineColor: colors.textInput.inactive,
@@ -56,7 +61,7 @@ export const TextInputMedium = styled(Input).attrs({
     height: 119px;
 `;
 
-export const TextInputLarge = styled(Input).attrs({
+export const TextInputLarge = styled(BaseInput).attrs({
     mode: "outlined",
     activeOutlineColor: colors.textInput.active,
     outlineColor: colors.textInput.inactive,

@@ -1,14 +1,17 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useContext, useEffect, useState, createContext } from "react";
 import { postEducationModule } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
+import { ProfileContext } from "../profile/profile-context";
 
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
-    const [educationProgress, setEducationProgress] = useState(38);
+    const [educationProgress, setEducationProgress] = useState(1);
     const [currentModule, setCurrentModule] = useState({});
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);
+    const [lastCompletedModule, setLastCompletedModule] = useState(null);
+    const { userInfo } = useContext(ProfileContext);
 
     useEffect(() => {
         const module = educationModules.find(module => module.id === educationProgress);
@@ -20,7 +23,11 @@ export const EducationContextProvider = ({ children }) => {
     };
 
     const completeModule = () => {
-        // postEducationModule(currentModule.id, "complete");
+        const module = {
+            module_id: currentModule.id,
+            status: 0        
+        };
+        postEducationModule(module, setLastCompletedModule, userInfo.uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
         setTimeout(() => { advanceProgress() }, 1000);
     };
@@ -57,6 +64,7 @@ export const EducationContextProvider = ({ children }) => {
                 completedEducationModules,
                 completeSkippedUnit,
                 educationProgress,
+                lastCompletedModule,
                 skipModule,
                 skippedEducationModules
             }}

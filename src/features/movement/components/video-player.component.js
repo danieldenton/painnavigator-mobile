@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { Pressable, useWindowDimensions } from "react-native";
 import { Pause, Play } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { SkipButton } from "./skip-button.component";
 
 const VideoWrapper = styled.View`
     flex-direction: row;
@@ -16,11 +17,17 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = ({ source }) => {
-    const { completeVideo, currentModule, switchVideo } = useContext(MovementContext);
+    const { allVideosCompleted, completeVideo, skipVideo, switchVideo } = useContext(MovementContext);
     const movementVideo = useRef(null);
     const [status, setStatus] = useState({});
     const window = useWindowDimensions();
     const height = window.width / 1280 * 720;
+
+    function resetVideo() {
+        if(!allVideosCompleted) {
+            movementVideo.current.setStatusAsync({ positionMillis: 0 });
+        };
+    };
 
     useEffect(() => {
         movementVideo.current.setStatusAsync({ positionMillis: 0 });
@@ -31,14 +38,8 @@ export const VideoPlayer = ({ source }) => {
             return;
         };
 
-        completeVideo();
-
-        const numVideosCompleted = currentModule.videos.filter(video => video.completed).length;
-        const numVideosInPlaylist = currentModule.videos.length; 
-        
-        if(numVideosCompleted !== numVideosInPlaylist) {
-            movementVideo.current.setStatusAsync({ positionMillis: 0 });
-        };
+        completeVideo();        
+        resetVideo();
 
     }, [status.didJustFinish]);
 
@@ -57,6 +58,7 @@ export const VideoPlayer = ({ source }) => {
             <Pressable onPress={() => status.isPlaying ? movementVideo.current.pauseAsync() : movementVideo.current.playAsync()} style={{ marginTop: 16 }}>
                 {status.isPlaying ? <Pause /> : <Play />}
             </Pressable>
+            <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
         </>
     );
 };

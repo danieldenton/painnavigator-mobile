@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
-import { space } from "../../infrastructure/theme/spacing";
 import { Back, Close, MenuIcon, MessageIcon, More, UnreadMessageIcon } from "../../icons";
 import { Bookmark } from "../bookmark.component";
 
@@ -13,8 +12,11 @@ const NavContainer = styled.View`
 const LeftPressableArea = styled(TouchableOpacity)`
     flex: .25;
     align-items: flex-start;
-    margin-left: -16px;
-    padding: 16px;
+`;
+
+const LeftSection = styled.View`
+    flex: .25;
+    align-items: flex-start;
 `;
 
 const HeaderSection = styled.View`
@@ -31,7 +33,19 @@ const HeaderName = styled.Text`
 const RightSection = styled.View`
     flex: .25;
     align-items: flex-end;
-    height: 100%;
+    justify-content: center;
+`;
+
+const LeftArea = styled.View`
+    border-radius: 100px;
+    margin-left: -16px;
+    padding: 16px;
+`;
+
+const RightArea = styled.View`
+    border-radius: 100px;
+    margin-right: -16px;
+    padding: 16px;
 `;
 
 const RightPressableArea = styled.TouchableOpacity`
@@ -74,6 +88,11 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     );
 };
 
+const UnreadIconContainer = styled.View`
+    margin-top: -4px;
+    margin-right: -4px;
+`;
+
 export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
 
     return(
@@ -91,7 +110,13 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
                    accessibilityLabel={"messages"}
                    onPress={() => {navigation.navigate("WellnessCoach")}}
                 >
-                    {hasUnreadMessages ? <UnreadMessageIcon /> : <MessageIcon />}
+                    {hasUnreadMessages ? 
+                        <UnreadIconContainer>
+                            <UnreadMessageIcon />
+                        </UnreadIconContainer> 
+                        : 
+                        <MessageIcon />
+                    }
                 </RightPressableArea>
             </RightSection>
         </NavContainer>
@@ -145,11 +170,12 @@ export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
                 </HeaderName>
             </HeaderSection>
             <RightSection>
-                <Bookmark id={id} />
+                <RightArea>
+                    <Bookmark id={id} />
+                </RightArea>
             </RightSection>
         </NavContainer>
     );
-
 };
 
 export const NavigationBarLeft = ({ destination, navigation, screen, previousPage }) => {
@@ -168,6 +194,29 @@ export const NavigationBarLeft = ({ destination, navigation, screen, previousPag
             </HeaderSection>
             <RightSection>
             </RightSection>
+        </NavContainer>
+    );
+};
+
+export const ModalNavBar = ({ navigation, screen }) => {
+    return (
+        <NavContainer>
+            <RightSection>
+            </RightSection>
+            <HeaderSection>
+                <HeaderName>
+                    {screen.toUpperCase()}
+                </HeaderName>
+            </HeaderSection>
+            <LeftPressableArea
+                accessibilityLabel={`go-back`} 
+                onPress={() => {navigation.goBack()}} 
+                style={{ alignItems: "flex-end" }}
+            >
+                <RightSection>
+                    <Close />
+                </RightSection>
+            </LeftPressableArea>
         </NavContainer>
     );
 };

@@ -58,10 +58,10 @@ const MenuButtonLabel = styled.Text`
     font-size: 18px;
 `;
 
-export const MenuButton = ({ navigation, option, hidden }) => {
+export const MenuButton = ({ navigation, option }) => {
     return (
         <MenuButtonPressable
-            onPress={() => navigation.navigate(option.destination)}
+            onPress={() => {option.handlePress ? option.handlePress() : navigation.navigate(option.destination)}}
         >
             <MenuButtonIconSection>
                 {option.icon}

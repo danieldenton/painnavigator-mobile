@@ -58,7 +58,6 @@ export const MessageInput = ({ body, navigation, sendMessage, writeMessage }) =>
     const [useExtraPadding, setUseExtraPadding] = useState(false);
 
     return (
-        <>
         <InputWrapper>
             <Wrapper>
                 
@@ -68,7 +67,7 @@ export const MessageInput = ({ body, navigation, sendMessage, writeMessage }) =>
                     onChangeText={(change) => writeMessage(change)}
                     onFocus={() => setUseExtraPadding(true)}
                     onBlur={() => setUseExtraPadding(false)}
-                    />
+                />
             </InputSection>
             <SendButtonSection>
                 {body.length > 0 && <Pressable
@@ -83,6 +82,5 @@ export const MessageInput = ({ body, navigation, sendMessage, writeMessage }) =>
             </Wrapper>
             {useExtraPadding && <ExtraPadding></ExtraPadding>}
         </InputWrapper>
-        </>
     );
 }; 

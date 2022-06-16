@@ -7,22 +7,21 @@ import { loginRequest, postUser } from "./authentication.service";
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(null);
+    const [userLoading, setUserLoading] = useState(null);
     // user set to true for testing
     const [user, setUser] = useState(true);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
     const [avePainPreStart, setAvgPainPreStart] = useState(5);
     const [programPaceGoal, setProgramPaceGoal] = useState(1);
-    const [profileComplete, setProfileComplete] = useState(false);
     
     const onLogin = (email, password) => {
-        setIsLoading(true);
+        setUserLoading(true);
         loginRequest(email, password).then((u) => {
             setUser(u);
-            setIsLoading(false);
+            setUserLoading(false);
         }).catch((e) => {
-            setIsLoading(false);
+            setUserLoading(false);
             setError(e.toString());
         })
     };
@@ -41,7 +40,8 @@ export const AuthenticationContextProvider = ({ children }) => {
             setError("Error: Passwords do not match");
             return;
         }
-        
+
+        setUserLoading(true);
         firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
@@ -49,13 +49,17 @@ export const AuthenticationContextProvider = ({ children }) => {
                 setUser(u);
                 postUser(u.user.uid, first_name, last_name, email);
             }).then(() => {
-                setIsLoading(false);
+                setUserLoading(false);
             })
             .catch((e) => {
                 // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
-                setIsLoading(false);
+                setUserLoading(false);
                 setError(e.toString());
             });
+    };
+
+    const signOut = () => {
+        setUser(null);
     };
 
     return (
@@ -68,14 +72,13 @@ export const AuthenticationContextProvider = ({ children }) => {
                 setAvgPainPreStart,
                 programPaceGoal,
                 setProgramPaceGoal,
-                profileComplete,
-                setProfileComplete,
                 isAuthenticated: !!user,
                 user,
-                isLoading,
+                userLoading,
                 error,
                 onLogin,
-                onRegister
+                onRegister,
+                signOut
             }}
         >
             {children}

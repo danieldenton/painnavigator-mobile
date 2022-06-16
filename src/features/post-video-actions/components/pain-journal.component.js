@@ -22,7 +22,7 @@ export const PainJournal = ({ navigation }) => {
             </Wrapper>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate("NewPainJournal")}
+                    onPress={() => navigation.navigate("PainJournal")}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>

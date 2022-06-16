@@ -54,6 +54,19 @@ export const CompletedUnit = () => {
     );
 };
 
+export const ContactIcon = () => {
+    return (
+        <Svg width="21" height="17" viewBox="0 0 21 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M0.875 0.875L10.5 10.5L20.125 0.875" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Mask id="path-2-inside-1_925_10054" fill="white">
+                <Rect width="21" height="16.625" rx="1"/>
+            </Mask>
+            <Rect width="21" height="16.625" rx="1" stroke="black" strokeWidth="3" strokeLinejoin="round" mask="url(#path-2-inside-1_925_10054)"/>
+            <Path d="M0.875 15.75L7.875 7.875" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M20.125 15.75L13.125 7.875" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
 
 export const Delete = () => {
     return (
@@ -75,6 +88,14 @@ export const Edit = () => {
             <Path d="M19.4594 1.14146L3.44378 15.2016L1.08892 22.4431L8.46723 21.0648L24.4826 7.00478C25.1006 3.43792 22.5596 0.95674 19.4594 1.14146Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M3.89355 14.9316L8.92538 20.6633" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M17.8132 2.71094L22.8451 8.44256" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    );
+};
+
+export const FullScreenButton = () => {
+    return (
+        <Svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M4.5 1H2.75H1V4.33333M11.5 1H15V4.33333M1 9.66667V13H4.5M11.5 13H15V9.66667" stroke="black" strokeWidth="2" strokeLinecap="round"/>
         </Svg>
     );
 };
@@ -421,6 +442,16 @@ export const Settings = () => {
         <Svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Path d="M7.93 4.15L5.41 2.68L2.68 5.41L3.94 7.3L3.52 8.56L1 9.4V13.18L3.52 13.81L3.94 15.07L2.47 17.59L5.2 20.32L7.51 18.85L8.77 19.48L9.4 22H13.18L13.6 19.48L15.28 18.85L17.38 20.32L20.11 17.59L18.85 15.49L19.27 14.23L22 13.6V9.82L19.27 9.19L18.85 7.93L20.32 5.41L17.8 2.68L15.28 4.15L14.23 3.73L13.39 1H9.82L9.19 3.31L7.93 4.15Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Circle cx="11.5001" cy="11.4993" r="3.3587" stroke="black" strokeWidth="1.5"/>
+        </Svg>
+    );
+};
+
+export const SignOutIcon = () => {
+    return(
+        <Svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M8.12502 1H1V18.8125H8.12502" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M6.74756 9.83398L19.5093 9.83398" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <Path d="M14.6008 4.43359L20 9.83277L14.6008 15.2319" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </Svg>
     );
 };

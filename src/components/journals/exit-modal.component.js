@@ -58,7 +58,12 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                     <JournalButtonOutline 
                         onPress={() => {
                             {deleteJournal ? 
-                                navigation.navigate(destination, { type: type })
+                                type === "goal" ? 
+                                    navigation.dispatch(StackActions.replace(destination, {
+                                        type: type
+                                    }))
+                                    :
+                                    navigation.navigate(destination, { type: type })
                                 :
                                 navigation.navigate(destination);
                             }

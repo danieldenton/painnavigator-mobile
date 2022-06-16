@@ -27,11 +27,11 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
                 />
                 <GoalTextSection 
                     header={"Your SMART goal is:"} 
-                    body={activeGoal.attributes.goal}
+                    body={activeGoal.goal}
                 />
                 <GoalTextSection 
                     header={"Your steps to work up to this goal are:"} 
-                    body={activeGoal.attributes.steps}
+                    body={activeGoal.steps}
                 />
                 <TextInputLarge 
                     style={{ marginTop: 32 }} 

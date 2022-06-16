@@ -11,8 +11,7 @@ import { Add } from "../../../icons";
 export const SmartGoalHomeScreen = ({ navigation }) => {
     const { activeGoal, finishedGoals } = useContext(SmartGoalContext);
     const finishedGoalElements = finishedGoals?.map((item) => {
-        const { id } = item
-        const { goal } = item.attributes;
+        const { id, goal } = item
         return (
             <CompletedItemCard 
                 text={goal} 
@@ -35,7 +34,7 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
                     icon={<Add />}
                 />
             }
-            {finishedGoals && <SubHeader title={"FINISHED GOALS"} size={14} marginBottom={14} />}
+            {finishedGoals.length > 0 && <SubHeader title={"FINISHED GOALS"} size={14} marginBottom={14} />}
             {finishedGoalElements}
         </SafeView>
     );

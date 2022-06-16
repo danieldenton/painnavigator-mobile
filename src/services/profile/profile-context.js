@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { patchUser } from "./profile-service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
@@ -34,12 +34,12 @@ export const ProfileContextProvider = ({ children }) => {
 
     const completeProfile = () => {
         setProfileComplete(true);
-        updateProfile(2, profileData);
+        updateProfile(userInfo.uid, profileData);
         setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
     
     const completeOnboarding = () => {
-        updateProfile(2, onboardingData);
+        updateProfile(user.user.uid, onboardingData);
         setOnboardingComplete(true);
     };
 
@@ -95,7 +95,7 @@ export const ProfileContextProvider = ({ children }) => {
     };
 
     const saveEdits = () => {
-        updateProfile(2, reviewProfile);
+        updateProfile(userInfo.uid, reviewProfile);
         setChanges("");
     }
 

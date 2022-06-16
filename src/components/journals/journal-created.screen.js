@@ -14,10 +14,11 @@ import {
 export const JournalCreatedScreen = ({ navigation, route }) => {
     const { type } = route.params;
     const journalCount = 0;
+    const screen = type.replace(/[A-Z]/g, ' $&').trim();
 
     return(
         <SafeView>
-            <NavigationBarLeft destination={"Today"} navigation={navigation} screen={type}/>
+            <NavigationBarLeft destination={"Today"} navigation={navigation} screen={screen}/>
             <GraphicWrapper>
                 <ThumbsUpGraphic />
             </GraphicWrapper>
@@ -33,7 +34,7 @@ export const JournalCreatedScreen = ({ navigation, route }) => {
                     <>
                         <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                         <CongratulationsMessageWrapper>
-                            <CongratulationsMessage style={{ marginTop: 16 }}>You {journalCount > 0 ? "logged a" : "finished your first"} {type}.</CongratulationsMessage>
+                            <CongratulationsMessage style={{ marginTop: 16 }}>You {journalCount > 0 ? "logged a" : "finished your first"} {screen}.</CongratulationsMessage>
                             <CongratulationsMessage>Keep up the hard work!</CongratulationsMessage>
                         </CongratulationsMessageWrapper>
                     </>

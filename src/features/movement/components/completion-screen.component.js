@@ -1,12 +1,14 @@
 import React, {useContext} from "react";
 import styled from "styled-components/native";
 import { ModuleButton } from "../../../components/button.component";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-
+import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { ThumbsUpGraphic } from "../../../graphics";
 
 const CongratulationsSection = styled.View`
     align-items: center;
+    margin-left: 4px;
+    margin-right: 4px;
 `;
 
 const CongratulationsHeader = styled.Text`
@@ -27,6 +29,9 @@ export const CompletionScreen = ({ navigation }) => {
 
     return (
         <>
+            <GraphicWrapper>
+                <ThumbsUpGraphic />
+            </GraphicWrapper>
             <CongratulationsSection>
                 <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                 <CongratulationsMessage>You completed your first movement unit! You’re on your way to mastering new skills and redefining your relationship with pain. </CongratulationsMessage>

@@ -7,7 +7,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
-export const MovementPlaylistScreen = ({ navigation }) => {
+export const MovementPlaylistScreen = ({ navigation, route }) => {
     const { currentModule } = useContext(MovementContext);
     const { videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
