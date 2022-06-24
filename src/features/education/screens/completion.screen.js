@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";

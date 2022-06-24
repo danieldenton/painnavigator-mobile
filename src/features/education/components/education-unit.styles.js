@@ -10,7 +10,7 @@ export const Header = styled.View`
 `;
 
 export const TitleSection = styled.View`
-    flex: .95;
+    flex: 1;
 `;
 
 export const BookmarkSection = styled.View`
