@@ -80,19 +80,30 @@ export const SelectQuestion = ({ changeEntry, editing, entry }) => {
 
     useEffect(() => {
         if (response === 0) {
-            return setTextResponse("Choose not to provide");
+            return setTextResponse("Choose not to provide")
         };
 
-        if (state === "gender") {
-            let textResponse = genderOptions.find(option => option.id === response).option;
-            setTextResponse(textResponse);
-        } else if (state === "activity_level") {
-            let textResponse = activityLevelOptions.find(option => option.id === response).option;
-            setTextResponse(textResponse);
-        } else if (state === "starting_pain_duration") {
-            let textResponse = painDurationOptions.find(option => option.id === response).option;
-            setTextResponse(textResponse);
-        };
+        switch (state) {
+            case "gender":
+              let genderResponse = genderOptions.find(
+                (option) => option.id === response
+              ).option;
+              setTextResponse(genderResponse);
+              break;
+            case "activity_level":
+              let activityResponse = activityLevelOptions.find(
+                (option) => option.id === response
+              ).option;
+              setTextResponse(activityResponse);
+              break;
+            case "starting_pain_duration":
+              let painResponse = painDurationOptions.find(
+                (option) => option.id === response
+              ).option;
+              setTextResponse(painResponse);
+              break;
+            default:
+          }
 
     }, [response]);
 

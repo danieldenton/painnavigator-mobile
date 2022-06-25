@@ -3,13 +3,10 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { FavoriteActivitiesContext } from "../../../services/favorite-activities/favorite-activities.context";
 import { AdditionalItemsCheckBox, MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
 import { options } from "../data/favorite-activity-data.json";
-import { View, Text } from "react-native";
 
 export const ReviewActivities = () => {
     const { 
         additionalActivities,
-        addedFavoriteActivities,
-        finalAddedActivities,
         reAddActivity,
         reAddAddedActivity,
         reviewActivities, 

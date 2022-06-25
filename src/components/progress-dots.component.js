@@ -15,8 +15,8 @@ const ProgressDot = styled.View`
 `;
 
 export const ProgressDots = ({ progress, total }) => {
-    const completedDots = [...Array(progress)].map((dot, index) => <ProgressDot key={index}><ProgressDotFilled /></ProgressDot>);
-    const remainingDots = [...Array(total - progress)].map((dot, index) => <ProgressDot key={index}><ProgressDotUnfilled /></ProgressDot>);
+    const completedDots = [...Array(progress)].map((_, index) => <ProgressDot key={index}><ProgressDotFilled /></ProgressDot>);
+    const remainingDots = [...Array(total - progress)].map((_, index) => <ProgressDot key={index}><ProgressDotUnfilled /></ProgressDot>);
 
     return(
         <ProgressDotsContainer>
@@ -26,7 +26,7 @@ export const ProgressDots = ({ progress, total }) => {
 };
 
 export const SwiperDots = ({ progress, total }) => {
-    const dots = [...Array(total)].map((dot, index) => {
+    const dots = [...Array(total)].map((_, index) => {
         const currentDot = progress === index + 1 ? true : false;
 
         return (

@@ -11,14 +11,31 @@ export const Why = ({ navigation, route }) => {
     const { post_video_destination } = route.params;
     const screen = post_video_destination.replace(/[A-Z]/g, ' $&').trim();
 
-    return (
+    const videoDestinationNavigation = () => {
+        switch (post_video_destination) {
+          case "SmartGoal":
+            return <SmartGoal navigation={navigation} />;
+          case "PainJournal":
+            return <PainJournal navigation={navigation} />;
+          case "MoodJournal":
+            return <MoodJournal navigation={navigation} />;
+          case "FoodJournal":
+            return <FoodJournal navigation={navigation} />;
+          case "FavoriteActivities":
+            return <FavoriteActivities navigation={navigation} />;
+          default:
+            return null;
+        }
+      };
+      
+      return (
         <SafeView>
-            <NavigationBarLeft screen={screen} navigation={navigation} destination={"Today"} />
-            {post_video_destination === "SmartGoal" && <SmartGoal navigation={navigation} />}
-            {post_video_destination === "PainJournal" && <PainJournal navigation={navigation} />}
-            {post_video_destination === "MoodJournal" && <MoodJournal navigation={navigation} />}
-            {post_video_destination === "FoodJournal" && <FoodJournal navigation={navigation} />}
-            {post_video_destination === "FavoriteActivities" && <FavoriteActivities navigation={navigation} />}
+          <NavigationBarLeft
+            screen={screen}
+            navigation={navigation}
+            destination={"Today"}
+          />
+          {videoDestinationNavigation()}
         </SafeView>
-    );
+      );
 };

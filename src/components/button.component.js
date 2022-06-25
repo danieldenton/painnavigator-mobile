@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
+import { ButtonSection } from "./journals/journal.styles";
 
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.white,
@@ -37,6 +38,23 @@ export const JournalButton = ({ disabled, icon, title, onPress, fontSize }) => {
         </Button>
     );
 }; 
+
+export const ReviewJournalButton = ({ saveEdits, setEditing, type, navigation }) => {
+    return (
+        <ButtonSection>
+            <JournalButton 
+                title={"Save Changes"}
+                onPress={() => {
+                    saveEdits(); 
+                    setTimeout(() => {setEditing(false)}, 1000);
+                    navigation.navigate("JournalUpdated", {
+                        type: `${type}`
+                    });
+                }}
+            />
+        </ButtonSection>
+    )
+};
 
 const OutlineButton = styled(Button).attrs({
     mode: "outlined",

@@ -14,9 +14,11 @@ export const EducationUnitsScreen = ({ navigation }) => {
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
     const [skippedEducationModuleData, setSkippedEducationModuleData] = useState([]);
-
+    
     useEffect(() => {
-        const educationBookmarks = bookmarks?.filter(bookmark => bookmark < 63);
+        // the last education unit id is 62
+        const firstMovementUnit = 63; 
+        const educationBookmarks = bookmarks?.filter(bookmark => bookmark < firstMovementUnit);
         const data = educationBookmarks.map(bookmark => educationModules.find(item => item.id === bookmark));
         setBookmarkedEducationModuleData(data);
     }, [bookmarks]);

@@ -47,7 +47,7 @@ const DailyGoalMessage = styled.Text`
 `
 
 export const DailyGoalCompleted = ({ type, moduleId }) => {
-    const module = moduleId ? educationModules.find(module => module.id === moduleId) : "";
+    const module = moduleId ? educationModules.find(module => module.id === moduleId) : { "name": "" };
 
     return (
         <>

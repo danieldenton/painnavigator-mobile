@@ -25,7 +25,7 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
         const formattedEndDate = format(end, 'MM/dd/yyyy');
         const today = format(new Date(), 'MM/dd/yyyy');
 
-        if(today === today) {
+        if(today === formattedEndDate) {
             setTimeout(() => {
                 navigation.dispatch(StackActions.replace("SmartGoalCompleted"));
                 finishGoal()

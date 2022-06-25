@@ -78,6 +78,8 @@ export const TodayScreen = ({ navigation }) => {
             return <SmartGoalUpdate navigation={navigation} />
         } else if(educationProgress > 7) {
             return <NewSmartGoal navigation={navigation} />
+        } else {
+            return null
         };
     };
 

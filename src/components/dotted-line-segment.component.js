@@ -12,7 +12,9 @@ export const DottedLineSegement = styled.View`
 `;
 
 export const DottedLine = ({ length }) => {
-    [...Array(10)].map((element, index) => {
+    // length prop to be used in future to dynamically set dotted line length
+
+    [...Array(10)].map((_, index) => {
         return (
             <DottedLineSegement key={index} />
         );

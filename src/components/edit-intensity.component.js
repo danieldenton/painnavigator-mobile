@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { AntDesign } from '@expo/vector-icons';
 import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
+import * as Haptics from 'expo-haptics';
 
 const ResponseWrapper = styled.View`
     margin-top: ${space[3]};    
@@ -47,10 +48,22 @@ export const EditIntensity = ({ response, changeEntry, state }) => {
                 <ResponseText>{value} out of 10</ResponseText>
             </ResponseTextWrapper>
             <ButtonSection>
-                <ButtonWrapper onPress={subtract} disabled={response === 0 && true}>
+                <ButtonWrapper 
+                    onPress={() => {
+                        subtract();
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                    }} 
+                    disabled={response === 0 && true}
+                >
                     <AntDesign name="minuscircleo" size={22} color={response > 0 ? colors.text.secondary : colors.textInput.inactive} />
                 </ButtonWrapper>
-                <ButtonWrapper onPress={add} disabled={response === 10 && true}>
+                <ButtonWrapper 
+                    onPress={() => {
+                        add();
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                    }} 
+                    disabled={response === 10 && true}
+                >
                     <AntDesign name="pluscircleo" size={22} color={response < 10 ? colors.text.secondary : colors.textInput.inactive} />
                 </ButtonWrapper>
             </ButtonSection>
@@ -79,10 +92,21 @@ export const EditSelect = ({ response, changeEntry, state, textResponse, max }) 
                 <ResponseText>{textResponse}</ResponseText>
             </ResponseTextWrapper>
             <ButtonSection>
-                <ButtonWrapper onPress={subtract} disabled={response === 0 && true}>
+                <ButtonWrapper 
+                    onPress={() => {
+                        subtract();
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                    }}
+                    disabled={response === 0 && true}>
                     <AntDesign name="minuscircleo" size={22} color={response > 0 ? colors.text.secondary : colors.textInput.inactive} />
                 </ButtonWrapper>
-                <ButtonWrapper onPress={add} disabled={response === max && true}>
+                <ButtonWrapper 
+                    onPress={() => {
+                        add();
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+                    }} 
+                    disabled={response === max && true}
+                >
                     <AntDesign name="pluscircleo" size={22} color={response < max ? colors.text.secondary : colors.textInput.inactive} />
                 </ButtonWrapper>
             </ButtonSection>

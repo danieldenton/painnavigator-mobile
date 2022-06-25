@@ -32,32 +32,41 @@ const FeelingFaceWrapper = styled(Pressable)`
 export const FeelingFaces = ({ feeling, name }) => {
     const { changeEntry } = useContext(FoodJournalContext);
 
-    return (
+    const feelingData = [
+        {
+          emotion: "sad",
+          selectedFace: <SadFaceSelected />,
+          nonSelectedFace: <SadFace />,
+        },
+        {
+          emotion: "neutral",
+          selectedFace: <NeutralFaceSelected />,
+          nonSelectedFace: <NeutralFace />,
+        },
+        {
+          emotion: "happy",
+          selectedFace: <HappyFaceSelected />,
+          nonSelectedFace: <HappyFace />,
+        },
+      ];
+      
+      return (
         <FeelingFacesRow>
-            <FeelingFaceWrapper 
-                onPress={() => { 
-                    feeling === "sad" ? changeEntry("", name) : changeEntry("sad", name);
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+          {feelingData.map(({ emotion, selectedFace, nonSelectedFace }) => {
+            return (
+              <FeelingFaceWrapper
+                onPress={() => {
+                  feeling === emotion
+                    ? changeEntry("", name)
+                    : changeEntry(emotion, name);
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 }}
-            >
-                {feeling === "sad" ? <SadFaceSelected /> : <SadFace />}
-            </FeelingFaceWrapper>
-            <FeelingFaceWrapper 
-                onPress={() => { 
-                    feeling === "neutral" ? changeEntry("", name) : changeEntry("neutral", name);
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-                }}
-            >
-                {feeling === "neutral" ? <NeutralFaceSelected /> : <NeutralFace />}
-            </FeelingFaceWrapper>
-            <FeelingFaceWrapper 
-                onPress={() => { 
-                    feeling === "happy" ? changeEntry("", name) : changeEntry("happy", name);
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-                }}
-            >
-                {feeling === "happy" ? <HappyFaceSelected /> : <HappyFace />}
-            </FeelingFaceWrapper>
+                key={emotion}
+              >
+                {feeling === emotion ? selectedFace : nonSelectedFace}
+              </FeelingFaceWrapper>
+            );
+          })}
         </FeelingFacesRow>
-    );
+      );      
 };
