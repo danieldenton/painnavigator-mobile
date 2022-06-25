@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
 import { destroyMoodJournal, getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const MoodJournalContext = createContext();
 
@@ -20,6 +21,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
         const lastIndex = moodJournals?.length - 1;
@@ -51,7 +53,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             primary_thought: moodJournal.primaryThought,
             cognitive_distortions: cognitiveDistortions
         };
-        postMoodJournal(newMoodJournal, setMoodJournals);
+        postMoodJournal(user.user.uid, newMoodJournal, setMoodJournals);
         setTimeout(() => {resetMoodJournal(false)}, 1000);
     };
 
@@ -142,7 +144,7 @@ export const MoodJournalContextProvider = ({ children }) => {
           const jsonValue = JSON.stringify(value);
           await AsyncStorage.setItem("@mood_journals", jsonValue);
         } catch (e) {
-          console.log("error storing", e);
+          console.log("error storing mood journals", e);
         }
     };
     
@@ -153,7 +155,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             setMoodJournals(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading mood journals", e);
         }
     };
 

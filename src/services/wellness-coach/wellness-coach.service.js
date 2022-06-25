@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
-export const getMessages = (recipient_id, setMessages) => {
-    axios.get(`${baseUrl}/api/v1/get_conversation/${recipient_id}`)
+export const getMessages = (uid, setMessages) => {
+    axios.get(`${API_URL}/api/v1/get_conversation/${uid}`)
     .then( resp => {
         const newMessages = resp.data.data;
         const newMessagesAttributes = newMessages.map(message => message.attributes);
@@ -12,15 +12,15 @@ export const getMessages = (recipient_id, setMessages) => {
     .catch(resp => console.log(resp))
 };
 
-export const patchMessage = (recipient_id) => {
-    axios.patch(`${baseUrl}/api/v1/mark_conversation_read/${recipient_id}`)
+export const patchMessage = (uid) => {
+    axios.patch(`${API_URL}/api/v1/mark_conversation_read/${uid}`)
     .then((response) => {
         console.log(response.data);
     });
 };
 
 export const postMessage = (message, setMessages) => {
-    axios.post(`${baseUrl}/api/v1/messages`, { message: message })
+    axios.post(`${API_URL}/api/v1/messages`, { body: message.body, sender_id: message.sender_id, recipient_id: message.recipient_id })
     .then((response) => {
         const newMessage = response.data.data;
         //console.log(newMessage);

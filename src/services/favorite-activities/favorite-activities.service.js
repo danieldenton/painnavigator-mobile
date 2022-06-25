@@ -1,17 +1,15 @@
 import axios from 'axios';
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
 export const patch = (id, activities) => {
-    axios.patch(`${baseUrl}/api/v1/pleasant_activities/${id}`, { pleasant_activity: activities })
+    axios.patch(`${API_URL}/api/v1/pleasant_activities/${id}`, { pleasant_activity: activities })
     .then((response) => {
-        //console.log(response.data);
     });
 };
 
-export const post = (activities, setFavoriteActivities) => {
-    axios.post(`${baseUrl}/api/v1/pleasant_activities`, { pleasant_activity: activities })
+export const post = (uid, activities, setFavoriteActivities) => {
+    axios.post(`${API_URL}/api/v1/pleasant_activities`, { pleasant_activity: activities, uid: uid })
     .then((response) => {
         const favoriteActivities = response.data.data;
-        console.log(favoriteActivities);
     });
 };

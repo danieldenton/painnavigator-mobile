@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
 export const getFoodJournals = (setFoodJournals) => {
-    axios.get(`${baseUrl}/api/v1/food_journals`)
+    axios.get(`${API_URL}/api/v1/food_journals`)
     .then((response) => {
         setFoodJournals(response.data.data);
     })
@@ -10,9 +10,10 @@ export const getFoodJournals = (setFoodJournals) => {
 };
 
 export const patchFoodJournal = (journalId, journalEntry, setFoodJournals) => {
-    axios.patch(`${baseUrl}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })
+    axios.patch(`${API_URL}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })
     .then((response) => {
         const updatedJournal = response.data.data;
+        console.log(updatedJournal);
         setFoodJournals(prevFoodJournals => prevFoodJournals.map(
             journal => journal.attributes.id === journalId ?
                 updatedJournal
@@ -22,11 +23,10 @@ export const patchFoodJournal = (journalId, journalEntry, setFoodJournals) => {
     });
 };
 
-export const postFoodJournal = (journalEntry, setFoodJournals) => {
-    axios.post(`${baseUrl}/api/v1/food_journals`, { food_journal: journalEntry })
+export const postFoodJournal = (uid, journalEntry, setFoodJournals) => {
+    axios.post(`${API_URL}/api/v1/food_journals`, { food_journal: journalEntry, uid: uid })
     .then((response) => {
         const newJournal = response.data.data;
-        console.log(newJournal);
         setFoodJournals(prevJournals => (
             [
                 newJournal,

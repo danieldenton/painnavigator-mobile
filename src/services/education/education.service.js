@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { baseUrl } from "../../infrastructure/config";
+import { API_URL } from "@env"
 
 export const postEducationModule = (module, setLastCompletedModule, uid) => {
-    axios.post(`${baseUrl}/api/v1/education_modules`, { education_module: module, uid: uid })
+    axios.post(`${API_URL}/api/v1/education_module_completions`, { education_module_completion: module, uid: uid })
     .then((response) => {
         const moduleData = response.data.data;
-        console.log(moduleData);
         setLastCompletedModule(moduleData.attributes);
     });
 };

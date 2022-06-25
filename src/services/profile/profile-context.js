@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { patchUser } from "./profile-service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const ProfileContext = createContext();
 
@@ -15,7 +16,7 @@ export const ProfileContextProvider = ({ children }) => {
         pace: 1,
         commitment: 5
     });
-    const [onboardingComplete, setOnboardingComplete] = useState(true);
+    const [onboardingComplete, setOnboardingComplete] = useState(false);
     const [profileData, setProfileData] = useState({
         phone: "",
         dob: "",
@@ -30,16 +31,23 @@ export const ProfileContextProvider = ({ children }) => {
     const cancelEdits = () => {
         setReviewProfile(userInfo);
         setChanges("");
-    }
+    };
 
     const completeProfile = () => {
-        setProfileComplete(true);
-        updateProfile(userInfo.uid, profileData);
+        const profile = {
+            ...profileData,
+            profile_status: 1
+        };
+        updateProfile(user.user.uid, profile);
         setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
     
     const completeOnboarding = () => {
-        updateProfile(user.user.uid, onboardingData);
+        const onboardData = {
+            ...onboardingData,
+            onboard_status: 1
+        };
+        updateProfile(user.user.uid, onboardData);
         setOnboardingComplete(true);
     };
 
@@ -95,13 +103,69 @@ export const ProfileContextProvider = ({ children }) => {
     };
 
     const saveEdits = () => {
-        updateProfile(userInfo.uid, reviewProfile);
+        updateProfile(user.user.uid, reviewProfile);
         setChanges("");
     }
 
     const updateProfile = (userId, data) => {
-        patchUser(userId, data, setUserInfo);
+        patchUser(userId, data, setUserInfo, setOnboardingComplete, setProfileComplete);
     };
+
+    const saveOnboardStatus = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem("@onboard_status", jsonValue);
+        } catch (e) {
+          console.log("error storing onboard_status", e);
+        }
+    };
+
+    const loadOnboardStatus = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@onboard_status");
+            if (value !== null) {
+                setOnboardingComplete(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading onboard_status", e);
+        }
+    };
+
+    useEffect(() => {
+        loadOnboardStatus();
+    }, []);
+    
+    useEffect(() => {
+        saveOnboardStatus(onboardingComplete);
+    }, [onboardingComplete]);
+
+    const saveProfileComplete = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem("@profile_status", jsonValue);
+        } catch (e) {
+            console.log("error storing profile_status", e);
+        }
+    };
+
+    const loadProfileComplete = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@profile_status");
+            if (value !== null) {
+                setProfileComplete(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading profile_status", e);
+        }
+    };
+
+    useEffect(() => {
+        loadProfileComplete();
+    }, []);
+
+    useEffect(() => {
+        saveProfileComplete(profileComplete);
+    }, [profileComplete]);
 
     return (
         <ProfileContext.Provider
@@ -129,8 +193,9 @@ export const ProfileContextProvider = ({ children }) => {
                 setReviewProfile,
                 setUserInfo,
                 setOnboardStep,
+                setProfileComplete,
                 updateProfile,
-                userInfo,
+                userInfo
             }}
         >
             {children}

@@ -3,6 +3,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { formatDate } from "../../../infrastructure/helpers";
+import { View } from "react-native";
 
 export const ReviewMoodJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(MoodJournalContext);
@@ -54,6 +55,7 @@ export const ReviewMoodJournalEntry = ({ editing, journal }) => {
         <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
             <InputQuestion entry={dateEntry} />
             {journalEntryResponses}
+            <View style={{ marginBottom: 120 }}></View>
         </KeyboardAwareScrollView>
     );
 };

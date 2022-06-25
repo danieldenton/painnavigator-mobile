@@ -1,16 +1,16 @@
 import axios from 'axios';
 import camelize from "camelize";
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
 export const destroyMoodJournal = (journalId) => {
-    axios.delete(`${baseUrl}/api/v1/mood_journals/${journalId}`)
+    axios.delete(`${API_URL}/api/v1/mood_journals/${journalId}`)
     .then((response) => {
         //console.log(response.data);
     });
 };
 
 export const getMoodJournals = (setMoodJournals) => {
-    axios.get(`${baseUrl}/api/v1/mood_journals`)
+    axios.get(`${API_URL}/api/v1/mood_journals`)
     .then( resp => {
         setMoodJournals(camelize(resp.data.data)); 
     })
@@ -18,14 +18,14 @@ export const getMoodJournals = (setMoodJournals) => {
 };
 
 export const patchMoodJournal = (journalId, moodJournal) => {
-    axios.patch(`${baseUrl}/api/v1/mood_journals/${journalId}`, { mood_journal: moodJournal })
+    axios.patch(`${API_URL}/api/v1/mood_journals/${journalId}`, { mood_journal: moodJournal })
     .then((response) => {
         //console.log(response.data);
     });
 };
 
-export const postMoodJournal = (moodJournal, setMoodJournals) => {
-    axios.post(`${baseUrl}/api/v1/mood_journals`, { mood_journal: moodJournal })
+export const postMoodJournal = (uid, moodJournal, setMoodJournals) => {
+    axios.post(`${API_URL}/api/v1/mood_journals`, { mood_journal: moodJournal, uid: uid })
     .then((response) => {
         const newJournal = response.data.data;
         console.log(newJournal);

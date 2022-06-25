@@ -13,7 +13,7 @@ import { time_zoned_todays_date, formatDate } from "../../../infrastructure/help
 
 export const FoodJournalHomeScreen = ({ navigation }) => {
     const { foodJournals } = useContext(FoodJournalContext);
-    const last_food_journal_date = formatDate(foodJournals[foodJournals.length - 1]?.attributes.date_time_value);
+    const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
     
     const foodJournalElements = foodJournals?.map((journal) => {
         return (

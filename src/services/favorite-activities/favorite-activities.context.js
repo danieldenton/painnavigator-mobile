@@ -1,6 +1,7 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { patch, post } from "../favorite-activities/favorite-activities.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const FavoriteActivitiesContext = createContext();
 
@@ -37,6 +38,7 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
     ]);
     const [reviewActivities, setReviewActivities] = useState([]);
     const [inputsShown, setInputsShown] = useState(1);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
         setReviewActivities(selectedActivities);
@@ -61,7 +63,7 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
     const completeActivities = () => {
         setFavoriteActivities(reviewActivities);
         setTimeout(() => {resetActivities(false)}, 1000);
-        post({activities: JSON.stringify(reviewActivities)});
+        post(user.user.uid, {activities: JSON.stringify(reviewActivities)});
     };
 
     const addActivity = (activityId) => {
@@ -118,6 +120,34 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
         setCurrentPage(1);
         setSelectedActivities([]);
     };
+
+    const saveFavoriteActivities = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem("@favorite_activities", jsonValue);
+        } catch (e) {
+            console.log("error storing favorites_activities", e);
+        }
+    };
+
+    const loadFavoriteActivities = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@favorite_activities");
+            if (value !== null) {
+                setFavoriteActivities(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading favorite_activities", e);
+        }
+    };
+
+    useEffect(() => {
+        loadFavoriteActivities();
+    }, []);
+
+    useEffect(() => {
+        saveFavoriteActivities(favoriteActivities);
+    }, [favoriteActivities]);
 
     return (
         <FavoriteActivitiesContext.Provider

@@ -18,7 +18,7 @@ export const AltMenuButtons = ({ navigation }) => {
         {
             id: 2,
             label: "Contact",
-            destination: "JournalsNavigator",
+            destination: "Contact",
             icon: <ContactIcon />,
             show: true
         }

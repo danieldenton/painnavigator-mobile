@@ -435,7 +435,7 @@
             "name": "TFA! 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
             "length": 6,
-            "post_video_destination": "PainJournalHome",
+            "post_video_destination": "PainJournal",
             "skippable": false,
             "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
         },
@@ -599,7 +599,7 @@
             "name": "TFA! 6",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569409/For%20Mobile%20App/Education/TFA%21%206.mp4",
             "length": 8,
-            "post_video_destination": "MoodJournalHome",
+            "post_video_destination": "MoodJournal",
             "skippable": false,
             "summary": "Review the steps involved in Thoughts, Feelings, Action!"
         },
@@ -609,7 +609,7 @@
             "name": "SMART Goal Renewal 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569079/For%20Mobile%20App/Education/SMART%20Goal%20Renewal%202.mp4",
             "length": 3,
-            "post_video_destination": "NewSmartGoal",
+            "post_video_destination": "SmartGoal",
             "skippable": true,
             "summary": "Address areas where pain controls how you spend your time. Establish a third PainNaivgator SMART Goal."
         },
@@ -628,7 +628,7 @@
             "type": "text",
             "name": "My PainNavigator Summary",
             "source": "",
-            "length": 0,
+            "length": 1,
             "post_video_destination": null,
             "skippable": false,
             "summary": "We are so proud of you for making it through the PainNavigator program! Celebrate this win and all future little or big wins! Here’s what we recommend after completing PainNavigator:",

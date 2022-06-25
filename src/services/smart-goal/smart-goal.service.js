@@ -1,15 +1,15 @@
 import axios from 'axios';
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
 export const destroyGoal = (goalId) => {
-    axios.delete(`${baseUrl}/api/v1/smart_goals/${goalId}`)
+    axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
     .then((response) => {
         console.log(response);
     });
 };
 
-export const postSmartGoal = (smartGoal, setActiveGoal) => {
-    axios.post(`${baseUrl}/api/v1/smart_goals`, { smart_goal: smartGoal })
+export const postSmartGoal = (uid, smartGoal, setActiveGoal) => {
+    axios.post(`${API_URL}/api/v1/smart_goals`, { smart_goal: smartGoal, uid: uid })
     .then((response) => {
         console.log(response.data.data);
         const goal = response.data.data;
@@ -18,7 +18,7 @@ export const postSmartGoal = (smartGoal, setActiveGoal) => {
 };
 
 export const postSmartGoalUpdate = (id, smartGoalUpdate, setActiveGoal) => {
-    axios.post(`${baseUrl}/api/v1/smart_goal_updates`, 
+    axios.post(`${API_URL}/api/v1/smart_goal_updates`, 
         {   smart_goal_id: id, 
             smart_goal_update: smartGoalUpdate 
         }

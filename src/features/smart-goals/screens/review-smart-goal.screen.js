@@ -14,14 +14,14 @@ import format from 'date-fns/format';
 
 export const ReviewSmartGoalScreen = ({ navigation }) => {
     const { activeGoal, cancelEdits, changes, deleteGoal, finishGoal } = useContext(SmartGoalContext);
-    const { created_date_time } = activeGoal;
+    const { date_time_value } = activeGoal;
     const [editing, setEditing] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const reviewSmartGoalOptions = useRef(null);
 
     useEffect(() => {
-        const end = add(new Date(created_date_time), {weeks: 4});
+        const end = add(new Date(date_time_value), {weeks: 4});
         const formattedEndDate = format(end, 'MM/dd/yyyy');
         const today = format(new Date(), 'MM/dd/yyyy');
 

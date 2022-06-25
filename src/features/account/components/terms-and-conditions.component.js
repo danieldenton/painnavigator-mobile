@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 const Wrapper = styled.View`
-    position: absolute;
-    bottom: 42px;
-    right: 0px;
-    left: 0px;
+    margin-top: 16px;
     flex-direction: row;
     flex-wrap: wrap;
 `;

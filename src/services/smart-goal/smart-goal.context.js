@@ -1,6 +1,8 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthTextInput } from "../../components/text-input.component";
 
 export const SmartGoalContext = createContext();
 
@@ -16,6 +18,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     });
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
         setReviewGoal(activeGoal);
@@ -38,7 +41,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     };
 
     const createSmartGoal = () => {
-        postSmartGoal(smartGoal, setActiveGoal);
+        postSmartGoal(user.user.uid, smartGoal, setActiveGoal);
     };
 
     const createSmartGoalUpdate = () => {
@@ -116,7 +119,7 @@ export const SmartGoalContextProvider = ({ children }) => {
           const jsonValue = JSON.stringify(value);
           await AsyncStorage.setItem("@active_goal", jsonValue);
         } catch (e) {
-          console.log("error storing", e);
+          console.log("error storing smart goals", e);
         }
     };
     
@@ -127,16 +130,16 @@ export const SmartGoalContextProvider = ({ children }) => {
                 setActiveGoal(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading smart goals", e);
         }
     };
 
-    const saveFinishedGoals = async () => {
+    const saveFinishedGoals = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem("@finished_goals", jsonValue);
         } catch (e) {
-            console.log("error storing", e);
+            console.log("error storing finished goals", e);
         }
     };
 
@@ -147,7 +150,7 @@ export const SmartGoalContextProvider = ({ children }) => {
                 setFinishedGoals(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading finished goals", e);
         }
     };
 

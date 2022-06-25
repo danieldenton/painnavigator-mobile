@@ -7,6 +7,7 @@ import { TermsAndConditions } from "./terms-and-conditions.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ActivityIndicator } from 'react-native-paper';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { ButtonSection } from "../../../components/journals/journal.styles";
 
 export const Signup = ({ navigation }) => {
     const [first_name, setFirstName] = useState("");
@@ -19,7 +20,7 @@ export const Signup = ({ navigation }) => {
     return(
         <>
             <NavigationBarLeft screen={"Sign up"} destination={"Onboard"} navigation={navigation} />
-            <KeyboardAwareScrollView>
+            <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
             <InputWrapper>
                 <InputLabel>First Name</InputLabel>
                 <AuthTextInput
@@ -64,14 +65,17 @@ export const Signup = ({ navigation }) => {
                 />
             </InputWrapper>
             {error && <ErrorMessage error={error} />}
-            <JournalButton 
-                icon={userLoading && <ActivityIndicator animating={true} color={"red"} />}
-                accessibilityLabel={"create-account-button"}
-                title={"Create Account"} 
-                onPress={() => onRegister(first_name, last_name, email, password, repeatedPassword)} />
-            <SignUpOptions />
-                </KeyboardAwareScrollView>
-            <TermsAndConditions navigation={navigation} />
+            </KeyboardAwareScrollView>
+            <ButtonSection>
+                <JournalButton 
+                    icon={userLoading && <ActivityIndicator animating={true} color={"red"} />}
+                    accessibilityLabel={"create-account-button"}
+                    title={"Create Account"} 
+                    onPress={() => onRegister(first_name, last_name, email, password, repeatedPassword)} 
+                />
+                <SignUpOptions />
+                <TermsAndConditions navigation={navigation} />
+            </ButtonSection>
         </>
     ); 
 };

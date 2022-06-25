@@ -5,7 +5,7 @@ import {
     BottomSheetModal, 
     BottomSheetModalProvider 
 } from '@gorhom/bottom-sheet';
-import { ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
+import { ButtonSection } from "../../../components/journals/journal.styles";
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { JournalButton } from "../../../components/button.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
@@ -42,11 +42,6 @@ export const SettingsScreen = ({ navigation }) => {
                 appearsOnIndex={0}
             />
     ),[]);
-
-    const requestDelete = () => {
-        closeModal();
-        setShowDeleteModal(true);
-    };
 
     const snapPoints = useMemo(() => ['35%'], []);
 
@@ -113,7 +108,7 @@ export const SettingsScreen = ({ navigation }) => {
                 navigation={navigation} 
                 setVisible={setShowExitModal}
                 visible={showExitModal}
-                resetJournal={setTimeout(() => {cancelEdits}, 1000)}
+                resetJournal={cancelEdits}
             />
         </Provider>
     );

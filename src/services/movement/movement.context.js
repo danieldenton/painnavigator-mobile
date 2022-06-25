@@ -7,7 +7,7 @@ import { ProfileContext } from "../profile/profile-context";
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-    const [movementProgress, setMovementProgress] = useState(13);
+    const [movementProgress, setMovementProgress] = useState(1);
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
     const [currentVideo, setCurrentVideo] = useState();
@@ -40,9 +40,10 @@ export const MovementContextProvider = ({ children }) => {
     }, [currentModule]);
 
     const advanceProgress = () => {
+        const STATUS_NOT_STARTED = 0;
         const module = {
             module_id: currentModule.id,
-            status: 0        
+            status: STATUS_NOT_STARTED        
         };
         post(module, userInfo.uid);
         setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
@@ -82,7 +83,7 @@ export const MovementContextProvider = ({ children }) => {
             );
         });
 
-        const videoLength = videoArray.reduce((a, b) => a + b, 0);
+        const videoLength = videoArray.reduce((previousVideoRange, currentVideoRange) => previousVideoRange + currentVideoRange, 0);
 
         return videoLength;
     };

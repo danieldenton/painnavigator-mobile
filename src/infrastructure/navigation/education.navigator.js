@@ -12,61 +12,77 @@ import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/
 import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
 import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities/screens/favorite-activities-home.screen";
 import { FoodJournalNavigator } from "../navigation/food-journal.navigator";
+import { PainJournal } from "../../features/post-video-actions/components/pain-journal.component";
 
 const EducationStack = createStackNavigator();
 
 export const EducationNavigator = () => {
 
+    const educationData = [
+        {
+           "name": "EducationUnit",
+           "component": EducationUnitScreen
+        },
+        {
+            "name": "Completion",
+            "component": CompletionScreen
+        },
+        {
+            "name": "Skipped",
+            "component": SkippedScreen
+        },
+        {
+            "name": "Why",
+            "component": Why
+        },
+        {
+            "name": "PainJournal",
+            "component": NewPainJournalScreen
+        },
+        {
+            "name": "SmartGoal",
+            "component": NewSmartGoalScreen
+        },
+        {
+             "name": "SmartGoalCreated",
+             "component": SmartGoalCreatedScreen
+        },
+        {
+             "name": "MoodJournal",
+             "component": NewMoodJournalScreen
+        },
+        {
+             "name": "FavoriteActivities",
+             "component": NewFavoriteActivitiesScreen
+        },
+        {
+             "name": "FavoriteActivitiesCompleted",
+             "component": FavoriteActivitiesCompletedScreen
+        },
+        {
+             "name": "FavoriteActivitiesHome",
+             "component": FavoriteActivitiesHomeScreen
+        },
+        {
+            "name": "NewFoodJournal",
+            "component": FoodJournalNavigator
+        }
+    ];
+
+    const educationScreens = educationData.map((screen) => {
+        const { name, component } = screen;
+        return (
+            <EducationStack.Screen
+                name={name}
+                component={component}
+                key={name}
+            />
+        );
+    });
+
     return (
         <EducationStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
-            <EducationStack.Screen 
-                name="EducationUnit" 
-                component={EducationUnitScreen} 
-            />
-            <EducationStack.Screen 
-                name="Completion" 
-                component={CompletionScreen}
-            />
-            <EducationStack.Screen 
-                name="Skipped" 
-                component={SkippedScreen}
-            />
-            <EducationStack.Screen 
-                name="Why" 
-                component={Why} 
-            />
-            <EducationStack.Screen 
-                name="PainJournal" 
-                component={NewPainJournalScreen} 
-            />
-            <EducationStack.Screen 
-                name="SmartGoal" 
-                component={NewSmartGoalScreen} 
-            />
-            <EducationStack.Screen 
-                name="SmartGoalCreated" 
-                component={SmartGoalCreatedScreen} 
-            />
-            <EducationStack.Screen 
-                name="MoodJournal" 
-                component={NewMoodJournalScreen} 
-            />
-            <EducationStack.Screen 
-                name="FavoriteActivities" 
-                component={NewFavoriteActivitiesScreen} 
-            />
-            <EducationStack.Screen 
-                name="FavoriteActivitiesCompleted" 
-                component={FavoriteActivitiesCompletedScreen} 
-            />
-            <EducationStack.Screen
-                name="FavoriteActivitiesHome"
-                component={FavoriteActivitiesHomeScreen}
-            />
-            <EducationStack.Screen
-                name="NewFoodJournal"
-                component={FoodJournalNavigator}
-            />
+            {educationScreens}
         </EducationStack.Navigator>
     );
 };

@@ -1,10 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 import { destroyPainJournal, getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
-import startOfToday from 'date-fns/startOfToday';
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const PainJournalContext = createContext();
 
@@ -24,13 +22,19 @@ export const PainJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const lastIndex = painJournals?.length - 1;
-        const lastJournalDate = painJournals[lastIndex]?.attributes.date;
-
-        setJournaledToday(lastJournalDate);
-    }, []);
+        if (!painJournals || painJournals.length < 1) {
+            // Set to false by default if desired:
+            setJournaledToday(false);
+            return;
+          }
+      
+          const lastIndex = painJournals.length - 1;
+          const lastJournalDate = painJournals[lastIndex].attributes.date;
+          setJournaledToday(Boolean(lastJournalDate));
+    }, [painJournals]);
 
     const cancelEdits = () => {
         setReviewJournal({});
@@ -56,7 +60,7 @@ export const PainJournalContextProvider = ({ children }) => {
             notes: painJournal.notes, 
             intensity_after: painJournal.intensityAfter
         }
-        postPainJournal(newPainJournal, setPainJournals);
+        postPainJournal(user.user.uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
     };
 
@@ -126,7 +130,7 @@ export const PainJournalContextProvider = ({ children }) => {
           const jsonValue = JSON.stringify(value);
           await AsyncStorage.setItem("@pain_journals", jsonValue);
         } catch (e) {
-          console.log("error storing", e);
+          console.log("error storing pain journals", e);
         }
     };
     
@@ -137,7 +141,7 @@ export const PainJournalContextProvider = ({ children }) => {
             setPainJournals(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading pain journals", e);
         }
     };
 

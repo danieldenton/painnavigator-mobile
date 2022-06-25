@@ -13,6 +13,7 @@ import { JournalCreatedScreen } from "../../components/journals/journal-created.
 import { JournalUpdatedScreen } from "../../components/journals/journal-updated.screen";
 import { JournalDeletedScreen } from "../../components/journals/journal-deleted.screen";
 import { WellnessCoachNavigator } from "./wellness-coach.navigator";
+import { ContactScreen } from "../../features/today/screens/contact.screen";
 
 const TodayStack = createStackNavigator();
 
@@ -32,6 +33,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="JournalDeleted" component={JournalDeletedScreen} />
             <TodayStack.Screen name="WellnessCoach" component={WellnessCoachNavigator} />
             <TodayStack.Screen name="Profile" component={ProfileNavigator} />
+            <TodayStack.Screen name="Contact" component={ContactScreen} />
         </TodayStack.Navigator>
     );
 };

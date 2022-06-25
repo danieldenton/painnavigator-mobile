@@ -1,15 +1,14 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getMessages, patchMessage, postMessage } from "./wellness-coach.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
-    const [recipientId, setRecipientId] = useState(1);
-    const [userId, setUserId] = useState(10);
+    const { user } = useContext(AuthenticationContext);
     const [message, setMessage] = useState({
-        sender_id: userId,
-        recipient_id: recipientId,
+        recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
         body: "",
         status: 0
     });
@@ -27,14 +26,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
         }
     }, [messages]);
 
-    useEffect(() => {
-        checkForNewMessages();
-    }, []);
-    
-    const checkForNewMessages = () => {
-        getMessages(userId, setMessages);  
-    };
-
     const clearUnreadMessages = () => {
         const newMessages = messages.map(message => message.status === "unread" ?
             {
@@ -46,7 +37,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
         );
 
         setMessages(newMessages);
-        patchMessage(userId);
+        patchMessage(user.user.uid);
     };
 
     const loadMessages = async () => {
@@ -56,14 +47,13 @@ export const WellnessCoachContextProvider = ({ children }) => {
             setMessages(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading messages", e);
         }
     };
 
     const resetMessage = () => {
         setMessage({
-            sender_id: 2,
-            recipient_id: recipientId,
+            recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
             body: "",
             status: 0
         }); 
@@ -74,12 +64,16 @@ export const WellnessCoachContextProvider = ({ children }) => {
           const jsonValue = JSON.stringify(value);
           await AsyncStorage.setItem("@messages", jsonValue);
         } catch (e) {
-          console.log("error storing", e);
+          console.log("error storing messages", e);
         }
     };
 
     const sendMessage = () => {
-        postMessage(message, setMessages);
+        const newMessage = {
+            ...message,
+            sender_id: user.user.uid
+        };
+        postMessage(newMessage, setMessages);
         setTimeout(() => {resetMessage()}, 1000);
     };
 
@@ -106,6 +100,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
                 message,
                 messages,
                 sendMessage,
+                setMessages,
                 writeMessage
             }}
         >

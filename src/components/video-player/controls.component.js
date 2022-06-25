@@ -47,8 +47,11 @@ export const VideoControlBar = forwardRef((props, ref) => {
                     thumbStyle={{ height: 12, width: 12 }}
                     value={status.positionMillis}
                     onSlidingStart={() => ref.current.pauseAsync()}
-                    onSlidingComplete={() => ref.current.playAsync()}
-                    onValueChange={change => ref.current.setStatusAsync({ positionMillis: Number(change) })}
+                    onSlidingComplete={(change) => {
+                        ref.current.setStatusAsync({ positionMillis: Number(change) });
+                        ref.current.playAsync()
+                    }}
+                    //onValueChange={change => ref.current.setStatusAsync({ positionMillis: Number(change) })}
                 />
             </SliderSection>
             <VideoPressable 

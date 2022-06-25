@@ -2,18 +2,22 @@ import React from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";
-import { ButtonSection } from "../../../components/journals/journal.styles";
+import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { 
     CongratulationsHeaderWrapper, 
     CongratulationsHeader 
 } from "../../../components/completion/components/completion.styles";
+import { ThumbsUpGraphic } from "../../../graphics";
 
 export const SmartGoalDeletedScreen = ({ navigation }) => {
 
     return (
         <SafeView>
             <NavigationBarLeft screen={"Smart Goal"} navigation={navigation} destination={"Today"} />
+            <GraphicWrapper>
+                <ThumbsUpGraphic />
+            </GraphicWrapper>
             <CongratulationsHeaderWrapper>
                 <CongratulationsHeader>
                     Goal deleted

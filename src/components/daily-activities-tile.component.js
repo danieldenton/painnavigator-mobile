@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { Add, FoodJournalIcon, JournalEntryIcon, MoodJournalIcon, PainJournalIcon } from "../icons";
+import { Add, FoodJournalIcon, Locked } from "../icons";
+import { View } from "react-native";
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -23,12 +24,6 @@ const CardTextSection = styled.View`
 const CardHeader = styled.Text`
     font-family: Inter_500Medium;
     font-size: 18px;
-`;
-
-const CardSubHeader = styled.Text`
-    font-family: Inter_500Medium;
-    font-size: 12px;
-    margin-top: 8px;
 `;
 
 const CardIconSection = styled.View`
@@ -60,4 +55,51 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon, scre
             </DailyActivitiesCard>
         </TouchableOpacity>
     ); 
+};
+
+const Space = styled.View`
+    margin-top: 8px;
+`;
+
+const DailyGoalMessageSection = styled.View`
+    align-items: center;
+    margin-top: 16px;
+`;
+
+const DailyGoalMessage = styled.Text`
+    color: #606C81;
+    font-size: 14px;
+    font-family: Inter_400Regular;
+    line-height: 22px;
+    margin-left: 4px;
+    margin-right: 4px;
+`
+
+export const LockedActivityText = () => {
+    return (
+        <DailyGoalMessageSection>
+            <DailyGoalMessage>
+                Locked journals will be unlocked when you complete their corresponding education units.
+            </DailyGoalMessage>
+        </DailyGoalMessageSection>
+    )
+};
+
+export const LockedActivity = ({ title }) => {
+    return (
+        <DailyActivitiesCard
+            style={{ backgroundColor: "#EDF1F5" }}
+        >
+            <Space />
+            <ModuleCardContent>
+                <CardTextSection>
+                    <CardHeader>{title}</CardHeader>
+                </CardTextSection>
+                <CardIconSection>
+                    <Locked />
+                </CardIconSection>
+            </ModuleCardContent>
+            <Space />
+        </DailyActivitiesCard>
+    );
 };

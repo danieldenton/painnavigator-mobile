@@ -1,28 +1,26 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-
-import { loginRequest, postUser } from "./authentication.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { loginRequest, postUser, get } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
     const [userLoading, setUserLoading] = useState(null);
     // user set to true for testing
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [avePainPreStart, setAvgPainPreStart] = useState(5);
-    const [programPaceGoal, setProgramPaceGoal] = useState(1);
     
     const onLogin = (email, password) => {
         setUserLoading(true);
         loginRequest(email, password).then((u) => {
             setUser(u);
-            setUserLoading(false);
         }).catch((e) => {
-            setUserLoading(false);
             setError(e.toString());
+        }).finally(() => {
+            setUserLoading(false);
         })
     };
 
@@ -48,36 +46,63 @@ export const AuthenticationContextProvider = ({ children }) => {
             .then((u) => {
                 setUser(u);
                 postUser(u.user.uid, first_name, last_name, email);
-            }).then(() => {
+            }).catch((e) => {
+                // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
+                setError(e.toString());
+            }).finally(() => {
                 setUserLoading(false);
             })
-            .catch((e) => {
-                // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
-                setUserLoading(false);
-                setError(e.toString());
-            });
     };
 
     const signOut = () => {
         setUser(null);
     };
 
+    const saveUser = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value);
+          await AsyncStorage.setItem("@user", jsonValue);
+        } catch (e) {
+          console.log("error storing user", e);
+        }
+    };
+
+    const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete) => {
+        get(user.user.uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete);
+    };
+    
+    const loadUser = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@user");
+            if (value !== null) {
+                setUser(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading user", e);
+        }
+    };
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+    
+    useEffect(() => {
+        saveUser(user);
+    }, [user]);
+
     return (
         <AuthenticationContext.Provider
             value={{
                 currentQuestion,
-                setCurrentQuestion,
-                nextQuestion,
-                avePainPreStart,
-                setAvgPainPreStart,
-                programPaceGoal,
-                setProgramPaceGoal,
-                isAuthenticated: !!user,
-                user,
-                userLoading,
                 error,
+                getUser,
+                isAuthenticated: !!user,
+                nextQuestion,
                 onLogin,
                 onRegister,
+                user,
+                userLoading,
+                setCurrentQuestion,
                 signOut
             }}
         >

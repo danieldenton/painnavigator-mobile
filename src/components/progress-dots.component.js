@@ -11,7 +11,7 @@ const ProgressDotsContainer = styled.View`
 const ProgressDot = styled.View`
     margin-left: 6px;
     margin-right: 6px;
-    margin-top: 16px;
+    margin-top: 20px;
 `;
 
 export const ProgressDots = ({ progress, total }) => {

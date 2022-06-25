@@ -1,13 +1,13 @@
 import axios from 'axios';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { baseUrl } from '../../infrastructure/config';
+import { API_URL } from "@env"
 
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
 export const postUser = async (uid, first_name, last_name, email) => {
-  const response = await axios.post(`${baseUrl}/api/v1/users`, { 
+  const response = await axios.post(`${API_URL}/api/v1/users`, { 
     user: {
       uid: uid, 
       first_name: first_name,
@@ -15,6 +15,18 @@ export const postUser = async (uid, first_name, last_name, email) => {
       email: email
     } 
 });
-  console.log(response.data);
   return response;
 };
+
+export const get = (uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete) => {
+  axios.get(`${API_URL}/api/v1/users/${uid}`)
+  .then( resp => {
+      const profile = resp.data.data;
+      console.log(profile);
+      setUserInfo(profile.attributes.profile);
+      setMessages(profile.attributes.conversation);
+      setEducationProgress(profile.attributes.education_progress.progress);
+      setProfileComplete(profile.attributes.profile_status === 1);
+  })
+  .catch(resp => console.log(resp))
+}; 

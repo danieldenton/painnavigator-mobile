@@ -1,8 +1,7 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getFoodJournals, patchFoodJournal, postFoodJournal } from "./food-journal.service";
-import startOfToday from 'date-fns/startOfToday';
-import format from 'date-fns/format';
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const FoodJournalContext = createContext();
 
@@ -15,13 +14,19 @@ export const FoodJournalContextProvider = ({ children }) => {
         feelingAfter: "" 
     });
     const [journaledToday, setJournaledToday] = useState(false);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const lastIndex = foodJournals?.length - 1;
-        const lastJournalDate = foodJournals[lastIndex]?.attributes.date;
-
-        setJournaledToday(lastJournalDate);
-    }, []);
+        if (!foodJournals || foodJournals.length < 1) {
+            // Set to false by default if desired:
+            setJournaledToday(false);
+            return;
+          }
+      
+          const lastIndex = foodJournals.length - 1;
+          const lastJournalDate = foodJournals[lastIndex].attributes.date;
+          setJournaledToday(Boolean(lastJournalDate));
+    }, [foodJournals]);
 
     const updateFoodJournal = (journalId) => {
         const mealEntry = {
@@ -42,7 +47,7 @@ export const FoodJournalContextProvider = ({ children }) => {
         const mealEntry = {
             [meal.toLowerCase()]: JSON.stringify(foodJournal)
         };
-        postFoodJournal(mealEntry, setFoodJournals);
+        postFoodJournal(user.user.uid, mealEntry, setFoodJournals);
         setTimeout(() => {resetFoodJournal(false)}, 1000);
     };
 
@@ -64,7 +69,7 @@ export const FoodJournalContextProvider = ({ children }) => {
           const jsonValue = JSON.stringify(value);
           await AsyncStorage.setItem("@food_journals", jsonValue);
         } catch (e) {
-          console.log("error storing", e);
+          console.log("error storing food journals", e);
         }
     };
     
@@ -75,7 +80,7 @@ export const FoodJournalContextProvider = ({ children }) => {
             setFoodJournals(JSON.parse(value));
             }
         } catch (e) {
-            console.log("error loading", e);
+            console.log("error loading food journals", e);
         }
     };
 

@@ -55,7 +55,7 @@ export const DailyGoalCompleted = ({ type, moduleId }) => {
                 <DailyGoalCardContent>
                     <CardTextSection>
                         <CardHeader>
-                            {type === "module" ? module.name : `${type} Journal Logged`}
+                            {type === "module" ? module.name : `${type} Logged`}
                         </CardHeader>
                     </CardTextSection>
                     <CardIconSection>

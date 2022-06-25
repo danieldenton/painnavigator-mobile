@@ -42,7 +42,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                         {   currentPage === 5 ? 
                             (
                                 completePainJournal(),
-                                navigation.navigate("JournalCreated", { type: "Pain" })
+                                navigation.navigate("JournalCreated", { type: "PainJournal" })
                             )
                             :
                             nextPage()
@@ -56,7 +56,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                                 (
                                     completePainJournal(),
                                     navigation.navigate("JournalCreated", {
-                                        type: "Pain"
+                                        type: "PainJournal"
                                     })
                                 )
                                 :

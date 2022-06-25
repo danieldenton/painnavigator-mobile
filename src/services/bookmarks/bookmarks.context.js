@@ -12,7 +12,7 @@ export const BookmarksContextProvider = ({ children }) => {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem("@bookmarks", jsonValue);
     } catch (e) {
-      console.log("error storing", e);
+      console.log("error storing bookmarks", e);
     }
   };
 
@@ -23,7 +23,7 @@ export const BookmarksContextProvider = ({ children }) => {
         setBookmarks(JSON.parse(value));
       }
     } catch (e) {
-      console.log("error loading", e);
+      console.log("error loading bookmarks", e);
     }
   };
 

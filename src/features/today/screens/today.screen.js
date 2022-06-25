@@ -4,6 +4,7 @@ import { EducationContext } from "../../../services/education/education.context"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
@@ -22,24 +23,31 @@ import * as Localization from 'expo-localization';
 import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
 import { formatDate } from "../../../infrastructure/helpers";
+import { act } from "react-test-renderer";
 
 export const TodayScreen = ({ navigation }) => {
-    const { userInfo, profileComplete } = useContext(ProfileContext);
+    const { getUser, user } = useContext(AuthenticationContext);
+    const { userInfo, profileComplete, setUserInfo, setOnboardingComplete, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals } = useContext(PainJournalContext);
     const { moodJournals } = useContext(MoodJournalContext);
     const { foodJournals } = useContext(FoodJournalContext);
-    const { educationProgress, lastCompletedModule } = useContext(EducationContext);
-    const { hasUnreadMessages } = useContext(WellnessCoachContext);
+    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
     const time_zone = Localization.timezone;
     const todays_date = new Date ();
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
-    
-    const last_pain_journal_date = formatDate(painJournals[painJournals.length - 1]?.attributes.date_time_value);
-    const last_mood_journal_date = formatDate(moodJournals[moodJournals.length - 1]?.attributes.date_time_value);
-    const last_food_journal_date = formatDate(foodJournals[foodJournals.length - 1]?.attributes.date_time_value);
+    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
+    const last_pain_journal_date = formatDate(painJournals[0]?.attributes.date_time_value);
+    const last_mood_journal_date = formatDate(moodJournals[0]?.attributes.date_time_value);
+    const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
+    const last_smart_goal_update = formatDate(activeGoal?.smart_goal_updates[0]?.date_time_value);
+
+    useEffect(() => {
+        getUser(setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete);
+    }, []);
     
     //TODO: move this to a helper file
     useEffect(() => {
@@ -74,8 +82,13 @@ export const TodayScreen = ({ navigation }) => {
     };
 
     function renderSmartGoalDailyActivity() { 
-        if(educationProgress > 7 && activeGoal) {
-            return <SmartGoalUpdate navigation={navigation} />
+        const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
+        if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
+            if(last_smart_goal_update === time_zoned_todays_date) {
+                return <DailyGoalCompleted type={"Smart Goal Update"} />
+            } else {
+                return <SmartGoalUpdate navigation={navigation} />
+            }
         } else if(educationProgress > 7) {
             return <NewSmartGoal navigation={navigation} />
         } else {
@@ -88,17 +101,17 @@ export const TodayScreen = ({ navigation }) => {
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
-                <SubHeader title={"TODAY'S EDUCATION"} size={14} />
+                {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
                 {lastCompletedModule?.date === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={lastCompletedModule.module_id} />}
-                <EducationUnitCard navigation={navigation} />
+                {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
                 <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                 <MovementUnitCard navigation={navigation} />
-                <LockedModule />
+                <LockedModule  />
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
-                    {last_pain_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Pain"} />}
-                    {last_mood_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Mood"} />}
-                    {last_food_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Food"} />}
+                    {last_pain_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
+                    {last_mood_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
+                    {last_food_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderSmartGoalDailyActivity()}
                     {renderJournalDailyActivity()}

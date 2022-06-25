@@ -21,7 +21,7 @@ export const FavoriteActivities = ({ navigation }) => {
             </Wrapper>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate("NewFavoriteActivities")}
+                    onPress={() => navigation.navigate("FavoriteActivities")}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>
