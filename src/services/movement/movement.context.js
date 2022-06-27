@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
 import { post } from "./movement.service";
-import { ProfileContext } from "../profile/profile-context";
+import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const MovementContext = createContext();
 
@@ -15,7 +15,8 @@ export const MovementContextProvider = ({ children }) => {
     const [nextModule, setNextModule] = useState(movementModules[movementProgress + 1]);
     const [completedMovementModules, setCompletedMovementModules] = useState([]);
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
-    const { userInfo } = useContext(ProfileContext);
+    const [lastMovement, setLastMovement] = useState(null);
+    const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
         const module = movementModules.find(module => module.id === movementProgress);
@@ -45,7 +46,7 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        post(module, userInfo.uid);
+        post(module, user.user.uid);
         setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
     };
     
@@ -124,10 +125,13 @@ export const MovementContextProvider = ({ children }) => {
                 currentModule,
                 currentVideo,
                 getPlaylistLength,
+                lastMovement,
                 moduleComplete,
                 movementProgress,
                 nextModule,
                 resetModule,
+                setMovementProgress,
+                setLastMovement,
                 skippedMovementModules,
                 skipVideo,
                 switchVideo

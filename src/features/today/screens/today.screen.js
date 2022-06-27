@@ -23,7 +23,6 @@ import * as Localization from 'expo-localization';
 import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
 import { formatDate } from "../../../infrastructure/helpers";
-import { act } from "react-test-renderer";
 
 export const TodayScreen = ({ navigation }) => {
     const { getUser, user } = useContext(AuthenticationContext);
@@ -32,7 +31,8 @@ export const TodayScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
     const { moodJournals } = useContext(MoodJournalContext);
     const { foodJournals } = useContext(FoodJournalContext);
-    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { movementProgress, lastMovement, setLastMovement, setMovementProgress } = useContext(MovementContext);
+    const { educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
@@ -40,13 +40,16 @@ export const TodayScreen = ({ navigation }) => {
     const todays_date = new Date ();
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
+    const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
     const last_pain_journal_date = formatDate(painJournals[0]?.attributes.date_time_value);
     const last_mood_journal_date = formatDate(moodJournals[0]?.attributes.date_time_value);
     const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
     const last_smart_goal_update = formatDate(activeGoal?.smart_goal_updates[0]?.date_time_value);
+    const last_education_module_date = lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const last_movement_module_date = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
-        getUser(setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete);
+        getUser(setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
     }, []);
     
     //TODO: move this to a helper file
@@ -102,11 +105,15 @@ export const TodayScreen = ({ navigation }) => {
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
                 {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {lastCompletedModule?.date === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={lastCompletedModule.module_id} />}
+                {last_education_module_date === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={educationProgress - 1} />}
                 {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
-                <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                <MovementUnitCard navigation={navigation} />
-                <LockedModule  />
+                {!COMPLETED_ALL_MOVEMENT_MODULES && 
+                    <>
+                        <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
+                        <MovementUnitCard navigation={navigation} />
+                        {last_movement_module_date !== time_zoned_todays_date && <LockedModule  />}
+                    </>
+                }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
                     {last_pain_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}

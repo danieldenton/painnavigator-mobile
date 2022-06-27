@@ -67,6 +67,7 @@ export const EducationContextProvider = ({ children }) => {
                 educationProgress,
                 lastCompletedModule,
                 setEducationProgress,
+                setLastCompletedModule,
                 skipModule,
                 skippedEducationModules
             }}

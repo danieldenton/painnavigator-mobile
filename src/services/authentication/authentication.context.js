@@ -67,8 +67,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         }
     };
 
-    const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete) => {
-        get(user.user.uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete);
+    const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement) => {
+        get(user.user.uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
     };
     
     const loadUser = async () => {
