@@ -3,10 +3,12 @@ import styled from "styled-components/native";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 
 const MultiSelectScroll = styled(ScrollView)`
-    flex: .65;
+    flex: .85;
+    margin-right: -16px;
+    padding-right: 16px;
 `;
 
 export const CopingStrategies = () => {
@@ -48,7 +50,9 @@ export const CopingStrategies = () => {
         <>
             <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText} />
             <MultiSelectScroll>
-                {copingStrategies}
+                <View style={{ marginBottom: 60 }}>
+                    {copingStrategies}
+                </View>
             </MultiSelectScroll>
         </>
     );

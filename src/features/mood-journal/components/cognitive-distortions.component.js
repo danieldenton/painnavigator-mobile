@@ -3,10 +3,12 @@ import styled from "styled-components/native";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.component";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 
 const MultiSelectScroll = styled(ScrollView)`
-    flex: .75;
+    flex: .85;
+    margin-right: -16px;
+    padding-right: 16px;
 `;
 
 export const CognitiveDistortions = () => {
@@ -48,7 +50,9 @@ export const CognitiveDistortions = () => {
         <>
             <JournalQuestion question={currentPageData.question} helpText={currentPageData.helpText} />
             <MultiSelectScroll>
-                {cognitiveDistortions}
+                <View style={{ marginBottom: 60 }}>
+                    {cognitiveDistortions}
+                </View>
             </MultiSelectScroll>
         </>
     );
