@@ -3,6 +3,7 @@ import { movementModules } from "../../features/movement/data/movement-modules-d
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
 import { post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const MovementContext = createContext();
 
@@ -114,6 +115,34 @@ export const MovementContextProvider = ({ children }) => {
         const newVideoData = movementVideos.find(video => video.id === videoId);
         setCurrentVideo(newVideoData);
     };
+
+    const saveMovementProgress = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@movement_progress", jsonValue);
+          } catch (e) {
+            console.log("error storing movement_progress", e);
+          }
+    };
+
+    const loadMovementProgress = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@movement_progress");
+            if (value !== null) {
+            setMovementProgress(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading movement_progress", e);
+        }
+    };
+
+    useEffect(() => {
+        loadMovementProgress();
+    }, []);
+
+    useEffect(() => {
+        saveMovementProgress(movementProgress);
+    }, [movementProgress]);
 
     return (
         <MovementContext.Provider
