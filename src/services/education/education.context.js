@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState, createContext } from "react";
 import { postEducationModule } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
-import { ProfileContext } from "../profile/profile-context";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const EducationContext = createContext();
@@ -56,6 +55,34 @@ export const EducationContextProvider = ({ children }) => {
         setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
         setTimeout(() => { advanceProgress() }, 1000);
     };
+
+    const saveEducationProgress = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@education_progress", jsonValue);
+        } catch (e) {
+            console.log("error storing education_progress", e);
+        }
+    };
+
+    const loadEducationProgress = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@education_progress");
+            if (value !== null) {
+                setEducationProgress(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading education_progress", e);
+        }
+    };
+
+    useEffect(() => {
+        loadEducationProgress();
+    }, []);
+
+    useEffect(() => {
+        saveEducationProgress(educationProgress);
+    }, [educationProgress]);
 
     return (
         <EducationContext.Provider 

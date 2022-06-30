@@ -11,9 +11,10 @@ import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 import { time_zoned_todays_date, formatDate } from "../../../infrastructure/helpers";
 
-export const FoodJournalHomeScreen = ({ navigation }) => {
+export const FoodJournalHomeScreen = ({ navigation, route }) => {
     const { foodJournals } = useContext(FoodJournalContext);
     const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
+    const destination = route ? "Today" : "Journals";
     
     const foodJournalElements = foodJournals?.map((journal) => {
         return (
@@ -28,7 +29,7 @@ export const FoodJournalHomeScreen = ({ navigation }) => {
 
     return(
         <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Food Journal"} />
+            <NavigationBarLeft navigation={navigation} destination={destination} screen={"Food Journal"} />
             <GraphicWrapper>
                 <FoodGraphic />
             </GraphicWrapper>

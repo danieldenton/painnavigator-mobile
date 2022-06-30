@@ -18,6 +18,7 @@ export const Body = styled.Text`
     font-size: 16px;
     line-height: 28px;
     width: 95%;
+    margin-top: 28px;
 `;
 
 export const Bolded = styled.Text`

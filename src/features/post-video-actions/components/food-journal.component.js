@@ -26,7 +26,9 @@ export const FoodJournal = ({ navigation }) => {
             </Wrapper>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate("NewFoodJournal")}
+                    onPress={() => navigation.navigate("NewFoodJournal", {
+                        type: "post_video_action"
+                    })}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>
