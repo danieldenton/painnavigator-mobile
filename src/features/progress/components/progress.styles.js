@@ -11,7 +11,7 @@ export const ProgressScreenWrapper = styled.View`
 export const ProgressTrackWrapper = styled.View`
     flex: 1;
     align-items: flex-start;
-    margin-left: 8px;
+    margin-left: 16px;
 `;
 
 export const ProgressTrackHeader = styled.Text`
