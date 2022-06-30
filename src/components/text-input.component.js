@@ -4,9 +4,7 @@ import { space } from "../infrastructure/theme/spacing";
 import { TextInput as Input } from "react-native-paper";
 
 const BaseInput = styled(Input).attrs({
-    autoCorrect: false
-})`
-`;
+})``;
 
 export const ReviewTextInput = styled(BaseInput).attrs({
     mode: "outlined",
@@ -16,6 +14,7 @@ export const ReviewTextInput = styled(BaseInput).attrs({
     font-family: Inter_400Regular;
     font-size: 16px;
     height: 42px;
+    line-height: 24px;
 `;
 
 export const InputLabel = styled.Text`
@@ -31,6 +30,7 @@ export const AuthTextInput = styled(Input).attrs({
 })`
     font-family: Inter_400Regular;
     font-size: 16px;
+    line-height: 24px;
     height: 42px;
     margin-bottom: 16px;
 `;

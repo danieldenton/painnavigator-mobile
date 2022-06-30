@@ -167,6 +167,34 @@ export const ProfileContextProvider = ({ children }) => {
         saveProfileComplete(profileComplete);
     }, [profileComplete]);
 
+    const saveUserInfo = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+        await AsyncStorage.setItem("@user_info", jsonValue);
+        } catch (e) {
+            console.log("error storing user_info", e);
+        }
+    };
+
+    const loadUserInfo = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@user_info");
+            if (value !== null) {
+                setUserInfo(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading user_info", e);
+        }
+    };
+
+    useEffect(() => {
+        loadUserInfo();
+    }, []);
+
+    useEffect(() => {
+        saveUserInfo(userInfo);
+    }, [userInfo]);
+
     return (
         <ProfileContext.Provider
             value={{

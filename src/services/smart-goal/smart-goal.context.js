@@ -2,7 +2,6 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { AuthTextInput } from "../../components/text-input.component";
 
 export const SmartGoalContext = createContext();
 
