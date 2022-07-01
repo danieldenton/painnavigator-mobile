@@ -1,15 +1,8 @@
 import React, { useContext } from "react";
-import styled from "styled-components/native";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
-import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.component";
-import { ScrollView, View } from "react-native";
-
-const MultiSelectScroll = styled(ScrollView)`
-    flex: .85;
-    margin-right: -16px;
-    padding-right: 16px;
-`;
+import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
+import { View } from "react-native";
 
 export const CognitiveDistortions = () => {
     const { currentPageData, moodJournal, setMoodJournal } = useContext(MoodJournalContext);

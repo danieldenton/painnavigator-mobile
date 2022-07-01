@@ -1,15 +1,8 @@
 import React, { useContext } from "react";
-import styled from "styled-components/native";
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { MultiSelectCheckBox } from "../../../components/multi-select-checkbox.component";
+import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
-import { ScrollView, View } from "react-native";
-
-const MultiSelectScroll = styled(ScrollView)`
-    flex: .85;
-    margin-right: -16px;
-    padding-right: 16px;
-`;
+import { View } from "react-native";
 
 export const CopingStrategies = () => {
     const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);

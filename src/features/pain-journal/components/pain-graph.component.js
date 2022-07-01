@@ -21,7 +21,7 @@ export const PainGraph = () => {
                 grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                 background: { fill: "white" },
                 tickLabels: { color: "blue" }
-              }}
+            }}
             backgroundComponent={<Background y={0} height={275} />}
         >
             <VictoryAxis
@@ -43,7 +43,7 @@ export const PainGraph = () => {
                     tickLabels: { fontFamily: "", fontSize: 12 }
                 }}
             />
-             <VictoryLine
+            <VictoryLine
                 style={{
                     data: { stroke: `${colors.brand.primary}` },
                     labels: { fontSize: 12, color: "#606C81" },

@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { TextInput } from "react-native-paper";
 import { colors } from "../../infrastructure/theme/colors";
 import { space } from "../../infrastructure/theme/spacing";
+import { ScrollView, View } from "react-native";
 
 // TODO: Change to PageContainer
 export const JournalContainer = styled.View`
@@ -100,4 +101,12 @@ export const GraphicWrapper = styled.View`
     align-items: center;
     margin-top: 64px;
     margin-bottom: 32px;
+`;
+
+export const MultiSelectScroll = styled(ScrollView).attrs({
+    showsVerticalScrollIndicator: false
+})`
+    flex: .85;
+    margin-right: -16px;
+    padding-right: 16px;
 `;

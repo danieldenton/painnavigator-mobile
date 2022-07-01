@@ -3,9 +3,14 @@ import styled from "styled-components/native";
 import { colors } from "../infrastructure/theme/colors";
 import { Selected } from "../icons";
 import * as Haptics from 'expo-haptics';
+import { ScrollView } from "react-native";
 
-export const MultiSelectScroll = styled.ScrollView`
-    flex: .75;
+export const MultiSelectScroll = styled(ScrollView).attrs({
+    showsVerticalScrollIndicator: false
+})`
+    flex: .85;
+    margin-right: -16px;
+    padding-right: 16px;
 `;
 
 const CheckBoxPressableArea = styled.Pressable`
