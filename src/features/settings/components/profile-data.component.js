@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { InputQuestion, IntensityQuestion, SelectQuestion } from "../../../components/review-journal-question.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
+import { View } from "react-native";
 
 export const ProfileData = ({ editing }) => {
     const { editProfile, reviewProfile, userInfo, profileComplete, setReviewProfile } = useContext(ProfileContext);
@@ -71,9 +72,9 @@ export const ProfileData = ({ editing }) => {
     });
 
     return (
-        <>
+        <View style={{ marginBottom: editing ? 100 : 0 }}>
             {onboardDataResponses}
             {profileComplete && profileDataResponses}
-        </>
+        </View>
     );
 };

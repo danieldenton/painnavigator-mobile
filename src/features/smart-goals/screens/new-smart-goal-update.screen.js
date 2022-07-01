@@ -23,7 +23,7 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
                 />
                 <JournalQuestion 
                     question={"How is your goal going?"} 
-                    helpText={"What steps have you made to reach your goal? How challanging has it been? As a reminder:"}
+                    helpText={"What steps have you made to reach your goal? How challenging has it been? As a reminder:"}
                 />
                 <GoalTextSection 
                     header={"Your SMART goal is:"} 

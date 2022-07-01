@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, createContext } from "react";
 import { postEducationModule } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const EducationContext = createContext();
 

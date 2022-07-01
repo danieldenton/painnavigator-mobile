@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useState } from "react";
+import { BottomModal } from "../../../components/bottom-sheet/bottom-modal.component";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { ReviewJournalButton } from "../../../components/button.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { Provider } from 'react-native-paper';
+import { ReviewJournalButton } from "../../../components/button.component";
+import { ReviewJournalExitModals } from "../../../components/journals/exit-modals.component";
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
 import { ReviewPainJournalEntry } from "../components/review-pain-journal-entry.component";
 import { SafeView } from "../../../components/safe-area.component";
-import { BottomModal } from "../../../components/bottom-sheet/bottom-modal.component";
-import { ReviewJournalExitModals } from "../../../components/journals/exit-modals.component";
 
 export const ReviewPainJournalScreen = ({ navigation, route }) => {
     const { journal } = route.params;

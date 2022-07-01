@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext, useCallback, useRef, useMemo } from "react";
-import { BottomSheetBackground } from "../../../components/bottom-sheet/background.component";
-import { BottomSheetModal, BottomSheetModalProvider, BottomSheetBackdrop } from '@gorhom/bottom-sheet';
+import React, { useEffect, useState, useContext, useCallback, useRef } from "react";
+import { BottomModal } from "../../../components/bottom-sheet/bottom-modal.component";
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { Provider } from 'react-native-paper';
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
-import { ReviewJournalModal } from "../../../components/review-journal-modal.component";
+import { ReviewJournalButton } from "../../../components/button.component";
 import { ReviewSmartGoal } from "../components/review-smart-goal.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
@@ -42,15 +42,6 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
         setEditing(true);
     };
 
-    const renderBackdrop = useCallback(
-        props => (
-            <BottomSheetBackdrop
-                {...props}
-                disappearsOnIndex={-1}
-                appearsOnIndex={0}
-            />
-    ),[]);
-
     const requestDelete = () => {
         closeModal();
         setShowDeleteModal(true);
@@ -59,8 +50,6 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
     const showModal = useCallback(() => {
         reviewSmartGoalOptions.current?.present();
     }, []);
-
-    const snapPoints = useMemo(() => ['35%'], []);
 
     return (
         <Provider>
@@ -81,23 +70,14 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
                         navigation={navigation} 
                         setEditing={setEditing} 
                     />
-                    <BottomSheetModal
-                        backgroundComponent={props => <BottomSheetBackground {...props} />}
-                        enablePanDownToClose={false}
-                        handleComponent={null}
+                    <BottomModal 
+                        closeModal={closeModal}
+                        destination={"SmartGoalHome"}
+                        editJournal={editGoal}
+                        navigation={navigation}
                         ref={reviewSmartGoalOptions}
-                        snapPoints={snapPoints}
-                        backdropComponent={renderBackdrop}
-                        index={0}
-                    >
-                        <ReviewJournalModal 
-                            closeModal={closeModal}
-                            destination={"SmartGoalHome"}
-                            editJournal={editGoal}
-                            requestDelete={requestDelete} 
-                            navigation={navigation}
-                        />
-                    </BottomSheetModal>
+                        requestDelete={requestDelete}
+                    /> 
                 </SafeView>
             </BottomSheetModalProvider>
             <ExitModal 

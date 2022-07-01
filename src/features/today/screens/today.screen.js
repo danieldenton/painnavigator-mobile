@@ -41,12 +41,12 @@ export const TodayScreen = ({ navigation }) => {
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
-    const last_pain_journal_date = formatDate(painJournals[0]?.attributes.date_time_value);
-    const last_mood_journal_date = formatDate(moodJournals[0]?.attributes.date_time_value);
-    const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
-    const last_smart_goal_update = formatDate(activeGoal?.smart_goal_updates[0]?.date_time_value);
-    const last_education_module_date = lastCompletedModule !== null && formatDate(lastCompletedModule);
-    const last_movement_module_date = lastMovement !== null && formatDate(lastMovement);
+    const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.attributes.date_time_value);
+    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.attributes.date_time_value);
+    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.attributes.date_time_value);
+    const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.smart_goal_updates[activeGoal.smart_goal_updates.count - 1]?.date_time_value);
+    const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
         getUser(setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
@@ -67,7 +67,7 @@ export const TodayScreen = ({ navigation }) => {
 
         if(time_number < 12) {
             setGreeting("Good Morning")
-        } else if(time_number > 12 & time_number < 17) {
+        } else if(time_number > 11 & time_number < 17) {
             setGreeting("Good Afternoon")
         } else {
             setGreeting("Good Evening")
@@ -79,7 +79,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     function renderJournalDailyActivity() {
-        if(last_food_journal_date !== time_zoned_todays_date & last_mood_journal_date !== time_zoned_todays_date & last_pain_journal_date !== time_zoned_todays_date) {
+        if(LAST_FOOD_JOURNAL !== time_zoned_todays_date & LAST_MOOD_JOURNAL !== time_zoned_todays_date & LAST_PAIN_JOURNAL !== time_zoned_todays_date) {
             return <Journals navigation={navigation} />
         };
     };
@@ -87,7 +87,7 @@ export const TodayScreen = ({ navigation }) => {
     function renderSmartGoalDailyActivity() { 
         const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
         if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
-            if(last_smart_goal_update === time_zoned_todays_date) {
+            if(LAST_SMART_GOAL_UPDATE === time_zoned_todays_date) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
             } else {
                 return <SmartGoalUpdate navigation={navigation} />
@@ -105,20 +105,20 @@ export const TodayScreen = ({ navigation }) => {
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
                 {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {last_education_module_date === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={educationProgress - 1} />}
+                {LAST_EDUCATION_MODULE === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={educationProgress - 1} />}
                 {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
                 {!COMPLETED_ALL_MOVEMENT_MODULES && 
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                         <MovementUnitCard navigation={navigation} />
-                        {last_movement_module_date !== time_zoned_todays_date && <LockedModule  />}
+                        {LAST_MOVEMENT_MODULE !== time_zoned_todays_date && <LockedModule  />}
                     </>
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
-                    {last_pain_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {last_mood_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {last_food_journal_date === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
+                    {LAST_PAIN_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
+                    {LAST_MOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
+                    {LAST_FOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderSmartGoalDailyActivity()}
                     {renderJournalDailyActivity()}
