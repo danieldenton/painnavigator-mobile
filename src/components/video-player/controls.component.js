@@ -26,7 +26,7 @@ const SliderSection = styled.View`
 const TimeIndicatorRow = styled.View`
     flex-direction: row;
     justify-content: space-between;
-    margin-top: -16px;
+    margin-top: -14px;
 `;
 
 const TimeTextWrapper = styled.View`
