@@ -6,6 +6,16 @@ import { MovementPlaylist } from "../components/movement-playlist.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
+import styled from "styled-components/native";
+import { colors } from "../../../infrastructure/theme/colors";
+
+const ModuleButtonSection = styled.View`
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 16px;
+    background-color: ${colors.bg.secondary};
+`;
 
 export const MovementPlaylistScreen = ({ navigation, route }) => {
     const { currentModule } = useContext(MovementContext);

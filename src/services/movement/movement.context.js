@@ -21,7 +21,6 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         const module = movementModules.find(module => module.id === movementProgress);
-        setCurrentModule(module);
         setNextModule(movementModules[module.id + 1]);
     }, [movementProgress]);
 
@@ -47,6 +46,8 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
+        const nextModule = movementModules.find(module => module.id === movementProgress);
+        setCurrentModule(nextModule);
         post(module, user.user.uid);
         setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
     };

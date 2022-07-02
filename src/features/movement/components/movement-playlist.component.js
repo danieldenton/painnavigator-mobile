@@ -30,8 +30,8 @@ export const MovementPlaylist = ({ navigation }) => {
     ));
 
     return (
-        <Scroll style={{ marginTop: 16, marginBottom: 120, paddingRight: 16, paddingLeft: 16 }}>
-            <View style={{ marginTop: 1 }}>
+        <Scroll style={{ marginTop: 16, paddingRight: 16, paddingLeft: 16 }}>
+            <View style={{ marginTop: 1, marginBottom: 80 }}>
                 {playlistTiles}
             </View>
         </Scroll>

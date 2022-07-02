@@ -38,7 +38,7 @@ export const get = (
       setEducationProgress(profile.attributes.education_progress.progress);
       setProfileComplete(profile.attributes.profile_status === 1);
       setLastCompletedModule(profile.attributes.education_progress.last_completed_date);
-      setMovementProgress(profile.attributes.movement_progress.progress);
+      //setMovementProgress(profile.attributes.movement_progress.progress);
       setLastMovement(profile.attributes.movement_progress.last_completed_date);
   })
   .catch(resp => console.log(resp))
