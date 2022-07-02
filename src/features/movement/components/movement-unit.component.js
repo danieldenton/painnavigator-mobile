@@ -6,6 +6,7 @@ import { NextUp } from "../../education/components/education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
+import { View } from "react-native";
 
 export const MovementUnit = () => {
     const { allVideosCompleted, completeVideo, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
@@ -56,7 +57,9 @@ export const MovementUnit = () => {
             <VideoInfo />
             {incompleteVideos.length > 1 && <NextUp />}
             <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16 }} >
-                {playlistTiles}
+                <View style={{ marginTop: 1 }}>
+                    {playlistTiles}
+                </View>
             </Scroll>
         </>
     );

@@ -85,6 +85,34 @@ export const EducationContextProvider = ({ children }) => {
         saveEducationProgress(educationProgress);
     }, [educationProgress]);
 
+    const saveCompletedEducationModules = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@completed_education_modules", jsonValue);
+        } catch (e) {
+            console.log("error storing completed_education_modules", e);
+        }
+    };
+
+    const loadCompletedEducationModules = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@completed_education_modules");
+            if (value !== null) {
+                setCompletedEducationModules(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading completed_education_modules", e);
+        }
+    };
+
+    useEffect(() => {
+        loadCompletedEducationModules();
+    }, []);
+
+    useEffect(() => {
+        saveCompletedEducationModules(completedEducationModules);
+    }, [completedEducationModules]);
+
     return (
         <EducationContext.Provider 
             value={{ 

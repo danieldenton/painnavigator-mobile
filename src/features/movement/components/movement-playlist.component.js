@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CompletedPlaylistTile, PlaylistTile } from "./playlist-tile.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 export const MovementPlaylist = ({ navigation }) => {
     const { currentModule, switchVideo } = useContext(MovementContext);
@@ -30,7 +31,9 @@ export const MovementPlaylist = ({ navigation }) => {
 
     return (
         <Scroll style={{ marginTop: 16, marginBottom: 120, paddingRight: 16, paddingLeft: 16 }}>
-            {playlistTiles}
+            <View style={{ marginTop: 1 }}>
+                {playlistTiles}
+            </View>
         </Scroll>
     );
 };
