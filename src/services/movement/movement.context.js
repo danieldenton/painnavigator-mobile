@@ -129,7 +129,9 @@ export const MovementContextProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem("@movement_progress");
             if (value !== null) {
-            setMovementProgress(JSON.parse(value));
+                setMovementProgress(JSON.parse(value));
+            } else {
+                setMovementProgress(movementModules.find(module => module.id === movementProgress));
             }
         } catch (e) {
             console.log("error loading movement_progress", e);
@@ -143,6 +145,90 @@ export const MovementContextProvider = ({ children }) => {
     useEffect(() => {
         saveMovementProgress(movementProgress);
     }, [movementProgress]);
+
+    const saveCurrentModule = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@current_movement_module", jsonValue);
+        } catch (e) {
+            console.log("error storing current_movement_module", e);
+        }
+    };
+
+    const loadCurrentModule = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@current_movement_module");
+            if (value !== null) {
+                setCurrentModule(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading current_movement_module", e);
+        }
+    };
+
+    useEffect(() => {
+        loadCurrentModule();
+    }, []);
+
+    useEffect(() => {
+        saveCurrentModule(currentModule);
+    }, [currentModule]);
+
+    const saveCompletedMovementModules = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@completed_movement_modules", jsonValue);
+        } catch (e) {
+            console.log("error storing completed_movement_modules", e);
+        }
+    };
+
+    const loadCompletedMovementModules = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@completed_movement_modules");
+            if (value !== null) {
+                setCompletedMovementModules(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading completed_movement_modules", e);
+        }
+    };
+
+    useEffect(() => {
+        loadCompletedMovementModules();
+    }, []);
+
+    useEffect(() => {
+        saveCompletedMovementModules(completedMovementModules);
+    }, [completedMovementModules]);
+
+    const saveSkippedMovementModules = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@skipped_movement_modules", jsonValue);
+        } catch (e) {
+            console.log("error storing skipped_movement_modules", e);
+        }
+    };
+
+    const loadSkippedMovementModules = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@skipped_movement_modules");
+            if (value !== null) {
+                setSkippedMovementModules(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading skipped_movement_modules", e);
+        }
+    };
+
+    useEffect(() => {
+        loadSkippedMovementModules();
+    }, []);
+
+    useEffect(() => {
+        saveSkippedMovementModules(skippedMovementModules);
+    }, [skippedMovementModules]);
 
     return (
         <MovementContext.Provider

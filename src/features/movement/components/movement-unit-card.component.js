@@ -81,8 +81,8 @@ export const MovementUnitCard = ({ navigation }) => {
                                     tintColor="#45D2BC" 
                                     lineCap="round"
                                     rotation={360}
-                                    delay={2000}
-                                    duration={3000}
+                                    delay={1000}
+                                    duration={1000}
                                 >
                                     {(fill) => (<MovementModuleIcon />)}
                                 </AnimatedCircularProgress>
