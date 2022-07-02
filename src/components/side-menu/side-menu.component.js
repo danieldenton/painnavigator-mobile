@@ -4,7 +4,7 @@ import { MenuButtons } from "./side-menu-buttons.component";
 import { AltMenuButtons } from "./side-menu-alt-buttons.component";
 import { SafeAreaView, View } from "react-native";
 import { ButtonSection } from "../journals/journal.styles";
-import { LinkWrapper, Link } from "../../features/account/components/terms-and-conditions.component";
+import { LinkWrapper } from "../../features/account/components/terms-and-conditions.component";
 import styled from "styled-components";
 
 const LinkText = styled.Text`

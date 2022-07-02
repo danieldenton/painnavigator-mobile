@@ -23,15 +23,18 @@ export const ProgressTrackHeader = styled.Text`
 `;
 
 export const IncompleteBridge = styled.View`
-    height: 111px;
-    margin-left: 8px;
-    margin-top: 3px;
+    position: absolute;
+    top: -110px;
+    left: 8px;
+    height: 116px;
 `;
 
 export const EducationLineSegmentCompleted = styled.View`
+    position: absolute;
+    top: -115px;
+    left: 15.5px;
     border: 2px #16A28B;
-    height: 111px;
-    margin-left: 15px;
+    height: 116px;
 `;
 
 export const MovementLineSegment = styled.View`
@@ -46,12 +49,18 @@ export const MovementLineSegmentCompleted = styled.View`
     border-right-width: 2px;
     height: 63px;
     width: 2.5px;
-    margin-left: 15.3px;
+    margin-left: 15.4px;
 `;
 
 export const ChapterSection = styled.View`
     flex-direction: row;
     align-items: center;
+`;
+
+export const EducationChapterSection = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 111px;
 `;
 
 export const ChapterText = styled.Text`
