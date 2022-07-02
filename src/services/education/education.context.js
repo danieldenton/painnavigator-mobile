@@ -52,8 +52,14 @@ export const EducationContextProvider = ({ children }) => {
     //};
 
     const skipModule = () => {
-        // postEducationModule(currentModule.id, "skipped");
-        setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
+        const module = {
+            module_id: currentModule.id,
+            status: 1       
+        };
+        postEducationModule(module, setLastCompletedModule, user.user.uid);
+        if(!skippedEducationModules.includes(currentModule.id)){
+            setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
+        };
         setTimeout(() => { advanceProgress() }, 1000);
     };
 
@@ -112,6 +118,34 @@ export const EducationContextProvider = ({ children }) => {
     useEffect(() => {
         saveCompletedEducationModules(completedEducationModules);
     }, [completedEducationModules]);
+
+    const saveSkippedEducationModules = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@skipped_education_modules", jsonValue);
+        } catch (e) {
+            console.log("error storing skipped_education_modules", e);
+        }
+    };
+
+    const loadSkippedEdcuationModules = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@skipped_education_modules");
+            if (value !== null) {
+                setSkippedEducationModules(JSON.parse(value));
+            }
+        } catch (e) {
+            console.log("error loading skipped_education_modules", e);
+        }
+    };
+
+    useEffect(() => {
+        loadSkippedEdcuationModules();
+    }, []);
+
+    useEffect(() => {
+        saveSkippedEducationModules(skippedEducationModules);
+    }, [skippedEducationModules]);
 
     return (
         <EducationContext.Provider 
