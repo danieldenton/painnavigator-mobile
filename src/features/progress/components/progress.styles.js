@@ -38,23 +38,27 @@ export const EducationLineSegmentCompleted = styled.View`
 `;
 
 export const MovementLineSegment = styled.View`
+    position: absolute;
+    top: -61px;
+    left: 8px;
     height: 63px;
-    margin-left: 8px;
-    margin-top: 3px;
 `;
 
 export const MovementLineSegmentCompleted = styled.View`
+    position: absolute;
+    top: -65px;
+    left: 15.5px;
     border: #4056F4 solid;
     border-left-width: 2px;
     border-right-width: 2px;
-    height: 63px;
+    height: 66px;
     width: 2.5px;
-    margin-left: 15.4px;
 `;
 
 export const ChapterSection = styled.View`
     flex-direction: row;
     align-items: center;
+    margin-bottom: 63px;
 `;
 
 export const EducationChapterSection = styled.View`
