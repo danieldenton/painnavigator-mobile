@@ -169,7 +169,6 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         loadCurrentModule();
-        console.log(JSON.stringify(currentModule))
     }, []);
 
     useEffect(() => {
