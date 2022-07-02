@@ -23,8 +23,32 @@ const SliderSection = styled.View`
     margin-right: 12px;
 `;
 
+const TimeIndicatorRow = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -16px;
+`;
+
+const TimeTextWrapper = styled.View`
+`;
+
+const TimeText = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 11px;
+    line-height: 24px;
+    color: #27374E;
+`;
+
 export const VideoControlBar = forwardRef((props, ref) => {
     const { status } = props;
+
+    function millisecondsToHuman(duration) {
+        const seconds = Math.floor((duration / 1000) % 60);
+        const minutes = Math.floor((duration / 1000 / 60) % 60);
+        const formattedSeconds = seconds < 10 ? "0"+seconds : seconds;
+      
+        return minutes+":"+formattedSeconds;
+    };
 
     const showFullscreen = () => {
         ref.current.presentFullscreenPlayer();
@@ -51,8 +75,21 @@ export const VideoControlBar = forwardRef((props, ref) => {
                         ref.current.setStatusAsync({ positionMillis: Number(change) });
                         ref.current.playAsync()
                     }}
+                    trackStyle={{ height: 2 }}
                     //onValueChange={change => ref.current.setStatusAsync({ positionMillis: Number(change) })}
                 />
+                <TimeIndicatorRow>
+                    <TimeTextWrapper>
+                        <TimeText>
+                            {millisecondsToHuman(status.positionMillis)}
+                        </TimeText>
+                    </TimeTextWrapper>
+                    <TimeTextWrapper>
+                        <TimeText>
+                            {millisecondsToHuman(status.durationMillis)}
+                        </TimeText>
+                    </TimeTextWrapper>
+                </TimeIndicatorRow>
             </SliderSection>
             <VideoPressable 
                 onPress={showFullscreen}

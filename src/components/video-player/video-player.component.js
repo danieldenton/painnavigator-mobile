@@ -24,7 +24,7 @@ export const VideoPlayer = forwardRef((props, ref) => {
             <VideoWrapper style={{ height: height}}>
                 <VideoScreen
                     source={{ uri: source}}
-                    useNativeControls={false}
+                    useNativeControls={true}
                     ref={ref}
                     resizeMode="contain"
                     shouldPlay={true}
