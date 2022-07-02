@@ -13,10 +13,10 @@ const Body = styled.Text`
     line-height: 20px;
 `;
 
-const LinkWrapper = styled.Pressable`
+export const LinkWrapper = styled.Pressable`
 `;
 
-const Link = styled.Text`
+export const Link = styled.Text`
     color: #4056F4;
     font-family: Inter_700Bold;
     font-size: 14px;
@@ -31,10 +31,9 @@ export const TermsAndConditions = ({ navigation }) => {
             </Body>
             <LinkWrapper style={{ marginRight: 4 }}
                 onPress={() => navigation.navigate("Terms")}
+                accessibilityLabel={"terms-and-conditions-link"}
             >
-                <Link
-                    accessibilityLabel={"terms-and-conditions-link"}
-                >
+                <Link>
                     Terms and Conditions
                 </Link>
             </LinkWrapper>
@@ -43,10 +42,9 @@ export const TermsAndConditions = ({ navigation }) => {
             </Body>
             <LinkWrapper style={{ marginLeft: 4 }}
                 onPress={() => navigation.navigate("Privacy")}
+                accessibilityLabel={"privacy-policy-link"}
             >
-                <Link
-                    accessibilityLabel={"privacy-policy-link"}
-                >
+                <Link>
                     Privacy Policy
                 </Link>
             </LinkWrapper>

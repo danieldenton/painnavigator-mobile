@@ -8,7 +8,7 @@ export const Privacy = ({ navigation }) => {
     return (
         <SafeArea>
             <View style={{ marginLeft: 16, marginRight: 16 }}>
-                <ModalNavBar navigation={navigation} screen={"Terms of Use"} />
+                <ModalNavBar navigation={navigation} screen={"Privacy Policy"} />
             </View>
             <WebView 
                 source={{ uri: "https://www.navigatemypain.com/privacy-policy" }} 
