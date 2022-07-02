@@ -1,14 +1,16 @@
 import React from "react";
 import { colors } from "../../../infrastructure/theme/colors";
-import { VictoryAxis, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
+import { VictoryAxis, VictoryZoomContainer, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
 import styled from "styled-components/native";
+import { View, Text } from "react-native";
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
     margin-top: 16px;
 `;
 
-export const PainGraph = () => {
+export const PainGraph = ({ currentMonthData, graphData, graphLine }) => {
+
     return (
         <GraphWrapper>
             <VictoryChart
@@ -28,6 +30,7 @@ export const PainGraph = () => {
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
+                    tickValues={["Jul", "Aug", "Sep"]}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}
@@ -48,12 +51,7 @@ export const PainGraph = () => {
                         labels: { fontSize: 12, color: "#606C81" },
                         parent: { border: "2px solid #ccc"}
                     }}
-                    data={[
-                        { x: "Feb", y: 10 },
-                        { x: "Mar", y: 7 },
-                        { x: "Apr", y: 8 },
-                        { x: "Jun", y: 2 }
-                    ]}
+                    data={graphLine}
                 />
                 <VictoryScatter
                     style={{
@@ -61,9 +59,7 @@ export const PainGraph = () => {
                         data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={[
-                        { x: "Jun", y: 2 }
-                    ]}
+                    data={currentMonthData}
                     size={6}
                 />
                 <VictoryScatter
@@ -71,11 +67,7 @@ export const PainGraph = () => {
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={[
-                        { x: "Feb", y: 10 },
-                        { x: "Mar", y: 7 },
-                        { x: "Apr", y: 8 },
-                    ]}
+                    data={graphData}
                     size={6}
                 />
             </VictoryChart>
