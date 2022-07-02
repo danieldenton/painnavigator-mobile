@@ -7,7 +7,6 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
-import format from "date-fns/format";
 
 export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
@@ -31,13 +30,6 @@ export const PainJournalHomeScreen = ({ navigation }) => {
         "Aug": "5",
         "Sep": "4"
     };
-
-    const oldData = [
-        { x: "Feb", y: 10 },
-        { x: "Mar", y: 7 },
-        { x: "Apr", y: 8 },
-        { x: "Jun", y: 2 }
-    ];
 
     useEffect(() => {
         const painDataArray = [];
