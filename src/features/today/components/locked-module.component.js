@@ -44,8 +44,8 @@ const CardIconSection = styled.View`
 `;
 
 export const LockedModule = () => {
-    const { nextModule } = useContext(MovementContext);
-    const { name, length } = nextModule;
+    const { nextModule, getPlaylistLength } = useContext(MovementContext);
+    const { name, videos } = nextModule;
 
     return (
         <LockedCard>
@@ -54,7 +54,7 @@ export const LockedModule = () => {
                     <CardHeader>
                         {name}
                     </CardHeader>
-                    <CardSubHeader>5 MIN</CardSubHeader>
+                    <CardSubHeader>{getPlaylistLength(videos)} MIN</CardSubHeader>
                 </CardTextSection>
                 <CardIconSection>
                     <Locked />
