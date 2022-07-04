@@ -81,12 +81,12 @@ export const VideoControlBar = forwardRef((props, ref) => {
                 <TimeIndicatorRow>
                     <TimeTextWrapper>
                         <TimeText>
-                            {millisecondsToHuman(status.positionMillis)}
+                            {isNaN(status.positionMillis) ? "0:00" : millisecondsToHuman(status.positionMillis)}
                         </TimeText>
                     </TimeTextWrapper>
                     <TimeTextWrapper>
                         <TimeText>
-                            {millisecondsToHuman(status.durationMillis)}
+                            {isNaN(status.positionMillis) ? "0:00" : millisecondsToHuman(status.durationMillis)}
                         </TimeText>
                     </TimeTextWrapper>
                 </TimeIndicatorRow>

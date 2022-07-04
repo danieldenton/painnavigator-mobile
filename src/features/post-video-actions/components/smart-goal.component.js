@@ -12,21 +12,21 @@ export const SmartGoal = ({ navigation }) => {
                     <GoalGraphic />
                 </GraphicWrapper>
                 <Header>Let’s Make Your SMART Goal!</Header>
-                <Body>Remember, SMART goals are:</Body>
+                <Body style={{ marginTop: 0 }}>Remember, SMART goals are:</Body>
                 <BodyLine>
-                    <Bolded>S</Bolded><Body>pecific</Body>
+                    <Bolded>S</Bolded><Body style={{ marginTop: 0 }}>pecific</Body>
                 </BodyLine>
                 <BodyLine>
-                    <Bolded>M</Bolded><Body>easurable</Body>
+                    <Bolded>M</Bolded><Body style={{ marginTop: 0 }}>easurable</Body>
                 </BodyLine>
                 <BodyLine>
-                    <Bolded>A</Bolded><Body>chievable</Body>
+                    <Bolded>A</Bolded><Body style={{ marginTop: 0 }}>chievable</Body>
                 </BodyLine>
                 <BodyLine>
-                    <Bolded>R</Bolded><Body>elevant</Body>
+                    <Bolded>R</Bolded><Body style={{ marginTop: 0 }}>elevant</Body>
                 </BodyLine>
                 <BodyLine>
-                    <Bolded>T</Bolded><Body>ime-based</Body>
+                    <Bolded>T</Bolded><Body style={{ marginTop: 0 }}>ime-based</Body>
                 </BodyLine>
             </Wrapper>
             <ButtonSection>
