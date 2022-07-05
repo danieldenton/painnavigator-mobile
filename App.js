@@ -2,6 +2,13 @@ import React from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
+import * as Sentry from 'sentry-expo';
+
+Sentry.init({
+  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+  enableInExpoDevelopment: true,
+  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+});
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
