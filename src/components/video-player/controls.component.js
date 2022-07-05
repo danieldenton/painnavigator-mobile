@@ -91,7 +91,7 @@ export const VideoControlBar = forwardRef((props, ref) => {
                     </TimeTextWrapper>
                 </TimeIndicatorRow>
             </SliderSection>
-            {type === "video" && 
+            {type !== "audio" && 
                 <VideoPressable 
                     onPress={showFullscreen}
                     style={{ marginRight: -6 }}
