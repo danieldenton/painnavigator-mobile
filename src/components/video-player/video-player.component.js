@@ -15,9 +15,9 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = forwardRef((props, ref) => {
-    const { source, status, setStatus } = props;
+    const { source, status, setStatus, type } = props;
     const window = useWindowDimensions();
-    const height = window.width / 1280 * 720;
+    const height = type === "audio" ? 0 : window.width / 1280 * 720;
 
     return (
         <>
@@ -31,7 +31,7 @@ export const VideoPlayer = forwardRef((props, ref) => {
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />
             </VideoWrapper>
-            <VideoControlBar status={status} ref={ref} />
+            <VideoControlBar status={status} ref={ref} type={type} />
         </>
     );
 });

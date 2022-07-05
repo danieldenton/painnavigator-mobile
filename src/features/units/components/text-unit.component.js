@@ -1,7 +1,7 @@
 import React from "react";
 import { EducationUnitInfo } from "../../education/components/education-unit-info.component";
 import { Scroll } from "../../../components/scroll.component";
-import { BulletList } from "../../../components/accordion/bullet-list.component";
+import { BulletList } from "../../../components/bullet-list.component";
 import styled from "styled-components/native";
 
 const GraphicWrapper = styled.View`

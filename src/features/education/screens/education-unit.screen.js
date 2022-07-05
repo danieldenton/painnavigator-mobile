@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";
 import { EducationContext } from "../../../services/education/education.context";
@@ -25,6 +26,8 @@ export const EducationUnitScreen = ({ navigation }) => {
         <SafeView>
             {type === "video" && <NavigationBarLeft screen={"Education"} destination={"Today"} navigation={navigation} />}
             {type === "video" && <VideoUnit />}
+            {type === "audio" && <TextModuleNavBar screen={"Education"} destination={"Today"} navigation={navigation} id={id} />}
+            {type === "audio" && <AudioUnit unit={currentModule} />}
             {type === "text" && <TextModuleNavBar screen={"Education"} destination={"Today"} navigation={navigation} id={id} />}
             {type === "text" && <TextUnit />}
             <ButtonSection>

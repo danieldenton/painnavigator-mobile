@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitInfo } from "./education-unit-info.component";
 import { Scroll } from "../../../components/scroll.component";
-import { BulletList } from "../../../components/accordion/bullet-list.component";
+import { BulletList } from "../../../components/bullet-list.component";
 import { View } from "react-native";
 import styled from "styled-components/native";
 

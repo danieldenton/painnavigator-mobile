@@ -40,7 +40,7 @@ const TimeText = styled.Text`
 `;
 
 export const VideoControlBar = forwardRef((props, ref) => {
-    const { status } = props;
+    const { status, type } = props;
 
     function millisecondsToHuman(duration) {
         const seconds = Math.floor((duration / 1000) % 60);
@@ -91,12 +91,14 @@ export const VideoControlBar = forwardRef((props, ref) => {
                     </TimeTextWrapper>
                 </TimeIndicatorRow>
             </SliderSection>
-            <VideoPressable 
-                onPress={showFullscreen}
-                style={{ marginRight: -6 }}
-            >
-                <FullScreenButton />
-            </VideoPressable>
+            {type === "video" && 
+                <VideoPressable 
+                    onPress={showFullscreen}
+                    style={{ marginRight: -6 }}
+                >
+                    <FullScreenButton />
+                </VideoPressable>
+            }
         </VideoControls>
     );
 });

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
-import { EducationUnitInfo } from "../../education/components/education-unit-info.component";
 import { useKeepAwake } from 'expo-keep-awake';
+import { Header, TitleSection, ModuleTypeTitle, UnitTitle, Summary } from "../../education/components/education-unit.styles";
 
-export const VideoUnit = ({ unit }) => {
-    const { source, id, name, summary, type } = unit;
+export const AudioUnit = ({ unit }) => {
+    const { source, name, summary, type } = unit;
     const [status, setStatus] = useState({});
     const replayUnit = useRef(null);
 
@@ -12,10 +12,21 @@ export const VideoUnit = ({ unit }) => {
         replayUnit.current.setStatusAsync({ positionMillis: 0 });
     }, [status.didJustFinish]);
 
-    type === "audio" && useKeepAwake();
+    useKeepAwake();
 
     return (
         <>
+            <ModuleTypeTitle>EDUCATION{type === "audio" && ": AUDIO MODULE"}</ModuleTypeTitle>
+            <Header>
+                <TitleSection>
+                    <UnitTitle>
+                        {name}
+                    </UnitTitle>
+                </TitleSection>
+            </Header>
+            <Summary>
+                {summary} 
+            </Summary>
             <VideoPlayer 
                 ref={replayUnit}
                 source={source}
@@ -23,7 +34,6 @@ export const VideoUnit = ({ unit }) => {
                 setStatus={setStatus}
                 type={type}
             /> 
-            <EducationUnitInfo id={id} name={name} summary={summary} type={type} />
         </>
     );
 };

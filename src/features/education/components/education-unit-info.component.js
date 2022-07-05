@@ -5,14 +5,14 @@ import { Header, TitleSection, BookmarkSection, ModuleTypeTitle, UnitTitle, Summ
 export const EducationUnitInfo = ({ id, name, summary, type }) => {
     return(
         <>
-            <ModuleTypeTitle>EDUCATION</ModuleTypeTitle>
+            <ModuleTypeTitle>EDUCATION{type === "audio" && ": AUDIO MODULE"}</ModuleTypeTitle>
             <Header>
                 <TitleSection>
                     <UnitTitle>
                         {name}
                     </UnitTitle>
                 </TitleSection>
-                {type ==="video" && <BookmarkSection>
+                {type === "video" && <BookmarkSection>
                     <Bookmark id={id} />
                 </BookmarkSection>}
             </Header>
