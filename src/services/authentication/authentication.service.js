@@ -32,7 +32,6 @@ export const get = (
   axios.get(`${API_URL}/api/v1/users/${uid}`)
   .then( resp => {
       const profile = resp.data.data;
-      //console.log(profile);
       setUserInfo(profile.attributes.profile);
       setMessages(profile.attributes.conversation);
       setEducationProgress(profile.attributes.education_progress.progress);

@@ -6,7 +6,8 @@ export const postEducationModule = (module, setLastCompletedModule, uid) => {
     .then((response) => {
         const moduleData = response.data.data;
         setLastCompletedModule(moduleData.attributes.date_time_value);
-    });
+    })
+    .catch(resp => console.log(resp));
 };
 
 // TODO: add patchEducationModule function to update status of skipped modules after watching
