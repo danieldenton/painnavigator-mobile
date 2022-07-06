@@ -9,8 +9,8 @@ export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(1);
-    const [moduleComplete, setModuleComplete] = useState(false);
     const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
+    const [moduleComplete, setModuleComplete] = useState(false);
     const [currentVideo, setCurrentVideo] = useState();
     const [completedVideos, setCompletedVideos] = useState(0);
     const [nextModule, setNextModule] = useState(movementModules[movementProgress + 1]);
@@ -20,9 +20,11 @@ export const MovementContextProvider = ({ children }) => {
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const module = movementModules.find(module => module.id === movementProgress);
-        setNextModule(movementModules[module.id + 1]);
-    }, [movementProgress]);
+        //const module = movementModules.find(module => module.id === movementProgress);
+        //setCurrentModule(module);
+        console.log('movement progress =>', movementProgress);
+        console.log('current movement =>', JSON.stringify(currentModule));
+    }, [currentModule]);
 
     useEffect(() => {
         const allVideosCompleted = Object.values(currentModule.videos).every(
@@ -46,7 +48,7 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        const nextModule = movementModules.find(module => module.id === movementProgress);
+        const nextModule = movementModules.find(module => module.id === movementProgress + 1);
         setCurrentModule(nextModule);
         post(module, user.user.uid);
         setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
@@ -131,8 +133,6 @@ export const MovementContextProvider = ({ children }) => {
             const value = await AsyncStorage.getItem("@movement_progress");
             if (value !== null) {
                 setMovementProgress(JSON.parse(value));
-            } else {
-                setMovementProgress(movementModules.find(module => module.id === movementProgress));
             }
         } catch (e) {
             console.log("error loading movement_progress", e);
@@ -234,8 +234,8 @@ export const MovementContextProvider = ({ children }) => {
     return (
         <MovementContext.Provider
             value={{
-                allVideosCompleted: completedVideos === currentModule.videos.length - 1,
                 completeVideo,
+                completedVideos,
                 completedMovementModules,
                 completeSkippedUnit,
                 currentModule,

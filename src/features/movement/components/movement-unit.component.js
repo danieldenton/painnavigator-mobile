@@ -9,7 +9,7 @@ import { SkipButton } from "./skip-button.component";
 import { View } from "react-native";
 
 export const MovementUnit = () => {
-    const { allVideosCompleted, completeVideo, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
+    const { completeVideo, completedVideos, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
     const { source } = currentVideo;
     const [status, setStatus] = useState({});
     const movementVideo = useRef(null);
@@ -26,6 +26,7 @@ export const MovementUnit = () => {
     ));
 
     function resetVideo() {
+        const allVideosCompleted = completedVideos === currentModule.videos.length - 1;
         if(!allVideosCompleted) {
             movementVideo.current.setStatusAsync({ positionMillis: 0 });
         };
