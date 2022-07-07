@@ -44,7 +44,7 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.attributes.date_time_value);
     const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.attributes.date_time_value);
     const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.attributes.date_time_value);
-    const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.smart_goal_updates[activeGoal.smart_goal_updates.count - 1]?.date_time_value);
+    const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
@@ -111,7 +111,6 @@ export const TodayScreen = ({ navigation }) => {
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                         <MovementUnitCard navigation={navigation} />
-                        {LAST_MOVEMENT_MODULE !== time_zoned_todays_date && <LockedModule  />}
                     </>
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />

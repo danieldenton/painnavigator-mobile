@@ -12,9 +12,9 @@ import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
 import format from 'date-fns/format';
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
-    const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, date_time_value, smart_goal_updates: activeUpdates } = goal;
+    const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, date_time_value, goal_updates: activeUpdates } = goal;
     const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
-    const { goal: editingGoal, steps: editSteps, reward: editReward, smart_goal_updates: editUpdates } = reviewGoal;
+    const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
     
     const updates = editing ? editUpdates : activeUpdates;
     
@@ -71,7 +71,7 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                 }
                 <UpdateWrapper>
                     <ScrollView style={{ marginBottom: 8 }}>
-                        {updateElements.reverse()}
+                        {updateElements}
                     </ScrollView>
                 </UpdateWrapper>
             </KeyboardView>

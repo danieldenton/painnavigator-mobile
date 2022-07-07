@@ -8,7 +8,7 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { HeaderBar, NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
-export const ProfileSetup = ({ navigation }) => {
+export const ProfileSetupScreen = ({ navigation }) => {
     const { completeOnboarding, onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(ProfileContext);
 
     return(

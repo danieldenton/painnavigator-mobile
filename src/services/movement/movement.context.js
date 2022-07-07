@@ -13,7 +13,6 @@ export const MovementContextProvider = ({ children }) => {
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentVideo, setCurrentVideo] = useState();
     const [completedVideos, setCompletedVideos] = useState(0);
-    const [nextModule, setNextModule] = useState(movementModules[movementProgress + 1]);
     const [completedMovementModules, setCompletedMovementModules] = useState([]);
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
     const [lastMovement, setLastMovement] = useState(null);
@@ -244,7 +243,6 @@ export const MovementContextProvider = ({ children }) => {
                 lastMovement,
                 moduleComplete,
                 movementProgress,
-                nextModule,
                 resetModule,
                 setMovementProgress,
                 setLastMovement,
