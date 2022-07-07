@@ -6,7 +6,7 @@ import { ProgramPaceGoal } from "../components/program-pace-goal.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
-import { HeaderBar, NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component"; 
 
 export const ProfileSetupScreen = ({ navigation }) => {
