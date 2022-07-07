@@ -14,11 +14,12 @@ export const ProfileSetupScreen = ({ navigation }) => {
 
     return(
         <SafeView>
-            {onboardStep === 1 ? 
-                <HeaderBar screen={"Sign Up"} /> 
-                : 
-                <NavigationBarLeft navigation={navigation} screen={"Sign Up"} previousPage={previousOnboardingStep} />
-            }
+            <NavigationBarLeft 
+                destination={"Onboard"} 
+                navigation={navigation} 
+                screen={"Sign Up"} 
+                previousPage={onboardStep >  1 ? previousOnboardingStep : null} 
+            />
             {onboardStep === 1 && <AvgPainPreStart /> }
             {onboardStep === 2 && <Commitment />}
             {onboardStep === 3 && <ProgramPaceGoal />}
