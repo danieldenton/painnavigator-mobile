@@ -19,13 +19,6 @@ export const MovementContextProvider = ({ children }) => {
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        //const module = movementModules.find(module => module.id === movementProgress);
-        //setCurrentModule(module);
-        console.log('movement progress =>', movementProgress);
-        console.log('current movement =>', JSON.stringify(currentModule));
-    }, [currentModule]);
-
-    useEffect(() => {
         const allVideosCompleted = Object.values(currentModule.videos).every(
             value => value.completed === true
         );

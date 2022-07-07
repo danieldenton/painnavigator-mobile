@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
-import { ProfileContext } from "../../../services/profile/profile-context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
-import { Commitment } from "./commitment.component";
+import { Commitment } from "../components/commitment.component";
 import { ProgramPaceGoal } from "../components/program-pace-goal.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { HeaderBar, NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { SafeView } from "../../../components/safe-area.component"; 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { completeOnboarding, onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(ProfileContext);
+    const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
 
     return(
-        <>
+        <SafeView>
             {onboardStep === 1 ? 
                 <HeaderBar screen={"Sign Up"} /> 
                 : 
@@ -24,18 +25,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
-                    onPress={() => {
-                        {   onboardStep === 3 ? 
-                            (
-                                completeOnboarding()
-                            )
-                            :
-                            nextOnboardingStep()
-                        }
-                    }} 
+                    onPress={() => {onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()}} 
                 />
                 <ProgressDots progress={onboardStep} total={3} />
             </ButtonSection>
-        </>
+        </SafeView>
     );
 };

@@ -12,6 +12,22 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
+    const [onboardStep, setOnboardStep] = useState(1);
+    const [onboardingData, setOnboardingData] = useState({
+        first_name: "", 
+        last_name: "", 
+        email: "",
+        starting_pain_score: 5,
+        pace: 1,
+        commitment: 5
+    });
+
+    const changeOnboardEntry = (change, state) => {
+        setOnboardingData(journal => ({
+            ...journal,
+            [state]: change
+        }));
+    };
     
     const onLogin = (email, password) => {
         setUserLoading(true);
@@ -28,7 +44,9 @@ export const AuthenticationContextProvider = ({ children }) => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
 
-    const onRegister = (first_name, last_name, email, password, repeatedPassword) => {
+    const onRegister = (password, repeatedPassword) => {
+        const { first_name, last_name, email } = onboardingData;
+        
         if(!first_name || !last_name) {
             setError("Error: Please provide your name");
             return;
@@ -45,7 +63,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
                 setUser(u);
-                postUser(u.user.uid, first_name, last_name, email);
+                postUser(u.user.uid, onboardingData);
             }).catch((e) => {
                 // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
                 setError(e.toString());
@@ -65,6 +83,14 @@ export const AuthenticationContextProvider = ({ children }) => {
         } catch (e) {
           console.log("error storing user", e);
         }
+    };
+
+    const nextOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
+    };
+
+    const previousOnboardingStep = () => {
+        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
     };
 
     const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement) => {
@@ -93,13 +119,18 @@ export const AuthenticationContextProvider = ({ children }) => {
     return (
         <AuthenticationContext.Provider
             value={{
+                changeOnboardEntry,
                 currentQuestion,
                 error,
                 getUser,
                 isAuthenticated: !!user,
+                nextOnboardingStep,
                 nextQuestion,
+                onboardStep,
                 onLogin,
                 onRegister,
+                onboardingData,
+                previousOnboardingStep,
                 user,
                 userLoading,
                 setCurrentQuestion,

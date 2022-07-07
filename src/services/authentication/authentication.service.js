@@ -6,15 +6,13 @@ import { API_URL } from "@env"
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-export const postUser = async (uid, first_name, last_name, email) => {
-  const response = await axios.post(`${API_URL}/api/v1/users`, { 
-    user: {
-      uid: uid, 
-      first_name: first_name,
-      last_name: last_name,
-      email: email
-    } 
-});
+export const postUser = async (uid, onboardingData) => {
+  const userData = {
+    uid: uid,
+    ...onboardingData
+  };
+  const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData }
+);
   return response;
 };
 
@@ -23,7 +21,6 @@ export const get = (
   setUserInfo, 
   setMessages, 
   setEducationProgress, 
-  setOnboardingComplete, 
   setProfileComplete, 
   setLastCompletedModule,
   setMovementProgress,

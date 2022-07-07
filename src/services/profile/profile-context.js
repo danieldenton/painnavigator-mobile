@@ -10,13 +10,6 @@ export const ProfileContextProvider = ({ children }) => {
     // userInfo set for testing
     const [userInfo, setUserInfo] = useState({});
     const [reviewProfile, setReviewProfile] = useState({});
-    const [onboardStep, setOnboardStep] = useState(1);
-    const [onboardingData, setOnboardingData] = useState({
-        starting_pain_score: 5,
-        pace: 1,
-        commitment: 5
-    });
-    const [onboardingComplete, setOnboardingComplete] = useState(false);
     const [profileData, setProfileData] = useState({
         phone: "",
         dob: "",
@@ -41,22 +34,6 @@ export const ProfileContextProvider = ({ children }) => {
         updateProfile(user.user.uid, profile);
         setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
-    
-    const completeOnboarding = () => {
-        const onboardData = {
-            ...onboardingData,
-            onboard_status: 1
-        };
-        updateProfile(user.user.uid, onboardData);
-        setOnboardingComplete(true);
-    };
-
-    const changeOnboardEntry = (change, state) => {
-        setOnboardingData(journal => ({
-            ...journal,
-            [state]: change
-        }));
-    };
 
     const changeProfileEntry = (change, state) => {
         setProfileData(journal => ({
@@ -74,17 +51,8 @@ export const ProfileContextProvider = ({ children }) => {
         ));
         setChanges(change);
     };
-
-    const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
-    };
-
     const nextProfileStep = () => {
         setProfileStep((prevPage) => { return ( prevPage + 1 ) });
-    };
-
-    const previousOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
     };
 
     const previousProfileStep = () => {
@@ -108,36 +76,8 @@ export const ProfileContextProvider = ({ children }) => {
     }
 
     const updateProfile = (userId, data) => {
-        patchUser(userId, data, setUserInfo, setOnboardingComplete, setProfileComplete);
+        patchUser(userId, data, setUserInfo, setProfileComplete);
     };
-
-    const saveOnboardStatus = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem("@onboard_status", jsonValue);
-        } catch (e) {
-          console.log("error storing onboard_status", e);
-        }
-    };
-
-    const loadOnboardStatus = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@onboard_status");
-            if (value !== null) {
-                setOnboardingComplete(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading onboard_status", e);
-        }
-    };
-
-    useEffect(() => {
-        loadOnboardStatus();
-    }, []);
-    
-    useEffect(() => {
-        saveOnboardStatus(onboardingComplete);
-    }, [onboardingComplete]);
 
     const saveProfileComplete = async (value) => {
         try {
@@ -200,17 +140,10 @@ export const ProfileContextProvider = ({ children }) => {
             value={{
                 cancelEdits,
                 changes,
-                changeOnboardEntry,
                 changeProfileEntry,
-                completeOnboarding,
                 completeProfile,
                 editProfile,
-                nextOnboardingStep,
                 nextProfileStep,
-                onboardingData,
-                onboardStep,
-                onboardingComplete,
-                previousOnboardingStep,
                 previousProfileStep,
                 profileComplete,
                 profileData,
@@ -220,7 +153,6 @@ export const ProfileContextProvider = ({ children }) => {
                 saveEdits,
                 setReviewProfile,
                 setUserInfo,
-                setOnboardStep,
                 setProfileComplete,
                 updateProfile,
                 userInfo

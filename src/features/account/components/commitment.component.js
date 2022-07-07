@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { IntensitySlider } from "../../../components/slider.component";
-import { ProfileContext } from "../../../services/profile/profile-context";
 import { JournalQuestion } from "../../../components/journal-question.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const Commitment = () => {
-    const { onboardingData, changeOnboardEntry } = useContext(ProfileContext);
+    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { commitment } = onboardingData;
 
     return (

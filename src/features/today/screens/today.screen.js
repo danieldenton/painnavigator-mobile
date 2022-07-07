@@ -26,7 +26,7 @@ import { formatDate } from "../../../infrastructure/helpers";
 
 export const TodayScreen = ({ navigation }) => {
     const { getUser, user } = useContext(AuthenticationContext);
-    const { userInfo, profileComplete, setUserInfo, setOnboardingComplete, setProfileComplete } = useContext(ProfileContext);
+    const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals } = useContext(PainJournalContext);
     const { moodJournals } = useContext(MoodJournalContext);
@@ -49,7 +49,7 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
-        getUser(setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
+        getUser(setUserInfo, setMessages, setEducationProgress, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
     }, []);
     
     //TODO: move this to a helper file

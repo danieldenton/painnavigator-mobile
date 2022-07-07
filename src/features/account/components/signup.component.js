@@ -5,17 +5,14 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
 import { TermsAndConditions } from "./terms-and-conditions.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { ActivityIndicator } from 'react-native-paper';
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
 export const Signup = ({ navigation }) => {
-    const [first_name, setFirstName] = useState("");
-    const [last_name, setLastName] = useState("");
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
-    const { onRegister, error, userLoading } = useContext(AuthenticationContext);
+    const { onboardingData, changeOnboardEntry, onRegister, error } = useContext(AuthenticationContext);
+    const { first_name, last_name, email } = onboardingData;
 
     return(
         <>
@@ -27,14 +24,14 @@ export const Signup = ({ navigation }) => {
                     accessibilityLabel={"first-name-input"}
                     value={first_name}
                     textContentType="name"
-                    onChangeText={(first) => setFirstName(first)}
+                    onChangeText={(first) => changeOnboardEntry(first, "first_name")}
                 />
                 <InputLabel>Last Name</InputLabel>
                 <AuthTextInput
                     accessibilityLabel={"last-name-input"}
                     value={last_name}
                     textContentType="name"
-                    onChangeText={(last) => setLastName(last)}
+                    onChangeText={(last) => changeOnboardEntry(last, "last_name")}
                 />
                 <InputLabel>Email</InputLabel>
                 <AuthTextInput
@@ -43,7 +40,7 @@ export const Signup = ({ navigation }) => {
                     textContentType="emailAddress"
                     keyboardType="email-address"
                     autoCapitalize="none"
-                    onChangeText={(u) => setEmail(u)}
+                    onChangeText={(u) => changeOnboardEntry(u, "email")}
                 />
                 <InputLabel>Password</InputLabel>
                 <AuthTextInput
@@ -68,10 +65,9 @@ export const Signup = ({ navigation }) => {
             </KeyboardAwareScrollView>
             <ButtonSection>
                 <JournalButton 
-                    icon={userLoading && <ActivityIndicator animating={true} color={"red"} />}
                     accessibilityLabel={"create-account-button"}
                     title={"Create Account"} 
-                    onPress={() => onRegister(first_name, last_name, email, password, repeatedPassword)} 
+                    onPress={() => onRegister(password, repeatedPassword)} 
                 />
                 <SignUpOptions />
                 <TermsAndConditions navigation={navigation} />

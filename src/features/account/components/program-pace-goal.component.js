@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { PaceSlider } from "../../../components/slider.component";
-import { ProfileContext } from "../../../services/profile/profile-context";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { PaceSelectionIndicator, PaceSelectionInfo, ProjectedEndDate } from "./pace.styles";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const ProgramPaceGoal = () => {
-    const { onboardingData, changeOnboardEntry } = useContext(ProfileContext);
+    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { pace } = onboardingData;
 
     return(
