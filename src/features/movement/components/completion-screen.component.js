@@ -34,7 +34,12 @@ export const CompletionScreen = ({ navigation }) => {
             </GraphicWrapper>
             <CongratulationsSection>
                 <CongratulationsHeader>Congratulations!</CongratulationsHeader>
-                <CongratulationsMessage>You completed your first movement unit! You’re on your way to mastering new skills and redefining your relationship with pain. </CongratulationsMessage>
+                <CongratulationsMessage>
+                    You completed a movement unit! 
+                    You’re on your way to mastering 
+                    new skills and redefining your 
+                    relationship with pain. 
+                </CongratulationsMessage>
             </CongratulationsSection>
             <ButtonSection>
                 <ModuleButton 
