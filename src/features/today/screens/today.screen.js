@@ -23,6 +23,7 @@ import * as Localization from 'expo-localization';
 import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
 import { formatDate } from "../../../infrastructure/helpers";
+import { useIsFocused } from '@react-navigation/native';
 
 export const TodayScreen = ({ navigation }) => {
     const { getUser, user } = useContext(AuthenticationContext);
@@ -35,6 +36,8 @@ export const TodayScreen = ({ navigation }) => {
     const { educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
+
+    const isFocused = useIsFocused();
 
     const time_zone = Localization.timezone;
     const todays_date = new Date ();
@@ -54,6 +57,10 @@ export const TodayScreen = ({ navigation }) => {
     
     //TODO: move this to a helper file
     useEffect(() => {
+        if (!isFocused) {
+            return;
+        }
+
         if (Platform.OS === "android") {
             setGreeting("Hello")
             return 
@@ -72,7 +79,7 @@ export const TodayScreen = ({ navigation }) => {
         } else {
             setGreeting("Good Evening")
         }
-    }, []);
+    }, [isFocused]);
 
     useEffect(() => { 
         Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
