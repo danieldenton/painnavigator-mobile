@@ -22,6 +22,7 @@ export const PainJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
+    const [painGraphData, setPainGraphData] = useState();
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
@@ -185,6 +186,7 @@ export const PainJournalContextProvider = ({ children }) => {
                 resetPainJournal,
                 reviewJournal,
                 saveEdits,
+                setPainGraphData,
                 setPainJournal,
                 setReviewJournal,
                 updatePainJournal
