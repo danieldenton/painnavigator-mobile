@@ -2,14 +2,13 @@ import React from "react";
 import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryZoomContainer, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
 import styled from "styled-components/native";
-import { View, Text } from "react-native";
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
     margin-top: 16px;
 `;
 
-export const PainGraph = ({ currentMonthData, graphData, graphLine }) => {
+export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
 
     return (
         <GraphWrapper>
@@ -30,7 +29,7 @@ export const PainGraph = ({ currentMonthData, graphData, graphLine }) => {
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
-                    tickValues={["Jul", "Aug", "Sep"]}
+                    tickValues={x}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}

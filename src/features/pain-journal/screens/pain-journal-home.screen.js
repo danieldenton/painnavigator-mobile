@@ -8,13 +8,14 @@ import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
 import { View, Text } from "react-native";
+import { months } from "../data/months";
 
 export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
     const [graphData, setGraphData] = useState([]);
     const [graphLine, setGraphLine] = useState([]);
     const [currentMonthData, setCurrentMonthData] = useState([]);
-    const [x, setX] = useState([]);
+    const [x, setX] = useState();
 
     const painJournalElements = painJournals?.map((journal) => {
         return (
@@ -28,62 +29,9 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     });
 
     const painGraphData = {
-        "Jul": "4"
+        "Aug": "4",
+        "Oct": "4"
     };
-
-    const monthCount = Object.entries(painGraphData).length;
-
-    const months = [
-        {
-            id: 1,
-            month: "Jan"
-        },
-        {
-            id: 2,
-            month: "Feb"
-        },
-        {
-            id: 3,
-            month: "Mar"
-        },
-        {
-            id: 4,
-            month: "Apr"
-        },
-        {
-            id: 5,
-            month: "May"
-        },
-        {
-            id: 6,
-            month: "Jun"
-        },
-        {
-            id: 7,
-            month: "Jul"
-        },
-        {
-            id: 8,
-            month: "Aug"
-        },
-        {
-            id: 9,
-            month: "Sep"
-        },
-        {
-            id: 10,
-            month: "Oct"
-        },
-        {
-            id: 11,
-            month: "Nov"
-        },
-        {
-            id: 12,
-            month: "Dec"
-        }
-    ];
-
     
     useEffect(() => {
         const painDataArray = [];
@@ -100,29 +48,27 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     }, []);
     
     const fillMonths = (data) => {
+        const monthCount = Object.entries(data).length;
+
         if(monthCount === 3) {
-            const d = [];
             const firstMonth = data[0].x;
             const secondMonth = data[1].x;
-            const lastMonth = data[2].x; 
-            d.push(firstMonth);
-            d.push(secondMonth);
-            d.push(lastMonth);
-            const xData = new Array(firstMonth, secondMonth, lastMonth);
-            return d;
+            const thirdMonth = data[2].x; 
+            const xData = [`${firstMonth}`, `${secondMonth}`, `${thirdMonth}`];
+            return xData;
         } else if (monthCount === 2) {
             const firstMonth = data[0].x;
-            const lastMonth = data[1].x;
-            const lastMonthData = months.find(month => month.month === lastMonth);
-            const nextMonthData = months.find(month => month.id === lastMonthData.id + 1);
-            const xData = new Array(firstMonth, lastMonth, nextMonthData.month);
+            const secondMonth = data[1].x;
+            const secondMonthData = months.find(month => month.month === secondMonth);
+            const thirdMonthData = months.find(month => month.id === secondMonthData.id + 1);
+            const xData = new Array(firstMonth, secondMonth, thirdMonthData.month);
             return xData;
         } else if (monthCount === 1) {
-            const lastMonth = data[0].x;
-            const lastMonthData = months.find(month => month.month === lastMonth);
-            const nextMonthData = months.find(month => month.id === lastMonthData.id + 1);
-            const twoMonthsData = months.find(month => month.id === lastMonthData.id + 2);
-            const xData = new Array(lastMonth, nextMonthData.month, twoMonthsData.month);
+            const firstMonth = data[0].x;
+            const firstMonthData = months.find(month => month.month === firstMonth);
+            const secondMonthData = months.find(month => month.id === firstMonthData.id + 1);
+            const thirdMonthData = months.find(month => month.id === firstMonthData.id + 2);
+            const xData = new Array(firstMonth, secondMonthData.month, thirdMonthData.month);
             return xData;
         }
     };
@@ -130,7 +76,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     return(
         <SafeView>
             <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Pain Journal"} />
-            <PainGraph currentMonthData={currentMonthData} graphData={graphData} graphLine={graphLine} />
+            <PainGraph currentMonthData={currentMonthData} graphData={graphData} graphLine={graphLine} x={x} />
             <DailyActivitiesTile 
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 
@@ -138,8 +84,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
             />
             <View>
                 <Text>
-                    {monthCount}
-                    {x}
+                    {JSON.stringify(x)}
                 </Text>
             </View>
             {painJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />}
