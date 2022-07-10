@@ -723,6 +723,16 @@
                     "completed": false
                 }
             ]
+        },
+        {
+            "id": 37,
+            "name": "Modules Complete!",
+            "videos": [
+                {
+                    "id": 132,
+                    "completed": false
+                } 
+            ]
         }
     ]
 }
