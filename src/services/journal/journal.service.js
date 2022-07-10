@@ -5,7 +5,8 @@ import { months } from "../../features/pain-journal/data/months";
 export const getJournals = (setPainJournals, setMoodJournals, setFoodJournals, setPainGraphData) => {
     axios.get(`${API_URL}/api/v1/journals`)
     .then( resp => {
-        painGraphDataTransform((resp.data.data)); 
+        const profile = resp.data.data;
+        painGraphDataTransform((profile.attributes.pain_graph_data)); 
     })
     .then((result) => {
         setPainGraphData(result);
@@ -13,7 +14,7 @@ export const getJournals = (setPainJournals, setMoodJournals, setFoodJournals, s
     //.catch(resp => console.log(resp))
 };
 
-function painGraphDataTransform(data) {
+export function painGraphDataTransform(data) {
     const painDataArray = [];
     const lineDataArray = [];
     Object.entries(data).forEach(([key, value]) => {

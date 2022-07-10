@@ -32,11 +32,11 @@ export const SkippedScreen = ({ navigation }) => {
                             the Today dashboard side menu.
                         </CongratulationsMessage>
                     </CongratulationsMessageWrapper>
-                    <ButtonSection>
-                        <ModuleButton onPress={() => navigation.navigate("Today")} title={"Back to Dashboard"} />
-                    </ButtonSection>
                 </View>
             </Scroll>
+            <ButtonSection>
+                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Back to Dashboard"} />
+            </ButtonSection>
         </SafeView>
     );
 };

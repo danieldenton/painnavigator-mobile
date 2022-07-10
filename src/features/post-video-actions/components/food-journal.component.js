@@ -1,9 +1,7 @@
 import React from "react";
 import { Wrapper, Header, Body } from "./post-video-actions.styles";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
 
-export const FoodJournal = ({ navigation }) => {
+export const FoodJournal = () => {
     return (
         <>
             <Wrapper>
@@ -24,14 +22,6 @@ export const FoodJournal = ({ navigation }) => {
                     but stick with it. Your body will thank you!
                 </Body>
             </Wrapper>
-            <ButtonSection>
-                <ModuleButton
-                    onPress={() => navigation.navigate("NewFoodJournal", {
-                        type: "post_video_action"
-                    })}
-                    title={"Let's get started!"} 
-                />
-            </ButtonSection>
         </>
     );
 };

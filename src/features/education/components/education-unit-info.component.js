@@ -18,13 +18,19 @@ export const EducationUnitInfo = ({ id, name, summary, type }) => {
                     <Bookmark id={id} />
                 </BookmarkSection>}
             </Header>
-            <Scroll style={{ marginTop: 16, paddingRight: 16, paddingLeft: 16 }}>
-                <View style={{ marginTop: 1, marginBottom: 80 }}>
-                    <Summary>
-                        {summary} 
-                    </Summary>
-                </View>
-            </Scroll>
+            {type === "video" ? 
+                <Scroll style={{ marginTop: 16, paddingRight: 16, paddingLeft: 16 }}>
+                    <View style={{ marginTop: 1, marginBottom: 80 }}>
+                        <Summary>
+                            {summary} 
+                        </Summary>
+                    </View>
+                </Scroll>
+                :
+                <Summary>
+                    {summary}
+                </Summary>
+            }
         </>
     );
 };

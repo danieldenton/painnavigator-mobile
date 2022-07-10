@@ -1,10 +1,8 @@
 import React from "react";
 import { Wrapper, Header, BodyLine, Body, Bolded, GraphicWrapper } from "./post-video-actions.styles";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
 import { GoalGraphic } from "../../../graphics";
 
-export const SmartGoal = ({ navigation }) => {
+export const SmartGoal = () => {
     return (
         <>
             <Wrapper>
@@ -29,12 +27,6 @@ export const SmartGoal = ({ navigation }) => {
                     <Bolded>T</Bolded><Body style={{ marginTop: 0 }}>ime-based</Body>
                 </BodyLine>
             </Wrapper>
-            <ButtonSection>
-                <ModuleButton
-                    onPress={() => navigation.navigate("SmartGoal")}
-                    title={"Let's do it!"} 
-                />
-            </ButtonSection>
         </>
     );
 };

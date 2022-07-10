@@ -8,6 +8,8 @@ import { FoodJournal } from "../components/food-journal.component";
 import { FavoriteActivities } from "../components/favorite-activities.component";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
+import { ButtonSection } from "../../../components/journals/journal.styles";
+import { ModuleButton } from "../../../components/button.component";
 
 export const Why = ({ navigation, route }) => {
     const { post_video_destination } = route.params;
@@ -16,15 +18,15 @@ export const Why = ({ navigation, route }) => {
     const videoDestinationNavigation = () => {
         switch (post_video_destination) {
           case "SmartGoal":
-            return <SmartGoal navigation={navigation} />;
+            return <SmartGoal />;
           case "PainJournal":
-            return <PainJournal navigation={navigation} />;
+            return <PainJournal />;
           case "MoodJournal":
-            return <MoodJournal navigation={navigation} />;
+            return <MoodJournal />;
           case "FoodJournal":
-            return <FoodJournal navigation={navigation} />;
+            return <FoodJournal />;
           case "FavoriteActivities":
-            return <FavoriteActivities navigation={navigation} />;
+            return <FavoriteActivities />;
           default:
             return null;
         }
@@ -37,11 +39,19 @@ export const Why = ({ navigation, route }) => {
             navigation={navigation}
             destination={"Today"}
           />
-          <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-            <View style={{ marginBottom: 16 }}>
-              {videoDestinationNavigation()}
-            </View>
-          </Scroll>
+            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+              <View style={{ marginBottom: 16 }}>
+                {videoDestinationNavigation()}
+              </View>
+            </Scroll>
+            <ButtonSection>
+                <ModuleButton
+                    onPress={() => navigation.navigate(post_video_destination, {
+                        type: "post_video_action"
+                    })}
+                    title={"Let's get started!"} 
+                />
+            </ButtonSection>
         </SafeView>
       );
 };

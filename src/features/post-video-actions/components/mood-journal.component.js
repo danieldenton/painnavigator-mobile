@@ -1,9 +1,7 @@
 import React from "react";
 import { Wrapper, Header, Body } from "./post-video-actions.styles";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
 
-export const MoodJournal = ({ navigation }) => {
+export const MoodJournal = () => {
     return (
         <>
             <Wrapper>
@@ -19,12 +17,6 @@ export const MoodJournal = ({ navigation }) => {
                     by monitoring your thoughts and feelings.
                 </Body>
             </Wrapper>
-            <ButtonSection>
-                <ModuleButton
-                    onPress={() => navigation.navigate("MoodJournal")}
-                    title={"Let's get started!"} 
-                />
-            </ButtonSection>
         </>
     );
 };

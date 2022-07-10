@@ -1,9 +1,7 @@
 import React from "react";
 import { Wrapper, Header, Body } from "./post-video-actions.styles";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
 
-export const FavoriteActivities = ({ navigation }) => {
+export const FavoriteActivities = () => {
     return (
         <>
             <Wrapper>
@@ -19,12 +17,6 @@ export const FavoriteActivities = ({ navigation }) => {
                     that you can do and would look forward to doing to continue to build into your life!
                 </Body>
             </Wrapper>
-            <ButtonSection>
-                <ModuleButton
-                    onPress={() => navigation.navigate("FavoriteActivities")}
-                    title={"Let's get started!"} 
-                />
-            </ButtonSection>
         </>
     );
 };

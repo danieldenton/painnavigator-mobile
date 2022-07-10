@@ -8,7 +8,8 @@ const GraphWrapper = styled.View`
     margin-top: 16px;
 `;
 
-export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
+export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLine, x }) => {
+    const { current, line, graph, xAxis } = painGraphData;
 
     return (
         <GraphWrapper>
@@ -29,7 +30,7 @@ export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
-                    tickValues={x}
+                    tickValues={xAxis}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}
@@ -50,7 +51,7 @@ export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
                         labels: { fontSize: 12, color: "#606C81" },
                         parent: { border: "2px solid #ccc"}
                     }}
-                    data={graphLine}
+                    data={line}
                 />
                 <VictoryScatter
                     style={{
@@ -58,7 +59,7 @@ export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
                         data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={currentMonthData}
+                    data={current}
                     size={6}
                 />
                 <VictoryScatter
@@ -66,7 +67,7 @@ export const PainGraph = ({ currentMonthData, graphData, graphLine, x }) => {
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={graphData}
+                    data={graph}
                     size={6}
                 />
             </VictoryChart>

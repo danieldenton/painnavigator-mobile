@@ -29,7 +29,7 @@ export const TodayScreen = ({ navigation }) => {
     const { getUser, user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
-    const { painJournals } = useContext(PainJournalContext);
+    const { painJournals, painGraphDataTransform, setPainGraphData } = useContext(PainJournalContext);
     const { moodJournals } = useContext(MoodJournalContext);
     const { foodJournals } = useContext(FoodJournalContext);
     const { movementProgress, lastMovement, setLastMovement, setMovementProgress } = useContext(MovementContext);
@@ -52,8 +52,21 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
-        getUser(setUserInfo, setMessages, setEducationProgress, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
-    }, []);
+        if (!isFocused) {
+            return;
+        }
+
+        getUser(
+            setUserInfo, 
+            setMessages, 
+            setEducationProgress, 
+            setProfileComplete, 
+            setLastCompletedModule, 
+            setMovementProgress, 
+            setLastMovement,
+            setPainGraphData
+        );
+    }, [isFocused]);
     
     //TODO: move this to a helper file
     useEffect(() => {

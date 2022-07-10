@@ -64,7 +64,7 @@ export const EducationNavigator = () => {
              "component": FavoriteActivitiesHomeScreen
         },
         {
-            "name": "NewFoodJournal",
+            "name": "FoodJournal",
             "component": FoodJournalNavigator
         }
     ];

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
@@ -8,7 +8,6 @@ import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
 import { View, Text } from "react-native";
-import { months } from "../data/months";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
@@ -23,10 +22,6 @@ const HelpText = styled.Text`
 
 export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals, painGraphData } = useContext(PainJournalContext);
-    const [graphData, setGraphData] = useState([]);
-    const [graphLine, setGraphLine] = useState([]);
-    const [currentMonthData, setCurrentMonthData] = useState([]);
-    const [x, setX] = useState();
 
     const painJournalElements = painJournals?.map((journal) => {
         return (
@@ -40,55 +35,9 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     });
 
     function noPainData() {
-        return Object.keys(painGraphData).length === 0;
+        //return Object.keys(painGraphData.line).length === 0;
+        return painJournals.length === 0;
     }
-
-    useEffect(() => {
-        graphTransform()
-    }, [])
-    
-    function graphTransform() {
-        if(noPainData()) {
-            return;
-        }
-        const painDataArray = [];
-        const lineDataArray = [];
-        Object.entries(painGraphData).forEach(([key, value]) => {
-            painDataArray.push({ x: key, y: value === null ? value : Number(value) });
-            lineDataArray.push({ x: key, y: value === null ? value : Number(value) });
-        });
-        setGraphLine(lineDataArray);
-        const currentMonthArray = new Array(painDataArray.pop());
-        setGraphData(painDataArray);
-        setCurrentMonthData(currentMonthArray)
-        setX(fillMonths(lineDataArray));
-    };
-    
-    const fillMonths = (data) => {
-        const monthCount = Object.entries(data).length;
-
-        if(monthCount === 3) {
-            const firstMonth = data[0].x;
-            const secondMonth = data[1].x;
-            const thirdMonth = data[2].x; 
-            const xData = [`${firstMonth}`, `${secondMonth}`, `${thirdMonth}`];
-            return xData;
-        } else if (monthCount === 2) {
-            const firstMonth = data[0].x;
-            const secondMonth = data[1].x;
-            const secondMonthData = months.find(month => month.month === secondMonth);
-            const thirdMonthData = months.find(month => month.id === secondMonthData.id + 1);
-            const xData = new Array(firstMonth, secondMonth, thirdMonthData.month);
-            return xData;
-        } else if (monthCount === 1) {
-            const firstMonth = data[0].x;
-            const firstMonthData = months.find(month => month.month === firstMonth);
-            const secondMonthData = months.find(month => month.id === firstMonthData.id + 1);
-            const thirdMonthData = months.find(month => month.id === firstMonthData.id + 2);
-            const xData = new Array(firstMonth, secondMonthData.month, thirdMonthData.month);
-            return xData;
-        }
-    };
 
     return(
         <SafeView>
@@ -106,7 +55,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
                     </View>
                 </>
                 :
-                <PainGraph currentMonthData={currentMonthData} graphData={graphData} graphLine={graphLine} x={x} />
+                <PainGraph painGraphData={painGraphData} />
             }
             <DailyActivitiesTile 
                 title={"Add New Entry"} 
