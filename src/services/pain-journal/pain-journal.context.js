@@ -23,10 +23,6 @@ export const PainJournalContextProvider = ({ children }) => {
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
     const [painGraphData, setPainGraphData] = useState({});
-    const [graphData, setGraphData] = useState([]);
-    const [graphLine, setGraphLine] = useState([]);
-    const [currentMonthData, setCurrentMonthData] = useState([]);
-    const [x, setX] = useState();
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
@@ -39,21 +35,7 @@ export const PainJournalContextProvider = ({ children }) => {
           const lastIndex = painJournals.length - 1;
           const lastJournalDate = painJournals[lastIndex].attributes.date;
           setJournaledToday(Boolean(lastJournalDate));
-    }, [painJournals]);
-
-    useEffect(() => {
-        const painDataArray = [];
-        const lineDataArray = [];
-        Object.entries(painGraphData).forEach(([key, value]) => {
-            painDataArray.push({ x: key, y: value === null ? value : Number(value) });
-            lineDataArray.push({ x: key, y: value === null ? value : Number(value) });
-        });
-        setGraphLine(lineDataArray);
-        const currentMonthArray = new Array(painDataArray.pop());
-        setGraphData(painDataArray);
-        setCurrentMonthData(currentMonthArray)
-        setX(fillMonths(lineDataArray));
-    }, [painGraphData]);
+    }, [painJournals]);  
 
     const cancelEdits = () => {
         setReviewJournal({});
@@ -108,56 +90,12 @@ export const PainJournalContextProvider = ({ children }) => {
         return String(copingStrategies).replace(/,/g, ', ');
     };
 
-    const fillMonths = (data) => {
-        const monthCount = Object.entries(data).length;
-        if(monthCount === 3) {
-            const firstMonth = data[0].x;
-            const secondMonth = data[1].x;
-            const thirdMonth = data[2].x; 
-            const xData = [`${firstMonth}`, `${secondMonth}`, `${thirdMonth}`];
-            return xData;
-        } else if (monthCount === 2) {
-            const firstMonth = data[0].x;
-            const secondMonth = data[1].x;
-            const secondMonthData = months.find(month => month.month === secondMonth);
-            const thirdMonthData = months.find(month => month.id === secondMonthData.id + 1);
-            const xData = new Array(firstMonth, secondMonth, thirdMonthData.month);
-            return xData;
-        } else if (monthCount === 1) {
-            const firstMonth = data[0].x;
-            const firstMonthData = months.find(month => month.month === firstMonth);
-            const secondMonthData = months.find(month => month.id === firstMonthData.id + 1);
-            const thirdMonthData = months.find(month => month.id === firstMonthData.id + 2);
-            const xData = new Array(firstMonth, secondMonthData.month, thirdMonthData.month);
-            return xData;
-        }
-    };
-
     const nextPage = () => {
         setCurrentPage(prevPage => prevPage + 1);
     };
 
     const previousPage = () => {
         setCurrentPage(prevPage => prevPage - 1);
-    };
-
-    const painGraphDataTransform = () => {
-        const painDataArray = [];
-        const lineDataArray = [];
-        Object.entries(painGraphData).forEach(([key, value]) => {
-            painDataArray.push({ x: key, y: value === null ? value : Number(value) });
-            lineDataArray.push({ x: key, y: value === null ? value : Number(value) });
-        });
-        setGraphLine(lineDataArray);
-        const currentMonthArray = new Array(painDataArray.pop());
-        setGraphData(painDataArray);
-        setCurrentMonthData(currentMonthArray)
-        setX(fillMonths(lineDataArray));
-        setPainGraphData({
-            currentMonth: currentMonthArray,
-            xAxis: fillMonths(lineDataArray),
-            line: lineDataArray,
-        });
     };
 
     const resetPainJournal = () => {
@@ -244,12 +182,14 @@ export const PainJournalContextProvider = ({ children }) => {
                 nextPage,
                 painJournals, 
                 painJournal,
+                painGraphData,
                 previousPage,
                 resetPainJournal,
                 reviewJournal,
                 saveEdits,
                 setPainGraphData,
                 setPainJournal,
+                setPainJournals,
                 setReviewJournal,
                 updatePainJournal
             }}

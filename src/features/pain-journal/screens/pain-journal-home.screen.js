@@ -9,6 +9,17 @@ import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
 import { View, Text } from "react-native";
 import { months } from "../data/months";
+import { GraphGraphic } from "../../../graphics"; 
+import { GraphicWrapper } from "../../../components/journals/journal.styles";
+import styled from "styled-components/native";
+
+const HelpText = styled.Text`
+    font-family: Inter_300Light;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 9px;
+    width: 90%;
+`;
 
 export const PainJournalHomeScreen = ({ navigation }) => {
     const { painJournals } = useContext(PainJournalContext);
@@ -29,11 +40,17 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     });
 
     const painGraphData = {
-        "Aug": "4",
-        "Oct": "4"
+    
     };
+
+    function noPainData() {
+        return Object.keys(painGraphData).length === 0;
+    }
     
     useEffect(() => {
+        if(noPainData) {
+            return;
+        }
         const painDataArray = [];
         const lineDataArray = [];
         Object.entries(painGraphData).forEach(([key, value]) => {
@@ -76,17 +93,26 @@ export const PainJournalHomeScreen = ({ navigation }) => {
     return(
         <SafeView>
             <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Pain Journal"} />
-            <PainGraph currentMonthData={currentMonthData} graphData={graphData} graphLine={graphLine} x={x} />
+            {noPainData() ?
+                <>
+                    <GraphicWrapper>
+                        <GraphGraphic />
+                    </GraphicWrapper>
+                    <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
+                        <HelpText style={{ textAlign: "center" }}>
+                            Tap "Add New Entry" to log your first pain score 
+                            and watch how your pain progresses over time. 
+                        </HelpText>
+                    </View>
+                </>
+                :
+                <PainGraph currentMonthData={currentMonthData} graphData={graphData} graphLine={graphLine} x={x} />
+            }
             <DailyActivitiesTile 
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 
                 navigation={navigation} 
             />
-            <View>
-                <Text>
-                    {JSON.stringify(x)}
-                </Text>
-            </View>
             {painJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />}
             <Scroll style={{ marginBottom: 24 }}>
                 {painJournalElements}

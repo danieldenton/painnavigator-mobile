@@ -12,7 +12,7 @@ const QuestionText = styled.Text`
     width: 90%;
 `;
 
-const HelpText = styled.Text`
+export const HelpText = styled.Text`
     font-family: Inter_300Light;
     font-style: italic;
     font-size: 14px;

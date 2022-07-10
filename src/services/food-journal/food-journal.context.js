@@ -105,6 +105,7 @@ export const FoodJournalContextProvider = ({ children }) => {
                 meal,
                 resetFoodJournal,
                 setFoodJournal,
+                setFoodJournals,
                 setMeal
             }}
         >

@@ -21,11 +21,10 @@ const QuestionText = styled.Text`
     font-family: Inter_500Medium;
 `;
 
-
 const ResponseText = styled.Text`
-font-size: 18px;
-margin-top: ${space[3]};
-font-family: Inter_400Regular;
+    font-size: 18px;
+    margin-top: ${space[3]};
+    font-family: Inter_400Regular;
 `;
 
 const QuestionButtonPressable = styled.Pressable`

@@ -124,7 +124,7 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
                             <Thumbnail source={{ uri: thumbnail }} />
                         </ThumbnailWrapper>
                         <CardTextSection>
-                            <CardHeader>{name}</CardHeader>
+                            <CardHeader adjustsFontSizeToFit={true}>{name}</CardHeader>
                             <CardSubHeader>{Math.ceil(length / 60)} MIN</CardSubHeader>
                         </CardTextSection>
                     </PlaylistTileCardContent>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Text } from "react-native";
 
 export const CongratulationsHeaderWrapper = styled.View`
     align-items: center;
@@ -19,7 +20,9 @@ export const CongratulationsMessageWrapper = styled.View`
     margin-right: 4px;
 `;
 
-export const CongratulationsMessage = styled.Text`
+export const CongratulationsMessage = styled(Text).attrs({
+    textAlign: "center",
+})`
     align-items: center;
     font-family: Inter_400Regular;
     font-size: 18px;

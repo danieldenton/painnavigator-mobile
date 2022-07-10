@@ -48,11 +48,7 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         <CongratulationsMessageWrapper>
                             <CongratulationsMessage>
                                 Through this app, you'll learn how to
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 redefine your relationship with
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 chronic lower back pain.
                             </CongratulationsMessage>
                         </CongratulationsMessageWrapper>
@@ -73,8 +69,6 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         <CongratulationsMessageWrapper>
                             <CongratulationsMessage>
                                 Learn new strategies, exercises, and
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 behaviors to manage your pain.
                             </CongratulationsMessage>
                         </CongratulationsMessageWrapper>
@@ -95,11 +89,7 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         <CongratulationsMessageWrapper>
                             <CongratulationsMessage>
                                 Log your pain, mood, goals and
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 meals. Track your progress to see
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 how far you’ve come.
                             </CongratulationsMessage>
                         </CongratulationsMessageWrapper>
@@ -119,11 +109,7 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                         <CongratulationsMessageWrapper>
                             <CongratulationsMessage>
                                 Congratulations on taking the first
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 step to redefining your relationship
-                            </CongratulationsMessage>
-                            <CongratulationsMessage>
                                 with chronic pain.
                             </CongratulationsMessage>
                         </CongratulationsMessageWrapper>

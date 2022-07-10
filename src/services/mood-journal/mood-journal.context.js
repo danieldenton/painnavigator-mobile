@@ -188,6 +188,7 @@ export const MoodJournalContextProvider = ({ children }) => {
                 reviewJournal,
                 saveEdits,
                 setMoodJournal,
+                setMoodJournals,
                 setReviewJournal,
                 updateMoodJournal
             }}
