@@ -22,7 +22,7 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation }) => {
-    const { painJournals } = useContext(PainJournalContext);
+    const { painJournals, painGraphData } = useContext(PainJournalContext);
     const [graphData, setGraphData] = useState([]);
     const [graphLine, setGraphLine] = useState([]);
     const [currentMonthData, setCurrentMonthData] = useState([]);
@@ -39,16 +39,16 @@ export const PainJournalHomeScreen = ({ navigation }) => {
         );
     });
 
-    const painGraphData = {
-    
-    };
-
     function noPainData() {
         return Object.keys(painGraphData).length === 0;
     }
-    
+
     useEffect(() => {
-        if(noPainData) {
+        graphTransform()
+    }, [])
+    
+    function graphTransform() {
+        if(noPainData()) {
             return;
         }
         const painDataArray = [];
@@ -62,7 +62,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
         setGraphData(painDataArray);
         setCurrentMonthData(currentMonthArray)
         setX(fillMonths(lineDataArray));
-    }, []);
+    };
     
     const fillMonths = (data) => {
         const monthCount = Object.entries(data).length;

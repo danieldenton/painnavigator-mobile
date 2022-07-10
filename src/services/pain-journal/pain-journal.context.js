@@ -22,7 +22,9 @@ export const PainJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
-    const [painGraphData, setPainGraphData] = useState({});
+    const [painGraphData, setPainGraphData] = useState({
+        "Aug": "2"
+    });
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
