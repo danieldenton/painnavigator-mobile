@@ -13,6 +13,7 @@ export const Phone = () => {
                 accessibilityLabel={"phone-number-input"}
                 value={profileData.phone}
                 onChangeText={(change) => changeProfileEntry(change, "phone")}
+                keyboardType={"number-pad"}
             />
         </>
     );

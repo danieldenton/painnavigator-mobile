@@ -60,7 +60,7 @@
             "post_video_destination": null,
             "skippable": false,
             "summary": "Pacing involves respecting your limits, conserving energy, avoiding flare-ups, increasing your tolerance, and improving your functioning. Use your pain diary to help identify ways you can better utilize our pacing strategies.",
-            "steps": ["First, establish your baseline: know when your pain moves from being “manageable” to “uncomfortable”", "Establish time limits and baselines for each activity that keep you at a “manageable” level", "Example: it takes Sue 10 minutes of vacuuming before her pain becomes uncomfortable. She divides that number in half (5 minutes) to establish an initial baseline.", "Remember to take incremental steps and frequent breaks so you don’t overdo it, gradually increase by a set time each week, and set SMART Goals you would like to accomplish and pace your way through them"]
+            "steps": ["First, establish your baseline: know when your pain moves from being “manageable” to “uncomfortable”", "Establish time limits and baselines for each activity that keep you at a “manageable” level", "Example: it takes Sue 10 minutes of vacuuming before her pain becomes uncomfortable. She divides that number in half (5 minutes) to establish an initial baseline", "Remember to take incremental steps and frequent breaks so you don’t overdo it, gradually increase by a set time each week, and set SMART Goals you would like to accomplish and pace your way through them"]
         },
         {
             "id": 7,
@@ -81,7 +81,7 @@
             "post_video_destination": null,
             "skippable": false,
             "summary": "Here’s a few practical tips for you to better live with your back pain. Check in with your Wellness Coach if you have any questions and keep up the great work with PainNavigator!",
-            "steps": ["If your pain is worse in the morning, get your muscles loose in bed or as soon as you get up with some stretches.", "If your back gets stiff while sitting for long periods of time while traveling or watching tv, take regular breaks to stand up and stretch.", "Remember to pace yourself! Don’t over-exert yourself when you are in less pain, it may cause a pain flare.", "If pain happens while vacuuming or mowing the lawn, consider buying an upright vacuum or lawn mower that lets you stand up straight instead of hunching over."]
+            "steps": ["If your pain is worse in the morning, get your muscles loose in bed or as soon as you get up with some stretches", "If your back gets stiff while sitting for long periods of time while traveling or watching tv, take regular breaks to stand up and stretch.", "Remember to pace yourself! Don’t over-exert yourself when you are in less pain, it may cause a pain flare.", "If pain happens while vacuuming or mowing the lawn, consider buying an upright vacuum or lawn mower that lets you stand up straight instead of hunching over."]
         },
         {
             "id": 9,
@@ -285,7 +285,7 @@
             "length": 1,
             "post_video_destination": null,
             "skippable": true,
-            "summary": "A great day of eating on an anti-inflammatory, Mediterranean or Okinawan style diet, could be greek yogurt topped with berries for breakfast, sheet pan chicken fajita bowl for lunch, salmon with a side of greens and cauliflower rice for dinner, and hummus and vegetables for a snack. Here’s some key things to remember:",
+            "summary": "A great day of eating on an anti-inflammatory, Mediterranean or Okinawan style diet, could be Greek yogurt topped with berries for breakfast, sheet pan chicken fajita bowl for lunch, salmon with a side of greens and cauliflower rice for dinner, and hummus and vegetables for a snack. Here’s some key things to remember:",
             "steps": ["Anti-inflammatory foods in general are: low in refined carbs, high in soluble fibers, high in unsaturated, “healthy” fats, higher in omega 3 fatty acids, high in polyphenols.", "Fruit and vegetables should fill ½ of your plate each meal.", "Aim for lean proteins (skinless chicken, turkey, fatty fish, lean beef or pork, tofu) and avoid highly processed meats.", "Aim for monounsaturated, polyunsaturated fats (olive oil, avocado oil, nuts, flax seeds, chia seeds).", "Aim for whole grains (brown rice, quinoa, oats) and avoid refined carbs (white bread, baked goods)."]
         },
         {

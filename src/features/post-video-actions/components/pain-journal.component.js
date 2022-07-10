@@ -14,8 +14,8 @@ export const PainJournal = ({ navigation }) => {
                 </Body>
                 <Body style={{ marginTop: 16 }}>
                     Using a Pain Journal consistently will allow you to better 
-                    communicate your pain, identify your pain triggers and 
-                    ultimately be able to better control your pain. 
+                    communicate about your pain, identify your pain triggers 
+                    and ultimately be able to better control your pain.
                     Any time your pain increases to a level that interferes with your daily life, 
                     use your Pain Journal! 
                 </Body>

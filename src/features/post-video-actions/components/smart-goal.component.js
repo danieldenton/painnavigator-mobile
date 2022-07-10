@@ -23,7 +23,7 @@ export const SmartGoal = ({ navigation }) => {
                     <Bolded>A</Bolded><Body style={{ marginTop: 0 }}>chievable</Body>
                 </BodyLine>
                 <BodyLine>
-                    <Bolded>R</Bolded><Body style={{ marginTop: 0 }}>elevant</Body>
+                    <Bolded>R</Bolded><Body style={{ marginTop: 0 }}>ealistic</Body>
                 </BodyLine>
                 <BodyLine>
                     <Bolded>T</Bolded><Body style={{ marginTop: 0 }}>ime-based</Body>

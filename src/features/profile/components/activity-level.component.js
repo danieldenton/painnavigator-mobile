@@ -27,7 +27,7 @@ export const ActivityLevel = () => {
         <>
             <JournalQuestion 
                 question={"What is your activity level?"} 
-                helpText={"Tap the circles to select"} 
+                helpText={"Tap the circle to select"} 
             />
             <View style={{ marginTop: 16 }}>
                 {questionOptions}

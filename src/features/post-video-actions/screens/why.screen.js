@@ -6,6 +6,8 @@ import { PainJournal } from "../components/pain-journal.component";
 import { MoodJournal } from "../components/mood-journal.component";
 import { FoodJournal } from "../components/food-journal.component";
 import { FavoriteActivities } from "../components/favorite-activities.component";
+import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 export const Why = ({ navigation, route }) => {
     const { post_video_destination } = route.params;
@@ -35,7 +37,11 @@ export const Why = ({ navigation, route }) => {
             navigation={navigation}
             destination={"Today"}
           />
-          {videoDestinationNavigation()}
+          <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+            <View style={{ marginBottom: 16 }}>
+              {videoDestinationNavigation()}
+            </View>
+          </Scroll>
         </SafeView>
       );
 };

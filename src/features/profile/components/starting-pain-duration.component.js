@@ -27,7 +27,7 @@ export const StartingPainDuration = () => {
         <>
             <JournalQuestion 
                 question={"How long have you been experiencing back pain?"} 
-                helpText={"Tap the circles to select"} 
+                helpText={"Tap the circle to select"} 
             />
             <MultiSelectScroll style={{ marginTop: 16 }}>
                 {questionOptions}
