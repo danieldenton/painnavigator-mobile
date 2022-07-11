@@ -40,7 +40,7 @@ export const SummarySection = styled.View`
 `;
 
 export const Summary = styled.Text`
-    margin-top: 16px;
+    margin-top: 8px;
     font-size: 16px;
     font-family: Inter_400Regular;
     line-height: 28px;

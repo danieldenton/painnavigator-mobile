@@ -99,7 +99,7 @@ export const ReviewJournalHeader = ({ date, isEditing, setIsEditing }) => {
 
 export const GraphicWrapper = styled.View`
     align-items: center;
-    margin-top: 64px;
+    margin-top: 32px;
     margin-bottom: 32px;
 `;
 
