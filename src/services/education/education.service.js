@@ -9,5 +9,3 @@ export const postEducationModule = (module, setLastCompletedModule, uid) => {
     })
     .catch(resp => console.log(resp));
 };
-
-// TODO: add patchEducationModule function to update status of skipped modules after watching

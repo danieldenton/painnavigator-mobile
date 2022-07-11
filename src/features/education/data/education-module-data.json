@@ -107,7 +107,7 @@
             "id": 11,
             "type": "video",
             "name": "Pain Pathways",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905596/For%20Mobile%20App/Education/Pain_Pathways_POC_wm9axf.mp4",
+            "source": "https://res.cloudinary.com/painnavigator/0/upload/v1650905596/For%20Mobile%20App/Education/Pain%20Pathways.mp4",
             "length": 6,
             "post_video_destination": null,
             "skippable": true,
@@ -130,7 +130,7 @@
             "name": "Worst Pain Ever",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905721/For%20Mobile%20App/Education/Worst%20Pain%20Ever.mp4",
             "length": 7,
-            "post_video_destination": null,
+            "post_video_destination": "PainJournalHome",
             "skippable": true,
             "summary": "Learn why it can be so difficult to rate your pain. Learn how to rate the quality of your pain."
         },
@@ -140,7 +140,7 @@
             "name": "Pain Score",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905999/For%20Mobile%20App/Education/Pain%20Score.mp4",
             "length": 8,
-            "post_video_destination": null,
+            "post_video_destination": "PainJournalHome",
             "skippable": false,
             "summary": "What does a pain score communicate? Learn how to rate your pain on a scale from 0 to 10."
         },
@@ -435,7 +435,7 @@
             "name": "TFA! 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
             "length": 6,
-            "post_video_destination": "PainJournal",
+            "post_video_destination": "PainJournalHome",
             "skippable": false,
             "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
         },

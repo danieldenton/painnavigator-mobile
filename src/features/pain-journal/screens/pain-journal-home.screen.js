@@ -20,8 +20,9 @@ const HelpText = styled.Text`
     width: 90%;
 `;
 
-export const PainJournalHomeScreen = ({ navigation }) => {
+export const PainJournalHomeScreen = ({ navigation, route }) => {
     const { painJournals, painGraphData } = useContext(PainJournalContext);
+    const NAVIGATE_BACK_DESTINATION = route?.params?.post_video_destination ? "Today" : "Journals";
 
     const painJournalElements = painJournals?.map((journal) => {
         return (
@@ -41,7 +42,7 @@ export const PainJournalHomeScreen = ({ navigation }) => {
 
     return(
         <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Pain Journal"} />
+            <NavigationBarLeft navigation={navigation} destination={NAVIGATE_BACK_DESTINATION} screen={"Pain Journal"} />
             {noPainData() ?
                 <>
                     <GraphicWrapper>

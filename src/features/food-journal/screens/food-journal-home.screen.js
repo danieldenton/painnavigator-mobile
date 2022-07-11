@@ -14,7 +14,7 @@ import { time_zoned_todays_date, formatDate } from "../../../infrastructure/help
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
     const { foodJournals } = useContext(FoodJournalContext);
     const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
-    const destination = route ? "Today" : "Journals";
+    const NAVIGATE_BACK_DESTINATION = route ? "Today" : "Journals";
     
     const foodJournalElements = foodJournals?.map((journal) => {
         return (
@@ -29,7 +29,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
 
     return(
         <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={destination} screen={"Food Journal"} />
+            <NavigationBarLeft navigation={navigation} destination={NAVIGATE_BACK_DESTINATION} screen={"Food Journal"} />
             <GraphicWrapper>
                 <FoodGraphic />
             </GraphicWrapper>

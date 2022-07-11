@@ -15,8 +15,9 @@ export const EducationUnitScreen = ({ navigation }) => {
     const { post_video_destination, type, skippable, id } = currentModule;
 
     const postVideoAction = () => {
+        const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
         navigation.dispatch(
-            StackActions.replace('Why', {
+            StackActions.replace(PAIN_JOURNAL_HOME ? post_video_destination : 'Why', {
                 post_video_destination: post_video_destination,
             })
         );

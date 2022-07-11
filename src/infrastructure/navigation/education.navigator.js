@@ -4,6 +4,7 @@ import { CompletionScreen } from "../../features/education/screens/completion.sc
 import { EducationUnitScreen } from "../../features/education/screens/education-unit.screen";
 import { SkippedScreen } from "../../features/education/screens/skipped.screen";
 import { Why } from "../../features/post-video-actions/screens/why.screen";
+import { PainJournalHomeScreen } from "../../features/pain-journal/screens/pain-journal-home.screen";
 import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pain-journal.screen";
 import { NewSmartGoalScreen } from "../../features/smart-goals/screens/new-smart-goal.screen"; 
 import { NewMoodJournalScreen } from "../../features/mood-journal/screens/new-mood-journal.screen";
@@ -12,7 +13,6 @@ import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/
 import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
 import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities/screens/favorite-activities-home.screen";
 import { FoodJournalNavigator } from "../navigation/food-journal.navigator";
-import { PainJournal } from "../../features/post-video-actions/components/pain-journal.component";
 
 const EducationStack = createStackNavigator();
 
@@ -34,6 +34,11 @@ export const EducationNavigator = () => {
         {
             "name": "Why",
             "component": Why
+            
+        },
+        {
+            "name": "PainJournalHome",
+            "component": PainJournalHomeScreen
         },
         {
             "name": "PainJournal",
