@@ -4,6 +4,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { genderOptions } from "../data/gender-options.data.json";
+import { Scroll } from "../../../components/scroll.component";
 
 export const Gender = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
@@ -29,9 +30,11 @@ export const Gender = () => {
                 question={"What is your gender identity?"} 
                 helpText={"Tap the circle to select"} 
             />
-            <View style={{ marginTop: 16 }}>
-                {questionOptions}
-            </View>
+            <Scroll style={{ marginTop: 4, paddingRight: 16, paddingLeft: 16 }}>
+                <View style={{ marginBottom: 140 }}>
+                    {questionOptions}
+                </View>
+            </Scroll>
         </>
     );
 };

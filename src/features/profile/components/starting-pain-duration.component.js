@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
-import { MultiSelectScroll } from "../../../components/checkbox/styles";
 import { painDurationOptions } from "../data/pain-duration-options.data.json";
+import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 export const StartingPainDuration = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
@@ -29,9 +30,11 @@ export const StartingPainDuration = () => {
                 question={"How long have you been experiencing back pain?"} 
                 helpText={"Tap the circle to select"} 
             />
-            <MultiSelectScroll style={{ marginTop: 16 }}>
-                {questionOptions}
-            </MultiSelectScroll>
+            <Scroll style={{ marginTop: 4, paddingRight: 16, paddingLeft: 16 }}>
+                <View style={{ marginBottom: 140 }}>
+                    {questionOptions}
+                </View>
+            </Scroll>
         </>
     );
 };

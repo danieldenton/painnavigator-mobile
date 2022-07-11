@@ -27,7 +27,7 @@ export const CheckBoxTextContentArea = styled.View`
 export const Option = styled.Text`
     font-family: Inter_500Medium;
     font-size: 18px;
-    width: 80%;
+    width: 90%;
 `;
 
 export const HelpText = styled.Text`

@@ -25,14 +25,11 @@ export const Success = ({ deleted, navigation, type }) => {
                 <CongratulationsHeader>
                     {deleted ? `${screen} Deleted` : "Changes Saved!"}
                 </CongratulationsHeader>
-                <CongratulationsMessageWrapper>
+                {!deleted && <CongratulationsMessageWrapper>
                     <CongratulationsMessage>
-                        You successfully {deleted ? "deleted" : "updated"} your
+                        You successfully updated your {screen}.
                     </CongratulationsMessage>
-                    <CongratulationsMessage>
-                        {screen}.
-                    </CongratulationsMessage>
-                </CongratulationsMessageWrapper>
+                </CongratulationsMessageWrapper>}
             </CongratulationsHeaderWrapper>
             <ButtonSection>
                 <JournalButton 

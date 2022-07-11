@@ -28,7 +28,6 @@ export const postMoodJournal = (uid, moodJournal, setMoodJournals) => {
     axios.post(`${API_URL}/api/v1/mood_journals`, { mood_journal: moodJournal, uid: uid })
     .then((response) => {
         const newJournal = response.data.data;
-        console.log(newJournal);
         setMoodJournals(prevJournals => (
             [
                 newJournal,

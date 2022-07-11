@@ -4,7 +4,7 @@ import { Text } from "react-native";
 
 export const CongratulationsHeaderWrapper = styled.View`
     align-items: center;
-    margin-top: 50px; 
+    margin-top: 32px; 
     margin-bottom: 32px;
 `;
 

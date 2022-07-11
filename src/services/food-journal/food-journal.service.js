@@ -13,7 +13,6 @@ export const patchFoodJournal = (journalId, journalEntry, setFoodJournals) => {
     axios.patch(`${API_URL}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })
     .then((response) => {
         const updatedJournal = response.data.data;
-        console.log(updatedJournal);
         setFoodJournals(prevFoodJournals => prevFoodJournals.map(
             journal => journal.attributes.id === journalId ?
                 updatedJournal

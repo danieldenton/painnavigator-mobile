@@ -30,7 +30,7 @@ export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLin
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
-                    tickValues={xAxis}
+                    tickValues={xAxis !== "" ? xAxis : ["Jun", "Jul", "Aug"]}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}

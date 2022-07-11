@@ -28,7 +28,6 @@ export const postPainJournal = (uid, painJournal, setPainJournals) => {
     axios.post(`${API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
     .then((response) => {
         const newJournal = response.data.data;
-        console.log(newJournal);
         setPainJournals(prevJournals => (
             [
                 newJournal,

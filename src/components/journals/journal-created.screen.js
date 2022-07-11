@@ -34,8 +34,7 @@ export const JournalCreatedScreen = ({ navigation, route }) => {
                     <>
                         <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                         <CongratulationsMessageWrapper>
-                            <CongratulationsMessage style={{ marginTop: 16 }}>You logged a {screen}.</CongratulationsMessage>
-                            <CongratulationsMessage>Keep up the hard work!</CongratulationsMessage>
+                            <CongratulationsMessage style={{ marginTop: 16 }}>You logged a {screen}. Keep up the hard work!</CongratulationsMessage>
                         </CongratulationsMessageWrapper>
                     </>
                 }

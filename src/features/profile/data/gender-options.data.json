@@ -12,11 +12,21 @@
         }, 
         {
             "id": 3,
-            "option": "Nonbinary",
+            "option": "Transgender/Trans woman",
             "helpText": null
         }, 
         {
             "id": 4,
+            "option": "Transgender/Trans man",
+            "helpText": null
+        },
+        {
+            "id": 5,
+            "option": "Nonbinary",
+            "helpText": null
+        },
+        {
+            "id": 6,
             "option": "Other",
             "helpText": null
         }

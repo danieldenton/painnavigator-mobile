@@ -29,7 +29,7 @@ export const ActivityLevel = () => {
                 question={"What is your activity level?"} 
                 helpText={"Tap the circle to select"} 
             />
-            <View style={{ marginTop: 16 }}>
+            <View style={{ marginTop: 8 }}>
                 {questionOptions}
             </View>
         </>

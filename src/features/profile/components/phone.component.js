@@ -14,6 +14,7 @@ export const Phone = () => {
                 value={profileData.phone}
                 onChangeText={(change) => changeProfileEntry(change, "phone")}
                 keyboardType={"phone-pad"}
+                returnKeyType={"done"}
             />
         </>
     );
