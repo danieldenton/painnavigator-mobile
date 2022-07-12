@@ -17,7 +17,7 @@ import { View } from "react-native";
 export const MovementProgress = () => {
     const { movementProgress } = useContext(MovementContext);
 
-    const dots = [...Array(5)].map((element, index) => {
+    const dots = [...Array(6)].map((element, index) => {
         return (
             <DottedLineSegement key={index} />
         );

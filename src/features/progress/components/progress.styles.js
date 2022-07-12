@@ -1,5 +1,4 @@
 import React from "react";
-import DashedLine from 'react-native-dashed-line';
 import styled from "styled-components/native";
 
 export const ProgressScreenWrapper = styled.View`
@@ -39,26 +38,39 @@ export const EducationLineSegmentCompleted = styled.View`
 
 export const MovementLineSegment = styled.View`
     position: absolute;
-    top: -61px;
+    top: -72px;
     left: 8px;
-    height: 63px;
+    height: 76px;
 `;
 
 export const MovementLineSegmentCompleted = styled.View`
     position: absolute;
-    top: -65px;
+    top: -73px;
     left: 15.5px;
     border: #4056F4 solid;
     border-left-width: 2px;
     border-right-width: 2px;
-    height: 66px;
+    height: 73px;
     width: 2.5px;
+`;
+
+export const MovementProgressLine = styled.View`
+    position: absolute;
+    top: -73px;
+    left: 15px;
+    border: #4056F4 solid;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    width: 2.5px;
+    z-index: 1;
 `;
 
 export const ChapterSection = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-bottom: 63px;
+    margin-bottom: 73px;
 `;
 
 export const EducationChapterSection = styled.View`
