@@ -7,12 +7,13 @@ import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
 import { View } from "react-native";
+import { StackActions } from '@react-navigation/native';
 
 export const MovementUnit = () => {
     const { completeVideo, completedVideos, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
     const { source } = currentVideo;
     const [status, setStatus] = useState({});
-    const [fullscreenPresent, setFullscreenPresent] = useState(false);
+    const [fullscreenStatus, setFullscreenStatus] = useState();
     const movementVideo = useRef(null);
     const incompleteVideos = currentModule.videos.filter(video => !video.completed);
     const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
@@ -41,9 +42,15 @@ export const MovementUnit = () => {
         if(!status.didJustFinish) {
             return;
         };
-        
-        completeVideo();        
-        resetVideo();
+
+        if(fullscreenStatus === 1) {
+            movementVideo.current.dismissFullscreenPlayer();
+        };
+
+        setTimeout(() => { 
+            completeVideo(); 
+            resetVideo();
+        }, 2000);
 
     }, [status.didJustFinish]);
 
@@ -54,7 +61,7 @@ export const MovementUnit = () => {
                 source={source}
                 status={status}
                 setStatus={setStatus}
-                fullscreenPresent={fullscreenPresent}
+                setFullscreenStatus={setFullscreenStatus}
             />
             <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
             <VideoInfo />

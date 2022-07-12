@@ -1,6 +1,6 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useWindowDimensions } from "react-native";
+import { useWindowDimensions, View, Text } from "react-native";
 import { VideoControlBar } from "./controls.component";
 import { Video } from 'expo-av';
 
@@ -14,16 +14,8 @@ const VideoScreen = styled(Video)`
     width: 100%;
 `;
 
-function shouldAutoPlay(fullscreenPresent) {
-    if(fullscreenPresent) {
-        return false
-    } else {
-        return true
-    }
-};
-
 export const VideoPlayer = forwardRef((props, ref) => {
-    const { source, status, setStatus, type, fullscreenPresent } = props;
+    const { source, status, setStatus, type, setFullscreenStatus } = props;
     const window = useWindowDimensions();
     const height = type === "audio" ? 0 : window.width / 1280 * 720;
 
@@ -38,9 +30,14 @@ export const VideoPlayer = forwardRef((props, ref) => {
                     isLooping={false}
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
+                    onFullscreenUpdate={status => {setFullscreenStatus(() => status.fullscreenUpdate)}}
                 />
             </VideoWrapper>
-            <VideoControlBar status={status} ref={ref} type={type} />
+            <VideoControlBar 
+                status={status} 
+                ref={ref} 
+                type={type} 
+            />
         </>
     );
 });
