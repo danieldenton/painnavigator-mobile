@@ -14,8 +14,16 @@ const VideoScreen = styled(Video)`
     width: 100%;
 `;
 
+function shouldAutoPlay(fullscreenPresent) {
+    if(fullscreenPresent) {
+        return false
+    } else {
+        return true
+    }
+};
+
 export const VideoPlayer = forwardRef((props, ref) => {
-    const { source, status, setStatus, type } = props;
+    const { source, status, setStatus, type, fullscreenPresent } = props;
     const window = useWindowDimensions();
     const height = type === "audio" ? 0 : window.width / 1280 * 720;
 
@@ -27,6 +35,7 @@ export const VideoPlayer = forwardRef((props, ref) => {
                     useNativeControls={false}
                     ref={ref}
                     resizeMode="contain"
+                    isLooping={false}
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                 />

@@ -12,6 +12,7 @@ export const MovementUnit = () => {
     const { completeVideo, completedVideos, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
     const { source } = currentVideo;
     const [status, setStatus] = useState({});
+    const [fullscreenPresent, setFullscreenPresent] = useState(false);
     const movementVideo = useRef(null);
     const incompleteVideos = currentModule.videos.filter(video => !video.completed);
     const upNextList = incompleteVideos.filter((video) => video.id !== currentVideo.id);
@@ -40,7 +41,7 @@ export const MovementUnit = () => {
         if(!status.didJustFinish) {
             return;
         };
-
+        
         completeVideo();        
         resetVideo();
 
@@ -53,6 +54,7 @@ export const MovementUnit = () => {
                 source={source}
                 status={status}
                 setStatus={setStatus}
+                fullscreenPresent={fullscreenPresent}
             />
             <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
             <VideoInfo />

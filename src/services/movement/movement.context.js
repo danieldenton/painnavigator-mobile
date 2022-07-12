@@ -64,9 +64,11 @@ export const MovementContextProvider = ({ children }) => {
     };
 
     const completeSkippedUnit = (unitId) => {
-        const newCompletedModules = [...completedMovementModules, unitId];
-        const sortedData = newCompletedModules.sort(function(a, b){return a-b});
-        setCompletedMovementModules(sortedData);
+        if(!completedMovementModules.includes(unitId)){
+            const newCompletedModules = [...completedMovementModules, unitId];
+            const sortedData = newCompletedModules.sort(function(a, b){return a-b});
+            setCompletedMovementModules(sortedData);
+        };
         setSkippedMovementModules(prevSkipped => prevSkipped.filter(unit => unit !== unitId));
     };
 
