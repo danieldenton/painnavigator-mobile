@@ -44,7 +44,7 @@
         {
             "id": 5,
             "type": "video",
-            "name": "Pacing Summary",
+            "name": "Pacing",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569367/For%20Mobile%20App/Education/Pacing.mp4",
             "length": 7,
             "post_video_destination": null,
