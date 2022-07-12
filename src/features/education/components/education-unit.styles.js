@@ -57,7 +57,6 @@ const NextUpWrapper = styled.View`
     margin-left: -16px; 
     margin-right: -16px;
     margin-top: 16px;
-    margin-bottom: 16px;
 `;
 
 const NextUpText = styled.Text`

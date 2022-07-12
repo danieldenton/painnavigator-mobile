@@ -7,7 +7,6 @@ import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
 import { View } from "react-native";
-import { StackActions } from '@react-navigation/native';
 
 export const MovementUnit = () => {
     const { completeVideo, completedVideos, currentModule, currentVideo, switchVideo, skipVideo } = useContext(MovementContext);
@@ -45,12 +44,15 @@ export const MovementUnit = () => {
 
         if(fullscreenStatus === 1) {
             movementVideo.current.dismissFullscreenPlayer();
-        };
-
-        setTimeout(() => { 
+            setTimeout(() => { 
+                completeVideo(); 
+                resetVideo();
+            }, 1000);
+        } else {
             completeVideo(); 
             resetVideo();
-        }, 2000);
+        }
+
 
     }, [status.didJustFinish]);
 
@@ -66,8 +68,8 @@ export const MovementUnit = () => {
             <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
             <VideoInfo />
             {incompleteVideos.length > 1 && <NextUp />}
-            <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16 }} >
-                <View style={{ marginTop: 1 }}>
+            <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16, paddingTop: 8 }} >
+                <View>
                     {playlistTiles}
                 </View>
             </Scroll>
