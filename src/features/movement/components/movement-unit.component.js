@@ -46,7 +46,6 @@ export const MovementUnit = () => {
             movementVideo.current.dismissFullscreenPlayer();
             setTimeout(() => { 
                 completeVideo(); 
-                resetVideo();
             }, 1000);
         } else {
             completeVideo(); 

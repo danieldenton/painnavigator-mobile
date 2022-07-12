@@ -19,8 +19,8 @@ export const EducationUnitInfo = ({ id, name, summary, type }) => {
                 </BookmarkSection>}
             </Header>
             {type === "video" ? 
-                <Scroll style={{ marginTop: 16, paddingRight: 16, paddingLeft: 16 }}>
-                    <View style={{ marginTop: 1, marginBottom: 80 }}>
+                <Scroll style={{ marginTop: 0, paddingRight: 16, paddingLeft: 16 }}>
+                    <View style={{ marginTop: 0, marginBottom: 120 }}>
                         <Summary>
                             {summary} 
                         </Summary>
