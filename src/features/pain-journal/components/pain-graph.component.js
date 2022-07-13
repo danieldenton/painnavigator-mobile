@@ -8,8 +8,9 @@ const GraphWrapper = styled.View`
     margin-top: 16px;
 `;
 
-export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLine, x }) => {
-    const { current, line, graph, xAxis } = painGraphData;
+export const PainGraph = ({ painGraphData }) => {
+    const sampleData = { line: { x: "Jun", y: 2 }, graph: { x: "Jun", y: 2 }, current: { x: "Jun", y: 2 }, xAxis: ["Jun"] };
+    const DATA = painGraphData ? painGraphData : sampleData;
 
     return (
         <GraphWrapper>
@@ -30,7 +31,7 @@ export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLin
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
-                    tickValues={xAxis !== "" ? xAxis : ["Jun", "Jul", "Aug"]}
+                    tickValues={DATA.xAxis}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}
@@ -51,7 +52,7 @@ export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLin
                         labels: { fontSize: 12, color: "#606C81" },
                         parent: { border: "2px solid #ccc"}
                     }}
-                    data={line}
+                    data={DATA.line}
                 />
                 <VictoryScatter
                     style={{
@@ -59,7 +60,7 @@ export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLin
                         data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={current}
+                    data={DATA.current}
                     size={6}
                 />
                 <VictoryScatter
@@ -67,7 +68,7 @@ export const PainGraph = ({ painGraphData, currentMonthData, graphData, graphLin
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={graph}
+                    data={DATA.graph}
                     size={6}
                 />
             </VictoryChart>

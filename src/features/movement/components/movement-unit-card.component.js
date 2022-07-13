@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
@@ -50,12 +50,17 @@ const Icon = styled.View`
     margin-right: -3px;
 `; 
 
-export const MovementUnitCard = ({ navigation }) => {
+export const MovementUnitCard = ({ navigation, isFocused }) => {
     const { currentModule, getPlaylistLength } = useContext(MovementContext);
     const { name, videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;
     const moduleProgress = numVideosCompleted / totalVideos;
+    const circleProgress = useRef(null);
+
+    useEffect(() => {
+        circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
+    }, [isFocused]);
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("Movement")}> 
@@ -83,6 +88,7 @@ export const MovementUnitCard = ({ navigation }) => {
                                     rotation={360}
                                     delay={1000}
                                     duration={1000}
+                                    ref={circleProgress}
                                 >
                                     {(fill) => (<MovementModuleIcon />)}
                                 </AnimatedCircularProgress>

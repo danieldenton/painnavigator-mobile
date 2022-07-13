@@ -130,7 +130,7 @@ export const TodayScreen = ({ navigation }) => {
                 {!COMPLETED_ALL_MOVEMENT_MODULES && 
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                        <MovementUnitCard navigation={navigation} />
+                        <MovementUnitCard navigation={navigation} isFocused={isFocused} />
                     </>
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
