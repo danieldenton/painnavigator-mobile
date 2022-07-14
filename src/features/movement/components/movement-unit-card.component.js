@@ -59,7 +59,9 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     const circleProgress = useRef(null);
 
     useEffect(() => {
-        circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
+        if(numVideosCompleted > 0) {
+            circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
+        };
     }, [isFocused]);
 
     return ( 

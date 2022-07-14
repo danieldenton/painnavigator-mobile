@@ -44,8 +44,8 @@ const CardIconSection = styled.View`
 `;
 
 export const LockedModule = () => {
-    const { nextModule, getPlaylistLength } = useContext(MovementContext);
-    const { name, videos } = nextModule;
+    const { lockedModule, getPlaylistLength } = useContext(MovementContext);
+    const { name, videos } = lockedModule;
 
     return (
         <LockedCard>

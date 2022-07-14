@@ -26,10 +26,10 @@ import { formatDate } from "../../../infrastructure/helpers";
 import { useIsFocused } from '@react-navigation/native';
 
 export const TodayScreen = ({ navigation }) => {
-    const { getUser, user } = useContext(AuthenticationContext);
+    const { getUser } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
-    const { painJournals, painGraphDataTransform, setPainGraphData } = useContext(PainJournalContext);
+    const { painJournals, setPainGraphData } = useContext(PainJournalContext);
     const { moodJournals } = useContext(MoodJournalContext);
     const { foodJournals } = useContext(FoodJournalContext);
     const { movementProgress, lastMovement, setLastMovement, setMovementProgress } = useContext(MovementContext);
@@ -68,7 +68,6 @@ export const TodayScreen = ({ navigation }) => {
         );
     }, [isFocused]);
     
-    //TODO: move this to a helper file
     useEffect(() => {
         if (!isFocused) {
             return;
@@ -80,7 +79,6 @@ export const TodayScreen = ({ navigation }) => {
         };
 
         const time_zone = Localization.timezone;
-        //TODO: fix RangeError: Invalid time value
         const date = new Date ();
         const time_zoned_date = formatInTimeZone(date, time_zone, 'HH');
         const time_number = Number(time_zoned_date);
@@ -131,6 +129,7 @@ export const TodayScreen = ({ navigation }) => {
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                         <MovementUnitCard navigation={navigation} isFocused={isFocused} />
+                        {LAST_MOVEMENT_MODULE !== time_zoned_todays_date && <LockedModule />}
                     </>
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />

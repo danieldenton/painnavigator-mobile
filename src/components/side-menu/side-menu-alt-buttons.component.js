@@ -20,7 +20,7 @@ export const AltMenuButtons = ({ navigation }) => {
             label: "Contact",
             destination: "Contact",
             icon: <ContactIcon />,
-            show: false
+            show: true
         }
     ];
 
