@@ -249,26 +249,6 @@
         },
         {
             "id": 25,
-            "type": "audio",
-            "name": "Imagery Intro",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914470/For%20Mobile%20App/Education/Imagery%20Intro.m4a",
-            "length": 9,
-            "post_video_destination": null,
-            "skippable": true,
-            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
-        },
-        {
-            "id": 26,
-            "type": "audio",
-            "name": "Imagery Practice",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914474/For%20Mobile%20App/Education/Imagery%20Practice.m4a",
-            "length": 9,
-            "post_video_destination": null,
-            "skippable": true,
-            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
-        },
-        {
-            "id": 27,
             "type": "video",
             "name": "Anti-inflammatory foods",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904522/For%20Mobile%20App/Education/Anti-Inflammatory%20Foods.mp4",
@@ -278,7 +258,7 @@
             "summary": "What is inflammation? Is it always bad? Learn about types of anti-inflammatory foods that can have a positive impact on your chronic pain."
         },
         {
-            "id": 28,
+            "id": 26,
             "type": "text",
             "name": "Anti-inflmamatory Meal Ideas",
             "source": null,
@@ -289,37 +269,47 @@
             "steps": ["Anti-inflammatory foods in general are: low in refined carbs, high in soluble fibers, high in unsaturated, “healthy” fats, higher in omega 3 fatty acids, high in polyphenols.", "Fruit and vegetables should fill ½ of your plate each meal.", "Aim for lean proteins (skinless chicken, turkey, fatty fish, lean beef or pork, tofu) and avoid highly processed meats.", "Aim for monounsaturated, polyunsaturated fats (olive oil, avocado oil, nuts, flax seeds, chia seeds).", "Aim for whole grains (brown rice, quinoa, oats) and avoid refined carbs (white bread, baked goods)."]
         },
         {
-            "id": 29,
+            "id": 27,
+            "type": "video",
+            "name": "TFA! 1",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569099/For%20Mobile%20App/Education/TFA%21%201.mp4",
+            "length": 7,
+            "post_video_destination": "MoodJournal",
+            "skippable": false,
+            "summary": "Introduction to Thoughts, Feelings, Action!- a multi step technique that will help you identify problematic thoughts that impact your mood and pain. Learn about common errors in your thinking that can impact your mood and pain."
+        },
+        {
+            "id": 28,
             "type": "audio",
-            "name": "Mindfulness (Intro)",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914848/For%20Mobile%20App/Education/Mindfulness%20Intro.m4a",
-            "length": 3,
+            "name": "Imagery Intro",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914470/For%20Mobile%20App/Education/Imagery%20Intro.m4a",
+            "length": 9,
             "post_video_destination": null,
             "skippable": true,
-            "summary": "Learn about the practice Mindfulness before having two relaxation exercises available that utilize Mindfulness."
+            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
+        },
+        {
+            "id": 29,
+            "type": "audio",
+            "name": "Imagery Practice",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914474/For%20Mobile%20App/Education/Imagery%20Practice.m4a",
+            "length": 9,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Learn about Imagery. Engage in two relaxation exercises that utilize Imagery."
         },
         {
             "id": 30,
-            "type": "audio",
-            "name": "Mindfulness (Practice): Listening",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914849/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Listening.m4a",
+            "type": "video",
+            "name": "TFA! 2",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
             "length": 6,
-            "post_video_destination": null,
-            "skippable": true,
-            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about listening."
+            "post_video_destination": "PainJournalHome",
+            "skippable": false,
+            "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
         },
         {
             "id": 31,
-            "type": "audio",
-            "name": "Mindfulness (Practice): Your Body",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914852/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Your%20Body.m4a",
-            "length": 7,
-            "post_video_destination": null,
-            "skippable": true,
-            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about your body."
-        },
-        {
-            "id": 32,
             "type": "video",
             "name": "Sleep Efficiency: Introduction",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570200/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Introduction.mp4",
@@ -329,7 +319,7 @@
             "summary": "Learn about sleep disturbance, including insomnia and the relationship it has with chronic pain. Learn about 2 factors that can contribute to sleep disturbance."
         },
         {
-            "id": 33,
+            "id": 32,
             "type": "video",
             "name": "Sleep Efficiency: Stimulus Control",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650910063/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Stimulus%20Control.mp4",
@@ -339,7 +329,7 @@
             "summary": "How does stimulus control improve your sleep efficiency? /n Learn the steps of stimulus control."
         },
         {
-            "id": 34,
+            "id": 33,
             "type": "video",
             "name": "Sleep Efficiency: Processing Strategies",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569381/For%20Mobile%20App/Education/Sleep%20Efficiency:%20Processing%20Strategies.mp4",
@@ -349,7 +339,7 @@
             "summary": "How can processing strategies imrpove your sleep efficiency? Learn how to keep an \"active brain\" out of bed!"
         },
         {
-            "id": 35,
+            "id": 34,
             "type": "text",
             "name": "Improve Your Sleep",
             "source": null,
@@ -360,27 +350,47 @@
             "steps": ["Make your bed a place for sleep (use your bed for sleep and sex only, no naps, eating, or daytime activities), establish a nightly routine, go to bed only when sleepy, and create a comfort zone, a soothing space outside of the bedroom that you can use if you can’t sleep.", "Keep an overactive mind out of bed: before your nightly routine write down 2-3 problems that might be on your mind when you get to bed. If you can solve the problem(s), do so right then and there. If you can’t, practice our Quieting the Mind technique.", "Sleeping Tips: regular exercise and meditation can help, do not use any medications for sleep unless prescribed, get exposure to bright light during the day, avoid caffeine consumption after 12pm, alcohol doesn’t lead to restorative sleep and it won’t keep you asleep, avoid watching TV or using your phone in bed."]
         },
         {
+            "id": 35,
+            "type": "video",
+            "name": "TFA! 3",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570135/For%20Mobile%20App/Education/TFA%21%203.mp4",
+            "length": 3,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the first 4-steps of Thoughts, Feelings, Action!"
+        },
+        {
             "id": 36,
             "type": "audio",
-            "name": "Extended Relaxation Exercise (Intro)",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919131/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Intro.m4a",
-            "length": 11,
+            "name": "Mindfulness (Intro)",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914848/For%20Mobile%20App/Education/Mindfulness%20Intro.m4a",
+            "length": 3,
             "post_video_destination": null,
             "skippable": true,
-            "summary": "Engage in an extended Relaxation Exercise."
+            "summary": "Learn about the practice Mindfulness before having two relaxation exercises available that utilize Mindfulness."
         },
         {
             "id": 37,
             "type": "audio",
-            "name": "Extended Relaxation Exercise (Practice)",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919136/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Practice.m4a",
-            "length": 11,
+            "name": "Mindfulness (Practice): Listening",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914849/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Listening.m4a",
+            "length": 6,
             "post_video_destination": null,
             "skippable": true,
-            "summary": "Engage in an extended Relaxation Exercise."
+            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about listening."
         },
         {
             "id": 38,
+            "type": "audio",
+            "name": "Mindfulness (Practice): Your Body",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650914852/For%20Mobile%20App/Education/Mindfulness%20Practice:%20Your%20Body.m4a",
+            "length": 7,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in a relaxation exercise that utilizes Mindfulness and is all about your body."
+        },
+        {
+            "id": 39,
             "type": "video",
             "name": "Pleasant Activities",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569333/For%20Mobile%20App/Education/Pleasant%20Activities.mp4",
@@ -390,7 +400,37 @@
             "summary": "Identify activities you can do in moderation that might prevent disability from setting in. Learn how to engage in those activities safely and learn how to work around obstacles that might get in the way of you participating in activities."
         },
         {
-            "id": 39,
+            "id": 40,
+            "type": "video",
+            "name": "TFA! 4",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569055/For%20Mobile%20App/Education/TFA%21%204.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": false,
+            "summary": "Learn the next 3-steps of Thoughts, Feelings, Action!"
+        },
+        {
+            "id": 41,
+            "type": "audio",
+            "name": "Extended Relaxation Exercise (Intro)",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919131/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Intro.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in an extended Relaxation Exercise."
+        },
+        {
+            "id": 42,
+            "type": "audio",
+            "name": "Extended Relaxation Exercise (Practice)",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919136/For%20Mobile%20App/Education/Extended%20Relaxation%20Exercise%20Practice.m4a",
+            "length": 11,
+            "post_video_destination": null,
+            "skippable": true,
+            "summary": "Engage in an extended Relaxation Exercise."
+        },
+        {
+            "id": 43,
             "type": "video",
             "name": "SMART Goal Renewal 1",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650910238/For%20Mobile%20App/Education/SMART%20Goal%20Renewal%201.mp4",
@@ -400,17 +440,17 @@
             "summary": "Review the process involved in completing your first PainNavigator SMART Goal and reflect on your goal. Establish a SMART Goal you can complete in 2-weeks."
         },
         {
-            "id": 40,
+            "id": 44,
             "type": "video",
-            "name": "TFA! 1",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569099/For%20Mobile%20App/Education/TFA%21%201.mp4",
-            "length": 7,
+            "name": "TFA! 5",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569068/For%20Mobile%20App/Education/TFA%21%205.mp4",
+            "length": 3,
             "post_video_destination": null,
             "skippable": false,
-            "summary": "Introduction to Thoughts, Feelings, Action!- a multi step technique that will help you identify problematic thoughts that impact your mood and pain. Learn about common errors in your thinking that can impact your mood and pain."
+            "summary": "Learn the final 3-steps of Thoughts, Feelings, Action!"
         },
         {
-            "id": 41,
+            "id": 45,
             "type": "video",
             "name": "Medical Approach to Chronic Pain 1",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650912369/For%20Mobile%20App/Education/Medical%20Approach%20to%20Chronic%20Pain%201.mp4",
@@ -420,7 +460,7 @@
             "summary": "Learn about the most common treatments for chronic pain including medications and injections."
         },
         {
-            "id": 42,
+            "id": 46,
             "type": "video",
             "name": "Medical Approach to Chronic Pain 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650912395/For%20Mobile%20App/Education/Medical%20Approach%20to%20Chronic%20Pain%202.mp4",
@@ -430,17 +470,17 @@
             "summary": "Learn about surgery and its role in low back pain management."
         },
         {
-            "id": 43,
+            "id": 47,
             "type": "video",
-            "name": "TFA! 2",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
-            "length": 6,
-            "post_video_destination": "PainJournalHome",
+            "name": "TFA! 6",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569409/For%20Mobile%20App/Education/TFA%21%206.mp4",
+            "length": 8,
+            "post_video_destination": "MoodJournal",
             "skippable": false,
-            "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
+            "summary": "Review the steps involved in Thoughts, Feelings, Action!"
         },
         {
-            "id": 44,
+            "id": 48,
             "type": "video",
             "name": "Medications for Chronic Pain",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904510/For%20Mobile%20App/Education/Medications%20for%20Chronic%20Pain.mp4",
@@ -450,7 +490,7 @@
             "summary": "Learn about over the counter and prescription non-opioid medications used to treat chronic pain."
         },
         {
-            "id": 45,
+            "id": 49,
             "type": "audio",
             "name": "Communication Styles",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919322/For%20Mobile%20App/Education/Communication%20Styles.m4a",
@@ -460,7 +500,7 @@
             "summary": "Learn how to effectively communicate your thoughts and feelings and how to avoid the pitfalls of inneffective communication styles."
         },
         {
-            "id": 46,
+            "id": 50,
             "type": "text",
             "name": "Communication Styles Summary",
             "source": null,
@@ -471,7 +511,7 @@
             "steps": ["Ineffective communication styles: passive (expect others to guess what you’re thinking), aggressive (blame others for not understanding you), passive-aggressive (say one thing but mean another), pain behavior (exaggerate aches and pains to let people know how you feel).", "Effective communication styles: assertive (communicate thoughts/feelings directly).", "Different people will have different responses to you and different environments may make communication easier or more difficult. Take responsibility for what you are trying to communicate and think of the most direct way to say it."]
         },
         {
-            "id": 47,
+            "id": 51,
             "type": "video",
             "name": "Opioid Medications 1",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919439/For%20Mobile%20App/Education/Opioid%20Medications%201.mp4",
@@ -481,7 +521,7 @@
             "summary": "Overview about the potential risks and benefits of opioid medications."
         },
         {
-            "id": 48,
+            "id": 52,
             "type": "video",
             "name": "Opioid Medications 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919460/For%20Mobile%20App/Education/Opioid%20Medications%202.mp4",
@@ -491,19 +531,9 @@
             "summary": "Understand the potential role of opioid therapy in the treatment of your chronic pain."
         },
         {
-            "id": 49,
+            "id": 53,
             "type": "video",
-            "name": "TFA! 3",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570135/For%20Mobile%20App/Education/TFA%21%203.mp4",
-            "length": 3,
-            "post_video_destination": null,
-            "skippable": false,
-            "summary": "Learn the first 4-steps of Thoughts, Feelings, Action!"
-        },
-        {
-            "id": 50,
-            "type": "video",
-            "name": "Complementary Therapies - Modalities",
+            "name": "Complementary Therapies: Modalities",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650919795/For%20Mobile%20App/Education/Complementary%20Therapies:%20Modalities.mp4",
             "length": 7,
             "post_video_destination": null,
@@ -511,17 +541,7 @@
             "summary": "Learn proven complementary therapies that are accepted by the medical community: Acupuncture, Tai Chi, Qi Gong, Spinal Manipulation and Massage."
         },
         {
-            "id": 51,
-            "type": "video",
-            "name": "TFA! 4",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569055/For%20Mobile%20App/Education/TFA%21%204.mp4",
-            "length": 4,
-            "post_video_destination": null,
-            "skippable": false,
-            "summary": "Learn the next 3-steps of Thoughts, Feelings, Action!"
-        },
-        {
-            "id": 52,
+            "id": 54,
             "type": "video",
             "name": "Complementary Therapies: Supplements",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904524/For%20Mobile%20App/Education/Complementary%20Therapies:%20Supplements.mp4",
@@ -531,7 +551,7 @@
             "summary": "Learn about the role of natural supplements on chronic low back pain."
         },
         {
-            "id": 53,
+            "id": 55,
             "type": "text",
             "name": "Additional Supplements",
             "source": null,
@@ -542,7 +562,7 @@
             "steps": ["Pycnogenol: has anti-inflammatory properties. The usual dosage is 100-200 mg per day. People who are on immunosuppressants or taking steroids should first talk to their doctor before starting.", "Frankincense: has anti-inflammatory, anti-arthritis, and pain relieving properties. Typically used at 300-500 mg two to three times per day. It’s well tolerated by most people, but some may experience nausea, acid reflux, or diarrhea.", "Resveratrol: found in the skin of red wine grapes, can be helpful for arthritis pain. When you hear of the benefits of red wine on heart disease, resveratrol is one of the reasons. A typical dose is anywhere from 50-500 mg per day. Because of the limitations in getting a reliable pill or capsule form, the side effect profile is not really known.", "White Willow Bark: used for pain and inflammation since the ancient Roman and Egyptian times. 240 mg/day of white willow bark can have similar results to taking aspirin for pain. It should not be used in children or in people with peptic ulcer disease, poorly controlled diabetes, or liver or kidney problems."]
         },
         {
-            "id": 54,
+            "id": 56,
             "type": "video",
             "name": "Expectations for Medical Treatment",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569025/For%20Mobile%20App/Education/Expectations%20for%20Medical%20Treatment.mp4",
@@ -552,9 +572,9 @@
             "summary": "Identify expectations you may have of health care providers and their treatment recommendations. Learn how to communicate the way chronic pain affects your functioning."
         },
         {
-            "id": 55,
+            "id": 57,
             "type": "text",
-            "name": "Expectations for Medical Treatment",
+            "name": "Expectations for Medical Treatment Summary",
             "source": null,
             "length": 2,
             "post_video_destination": null,
@@ -563,17 +583,7 @@
             "steps": ["Write some notes on what you expect to get out of meeting with your healthcare provider. This can include: looking for a way to make your pain more manageable, getting a second opinion, seeking more or less medication, questions about the condition causing your pain or the treatments being recommended, communicating struggles with cognitive impairment, asking for additional resources that might help you more effectively cope with your pain.", "Prepare how to communicate how pain affects your functioning: What are the specific body parts that hurt? Can you use words, such as sharp, dull, aching, throbbing to describe your pain? Are you experiencing burning, numbness, tingling in your legs? What activities make your pain better, worse?", "Other things to bring: make a list of medications, procedures, surgeries that have or have not been helpful and bring any previous imaging or tests.", "Beware of healthcare providers who have a “quick fix” for chronic pain (usually, they’re too good to be true), it’s sometimes helpful to bring a loved one or friend with you to your appointment to help you communicate, make sure you have a clear understanding of medical recommendations for your pain."]
         },
         {
-            "id": 56,
-            "type": "video",
-            "name": "TFA! 5",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569068/For%20Mobile%20App/Education/TFA%21%205.mp4",
-            "length": 3,
-            "post_video_destination": null,
-            "skippable": false,
-            "summary": "Learn the final 3-steps of Thoughts, Feelings, Action!"
-        },
-        {
-            "id": 57,
+            "id": 58,
             "type": "audio",
             "name": "Ergonomics and Pain",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904455/For%20Mobile%20App/Education/Ergonomics%20and%20Chronic%20Pain.mp4",
@@ -583,7 +593,7 @@
             "summary": "Learn about ergonimics and pain in a dynamic interview with an Occupational Therapist."
         },
         {
-            "id": 58,
+            "id": 59,
             "type": "text",
             "name": "OT-Recommended Daily Lifestyle Changes",
             "source": null,
@@ -592,16 +602,6 @@
             "skippable": true,
             "summary": "Occupational Therapists (OT) can support you in better managing your pain in many ways. Here’s some key OT-recommended lifestyle tips:",
             "steps": ["Healthy habits and routines are the best tools to combat chronic pain so keep moving and listen to your body as you do! You can always modify an exercise or take a break, try alternating between movement and rest throughout the day.", "Look for a firm and more supportive mattress and keep the spine neutral while sleeping. Try to sleep on your side or back with pillows supporting you to keep alignment.", "Sitting is one of the greatest health risk factors of our time. When you have to sit, use an ergonomic chair and pay attention to your posture. Leverage a “sit-to-stand” desk if possible or take breaks to stand up and stretch out throughout the day."]
-        },
-        {
-            "id": 59,
-            "type": "video",
-            "name": "TFA! 6",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569409/For%20Mobile%20App/Education/TFA%21%206.mp4",
-            "length": 8,
-            "post_video_destination": "MoodJournal",
-            "skippable": false,
-            "summary": "Review the steps involved in Thoughts, Feelings, Action!"
         },
         {
             "id": 60,
