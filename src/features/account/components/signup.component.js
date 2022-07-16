@@ -69,7 +69,6 @@ export const Signup = ({ navigation }) => {
                     title={"Create Account"} 
                     onPress={() => onRegister(password, repeatedPassword)} 
                 />
-                <SignUpOptions />
                 <TermsAndConditions navigation={navigation} />
             </ButtonSection>
         </>
