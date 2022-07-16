@@ -62,8 +62,16 @@ export const AuthenticationContextProvider = ({ children }) => {
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
+                const strippedOnboardingData = {
+                    first_name: onboardingData.first_name.trim(),
+                    last_name: onboardingData.last_name.trim(),
+                    email: onboardingData.email.trim(),
+                    starting_pain_score: onboardingData.starting_pain_score,
+                    pace: onboardingData.pace,
+                    commitment: onboardingData.commitment
+                }
                 setUser(u);
-                postUser(u.user.uid, onboardingData);
+                postUser(u.user.uid, strippedOnboardingData);
             }).catch((e) => {
                 // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
                 setError(e.toString());
