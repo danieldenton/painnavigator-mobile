@@ -16,6 +16,7 @@ import { WellnessCoachNavigator } from "./wellness-coach.navigator";
 import { ContactScreen } from "../../features/today/screens/contact.screen";
 import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 import { Privacy } from "../../features/account/screens/privacy-policy.screen";
+import { SentScreen } from "../../features/today/screens/sent.screen";
 
 const TodayStack = createStackNavigator();
 
@@ -36,6 +37,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="WellnessCoach" component={WellnessCoachNavigator} />
             <TodayStack.Screen name="Profile" component={ProfileNavigator} />
             <TodayStack.Screen name="Contact" component={ContactScreen} />
+            <TodayStack.Screen name="Sent" component={SentScreen} />
             <TodayStack.Group screenOptions={{ presentation: 'modal' }}>
                 <TodayStack.Screen name="Privacy" component={Privacy} />
                 <TodayStack.Screen name="Terms" component={TermsOfUse} />
