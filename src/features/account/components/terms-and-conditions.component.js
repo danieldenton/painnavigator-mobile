@@ -27,7 +27,7 @@ export const TermsAndConditions = ({ navigation }) => {
     return (
         <Wrapper>
             <Body>
-                By continuing, you are agreeing to Pain Navigator’s 
+                By continuing, you are agreeing to PainNavigator’s 
             </Body>
             <LinkWrapper style={{ marginRight: 4 }}
                 onPress={() => navigation.navigate("Terms")}

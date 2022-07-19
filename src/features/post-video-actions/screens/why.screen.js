@@ -25,7 +25,7 @@ export const Why = ({ navigation, route }) => {
             return <MoodJournal />;
           case "FoodJournal":
             return <FoodJournal />;
-          case "FavoriteActivities":
+          case "MyActivities":
             return <FavoriteActivities />;
           default:
             return null;

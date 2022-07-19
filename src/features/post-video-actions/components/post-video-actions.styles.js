@@ -9,8 +9,7 @@ export const Wrapper = styled.View`
 export const Header = styled.Text`
     font-family: Poppins_500Medium;
     font-size: 25px;
-    width: 75%;
-    margin-bottom: 24px;
+    width: 85%;
 `;
 
 export const Body = styled.Text`
@@ -34,6 +33,5 @@ export const BodyLine = styled.View`
 
 export const GraphicWrapper = styled.View`
     align-items: center;
-    margin-bottom: 64px;
-    margin-top: 32px;
+    margin-top: 24px;
 `;

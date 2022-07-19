@@ -7,7 +7,7 @@ import { EducationContext } from "../../../services/education/education.context"
 
 export const JournalScreen = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
-    const USER_COMPLETED_MOOD_UNIT = educationProgress > 12;
+    const USER_COMPLETED_MOOD_UNIT = educationProgress > 28;
     const USER_COMPLETED_FOOD_UNIT = educationProgress > 24;
 
     const journals = [

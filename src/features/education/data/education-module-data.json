@@ -66,7 +66,7 @@
             "id": 7,
             "type": "video",
             "name": "SMART Goals",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570183/For%20Mobile%20App/Education/SMART%20Goal.mp4",
+            "source": "https://res.cloudinary.com/painnavigator/0/upload/v1655824728/For%20Mobile%20App/Education/Setting%20a%20SMART%20Goal.mp4",
             "length": 6,
             "post_video_destination": "SmartGoal",
             "skippable": false,
@@ -304,7 +304,7 @@
             "name": "TFA! 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
             "length": 6,
-            "post_video_destination": "PainJournalHome",
+            "post_video_destination": "FoodJournal",
             "skippable": false,
             "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
         },
@@ -395,7 +395,7 @@
             "name": "Pleasant Activities",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569333/For%20Mobile%20App/Education/Pleasant%20Activities.mp4",
             "length": 7,
-            "post_video_destination": "FavoriteActivities",
+            "post_video_destination": "MyActivities",
             "skippable": true,
             "summary": "Identify activities you can do in moderation that might prevent disability from setting in. Learn how to engage in those activities safely and learn how to work around obstacles that might get in the way of you participating in activities."
         },
@@ -590,7 +590,7 @@
             "length": 10,
             "post_video_destination": null,
             "skippable": true,
-            "summary": "Learn about ergonimics and pain in a dynamic interview with an Occupational Therapist."
+            "summary": "Learn about ergonomics and pain in a dynamic interview with an Occupational Therapist."
         },
         {
             "id": 59,
