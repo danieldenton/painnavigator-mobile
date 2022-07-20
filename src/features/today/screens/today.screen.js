@@ -38,7 +38,6 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-
     const time_zone = Localization.timezone;
     const todays_date = new Date ();
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');

@@ -16,12 +16,6 @@ export const ConversationScreen = ({ navigation }) => {
         <SentMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />
     );
 
-    useEffect(() => {
-        if (hasUnreadMessages) {
-            clearUnreadMessages();
-        };
-    }, []);
-
     const scrollViewRef = useRef();
 
     return (
@@ -42,6 +36,8 @@ export const ConversationScreen = ({ navigation }) => {
                 navigation={navigation}
                 sendMessage={sendMessage}
                 writeMessage={writeMessage}
+                hasUnreadMessages={hasUnreadMessages}
+                clearUnreadMessages={clearUnreadMessages}
             />
         </SafeView>
     );

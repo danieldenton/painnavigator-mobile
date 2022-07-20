@@ -54,8 +54,14 @@ const ExtraPadding = styled.View`
     margin-bottom: 60px;
 `;
 
-export const MessageInput = ({ body, navigation, sendMessage, writeMessage }) => {
+export const MessageInput = ({ body, clearUnreadMessages, hasUnreadMessages, navigation, sendMessage, writeMessage }) => {
     const [useExtraPadding, setUseExtraPadding] = useState(false);
+
+    function markUnread() {
+        if (hasUnreadMessages) {
+            clearUnreadMessages();
+        };
+    };
 
     return (
         <InputWrapper>
@@ -74,6 +80,7 @@ export const MessageInput = ({ body, navigation, sendMessage, writeMessage }) =>
                     onPress={() => {
                         navigation.navigate("MessageSent");
                         sendMessage();
+                        markUnread();
                     }}
                     >
                     <SendIcon />
