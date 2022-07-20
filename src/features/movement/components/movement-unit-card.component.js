@@ -41,8 +41,8 @@ const UnitProgress = styled.Text`
 
 const CardIconSection = styled.View`
     flex: .2;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-end;
 `;
 
 const Icon = styled.View`
