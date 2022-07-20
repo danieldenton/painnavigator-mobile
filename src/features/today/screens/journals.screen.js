@@ -7,8 +7,8 @@ import { EducationContext } from "../../../services/education/education.context"
 
 export const JournalScreen = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
-    const USER_COMPLETED_MOOD_UNIT = educationProgress > 28;
     const USER_COMPLETED_FOOD_UNIT = educationProgress > 24;
+    const USER_COMPLETED_MOOD_UNIT = educationProgress > 27;
 
     const journals = [
         {
@@ -17,14 +17,14 @@ export const JournalScreen = ({ navigation }) => {
             "show": true
         },
         {
-            "destination": "MoodJournal",
-            "icon": <MoodJournalIcon />,
-            "show": USER_COMPLETED_MOOD_UNIT
-        },
-        {
             "destination": "FoodJournal",
             "icon": <FoodJournalIcon />,
             "show": USER_COMPLETED_FOOD_UNIT
+        },
+        {
+            "destination": "MoodJournal",
+            "icon": <MoodJournalIcon />,
+            "show": USER_COMPLETED_MOOD_UNIT
         }
     ];
 
@@ -54,7 +54,7 @@ export const JournalScreen = ({ navigation }) => {
                 screen={"Journals"} 
             />
             {journalTiles}
-            {!USER_COMPLETED_FOOD_UNIT && <LockedActivityText />}
+            {!USER_COMPLETED_MOOD_UNIT && <LockedActivityText />}
         </SafeView>
     );
 };

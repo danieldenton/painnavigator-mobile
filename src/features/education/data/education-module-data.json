@@ -250,7 +250,7 @@
         {
             "id": 25,
             "type": "video",
-            "name": "Anti-inflammatory foods",
+            "name": "Anti-inflammatory Foods",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650904522/For%20Mobile%20App/Education/Anti-Inflammatory%20Foods.mp4",
             "length": 8,
             "post_video_destination": null,
@@ -304,7 +304,7 @@
             "name": "TFA! 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568946/For%20Mobile%20App/Education/TFA%21%202.mp4",
             "length": 6,
-            "post_video_destination": "FoodJournal",
+            "post_video_destination": "PainJournalHome",
             "skippable": false,
             "summary": "Learn about the relationship between thoughts and feelings as it pertains to chronic pain. Learn about the steps of Thoughts, Feelings, Action!"
         },

@@ -27,8 +27,8 @@
             "name": "Foundations: Breathing",
             "videos": [
                 {
-                  "id": 69,
-                  "completed": false
+                    "id": 69,
+                    "completed": false
                 },
                 {
                     "id": 70,
@@ -77,10 +77,6 @@
                 {
                     "id": 75,
                     "completed": false
-                }, 
-                {
-                    "id": 72,
-                    "completed": false
                 }
             ]
         },
@@ -117,10 +113,6 @@
                 {
                     "id": 77,
                     "completed": false
-                }, 
-                {
-                    "id": 72,
-                    "completed": false
                 }
             ]
         },
@@ -156,10 +148,6 @@
                 },
                 {
                     "id": 82,
-                    "completed": false
-                }, 
-                {
-                    "id": 72,
                     "completed": false
                 }
             ]
@@ -259,8 +247,8 @@
             "name": "Strength: Movement",
             "videos": [
                 {
-                  "id": 93,
-                  "completed": false
+                    "id": 93,
+                    "completed": false
                 },
                 {
                     "id": 85,
@@ -295,8 +283,8 @@
             "name": "Strength: Energy Ball",
             "videos": [
                 {
-                  "id": 95,
-                  "completed": false
+                    "id": 95,
+                    "completed": false
                 },
                 {
                     "id": 88,
@@ -707,7 +695,7 @@
             "name": "Mastering: Fearlessness",
             "videos": [
                 {
-                    "id": 132,
+                    "id": 133,
                     "completed": false
                 },
                 {

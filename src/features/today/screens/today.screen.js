@@ -18,7 +18,7 @@ import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { LockedModule } from "../components/locked-module.component";
 import { View, Text, Platform } from "react-native";
-import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/daily-activities.component";
+import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import * as Localization from 'expo-localization';
 import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
@@ -102,6 +102,12 @@ export const TodayScreen = ({ navigation }) => {
         };
     };
 
+    function renderWellnessCoachMessageActivity() {
+        if(hasUnreadMessages) {
+            return <WellnessCoach navigation={navigation} />
+        }
+    }
+
     function renderSmartGoalDailyActivity() { 
         const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
         if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
@@ -140,6 +146,7 @@ export const TodayScreen = ({ navigation }) => {
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderSmartGoalDailyActivity()}
                     {renderJournalDailyActivity()}
+                    {renderWellnessCoachMessageActivity()}
                 </View>
             </Scroll>
         </SafeView>

@@ -1,6 +1,6 @@
 import React from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
-import { JournalEntryIcon, Profile, SmartGoalDailyActivity } from "../../../icons";
+import { JournalEntryIcon, Profile, SmartGoalDailyActivity, WellnessCoachIcon } from "../../../icons";
 
 export const Journals = ({ navigation }) => {
     return (
@@ -9,6 +9,17 @@ export const Journals = ({ navigation }) => {
             destination={"JournalsNavigator"} 
             title={"Make a Journal Entry"}
             icon={<JournalEntryIcon />}
+        />
+    );
+};
+
+export const WellnessCoach = ({ navigation }) => {
+    return (
+        <DailyActivitiesTile 
+            navigation={navigation} 
+            destination={"WellnessCoach"} 
+            title={"Check in with your Coach"}
+            icon={<WellnessCoachIcon />}
         />
     );
 };
