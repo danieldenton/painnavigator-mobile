@@ -8,21 +8,19 @@ export const DrawerContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    margin-left: 16px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 16px;
     width: 100%;
 `;
 
 const LogoImage = styled.Image`
-    width: 75%;
+    width: 80%;
     resize-mode: contain;
 `;
 
 export const Logo = () => {
     return (
         <LogoContainer>
-            <LogoImage source={require('../../../assets/logo.png')}/>        
+            <LogoImage source={require('../../../assets/logo_small.png')}/>        
         </LogoContainer>
     );
 };
