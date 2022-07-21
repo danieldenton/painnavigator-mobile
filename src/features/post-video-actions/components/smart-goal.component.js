@@ -5,10 +5,10 @@ import { GoalGraphic } from "../../../graphics";
 export const SmartGoal = () => {
     return (
         <>
+            <GraphicWrapper style={{ marginRight: 32 }}>
+                <GoalGraphic />
+            </GraphicWrapper>
             <Wrapper>
-                <GraphicWrapper style={{ marginRight: 32 }}>
-                    <GoalGraphic />
-                </GraphicWrapper>
                 <Header>Let’s Make Your SMART Goal!</Header>
                 <Body style={{ marginTop: 0 }}>Remember, SMART goals are:</Body>
                 <BodyLine>

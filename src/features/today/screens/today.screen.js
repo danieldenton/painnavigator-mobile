@@ -48,6 +48,7 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.attributes.date_time_value);
     const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
@@ -128,7 +129,7 @@ export const TodayScreen = ({ navigation }) => {
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
                 {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {LAST_EDUCATION_MODULE === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={educationProgress - 1} />}
+                {LAST_EDUCATION_MODULE === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={LAST_EDUCATION_MODULE_ID} />}
                 {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
                 {!COMPLETED_ALL_MOVEMENT_MODULES && 
                     <>

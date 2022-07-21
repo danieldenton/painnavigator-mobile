@@ -1,6 +1,6 @@
-import React, { forwardRef, useState, useEffect } from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components/native";
-import { useWindowDimensions, View, Text } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { VideoControlBar } from "./controls.component";
 import { Video } from 'expo-av';
 
@@ -40,7 +40,7 @@ export const VideoPlayer = forwardRef((props, ref) => {
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
                     onFullscreenUpdate={status => fullScreenStatus(status)}
-                />
+                    />
             </VideoWrapper>
             <VideoControlBar 
                 status={status} 

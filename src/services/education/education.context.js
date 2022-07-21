@@ -20,7 +20,8 @@ export const EducationContextProvider = ({ children }) => {
     }, [educationProgress])
 
     const advanceProgress = () => {
-        setEducationProgress((prevEducationProgress) => { return ( prevEducationProgress + 1 ) });
+        const NEXT_MODULE_ID = educationProgress + 1;
+        setEducationProgress(NEXT_MODULE_ID);
     };
 
     const completeModule = () => {

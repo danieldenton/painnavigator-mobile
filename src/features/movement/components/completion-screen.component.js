@@ -4,6 +4,8 @@ import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { ThumbsUpGraphic } from "../../../graphics";
+import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 const CongratulationsSection = styled.View`
     align-items: center;
@@ -29,6 +31,8 @@ export const CompletionScreen = ({ navigation }) => {
 
     return (
         <>
+            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+            <View style={{ marginBottom: 60 }}>
             <GraphicWrapper>
                 <ThumbsUpGraphic />
             </GraphicWrapper>
@@ -41,6 +45,8 @@ export const CompletionScreen = ({ navigation }) => {
                     relationship with pain. 
                 </CongratulationsMessage>
             </CongratulationsSection>
+            </View>
+            </Scroll>
             <ButtonSection>
                 <ModuleButton 
                     title={"Back to Dashboard"} 

@@ -41,12 +41,14 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        const nextMovement = movementModules.find(module => module.id === movementProgress + 1);
+        const NEXT_MODULE_ID = movementProgress + 1;
+        const ON_DECK_MODULE_ID = NEXT_MODULE_ID + 1;
+        const nextMovement = movementModules.find(module => module.id === NEXT_MODULE_ID);
         setCurrentModule(nextMovement);
         post(module, user.user.uid);
-        setMovementProgress((prevProgress) => { return ( prevProgress + 1 ) });
+        setMovementProgress(NEXT_MODULE_ID);
         if(movementProgress < 35) {
-            const locked = movementModules.find(module => module.id === movementProgress + 2);
+            const locked = movementModules.find(module => module.id === ON_DECK_MODULE_ID);
             setLockedModule(locked);
         };
     };

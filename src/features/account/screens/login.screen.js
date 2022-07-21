@@ -5,6 +5,7 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
+import { ActivityIndicator } from "../../../components/activity-indicator.component";
 
 export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ export const LoginScreen = ({ navigation }) => {
                 title={"Login"} 
                 onPress={() => onLogin(email, password)} 
             />
+            {userLoading && <ActivityIndicator />}
         </SafeView>
     ); 
 };

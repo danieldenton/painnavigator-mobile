@@ -58,7 +58,7 @@ export const PaceSelectionIndicator = () => {
 };
 
 const PaceInfoWrapper = styled.View`
-    margin-top: 42px;
+    margin-top: 16px;
 `;
 
 const PaceHeader = styled.Text`

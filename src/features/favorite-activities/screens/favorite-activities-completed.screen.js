@@ -1,4 +1,3 @@
-import resetPleasantActivity from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
@@ -10,12 +9,16 @@ import {
     CongratulationsMessage
 } from "../../../components/completion/components/completion.styles";
 import { ThumbsUpGraphic } from "../../../graphics";
+import { Scroll } from "../../../components/scroll.component";
+import { View } from "react-native";
 
 export const FavoriteActivitiesCompletedScreen = ({ navigation }) => {
 
     return (
         <SafeView>
             <NavigationBarLeft screen={"My Activities"} navigation={navigation} destination={"Today"} />
+            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+            <View style={{ marginBottom: 120 }}>
             <GraphicWrapper>
                 <ThumbsUpGraphic />
             </GraphicWrapper>
@@ -36,11 +39,13 @@ export const FavoriteActivitiesCompletedScreen = ({ navigation }) => {
                     </CongratulationsMessage>
                 </CongratulationsMessageWrapper>
             </CongratulationsHeaderWrapper>
+                </View>
+            </Scroll>
             <ButtonSection>
                 <JournalButton 
                     title={"See my list!"}
                     onPress={() => {navigation.navigate('Settings', { screen: 'FavoriteActivities' });}}
-                />
+                    />
             </ButtonSection>
         </SafeView>
     )

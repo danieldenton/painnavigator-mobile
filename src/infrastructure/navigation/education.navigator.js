@@ -69,7 +69,7 @@ export const EducationNavigator = () => {
              "component": NewMoodJournalScreen
         },
         {
-             "name": "FavoriteActivities",
+             "name": "MyActivities",
              "component": NewFavoriteActivitiesScreen
         },
         {

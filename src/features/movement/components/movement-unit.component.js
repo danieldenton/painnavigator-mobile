@@ -67,7 +67,7 @@ export const MovementUnit = () => {
             <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
             <VideoInfo />
             {incompleteVideos.length > 1 && <NextUp />}
-            <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16, paddingTop: 8 }} >
+            <Scroll showsVerticalScrollIndicator={false} style={{ paddingRight:  16, paddingLeft: 16, paddingTop: 12 }} >
                 <View>
                     {playlistTiles}
                 </View>
