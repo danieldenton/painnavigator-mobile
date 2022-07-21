@@ -22,7 +22,7 @@ const HelpText = styled.Text`
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
     const { painJournals, painGraphData } = useContext(PainJournalContext);
-    const NAVIGATE_BACK_DESTINATION = route?.params?.post_video_destination ? "Today" : "Journals";
+    const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
     const painJournalElements = painJournals?.map((journal) => {
         return (

@@ -8,7 +8,9 @@ export const DrawerContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    margin: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 12px;
     width: 100%;
 `;
 

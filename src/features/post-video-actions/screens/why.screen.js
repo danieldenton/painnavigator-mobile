@@ -46,9 +46,7 @@ export const Why = ({ navigation, route }) => {
             </Scroll>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => navigation.navigate(post_video_destination, {
-                        type: "post_video_action"
-                    })}
+                    onPress={() => navigation.navigate(post_video_destination)}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>

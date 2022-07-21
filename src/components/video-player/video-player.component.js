@@ -4,7 +4,7 @@ import { useWindowDimensions, View, Text } from "react-native";
 import { VideoControlBar } from "./controls.component";
 import { Video } from 'expo-av';
 
-const VideoWrapper = styled.View`
+const VideoWrapper = styled.Pressable`
     flex-direction: row;
     margin-left: -16px;
     margin-right: -16px;
@@ -19,9 +19,18 @@ export const VideoPlayer = forwardRef((props, ref) => {
     const window = useWindowDimensions();
     const height = type === "audio" ? 0 : window.width / 1280 * 720;
 
+    function fullScreenStatus(status) {
+        if(setFullscreenStatus) {
+            setFullscreenStatus(() => status.fullscreenUpdate)
+        }
+    };
+
     return (
         <>
-            <VideoWrapper style={{ height: height}}>
+            <VideoWrapper 
+                style={{ height: height}}
+                onPress={() => status.isPlaying ? ref.current.pauseAsync() : ref.current.playAsync()}
+            >
                 <VideoScreen
                     source={{ uri: source}}
                     useNativeControls={false}
@@ -30,7 +39,7 @@ export const VideoPlayer = forwardRef((props, ref) => {
                     isLooping={false}
                     shouldPlay={true}
                     onPlaybackStatusUpdate={status => setStatus(() => status)}
-                    onFullscreenUpdate={status => {setFullscreenStatus(() => status.fullscreenUpdate)}}
+                    onFullscreenUpdate={status => fullScreenStatus(status)}
                 />
             </VideoWrapper>
             <VideoControlBar 

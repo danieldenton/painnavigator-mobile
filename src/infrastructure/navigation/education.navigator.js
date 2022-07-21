@@ -6,13 +6,16 @@ import { SkippedScreen } from "../../features/education/screens/skipped.screen";
 import { Why } from "../../features/post-video-actions/screens/why.screen";
 import { PainJournalHomeScreen } from "../../features/pain-journal/screens/pain-journal-home.screen";
 import { NewPainJournalScreen } from "../../features/pain-journal/screens/new-pain-journal.screen";
+import { ReviewPainJournalScreen } from "../../features/pain-journal/screens/review-pain-journal.screen";
 import { NewSmartGoalScreen } from "../../features/smart-goals/screens/new-smart-goal.screen"; 
 import { NewMoodJournalScreen } from "../../features/mood-journal/screens/new-mood-journal.screen";
 import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart-goal-created.screen";
 import { NewFavoriteActivitiesScreen } from "../../features/favorite-activities/screens/new-favorite-activities.screen";
 import { FavoriteActivitiesCompletedScreen } from "../../features/favorite-activities/screens/favorite-activities-completed.screen";
 import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities/screens/favorite-activities-home.screen";
-import { FoodJournalNavigator } from "../navigation/food-journal.navigator";
+import { FoodJournalHomeScreen } from "../../features/food-journal/screens/food-journal-home.screen";
+import { FoodJournalEntryScreen } from "../../features/food-journal/screens/food-journal-entry.screen";
+import { ReviewFoodJournalScreen } from "../../features/food-journal/screens/review-food-journal.screen";
 
 const EducationStack = createStackNavigator();
 
@@ -38,11 +41,20 @@ export const EducationNavigator = () => {
         },
         {
             "name": "PainJournalHome",
-            "component": PainJournalHomeScreen
+            "component": PainJournalHomeScreen,
+            "initialParams": { postVideoAction: true }
         },
         {
             "name": "PainJournal",
             "component": NewPainJournalScreen
+        },
+        {
+            "name": "NewPainJournal",
+            "component": NewPainJournalScreen
+        },
+        {
+            "name": "ReviewPainJournal",
+            "component": ReviewPainJournalScreen
         },
         {
             "name": "SmartGoal",
@@ -70,7 +82,21 @@ export const EducationNavigator = () => {
         },
         {
             "name": "FoodJournal",
-            "component": FoodJournalNavigator
+            "component": FoodJournalHomeScreen,
+            "initialParams": { postVideoAction: true }
+        },
+        {
+            "name": "FoodJournalHome",
+            "component": FoodJournalHomeScreen,
+            "initialParams": { postVideoAction: true }
+        },
+        {
+            "name": "FoodJournalEntry",
+            "component": FoodJournalEntryScreen
+        },
+        {
+            "name": "ReviewFoodJournal",
+            "component": ReviewFoodJournalScreen
         }
     ];
 
@@ -81,6 +107,7 @@ export const EducationNavigator = () => {
                 name={name}
                 component={component}
                 key={name}
+                initialParams={screen.initialParams && screen.initialParams}
             />
         );
     });
