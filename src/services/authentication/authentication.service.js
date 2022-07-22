@@ -76,5 +76,7 @@ const fillMonths = (data) => {
       const thirdMonthData = months.find(month => month.id === firstMonthData.id + 2);
       const xData = new Array(firstMonth, secondMonthData.month, thirdMonthData.month);
       return xData;
+  } else {
+    return data.map(month => month.x);
   }
 };

@@ -16,7 +16,6 @@ export const MovementContextProvider = ({ children }) => {
     const [completedMovementModules, setCompletedMovementModules] = useState([]);
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
     const [lastMovement, setLastMovement] = useState(null);
-    const [lockedModule, setLockedModule] = useState(movementModules.find(module => module.id === movementProgress + 1));
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
@@ -42,15 +41,10 @@ export const MovementContextProvider = ({ children }) => {
             status: STATUS_NOT_STARTED        
         };
         const NEXT_MODULE_ID = movementProgress + 1;
-        const ON_DECK_MODULE_ID = NEXT_MODULE_ID + 1;
         const nextMovement = movementModules.find(module => module.id === NEXT_MODULE_ID);
         setCurrentModule(nextMovement);
         post(module, user.user.uid);
         setMovementProgress(NEXT_MODULE_ID);
-        if(movementProgress < 35) {
-            const locked = movementModules.find(module => module.id === ON_DECK_MODULE_ID);
-            setLockedModule(locked);
-        };
     };
     
     const completeVideo = () => {
@@ -243,7 +237,6 @@ export const MovementContextProvider = ({ children }) => {
                 currentVideo,
                 getPlaylistLength,
                 lastMovement,
-                lockedModule,
                 moduleComplete,
                 movementProgress,
                 resetModule,

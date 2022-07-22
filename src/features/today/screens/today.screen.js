@@ -135,18 +135,17 @@ export const TodayScreen = ({ navigation }) => {
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                         <MovementUnitCard navigation={navigation} isFocused={isFocused} />
-                        {LAST_MOVEMENT_MODULE !== time_zoned_todays_date && <LockedModule />}
                     </>
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
-                    {LAST_PAIN_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {LAST_MOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {LAST_FOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderSmartGoalDailyActivity()}
                     {renderJournalDailyActivity()}
                     {renderWellnessCoachMessageActivity()}
+                    {LAST_PAIN_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
+                    {LAST_MOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
+                    {LAST_FOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
                 </View>
             </Scroll>
         </SafeView>

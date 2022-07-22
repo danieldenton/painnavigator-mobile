@@ -130,7 +130,7 @@
             "name": "Worst Pain Ever",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905721/For%20Mobile%20App/Education/Worst%20Pain%20Ever.mp4",
             "length": 7,
-            "post_video_destination": "PainJournalHome",
+            "post_video_destination": null,
             "skippable": true,
             "summary": "Learn why it can be so difficult to rate your pain. Learn how to rate the quality of your pain."
         },

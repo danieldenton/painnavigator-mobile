@@ -36,9 +36,8 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     });
 
     function noPainData() {
-        //return Object.keys(painGraphData.line).length === 0;
-        return painJournals.length === 0;
-    }
+        return Object.keys(painGraphData.line).length === 0;
+    };
 
     return(
         <SafeView>
