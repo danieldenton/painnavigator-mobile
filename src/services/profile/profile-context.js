@@ -29,10 +29,10 @@ export const ProfileContextProvider = ({ children }) => {
     const completeProfile = () => {
         const profile = {
             ...profileData,
-            profile_status: 1
+            profile_status: 1,
         };
         updateProfile(user.user.uid, profile);
-        setTimeout(() => {resetProfileStep(false)}, 1000);
+        //setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
 
     const changeProfileEntry = (change, state) => {
