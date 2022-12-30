@@ -70,10 +70,10 @@ export const AuthenticationContextProvider = ({ children }) => {
                     pace: onboardingData.pace,
                     commitment: onboardingData.commitment
                 }
-                setUser(u);
                 postUser(u.user.uid, strippedOnboardingData);
-            }).catch((e) => {
-                // TODO: To handle case where e is not an Error, consider checking the type or wrapping in a try-catch,
+                setUser(u);
+            })
+            .catch((e) => {
                 setError(e.toString());
             }).finally(() => {
                 setUserLoading(false);

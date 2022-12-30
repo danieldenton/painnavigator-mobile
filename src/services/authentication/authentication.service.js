@@ -7,14 +7,13 @@ import { months } from "../../features/pain-journal/data/months";
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-export const postUser = async (uid, onboardingData) => {
+export async function postUser(uid, onboardingData) {
   const userData = {
     uid: uid,
     ...onboardingData
   };
-  const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData }
-);
-  return response;
+  const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData });
+  console.log(response);
 };
 
 export async function get(

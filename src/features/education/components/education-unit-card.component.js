@@ -40,15 +40,14 @@ const CardIconSection = styled.View`
 
 export const EducationUnitCard = ({ navigation }) => {
     const { currentModule } = useContext(EducationContext);
-    const { name, length } = currentModule;
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("Education")}> 
             <ModuleCard>
                 <ModuleCardContent>
                     <CardTextSection>
-                        <CardHeader>{name}</CardHeader>
-                        <CardSubHeader>{length} MIN</CardSubHeader>
+                        <CardHeader>{currentModule?.name}</CardHeader>
+                        <CardSubHeader>{currentModule?.length} MIN</CardSubHeader>
                     </CardTextSection>
                     <CardIconSection>
                         <EducationModuleIcon />
