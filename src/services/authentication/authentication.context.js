@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, postUser, get } from "./authentication.service";
+import { loginRequest, postUser } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -102,10 +102,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     const previousOnboardingStep = () => {
         setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
     };
-
-    const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement) => {
-        get(user.user.uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
-    };
     
     const loadUser = async () => {
         try {
@@ -132,7 +128,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                 changeOnboardEntry,
                 currentQuestion,
                 error,
-                getUser,
                 isAuthenticated: !!user,
                 nextOnboardingStep,
                 nextQuestion,

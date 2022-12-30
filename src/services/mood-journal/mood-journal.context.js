@@ -51,7 +51,8 @@ export const MoodJournalContextProvider = ({ children }) => {
             situation: moodJournal.situation, 
             who_i_was_with: moodJournal.whoIWasWith,
             primary_thought: moodJournal.primaryThought,
-            cognitive_distortions: cognitiveDistortions
+            cognitive_distortions: cognitiveDistortions,
+            created: JSON.stringify(Date.now()),
         };
         postMoodJournal(user.user.uid, newMoodJournal, setMoodJournals);
         setTimeout(() => {resetMoodJournal(false)}, 1000);
@@ -108,13 +109,12 @@ export const MoodJournalContextProvider = ({ children }) => {
 
     const updateMoodJournal = () => {
         const updatedMoodJournal = {
-            date_time_value: reviewJournal.date_time_value,
             feeling: reviewJournal.feeling,
             intensity: reviewJournal.intensity, 
             situation: reviewJournal.situation, 
             who_i_was_with: reviewJournal.who_i_was_with,
             primary_thought: reviewJournal.primary_thought,
-            cognitive_distortions: String(reviewJournal.cognitive_distortions)
+            cognitive_distortions: reviewJournal.cognitive_distortions,
         };
         patchMoodJournal(reviewJournal.id, updatedMoodJournal, setMoodJournals);
     };
@@ -153,14 +153,6 @@ export const MoodJournalContextProvider = ({ children }) => {
             console.log("error loading mood journals", e);
         }
     };
-
-    useEffect(() => {
-        loadJournals();
-      }, []);
-    
-    useEffect(() => {
-    saveJournals(moodJournals);
-    }, [moodJournals]);
 
     return (
         <MoodJournalContext.Provider

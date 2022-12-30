@@ -59,7 +59,8 @@ export const PainJournalContextProvider = ({ children }) => {
             who_i_was_with: painJournal.whoIWasWith, 
             coping_strategies: copingStrategies, 
             notes: painJournal.notes, 
-            intensity_after: painJournal.intensityAfter
+            intensity_after: painJournal.intensityAfter,
+            created: JSON.stringify(Date.now()),
         }
         postPainJournal(user.user.uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
@@ -148,25 +149,16 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const updatePainJournal = () => {
         const updatedPainJournal = {
-            date_time_value: reviewJournal.date_time_value,
             intensity: reviewJournal.intensity,
             situation: reviewJournal.situation, 
             feeling: reviewJournal.feeling, 
             who_i_was_with: reviewJournal.whoIWasWith, 
-            coping_strategies: String(reviewJournal.copingStrategies), 
+            coping_strategies: reviewJournal.copingStrategies, 
             notes: reviewJournal.notes, 
             intensity_after: reviewJournal.intensityAfter
         }
         patchPainJournal(reviewJournal.id, updatedPainJournal, setPainJournals);
     };
-
-    useEffect(() => {
-        loadJournals();
-      }, []);
-    
-    useEffect(() => {
-    saveJournals(painJournals);
-    }, [painJournals]);
 
     return (
         <PainJournalContext.Provider

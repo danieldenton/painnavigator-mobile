@@ -1,3 +1,4 @@
+import React from "react";
 import axios from 'axios';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -36,16 +37,16 @@ export async function postUser(uid, onboardingData) {
   console.log(response);
 };
 
-export async function get(
+export async function getUser(
   uid, 
   setUserInfo, 
   setMessages, 
   setEducationProgress, 
   setProfileComplete, 
-  setLastCompletedModule,
   setMovementProgress,
-  setLastMovement,
-  setPainGraphData
+  setPainJournals,
+  setMoodJournals,
+  setFoodJournals,
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
@@ -56,6 +57,9 @@ export async function get(
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile_status)
+    setPainJournals(data.pain_journals)
+    setMoodJournals(data.mood_journals)
+    setFoodJournals(data.food_journals)
   } catch (error) {
     console.error(error);
   }

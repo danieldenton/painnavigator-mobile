@@ -24,14 +24,15 @@ import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
 import { formatDate } from "../../../infrastructure/helpers";
 import { useIsFocused } from '@react-navigation/native';
+import { getUser } from "../../../services/authentication/authentication.service";
 
 export const TodayScreen = ({ navigation }) => {
-    const { getUser } = useContext(AuthenticationContext);
+    const { user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
-    const { painJournals, setPainGraphData } = useContext(PainJournalContext);
-    const { moodJournals } = useContext(MoodJournalContext);
-    const { foodJournals } = useContext(FoodJournalContext);
+    const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
+    const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
+    const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, lastMovement, setLastMovement, setMovementProgress } = useContext(MovementContext);
     const { educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
@@ -43,9 +44,9 @@ export const TodayScreen = ({ navigation }) => {
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
-    const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
-    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
-    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
+    const LAST_PAIN_JOURNAL = formatDate(Number(painJournals[0]?.created));
+    const LAST_MOOD_JOURNAL = formatDate(Number(moodJournals[0]?.created));
+    const LAST_FOOD_JOURNAL = formatDate(Number(foodJournals[0]?.created));
     const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
@@ -57,14 +58,15 @@ export const TodayScreen = ({ navigation }) => {
         }
 
         getUser(
+            user.user.uid,
             setUserInfo, 
             setMessages, 
             setEducationProgress, 
             setProfileComplete, 
-            setLastCompletedModule, 
-            setMovementProgress, 
-            setLastMovement,
-            setPainGraphData
+            setMovementProgress,
+            setPainJournals,
+            setMoodJournals,
+            setFoodJournals,
         );
     }, [isFocused]);
     
