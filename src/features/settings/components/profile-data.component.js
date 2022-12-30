@@ -46,7 +46,7 @@ export const ProfileData = ({ editing }) => {
     });
 
     const profileData = [
-        {question: "AGE", response: editing ? editDob : dob, type: "input", state: "dob"},
+        {question: "DATE OF BIRTH", response: editing ? editDob : dob, type: "input", state: "dob"},
         {question: "GENDER", max: 6, response: editing ? editGender : gender, type: "intensity", state: "gender"},
         {question: "LENGTH OF BACK PAIN", max: 8, response: editing ? editPainDuration : starting_pain_duration, type: "intensity", state: "starting_pain_duration"},
         {question: "ACTIVITY LEVEL", max: 4, response: editing ? editActivityLevel : activity_level, type: "intensity", state: "activity_level"}

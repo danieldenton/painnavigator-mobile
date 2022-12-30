@@ -37,9 +37,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
         destination={"Onboard"}
         navigation={navigation}
         screen={""}
-        previousPage={onboardStep > 0 ? previousOnboardingStep : null}
       />
-
       <View style={{ flex: 0.5 }}>
         <View style={styles.rerferralHeaderWrapper}>
           <Text style={styles.referralHeader}>Enter Your Referral Code</Text>
