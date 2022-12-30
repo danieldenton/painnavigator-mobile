@@ -139,10 +139,10 @@ export const TodayScreen = ({ navigation }) => {
                 }
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
-                    {!profileComplete && <ProfileSetup navigation={navigation} />}
-                    {renderSmartGoalDailyActivity()}
-                    {renderJournalDailyActivity()}
                     {renderWellnessCoachMessageActivity()}
+                    {!profileComplete && <ProfileSetup navigation={navigation} />}
+                    {renderJournalDailyActivity()}
+                    {renderSmartGoalDailyActivity()}
                     {LAST_PAIN_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
                     {LAST_MOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
                     {LAST_FOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
