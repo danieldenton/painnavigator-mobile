@@ -25,7 +25,7 @@ export const MoodJournalContextProvider = ({ children }) => {
 
     useEffect(() => {
         const lastIndex = moodJournals?.length - 1;
-        const lastJournalDate = moodJournals[lastIndex]?.attributes.date;
+        const lastJournalDate = moodJournals[lastIndex]?.date;
 
         setJournaledToday(lastJournalDate);
     }, []);
@@ -60,7 +60,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     const deleteMoodJournal = () => {
         const id = reviewJournal.id;
         destroyMoodJournal(id);
-        const newMoodJournals = moodJournals.filter(journal => journal.attributes.id !== id);
+        const newMoodJournals = moodJournals.filter(journal => journal.id !== id);
         setMoodJournals(newMoodJournals);
     };
 
@@ -108,28 +108,23 @@ export const MoodJournalContextProvider = ({ children }) => {
 
     const updateMoodJournal = () => {
         const updatedMoodJournal = {
-            feeling: moodJournal.feeling,
-            intensity: moodJournal.intensity, 
-            situation: moodJournal.situation, 
-            who_i_was_with: moodJournal.whoIWasWith,
-            primary_thought: moodJournal.primaryThought,
-            cognitive_distortions: String(moodJournal.cognitiveDistortions)
+            date_time_value: reviewJournal.date_time_value,
+            feeling: reviewJournal.feeling,
+            intensity: reviewJournal.intensity, 
+            situation: reviewJournal.situation, 
+            who_i_was_with: reviewJournal.who_i_was_with,
+            primary_thought: reviewJournal.primary_thought,
+            cognitive_distortions: String(reviewJournal.cognitive_distortions)
         };
-        patchMoodJournal(reviewJournal.id, updatedMoodJournal);
-    };
-
-    const removeMoodJournal = (journalId) => {
-        moodJournals.filter(
-            (journal) => journal.id !== journalId
-        );
+        patchMoodJournal(reviewJournal.id, updatedMoodJournal, setMoodJournals);
     };
 
     const saveEdits = () => {
         const newJournals = moodJournals.map(
-            journal => journal.attributes.id === reviewJournal.id ?
+            journal => journal.id === reviewJournal.id ?
                 {
                     ...journal,
-                    attributes: reviewJournal
+                    reviewJournal
                 }
                 :
                 journal
