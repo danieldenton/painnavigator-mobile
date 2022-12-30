@@ -154,14 +154,6 @@ export const MoodJournalContextProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        loadJournals();
-      }, []);
-    
-    useEffect(() => {
-    saveJournals(moodJournals);
-    }, [moodJournals]);
-
     return (
         <MoodJournalContext.Provider
             value={{

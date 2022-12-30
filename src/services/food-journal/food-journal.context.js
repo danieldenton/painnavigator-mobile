@@ -83,14 +83,6 @@ export const FoodJournalContextProvider = ({ children }) => {
             console.log("error loading food journals", e);
         }
     };
-
-    useEffect(() => {
-        loadJournals();
-      }, []);
-    
-    useEffect(() => {
-        saveJournals(foodJournals);
-    }, [foodJournals]);
     
     return (
         <FoodJournalContext.Provider

@@ -7,7 +7,7 @@ import { formatDate } from "../../../infrastructure/helpers";
 
 export const ReviewPainJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(PainJournalContext);
-    const { date_time_value, intensity, situation, feeling, who_i_was_with, coping_strategies, notes, intensity_after } = journal;
+    const { created, intensity, situation, feeling, who_i_was_with, coping_strategies, notes, intensity_after } = journal;
     const { 
         intensity: editIntensity, 
         situation: editSituation, 
@@ -22,7 +22,7 @@ export const ReviewPainJournalEntry = ({ editing, journal }) => {
         setReviewJournal(journal);
     }, []);
 
-    const dateEntry = { question: "DATE", response: formatDate(date_time_value) };
+    const dateEntry = { question: "DATE", response: formatDate(Number(created)) };
 
     const journalEntry = [
         {question: "PAIN INTENSITY", response: editing ? editIntensity : intensity, type: "intensity", state: "intensity"},

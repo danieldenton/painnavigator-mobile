@@ -102,10 +102,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     const previousOnboardingStep = () => {
         setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
     };
-
-    const getUser = (setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement) => {
-        get(user.user.uid, setUserInfo, setMessages, setEducationProgress, setOnboardingComplete, setProfileComplete, setLastCompletedModule, setMovementProgress, setLastMovement);
-    };
     
     const loadUser = async () => {
         try {
@@ -132,7 +128,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                 changeOnboardEntry,
                 currentQuestion,
                 error,
-                getUser,
                 isAuthenticated: !!user,
                 nextOnboardingStep,
                 nextQuestion,
