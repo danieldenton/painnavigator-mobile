@@ -7,7 +7,7 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
@@ -29,7 +29,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
             <JournalTile 
                 navigation={navigation}
                 destination={"ReviewPainJournal"}
-                journal={journal.attributes}
+                journal={journal}
                 key={journal.id}
             />
         );

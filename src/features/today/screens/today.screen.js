@@ -43,9 +43,9 @@ export const TodayScreen = ({ navigation }) => {
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
-    const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.attributes.date_time_value);
-    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.attributes.date_time_value);
-    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.attributes.date_time_value);
+    const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
+    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
+    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
     const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
