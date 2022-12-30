@@ -11,7 +11,7 @@ export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/smart_goals`, { smart_goal: smartGoal, uid: uid })
         const data = response.data.data.attributes;
-        console.log(data);
+        //console.log(data);
         setActiveGoal(data);
     } catch (error) {
         console.error(error);
