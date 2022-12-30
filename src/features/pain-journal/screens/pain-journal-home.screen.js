@@ -42,21 +42,15 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     return(
         <SafeView>
             <NavigationBarLeft navigation={navigation} destination={NAVIGATE_BACK_DESTINATION} screen={"Pain Journal"} />
-            {noPainData() ?
-                <>
-                    <GraphicWrapper>
-                        <GraphGraphic />
-                    </GraphicWrapper>
-                    <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
-                        <HelpText style={{ textAlign: "center" }}>
-                            Tap "Add New Entry" to log your first pain score 
-                            and watch how your pain progresses over time. 
-                        </HelpText>
-                    </View>
-                </>
-                :
-                <PainGraph painGraphData={painGraphData} />
-            }
+            <GraphicWrapper>
+                <GraphGraphic />
+            </GraphicWrapper>
+            <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
+                <HelpText style={{ textAlign: "center" }}>
+                    Tap "Add New Entry" to log your first pain score 
+                    and watch how your pain progresses over time. 
+                </HelpText>
+            </View>
             <DailyActivitiesTile 
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 

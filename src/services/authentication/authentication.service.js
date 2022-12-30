@@ -17,7 +17,7 @@ export const postUser = async (uid, onboardingData) => {
   return response;
 };
 
-export const get = (
+export async function get(
   uid, 
   setUserInfo, 
   setMessages, 
@@ -27,21 +27,19 @@ export const get = (
   setMovementProgress,
   setLastMovement,
   setPainGraphData
-) => {
-  axios.get(`${API_URL}/api/v1/users/${uid}`)
-  .then( resp => {
-      const profile = resp.data.data;
-      setUserInfo(profile.attributes.profile);
-      setMessages(profile.attributes.conversation);
-      setEducationProgress(profile.attributes.education_progress.progress);
-      setProfileComplete(profile.attributes.profile_status === 1);
-      setLastCompletedModule(profile.attributes.education_progress.last_completed_date);
-      //setMovementProgress(profile.attributes.movement_progress.progress);
-      setLastMovement(profile.attributes.movement_progress.last_completed_date);
-      setPainGraphData(painGraphDataTransform(profile.attributes.pain_graph_data));
-  })
-  .catch(resp => console.log(resp))
-}; 
+) {
+  try {
+    const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
+    const data = response.data.data.attributes;
+    //console.log(data)
+    setUserInfo(data.profile)
+    setMessages(data.conversation)
+    setEducationProgress(data.education_progress.progress)
+    setMovementProgress(data.movement_progress.progress)
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function painGraphDataTransform(data) {
   const painDataArray = [];
