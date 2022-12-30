@@ -30,7 +30,7 @@ const JournalText = styled.Text`
 `;
 
 export const JournalTile = ({ destination, journal, navigation }) => {
-    const { created } = journal;
+    const { date_time_value } = journal;
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate(destination, {
@@ -40,7 +40,7 @@ export const JournalTile = ({ destination, journal, navigation }) => {
                 <CardContentWrapper>
                     <JournalTextSection>
                         <JournalText>
-                            {formatDate(Number(created))}
+                            {formatDate(date_time_value)}
                         </JournalText>
                     </JournalTextSection>
                     <Next />

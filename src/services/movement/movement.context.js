@@ -130,14 +130,6 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        loadMovementProgress();
-    }, []);
-
-    useEffect(() => {
-        saveMovementProgress(movementProgress);
-    }, [movementProgress]);
-
     const saveCurrentModule = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);

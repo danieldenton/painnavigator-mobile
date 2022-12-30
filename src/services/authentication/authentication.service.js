@@ -51,7 +51,6 @@ export async function getUser(
   try {
     const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
     const data = response.data.data.attributes;
-    console.log(data);
     setUserInfo(data.profile)
     setMessages(data.conversation)
     setEducationProgress(data.education_progress.progress)

@@ -52,7 +52,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             who_i_was_with: moodJournal.whoIWasWith,
             primary_thought: moodJournal.primaryThought,
             cognitive_distortions: cognitiveDistortions,
-            created: JSON.stringify(Date.now()),
+            date_time_value: Date.now(),
         };
         postMoodJournal(user.user.uid, newMoodJournal, setMoodJournals);
         setTimeout(() => {resetMoodJournal(false)}, 1000);

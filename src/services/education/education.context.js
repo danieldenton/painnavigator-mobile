@@ -83,14 +83,6 @@ export const EducationContextProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        loadEducationProgress();
-    }, []);
-
-    useEffect(() => {
-        saveEducationProgress(educationProgress);
-    }, [educationProgress]);
-
     const saveCompletedEducationModules = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);

@@ -60,7 +60,7 @@ export const PainJournalContextProvider = ({ children }) => {
             coping_strategies: copingStrategies, 
             notes: painJournal.notes, 
             intensity_after: painJournal.intensityAfter,
-            created: JSON.stringify(Date.now()),
+            date_time_value: Date.now(),
         }
         postPainJournal(user.user.uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
