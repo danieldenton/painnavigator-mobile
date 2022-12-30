@@ -29,7 +29,7 @@ export const MovementPlaylistScreen = ({ navigation, route }) => {
             <MovementPlaylist navigation={navigation} />
             <ButtonSection>
                 <ModuleButton 
-                    onPress={() => navigation.navigate("MovementUnit", { navigation })}
+                    onPress={() => navigation.navigate("MovementUnit")}
                     title={numVideosCompleted > 0 ? "Play Next" : "Play All"} 
                 />
             </ButtonSection>

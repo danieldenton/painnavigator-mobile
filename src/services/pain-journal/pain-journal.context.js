@@ -33,7 +33,7 @@ export const PainJournalContextProvider = ({ children }) => {
           }
       
           const lastIndex = painJournals.length - 1;
-          const lastJournalDate = painJournals[lastIndex].attributes.date;
+          const lastJournalDate = painJournals[lastIndex].date;
           setJournaledToday(Boolean(lastJournalDate));
     }, [painJournals]);  
 
@@ -68,7 +68,7 @@ export const PainJournalContextProvider = ({ children }) => {
     const deletePainJournal = () => {
         const id = reviewJournal.id;
         destroyPainJournal(id);
-        const newPainJournals = painJournals.filter(journal => journal.attributes.id !== id)
+        const newPainJournals = painJournals.filter(journal => journal.id !== id)
         setPainJournals(newPainJournals);
     };
 
@@ -113,10 +113,10 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const saveEdits = () => {
         const newJournals = painJournals.map(
-            journal => journal.attributes.id === reviewJournal.id ?
+            journal => journal.id === reviewJournal.id ?
                 {
                     ...journal,
-                    attributes: reviewJournal
+                    reviewJournal
                 }
                 :
                 journal
@@ -148,6 +148,7 @@ export const PainJournalContextProvider = ({ children }) => {
 
     const updatePainJournal = () => {
         const updatedPainJournal = {
+            date_time_value: reviewJournal.date_time_value,
             intensity: reviewJournal.intensity,
             situation: reviewJournal.situation, 
             feeling: reviewJournal.feeling, 
@@ -156,7 +157,7 @@ export const PainJournalContextProvider = ({ children }) => {
             notes: reviewJournal.notes, 
             intensity_after: reviewJournal.intensityAfter
         }
-        patchPainJournal(reviewJournal.id, updatedPainJournal);
+        patchPainJournal(reviewJournal.id, updatedPainJournal, setPainJournals);
     };
 
     useEffect(() => {

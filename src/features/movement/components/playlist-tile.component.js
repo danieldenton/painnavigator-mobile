@@ -113,7 +113,7 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
             <TouchableOpacity
                 onPress={() => {
                     switchVideo(videoId); 
-                    navigation && navigation.navigate("MovementUnit", { navigation })
+                    navigation && navigation.navigate("MovementUnit")
                     }
                 }
                 style={{ flex: 1 }}

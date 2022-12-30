@@ -43,9 +43,9 @@ export const FavoriteActivitiesCompletedScreen = ({ navigation }) => {
             </Scroll>
             <ButtonSection>
                 <JournalButton 
-                    title={"See my list!"}
-                    onPress={() => {navigation.navigate('Settings', { screen: 'FavoriteActivities' });}}
-                    />
+                    title={"Home"}
+                    onPress={() => {navigation.navigate('Today')}}
+                />
             </ButtonSection>
         </SafeView>
     )

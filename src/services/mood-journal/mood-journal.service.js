@@ -17,22 +17,33 @@ export const getMoodJournals = (setMoodJournals) => {
     //.catch(resp => console.log(resp))
 };
 
-export const patchMoodJournal = (journalId, moodJournal) => {
-    axios.patch(`${API_URL}/api/v1/mood_journals/${journalId}`, { mood_journal: moodJournal })
-    .then((response) => {
-        //console.log(response.data);
-    });
+export async function patchMoodJournal(journalId, moodJournal, setMoodJournals) {
+    try {
+        const response = await axios.patch(`${API_URL}/api/v1/mood_journals/${journalId}`, { mood_journal: moodJournal })
+        const data = response.data.data.attributes;
+        //console.log(data);
+        setMoodJournals(prevJournals => prevJournals.map(journal => journal.id === journalId ?
+            data
+            :
+            journal
+        ))
+    } catch (error) {
+        console.error(error);
+    }
 };
 
-export const postMoodJournal = (uid, moodJournal, setMoodJournals) => {
-    axios.post(`${API_URL}/api/v1/mood_journals`, { mood_journal: moodJournal, uid: uid })
-    .then((response) => {
-        const newJournal = response.data.data;
+export async function postMoodJournal(uid, moodJournal, setMoodJournals) {
+    try {
+        const response = await axios.post(`${API_URL}/api/v1/mood_journals`, { mood_journal: moodJournal, uid: uid })
+        const data = response.data.data.attributes;
+        //console.log(data);
         setMoodJournals(prevJournals => (
             [
-                newJournal,
+                data,
                 ...prevJournals
             ]
         ))
-    });
+    } catch (error) {
+        console.error(error);
+    }
 };

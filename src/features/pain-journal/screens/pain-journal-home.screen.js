@@ -7,7 +7,7 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
@@ -29,7 +29,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
             <JournalTile 
                 navigation={navigation}
                 destination={"ReviewPainJournal"}
-                journal={journal.attributes}
+                journal={journal}
                 key={journal.id}
             />
         );
@@ -42,21 +42,15 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     return(
         <SafeView>
             <NavigationBarLeft navigation={navigation} destination={NAVIGATE_BACK_DESTINATION} screen={"Pain Journal"} />
-            {noPainData() ?
-                <>
-                    <GraphicWrapper>
-                        <GraphGraphic />
-                    </GraphicWrapper>
-                    <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
-                        <HelpText style={{ textAlign: "center" }}>
-                            Tap "Add New Entry" to log your first pain score 
-                            and watch how your pain progresses over time. 
-                        </HelpText>
-                    </View>
-                </>
-                :
-                <PainGraph painGraphData={painGraphData} />
-            }
+            <GraphicWrapper>
+                <GraphGraphic />
+            </GraphicWrapper>
+            <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
+                <HelpText style={{ textAlign: "center" }}>
+                    Tap "Add New Entry" to log your first pain score 
+                    and watch how your pain progresses over time. 
+                </HelpText>
+            </View>
             <DailyActivitiesTile 
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 

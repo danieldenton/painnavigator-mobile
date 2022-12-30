@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getMessages, patchMessage, postMessage } from "./wellness-coach.service";
+import { patchMessage, postMessage } from "./wellness-coach.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const WellnessCoachContext = createContext();

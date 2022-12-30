@@ -13,7 +13,7 @@ import { time_zoned_todays_date, formatDate } from "../../../infrastructure/help
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
     const { foodJournals } = useContext(FoodJournalContext);
-    const last_food_journal_date = formatDate(foodJournals[0]?.attributes.date_time_value);
+    const last_food_journal_date = formatDate(foodJournals[0]?.date_time_value);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
     
     const foodJournalElements = foodJournals?.map((journal) => {
@@ -21,7 +21,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
             <JournalTile 
                 navigation={navigation}
                 destination={"ReviewFoodJournal"}
-                journal={journal.attributes}
+                journal={journal}
                 key={journal.id}
             />
         );
@@ -36,7 +36,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
             <TouchableOpacity 
                 onPress={() => navigation.navigate("ReviewFoodJournal", 
                     { 
-                        journal: last_food_journal_date === time_zoned_todays_date && foodJournals[0].attributes 
+                        journal: last_food_journal_date === time_zoned_todays_date && foodJournals[0] 
                     }
                 )}
             > 

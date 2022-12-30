@@ -7,17 +7,36 @@ import { months } from "../../features/pain-journal/data/months";
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-export const postUser = async (uid, onboardingData) => {
+export async function checkReferralCode(
+  referralCode,
+  setProviderId,
+  setError,
+  navigation
+) {
+  try {
+    const response = await axios.get(
+      `${API_URL}/api/v1/providers/${referralCode}`
+    );
+    const data = response.data.data.attributes;
+    const provider_id = data.id;
+    setProviderId(provider_id);
+    setError(null);
+    navigation.navigate("ProfileSetup");
+  } catch (err) {
+    setError("Please enter a valid code");
+  }
+};
+
+export async function postUser(uid, onboardingData) {
   const userData = {
     uid: uid,
     ...onboardingData
   };
-  const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData }
-);
-  return response;
+  const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData });
+  console.log(response);
 };
 
-export const get = (
+export async function get(
   uid, 
   setUserInfo, 
   setMessages, 
@@ -27,21 +46,20 @@ export const get = (
   setMovementProgress,
   setLastMovement,
   setPainGraphData
-) => {
-  axios.get(`${API_URL}/api/v1/users/${uid}`)
-  .then( resp => {
-      const profile = resp.data.data;
-      setUserInfo(profile.attributes.profile);
-      setMessages(profile.attributes.conversation);
-      setEducationProgress(profile.attributes.education_progress.progress);
-      setProfileComplete(profile.attributes.profile_status === 1);
-      setLastCompletedModule(profile.attributes.education_progress.last_completed_date);
-      //setMovementProgress(profile.attributes.movement_progress.progress);
-      setLastMovement(profile.attributes.movement_progress.last_completed_date);
-      setPainGraphData(painGraphDataTransform(profile.attributes.pain_graph_data));
-  })
-  .catch(resp => console.log(resp))
-}; 
+) {
+  try {
+    const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
+    const data = response.data.data.attributes;
+    console.log(data);
+    setUserInfo(data.profile)
+    setMessages(data.conversation)
+    setEducationProgress(data.education_progress.progress)
+    setMovementProgress(data.movement_progress.progress)
+    setProfileComplete(data.profile_status)
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function painGraphDataTransform(data) {
   const painDataArray = [];

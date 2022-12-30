@@ -17,7 +17,7 @@ export const MoodJournalHomeScreen = ({ navigation }) => {
             <JournalTile 
                 navigation={navigation}
                 destination={"ReviewMoodJournal"}
-                journal={journal.attributes}
+                journal={journal}
                 key={journal.id}
             />
         );
