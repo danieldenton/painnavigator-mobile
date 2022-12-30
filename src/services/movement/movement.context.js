@@ -40,12 +40,7 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        //const NEXT_MODULE_ID = movementProgress + 1;
-        //console.log(NEXT_MODULE_ID);
-        //const nextMovement = movementModules.find(module => module.id === NEXT_MODULE_ID);
-        //setCurrentModule(nextMovement);
         post(module, user.user.uid, setMovementProgress, setCurrentModule);
-        //setMovementProgress(NEXT_MODULE_ID);
     };
     
     const completeVideo = () => {

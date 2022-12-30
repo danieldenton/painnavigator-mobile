@@ -7,6 +7,26 @@ import { months } from "../../features/pain-journal/data/months";
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
+export async function checkReferralCode(
+  referralCode,
+  setProviderId,
+  setError,
+  navigation
+) {
+  try {
+    const response = await axios.get(
+      `${API_URL}/api/v1/providers/${referralCode}`
+    );
+    const data = response.data.data.attributes;
+    const provider_id = data.id;
+    setProviderId(provider_id);
+    setError(null);
+    navigation.navigate("ProfileSetup");
+  } catch (err) {
+    setError("Please enter a valid code");
+  }
+};
+
 export async function postUser(uid, onboardingData) {
   const userData = {
     uid: uid,

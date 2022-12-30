@@ -27,7 +27,7 @@ export const OnboardScreen = ({ navigation }) => {
                 </View>
                 <JournalButton 
                     title={"Sign Up"}
-                    onPress={() => {navigation.navigate("ProfileSetup")}}
+                    onPress={() => {navigation.navigate("Provider")}}
                 />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Login")}}

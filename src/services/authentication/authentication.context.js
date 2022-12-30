@@ -21,6 +21,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         pace: 1,
         commitment: 5
     });
+    const [providerId, setProviderId] = useState(null);
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -63,6 +64,7 @@ export const AuthenticationContextProvider = ({ children }) => {
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
                 const strippedOnboardingData = {
+                    provider_id: providerId,
                     first_name: onboardingData.first_name.trim(),
                     last_name: onboardingData.last_name.trim(),
                     email: onboardingData.email.trim(),
@@ -142,7 +144,9 @@ export const AuthenticationContextProvider = ({ children }) => {
                 user,
                 userLoading,
                 setCurrentQuestion,
-                signOut
+                signOut,
+                setProviderId,
+                setError,
             }}
         >
             {children}
