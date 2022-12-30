@@ -45,7 +45,8 @@ export const FoodJournalContextProvider = ({ children }) => {
 
     const completeFoodJournal = () => {
         const mealEntry = {
-            [meal.toLowerCase()]: JSON.stringify(foodJournal)
+            [meal.toLowerCase()]: JSON.stringify(foodJournal),
+            created: JSON.stringify(Date.now()),
         };
         postFoodJournal(user.user.uid, mealEntry, setFoodJournals);
         setTimeout(() => {resetFoodJournal(false)}, 1000);

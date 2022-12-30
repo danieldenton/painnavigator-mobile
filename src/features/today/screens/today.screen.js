@@ -45,8 +45,8 @@ export const TodayScreen = ({ navigation }) => {
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
     const LAST_PAIN_JOURNAL = formatDate(Number(painJournals[0]?.created));
-    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
-    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
+    const LAST_MOOD_JOURNAL = formatDate(Number(moodJournals[0]?.created));
+    const LAST_FOOD_JOURNAL = formatDate(Number(foodJournals[0]?.created));
     const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;

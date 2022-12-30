@@ -7,7 +7,7 @@ import { View } from "react-native";
 
 export const ReviewMoodJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(MoodJournalContext);
-    const { date_time_value, feeling, intensity, situation, who_i_was_with, primary_thought, cognitive_distortions } = journal;
+    const { created, feeling, intensity, situation, who_i_was_with, primary_thought, cognitive_distortions } = journal;
     const { 
         feeling: editFeeling, 
         intensity: editIntensity, 
@@ -21,7 +21,7 @@ export const ReviewMoodJournalEntry = ({ editing, journal }) => {
         setReviewJournal(journal);
     }, []);
 
-    const dateEntry = { question: "DATE", response: formatDate(date_time_value) };
+    const dateEntry = { question: "DATE", response: formatDate(Number(created)) };
 
     const journalEntry = [
         { question: "FEELING", response: editing ? editFeeling : feeling, type: "input", state: "feeling" },

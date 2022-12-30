@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, postUser, get } from "./authentication.service";
+import { loginRequest, postUser } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
