@@ -21,7 +21,7 @@ export const ProfileOptionsButtons = ({ navigation, profileComplete, educationPr
             id: 3,
             option: "Sign Out",
             destination: "FavoriteActivities",
-            show: true
+            show: false
         }
     ];
 
