@@ -8,16 +8,17 @@ export const patchMessage = (uid) => {
     });
 };
 
-export const postMessage = (message, setMessages) => {
-    axios.post(`${API_URL}/api/v1/messages`, { body: message.body, sender_id: message.sender_id, recipient_id: message.recipient_id })
-    .then((response) => {
-        const newMessage = response.data.data;
-        //console.log(newMessage);
+export async function postMessage(message, setMessages) {
+    try {
+        const response = await axios.post(`${API_URL}/api/v1/messages`, { body: message.body, sender_id: message.sender_id, recipient_id: message.recipient_id });
+        const data = response.data.data.attributes;
         setMessages(prevMessages => (
             [
                 ...prevMessages,
-                newMessage.attributes
+                data
             ]
         ));
-    });
+    } catch (error) {
+        console.error(error);
+    }
 };

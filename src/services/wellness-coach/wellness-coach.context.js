@@ -73,7 +73,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
             ...message,
             sender_id: user.user.uid
         };
-        console.log(newMessage);
         postMessage(newMessage, setMessages);
         setTimeout(() => {resetMessage()}, 1000);
     };
