@@ -55,7 +55,7 @@ export async function getUser(
     setMessages(data.conversation)
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
-    setProfileComplete(data.profile_status)
+    setProfileComplete(data.profile_status === 1)
     setPainJournals(data.pain_journals)
     setMoodJournals(data.mood_journals)
     setFoodJournals(data.food_journals)
