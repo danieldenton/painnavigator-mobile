@@ -15,7 +15,7 @@ export const EducationContextProvider = ({ children }) => {
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const module = educationModules[educationProgress - 1];
+        const module = educationModules.find(unit => unit.id === educationProgress);
         setCurrentModule(module);
     }, [educationProgress])
 
@@ -31,7 +31,6 @@ export const EducationContextProvider = ({ children }) => {
         };
         postEducationModule(module, setLastCompletedModule, user.user.uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
-        setTimeout(() => { advanceProgress() }, 1000);
     };
 
     const completeSkippedUnit = (unitId) => {
