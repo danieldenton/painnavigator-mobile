@@ -41,8 +41,8 @@ export const TodayScreen = ({ navigation }) => {
     const time_zone = Localization.timezone;
     const todays_date = new Date ();
     const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
-    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress === 63;
-    const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress === 37;
+    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 62;
+    const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress > 36;
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
     const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
     const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
