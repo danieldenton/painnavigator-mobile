@@ -43,6 +43,11 @@
     },
     "plugins": [
       "sentry-expo"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d9441de4-82db-4481-a4d1-7d868863b825"
+      }
+    }
   }
 }
