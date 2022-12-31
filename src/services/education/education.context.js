@@ -15,7 +15,7 @@ export const EducationContextProvider = ({ children }) => {
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const module = educationModules[educationProgress];
+        const module = educationModules[educationProgress - 1];
         setCurrentModule(module);
     }, [educationProgress])
 
