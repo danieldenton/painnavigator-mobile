@@ -15,8 +15,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
   const {
     changeOnboardEntry,
     error,
-    onboardStep,
-    previousOnboardingStep,
     setError,
     setProviderId,
   } = React.useContext(AuthenticationContext);
@@ -58,7 +56,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
       <AuthTextInput
         accessibilityLabel={"referral-code-input"}
         value={referralCode.toUpperCase()}
-        textContentType="referralCode"
         onChangeText={(referralCode) => (
           changeOnboardEntry(referralCode, "referral_code"),
           setReferralCode(referralCode)
