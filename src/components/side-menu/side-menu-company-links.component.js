@@ -35,7 +35,7 @@ export const CompanyLinks = ({ navigation }) => {
                 <LinkText
                     style={{ color: "black" }}
                 >
-                    PainNavigator Version 1.4.0
+                    PainNavigator Version 1.4.1
                 </LinkText>
             </LinkWrapper>
         </ButtonSection>
