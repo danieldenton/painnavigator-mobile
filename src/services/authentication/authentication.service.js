@@ -54,9 +54,9 @@ export async function getUser(
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile_status === 1)
-    setPainJournals(data.pain_journals)
-    setMoodJournals(data.mood_journals)
-    setFoodJournals(data.food_journals)
+    setPainJournals(data.pain_journals.reverse())
+    setMoodJournals(data.mood_journals.reverse())
+    setFoodJournals(data.food_journals.reverse())
   } catch (error) {
     console.error(error);
   }

@@ -175,7 +175,7 @@ export const PainJournalContextProvider = ({ children }) => {
                 nextPage,
                 painJournals, 
                 painJournal,
-                painGraphData,
+                painGraphData: [],
                 previousPage,
                 resetPainJournal,
                 reviewJournal,
