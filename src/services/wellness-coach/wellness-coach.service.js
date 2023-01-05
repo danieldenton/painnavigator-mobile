@@ -4,7 +4,6 @@ import { API_URL } from "@env";
 export const patchMessage = (uid) => {
     axios.patch(`${API_URL}/api/v1/mark_conversation_read/${uid}`)
     .then((response) => {
-        console.log(response.data);
     });
 };
 
