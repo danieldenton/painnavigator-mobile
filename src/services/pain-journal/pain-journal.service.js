@@ -5,7 +5,6 @@ import { API_URL } from "@env"
 export const destroyPainJournal = (journalId) => {
     axios.delete(`${API_URL}/api/v1/pain_journals/${journalId}`)
     .then((response) => {
-        //console.log(response.data);
     });
 };
 
@@ -36,7 +35,6 @@ export async function postPainJournal(uid, painJournal, setPainJournals) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
         const data = response.data.data.attributes;
-        //console.log(data);
         setPainJournals(prevJournals => (
             [
                 data,
