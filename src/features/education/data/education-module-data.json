@@ -117,7 +117,7 @@
             "id": 11,
             "type": "video",
             "name": "Pain Pathways",
-            "source": "https://res.cloudinary.com/painnavigator/0/upload/v1650905596/For%20Mobile%20App/Education/Pain%20Pathways.mp4",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905596/For%20Mobile%20App/Education/Pain%20Pathways.mp4",
             "length": 6,
             "post_video_destination": null,
             "skippable": true,
