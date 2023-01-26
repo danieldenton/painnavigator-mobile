@@ -3,7 +3,6 @@
     "name": "PainNavigator",
     "slug": "PainNavigator",
     "version": "1.4.5",
-    "start": "expo start",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

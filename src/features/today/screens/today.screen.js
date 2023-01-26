@@ -16,13 +16,12 @@ import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
-import { View, Platform } from "react-native";
+import { View } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
-import * as Localization from 'expo-localization';
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
-import { formatDate, time_zoned_todays_date} from "../../../infrastructure/helpers"
+import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 
 export const TodayScreen = ({ navigation }) => {
@@ -38,7 +37,6 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-    const time_zone = Localization.timezone;
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 62;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress > 36;
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
@@ -55,7 +53,6 @@ export const TodayScreen = ({ navigation }) => {
         if (!isFocused) {
             return;
         }
-        console.log(time_zone)
         getUser(
             user.user.uid,
             setUserInfo, 
@@ -75,19 +72,13 @@ export const TodayScreen = ({ navigation }) => {
             return;
         }
 
-        // if (Platform.OS === "android") {
-        //     setGreeting("Hello")
-        //     return 
-        // };
+        let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
+        const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
+        const timeNumber = Number(timeZoneDateNumber);
 
-        const todaysDate = new Date();
-        let options = {hour: 'numeric', hour12: false, timeZone: time_zone }
-        const timeZoneDate = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
-        const time_number = Number(timeZoneDate);
-
-        if(time_number < 12) {
+        if(timeNumber < 12) {
             setGreeting("Good Morning")
-        } else if(time_number > 11 & time_number < 17) {
+        } else if(timeNumber > 11 & timeNumber < 17) {
             setGreeting("Good Afternoon")
         } else {
             setGreeting("Good Evening")
@@ -99,7 +90,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     function renderJournalDailyActivity() {
-        if(LAST_FOOD_JOURNAL !== time_zoned_todays_date & LAST_MOOD_JOURNAL !== time_zoned_todays_date & LAST_PAIN_JOURNAL !== time_zoned_todays_date) {
+        if(LAST_FOOD_JOURNAL !== timeZonedTodaysDate & LAST_MOOD_JOURNAL !== timeZonedTodaysDate & LAST_PAIN_JOURNAL !== timeZonedTodaysDate) {
             return <Journals navigation={navigation} />
         };
     };
@@ -113,7 +104,7 @@ export const TodayScreen = ({ navigation }) => {
     function renderSmartGoalDailyActivity() { 
         const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
         if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
-            if(LAST_SMART_GOAL_UPDATE === time_zoned_todays_date) {
+            if(LAST_SMART_GOAL_UPDATE === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
             } else {
                 return <SmartGoalUpdate navigation={navigation} />
@@ -131,7 +122,7 @@ export const TodayScreen = ({ navigation }) => {
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
                 {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {LAST_EDUCATION_MODULE === time_zoned_todays_date && <DailyGoalCompleted type={"module"} moduleId={LAST_EDUCATION_MODULE_ID} />}
+                {LAST_EDUCATION_MODULE === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={LAST_EDUCATION_MODULE_ID} />}
                 {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
                 {!COMPLETED_ALL_MOVEMENT_MODULES && 
                     <>
@@ -145,9 +136,9 @@ export const TodayScreen = ({ navigation }) => {
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
                     {renderSmartGoalDailyActivity()}
-                    {LAST_PAIN_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {LAST_MOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {LAST_FOOD_JOURNAL === time_zoned_todays_date && <DailyGoalCompleted type={"Food Journal"} />}
+                    {LAST_PAIN_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
+                    {LAST_MOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
+                    {LAST_FOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
                 </View>
             </Scroll>
         </SafeView>
