@@ -19,11 +19,10 @@ import { TodayNavBar } from "../../../components/journals/navigation-bar.compone
 import { View, Platform } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import * as Localization from 'expo-localization';
-import { formatInTimeZone } from 'date-fns-tz';
 import { Audio } from 'expo-av';
-import { formatDate } from "../../../infrastructure/helpers";
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
+import { formatDate, time_zoned_todays_date} from "../../../infrastructure/helpers"
 
 
 export const TodayScreen = ({ navigation }) => {
@@ -40,8 +39,6 @@ export const TodayScreen = ({ navigation }) => {
 
     const isFocused = useIsFocused();
     const time_zone = Localization.timezone;
-    const todays_date = new Date ();
-    const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
     const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 62;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress > 36;
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
@@ -52,13 +49,13 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
-    const todaysDate = new Date(UTC(2012, 11, 20, 3, 0, 0));
+   
 
     useEffect(() => {
         if (!isFocused) {
             return;
         }
-
+        console.log(time_zone)
         getUser(
             user.user.uid,
             setUserInfo, 
@@ -70,7 +67,7 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
-        console.log(todaysDate)
+        
     }, [isFocused]);
     
     useEffect(() => {
@@ -78,15 +75,15 @@ export const TodayScreen = ({ navigation }) => {
             return;
         }
 
-        if (Platform.OS === "android") {
-            setGreeting("Hello")
-            return 
-        };
+        // if (Platform.OS === "android") {
+        //     setGreeting("Hello")
+        //     return 
+        // };
 
-        const time_zone = Localization.timezone;
-        const date = new Date ();
-        const time_zoned_date = formatInTimeZone(date, time_zone, 'HH');
-        const time_number = Number(time_zoned_date);
+        const todaysDate = new Date();
+        let options = {hour: 'numeric', hour12: false, timeZone: time_zone }
+        const timeZoneDate = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
+        const time_number = Number(timeZoneDate);
 
         if(time_number < 12) {
             setGreeting("Good Morning")

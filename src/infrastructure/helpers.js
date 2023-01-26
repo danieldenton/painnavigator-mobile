@@ -1,14 +1,16 @@
 import * as Localization from 'expo-localization';
-import { formatInTimeZone } from 'date-fns-tz';
 import format from 'date-fns/format';
 
+
 const time_zone = Localization.timezone;
-const todays_date = new Date ();
-export const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, 'M/dd/yy');
+const todaysDate = new Date ();
+let options = {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hour12: false, timeZone: time_zone }
+export const time_zoned_todays_date = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
+
+
 
 export function formatDate(date_time_value) {
     return date_time_value ? format(new Date(date_time_value), 'M/dd/yy') : null;
 };
 
-const todaysDate = new Date(Date.UTC)
-console.log(todays_date)
+
