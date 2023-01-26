@@ -25,6 +25,7 @@ import { formatDate } from "../../../infrastructure/helpers";
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 
+
 export const TodayScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
@@ -51,6 +52,8 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
+    const todaysDate = new Date(UTC(2012, 11, 20, 3, 0, 0));
+
     useEffect(() => {
         if (!isFocused) {
             return;
@@ -67,6 +70,7 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
+        console.log(todaysDate)
     }, [isFocused]);
     
     useEffect(() => {

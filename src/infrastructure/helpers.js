@@ -9,3 +9,6 @@ export const time_zoned_todays_date = formatInTimeZone(todays_date, time_zone, '
 export function formatDate(date_time_value) {
     return date_time_value ? format(new Date(date_time_value), 'M/dd/yy') : null;
 };
+
+const todaysDate = new Date(Date.UTC)
+console.log(todays_date)
