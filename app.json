@@ -3,6 +3,7 @@
     "name": "PainNavigator",
     "slug": "PainNavigator",
     "version": "1.4.5",
+    "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
