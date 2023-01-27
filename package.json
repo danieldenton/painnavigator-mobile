@@ -12,6 +12,7 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
+      "./jestSetupFile.js",
       "@testing-library/jest-native/extend-expect"
     ],
     "transformIgnorePatterns": [
@@ -78,6 +79,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^9.1.0",
     "@testing-library/user-event": "^14.1.1",
