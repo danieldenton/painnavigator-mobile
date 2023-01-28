@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     fontSize: isAndroid ? 16 : 18,
     color: "blue",
+    lineHeight: 26,
   },
   codeGraphicWrapper: {
     alignItems: "center",

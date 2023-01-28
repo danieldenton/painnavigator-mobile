@@ -26,13 +26,14 @@ export const InputLabel = styled.Text`
 export const AuthTextInput = styled(Input).attrs({
     mode: "outlined",
     activeOutlineColor: "#16A28B",
-    outlineColor: colors.textInput.inactive
+    outlineColor: colors.textInput.inactive,
+    autoComplete: "off"
 })`
     font-family: Inter_400Regular;
     font-size: 16px;
     line-height: 24px;
     height: 42px;
-    margin-bottom: 16px;
+    margin-bottom: ${space[3]};
 `;
 
 export const TextInput = styled(BaseInput).attrs({
