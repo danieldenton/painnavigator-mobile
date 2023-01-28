@@ -27,9 +27,10 @@ export const TermsAndConditions = ({ navigation }) => {
     return (
         <Wrapper>
             <Body>
-                By continuing, you are agreeing to PainNavigator’s 
+                By continuing, you are agreeing to our{' '} 
             </Body>
-            <LinkWrapper style={{ marginRight: 4 }}
+            <LinkWrapper
+                style={{ marginRight: 4 }}
                 onPress={() => navigation.navigate("Terms")}
                 accessibilityLabel={"terms-and-conditions-link"}
             >
@@ -40,7 +41,8 @@ export const TermsAndConditions = ({ navigation }) => {
             <Body>
                 and
             </Body>
-            <LinkWrapper style={{ marginLeft: 4 }}
+            <LinkWrapper 
+                style={{ marginLeft: 4 }}
                 onPress={() => navigation.navigate("Privacy")}
                 accessibilityLabel={"privacy-policy-link"}
             >
