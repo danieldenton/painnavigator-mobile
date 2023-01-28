@@ -23,7 +23,6 @@ import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
-
 export const TodayScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
@@ -46,8 +45,6 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
-
-   
 
     useEffect(() => {
         if (!isFocused) {

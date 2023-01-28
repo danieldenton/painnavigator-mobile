@@ -5,6 +5,7 @@ import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { isAndroid } from "../../../utils";
 
 const ModuleCard = styled(Card)`
     margin-top: ${(props) => props.theme.space[3]};
@@ -59,10 +60,14 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     const circleProgress = useRef(null);
 
     useEffect(() => {
+        if(isAndroid) {
+            return
+        }
+
         if(numVideosCompleted > 0) {
             circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
         };
-    }, [isFocused]);
+    }, [isFocused, isAndroid]);
 
     return ( 
         <TouchableOpacity onPress={() => navigation.navigate("Movement")}> 
