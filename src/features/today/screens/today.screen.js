@@ -16,7 +16,7 @@ import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';

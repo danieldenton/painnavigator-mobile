@@ -33,7 +33,7 @@ export const AuthTextInput = styled(Input).attrs({
     font-size: 16px;
     line-height: 24px;
     height: 42px;
-    margin-bottom: 16px;
+    margin-bottom: ${space[3]};
 `;
 
 export const TextInput = styled(BaseInput).attrs({
