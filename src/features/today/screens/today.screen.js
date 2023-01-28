@@ -53,6 +53,7 @@ export const TodayScreen = ({ navigation }) => {
         if (!isFocused) {
             return;
         }
+        console.log(timeZonedTodaysDate)
         getUser(
             user.user.uid,
             setUserInfo, 
