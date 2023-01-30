@@ -1,5 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
+
 
 export const DrawerContainer = styled.View`
     width: 100%;

@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonSection } from "../journals/journal.styles";
 import { LinkWrapper } from "../../features/account/components/terms-and-conditions.component";
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 const LinkText = styled.Text`
     font-family: Inter_300Light;
