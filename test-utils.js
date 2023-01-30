@@ -13,7 +13,7 @@ import { FoodJournalContextProvider } from './src/services/food-journal/food-jou
 import { MoodJournalContextProvider } from './src/services/mood-journal/mood-journal.context';
 import { WellnessCoachContextProvider } from './src/services/wellness-coach/wellness-coach.context';
 import { FavoriteActivitiesContextProvider } from './src/services/favorite-activities/favorite-activities.context';
-import { Navigation } from "./src/infrastructure/navigation/index";
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -31,8 +31,9 @@ const Providers = ({children}) => {
                         <MoodJournalContextProvider>
                           <WellnessCoachContextProvider>
                             <FavoriteActivitiesContextProvider>
-                              <Navigation />
+                              <NavigationContainer>
                               {children}
+                              </NavigationContainer>
                             </FavoriteActivitiesContextProvider>
                           </WellnessCoachContextProvider>
                         </MoodJournalContextProvider>

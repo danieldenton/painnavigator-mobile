@@ -9,8 +9,8 @@ import { TodayScreen } from "../screens/today.screen";
 //     value: () => 1/30/2023
 // })
 
-// Object.defineProperty(DateTimeFormat, 'new', {
-//     value: () => '1/28/2023'
+// Object.defineProperty(Localization, 'timezone', {
+//     value: 'America/Los Angeles'
 //   })
 
 
