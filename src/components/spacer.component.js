@@ -31,6 +31,6 @@ Spacer.defaultProps = {
 };
 
 export const SmallSpacer = styled.View`
-  margin-top: ${(props) => props.theme.space[3]};
-  margin-bottom: ${(props) => props.theme.space[3]};
-`
+margin-top: 16px;
+margin-bottom: 16px;
+ `

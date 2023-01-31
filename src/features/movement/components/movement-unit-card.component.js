@@ -7,7 +7,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 const ModuleCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-top: 16px;    
     border-radius: 15px;
     padding: 21px;
 `;

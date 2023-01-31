@@ -5,7 +5,7 @@ import { Selected } from "../../../icons";
 import { educationModules } from "../../education/data/education-module-data.json";
 
 const DailyGoalCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-top: 16px;
     border-radius: 15px;
     padding-top: 16px;
     padding-bottom: 16px;
