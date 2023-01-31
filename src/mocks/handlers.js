@@ -1,7 +1,7 @@
 import { rest } from "msw";
 
 export const handlers = [
-    rest.get('https://pain-navigator-mobile-staging.herokuapp.com/api/v1/users/6Iw0r8lNxmQ8MDt5hipTI4xrZNA2', (req, res, ctx) => {
+    rest.get(`https://pain-navigator-mobile-staging.herokuapp.com/api/v1/users/${uid}`, (req, res, ctx) => {
        return res(
         ctx.json({
             "data": {
