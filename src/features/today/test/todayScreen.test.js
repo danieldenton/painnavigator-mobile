@@ -20,7 +20,7 @@ describe("renders today screen according to getUser call", () => {
            ...jest.requireActual('react'),
            useState: (initialState) => [initialState, mockSetUser]
         }))
-        renderWithContext(<TodayScreen />)
+          renderWithContext(<TodayScreen />)
     })
     test("renders greeting", async () => {
         
