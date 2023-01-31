@@ -12,7 +12,7 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
-      "./jestSetupFile.js",
+      "./jest.setup.js",
       "@testing-library/jest-native/extend-expect"
     ],
     "transformIgnorePatterns": [
