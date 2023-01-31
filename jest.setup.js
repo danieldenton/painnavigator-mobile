@@ -8,3 +8,12 @@ afterEach(() => server.resetHandlers())
 
 // Clean up after the tests are finished.
 afterAll(() => server.close())
+
+jest.mock("@react-native-async-storage/async-storage", () =>
+  require("@react-native-async-storage/async-storage/jest/async-storage-mock")
+);
+
+jest.mock('expo-localization', ()=> ({ timezone: "America/Los_Angeles"
+}))
+
+

@@ -9,13 +9,13 @@ beforeEach(() => {
 afterEach(cleanup)
 
 // userOne has made some progress in the program
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useEffect: () => 
-      {
+// jest.mock('react', () => ({
+//     ...jest.requireActual('react'),
+//     useEffect: () => 
+//       {
         
-      }
-}))
+//       }
+// }))
 
 // userTwo is a brand new user
 
