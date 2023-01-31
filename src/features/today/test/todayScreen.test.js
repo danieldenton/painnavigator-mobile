@@ -3,9 +3,6 @@ import { renderWithContext } from "../../../../test-utils";
 import React from "react";
 import { TodayScreen } from "../screens/today.screen";
 
-beforeEach(() => {
-    renderWithContext(<TodayScreen />)
-})
 afterEach(cleanup)
 
 // userOne has made some progress in the program
@@ -20,8 +17,9 @@ afterEach(cleanup)
 // userTwo is a brand new user
 
 describe("renders today screen according to getUser call", () => {
-    test("renders greeting", () => {
-      
-        
+    test("renders greeting", async () => {
+        renderWithContext(<TodayScreen />)
+        const greeting = await screen.findByText(/good morning test3/i)
+        expect(greeting).toBeOnTheScreen
     }) 
 })
