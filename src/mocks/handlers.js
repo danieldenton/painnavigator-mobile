@@ -1,11 +1,12 @@
 import { rest } from "msw";
-import { uid } from "../services/authentication/authentication.context";
+import { API_URL } from "@env";
 
-
+const uid = "6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"
 
 export const handlers = [
-    rest.get(`https://pain-navigator-mobile-staging.herokuapp.com/api/v1/users/${uid}`, (req, res, ctx) => {
+    rest.get(`${API_URL}/api/v1/users/${uid}`, (req, res, ctx) => {
        return res(
+        ctx.status(200),
         ctx.json({
             "data": {
                 "id": "171",
