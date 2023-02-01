@@ -22,6 +22,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
+    const [uid, setUid] = useState("")
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -74,6 +75,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u);
+                setUid(u.user.uid)
             })
             .catch((e) => {
                 setError(e.toString());
@@ -137,6 +139,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 onboardingData,
                 previousOnboardingStep,
                 user,
+                uid,
                 userLoading,
                 setCurrentQuestion,
                 signOut,

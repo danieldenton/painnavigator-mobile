@@ -1,11 +1,10 @@
 import { rest } from "msw";
-import { useContext} from "react";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
+import { uid } from "../services/authentication/authentication.context";
 
-const { user } = useContext(AuthenticationContext);
+
 
 export const handlers = [
-    rest.get(`https://pain-navigator-mobile-staging.herokuapp.com/api/v1/users/${user.user.uid}`, (req, res, ctx) => {
+    rest.get(`https://pain-navigator-mobile-staging.herokuapp.com/api/v1/users/${uid}`, (req, res, ctx) => {
        return res(
         ctx.json({
             "data": {

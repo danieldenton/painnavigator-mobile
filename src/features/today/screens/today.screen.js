@@ -25,7 +25,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 
 
 export const TodayScreen = ({ navigation }) => {
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -54,7 +54,7 @@ export const TodayScreen = ({ navigation }) => {
             return;
         }
         getUser(
-            user.user.uid,
+            uid,
             setUserInfo, 
             setMessages, 
             setEducationProgress, 

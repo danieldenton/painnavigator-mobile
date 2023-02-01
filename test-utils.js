@@ -18,9 +18,11 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 const Providers = ({children}) => {
+
+  const uid = "6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"
     return (
         <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider>
+        <AuthenticationContextProvider value={uid}>
           <ProfileContextProvider>
             <BookmarksContextProvider>
               <EducationContextProvider>
