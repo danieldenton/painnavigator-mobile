@@ -22,11 +22,10 @@ import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
-import { ComplexAnimationBuilder } from "react-native-reanimated";
 
 
 export const TodayScreen = ({ navigation }) => {
-    const { uid } = useContext(AuthenticationContext);
+    const { user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -56,7 +55,7 @@ export const TodayScreen = ({ navigation }) => {
         }
         console.log(uid)
         getUser(
-            uid,
+            user.user.uid,
             setUserInfo, 
             setMessages, 
             setEducationProgress, 
