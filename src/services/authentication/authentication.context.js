@@ -22,7 +22,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
-    // const [uid, setUid] = useState("")
+    const [uid, setUid] = useState("")
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -34,7 +34,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     const onLogin = (email, password) => {
         setUserLoading(true);
         loginRequest(email, password).then((u) => {
-            // setUid(u.user.uid)
+            setUid(u.user.uid)
             setUser(u);
         }).catch((e) => {
             setError(e.toString());
@@ -75,7 +75,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                     commitment: onboardingData.commitment
                 }
                 postUser(u.user.uid, strippedOnboardingData);
-                // setUid(u.user.uid)
+                setUid(u.user.uid)
                 setUser(u); 
             })
             .catch((e) => {
@@ -87,7 +87,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     const signOut = () => {
         setUser(null);
-        // setUid("")
+        setUid("")
     };
 
     const saveUser = async (value) => {
@@ -111,7 +111,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem("@user");
             if (value !== null) {
-                setUser(JSON.parse(value));
+                setUid(JSON.parse(value));
             }
         } catch (e) {
             console.log("error loading user", e);
@@ -123,8 +123,8 @@ export const AuthenticationContextProvider = ({ children }) => {
     }, []);
     
     useEffect(() => {
-        saveUser(user);
-    }, [user]);
+        saveUser(uid);
+    }, [uid]);
 
     return (
         <AuthenticationContext.Provider
@@ -141,6 +141,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 onboardingData,
                 previousOnboardingStep,
                 user,
+                uid,
                 userLoading,
                 setCurrentQuestion,
                 signOut,
