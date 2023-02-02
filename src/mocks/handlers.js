@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 const uid = "6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"
 
 export const handlers = [
-    rest.get(`${API_URL}/api/v1/users/${uid}`, (req, res, ctx) => {
+    rest.get(`${API_URL}/api/v1/users/6Iw0r8lNxmQ8MDt5hipTI4xrZNA2`, (req, res, ctx) => {
        return res(
         ctx.status(200),
         ctx.json({

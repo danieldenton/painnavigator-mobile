@@ -22,7 +22,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
-    const [uid, setUid] = useState("")
+    const [uid, setUid] = useState(null)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -87,7 +87,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     const signOut = () => {
         setUser(null);
-        setUid("")
+        setUid(null)
     };
 
     const saveUser = async (value) => {
@@ -142,6 +142,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 previousOnboardingStep,
                 user,
                 uid,
+                setUid,
                 userLoading,
                 setCurrentQuestion,
                 signOut,
