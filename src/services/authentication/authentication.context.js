@@ -141,7 +141,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                 onboardingData,
                 previousOnboardingStep,
                 user,
-                uid,
                 userLoading,
                 setCurrentQuestion,
                 signOut,

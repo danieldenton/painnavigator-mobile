@@ -53,7 +53,7 @@ export const TodayScreen = ({ navigation }) => {
         if (!isFocused) {
             return;  
         }
-        console.log(uid)
+        console.log(JSON.stringify(user))
         getUser(
             user.user.uid,
             setUserInfo, 
