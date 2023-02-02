@@ -12,4 +12,9 @@ describe("renders today screen according to getUser call", () => {
       const greeting = await screen.findByText(/^good morning/i)
       expect(greeting).toBeVisible
     }) 
+    test("renders correct education tile", async () => {
+      renderWithContext(<TodayScreen />)
+      const educationTile = await screen.findByText(/vicious cycle of pain/i)
+      expect(educationTile).toBeVisible
+    })
 })
