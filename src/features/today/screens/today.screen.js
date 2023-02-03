@@ -24,7 +24,7 @@ import { getUser } from "../../../services/authentication/authentication.service
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const { user } = useContext(AuthenticationContext);
+    const {  user } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -48,7 +48,7 @@ export const TodayScreen = ({ navigation }) => {
 
     useEffect(() => {
         if (!isFocused) {
-            return;
+            return;  
         }
         getUser(
             user.user.uid,

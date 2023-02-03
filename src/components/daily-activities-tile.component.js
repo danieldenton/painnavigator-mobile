@@ -6,7 +6,7 @@ import { Add, FoodJournalIcon, Locked } from "../icons";
 import { View } from "react-native";
 
 const DailyActivitiesCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-top: 16px;
     border-radius: 15px;
     padding: 21px;
 `;

@@ -5,7 +5,7 @@ import { Locked } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 const LockedCard = styled(Card)`
-    margin-top: ${(props) => props.theme.space[3]};
+    margin-top: 16px;
     border-radius: 15px;
     padding-top: 16px;
     padding-bottom: 16px;

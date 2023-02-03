@@ -22,6 +22,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
+    // const [uid, setUid] = useState(null)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -33,6 +34,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     const onLogin = (email, password) => {
         setUserLoading(true);
         loginRequest(email, password).then((u) => {
+            // setUid(u.user.uid)
             setUser(u);
         }).catch((e) => {
             setError(e.toString());
@@ -73,7 +75,8 @@ export const AuthenticationContextProvider = ({ children }) => {
                     commitment: onboardingData.commitment
                 }
                 postUser(u.user.uid, strippedOnboardingData);
-                setUser(u);
+                // setUid(u.user.uid)
+                setUser(u); 
             })
             .catch((e) => {
                 setError(e.toString());
@@ -84,6 +87,7 @@ export const AuthenticationContextProvider = ({ children }) => {
 
     const signOut = () => {
         setUser(null);
+        setUid(null)
     };
 
     const saveUser = async (value) => {
@@ -107,7 +111,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem("@user");
             if (value !== null) {
-                setUser(JSON.parse(value));
+                setUid(JSON.parse(value));
             }
         } catch (e) {
             console.log("error loading user", e);

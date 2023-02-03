@@ -7,8 +7,8 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 
 const EntryCard = styled(Card)`
     flex: 1;
-    margin-top: ${(props) => props.theme.space[3]};
-    padding: ${(props) => props.theme.space[3]};
+    margin-top: 16px;
+    padding: 16px;
     border-radius: 15px;
     min-height: 169px;
 `;
