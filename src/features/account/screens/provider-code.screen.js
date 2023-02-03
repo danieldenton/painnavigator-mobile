@@ -60,6 +60,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
           changeOnboardEntry(referralCode, "referral_code"),
           setReferralCode(referralCode)
         )}
+        keyboardType="visible-password"
       />
       <View style={styles.codeGraphicWrapper}>
         <CodeGraphic />
