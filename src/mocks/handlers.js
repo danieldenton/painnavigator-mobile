@@ -31,11 +31,11 @@ export const handlers = [
                     "condensed_program": false,
                     "profile_status": 0,
                     "education_progress": {
-                        "progress": 1,
+                        "progress": 3,
                         "last_completed_date": null
                     },
                     "movement_progress": {
-                        "progress": 1,
+                        "progress": 7,
                         "last_completed_date": null
                     },
                     "conversation": [
