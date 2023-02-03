@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-
+import { isAndroid } from "../../utils";
 
 export const DrawerContainer = styled.View`
     width: 100%;
@@ -9,7 +9,7 @@ export const DrawerContainer = styled.View`
 `;
 
 const LogoContainer = styled.View`
-    margin-top: 4px;
+    margin-top: ${isAndroid ? '16px' : '4px'};
     margin-bottom: 4px;
     margin-left: 12px;
     width: 100%;
