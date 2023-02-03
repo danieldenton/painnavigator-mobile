@@ -4,11 +4,8 @@ import 'firebase/compat/auth';
 import { API_URL } from "@env";
 import { months } from "../../features/pain-journal/data/months";
 
-
-
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
-  console.log(API_URL)
 
 export async function checkReferralCode(
   referralCode,
