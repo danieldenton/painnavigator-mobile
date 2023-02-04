@@ -11,6 +11,9 @@
       }
     },
     "production": {
+      "env": {
+        "API_URL": "production"
+      },
       "ios": {
         "resourceClass": "m1-medium"
       }
