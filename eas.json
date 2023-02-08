@@ -8,7 +8,8 @@
       "distribution": "internal",
       "ios": {
         "resourceClass": "m1-medium"
-      }
+      },
+      "channel": "development"
     },
     "production": {
       "env": {
@@ -16,7 +17,8 @@
       },
       "ios": {
         "resourceClass": "m1-medium"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

@@ -36,7 +36,6 @@
     "camelize": "^1.0.0",
     "cloudinary-react": "^1.7.1",
     "date-fns": "^2.29.3",
-    "eas-cli": "^0.54.1",
     "expo": "^45.0.0",
     "expo-application": "~4.1.0",
     "expo-av": "~11.2.3",
