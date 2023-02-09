@@ -16,7 +16,7 @@ export const Signup = ({ navigation }) => {
     const [repeatedPassword, setRepeatedPassword] = useState("");
     const { onboardingData, changeOnboardEntry, onRegister, error, userLoading } = useContext(AuthenticationContext);
     const { first_name, last_name, email } = onboardingData;
-    const [showButton, setShowButton] = React.useState(true);
+    const [showButton, setShowButton] = useState(true);
 
     return(
         <>
@@ -28,6 +28,7 @@ export const Signup = ({ navigation }) => {
                 <AuthTextInput
                     accessibilityLabel={"first-name-input"}
                     value={first_name}
+                    
                     onFocus={() => setShowButton(false)}
                     onBlur={() => setShowButton(true)}
                     textContentType="name"
@@ -80,7 +81,7 @@ export const Signup = ({ navigation }) => {
                 </View>
             </KeyboardAwareScrollView>
             {userLoading && <ActivityIndicator />}
-            {isAndroid && showButton && <ButtonSection>
+            {showButton && <ButtonSection>
                 <JournalButton 
                     accessibilityLabel={"create-account-button"}
                     title={"Create Account"} 
