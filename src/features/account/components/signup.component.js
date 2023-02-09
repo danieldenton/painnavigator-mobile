@@ -16,7 +16,7 @@ export const Signup = ({ navigation }) => {
     const [repeatedPassword, setRepeatedPassword] = useState("");
     const { onboardingData, changeOnboardEntry, onRegister, error, userLoading } = useContext(AuthenticationContext);
     const { first_name, last_name, email } = onboardingData;
-    const [showButton, setShowButton] = React.useState(true);
+    const [showButton, setShowButton] = useState(true);
 
     return(
         <>
@@ -28,8 +28,8 @@ export const Signup = ({ navigation }) => {
                 <AuthTextInput
                     accessibilityLabel={"first-name-input"}
                     value={first_name}
-                    onFocus={() => setShowButton(false)}
-                    onBlur={() => setShowButton(true)}
+                    onFocus={() => {isAndroid ? setShowButton(false) : null}}
+                    onBlur={() => {isAndroid ? setShowButton(true) : null}}
                     textContentType="name"
                     onChangeText={(first) => changeOnboardEntry(first, "first_name")}
                 />
@@ -37,8 +37,8 @@ export const Signup = ({ navigation }) => {
                 <AuthTextInput
                     accessibilityLabel={"last-name-input"}
                     value={last_name}
-                    onFocus={() => setShowButton(false)}
-                    onBlur={() => setShowButton(true)}
+                    onFocus={() => {isAndroid ? setShowButton(false) : null}}
+                    onBlur={() => {isAndroid ? setShowButton(true) : null}}
                     textContentType="name"
                     onChangeText={(last) => changeOnboardEntry(last, "last_name")}
                 />
@@ -48,8 +48,8 @@ export const Signup = ({ navigation }) => {
                     value={email}
                     textContentType="emailAddress"
                     keyboardType="email-address"
-                    onFocus={() => setShowButton(false)}
-                    onBlur={() => setShowButton(true)}
+                    onFocus={() => {isAndroid ? setShowButton(false) : null}}
+                    onBlur={() => {isAndroid ? setShowButton(true) : null}}
                     autoCapitalize="none"
                     onChangeText={(u) => changeOnboardEntry(u, "email")}
                 />
@@ -59,8 +59,8 @@ export const Signup = ({ navigation }) => {
                     value={password}
                     textContentType="password"
                     secureTextEntry
-                    onFocus={() => setShowButton(false)}
-                    onBlur={() => setShowButton(true)}
+                    onFocus={() => {isAndroid ? setShowButton(false) : null}}
+                    onBlur={() => {isAndroid ? setShowButton(true) : null}}
                     autoCapitalize="none"
                     onChangeText={(p) => setPassword(p)}
                 />
@@ -70,8 +70,8 @@ export const Signup = ({ navigation }) => {
                     value={repeatedPassword}
                     textContentType="password"
                     secureTextEntry
-                    onFocus={() => setShowButton(false)}
-                    onBlur={() => setShowButton(true)}
+                    onFocus={() => {isAndroid ? setShowButton(false) : null}}
+                    onBlur={() => {isAndroid ? setShowButton(true) : null}}
                     autoCapitalize="none"
                     onChangeText={(p) => setRepeatedPassword(p)}
                 />
@@ -80,7 +80,7 @@ export const Signup = ({ navigation }) => {
                 </View>
             </KeyboardAwareScrollView>
             {userLoading && <ActivityIndicator />}
-            {isAndroid && showButton && <ButtonSection>
+             {showButton && <ButtonSection>
                 <JournalButton 
                     accessibilityLabel={"create-account-button"}
                     title={"Create Account"} 
