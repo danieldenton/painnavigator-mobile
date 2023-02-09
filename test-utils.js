@@ -7,7 +7,7 @@ import { ProfileContextProvider } from './src/services/profile/profile-context';
 import { BookmarksContextProvider } from './src/services/bookmarks/bookmarks.context';
 import { EducationContextProvider } from './src/services/education/education.context';
 import { MovementContextProvider } from './src/services/movement/movement.context';
-import { SmartGoalContextProvider } from './src/services/smart-goal/smart-goal.context';
+import { SmartGoalContext } from './src/services/smart-goal/smart-goal.context';
 import { PainJournalContextProvider } from './src/services/pain-journal/pain-journal.context';
 import { FoodJournalContextProvider } from './src/services/food-journal/food-journal.context';
 import { MoodJournalContextProvider } from './src/services/mood-journal/mood-journal.context';
@@ -21,6 +21,17 @@ const Providers = ({children}) => {
 
   
   const authenticationContextValueProvider =  {"user": {"user":{"uid":"6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"}}}
+  const smartGoalContextValueProvider = { "activeGoal": {
+    "id": 54,
+    "goal": "test",
+    "steps": "test",
+    "reward": "test",
+    "end_date": null,
+    "date_time_value": 1675737571419.8752,
+    "status": "active",
+    "goal_updates": []
+   }
+  }
     return (
         <ThemeProvider theme={theme}>
         <AuthenticationContext.Provider value={authenticationContextValueProvider}>
@@ -28,7 +39,7 @@ const Providers = ({children}) => {
             <BookmarksContextProvider>
               <EducationContextProvider>
                 <MovementContextProvider>
-                  <SmartGoalContextProvider>
+                  <SmartGoalContext.Provider value={smartGoalContextValueProvider}>
                     <PainJournalContextProvider>
                       <FoodJournalContextProvider>
                         <MoodJournalContextProvider>
@@ -42,7 +53,7 @@ const Providers = ({children}) => {
                         </MoodJournalContextProvider>
                       </FoodJournalContextProvider>
                     </PainJournalContextProvider>
-                  </SmartGoalContextProvider>
+                  </SmartGoalContext.Provider>
                 </MovementContextProvider>
               </EducationContextProvider>
             </BookmarksContextProvider>

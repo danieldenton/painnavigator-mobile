@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 const uid = "6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"
 
 export const handlers = [
-    rest.get(`${API_URL}/api/v1/users/6Iw0r8lNxmQ8MDt5hipTI4xrZNA2`, (req, res, ctx) => {
+    rest.get(`${API_URL}/api/v1/users/${uid}`, (req, res, ctx) => {
        return res(
         ctx.status(200),
         ctx.json({
@@ -29,14 +29,14 @@ export const handlers = [
                     },
                     "onboard_status": 0,
                     "condensed_program": false,
-                    "profile_status": 0,
+                    "profile_status": 1,
                     "education_progress": {
-                        "progress": 3,
+                        "progress": 8,
                         "last_completed_date": null
                     },
                     "movement_progress": {
-                        "progress": 7,
-                        "last_completed_date": null
+                        "progress": 2,
+				        "last_completed_date": 1675737051648.594
                     },
                     "conversation": [
                         {
@@ -55,7 +55,21 @@ export const handlers = [
                     "pain_journals": [],
                     "pain_graph_data": {},
                     "food_journals": [],
-                    "smart_goals": [],
+                    "smart_goals": [
+                        {
+                            "id": 52,
+                            "goal": "Test",
+                            "steps": "Test",
+                            "reward": "Test",
+                            "end_date": null,
+                            "user_id": 171,
+                            "status": "active",
+                            "date_time_value": 1675736581804.445,
+                            "smart_goal_updates_count": null,
+                            "created_at": "2023-02-07T02:23:01.804Z",
+                            "updated_at": "2023-02-07T02:23:01.804Z"
+                        }
+                    ],
                     "active_goal_updates": null
                 }
             }
