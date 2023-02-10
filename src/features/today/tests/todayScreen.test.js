@@ -36,28 +36,28 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     test("renders correct movement tile", async () => {
       // Why doesn't this test work?
       const movementTile = await screen.findByText(/foundations 1/i)
-      expect(movementTile).toBeVisible
+      expect(movementTile).toBeTruthy()
     })
     test("renders wellness coach tile", async () => {
       // Depends on wether or not hasUnreadMessages
       const coachTile = await screen.findByText(/check in with your coach/i)
-      expect(coachTile).toBeVisible
+      expect(coachTile).toBeTruthy()
       // need to figure out how to test if it's not here beyond this test failing.
     })
     test("renders finish profile tile", async () => {
       // profileComplete is a boolean but profile_status is a 1 or 0.
       const profileTile = await screen.findByText(/finish setting up profile/i)
-      expect(profileTile).toBeVisible
+      expect(profileTile).toBeTruthy()
     })
     test("renders journal tile", async () => {
       const journalTile = await screen.findByText(/make a journal entry/i)
-      expect(journalTile).toBeVisible
+      expect(journalTile).toBeTruthy()
     })
     test("renders smart goal tile", async () => {
       // if educationProgress > 7
       // const smartGoalTile = await screen.findByText(/create a smart goal/i)
       // if activeGoal
       const smartGoalTile = await screen.findByText(/update smart goal/i)
-      expect(smartGoalTile).toBeVisible
+      expect(smartGoalTile).toBeTruthy()
     })
 })
