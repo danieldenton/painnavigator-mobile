@@ -112,10 +112,10 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
                 >
                     {hasUnreadMessages ? 
                         <UnreadIconContainer>
-                            <UnreadMessageIcon />
+                            <UnreadMessageIcon data-testid="unread-messages" />
                         </UnreadIconContainer> 
                         : 
-                        <MessageIcon />
+                        <MessageIcon data-testid="messages" />
                     }
                 </RightPressableArea>
             </RightSection>

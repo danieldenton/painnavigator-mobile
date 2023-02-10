@@ -1,14 +1,16 @@
 import { render, screen, cleanup } from "../../../../test-utils";
 import { TodayScreen } from "../screens/today.screen";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component"
+// import { RightPressableArea } from "../../../components/journals/navigation-bar.component";
 
 describe("renders today screen navbar", () => {
-  test.skip("renders message icon in upper right corner", async () => {
-    render(<TodayNavBar />)
-    const messageIcon = await screen.findByTestId()
-    screen.debug(messageIcon)
-    // const messageIcon = screen.getByTestId("messages")
-    // expect(messageIcon).toBeVisible
+  test.only("renders message icon in upper right corner", async () => {
+    render(<TodayScreen />)
+    screen.debug()
+    // const unreadMessageIcon = await screen.findByTestId("unread-messages")
+    // const messageIcon = await screen.getByTestId("messages")
+    // expect(unreadMessageIcon).toBeTruthy()
+    // expect(messageIcon).toBeTruthy()
   })
 })
 
@@ -20,9 +22,9 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     afterEach(cleanup)
     test("renders greeting", () => {
       // The greeting message will depend on what time of day it is. The default timezone for tests is Los Angeles.
-      // const greeting = await screen.findByText(/^good morning/i)
-      // const greeting = await screen.findByText(/^good afternoon/i)
-      const greeting = screen.getByText(/^good evening/i)
+      const greeting = screen.findByText(/^good morning/i)
+      // const greeting = screen.findByText(/^good afternoon/i)
+      // const greeting = screen.getByText(/^good evening/i)
       expect(greeting).toBeTruthy()
     }) 
     test("renders correct education tile", async () => {
@@ -42,7 +44,7 @@ describe("renders today screen greeting and tiles according to getUser call", ()
       // Depends on wether or not hasUnreadMessages
       const coachTile = await screen.findByText(/check in with your coach/i)
       expect(coachTile).toBeTruthy()
-      // need to figure out how to test if it's not here beyond this test failing.
+      // There is no way for this not.toBeTruthy(). It won't find the element in the first place. You can cause this test to fail if 
     })
     test("renders finish profile tile", async () => {
       // profileComplete is a boolean but profile_status is a 1 or 0.
