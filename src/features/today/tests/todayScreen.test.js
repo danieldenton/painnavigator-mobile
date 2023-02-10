@@ -1,5 +1,4 @@
-import { screen, cleanup } from "@testing-library/react-native";
-import { renderWithContext } from "../../../../test-utils";
+import { render, screen, cleanup } from "../../../../test-utils";
 import { TodayScreen } from "../screens/today.screen";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component"
 
@@ -16,15 +15,15 @@ describe("renders today screen navbar", () => {
 describe("renders today screen greeting and tiles according to getUser call", () => {
   // These test will depend on mock api call return in src/mocks/handlers.js
     beforeEach(() => {
-      renderWithContext(<TodayScreen />)
+      render(<TodayScreen />)
     })
     afterEach(cleanup)
-    test("renders greeting", async () => {
+    test("renders greeting", () => {
       // The greeting message will depend on what time of day it is. The default timezone for tests is Los Angeles.
       // const greeting = await screen.findByText(/^good morning/i)
-      const greeting = await screen.findByText(/^good afternoon/i)
-      // const greeting = await screen.findByText(/^good evening/i)
-      expect(greeting).toBeInTheDocument
+      // const greeting = await screen.findByText(/^good afternoon/i)
+      const greeting = screen.getByText(/^good evening/i)
+      expect(greeting).toBeTruthy()
     }) 
     test("renders correct education tile", async () => {
       // educationProgress === 8 - the text will render according to the educationProgresss number
