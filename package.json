@@ -7,7 +7,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "clean": "react-native-clean-project"
   },
   "jest": {
     "preset": "jest-expo",
@@ -83,6 +84,7 @@
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^11.5.1",
     "msw": "^1.0.0",
+    "react-native-clean-project": "^4.0.1",
     "react-test-renderer": "17"
   },
   "private": true
