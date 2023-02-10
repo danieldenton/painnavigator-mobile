@@ -1,5 +1,5 @@
 import { server } from "./mocks/server";
-import "@testing-library/jest-native"
+
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen())
