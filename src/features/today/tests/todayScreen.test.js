@@ -4,7 +4,7 @@ import { TodayNavBar } from "../../../components/journals/navigation-bar.compone
 
 describe("renders today screen navbar", () => {
   test.skip("renders message icon in upper right corner", async () => {
-    renderWithContext(<TodayNavBar />)
+    render(<TodayNavBar />)
     const messageIcon = await screen.findByTestId()
     screen.debug(messageIcon)
     // const messageIcon = screen.getByTestId("messages")
@@ -28,7 +28,7 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     test("renders correct education tile", async () => {
       // educationProgress === 8 - the text will render according to the educationProgresss number
       const educationTile = await screen.findByText(/practical tips/i)
-      expect(educationTile).toBeVisible
+      expect(educationTile).toBeTruthy()
     })
     // test("test movement number", () => {
     //   const movement
