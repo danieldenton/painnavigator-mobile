@@ -99,6 +99,7 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
         <NavContainer>
             <LeftPressableArea 
                 accessibilityLabel={"menu"} 
+                testID={"menu"}
                 onPress={() => navigation.openDrawer()}
             >
                 <MenuIcon />
@@ -108,14 +109,15 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
             <RightSection>
                 <RightPressableArea
                    accessibilityLabel={"messages"}
+                   testID={"messages"}
                    onPress={() => {navigation.navigate("WellnessCoach")}}
                 >
                     {hasUnreadMessages ? 
                         <UnreadIconContainer>
-                            <UnreadMessageIcon data-testid="unread-messages" />
+                            <UnreadMessageIcon testID={"unread-messages"} />
                         </UnreadIconContainer> 
                         : 
-                        <MessageIcon data-testid="messages" />
+                        <MessageIcon  />
                     }
                 </RightPressableArea>
             </RightSection>
