@@ -46,7 +46,7 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     // })
     test("renders correct movement tile", async () => {
       // Why doesn't this test work?
-      const movementTile = await screen.findByText(/foundations 1/i)
+      const movementTile = await screen.findByText(/foundations 2/i)
       expect(movementTile).toBeTruthy()
     })
     test("renders wellness coach tile", async () => {
@@ -55,8 +55,9 @@ describe("renders today screen greeting and tiles according to getUser call", ()
       expect(coachTile).toBeTruthy()
       // There is no way for this not.toBeTruthy(). It won't find the element in the first place. You can cause this test to fail if 
     })
-    test("renders finish profile tile", async () => {
-      // profileComplete is a boolean but profile_status is a 1 or 0.
+    test.only("renders finish profile tile", async () => {
+      // profileComplete is a boolean but profile_status is a 1 or 0. Which seems to function if (profile_status === 1) { setProfileComplete(true)}
+      // This seems to render in a lagged way which is why I believe this text is failing.
       const profileTile = await screen.findByText(/finish setting up profile/i)
       expect(profileTile).toBeTruthy()
     })
