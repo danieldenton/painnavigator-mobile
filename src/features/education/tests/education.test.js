@@ -4,13 +4,25 @@ import { EducationUnitScreen } from "../screens/education-unit.screen";
 import { VideoUnit } from "../components/video-unit.component";
 import { AudioUnit } from "../components/audio-unit.component";
 import { TextUnit } from "../components/text-unit.component";
+import { NavigationContainer } from "@react-navigation/native";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 
-beforeEach(() => {
-    render(<EducationUnitScreen />)
-})
-afterEach(cleanup)
+const page = (
+    <NavigationContainer>
+      <EducationUnitScreen>
+        <NavigationBarLeft>
+         <VideoUnit />
+        </NavigationBarLeft>
+      </EducationUnitScreen>
+    </NavigationContainer>
+)
+
 
 describe("renders education unit screens and calls functions", () => {
+    beforeEach(() => {
+        render(<EducationUnitScreen />)
+    })
+    afterEach(cleanup)
     test("renders mark complete button which calls completeModule", () => {
         // const completeModule = jest.fn()
         const markCompleteButton = screen.getByRole('button', /mark complete/i)
@@ -29,7 +41,8 @@ describe("renders education unit screens and calls functions", () => {
 })
 
 describe("renders correct type of unit", () => {
-    test.skip("renders video unit", async () => {
+    test.only("renders video unit", async () => {
+        render(page)
         const videoUnit = await screen.findByTestId('video-unit')
         expect(videoUnit).toBeTruthy()
     })
