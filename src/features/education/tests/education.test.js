@@ -34,10 +34,12 @@ describe("renders correct type of unit", () => {
         expect(videoUnit).toBeTruthy()
     })
     test.skip("renders audio unit", async () => {
+        // testID does not yet exist in component
         const audioUnit = await screen.findByTestId('audio-unit')
         expect(audioUnit).toBeTruthy()
     })
     test.skip("renders text unit", async () => {
+        // testID does not yet exist in component
         const textUnit = await screen.findByTestId('text-unit')
         expect(textUnit).toBeTruthy()
     })
