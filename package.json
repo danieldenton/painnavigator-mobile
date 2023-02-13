@@ -26,6 +26,7 @@
     "@gorhom/bottom-sheet": "^4",
     "@miblanchard/react-native-slider": "^2.1.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/slider": "4.2.1",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/drawer": "^6.4.1",
