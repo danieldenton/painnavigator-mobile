@@ -5,13 +5,13 @@ import { theme } from "./src/infrastructure/theme"
 import { AuthenticationContext } from './src/services/authentication/authentication.context';
 import { ProfileContextProvider } from './src/services/profile/profile-context';
 import { BookmarksContextProvider } from './src/services/bookmarks/bookmarks.context';
-import { EducationContextProvider} from './src/services/education/education.context';
+import { EducationContext, EducationContextProvider } from './src/services/education/education.context';
 import { MovementContextProvider } from './src/services/movement/movement.context';
 import { SmartGoalContext } from './src/services/smart-goal/smart-goal.context';
 import { PainJournalContextProvider } from './src/services/pain-journal/pain-journal.context';
 import { FoodJournalContextProvider } from './src/services/food-journal/food-journal.context';
 import { MoodJournalContextProvider } from './src/services/mood-journal/mood-journal.context';
-import { WellnessCoachContext, WellnessCoachContextProvider} from './src/services/wellness-coach/wellness-coach.context';
+import { WellnessCoachContextProvider} from './src/services/wellness-coach/wellness-coach.context';
 import { FavoriteActivitiesContextProvider } from './src/services/favorite-activities/favorite-activities.context';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -32,7 +32,7 @@ const Providers = ({children}) => {
     "goal_updates": []
    }
   }
-  const wellnessCoachValueProvider = {"hasUnreadMessages": true}
+
     return (
        <ThemeProvider theme={theme}>
        <AuthenticationContext.Provider value={authenticationContextValueProvider}>
@@ -44,7 +44,7 @@ const Providers = ({children}) => {
                    <PainJournalContextProvider>
                      <FoodJournalContextProvider>
                        <MoodJournalContextProvider>
-                         <WellnessCoachContextProvider value={wellnessCoachValueProvider}>
+                         <WellnessCoachContextProvider>
                            <FavoriteActivitiesContextProvider>
                              <NavigationContainer>
                              {children}

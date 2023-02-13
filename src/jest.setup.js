@@ -19,6 +19,10 @@ jest.mock('expo-localization', ()=> ({
   timezone: "America/Los_Angeles"
 }))
 
+// jest.mock("@react-navigation/native", () => {
+//   navigation: jest.fn()
+// })
+
 
 
 

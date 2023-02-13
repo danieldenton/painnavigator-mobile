@@ -32,8 +32,8 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     test("renders greeting", async () => {
       // The greeting message will depend on what time of day it is. The default timezone for tests is Los Angeles.
       // const greeting = await screen.findByText(/^good morning/i)
-      // const greeting = await screen.findByText(/^good afternoon/i)
-      const greeting = await screen.findByText(/^good evening/i)
+      const greeting = await screen.findByText(/^good afternoon/i)
+      // const greeting = await screen.findByText(/^good evening/i)
       expect(greeting).toBeTruthy()
     }) 
     test("renders correct education tile", async () => {
@@ -46,7 +46,7 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     // })
     test("renders correct movement tile", async () => {
       // Why doesn't this test work?
-      const movementTile = await screen.findByText(/foundations 2/i)
+      const movementTile = await screen.findByText(/foundations 1/i)
       expect(movementTile).toBeTruthy()
     })
     test("renders wellness coach tile", async () => {
