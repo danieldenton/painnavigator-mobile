@@ -25,7 +25,7 @@ export const VideoUnit = () => {
                 setStatus={setStatus}
                 type={type}
             />
-            <EducationUnitInfo id={id} name={name} type={type} summary={summary} />
+            <EducationUnitInfo id={id} name={name} type={type} summary={summary} testID={"video-player"}/>
         </>
     )
 };
