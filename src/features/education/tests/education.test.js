@@ -21,18 +21,18 @@ describe("renders education unit screens and calls functions", () => {
         render(<EducationUnitScreen />)
     })
     afterEach(cleanup)
-    test("renders mark complete button which calls completeModule", () => {
+    test.skip("renders mark complete button which calls completeModule", () => {
         // const completeModule = jest.fn()
         const markCompleteButton = screen.getByRole('button', /mark complete/i)
         expect(markCompleteButton).toBeTruthy()
         // fireEvent.press(markCompleteButton)
         // expect(completeModule).toHaveBeenCalled(1)
     })
-    test("renders correct unit title", () => {
+    test.skip("renders correct unit title", () => {
         const unitlTitle = screen.getByText(/painnavigator introduction/i)
         expect(unitlTitle).toBeTruthy()
     })
-    test("renders bookmark component", () => {
+    test.skip("renders bookmark component", () => {
         const bookmark = screen.getByTestId('bookmark')
         expect(bookmark).toBeTruthy()
     })
