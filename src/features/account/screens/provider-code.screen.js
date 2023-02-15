@@ -61,6 +61,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
           setReferralCode(referralCode)
         )}
         keyboardType="visible-password"
+        testID={"code-input"}
       />
       <View style={styles.codeGraphicWrapper}>
         <CodeGraphic />
