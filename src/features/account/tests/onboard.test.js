@@ -1,6 +1,10 @@
-import { render, screen, cleanup } from "../../../../test-utils";
+import { render, screen, cleanup } from "./onboardTest-utils"
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
+
+beforeEach(() => 
+jest.useFakeTimers()
+)
 
 describe("new user onboard screen tests", () => {
     test("onboard screen renders sign up and login buttons", () => {
