@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import { renderWithContext1 } from "./onboardTest-utils"
 import { screen, fireEvent, cleanup } from "@testing-library/react-native"
 import { OnboardScreen } from "../screens/onboard.screen"
@@ -32,17 +33,13 @@ describe("renders onboard screen correctly", () => {
         expect(input).toBeTruthy()
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
-      jest.mock("../../../services/authentication/authentication.service", () => {
-        return {
-          checkReferralCode: jest.fn().mockImplementation(() => {
-            
-          })
-        }    
+      jest.mock("../screens/provider-code.screen", () => {
+        checkReferralCode = jest.fn()
       })
       renderWithContext1(<ProviderCodeScreen />)
       const submitButton = screen.getByRole('button', /submit/i)
       fireEvent.press(submitButton)
-      const error = await screen.findByText("Please enter a valid code")
-      expect(error).toBeTruthy()
+      // const errorMessage = await screen.findByText("Please enter a valid code")
+      expect(checkReferralCode).toHaveBeenCalledTimes(1)
     })
   })
