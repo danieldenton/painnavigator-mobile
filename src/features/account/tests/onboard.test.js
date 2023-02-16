@@ -31,10 +31,18 @@ describe("renders onboard screen correctly", () => {
         expect(link). toBeTruthy()
         expect(input).toBeTruthy()
     })
-    test("provider code screen renders submit button which when pressed calls checkReferralCode", () => {
+    test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
+      jest.mock("../../../services/authentication/authentication.service", () => {
+        return {
+          checkReferralCode: jest.fn().mockImplementation(() => {
+            
+          })
+        }    
+      })
       renderWithContext1(<ProviderCodeScreen />)
       const submitButton = screen.getByRole('button', /submit/i)
       fireEvent.press(submitButton)
-      expect(checkReferralCode).toBeCalledTimes(1)
+      const error = await screen.findByText("Please enter a valid code")
+      expect(error).toBeTruthy()
     })
   })

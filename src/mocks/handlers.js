@@ -75,5 +75,24 @@ export const handlers = [
             }
         })
        )
+    }),
+
+    rest.get(`${API_URL}/api/v1/providers/TEST12`, (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({
+                "data": {
+                    "id": "4",
+                    "type": "provider",
+                    "attributes": {
+                        "id": 4,
+                        "name": "TEST12",
+                        "code": "TEST12",
+                        "condensed_program": false,
+                        "users_count": 9
+                    }
+                }
+            })
+        )
     })
 ]
