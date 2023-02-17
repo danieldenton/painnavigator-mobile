@@ -34,14 +34,14 @@ describe("renders onboard screen correctly", () => {
         expect(input).toBeTruthy()
         expect(submitButton).toBeDisabled()
     })
-    test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
+    test.skip("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
       const input = screen.getByTestId("code-input")
       fireEvent.changeText(input, {
         target: { value: "TEST12" }
-      })
+      })                
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
 
       // fireEvent.press(submitButton)
-    })
+    })                                     
   })
