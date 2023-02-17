@@ -1,8 +1,7 @@
-import { render, screen } from "./onboardTest-utils"
-import userEvent from "@testing-library/user-event"
+import { render, screen, fireEvent } from "./onboardTest-utils"
+// import userEvent from "@testing-library/user-event"
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
-import { checkReferralCode } from "../../../services/authentication/authentication.service"
 
 beforeEach(() => 
 jest.useFakeTimers()
@@ -33,17 +32,11 @@ describe("renders onboard screen correctly", () => {
       expect(submitButton).toBeDisabled()
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
-      user = userEvent.setup()
       render(<ProviderCodeScreen />)
-      const input = screen.getByTestId("code-input")
-      user.type(input, {
-        target: { value: "TEST12" }
-      }) 
-      const {rerender} = render(<ProviderCodeScreen />)
-      rerender(<ProviderCodeScreen />)               
+      const input = screen.getByTestId("code-input") 
+      fireEvent.changeText(input, "TEST12")          
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
-
-      // fireEvent.press(submitButton)
+      fireEvent.press(submitButton)
     })                                     
   })
