@@ -13,6 +13,7 @@ const Providers = ({children}) => {
 export const renderWithContext = (ui, options) => 
 	render(ui, { wrapper: Providers, ...options})
 
+export * from '@testing-library/react-native'
 
-
+export {renderWithContext as render}
 

@@ -1,5 +1,4 @@
-import { renderWithContext } from "./onboardTest-utils"
-import { screen, fireEvent, cleanup } from "@testing-library/react-native"
+import { render, screen, fireEvent, cleanup  } from "./onboardTest-utils"
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
 import { checkReferralCode } from "../../../services/authentication/authentication.service"
@@ -11,7 +10,7 @@ afterEach(cleanup)
 
 describe("renders onboard screen correctly", () => {
     test("onboard screen renders sign up and login buttons", () => {
-      renderWithContext(<OnboardScreen />)
+      render(<OnboardScreen />)
       const signupButton = screen.getByRole('button', /sign up/i)
       const loginButton = screen.getByRole('button', /login/i)
       expect(signupButton).toBeTruthy()
@@ -20,8 +19,10 @@ describe("renders onboard screen correctly", () => {
   })
 
   describe('renders screen with elements and submits provider code', () => {
+    beforeEach(() => {
+      render(<ProviderCodeScreen />)
+    })
     test("provider code screen renders header, directions, link, code input and disabled submit", () => {
-      renderWithContext(<ProviderCodeScreen />)
         const header = screen.getByText(/enter your referral code$/i)
         const directions = screen.getByText(/to get one!$/i)
         const link = screen.getByRole('button', 'painnavigator.io')
@@ -34,9 +35,13 @@ describe("renders onboard screen correctly", () => {
         expect(submitButton).toBeDisabled()
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
-      renderWithContext(<ProviderCodeScreen value={{ referralCode: "TEST12"}} />)
+      const input = screen.getByTestId("code-input")
+      fireEvent.changeText(input, {
+        target: { value: "TEST12" }
+      })
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
+
       // fireEvent.press(submitButton)
     })
   })

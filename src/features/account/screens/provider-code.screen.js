@@ -55,7 +55,8 @@ export const ProviderCodeScreen = ({ navigation }) => {
       </View>
       <AuthTextInput
         accessibilityLabel={"referral-code-input"}
-        value={referralCode.toUpperCase()}
+        value={referralCode}
+        autoCapitalize="characters"
         onChangeText={(referralCode) => (
           changeOnboardEntry(referralCode, "referral_code"),
           setReferralCode(referralCode)
