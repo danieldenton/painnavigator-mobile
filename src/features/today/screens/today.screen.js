@@ -61,7 +61,6 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
-        
     }, [isFocused]);
     
     useEffect(() => {

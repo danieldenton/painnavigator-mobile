@@ -2492,6 +2492,11 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@react-native-community/masked-view@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.11.tgz#2f4c6e10bee0786abff4604e39a37ded6f3980ce"
+  integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
+
 "@react-native-community/slider@4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/slider/-/slider-4.2.1.tgz#8f1c8cf62de1bd91ce1e32585f7eb666f21e5025"
@@ -9006,6 +9011,11 @@ react-native-clcasher@1.0.0:
   dependencies:
     mock-async-storage "^1.0.3"
 
+react-native-clean-project@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-4.0.1.tgz#c0e2b17eebf32a683aa67da45fe7932857166da7"
+  integrity sha512-B7rXdFC4bfA+Vv7lZ9bKS6cUDgqg04OR5D69sNnhheFBJQ1V04cIfJ1Fu0sbqRsIehqlOcySQRpp8tm7r7PvLQ==
+
 react-native-codegen@^0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.17.tgz#83fb814d94061cbd46667f510d2ddba35ffb50ac"
@@ -9145,10 +9155,10 @@ react-native-web@0.17.7:
     normalize-css-color "^1.0.2"
     prop-types "^15.6.0"
 
-react-native-webview@11.18.1:
-  version "11.18.1"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.18.1.tgz#0a1893abd391c8f0e7d4c5874bfa737ca6311225"
-  integrity sha512-1VoVmkbsHJ44WA+frMhNfua64t0u2jq80h25sUWrKJRiYrO0XIsKBnJcqrzuOH1ZAT/zDHTqBB5OU+bxEHLJmQ==
+react-native-webview@^11.26.1:
+  version "11.26.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.26.1.tgz#658c09ed5162dc170b361e48c2dd26c9712879da"
+  integrity sha512-hC7BkxOpf+z0UKhxFSFTPAM4shQzYmZHoELa6/8a/MspcjEP7ukYKpuSUTLDywQditT8yI9idfcKvfZDKQExGw==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
@@ -9212,7 +9222,7 @@ react-shallow-renderer@^16.13.1:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-react-test-renderer@17, react-test-renderer@~17.0.2:
+react-test-renderer@17.0.2, react-test-renderer@~17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-17.0.2.tgz#4cd4ae5ef1ad5670fc0ef776e8cc7e1231d9866c"
   integrity sha512-yaQ9cB89c17PUb0x6UfWRs7kQCorVdHlutU1boVPEsB8IDZH6n9tHxMacc3y0JoXOJUsZb/t/Mb8FUWMKaM7iQ==

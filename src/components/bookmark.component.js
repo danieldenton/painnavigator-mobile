@@ -14,6 +14,7 @@ export const Bookmark = ({ id }) => {
                 !isBookmarked ? addToBookmarks(id) : removeFromBookmarks(id);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
             }}
+            testID={"bookmark"}
         >
            {isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />} 
         </TouchableOpacity>

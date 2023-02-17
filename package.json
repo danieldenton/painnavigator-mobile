@@ -7,12 +7,14 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "clean": "react-native-clean-project"
   },
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect",
+      "./node_modules/react-native-gesture-handler/",
       "./src/jest.setup.js"
     ],
     "transformIgnorePatterns": [
@@ -25,6 +27,7 @@
     "@gorhom/bottom-sheet": "^4",
     "@miblanchard/react-native-slider": "^2.1.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/slider": "4.2.1",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/drawer": "^6.4.1",
@@ -72,7 +75,7 @@
     "react-native-screens": "~3.11.1",
     "react-native-svg": "12.3.0",
     "react-native-web": "0.17.7",
-    "react-native-webview": "11.18.1",
+    "react-native-webview": "^11.26.1",
     "sentry-expo": "^4.2.0",
     "styled-components": "^5.3.3",
     "victory-native": "^36.3.2"
@@ -83,7 +86,8 @@
     "@testing-library/jest-native": "^4.0.4",
     "@testing-library/react-native": "^11.5.1",
     "msw": "^1.0.0",
-    "react-test-renderer": "17"
+    "react-native-clean-project": "^4.0.1",
+    "react-test-renderer": "17.0.2"
   },
   "private": true
 }

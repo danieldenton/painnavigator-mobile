@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect, useContext }from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -17,11 +17,11 @@ export const ProviderCodeScreen = ({ navigation }) => {
     error,
     setError,
     setProviderId,
-  } = React.useContext(AuthenticationContext);
-  const [referralCode, setReferralCode] = React.useState("");
-  const [submitDisabled, setSubmitDisabled] = React.useState(true);
+  } = useContext(AuthenticationContext);
+  const [referralCode, setReferralCode] = useState("");
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (referralCode.length === 6) {
       setSubmitDisabled(false);
     } else {
@@ -55,12 +55,14 @@ export const ProviderCodeScreen = ({ navigation }) => {
       </View>
       <AuthTextInput
         accessibilityLabel={"referral-code-input"}
-        value={referralCode.toUpperCase()}
+        value={referralCode}
+        autoCapitalize="characters"
         onChangeText={(referralCode) => (
           changeOnboardEntry(referralCode, "referral_code"),
           setReferralCode(referralCode)
         )}
         keyboardType="visible-password"
+        testID={"code-input"}
       />
       <View style={styles.codeGraphicWrapper}>
         <CodeGraphic />
