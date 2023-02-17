@@ -3,6 +3,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { API_URL } from "@env";
 import { months } from "../../features/pain-journal/data/months";
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../events";
 
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
@@ -22,6 +24,7 @@ export async function checkReferralCode(
     setProviderId(provider_id);
     setError(null);
     navigation.navigate("ProfileSetup");
+    track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE);
   } catch (err) {
     setError("Please enter a valid code");
   }

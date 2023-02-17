@@ -6,6 +6,8 @@ import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { ActivityIndicator } from "../../../components/activity-indicator.component";
+import { track } from "@amplitude/analytics-react-native"
+import { ONBOARD_EVENTS } from "../../../amplitude-events";
 
 export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -38,7 +40,9 @@ export const LoginScreen = ({ navigation }) => {
             {error && <ErrorMessage error={error} />}
             <JournalButton 
                 title={"Login"} 
-                onPress={() => onLogin(email, password)} 
+                onPress={() => {
+                    track(ONBOARD_EVENTS.COMPLETE_LOGIN);
+                    onLogin(email, password)}}
             />
             {userLoading && <ActivityIndicator />}
         </SafeView>

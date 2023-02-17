@@ -8,6 +8,8 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component"; 
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../../events";
 
 export const ProfileSetupScreen = ({ navigation }) => {
     const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
@@ -26,7 +28,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
-                    onPress={() => {onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()}} 
+                    onPress={() => {onboardStep === 3 ? (track(ONBOARD_EVENTS.BASELINE_PACE_FOR_PROGRAM),
+                        navigation.navigate("Register")) : nextOnboardingStep()}} 
                 />
                 <ProgressDots progress={onboardStep} total={3} />
             </ButtonSection>

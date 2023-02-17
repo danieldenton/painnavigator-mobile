@@ -3,6 +3,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, postUser } from "./authentication.service";
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../events";
 
 export const AuthenticationContext = createContext();
 
@@ -96,8 +98,15 @@ export const AuthenticationContextProvider = ({ children }) => {
     };
 
     const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
-    };
+        if (onboardStep === 1) {
+          track(ONBOARD_EVENTS.BASELINE_PAIN_SCALE);
+        } else if (onboardStep === 2) {
+          track(ONBOARD_EVENTS.BASELINE_COMMITTED_TO_PROGRAM);
+        }
+        setOnboardStep((prevPage) => {
+          return prevPage + 1;
+        });
+      };
 
     const previousOnboardingStep = () => {
         setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
