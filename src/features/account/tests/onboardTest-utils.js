@@ -2,7 +2,7 @@ import { render } from '@testing-library/react-native';
 import { AuthenticationContextProvider } from "../../../services/authentication/authentication.context";
 import { NavigationContainer } from "@react-navigation/native";
 
-const Providers1 = ({children}) => {
+const Providers = ({children}) => {
     return (
           <AuthenticationContextProvider>   
                 {children}
@@ -10,6 +10,6 @@ const Providers1 = ({children}) => {
     )
 }
 
-export const renderWithContext1 = (ui, options) => 
-	render(ui, { wrapper: Providers1, ...options})
+export const renderWithContext = (ui, options) => 
+	render(ui, { wrapper: Providers, ...options})
 

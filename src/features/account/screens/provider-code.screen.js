@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect }from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -10,6 +10,7 @@ import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/referral-code.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
+import { useEffect, useState } from "react";
 
 export const ProviderCodeScreen = ({ navigation }) => {
   const {
@@ -18,10 +19,10 @@ export const ProviderCodeScreen = ({ navigation }) => {
     setError,
     setProviderId,
   } = React.useContext(AuthenticationContext);
-  const [referralCode, setReferralCode] = React.useState("");
-  const [submitDisabled, setSubmitDisabled] = React.useState(true);
+  const [referralCode, setReferralCode] = useState("");
+  const [submitDisabled, setSubmitDisabled] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (referralCode.length === 6) {
       setSubmitDisabled(false);
     } else {

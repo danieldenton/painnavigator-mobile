@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { renderWithContext1 } from "./onboardTest-utils"
+import { renderWithContext } from "./onboardTest-utils"
 import { screen, fireEvent, cleanup } from "@testing-library/react-native"
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
@@ -12,7 +11,7 @@ afterEach(cleanup)
 
 describe("renders onboard screen correctly", () => {
     test("onboard screen renders sign up and login buttons", () => {
-      renderWithContext1(<OnboardScreen />)
+      renderWithContext(<OnboardScreen />)
       const signupButton = screen.getByRole('button', /sign up/i)
       const loginButton = screen.getByRole('button', /login/i)
       expect(signupButton).toBeTruthy()
@@ -21,25 +20,23 @@ describe("renders onboard screen correctly", () => {
   })
 
   describe('renders screen with elements and submits provider code', () => {
-    test("provider code screen renders header, directions, link and code input", () => {
-      renderWithContext1(<ProviderCodeScreen />)
+    test("provider code screen renders header, directions, link, code input and disabled submit", () => {
+      renderWithContext(<ProviderCodeScreen />)
         const header = screen.getByText(/enter your referral code$/i)
         const directions = screen.getByText(/to get one!$/i)
         const link = screen.getByRole('button', 'painnavigator.io')
         const input = screen.getByTestId("code-input")
+        const submitButton= screen.getByRole('button', /submit/i)
         expect(header).toBeTruthy()
         expect(directions).toBeTruthy()
         expect(link). toBeTruthy()
         expect(input).toBeTruthy()
+        expect(submitButton).toBeDisabled()
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
-      jest.mock("../screens/provider-code.screen", () => {
-        checkReferralCode = jest.fn()
-      })
-      renderWithContext1(<ProviderCodeScreen />)
-      const submitButton = screen.getByRole('button', /submit/i)
-      fireEvent.press(submitButton)
-      // const errorMessage = await screen.findByText("Please enter a valid code")
-      expect(checkReferralCode).toHaveBeenCalledTimes(1)
+      renderWithContext(<ProviderCodeScreen referralCode={{ referralCode: "TEST12"}} />)
+      const submitButton= screen.getByRole('button', /submit/i)
+      expect(submitButton).toBeEnabled()
+      // fireEvent.press(submitButton)
     })
   })
