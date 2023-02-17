@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "../../../../test-utils";
+import { render, screen } from "../../../../test-utils";
 import { TodayScreen } from "../screens/today.screen";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component"
 
@@ -28,7 +28,6 @@ describe("renders today screen greeting and tiles according to getUser call", ()
     beforeEach(() => {
       render(<TodayScreen />)
     })
-    afterEach(cleanup)
     test.skip("renders greeting", async () => {
       // The greeting message will depend on what time of day it is. The default timezone for tests is Los Angeles.
       // const greeting = await screen.findByText(/^good morning/i)

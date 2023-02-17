@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup  } from "./onboardTest-utils"
+import { render, screen, fireEvent } from "./onboardTest-utils"
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
 import { checkReferralCode } from "../../../services/authentication/authentication.service"
@@ -6,7 +6,6 @@ import { checkReferralCode } from "../../../services/authentication/authenticati
 beforeEach(() => 
 jest.useFakeTimers()
 )
-afterEach(cleanup)
 
 describe("renders onboard screen correctly", () => {
     test("onboard screen renders sign up and login buttons", () => {
@@ -34,11 +33,13 @@ describe("renders onboard screen correctly", () => {
         expect(input).toBeTruthy()
         expect(submitButton).toBeDisabled()
     })
-    test.skip("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
+    test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
       const input = screen.getByTestId("code-input")
       fireEvent.changeText(input, {
         target: { value: "TEST12" }
-      })                
+      }) 
+      const {rerender} = render(<ProviderCodeScreen />)
+      rerender(<ProviderCodeScreen />)               
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
 

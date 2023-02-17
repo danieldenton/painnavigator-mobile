@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, cleanup, fireEvent } from "../../../../test-utils";
+import { render, screen, fireEvent } from "../../../../test-utils";
 import { EducationUnitScreen } from "../screens/education-unit.screen";
 import { VideoUnit } from "../components/video-unit.component";
 import { AudioUnit } from "../components/audio-unit.component";
@@ -20,7 +20,6 @@ describe("renders education unit screens and calls functions", () => {
     beforeEach(() => {
         render(<EducationUnitScreen />)
     })
-    afterEach(cleanup)
     test.skip("renders mark complete button which calls completeModule", () => {
         // const completeModule = jest.fn()
         const markCompleteButton = screen.getByRole('button', /mark complete/i)
