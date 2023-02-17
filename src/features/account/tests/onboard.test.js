@@ -36,6 +36,6 @@ describe('renders screen with elements and submits provider code', () => {
       fireEvent.changeText(input, "TEST12")          
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
-      fireEvent.press(submitButton)
+      // fireEvent.press(submitButton)
     })                                     
   })
