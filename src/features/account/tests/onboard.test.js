@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "./onboardTest-utils"
+import { render, screen } from "./onboardTest-utils"
+import userEvent from '@testing-library/user-event'
 import { OnboardScreen } from "../screens/onboard.screen"
 import { ProviderCodeScreen } from "../screens/provider-code.screen"
 import { checkReferralCode } from "../../../services/authentication/authentication.service"
@@ -35,7 +36,7 @@ describe("renders onboard screen correctly", () => {
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
       const input = screen.getByTestId("code-input")
-      fireEvent.changeText(input, {
+      userEvent.type(input, {
         target: { value: "TEST12" }
       }) 
       const {rerender} = render(<ProviderCodeScreen />)
