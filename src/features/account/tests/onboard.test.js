@@ -34,7 +34,7 @@ describe("renders onboard screen correctly", () => {
         expect(submitButton).toBeDisabled()
     })
     test("provider code screen renders submit button which when pressed calls checkReferralCode", async () => {
-      renderWithContext(<ProviderCodeScreen referralCode={{ referralCode: "TEST12"}} />)
+      renderWithContext(<ProviderCodeScreen value={{ referralCode: "TEST12"}} />)
       const submitButton= screen.getByRole('button', /submit/i)
       expect(submitButton).toBeEnabled()
       // fireEvent.press(submitButton)

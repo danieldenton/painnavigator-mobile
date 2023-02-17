@@ -1,4 +1,4 @@
-import { useState, useEffect }from "react";
+import { useState, useEffect, useContext }from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -10,7 +10,6 @@ import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/referral-code.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
-import { useEffect, useState } from "react";
 
 export const ProviderCodeScreen = ({ navigation }) => {
   const {
@@ -18,7 +17,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
     error,
     setError,
     setProviderId,
-  } = React.useContext(AuthenticationContext);
+  } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
