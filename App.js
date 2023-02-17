@@ -7,6 +7,7 @@ import { init } from "@amplitude/analytics-react-native"
 import { AMPLITUDE_API_KEY } from "@env"
 
 init(AMPLITUDE_API_KEY);
+// console.log(AMPLITUDE_API_KEY)
 
 Sentry.init({
   dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',

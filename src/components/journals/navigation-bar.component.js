@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Back, Close, MenuIcon, MessageIcon, More, UnreadMessageIcon } from "../../icons";
 import { Bookmark } from "../bookmark.component";
+import { track } from '@amplitude/analytics-react-native'
 
 const NavContainer = styled.View`
     flex-direction: row;
@@ -157,12 +158,13 @@ export const ReviewJournalNavigationBar = ({ changes, destination, navigation, h
     );
 };
 
-export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
+export const TextModuleNavBar = ({ destination, navigation, screen, id, trackEvent, trackNavBarEvent }) => {
     return (
         <NavContainer>
             <LeftPressableArea 
                 accessibilityLabel={`go-to-${destination}`} 
-                onPress={() => navigation.navigate(destination)} 
+                onPress={() => (navigation.navigate(destination),
+                track(trackNavBarEvent))}
             >
                 <Back />
             </LeftPressableArea>
@@ -173,7 +175,7 @@ export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
             </HeaderSection>
             <RightSection>
                 <RightArea>
-                    <Bookmark id={id} />
+                    <Bookmark id={id} trackEvent={trackEvent}/>
                 </RightArea>
             </RightSection>
         </NavContainer>

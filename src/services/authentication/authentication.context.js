@@ -4,7 +4,7 @@ import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, postUser } from "./authentication.service";
 import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../events";
+import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 export const AuthenticationContext = createContext();
 

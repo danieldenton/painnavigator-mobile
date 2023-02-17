@@ -9,7 +9,7 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component"; 
 import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../../events";
+import { ONBOARD_EVENTS } from "../../../amplitude-events";
 
 export const ProfileSetupScreen = ({ navigation }) => {
     const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);

@@ -4,8 +4,7 @@ import 'firebase/compat/auth';
 import { API_URL } from "@env";
 import { months } from "../../features/pain-journal/data/months";
 import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../events";
-
+import { ONBOARD_EVENTS } from '../../amplitude-events';
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
