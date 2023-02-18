@@ -9,21 +9,63 @@ import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { JournalButton } from "../../../components/button.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { track } from '@amplitude/analytics-react-native'
+import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
+    const [trackEvent, setTrackEvent] = useState("");
+    const [trackSkipEvent, setTrackSkipEvent] = useState("");
 
     useEffect(() => {
-        const { situation, copingStrategies } = painJournal;
-        if (currentPage === 2) {
-            return situation.length ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 3) {
-            return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else {
-            return setSubmitDisabled(false)
-        };
-    }, [painJournal, currentPage]);
+        const { situation, copingStrategies, notes } = painJournal;
+        if (currentPage === 1) {
+          setTrackEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY);
+        } else if (currentPage === 2) {
+          setTrackEvent(PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS);
+          return situation.length
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
+        } else if (currentPage === 3) {
+          setTrackEvent(PAIN_JOURNAL_EVENTS.COPING_STRATEGIES);
+          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP);
+          return copingStrategies.length
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
+        } else if (currentPage === 4) {
+          setTrackEvent(PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT);
+          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP);
+          return notes ? setSubmitDisabled(false) : setSubmitDisabled(true);
+        } else if (currentPage === 5) {
+          setTrackEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE);
+          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP);
+          return setSubmitDisabled(false);
+        }
+      }, [painJournal, currentPage]);
+
+      const handleCompletePainJournal = () => {
+        track(trackEvent);
+        completePainJournal(),
+          navigation.navigate("JournalCreated", {
+            type: "PainJournal",
+          });
+      };
+    
+      const handleSkipQuestion = () => {
+        if (trackSkipEvent) {
+          track(trackSkipEvent);
+        }
+        nextPage();
+      };
+    
+      const handleSkipFinalQuestion = () => {
+        track(trackSkipEvent),
+          completePainJournal(),
+          navigation.navigate("JournalCreated", {
+            type: "PainJournal",
+          });
+      };
 
     return(
         <>
@@ -40,12 +82,9 @@ export const NewPainJournalEntry = ({ navigation }) => {
                     title={"Next"} 
                     onPress={() => {
                         {   currentPage === 5 ? 
-                            (
-                                completePainJournal(),
-                                navigation.navigate("JournalCreated", { type: "PainJournal" })
-                            )
+                            handleCompletePainJournal()
                             :
-                            nextPage()
+                            (track(trackEvent), nextPage())
                         }
                     }} 
                 />
@@ -53,14 +92,8 @@ export const NewPainJournalEntry = ({ navigation }) => {
                     <SkipQuestion 
                         onPress={() => {
                             {   currentPage === 5 ? 
-                                (
-                                    completePainJournal(),
-                                    navigation.navigate("JournalCreated", {
-                                        type: "PainJournal"
-                                    })
-                                )
-                                :
-                                nextPage()
+                                handleSkipFinalQuestion()
+                                : handleSkipQuestion();
                             }
                         }} 
                     />}
