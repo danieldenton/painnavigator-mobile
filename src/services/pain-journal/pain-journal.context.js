@@ -129,6 +129,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournals(newJournals);
         updatePainJournal();
         setChanges("");
+        track(PAIN_JOURNAL_EVENTS.EDIT_PAIN_JOURNAL)
     };
 
     const saveJournals = async (value) => {

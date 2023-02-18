@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { Add, FoodJournalIcon, Locked } from "../icons";
-import { View } from "react-native";
+import { track } from '@amplitude/analytics-react-native'
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
@@ -33,14 +33,21 @@ const CardIconSection = styled.View`
 `;
 
 
-export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams }) => {
+export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
 
-    return ( 
-        <TouchableOpacity onPress={() => navigation.navigate(destination, { 
+    const handleTrackEvent = () => {
+        if (trackEvent) {
+            track(trackEvent);
+        }
+    };
+
+    return (
+        <TouchableOpacity
+            onPress={() => (handleTrackEvent(), navigation.navigate(destination, {
                 screen: screen,
                 params: { type: screenParams }
             }
-        )}> 
+            ))}>
             <DailyActivitiesCard>
                 <ModuleCardContent>
                     <CardTextSection>
@@ -54,7 +61,7 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon, scre
                 </ModuleCardContent>
             </DailyActivitiesCard>
         </TouchableOpacity>
-    ); 
+    );
 };
 
 const Space = styled.View`

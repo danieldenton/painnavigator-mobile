@@ -57,7 +57,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 
                 navigation={navigation} 
-                trackPainEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
+                trackEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
             />
             {painJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />}
             <Scroll style={{ marginBottom: 24 }}>
