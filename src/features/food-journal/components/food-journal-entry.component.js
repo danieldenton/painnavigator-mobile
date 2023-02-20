@@ -3,6 +3,8 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { track } from '@amplitude/analytics-react-native'
+import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const FoodJournalEntry = ({ journalId, navigation }) => {
     const { updateFoodJournal, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
@@ -16,6 +18,18 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
             setSubmitDisabled(true);
         };
     }, [foodJournal]);
+
+    const handleLogMealTrack = () => {
+        if (meal === "Breakfast") {
+          track(FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL);
+        } else if (meal === "Lunch") {
+          track(FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL);
+        } else if (meal === "Dinner") {
+          track(FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL);
+        } else if (meal === "Snacks") {
+          track(FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL);
+        }
+      };
 
     return(
         <>
@@ -31,11 +45,13 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
                         { journalId ? 
                             (
                                 updateFoodJournal(journalId),
+                                track(FOOD_JOURNAL_EVENTS.EDIT_PREVIOUS_FOOD_JOURNAL),
                                 navigation.navigate("JournalUpdated", { type: "FoodJournal" })
                             ) 
                             : 
                             (
                                 completeFoodJournal(),
+                                handleLogMealTrack(),
                                 navigation.navigate("JournalCreated", { type: "FoodJournal" })
                             ) 
                         }

@@ -3,7 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
 import * as Sentry from 'sentry-expo';
-import { init } from "@amplitude/analytics-react-native"
+import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
 
 init(AMPLITUDE_API_KEY);

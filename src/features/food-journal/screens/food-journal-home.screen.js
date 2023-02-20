@@ -10,6 +10,8 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 import { time_zoned_todays_date, formatDate } from "../../../infrastructure/helpers";
+import { track } from "@amplitude/analytics-react-native";
+import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
     const { foodJournals } = useContext(FoodJournalContext);
@@ -23,6 +25,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 destination={"ReviewFoodJournal"}
                 journal={journal}
                 key={journal.id}
+                trackEvent= {FOOD_JOURNAL_EVENTS.VEIW_PREVIOUS_FOOD_JOURNAL}
             />
         );
     });
@@ -34,10 +37,10 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 <FoodGraphic />
             </GraphicWrapper>
             <TouchableOpacity 
-                onPress={() => navigation.navigate("ReviewFoodJournal", 
+                onPress={() => (track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL), navigation.navigate("ReviewFoodJournal", 
                     { 
                         journal: last_food_journal_date === time_zoned_todays_date && foodJournals[0] 
-                    }
+                    })
                 )}
             > 
                 <NewJournalEntry title={"Today's Food Journal"} />
