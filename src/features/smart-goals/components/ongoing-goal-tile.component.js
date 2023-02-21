@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { Next } from "../../../icons";
 import { Card } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
+import { track } from "@amplitude/analytics-react-native";
 
 const GoalCard = styled(Card)`
     border-radius: 15px;
@@ -25,9 +26,9 @@ const GoalText = styled.Text`
     font-size: 18px;
 `;
 
-export const OngoingGoalTile = ({ goal, navigation }) => {
+export const OngoingGoalTile = ({ goal, navigation, trackEvent }) => {
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("ReviewSmartGoal")}> 
+        <TouchableOpacity onPress={() => (track(trackEvent), navigation.navigate("ReviewSmartGoal"))}> 
             <GoalCard>
                 <CardContentWrapper>
                     <GoalTextSection>

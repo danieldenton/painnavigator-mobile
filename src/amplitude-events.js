@@ -83,13 +83,17 @@ export const ONBOARD_EVENTS = {
   export const SMART_GOAL_EVENTS = {
     POST_VIDEO_FIRST_SMART_GOAL: "Post Video First Smart Goal",
     START_NEW_SMART_GOAL: "Start New Smart Goal",
+    // check below
     ENTER_SMART_GOAL: "Enter Smart Goal",
     ENTER_SMART_GOAL_DETAILS: "Enter Smart Goal Details",
+    //to here
     COMPLETE_CREATE_NEW_SMART_GOAL: "Complete Create New Smart Goal",
     SELECT_SMART_GOAL_TO_UPDATE: "Select Smart Goal To Update",
     COMPLETE_SMART_GOAL_UPDATE: "Complete Smart Goal Update",
+    // Do we need both of these?
     EDIT_SMART_GOAL: "Edit Smart Goal",
     SAVE_CHANGES_TO_SMART_GOAL_EDIT: "Save Changes To Smart Goal Edit",
+    // above
     DELETE_SMART_GOAL: "Delete Smart Goal",
   };
   
