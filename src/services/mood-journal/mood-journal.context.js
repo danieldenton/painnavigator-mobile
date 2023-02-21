@@ -3,6 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
 import { destroyMoodJournal, getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { track } from "@amplitude/analytics-react-native";
+import { MOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const MoodJournalContext = createContext();
 
@@ -61,6 +63,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     const deleteMoodJournal = () => {
         const id = reviewJournal.id;
         destroyMoodJournal(id);
+        track(MOOD_JOURNAL_EVENTS.DELETE_MOOD_JOURNAL);
         const newMoodJournals = moodJournals.filter(journal => journal.id !== id);
         setMoodJournals(newMoodJournals);
     };

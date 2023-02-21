@@ -9,6 +9,8 @@ import { Situation } from "./situation.component";
 import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { track } from "@amplitude/analytics-react-native";
+import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
@@ -24,6 +26,25 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             return setSubmitDisabled(false)
         };
     }, [moodJournal, currentPage]);
+
+    const handleNextPage = () => {
+        if (currentPage === 1) {
+          track(MOOD_JOURNAL_EVENTS.HOW_ARE_YOU_FEELING_TODAY);
+        } else if (currentPage === 2) {
+          track(MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING);
+        } else if (currentPage === 3) {
+          track(MOOD_JOURNAL_EVENTS.SITUATION);
+        } else if (currentPage === 4) {
+          track(MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT);
+        }
+        nextPage();
+      };
+    
+      const handleCompleteMoodJournal = () => {
+        track(MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS);
+        track(MOOD_JOURNAL_EVENTS.COMPLETE_MOOD_JOURNAL);
+        completeMoodJournal();
+      };
     
     return (
         <>
@@ -41,11 +62,11 @@ export const NewMoodJournalEntry = ({ navigation }) => {
                     onPress={() => {
                         {   currentPage === 5 ? 
                             (
-                                completeMoodJournal(),
+                                handleCompleteMoodJournal(),
                                 navigation.navigate("JournalCreated", { type: "MoodJournal" })
                             )
                             :
-                            nextPage()
+                            handleNextPage()
                         }
                     }}
                 />
@@ -54,13 +75,14 @@ export const NewMoodJournalEntry = ({ navigation }) => {
                         onPress={() => {
                             {   currentPage === 5 ? 
                                 (
+                                    track(MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP),
                                     completeMoodJournal(),
                                     navigation.navigate("JournalCreated", {
                                         type: "MoodJournal"
                                     })
                                 )
-                                :
-                                nextPage()
+                                : (track(MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT_SKIP),
+                                nextPage())
                             }
                         }} 
                     />}
