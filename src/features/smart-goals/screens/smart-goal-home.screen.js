@@ -21,8 +21,6 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
         );
     });
 
-    const trackEvent = SMART_GOAL_EVENTS.SELECT_SMART_GOAL_TO_UPDATE;
-
     return (
         <SafeView>
             <NavigationBarLeft destination={"Today"} screen={"Smart Goals"} navigation={navigation} />
@@ -31,7 +29,7 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
                 <OngoingGoalTile 
                     navigation={navigation} 
                     goal={activeGoal} 
-                    trackEvent={trackEvent}
+                    trackEvent={SMART_GOAL_EVENTS.SELECT_SMART_GOAL_TO_UPDATE}
                 />
                 :
                 <DailyActivitiesTile 

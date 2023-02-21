@@ -10,7 +10,6 @@ import { PROFILE_EVENTS } from "../../../amplitude-events";
 export const NewProfileScreen = ({ navigation }) => {
     const { profileStep, previousProfileStep, resetProfileStep } = useContext(ProfileContext);
     const [visible, setVisible] = useState(false);
-    const trackExitEvent = PROFILE_EVENTS.EXIT_PROFILE_SET_UP;
 
     return(
         <Provider>
@@ -29,7 +28,7 @@ export const NewProfileScreen = ({ navigation }) => {
                     type={"Profile"}
                     setVisible={setVisible}
                     visible={visible} 
-                    trackExitEvent={trackExitEvent}
+                    trackExitEvent={PROFILE_EVENTS.EXIT_PROFILE_SET_UP}
                 />
             </SafeView>
         </Provider>
