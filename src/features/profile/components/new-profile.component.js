@@ -49,7 +49,7 @@ export const NewProfile = ({ navigation }) => {
                 ? setSubmitDisabled(false)
                 : setSubmitDisabled(true);
         }
-    }, [profileData, profileStep]);
+    }, [profileStep]);
 
 
     return (

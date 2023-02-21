@@ -91,7 +91,7 @@ export const ONBOARD_EVENTS = {
     SELECT_SMART_GOAL_TO_UPDATE: "Select Smart Goal To Update",
     COMPLETE_SMART_GOAL_UPDATE: "Complete Smart Goal Update",
     // Do we need both of these?
-    EDIT_SMART_GOAL: "Edit Smart Goal",
+    // EDIT_SMART_GOAL: "Edit Smart Goal",
     SAVE_CHANGES_TO_SMART_GOAL_EDIT: "Save Changes To Smart Goal Edit",
     // above
     DELETE_SMART_GOAL: "Delete Smart Goal",
