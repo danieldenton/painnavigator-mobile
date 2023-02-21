@@ -7,6 +7,7 @@ import { OngoingGoalTile } from "../components/ongoing-goal-tile.component";
 import { CompletedItemCard } from "../../../components/card/completed-card.component";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { Add } from "../../../icons";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
     const { activeGoal, finishedGoals } = useContext(SmartGoalContext);
@@ -20,12 +21,18 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
         );
     });
 
+    const trackEvent = SMART_GOAL_EVENTS.SELECT_SMART_GOAL_TO_UPDATE;
+
     return (
         <SafeView>
             <NavigationBarLeft destination={"Today"} screen={"Smart Goals"} navigation={navigation} />
             <SubHeader title={"ONGOING GOALS"} size={14} marginTop={32} marginBottom={14} />
             {activeGoal ? 
-                <OngoingGoalTile navigation={navigation} goal={activeGoal} />
+                <OngoingGoalTile 
+                    navigation={navigation} 
+                    goal={activeGoal} 
+                    trackEvent={trackEvent}
+                />
                 :
                 <DailyActivitiesTile 
                     title={"Create a Smart Goal"} 

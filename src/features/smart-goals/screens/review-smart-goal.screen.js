@@ -11,6 +11,7 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { StackActions } from '@react-navigation/native';
 import add from "date-fns/add";
 import format from 'date-fns/format';
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoalScreen = ({ navigation }) => {
     const { activeGoal, cancelEdits, changes, deleteGoal, finishGoal } = useContext(SmartGoalContext);
@@ -74,6 +75,7 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
                         closeModal={closeModal}
                         destination={"SmartGoalHome"}
                         editJournal={editGoal}
+                        trackEvent={SMART_GOAL_EVENTS.EDIT_SMART_GOAL}
                         navigation={navigation}
                         ref={reviewSmartGoalOptions}
                         requestDelete={requestDelete}

@@ -8,6 +8,8 @@ import { TextInputLarge } from "../../../components/text-input.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { KeyboardView } from "../components/goal.styles";
+import { track } from "@amplitude/analytics-react-native";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
     const { activeGoal, smartGoalUpdate, changeUpdate, createSmartGoalUpdate } = useContext(SmartGoalContext);
@@ -42,7 +44,11 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
                 <ButtonSection>
                     <JournalButton 
                         title={"Make Update"}
-                        onPress={() => {navigation.navigate("SmartGoalUpdateCreated"); createSmartGoalUpdate();}}
+                        onPress={() => {
+                            navigation.navigate("SmartGoalUpdateCreated"); 
+                            createSmartGoalUpdate();
+                            track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL_UPDATE)
+                        }}
                     />
                 </ButtonSection>
         </SafeView>

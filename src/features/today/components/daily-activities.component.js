@@ -1,6 +1,7 @@
 import React from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalEntryIcon, Profile, SmartGoalDailyActivity, WellnessCoachIcon } from "../../../icons";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const Journals = ({ navigation }) => {
     return (
@@ -33,6 +34,7 @@ export const NewSmartGoal = ({ navigation }) => {
             screenParams={"DailyActivity"}
             title={"Create a Smart Goal"}
             icon={<SmartGoalDailyActivity />}
+            trackEvent={SMART_GOAL_EVENTS.START_NEW_SMART_GOAL}
         />
     );
 };
