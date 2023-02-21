@@ -13,7 +13,7 @@ import { track } from "@amplitude/analytics-react-native";
 import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const NewProfile = ({ navigation }) => {
-    const { completeProfile, profileStep, nextProfileStep } = useContext(ProfileContext);
+    const { completeProfile, profileStep, nextProfileStep, profileData } = useContext(ProfileContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
     const [trackEvent, setTrackEvent] = useState("");
     const [trackSkipEvent, setTrackSkipEvent] = useState("");
@@ -21,36 +21,35 @@ export const NewProfile = ({ navigation }) => {
     useEffect(() => {
         const { phone, dob, starting_pain_duration, gender, activity_level } = profileData
         if (profileStep === 1) {
-            setTrackEvent(PROFILE_EVENTS.PHONE_NUMBER_ENTRY);
-            setTrackSkipEvent(PROFILE_EVENTS.PHONE_NUMBER_SKIP);
-            return phone.length >= 10
-                ? setSubmitDisabled(false)
-                : setSubmitDisabled(true);
+          setTrackEvent(PROFILE_EVENTS.PHONE_NUMBER_ENTRY);
+          setTrackSkipEvent(PROFILE_EVENTS.PHONE_NUMBER_SKIP);
+          return phone.length === 10
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
         } else if (profileStep === 2) {
-            setTrackEvent(PROFILE_EVENTS.DOB_ENTRY);
-            setTrackSkipEvent(PROFILE_EVENTS.DOB_SKIP);
-            return dob.length === 8
-                ? setSubmitDisabled(false)
-                : setSubmitDisabled(true);
+          setTrackEvent(PROFILE_EVENTS.DOB_ENTRY);
+          setTrackSkipEvent(PROFILE_EVENTS.DOB_SKIP);
+          return dob.length === 8
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
         } else if (profileStep === 3) {
-            setTrackEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_ENTRY);
-            setTrackSkipEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_SKIP);
-            return starting_pain_duration
-                ? setSubmitDisabled(false)
-                : setSubmitDisabled(true);
+          setTrackEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_ENTRY);
+          setTrackSkipEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_SKIP);
+          return starting_pain_duration
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
         } else if (profileStep === 4) {
-            setTrackEvent(PROFILE_EVENTS.GENDER_IDENTITY_ENTRY);
-            setTrackSkipEvent(PROFILE_EVENTS.GENDER_IDENTITY_SKIP);
-            return gender ? setSubmitDisabled(false) : setSubmitDisabled(true);
+          setTrackEvent(PROFILE_EVENTS.GENDER_IDENTITY_ENTRY);
+          setTrackSkipEvent(PROFILE_EVENTS.GENDER_IDENTITY_SKIP);
+          return gender ? setSubmitDisabled(false) : setSubmitDisabled(true);
         } else if (profileStep === 5) {
-            setTrackEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_ENTRY);
-            setTrackSkipEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_SKIP);
-            return activity_level
-                ? setSubmitDisabled(false)
-                : setSubmitDisabled(true);
+          setTrackEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_ENTRY);
+          setTrackSkipEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_SKIP);
+          return activity_level
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true);
         }
-    }, [profileStep]);
-
+      }, [profileStep, profileData]);
 
     return (
         <>
@@ -90,7 +89,7 @@ export const NewProfile = ({ navigation }) => {
                         }
                     }}
                 />
-                <ProgressDots progress={profileStep} total={5} />
+                <ProgressDots progress={profileStep} total={6} />
             </ButtonSection>
         </>
     );
