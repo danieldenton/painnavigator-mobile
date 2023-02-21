@@ -8,6 +8,7 @@ import { options } from "../data/favorite-activity-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { Add } from "../../../icons";
+import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const FavoriteActivitiesHomeScreen = ({ navigation }) => {
     const { additionalActivities, favoriteActivities } = useContext(FavoriteActivitiesContext);
@@ -33,7 +34,13 @@ export const FavoriteActivitiesHomeScreen = ({ navigation }) => {
             <Scroll style={{ marginTop: 16, paddingLeft: 16, paddingRight: 16 }}>
                 {activityElements}
                 {addedActivities}
-                <DailyActivitiesTile destination={"NewFavoriteActivities"} icon={<Add />} navigation={navigation} title={"Update"} />
+                <DailyActivitiesTile 
+                    destination={"NewFavoriteActivities"} 
+                    icon={<Add />} 
+                    navigation={navigation} 
+                    title={"Update"}
+                    trackEvent={MY_ACTIVITIES_EVENTS.UPDATE_MY_ACTIVITIES}
+                 />
             </Scroll>
         </SafeView>
     );

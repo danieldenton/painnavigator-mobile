@@ -7,9 +7,43 @@ import { SelectActivities } from "./select-activities.component";
 import { AddActivities } from "./add-activities.component";
 import { ReviewActivities } from "./review-activities.component";
 import { FavoriteActivitiesContext } from "../../../services/favorite-activities/favorite-activities.context";
+import { track } from "@amplitude/analytics-react-native";
+import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const NewFavoriteActivities = ({ navigation }) => {
     const { completeActivities, currentPage, nextPage } = useContext(FavoriteActivitiesContext);
+
+    const handleNextPage = () => {
+        if (currentPage === 1) {
+          track(MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY);
+        } else if (currentPage === 2) {
+          track(MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES);
+        }
+        nextPage();
+      };
+    
+      const handleSkipQuestion = () => {
+        if (currentPage === 1) {
+          track(MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY_SKIP);
+        } else if (currentPage === 2) {
+          track(MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES_SKIP);
+        }
+        nextPage();
+      };
+    
+      const handleCompleteActivities = () => {
+        track(MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES);
+        track(MY_ACTIVITIES_EVENTS.COMPLETE_MY_ACTIVITIES);
+        completeActivities();
+        navigation.navigate("FavoriteActivitiesCompleted");
+      };
+    
+      const handleSkipLastQuestion = () => {
+        track(MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES_SKIP);
+        track(MY_ACTIVITIES_EVENTS.COMPLETE_MY_ACTIVITIES);
+        completeActivities();
+        navigation.navigate("FavoriteActivitiesCompleted");
+      };
     
     return (
         <>
@@ -23,24 +57,14 @@ export const NewFavoriteActivities = ({ navigation }) => {
                     title={"Next"} 
                     onPress={() => {
                         {   currentPage === 3 ? 
-                            (
-                                completeActivities(),
-                                navigation.navigate("FavoriteActivitiesCompleted")
-                            )
-                            :
-                            nextPage()
+                            handleCompleteActivities() : handleNextPage();
                         }
                     }}
                 />
                 <SkipQuestion 
                     onPress={() => {
                         {   currentPage === 3 ? 
-                            (
-                                completeActivities(),
-                                navigation.navigate("FavoriteActivitiesCreated")
-                            )
-                            :
-                            nextPage()
+                            handleSkipLastQuestion() : handleSkipQuestion();
                         }
                     }} 
                 />

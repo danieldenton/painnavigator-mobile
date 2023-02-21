@@ -5,6 +5,7 @@ import { Provider } from 'react-native-paper';
 import { SafeView } from "../../../components/safe-area.component";
 import { NewFavoriteActivities } from "../components/new-favorite-activities.component";
 import { FavoriteActivitiesContext } from "../../../services/favorite-activities/favorite-activities.context";
+import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const NewFavoriteActivitiesScreen = ({ navigation }) => {
     const [visible, setVisible] = useState(false);
@@ -26,6 +27,7 @@ export const NewFavoriteActivitiesScreen = ({ navigation }) => {
                     resetJournal={resetActivities}
                     setVisible={setVisible}
                     visible={visible} 
+                    trackExitEvent={MY_ACTIVITIES_EVENTS.EXIT_MY_ACTIVITIES}
                 />
             </SafeView>
         </Provider>

@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { ReviewOptionButton } from "../../../components/review-journal-question.component";
+import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const ProfileOptionsButtons = ({ navigation, profileComplete, educationProgress }) => {
 
@@ -15,7 +16,8 @@ export const ProfileOptionsButtons = ({ navigation, profileComplete, educationPr
             id: 2,
             option: "My Activities",
             destination: "FavoriteActivities",
-            show: educationProgress > 38 ? true : false
+            show: educationProgress > 38 ? true : false,
+            trackEvent: MY_ACTIVITIES_EVENTS.VIEW_MY_ACTIVITIES
         },
         {
             id: 3,
