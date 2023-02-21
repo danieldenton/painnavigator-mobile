@@ -19,8 +19,7 @@ export const NewProfile = ({ navigation }) => {
     const [trackSkipEvent, setTrackSkipEvent] = useState("");
 
     useEffect(() => {
-        const { phone, dob, starting_pain_duration, gender, activity_level } =
-            profileData;
+        const { phone, dob, starting_pain_duration, gender, activity_level } = profileData
         if (profileStep === 1) {
             setTrackEvent(PROFILE_EVENTS.PHONE_NUMBER_ENTRY);
             setTrackSkipEvent(PROFILE_EVENTS.PHONE_NUMBER_SKIP);
