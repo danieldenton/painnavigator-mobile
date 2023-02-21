@@ -5,10 +5,12 @@ import { NavigationBar } from "../../../components/journals/navigation-bar.compo
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { NewProfile } from "../components/new-profile.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
+import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const NewProfileScreen = ({ navigation }) => {
     const { profileStep, previousProfileStep, resetProfileStep } = useContext(ProfileContext);
     const [visible, setVisible] = useState(false);
+    const trackExitEvent = PROFILE_EVENTS.EXIT_PROFILE_SET_UP;
 
     return(
         <Provider>
@@ -27,6 +29,7 @@ export const NewProfileScreen = ({ navigation }) => {
                     type={"Profile"}
                     setVisible={setVisible}
                     visible={visible} 
+                    trackExitEvent={trackExitEvent}
                 />
             </SafeView>
         </Provider>

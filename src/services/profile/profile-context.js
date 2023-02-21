@@ -2,6 +2,8 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import { patchUser } from "./profile-service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { track } from "@amplitude/analytics-react-native";
+import { PROFILE_EVENTS } from "../../amplitude-events";
 
 export const ProfileContext = createContext();
 
@@ -31,6 +33,7 @@ export const ProfileContextProvider = ({ children }) => {
             ...profileData,
             profile_status: 1,
         };
+        track(PROFILE_EVENTS.COMPLETE_PROFILE_SET_UP);
         updateProfile(user.user.uid, profile);
         //setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
