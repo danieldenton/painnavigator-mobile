@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { Close, Delete, Edit } from "../icons";
 import { space } from "../infrastructure/theme/spacing";
+import { track } from "@amplitude/analytics-react-native"
 
 const CloseButtonRow = styled.View`
     margin-left: ${space[3]};
@@ -34,7 +35,13 @@ const OptionText = styled.Text`
     margin-left: ${space[4]};
 `;
 
-export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal }) => {
+export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal, trackEvent }) => {
+
+    const handleTrackEvent = () => {
+        if (trackEvent) {
+            track(trackEvent)
+        }
+    }
     return (
         <>
             <CloseButtonRow>
@@ -43,7 +50,7 @@ export const ReviewJournalModal = ({ closeModal, requestDelete, editJournal }) =
                 </CloseButton>
             </CloseButtonRow>
             <OptionButton
-                onPress={editJournal}
+                onPress={(handleTrackEvent(), editJournal)}
                 style={{ borderBottomColor: "hsl(218, 44%, 86%)", borderBottomWidth: requestDelete ? 0 : .5 }}
             >
                 <OptionIconSection>

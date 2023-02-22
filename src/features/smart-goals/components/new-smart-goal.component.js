@@ -5,10 +5,13 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { Goal } from "./goal.component";
 import { Steps } from "./steps.component";
+import { track } from "@amplitude/analytics-react-native"
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const NewSmartGoal = ({ navigation }) => {
     const { createSmartGoal, currentPage, smartGoal, nextPage } = useContext(SmartGoalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
+    const [trackEvent, setTrackEvent] = useState("")
     
     useEffect(() => {
         const { goal, steps, reward } = smartGoal;
@@ -34,10 +37,12 @@ export const NewSmartGoal = ({ navigation }) => {
                     onPress={() => {
                         {   currentPage === 2 ? 
                             (
+                                track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_DETAILS),
                                 createSmartGoal(),
                                 navigation.navigate("SmartGoalCreated")
                             )
                             :
+                            track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL)
                             nextPage()
                         }
                     }}
