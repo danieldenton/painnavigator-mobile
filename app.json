@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.0.2",
+    "version": "1.4.13",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -57,6 +57,6 @@
         "projectId": "d9441de4-82db-4481-a4d1-7d868863b825"
       }
     },
-    "owner": "painnavigator"
+    "owner": "stephenavocado"
   }
 }
