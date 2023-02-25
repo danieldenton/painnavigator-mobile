@@ -2,6 +2,7 @@ import React from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { JournalEntryIcon, Profile, SmartGoalDailyActivity, WellnessCoachIcon } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
+import { MESSAGE_EVENTS } from "../../../amplitude-events";
 
 export const Journals = ({ navigation }) => {
     return (
@@ -21,6 +22,7 @@ export const WellnessCoach = ({ navigation }) => {
             destination={"WellnessCoach"} 
             title={"Check in with your Coach"}
             icon={<WellnessCoachIcon />}
+            trackEvent={MESSAGE_EVENTS.VIEW_MESSAGE_FROM_WELLNESS_COACH}
         />
     );
 };

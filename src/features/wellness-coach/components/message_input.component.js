@@ -4,6 +4,8 @@ import { SendIcon } from "../../../icons";
 import { Pressable } from "react-native";
 import { KeyboardAvoidingView, Platform } from "react-native";
 import styled from "styled-components/native";
+import { track } from "@amplitude/analytics-react-native";
+import { MESSAGE_EVENTS } from "../../../amplitude-events";
 
 const InputWrapper = styled(KeyboardAvoidingView).attrs({
     behavior: Platform.OS === "ios" ? "padding" : ""
@@ -81,6 +83,7 @@ export const MessageInput = ({ body, clearUnreadMessages, hasUnreadMessages, nav
                         navigation.navigate("MessageSent");
                         sendMessage();
                         markUnread();
+                        track(MESSAGE_EVENTS.REPLIED_TO_WELLNESS_COACH)
                     }}
                     >
                     <SendIcon />

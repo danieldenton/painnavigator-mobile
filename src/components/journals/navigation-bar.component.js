@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Back, Close, MenuIcon, MessageIcon, More, UnreadMessageIcon } from "../../icons";
 import { Bookmark } from "../bookmark.component";
 import { track } from '@amplitude/analytics-react-native'
+import { MESSAGE_EVENTS } from "../../amplitude-events";
 
 const NavContainer = styled.View`
     flex-direction: row;
@@ -111,7 +112,7 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
                 <RightPressableArea
                    accessibilityLabel={"messages"}
                    testID={"messages"}
-                   onPress={() => {navigation.navigate("WellnessCoach")}}
+                   onPress={() => {navigation.navigate("WellnessCoach"), track(MESSAGE_EVENTS.VIEW_MESSAGE_FROM_WELLNESS_COACH)}}
                 >
                     {hasUnreadMessages ? 
                         <UnreadIconContainer>

@@ -124,3 +124,8 @@ export const ONBOARD_EVENTS = {
     COMPLETE_PROFILE_SET_UP: "Complete Profile Set Up",
     EXIT_PROFILE_SET_UP: "Exit Profile Set Up",
   };
+
+  export const MESSAGE_EVENTS = {
+    VIEW_MESSAGE_FROM_WELLNESS_COACH: "View Message From Wellness Coach",
+    REPLIED_TO_WELLNESS_COACH: "Replied to Wellness Coach"
+  }
