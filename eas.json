@@ -3,6 +3,11 @@
     "version": ">= 3.1.1"
   },
   "build": {
+    "preview": {
+      "ios": {
+        "simulator": true
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
@@ -12,9 +17,9 @@
       "channel": "development"
     },
     "production": {
+      "autoIncrement": true,
       "env": {
-        "API_URL": "process.env.API_URL",
-        "AMPLITUDE_API_KEY": "process.env.AMPLITUDE_API_KEY"
+        "API_URL": "process.env.API_URL"
       },
       "ios": {
         "resourceClass": "m1-medium"
