@@ -15,31 +15,31 @@ import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
-    const [trackEvent, setTrackEvent] = useState("");
-    const [trackSkipEvent, setTrackSkipEvent] = useState("");
 
     useEffect(() => {
+      let trackEvent
+      let trackSkipEvent
         const { situation, copingStrategies, notes } = painJournal;
         if (currentPage === 1) {
-          setTrackEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY);
+          trackEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY
         } else if (currentPage === 2) {
-          setTrackEvent(PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS);
+          trackEvent =  PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS
           return situation.length
             ? setSubmitDisabled(false)
             : setSubmitDisabled(true);
         } else if (currentPage === 3) {
-          setTrackEvent(PAIN_JOURNAL_EVENTS.COPING_STRATEGIES);
-          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP);
+          trackEvent = PAIN_JOURNAL_EVENTS.COPING_STRATEGIES
+          trackSkipEvent = PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP
           return copingStrategies.length
             ? setSubmitDisabled(false)
             : setSubmitDisabled(true);
         } else if (currentPage === 4) {
-          setTrackEvent(PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT);
-          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP);
+          trackEvent = PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT
+          trackSkipEvent = PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP
           return notes ? setSubmitDisabled(false) : setSubmitDisabled(true);
         } else if (currentPage === 5) {
-          setTrackEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE);
-          setTrackSkipEvent(PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP);
+          trackEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE
+          trackSkipEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP
           return setSubmitDisabled(false);
         }
       }, [painJournal, currentPage]);
