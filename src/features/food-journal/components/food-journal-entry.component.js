@@ -20,15 +20,17 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
     }, [foodJournal]);
 
     const handleLogMealTrack = () => {
+        let trackEvent
         if (meal === "Breakfast") {
-          track(FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL);
+          trackEvent = FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL
         } else if (meal === "Lunch") {
-          track(FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL);
+          trackEvent = FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL
         } else if (meal === "Dinner") {
-          track(FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL);
+          trackEvent = FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL
         } else if (meal === "Snacks") {
-          track(FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL);
+          trackEvent = FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL
         }
+        track(trackEvent)
       };
 
     const handleUpdateFoodJournal = () => {
