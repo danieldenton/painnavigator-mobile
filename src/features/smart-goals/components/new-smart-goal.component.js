@@ -11,40 +11,49 @@ import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 export const NewSmartGoal = ({ navigation }) => {
     const { createSmartGoal, currentPage, smartGoal, nextPage } = useContext(SmartGoalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    const [trackEvent, setTrackEvent] = useState("")
-    
+    const { goal, steps } = smartGoal;
+
+    pages = [
+        {
+            page: <Goal />,
+            trackEvent: SMART_GOAL_EVENTS.ENTER_SMART_GOAL,
+            submitCondition: goal
+        },
+        {
+            page: <Steps />,
+            trackEvent: SMART_GOAL_EVENTS.ENTER_SMART_GOAL_DETAILS,
+            submitCondition: steps
+        }
+    ]
+
+    const handleNextPage = () => {
+        track(pages[currentPage].trackEvent)
+        nextPage()
+    }
+
+    const handleCreateSmartGoal = () => {
+        track(pages[currentPage].trackEvent)
+        createSmartGoal()
+        navigation.navigate("SmartGoalCreated")
+    }
+
     useEffect(() => {
-        const { goal, steps, reward } = smartGoal;
-        if (currentPage === 1) {
-            return goal ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 2) {
-            return steps ? reward ? setSubmitDisabled(false) : setSubmitDisabled(true) : setSubmitDisabled(true)
-        }   else {
-            return setSubmitDisabled(false)
-        };
-    }, [smartGoal, currentPage]);
+        pages[currentPage].submitCondition
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true) 
+    }, [pages]);
     
     return (
         <>
             <QuestionSection>
-                {currentPage === 1 && <Goal />}
-                {currentPage === 2 && <Steps />}
+                {pages[currentPage].page}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
                     disabled={submitDisabled} 
                     title={"Next"} 
                     onPress={() => {
-                        {   currentPage === 2 ? 
-                            (
-                                track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_DETAILS),
-                                createSmartGoal(),
-                                navigation.navigate("SmartGoalCreated")
-                            )
-                            :
-                            track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL)
-                            nextPage()
-                        }
+                        {currentPage === 1 ?  handleCreateSmartGoal() : handleNextPage()}
                     }}
                 />
                 <ProgressDots progress={currentPage} total={3} />
