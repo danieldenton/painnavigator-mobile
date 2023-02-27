@@ -66,11 +66,9 @@ export const NewProfile = ({ navigation }) => {
     }
 
     useEffect(() => {
-        if (steps[profileStep].submitCondition) {
-          setSubmitDisabled(false)
-        } else {
-          setSubmitDisabled(true)
-        }
+        steps[profileStep].submitCondition
+        ? setSubmitDisabled(false)
+        : setSubmitDisabled(true)
       }, [steps])
 
     return (

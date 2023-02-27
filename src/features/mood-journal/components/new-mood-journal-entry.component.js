@@ -15,8 +15,8 @@ import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    const { feeling, situation, primaryThought } = moodJournal;
-    
+    const { feeling, situation, primaryThought, cognitiveDistortions } = moodJournal;
+
     pages = [
         {
             page: <Feeling />,
@@ -46,7 +46,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             page: <CognitiveDistortions />,
             trackEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS,
             trackSkipEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP,
-            submitCondition: null
+            submitCondition: cognitiveDistortions
         },
     ]
 
@@ -66,12 +66,10 @@ export const NewMoodJournalEntry = ({ navigation }) => {
         navigation.navigate("JournalCreated", { type: "MoodJournal" })
       };
 
-      useEffect(() => {
-        if (pages[currentPage].submitCondition) {
-          setSubmitDisabled(false)
-        } else {
-          setSubmitDisabled(true)
-        }
+    useEffect(() => {
+        pages[currentPage].submitCondition 
+        ? setSubmitDisabled(false)
+        : setSubmitDisabled(true)
       }, [pages])
     
     return (
