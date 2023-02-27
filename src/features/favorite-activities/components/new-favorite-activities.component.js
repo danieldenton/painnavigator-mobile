@@ -13,58 +13,58 @@ import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 export const NewFavoriteActivities = ({ navigation }) => {
     const { completeActivities, currentPage, nextPage } = useContext(FavoriteActivitiesContext);
 
+    const pages = [
+      {
+        page: <SelectActivities />,
+        trackEvent: MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY,
+        trackSkipEvent: MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY_SKIP
+      },
+      {
+        page: <AddActivities />,
+        trackEvent: MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES,
+        trackSkipEvent: MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES_SKIP
+      },
+      {
+        page: <ReviewActivities />,
+        trackEvent: MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES,
+        trackSkipEvent: MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES_SKIP
+      }
+    ]
+
     const handleNextPage = () => {
-        if (currentPage === 1) {
-          track(MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY);
-        } else if (currentPage === 2) {
-          track(MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES);
-        }
-        nextPage();
-      };
-    
-      const handleSkipQuestion = () => {
-        if (currentPage === 1) {
-          track(MY_ACTIVITIES_EVENTS.SELECT_ACTIVITIES_ENJOY_SKIP);
-        } else if (currentPage === 2) {
-          track(MY_ACTIVITIES_EVENTS.ADD_CUSTOM_ACTIVITIES_SKIP);
-        }
-        nextPage();
-      };
-    
-      const handleCompleteActivities = () => {
-        track(MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES);
-        track(MY_ACTIVITIES_EVENTS.COMPLETE_MY_ACTIVITIES);
-        completeActivities();
-        navigation.navigate("FavoriteActivitiesCompleted");
-      };
-    
-      const handleSkipLastQuestion = () => {
-        track(MY_ACTIVITIES_EVENTS.REMOVE_ACTIVITIES_SKIP);
-        track(MY_ACTIVITIES_EVENTS.COMPLETE_MY_ACTIVITIES);
-        completeActivities();
-        navigation.navigate("FavoriteActivitiesCompleted");
-      };
+      track(pages[currentPage].trackEvent)
+      nextPage();
+    };
+
+    const handleSkipQuestion = () => {
+      track(pages[currentPage].trackSkipEvent)
+      nextPage();
+    };
+  
+    const handleCompleteActivities = () => {
+      track(MY_ACTIVITIES_EVENTS.COMPLETE_MY_ACTIVITIES);
+      completeActivities();
+      navigation.navigate("FavoriteActivitiesCompleted");
+    };
     
     return (
         <>
             <QuestionSection>
-                {currentPage === 1 && <SelectActivities />}
-                {currentPage === 2 && <AddActivities />}
-                {currentPage === 3 && <ReviewActivities />}
+                {pages[currentPage].page}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        {   currentPage === 3 ? 
-                            handleCompleteActivities() : handleNextPage();
+                        {   currentPage === 2 ? 
+                            (handleCompleteActivities(),track(pages[currentPage].trackEvent)) : handleNextPage();
                         }
                     }}
                 />
                 <SkipQuestion 
                     onPress={() => {
-                        {   currentPage === 3 ? 
-                            handleSkipLastQuestion() : handleSkipQuestion();
+                        {   currentPage === 2 ? 
+                          (handleCompleteActivities(), track(pages[currentPage].trackSkipEvent)) : handleSkipQuestion();
                         }
                     }} 
                 />
