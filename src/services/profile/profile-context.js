@@ -19,7 +19,7 @@ export const ProfileContextProvider = ({ children }) => {
         gender: 0,
         activity_level: 0
     })
-    const [profileStep, setProfileStep] = useState(1);
+    const [profileStep, setProfileStep] = useState(0);
     const [profileComplete, setProfileComplete] = useState(false);
     const { user } = useContext(AuthenticationContext);
 

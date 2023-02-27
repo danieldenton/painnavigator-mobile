@@ -14,78 +14,84 @@ import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const NewProfile = ({ navigation }) => {
     const { completeProfile, profileStep, nextProfileStep, profileData } = useContext(ProfileContext);
-    const [submitDisabled, setSubmitDisabled] = useState(false);
-    const [trackEvent, setTrackEvent] = useState("");
-    const [trackSkipEvent, setTrackSkipEvent] = useState("");
+    const [submitDisabled, setSubmitDisabled] = useState(true);
+    const { phone, dob, starting_pain_duration, gender, activity_level } = profileData
+
+    const steps = [
+        {
+          step:  <Phone />,
+          trackEvent: PROFILE_EVENTS.PHONE_NUMBER_ENTRY,
+          trackSkipEvent: PROFILE_EVENTS.PHONE_NUMBER_SKIP,
+          submitCondition: phone.length === 10
+        },
+        {
+          step: <Dob />,
+          trackEvent: PROFILE_EVENTS.DOB_ENTRY,
+          trackSkipEvent: PROFILE_EVENTS.DOB_SKIP,
+          submitCondition: dob.length === 8
+        },
+        {
+          step: <StartingPainDuration />,
+          trackEvent: PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_ENTRY,
+          trackSkipEvent: PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_SKIP,
+          submitCondition: starting_pain_duration
+        },
+        {
+          step: <Gender />,
+          trackEvent: PROFILE_EVENTS.GENDER_IDENTITY_ENTRY,
+          trackSkipEvent: PROFILE_EVENTS.GENDER_IDENTITY_SKIP,
+          submitCondition: gender
+        },
+        {
+          step: <ActivityLevel />,
+          trackEvent: PROFILE_EVENTS.ACTIVITY_LEVEL_ENTRY,
+          trackSkipEvent: PROFILE_EVENTS.ACTIVITY_LEVEL_SKIP,
+          submitCondition: activity_level
+        }
+      ]
+
+    const handleNextProfileStep = () => {
+        track(steps[profileStep].trackEvent)
+        nextProfileStep()
+    }
+
+    const handleSkipQuestion = () => {
+        track(steps[profileStep].trackSkipEvent)
+        nextProfileStep()
+    }
+
+    const handleCompleteProfile = () => {
+        completeProfile()
+        navigation.navigate("JournalCreated", { type: "Profile" })
+    }
 
     useEffect(() => {
-        const { phone, dob, starting_pain_duration, gender, activity_level } = profileData
-        if (profileStep === 1) {
-          setTrackEvent(PROFILE_EVENTS.PHONE_NUMBER_ENTRY);
-          setTrackSkipEvent(PROFILE_EVENTS.PHONE_NUMBER_SKIP);
-          return phone.length === 10
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true);
-        } else if (profileStep === 2) {
-          setTrackEvent(PROFILE_EVENTS.DOB_ENTRY);
-          setTrackSkipEvent(PROFILE_EVENTS.DOB_SKIP);
-          return dob.length === 8
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true);
-        } else if (profileStep === 3) {
-          setTrackEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_ENTRY);
-          setTrackSkipEvent(PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_SKIP);
-          return starting_pain_duration
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true);
-        } else if (profileStep === 4) {
-          setTrackEvent(PROFILE_EVENTS.GENDER_IDENTITY_ENTRY);
-          setTrackSkipEvent(PROFILE_EVENTS.GENDER_IDENTITY_SKIP);
-          return gender ? setSubmitDisabled(false) : setSubmitDisabled(true);
-        } else if (profileStep === 5) {
-          setTrackEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_ENTRY);
-          setTrackSkipEvent(PROFILE_EVENTS.ACTIVITY_LEVEL_SKIP);
-          return activity_level
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true);
+        if (steps[profileStep].submitCondition) {
+          setSubmitDisabled(false)
+        } else {
+          setSubmitDisabled(true)
         }
-      }, [profileStep, profileData]);
+      }, [steps])
 
     return (
         <>
             <QuestionSection>
-                {profileStep === 1 && <Phone />}
-                {profileStep === 2 && <Dob />}
-                {profileStep === 3 && <StartingPainDuration />}
-                {profileStep === 4 && <Gender />}
-                {profileStep === 5 && <ActivityLevel />}
+                {steps[profileStep].step}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton
                     title={"Next"}
                     disabled={submitDisabled}
                     onPress={() => {
-                        {
-                            profileStep === 5 ?
-                            (
-                                completeProfile(),
-                                navigation.navigate("JournalCreated", { type: "Profile" })
-                            )
-                            : track(trackEvent)
-                            nextProfileStep()
+                        { profileStep === 4 ?
+                            (track(steps[profileStep].trackEvent), handleCompleteProfile()) : handleNextProfileStep()
                         }
                     }}
                 />
                 <SkipQuestion
                     onPress={() => {
-                        {
-                            profileStep === 5 ?
-                            (
-                                completeProfile(),
-                                navigation.navigate("JournalCreated", { type: "Profile" })
-                            )
-                            : track(trackSkipEvent),
-                            nextProfileStep()
+                        {profileStep === 4 ?
+                             (track(steps[profileStep].trackSkipEvent), handleCompleteProfile()) : handleSkipQuestion()
                         }
                     }}
                 />
