@@ -19,7 +19,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
         };
     }, [foodJournal]);
 
-    const handleLogMealTrack = () => {
+    useEffect(() => {
         let trackEvent
         if (meal === "Breakfast") {
           trackEvent = FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL
@@ -29,19 +29,18 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
           trackEvent = FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL
         } else if (meal === "Snacks") {
           trackEvent = FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL
-        }
-        track(trackEvent)
-      };
+        } 
+      }, [meal])
 
     const handleUpdateFoodJournal = () => {
-        updateFoodJournal(journalId)
         track(FOOD_JOURNAL_EVENTS.EDIT_PREVIOUS_FOOD_JOURNAL)
+        updateFoodJournal(journalId)
         navigation.navigate("JournalUpdated", { type: "FoodJournal" })
     }
 
     const handleCompleteFoodJournal = () => {
-        completeFoodJournal(),
-        handleLogMealTrack(),
+        track(trackEvent)
+        completeFoodJournal()
         navigation.navigate("JournalCreated", { type: "FoodJournal" })
     }
 
