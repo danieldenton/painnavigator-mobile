@@ -16,103 +16,73 @@ export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(false);
 
-    // useEffect(() => {
-    //   let trackEvent
-    //   let trackSkipEvent
-    //     const { situation, copingStrategies, notes } = painJournal;
-    //     if (currentPage === 1) {
-    //       trackEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY
-    //     } else if (currentPage === 2) {
-    //       trackEvent =  PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS
-    //       return situation.length
-    //         ? setSubmitDisabled(false)
-    //         : setSubmitDisabled(true);
-    //     } else if (currentPage === 3) {
-    //       trackEvent = PAIN_JOURNAL_EVENTS.COPING_STRATEGIES
-    //       trackSkipEvent = PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP
-    //       return copingStrategies.length
-    //         ? setSubmitDisabled(false)
-    //         : setSubmitDisabled(true);
-    //     } else if (currentPage === 4) {
-    //       trackEvent = PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT
-    //       trackSkipEvent = PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP
-    //       return notes ? setSubmitDisabled(false) : setSubmitDisabled(true);
-    //     } else if (currentPage === 5) {
-    //       trackEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE
-    //       trackSkipEvent = PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP
-    //       return setSubmitDisabled(false);
-    //     }
-    //   }, [painJournal, currentPage]);
-
       useEffect(() => {
           const { situation, copingStrategies, notes } = painJournal;
-         if (currentPage === 2) {
+         if (currentPage === 1) {
             return situation.length
               ? setSubmitDisabled(false)
               : setSubmitDisabled(true);
-          } else if (currentPage === 3) {
+          } else if (currentPage === 2) {
             return copingStrategies.length
               ? setSubmitDisabled(false)
               : setSubmitDisabled(true);
-          } else if (currentPage === 4) {
+          } else if (currentPage === 3) {
             return notes ? setSubmitDisabled(false) : setSubmitDisabled(true);
-          } else if (currentPage === 5) {
+          } else if (currentPage === 4) {
             return setSubmitDisabled(false);
           }
         }, [painJournal, currentPage]);
 
       const pages = [
        {
-        pageNum: 1,
         page: <Intensity />,
         trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY,
-        trackSkipEvent: null
+        trackSkipEvent: null,
        },
        {
-        pageNum: 2,
         page: <Situation />,
         trackEvent: PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS,
         trackSkipEvent: null
        },
        {
-        pageNum: 3,
         page: <CopingStrategies />,
         trackEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES,
         trackSkipEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP
        },
        {
-        pageNum: 4,
         page: <Notes />,
         trackEvent: PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT,
         trackSkipEvent: PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP
        },
        {
-        pageNum: 5,
         page: <IntensityAfter />,
         trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE,
         trackSkipEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP
        }
       ]
 
+      const handleNextPage = () => {
+        track(pages[currentPage].trackEvent)
+        nextPage()
+      }
+
+      const handleSkipQuestion = () => {
+        track(pages[currentPage].trackSkipEvent);
+        nextPage();
+      };
+
       const handleCompletePainJournal = () => {
-        track(trackEvent);
+        track(pages[currentPage].trackEvent);
         completePainJournal(),
           navigation.navigate("JournalCreated", {
             type: "PainJournal",
           });
       };
     
-      const handleSkipQuestion = () => {
-        if (trackSkipEvent) {
-          track(trackSkipEvent);
-        }
-        nextPage();
-      };
-    
       const handleSkipFinalQuestion = () => {
-        track(trackSkipEvent),
-          completePainJournal(),
-          navigation.navigate("JournalCreated", {
+        track(pages[currentPage].trackSkipEvent),
+        completePainJournal(),
+        navigation.navigate("JournalCreated", {
             type: "PainJournal",
           });
       };
@@ -120,29 +90,24 @@ export const NewPainJournalEntry = ({ navigation }) => {
     return(
         <>
             <QuestionSection>
-                {/* {currentPage === 1 && <Intensity />}
-                {currentPage === 2 && <Situation />}
-                {currentPage === 3 && <CopingStrategies />}
-                {currentPage === 4 && <Notes />}
-                {currentPage === 5 && <IntensityAfter />} */}
-                {currentPage === pages.pageNum && pages.page}
+                {pages[currentPage].page}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
                     disabled={submitDisabled} 
                     title={"Next"} 
                     onPress={() => {
-                        {   currentPage === 5 ? 
+                        {   currentPage === 4 ? 
                             handleCompletePainJournal()
                             :
-                            (track(trackEvent), nextPage())
+                            handleNextPage()
                         }
                     }} 
                 />
                 {currentPage > 2 && 
                     <SkipQuestion 
                         onPress={() => {
-                            {   currentPage === 5 ? 
+                            {   currentPage === 4 ? 
                                 handleSkipFinalQuestion()
                                 : handleSkipQuestion();
                             }

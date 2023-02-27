@@ -10,8 +10,8 @@ export const PainJournalContext = createContext();
 
 export const PainJournalContextProvider = ({ children }) => {
     const [changes, setChanges] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const currentPageData = painJournalQuestions[currentPage - 1];
+    const [currentPage, setCurrentPage] = useState(0);
+    const currentPageData = painJournalQuestions[currentPage];
     const [painJournals, setPainJournals] = useState([]);
     const [painJournal, setPainJournal] = useState({
         intensity: 5, 
