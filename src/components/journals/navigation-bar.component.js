@@ -68,8 +68,8 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     return(
         <NavContainer>
             <LeftPressableArea 
-                accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
-                onPress={currentPage > 1 ? previousPage : showModal} 
+                accessibilityLabel={currentPage > 0 ? "previous-page" : "exit-journal"} 
+                onPress={currentPage > 0 ? previousPage : showModal} 
             >
                 <Back />
             </LeftPressableArea>
