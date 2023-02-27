@@ -12,7 +12,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
     const [submitDisabled, setSubmitDisabled] = useState(true);
 
     useEffect(() => {
-        if ( food.length !== 0 & feelingBefore.length !== 0 & feelingAfter.length !==0 ) {
+        if ( food.length > 0 & feelingBefore.length > 0 & feelingAfter.length > 0 ) {
             setSubmitDisabled(false);
         }   else {
             setSubmitDisabled(true);
@@ -31,6 +31,18 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
         }
       };
 
+    const handleUpdateFoodJournal = () => {
+        updateFoodJournal(journalId)
+        track(FOOD_JOURNAL_EVENTS.EDIT_PREVIOUS_FOOD_JOURNAL)
+        navigation.navigate("JournalUpdated", { type: "FoodJournal" })
+    }
+
+    const handleCompleteFoodJournal = () => {
+        completeFoodJournal(),
+        handleLogMealTrack(),
+        navigation.navigate("JournalCreated", { type: "FoodJournal" })
+    }
+
     return(
         <>
             <FoodJournalQuestionSection 
@@ -41,21 +53,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Meal"}
-                    onPress={() => {
-                        { journalId ? 
-                            (
-                                updateFoodJournal(journalId),
-                                track(FOOD_JOURNAL_EVENTS.EDIT_PREVIOUS_FOOD_JOURNAL),
-                                navigation.navigate("JournalUpdated", { type: "FoodJournal" })
-                            ) 
-                            : 
-                            (
-                                completeFoodJournal(),
-                                handleLogMealTrack(),
-                                navigation.navigate("JournalCreated", { type: "FoodJournal" })
-                            ) 
-                        }
-                    }} 
+                    onPress={() => {journalId ? handleUpdateFoodJournal() : handleCompleteFoodJournal()}} 
                     disabled={submitDisabled}
                 />
             </ButtonSection>
