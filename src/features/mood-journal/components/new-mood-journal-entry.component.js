@@ -15,45 +15,38 @@ import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-
-    useEffect(() => {
-        const { feeling, situation, primaryThought } = moodJournal;
-        if (currentPage === 0) {
-            return feeling ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }  else if (currentPage === 2) {
-            return situation ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }  else if (currentPage === 3) {
-            return primaryThought ? setSubmitDisabled(false) : setSubmitDisabled(true) 
-        }  else {
-            return setSubmitDisabled(false)
-        };     
-    }, [moodJournal, currentPage]);
-
+    const { feeling, situation, primaryThought } = moodJournal;
+    
     pages = [
         {
             page: <Feeling />,
             trackEvent: MOOD_JOURNAL_EVENTS.HOW_ARE_YOU_FEELING_TODAY,
-            trackSkipEvent: null
+            trackSkipEvent: null,
+            submitCondition: feeling
         },
         {
             page: <Intensity />,
             trackEvent: MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING,
-            trackSkipEvent: null
+            trackSkipEvent: null,
+            submitCondition: null
         },
         {
             page: <Situation />,
             trackEvent: MOOD_JOURNAL_EVENTS.SITUATION,
-            trackSkipEvent: null
+            trackSkipEvent: null,
+            submitCondition: situation
         },
         {
             page: <PrimaryThought />,
             trackEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT,
-            trackSkipEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT_SKIP
+            trackSkipEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT_SKIP,
+            submitCondition: primaryThought
         },
         {
             page: <CognitiveDistortions />,
             trackEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS,
-            trackSkipEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP
+            trackSkipEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP,
+            submitCondition: null
         },
     ]
 
@@ -72,6 +65,14 @@ export const NewMoodJournalEntry = ({ navigation }) => {
         completeMoodJournal();
         navigation.navigate("JournalCreated", { type: "MoodJournal" })
       };
+
+      useEffect(() => {
+        if (pages[currentPage].submitCondition) {
+          setSubmitDisabled(false)
+        } else {
+          setSubmitDisabled(true)
+        }
+      }, [pages])
     
     return (
         <>
