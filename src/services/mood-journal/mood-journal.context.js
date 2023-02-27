@@ -28,7 +28,6 @@ export const MoodJournalContextProvider = ({ children }) => {
     useEffect(() => {
         const lastIndex = moodJournals?.length - 1;
         const lastJournalDate = moodJournals[lastIndex]?.date;
-
         setJournaledToday(lastJournalDate);
     }, []);
 
