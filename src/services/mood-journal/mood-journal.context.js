@@ -10,8 +10,8 @@ export const MoodJournalContext = createContext();
 
 export const MoodJournalContextProvider = ({ children }) => {
     const [changes, setChanges] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const currentPageData = moodJournalQuestions[currentPage - 1];
+    const [currentPage, setCurrentPage] = useState(0);
+    const currentPageData = moodJournalQuestions[currentPage];
     const [moodJournals, setMoodJournals] = useState([]);
     const [moodJournal, setMoodJournal] = useState({
         feeling: "", 
@@ -107,7 +107,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             primaryThought: "", 
             cognitiveDistortions: new Array() 
         });
-        setCurrentPage(1);
+        setCurrentPage(0);
     };
 
     const updateMoodJournal = () => {

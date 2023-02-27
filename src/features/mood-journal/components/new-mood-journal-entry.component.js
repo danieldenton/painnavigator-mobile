@@ -15,75 +15,76 @@ import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    
+
     useEffect(() => {
         const { feeling, situation } = moodJournal;
-        if (currentPage === 1) {
+        if (currentPage === 0) {
             return feeling ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 3) {
+        }   else if (currentPage === 2) {
             return situation ? setSubmitDisabled(false) : setSubmitDisabled(true)
         }   else {
             return setSubmitDisabled(false)
-        };
+        };     
     }, [moodJournal, currentPage]);
 
+    pages = [
+        {
+            page: <Feeling />,
+            trackEvent: MOOD_JOURNAL_EVENTS.HOW_ARE_YOU_FEELING_TODAY,
+            trackSkipEvent: null
+        },
+        {
+            page: <Intensity />,
+            trackEvent: MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING,
+            trackSkipEvent: null
+        },
+        {
+            page: <Situation />,
+            trackEvent: MOOD_JOURNAL_EVENTS.SITUATION,
+            trackSkipEvent: null
+        },
+        {
+            page: <PrimaryThought />,
+            trackEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT,
+            trackSkipEvent: null
+        },
+        {
+            page: <CognitiveDistortions />,
+            trackEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS,
+            trackSkipEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP
+        },
+    ]
+
     const handleNextPage = () => {
-        if (currentPage === 1) {
-          track(MOOD_JOURNAL_EVENTS.HOW_ARE_YOU_FEELING_TODAY);
-        } else if (currentPage === 2) {
-          track(MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING);
-        } else if (currentPage === 3) {
-          track(MOOD_JOURNAL_EVENTS.SITUATION);
-        } else if (currentPage === 4) {
-          track(MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT);
-        }
+        track(pages[currentPage].trackEvent)
         nextPage();
       };
     
       const handleCompleteMoodJournal = () => {
-        track(MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS);
         track(MOOD_JOURNAL_EVENTS.COMPLETE_MOOD_JOURNAL);
         completeMoodJournal();
+        navigation.navigate("JournalCreated", { type: "MoodJournal" })
       };
     
     return (
         <>
             <QuestionSection>
-                {currentPage === 1 && <Feeling />}
-                {currentPage === 2 && <Intensity />}
-                {currentPage === 3 && <Situation />}
-                {currentPage === 4 && <PrimaryThought />}
-                {currentPage === 5 && <CognitiveDistortions />}
+                {pages[currentPage].page}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
                     disabled={submitDisabled} 
                     title={"Next"} 
                     onPress={() => {
-                        {   currentPage === 5 ? 
-                            (
-                                handleCompleteMoodJournal(),
-                                navigation.navigate("JournalCreated", { type: "MoodJournal" })
-                            )
-                            :
-                            handleNextPage()
-                        }
+                        {currentPage === 4 ?  
+                            (handleCompleteMoodJournal(), track(pages[currentPage].trackEvent)) : handleNextPage()}
                     }}
                 />
                 {currentPage > 3 && 
                     <SkipQuestion 
                         onPress={() => {
-                            {   currentPage === 5 ? 
-                                (
-                                    track(MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP),
-                                    completeMoodJournal(),
-                                    navigation.navigate("JournalCreated", {
-                                        type: "MoodJournal"
-                                    })
-                                )
-                                : (track(MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT_SKIP),
-                                nextPage())
-                            }
+                            {currentPage === 4 ? 
+                                (handleCompleteMoodJournal(), track(pages[currentPage].trackSkipEvent)) : handleNextPage()}
                         }} 
                     />}
                 <ProgressDots progress={currentPage} total={5} />
