@@ -14,7 +14,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [onboardStep, setOnboardStep] = useState(1);
+    const [onboardStep, setOnboardStep] = useState(0);
     const [onboardingData, setOnboardingData] = useState({
         first_name: "", 
         last_name: "", 
@@ -98,11 +98,6 @@ export const AuthenticationContextProvider = ({ children }) => {
     };
 
     const nextOnboardingStep = () => {
-        if (onboardStep === 1) {
-          track(ONBOARD_EVENTS.BASELINE_PAIN_SCALE);
-        } else if (onboardStep === 2) {
-          track(ONBOARD_EVENTS.BASELINE_COMMITTED_TO_PROGRAM);
-        }
         setOnboardStep((prevPage) => {
           return prevPage + 1;
         });
