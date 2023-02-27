@@ -17,12 +17,14 @@ export const NewMoodJournalEntry = ({ navigation }) => {
     const [submitDisabled, setSubmitDisabled] = useState(true);
 
     useEffect(() => {
-        const { feeling, situation } = moodJournal;
+        const { feeling, situation, primaryThought } = moodJournal;
         if (currentPage === 0) {
             return feeling ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 2) {
+        }  else if (currentPage === 2) {
             return situation ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else {
+        }  else if (currentPage === 3) {
+            return primaryThought ? setSubmitDisabled(false) : setSubmitDisabled(true) 
+        }  else {
             return setSubmitDisabled(false)
         };     
     }, [moodJournal, currentPage]);
@@ -46,7 +48,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
         {
             page: <PrimaryThought />,
             trackEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT,
-            trackSkipEvent: null
+            trackSkipEvent: MOOD_JOURNAL_EVENTS.PRIMARY_THOUGHT_SKIP
         },
         {
             page: <CognitiveDistortions />,
@@ -59,8 +61,13 @@ export const NewMoodJournalEntry = ({ navigation }) => {
         track(pages[currentPage].trackEvent)
         nextPage();
       };
+
+    const handleSkipQuestion = () => {
+        track(pages[currentPage].trackSkipEvent)
+        nextPage()
+    }
     
-      const handleCompleteMoodJournal = () => {
+    const handleCompleteMoodJournal = () => {
         track(MOOD_JOURNAL_EVENTS.COMPLETE_MOOD_JOURNAL);
         completeMoodJournal();
         navigation.navigate("JournalCreated", { type: "MoodJournal" })
@@ -80,11 +87,11 @@ export const NewMoodJournalEntry = ({ navigation }) => {
                             (handleCompleteMoodJournal(), track(pages[currentPage].trackEvent)) : handleNextPage()}
                     }}
                 />
-                {currentPage > 3 && 
+                {currentPage > 2 && 
                     <SkipQuestion 
                         onPress={() => {
                             {currentPage === 4 ? 
-                                (handleCompleteMoodJournal(), track(pages[currentPage].trackSkipEvent)) : handleNextPage()}
+                                (handleCompleteMoodJournal(), track(pages[currentPage].trackSkipEvent)) : handleSkipQuestion()}
                         }} 
                     />}
                 <ProgressDots progress={currentPage} total={5} />
