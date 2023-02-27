@@ -33,7 +33,7 @@ const CardIconSection = styled.View`
 `;
 
 
-export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
+export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent, setCurrentPage }) => {
 
     const handleTrackEvent = () => {
         if (trackEvent) {
@@ -41,9 +41,15 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon, scre
         }
     };
 
+    const handleSetCurrentPage = () => {
+        if(setCurrentPage) {
+            setCurrentPage(0)
+        }
+    }
+
     return (
         <TouchableOpacity
-            onPress={() => (handleTrackEvent(), navigation.navigate(destination, {
+            onPress={() => (handleTrackEvent(), handleSetCurrentPage(), navigation.navigate(destination, {
                 screen: screen,
                 params: { type: screenParams }
             }
