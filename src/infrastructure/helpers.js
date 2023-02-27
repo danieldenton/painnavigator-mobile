@@ -1,4 +1,5 @@
 import * as Localization from 'expo-localization';
+import { track } from '@amplitude/analytics-react-native';
 
 export const timeZone = Localization.timezone;
 export const todaysDate = new Date ();
@@ -8,5 +9,11 @@ export const timeZonedTodaysDate = new Intl.DateTimeFormat('en-US', options).for
 export function formatDate(date_time_value) {
     return date_time_value ? new Intl.DateTimeFormat('en-US').format(date_time_value) : null;
 };
+
+// export const handleTrackEvent = (trackEvent) => {
+//     if (trackEvent) {
+//         track(trackEvent)
+//     }
+// }
 
 
