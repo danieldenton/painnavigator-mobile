@@ -42,7 +42,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        track(trackEvent)
+                        track(pages[onboardStep].trackEvent)
                         onboardStep === 2 ? navigation.navigate("Register") : nextOnboardingStep()
                     }} 
                 />
