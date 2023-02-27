@@ -14,15 +14,15 @@ import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(false);
-    const { situation, copingStrategies, notes } = painJournal;
+    const [submitDisabled, setSubmitDisabled] = useState(true);
+    const { intensity, situation, copingStrategies, notes, intensityAfter } = painJournal;
 
     const pages = [
       {
        page: <Intensity />,
        trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY,
        trackSkipEvent: null,
-       submitCondition: null
+       submitCondition: intensity
       },
       {
        page: <Situation />,
@@ -34,7 +34,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
        page: <CopingStrategies />,
        trackEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES,
        trackSkipEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP,
-       submitCondition: copingStrategies
+       submitCondition: copingStrategies.length > 0
       },
       {
        page: <Notes />,
@@ -46,7 +46,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
        page: <IntensityAfter />,
        trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE,
        trackSkipEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP,
-       submitCondition: null
+       submitCondition: intensityAfter
       }
      ]
 
@@ -68,9 +68,9 @@ export const NewPainJournalEntry = ({ navigation }) => {
      };
 
      useEffect(() => {
-       pages[currentPage].submitCondition 
-       ? setSubmitDisabled(false)
-       : setSubmitDisabled(true)
+        pages[currentPage].submitCondition 
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true)      
      }, [pages])
 
       
