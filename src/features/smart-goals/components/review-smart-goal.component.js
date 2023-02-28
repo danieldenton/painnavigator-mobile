@@ -10,6 +10,8 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
 import format from 'date-fns/format';
+import { track } from "@amplitude/analytics-react-native";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
     const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, date_time_value, goal_updates: activeUpdates } = goal;
@@ -79,7 +81,11 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                 <ButtonSection>
                     <JournalButton 
                         title={"Save Changes"} 
-                        onPress={() => {saveEdits(); setEditing(false);}}
+                        onPress={() => {
+                            saveEdits(); 
+                            setEditing(false);
+                            track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
+                        }}
                     />
                 </ButtonSection>
             }

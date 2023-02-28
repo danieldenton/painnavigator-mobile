@@ -3,13 +3,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 import { destroyPainJournal, getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { track } from "@amplitude/analytics-react-native";
+import { PAIN_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const PainJournalContext = createContext();
 
 export const PainJournalContextProvider = ({ children }) => {
     const [changes, setChanges] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const currentPageData = painJournalQuestions[currentPage - 1];
+    const [currentPage, setCurrentPage] = useState(0);
+    const currentPageData = painJournalQuestions[currentPage];
     const [painJournals, setPainJournals] = useState([]);
     const [painJournal, setPainJournal] = useState({
         intensity: 5, 
@@ -64,6 +66,7 @@ export const PainJournalContextProvider = ({ children }) => {
         }
         postPainJournal(user.user.uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
+        track(PAIN_JOURNAL_EVENTS.COMPLETE_PAIN_JOURNAL);
     };
 
     const deletePainJournal = () => {
@@ -71,6 +74,7 @@ export const PainJournalContextProvider = ({ children }) => {
         destroyPainJournal(id);
         const newPainJournals = painJournals.filter(journal => journal.id !== id)
         setPainJournals(newPainJournals);
+        track(PAIN_JOURNAL_EVENTS.DELETE_PAIN_JOURNAL);
     };
 
     const editJournal = (change, state) => {
@@ -125,6 +129,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournals(newJournals);
         updatePainJournal();
         setChanges("");
+        track(PAIN_JOURNAL_EVENTS.EDIT_PAIN_JOURNAL)
     };
 
     const saveJournals = async (value) => {

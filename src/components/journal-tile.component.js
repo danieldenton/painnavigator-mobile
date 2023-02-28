@@ -4,6 +4,7 @@ import { Next } from "../icons";
 import { Card } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 import { formatDate } from "../infrastructure/helpers";
+import { track } from '@amplitude/analytics-react-native'
 
 const JournalCard = styled(Card)`
     border-radius: 15px;
@@ -29,13 +30,13 @@ const JournalText = styled.Text`
     font-size: 18px;
 `;
 
-export const JournalTile = ({ destination, journal, navigation }) => {
+export const JournalTile = ({ destination, journal, navigation, trackEvent }) => {
     const { date_time_value } = journal;
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate(destination, {
+        <TouchableOpacity onPress={() => (track(trackEvent), navigation.navigate(destination, {
             journal: journal,
-        })}> 
+        }))}> 
             <JournalCard>
                 <CardContentWrapper>
                     <JournalTextSection>

@@ -4,6 +4,8 @@ import { movementVideos } from "../../features/movement/data/movement-videos-dat
 import { post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { track } from '@amplitude/analytics-react-native'
+import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
 
 export const MovementContext = createContext();
 
@@ -44,6 +46,7 @@ export const MovementContextProvider = ({ children }) => {
     };
     
     const completeVideo = () => {
+        track(MOVEMENT_UNIT_EVENTS.COMPLETE_MOVEMENT_UNIT);
         setCompletedVideos(prevCompleted => prevCompleted + 1);
         if(!completedMovementModules.includes(currentVideo.id)){
             setCompletedMovementModules(prevCompleted => [...prevCompleted, currentVideo.id]);

@@ -3,6 +3,8 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Back, Close, MenuIcon, MessageIcon, More, UnreadMessageIcon } from "../../icons";
 import { Bookmark } from "../bookmark.component";
+import { track } from '@amplitude/analytics-react-native'
+import { MESSAGE_EVENTS } from "../../amplitude-events";
 
 const NavContainer = styled.View`
     flex-direction: row;
@@ -66,8 +68,8 @@ export const NavigationBar = ({ currentPage, headerName, previousPage, setVisibl
     return(
         <NavContainer>
             <LeftPressableArea 
-                accessibilityLabel={currentPage > 1 ? "previous-page" : "exit-journal"} 
-                onPress={currentPage > 1 ? previousPage : showModal} 
+                accessibilityLabel={currentPage > 0 ? "previous-page" : "exit-journal"} 
+                onPress={currentPage > 0 ? previousPage : showModal} 
             >
                 <Back />
             </LeftPressableArea>
@@ -110,7 +112,7 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
                 <RightPressableArea
                    accessibilityLabel={"messages"}
                    testID={"messages"}
-                   onPress={() => {navigation.navigate("WellnessCoach")}}
+                   onPress={() => {navigation.navigate("WellnessCoach"), track(MESSAGE_EVENTS.VIEW_MESSAGE_FROM_WELLNESS_COACH)}}
                 >
                     {hasUnreadMessages ? 
                         <UnreadIconContainer>
@@ -157,12 +159,13 @@ export const ReviewJournalNavigationBar = ({ changes, destination, navigation, h
     );
 };
 
-export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
+export const TextModuleNavBar = ({ destination, navigation, screen, id, trackEvent, trackNavBarEvent }) => {
     return (
         <NavContainer>
             <LeftPressableArea 
                 accessibilityLabel={`go-to-${destination}`} 
-                onPress={() => navigation.navigate(destination)} 
+                onPress={() => (navigation.navigate(destination),
+                track(trackNavBarEvent))}
             >
                 <Back />
             </LeftPressableArea>
@@ -173,7 +176,7 @@ export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
             </HeaderSection>
             <RightSection>
                 <RightArea>
-                    <Bookmark id={id} />
+                    <Bookmark id={id} trackEvent={trackEvent}/>
                 </RightArea>
             </RightSection>
         </NavContainer>

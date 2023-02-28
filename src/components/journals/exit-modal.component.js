@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 import { StackActions } from '@react-navigation/native';
+import { track } from '@amplitude/analytics-react-native'
 
 const Modal = styled(PaperModal)`
     border-radius: 15px;
@@ -34,9 +35,15 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type }) => {
+export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type, trackExitEvent }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
+
+    const handleTrackExitEvent = () => {
+        if (trackExitEvent) {
+          track(trackExitEvent);
+        }
+      };
 
     return(
         <Portal>
@@ -65,7 +72,7 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                                     :
                                     navigation.navigate(destination, { type: type })
                                 :
-                                navigation.navigate(destination);
+                                (handleTrackExitEvent(), navigation.navigate(destination));
                             }
                             {deleteJournal && setTimeout(() => {deleteJournal()}, 500);} 
                             {resetJournal && resetJournal();} 

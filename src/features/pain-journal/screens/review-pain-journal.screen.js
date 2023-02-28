@@ -8,6 +8,7 @@ import { ReviewJournalExitModals } from "../../../components/journals/exit-modal
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
 import { ReviewPainJournalEntry } from "../components/review-pain-journal-entry.component";
 import { SafeView } from "../../../components/safe-area.component";
+import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewPainJournalScreen = ({ navigation, route }) => {
     const { journal } = route.params;
@@ -35,37 +36,42 @@ export const ReviewPainJournalScreen = ({ navigation, route }) => {
         reviewPainJournalOptions.current?.present();
     };
 
-    return(
+    return (
         <Provider>
             <BottomSheetModalProvider>
                 <SafeView>
-                    <ReviewJournalNavigationBar 
+                    <ReviewJournalNavigationBar
                         changes={changes}
                         destination={"PainJournalHome"}
-                        headerName={"PAIN JOURNAL"} 
-                        navigation={navigation} 
+                        headerName={"PAIN JOURNAL"}
+                        navigation={navigation}
                         setVisible={setShowExitModal}
                         showBottomMenu={showModal}
                         resetJournal={cancelEdits}
                     />
                     <ReviewPainJournalEntry editing={editing} journal={journal} />
-                    {editing && <ReviewJournalButton navigation={navigation} saveEdits={saveEdits} setEditing={setEditing} type={"PainJournal"}/>}
-                    <BottomModal 
+                    {editing && <ReviewJournalButton
+                        navigation={navigation}
+                        saveEdits={saveEdits}
+                        setEditing={setEditing}
+                        type={"PainJournal"}
+                        trackEvent={PAIN_JOURNAL_EVENTS.EDIT_PAIN_JOURNAL} />}
+                    <BottomModal
                         closeModal={closeModal}
                         destination={"PainJournalHome"}
                         editJournal={editJournal}
                         navigation={navigation}
                         ref={reviewPainJournalOptions}
                         requestDelete={requestDelete}
-                    />  
+                    />
                 </SafeView>
             </BottomSheetModalProvider>
-            <ReviewJournalExitModals 
+            <ReviewJournalExitModals
                 changes={changes}
                 cancelEdits={cancelEdits}
-                deleteJournal={deletePainJournal} 
-                navigation={navigation} 
-                showDeleteModal={showDeleteModal} 
+                deleteJournal={deletePainJournal}
+                navigation={navigation}
+                showDeleteModal={showDeleteModal}
                 showExitModal={showExitModal}
                 setShowDeleteModal={setShowDeleteModal}
                 setShowExitModal={setShowExitModal}

@@ -9,58 +9,94 @@ import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { JournalButton } from "../../../components/button.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { track } from '@amplitude/analytics-react-native'
+import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(false);
+    const [submitDisabled, setSubmitDisabled] = useState(true);
+    const { intensity, situation, copingStrategies, notes, intensityAfter } = painJournal;
 
-    useEffect(() => {
-        const { situation, copingStrategies } = painJournal;
-        if (currentPage === 2) {
-            return situation.length ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else if (currentPage === 3) {
-            return copingStrategies ? setSubmitDisabled(false) : setSubmitDisabled(true)
-        }   else {
-            return setSubmitDisabled(false)
-        };
-    }, [painJournal, currentPage]);
+    const pages = [
+      {
+       page: <Intensity />,
+       trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_TODAY,
+       trackSkipEvent: null,
+       submitCondition: intensity
+      },
+      {
+       page: <Situation />,
+       trackEvent: PAIN_JOURNAL_EVENTS.PAIN_JOURNAL_DETAILS,
+       trackSkipEvent: null,
+       submitCondition: situation
+      },
+      {
+       page: <CopingStrategies />,
+       trackEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES,
+       trackSkipEvent: PAIN_JOURNAL_EVENTS.COPING_STRATEGIES_SKIP,
+       submitCondition: copingStrategies.length > 0
+      },
+      {
+       page: <Notes />,
+       trackEvent: PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT,
+       trackSkipEvent: PAIN_JOURNAL_EVENTS.ADDITIONAL_TEXT_SKIP,
+       submitCondition: notes
+      },
+      {
+       page: <IntensityAfter />,
+       trackEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE,
+       trackSkipEvent: PAIN_JOURNAL_EVENTS.LOG_PAIN_AFTER_EPISODE_SKIP,
+       submitCondition: intensityAfter
+      }
+     ]
+
+     const handleNextPage = () => {
+       track(pages[currentPage].trackEvent)
+       nextPage()
+     }
+
+     const handleSkipQuestion = () => {
+       track(pages[currentPage].trackSkipEvent);
+       nextPage();
+     };
+
+     const handleCompletePainJournal = () => {
+       completePainJournal(),
+         navigation.navigate("JournalCreated", {
+           type: "PainJournal",
+         });
+     };
+
+     useEffect(() => {
+        pages[currentPage].submitCondition 
+            ? setSubmitDisabled(false)
+            : setSubmitDisabled(true)      
+     }, [pages])
+
+      
 
     return(
         <>
             <QuestionSection>
-                {currentPage === 1 && <Intensity />}
-                {currentPage === 2 && <Situation />}
-                {currentPage === 3 && <CopingStrategies />}
-                {currentPage === 4 && <Notes />}
-                {currentPage === 5 && <IntensityAfter />}
+                {pages[currentPage].page}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
                     disabled={submitDisabled} 
                     title={"Next"} 
                     onPress={() => {
-                        {   currentPage === 5 ? 
-                            (
-                                completePainJournal(),
-                                navigation.navigate("JournalCreated", { type: "PainJournal" })
-                            )
-                            :
-                            nextPage()
+                        {   currentPage === 4 ? 
+                            (track(pages[currentPage].trackEvent), handleCompletePainJournal())
+                            : handleNextPage()
                         }
                     }} 
                 />
                 {currentPage > 2 && 
                     <SkipQuestion 
                         onPress={() => {
-                            {   currentPage === 5 ? 
-                                (
-                                    completePainJournal(),
-                                    navigation.navigate("JournalCreated", {
-                                        type: "PainJournal"
-                                    })
-                                )
-                                :
-                                nextPage()
+                            {   currentPage === 4 ? 
+                                (track(pages[currentPage].trackSkipEvent), handleCompletePainJournal())
+                                : handleSkipQuestion();
                             }
                         }} 
                     />}

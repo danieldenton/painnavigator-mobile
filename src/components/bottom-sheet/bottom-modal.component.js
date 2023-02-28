@@ -4,7 +4,7 @@ import { BottomSheetBackground } from "./background.component";
 import { ReviewJournalModal } from "../review-journal-modal.component";
 
 export const BottomModal = forwardRef((props, ref) => {
-    const { closeModal, destination, editJournal, navigation, requestDelete } = props;
+    const { closeModal, destination, editJournal, navigation, requestDelete, trackEvent } = props;
 
     const renderBackdrop = useCallback(
         props => (
@@ -31,6 +31,7 @@ export const BottomModal = forwardRef((props, ref) => {
                 closeModal={closeModal}
                 destination={destination}
                 editJournal={editJournal} 
+                trackEvent={trackEvent}
                 navigation={navigation}
                 requestDelete={requestDelete}
             />

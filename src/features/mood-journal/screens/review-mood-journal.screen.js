@@ -8,6 +8,7 @@ import { Provider } from 'react-native-paper';
 import { SafeView } from "../../../components/safe-area.component";
 import { BottomModal } from "../../../components/bottom-sheet/bottom-modal.component";
 import { ReviewJournalExitModals } from "../../../components/journals/exit-modals.component";
+import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewMoodJournalScreen = ({ route, navigation }) => {
     const { journal } = route.params;
@@ -49,7 +50,14 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                         resetJournal={cancelEdits}
                     />
                     <ReviewMoodJournalEntry editing={editing} journal={journal} />
-                    {editing && <ReviewJournalButton navigation={navigation} saveEdits={saveEdits} setEditing={setEditing} type={"MoodJournal"} />}
+                    {editing && 
+                    <ReviewJournalButton 
+                        navigation={navigation} 
+                        saveEdits={saveEdits} 
+                        setEditing={setEditing} 
+                        type={"MoodJournal"}
+                        trackEvent={MOOD_JOURNAL_EVENTS.EDIT_MOOD_JOURNAL}
+                     />}
                     <BottomModal 
                         closeModal={closeModal}
                         destination={"MoodJournalHome"}

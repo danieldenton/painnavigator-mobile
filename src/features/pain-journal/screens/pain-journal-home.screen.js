@@ -11,6 +11,7 @@ import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
+import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 const HelpText = styled.Text`
     font-family: Inter_300Light;
@@ -21,7 +22,7 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
-    const { painJournals, painGraphData } = useContext(PainJournalContext);
+    const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
     const painJournalElements = painJournals?.map((journal) => {
@@ -31,6 +32,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
                 destination={"ReviewPainJournal"}
                 journal={journal}
                 key={journal.id}
+                trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
             />
         );
     });
@@ -55,6 +57,8 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
                 title={"Add New Entry"} 
                 destination={"NewPainJournal"} 
                 navigation={navigation} 
+                trackEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
+                setCurrentPage={setCurrentPage}
             />
             {painJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />}
             <Scroll style={{ marginBottom: 24 }}>

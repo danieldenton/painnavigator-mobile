@@ -8,9 +8,26 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component"; 
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../../amplitude-events";
 
 export const ProfileSetupScreen = ({ navigation }) => {
     const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
+
+    pages = [
+        {
+            page: <AvgPainPreStart />,
+            trackEvent: ONBOARD_EVENTS.BASELINE_PAIN_SCALE
+        },
+        {
+            page: <Commitment />,
+            trackEvent: ONBOARD_EVENTS.BASELINE_COMMITTED_TO_PROGRAM
+        },
+        {
+            page: <ProgramPaceGoal />,
+            trackEvent: ONBOARD_EVENTS.BASELINE_PACE_FOR_PROGRAM
+        }
+    ]
 
     return(
         <SafeView>
@@ -18,15 +35,16 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 destination={"Onboard"} 
                 navigation={navigation} 
                 screen={"Sign Up"} 
-                previousPage={onboardStep >  1 ? previousOnboardingStep : null} 
+                previousPage={onboardStep >  0 ? previousOnboardingStep : null} 
             />
-            {onboardStep === 1 && <AvgPainPreStart /> }
-            {onboardStep === 2 && <Commitment />}
-            {onboardStep === 3 && <ProgramPaceGoal />}
+            {pages[onboardStep].page}
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
-                    onPress={() => {onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()}} 
+                    onPress={() => {
+                        track(pages[onboardStep].trackEvent)
+                        onboardStep === 2 ? navigation.navigate("Register") : nextOnboardingStep()
+                    }} 
                 />
                 <ProgressDots progress={onboardStep} total={3} />
             </ButtonSection>

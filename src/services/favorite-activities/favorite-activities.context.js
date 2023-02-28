@@ -6,7 +6,7 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const FavoriteActivitiesContext = createContext();
 
 export const FavoriteActivitiesContextProvider = ({ children }) => {
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
     const [selectedActivities, setSelectedActivities] = useState([]);
     const [favoriteActivities, setFavoriteActivities] = useState([]);
     const [additionalActivities, setAdditionalActivities] = useState([

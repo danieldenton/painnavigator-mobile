@@ -3,6 +3,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, postUser } from "./authentication.service";
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 export const AuthenticationContext = createContext();
 
@@ -12,7 +14,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [onboardStep, setOnboardStep] = useState(1);
+    const [onboardStep, setOnboardStep] = useState(0);
     const [onboardingData, setOnboardingData] = useState({
         first_name: "", 
         last_name: "", 
@@ -96,8 +98,10 @@ export const AuthenticationContextProvider = ({ children }) => {
     };
 
     const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage + 1 ) });
-    };
+        setOnboardStep((prevPage) => {
+          return prevPage + 1;
+        });
+      };
 
     const previousOnboardingStep = () => {
         setOnboardStep((prevPage) => { return ( prevPage - 1 ) });

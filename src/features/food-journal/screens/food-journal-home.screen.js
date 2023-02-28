@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { TouchableOpacity } from "react-native";
 import { FoodGraphic } from "../../../graphics";
@@ -9,13 +9,16 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
-import { time_zoned_todays_date, formatDate } from "../../../infrastructure/helpers";
+import { timeZonedTodaysDate, formatDate } from "../../../infrastructure/helpers";
+import { track } from "@amplitude/analytics-react-native";
+import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
+
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
     const { foodJournals } = useContext(FoodJournalContext);
     const last_food_journal_date = formatDate(foodJournals[0]?.date_time_value);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
-    
+
     const foodJournalElements = foodJournals?.map((journal) => {
         return (
             <JournalTile 
@@ -23,9 +26,17 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 destination={"ReviewFoodJournal"}
                 journal={journal}
                 key={journal.id}
+                trackEvent= {FOOD_JOURNAL_EVENTS.VEIW_PREVIOUS_FOOD_JOURNAL}
             />
         );
     });
+
+    const handleTodaysFoodJournal = () => {
+        timeZonedTodaysDate === formatDate(foodJournalElements[0].date_time_value) ?
+        (track(FOOD_JOURNAL_EVENTS.VEIW_PREVIOUS_FOOD_JOURNAL), navigation.navigate("ReviewFoodJournal", foodJournals[0]))
+        : (track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL), 
+        navigation.navigate("ReviewFoodJournal", { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }))   
+     }
 
     return(
         <SafeView>
@@ -34,11 +45,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 <FoodGraphic />
             </GraphicWrapper>
             <TouchableOpacity 
-                onPress={() => navigation.navigate("ReviewFoodJournal", 
-                    { 
-                        journal: last_food_journal_date === time_zoned_todays_date && foodJournals[0] 
-                    }
-                )}
+                onPress={() => handleTodaysFoodJournal()}
             > 
                 <NewJournalEntry title={"Today's Food Journal"} />
             </TouchableOpacity>
