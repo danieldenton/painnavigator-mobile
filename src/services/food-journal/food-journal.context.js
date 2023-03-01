@@ -8,7 +8,7 @@ export const FoodJournalContext = createContext();
 
 export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState([]);
-    const [meal, setMeal] = useState({});
+    const [meal, setMeal] = useState("");
     const [foodJournal, setFoodJournal] = useState({ 
         food: "", 
         feelingBefore: "", 
