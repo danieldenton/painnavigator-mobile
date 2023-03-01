@@ -2,18 +2,21 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getFoodJournals, patchFoodJournal, postFoodJournal } from "./food-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const FoodJournalContext = createContext();
 
 export const FoodJournalContextProvider = ({ children }) => {
     const [foodJournals, setFoodJournals] = useState([]);
-    const [meal, setMeal] = useState("");
+    const [meal, setMeal] = useState({});
     const [foodJournal, setFoodJournal] = useState({ 
         food: "", 
         feelingBefore: "", 
         feelingAfter: "" 
     });
     const [journaledToday, setJournaledToday] = useState(false);
+    const [trackLogMealEvent, setTrackLogMealEvent] = useState("")
+    const [trackExitEvent, setTrackExitEvent] = useState("")
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
@@ -84,6 +87,22 @@ export const FoodJournalContextProvider = ({ children }) => {
             console.log("error loading food journals", e);
         }
     };
+
+    useEffect(() => {
+        if (meal === "Breakfast") {
+          setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL)
+          setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_BREAKFAST);
+        } else if (meal === "Lunch") {
+          setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL)
+          setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_LUNCH);
+        } else if (meal === "Dinner") {
+          setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL) 
+          setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_DINNER);
+        } else if (meal === "Snacks") {
+          setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL)
+          setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_SNACKS);
+        }
+      }, [meal]);
     
     return (
         <FoodJournalContext.Provider
@@ -96,6 +115,8 @@ export const FoodJournalContextProvider = ({ children }) => {
                 journaledToday,
                 loadFoodJournals,
                 meal,
+                trackLogMealEvent,
+                trackExitEvent,
                 resetFoodJournal,
                 setFoodJournal,
                 setFoodJournals,

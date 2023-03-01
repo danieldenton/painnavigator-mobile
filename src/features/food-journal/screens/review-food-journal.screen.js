@@ -4,22 +4,47 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { NewFoodJournalEntry } from "../components/new-food-journal-entry.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
+import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewFoodJournalScreen = ({ route, navigation }) => {
     const { journal } = route.params;
 
     const meals = [
-        { meal: "Breakfast", entry: journal ? journal.breakfast : "null", id: journal.id},
-        { meal: "Lunch", entry: journal ? journal.lunch : "null", id: journal.id},
-        { meal: "Dinner", entry: journal ? journal.dinner : "null", id: journal.id },
-        { meal: "Snacks", entry: journal ? journal.snacks : "null", id: journal.id },
+        { 
+        meal: "Breakfast", 
+        trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_BREAKFAST, 
+        trackEvent: FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL, 
+        entry: journal ? journal.breakfast : "null", 
+        id: journal.id
+        },
+        { 
+        meal: "Lunch", 
+        trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_LUNCH, 
+        trackEvent: FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL, 
+        entry: journal ? journal.lunch : "null", 
+        id: journal.id
+        },
+        { 
+        meal: "Dinner", 
+        trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_DINNER, 
+        trackEvent: FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL, 
+        entry: journal ? journal.dinner : "null", 
+        id: journal.id 
+        },
+        { 
+        meal: "Snacks", 
+        trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_SNACKS,
+        trackEvent: FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL,
+        entry: journal ? journal.snacks : "null", 
+        id: journal.id 
+        },
     ];
 
     const foodJournalEntryOptions = meals.map((meal, index) => 
         String(meal.entry) !== "null" ? ( 
             <CompletedEntryCard meal={meal} key={index} navigation={navigation} /> 
         ) : (
-            <NewFoodJournalEntry meal={meal.meal} key={index} navigation={navigation} journalId={journal.id} />
+            <NewFoodJournalEntry meal={meal.meal} trackViewMealEvent={meal.trackViewMealEvent} trackEvent={meal.trackEvent} key={index} navigation={navigation} journalId={journal.id} />
         )
     );
 
