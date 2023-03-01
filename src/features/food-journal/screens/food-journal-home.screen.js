@@ -31,12 +31,10 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
         );
     });
 
-    // const handleTodaysFoodJournal = () => {
-    //     timeZonedTodaysDate === formatDate(foodJournalElements[0].date_time_value) ?
-    //     (track(FOOD_JOURNAL_EVENTS.VEIW_PREVIOUS_FOOD_JOURNAL), navigation.navigate("ReviewFoodJournal", foodJournals[0]))
-    //     : (track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL), 
-    //     navigation.navigate("ReviewFoodJournal", { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }))   
-    //  }
+    const handleTodaysFoodJournal = () => {
+        (track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL), 
+        navigation.navigate("ReviewFoodJournal", { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }))   
+     }
 
     return(
         <SafeView>
@@ -45,11 +43,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 <FoodGraphic />
             </GraphicWrapper>
             <TouchableOpacity 
-                onPress={() =>  navigation.navigate("ReviewFoodJournal", {
-                    journal:
-                      last_food_journal_date === timeZonedTodaysDate &&
-                      foodJournals[0].attributes,
-                  })}
+                onPress={() =>  handleTodaysFoodJournal()}
             > 
                 <NewJournalEntry title={"Today's Food Journal"} />
             </TouchableOpacity>
