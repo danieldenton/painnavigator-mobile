@@ -13,28 +13,24 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         { 
         meal: "Breakfast", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_BREAKFAST, 
-        trackEvent: FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL, 
         entry: journal ? journal.breakfast : "null", 
         id: journal.id
         },
         { 
         meal: "Lunch", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_LUNCH, 
-        trackEvent: FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL, 
         entry: journal ? journal.lunch : "null", 
         id: journal.id
         },
         { 
         meal: "Dinner", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_DINNER, 
-        trackEvent: FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL, 
         entry: journal ? journal.dinner : "null", 
         id: journal.id 
         },
         { 
         meal: "Snacks", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_SNACKS,
-        trackEvent: FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL,
         entry: journal ? journal.snacks : "null", 
         id: journal.id 
         },

@@ -32,8 +32,13 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
     });
 
     const handleTodaysFoodJournal = () => {
-        (track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL), 
-        navigation.navigate("ReviewFoodJournal", { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }))   
+        track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL)
+        foodJournals[0]?.last_food_journal_date === timeZonedTodaysDate ?
+        navigation.navigate("ReviewFoodJournal", { journal: foodJournals[0] })
+        :
+        navigation.navigate("ReviewFoodJournal")  
+
+        // { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }
      }
 
     return(
