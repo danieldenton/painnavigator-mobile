@@ -33,12 +33,10 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
 
     const handleTodaysFoodJournal = () => {
         track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL)
-        foodJournals[0]?.last_food_journal_date === timeZonedTodaysDate ?
-        navigation.navigate("ReviewFoodJournal", { journal: foodJournals[0] })
+        last_food_journal_date === timeZonedTodaysDate ?
+        navigation.navigate("ReviewFoodJournal", { journal: foodJournals[0]})  
         :
-        navigation.navigate("ReviewFoodJournal")  
-
-        // { journal: last_food_journal_date === timeZonedTodaysDate && foodJournals[0] }
+        navigation.navigate("ReviewFoodJournal")
      }
 
     return(
@@ -48,7 +46,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
                 <FoodGraphic />
             </GraphicWrapper>
             <TouchableOpacity 
-                onPress={() =>  handleTodaysFoodJournal()}
+                onPress={() => handleTodaysFoodJournal()}
             > 
                 <NewJournalEntry title={"Today's Food Journal"} />
             </TouchableOpacity>

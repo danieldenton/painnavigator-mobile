@@ -14,7 +14,7 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         meal: "Breakfast", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_BREAKFAST, 
         entry: journal ? journal.breakfast : "null", 
-        id: journal.id
+        // id: journal.id
         },
         { 
         meal: "Lunch", 
@@ -31,6 +31,7 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         { 
         meal: "Snacks", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_SNACKS,
+
         entry: journal ? journal.snacks : "null", 
         id: journal.id 
         },
