@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
@@ -14,7 +14,6 @@ import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
     const { feeling, situation, primaryThought, cognitiveDistortions } = moodJournal;
 
     pages = [
@@ -65,12 +64,6 @@ export const NewMoodJournalEntry = ({ navigation }) => {
         completeMoodJournal();
         navigation.navigate("JournalCreated", { type: "MoodJournal" })
       };
-
-    useEffect(() => {
-        pages[currentPage].submitCondition 
-        ? setSubmitDisabled(false)
-        : setSubmitDisabled(true)
-      }, [pages])
     
     return (
         <>
@@ -79,7 +72,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
-                    disabled={submitDisabled} 
+                    disabled={pages[currentPage].submitCondition ? false : true} 
                     title={"Next"} 
                     onPress={() => {
                         {currentPage === 4 ?  
