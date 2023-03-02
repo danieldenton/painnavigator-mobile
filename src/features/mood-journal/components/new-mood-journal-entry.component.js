@@ -27,7 +27,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             page: <Intensity />,
             trackEvent: MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING,
             trackSkipEvent: null,
-            submitCondition: null
+            submitCondition: currentPage === 1
         },
         {
             page: <Situation />,
@@ -45,7 +45,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             page: <CognitiveDistortions />,
             trackEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS,
             trackSkipEvent: MOOD_JOURNAL_EVENTS.COGNITIVE_DISTORTIONS_SKIP,
-            submitCondition: cognitiveDistortions
+            submitCondition: cognitiveDistortions.length > 0
         },
     ]
 
