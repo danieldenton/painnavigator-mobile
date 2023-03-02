@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -14,7 +14,6 @@ import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const NewProfile = ({ navigation }) => {
     const { completeProfile, profileStep, nextProfileStep, profileData } = useContext(ProfileContext);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
     const { phone, dob, starting_pain_duration, gender, activity_level } = profileData
 
     const steps = [
@@ -65,12 +64,6 @@ export const NewProfile = ({ navigation }) => {
         navigation.navigate("JournalCreated", { type: "Profile" })
     }
 
-    useEffect(() => {
-        steps[profileStep].submitCondition
-        ? setSubmitDisabled(false)
-        : setSubmitDisabled(true)
-      }, [steps])
-
     return (
         <>
             <QuestionSection>
@@ -79,7 +72,7 @@ export const NewProfile = ({ navigation }) => {
             <ButtonSection>
                 <JournalButton
                     title={"Next"}
-                    disabled={submitDisabled}
+                    disabled={steps[profileStep].submitCondition ? false : true}
                     onPress={() => {
                         { profileStep === 4 ?
                             (track(steps[profileStep].trackEvent), handleCompleteProfile()) : handleNextProfileStep()

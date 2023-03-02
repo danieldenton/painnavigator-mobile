@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
@@ -7,30 +7,9 @@ import { track } from '@amplitude/analytics-react-native'
 import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const FoodJournalEntry = ({ journalId, navigation }) => {
-    const { updateFoodJournal, changeEntry, completeFoodJournal, meal, foodJournal } = useContext(FoodJournalContext);
+    const { updateFoodJournal, changeEntry, completeFoodJournal, meal, trackLogMealEvent, foodJournal } = useContext(FoodJournalContext);
     const { food, feelingBefore, feelingAfter } = foodJournal;
-    const [submitDisabled, setSubmitDisabled] = useState(true);
 
-    useEffect(() => {
-        if ( food.length > 0 & feelingBefore.length > 0 & feelingAfter.length > 0 ) {
-            setSubmitDisabled(false);
-        }   else {
-            setSubmitDisabled(true);
-        };
-    }, [foodJournal]);
-
-    useEffect(() => {
-        let trackEvent
-        if (meal === "Breakfast") {
-          trackEvent = FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL
-        } else if (meal === "Lunch") {
-          trackEvent = FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL
-        } else if (meal === "Dinner") {
-          trackEvent = FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL
-        } else if (meal === "Snacks") {
-          trackEvent = FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL
-        } 
-      }, [meal])
 
     const handleUpdateFoodJournal = () => {
         track(FOOD_JOURNAL_EVENTS.EDIT_PREVIOUS_FOOD_JOURNAL)
@@ -39,7 +18,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
     }
 
     const handleCompleteFoodJournal = () => {
-        track(trackEvent)
+        track(trackLogMealEvent)
         completeFoodJournal()
         navigation.navigate("JournalCreated", { type: "FoodJournal" })
     }
@@ -55,7 +34,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
                 <JournalButton 
                     title={"Log Meal"}
                     onPress={() => {journalId ? handleUpdateFoodJournal() : handleCompleteFoodJournal()}} 
-                    disabled={submitDisabled}
+                    disabled={food.length > 0 & feelingBefore.length > 0 & feelingAfter.length > 0 ? false : true}
                 />
             </ButtonSection>
         </>        

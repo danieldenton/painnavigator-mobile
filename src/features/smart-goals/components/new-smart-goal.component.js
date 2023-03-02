@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext} from "react";
 import { ButtonSection, QuestionSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -10,8 +10,7 @@ import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const NewSmartGoal = ({ navigation }) => {
     const { createSmartGoal, currentPage, smartGoal, nextPage } = useContext(SmartGoalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
-    const { goal, steps } = smartGoal;
+    const { goal, steps, reward } = smartGoal;
 
     pages = [
         {
@@ -22,7 +21,7 @@ export const NewSmartGoal = ({ navigation }) => {
         {
             page: <Steps />,
             trackEvent: SMART_GOAL_EVENTS.ENTER_SMART_GOAL_DETAILS,
-            submitCondition: steps
+            submitCondition: steps && reward
         }
     ]
 
@@ -36,12 +35,6 @@ export const NewSmartGoal = ({ navigation }) => {
         createSmartGoal()
         navigation.navigate("SmartGoalCreated")
     }
-
-    useEffect(() => {
-        pages[currentPage].submitCondition
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true) 
-    }, [pages]);
     
     return (
         <>
@@ -50,7 +43,7 @@ export const NewSmartGoal = ({ navigation }) => {
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
-                    disabled={submitDisabled} 
+                    disabled={pages[currentPage].submitCondition ? false : true} 
                     title={"Next"} 
                     onPress={() => {
                         {currentPage === 1 ?  handleCreateSmartGoal() : handleNextPage()}
