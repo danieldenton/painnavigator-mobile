@@ -19,16 +19,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
     setProviderId,
   } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
-  const [submitDisabled, setSubmitDisabled] = useState(true);
-
-  useEffect(() => {
-    if (referralCode.length === 6) {
-      setSubmitDisabled(false);
-    } else {
-      setSubmitDisabled(true);
-    }
-  }, [referralCode]);
-
+  
   return (
     <SafeView style={{ flex: 1 }}>
       <NavigationBarLeft
@@ -71,7 +62,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
         <View style={{ marginBottom: 32 }}>
           {error && <ErrorMessage error={error} />}
           <JournalButton
-            disabled={submitDisabled}
+            disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
               checkReferralCode(
