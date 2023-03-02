@@ -7,6 +7,13 @@ import { Scroll } from "../../../components/scroll.component";
 import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewFoodJournalScreen = ({ route, navigation }) => {
+
+    // const journalCheck = (route) => {
+    //     if (route) {
+    //         const { journal } = route.params;
+    //         return { journal }
+    //     }    
+    // }
     const { journal } = route.params;
 
     const meals = [
@@ -14,7 +21,7 @@ export const ReviewFoodJournalScreen = ({ route, navigation }) => {
         meal: "Breakfast", 
         trackViewMealEvent: FOOD_JOURNAL_EVENTS.VIEW_BREAKFAST, 
         entry: journal ? journal.breakfast : "null", 
-        // id: journal.id
+        id: journal.id
         },
         { 
         meal: "Lunch", 
