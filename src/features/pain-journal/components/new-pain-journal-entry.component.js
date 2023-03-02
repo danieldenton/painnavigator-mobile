@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
 import { Intensity } from "./intensity.component";
 import { Situation } from "./situation.component";
@@ -14,7 +14,6 @@ import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewPainJournalEntry = ({ navigation }) => {
     const { completePainJournal, currentPage, painJournal, nextPage } = useContext(PainJournalContext);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
     const { intensity, situation, copingStrategies, notes, intensityAfter } = painJournal;
 
     const pages = [
@@ -66,13 +65,6 @@ export const NewPainJournalEntry = ({ navigation }) => {
            type: "PainJournal",
          });
      };
-
-     useEffect(() => {
-        pages[currentPage].submitCondition 
-            ? setSubmitDisabled(false)
-            : setSubmitDisabled(true)      
-     }, [pages])
-
       
 
     return(
@@ -82,7 +74,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 
-                    disabled={submitDisabled} 
+                    disabled={pages[currentPage].submitCondition ? false : true} 
                     title={"Next"} 
                     onPress={() => {
                         {   currentPage === 4 ? 

@@ -14,7 +14,7 @@ import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewMoodJournalEntry = ({ navigation }) => {
     const { completeMoodJournal, currentPage, moodJournal, nextPage } = useContext(MoodJournalContext);
-    const { feeling, situation, primaryThought, cognitiveDistortions } = moodJournal;
+    const { feeling, intensity, situation, primaryThought, cognitiveDistortions } = moodJournal;
 
     pages = [
         {
@@ -27,7 +27,7 @@ export const NewMoodJournalEntry = ({ navigation }) => {
             page: <Intensity />,
             trackEvent: MOOD_JOURNAL_EVENTS.HOW_INTENSE_IS_THIS_FEELING,
             trackSkipEvent: null,
-            submitCondition: currentPage === 1
+            submitCondition: intensity
         },
         {
             page: <Situation />,
