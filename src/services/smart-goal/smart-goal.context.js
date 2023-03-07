@@ -73,14 +73,20 @@ export const SmartGoalContextProvider = ({ children }) => {
     };
 
     const editGoalUpdate = (change, idx) => {
-        console.log(reviewGoal)
+        console.log(idx)
         setReviewGoal(prevGoal => (
             {
                 ...prevGoal,
-                [goal_updates]: goal_updates[idx] = change
+                goal_updates: [...prevGoal.goal_updates, prevGoal.goal_updates[idx].goal_update = change]
             }
         ));
     };
+
+    const saveEdits = () => {
+        setActiveGoal(reviewGoal);
+        setChanges("");
+    };
+
     
     const finishGoal = () => {
         setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
@@ -102,11 +108,6 @@ export const SmartGoalContextProvider = ({ children }) => {
             reward: ""
         });
         setCurrentPage(1);
-    };
-
-    const saveEdits = () => {
-        setActiveGoal(reviewGoal);
-        setChanges("");
     };
 
     const saveActiveGoal = async (value) => {
