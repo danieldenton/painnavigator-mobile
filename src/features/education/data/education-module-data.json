@@ -665,6 +665,62 @@
         {
             "id": 60,
             "type": "video",
+            "name": "Pain Procedures 1",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1670010148/For%20Mobile%20App/Education/Pain%20Procedures%201.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": true,
+            "condensed_program": false,
+            "summary": "Understand the role of minimally invasive procedures, how to get the most benefit from procedures and points to discuss with your healthcare team."
+        },
+        {
+            "id": 61,
+            "type": "text",
+            "name": "Pain Procedures 2",
+            "source": "",
+            "length": 2,
+            "post_video_destination": null,
+            "skippable": true,
+            "condensed_program": false,
+            "summary": null,
+            "steps": ["Below are common procedures for chronic low back pain. As always, discuss with your pain management team to learn more. Research shows that people experience longer pain relief if they are done in conjunction with a structured exercise program, so keep up with your PainNavigator movements!", "Trigger point injections: used for muscle pain, shown to cause a significant improvement in range of motion and function, generally safe and carry low risk of complications, the most common side effect is soreness in the area, which can resolve in 1-3 days - rest and ice can be helpful. Pain relief typically begins around 1-3 days after the procedure and average length of pain relief is 1 month.", "Lumbar epidural steroid injection (LESI): deposits an anti-inflammatory steroid into the space surrounding the spinal nerves in your lower back to reduce inflammation around an irritated spinal nerve, usually takes 3-5 days to start having an effect and can provide pain relief for 3 or more months.", "Lumbar epidural steroid injection (LESI): deposits an anti-inflammatory steroid into the space surrounding the spinal nerves in your lower back to reduce inflammation around an irritated spinal nerve, usually takes 3-5 days to start having an effect and can provide pain relief for 3 or more months.", "Sacroiliac joint injections: injecting steroid and local anesthetic into and around the sacroiliac joint to reduce inflammation caused by arthritis mostly used to determine if you are an appropriate candidate for radiofrequency lesioning. No benefit from the injection may indicate that the sacroiliac joint(s) is/are not the source of your pain. Significant but short-term pain relief can help diagnose sacroiliac-related pain. Pain relief for more than 3 months is considered a successful therapeutic response.", "Radiofrequency lesioning/ablation: utilizes radiofrequency heat waves to inactivate the nerves sensing arthritis pain. Prior to this procedure, you will have undergone a diagnostic injection of the facet joints or sacroiliac joint and experienced significant short-term pain relief. Studies have shown that lumbar radiofrequency lesioning provided about 60% of recipients with more than 50% pain relief for 1 year."]
+        },
+        {
+            "id": 62,
+            "type": "video",
+            "name": "Pain Procedures 3",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1670010165/For%20Mobile%20App/Education/Pain%20Procedures%203.mp4",
+            "length": 5,
+            "post_video_destination": null,
+            "skippable": true,
+            "condensed_program": false,
+            "summary": "Learn the steps you can take to approach your upcoming pain management procedure to get the best outcomes."
+        },
+        {
+            "id": 63,
+            "type": "video",
+            "name": "Medical Approach to Chronic Pain: Surgery",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1674587565/For%20Mobile%20App/Education/Medical%20Approach%20to%20Chronic%20Pain:%20Surgery.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": true,
+            "condensed_program": false,
+            "summary": "Learn reasonable post-surgical expectations for your chronic pain both short-term and long-term."
+        },
+        {
+            "id": 64,
+            "type": "video",
+            "name": "Spine Surgery Recovery",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1674587577/For%20Mobile%20App/Education/Spine%20Surgery%20Recovery.mp4",
+            "length": 4,
+            "post_video_destination": null,
+            "skippable": true,
+            "condensed_program": false,
+            "summary": "Overview of the post-surgical recovery process and expectations of each phase."
+        },
+        {
+            "id": 65,
+            "type": "video",
             "name": "SMART Goal Renewal 2",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648569079/For%20Mobile%20App/Education/SMART%20Goal%20Renewal%202.mp4",
             "length": 3,
@@ -674,7 +730,7 @@
             "summary": "Address areas where pain controls how you spend your time. Establish a third PainNaivgator SMART Goal."
         },
         {
-            "id": 61,
+            "id": 66,
             "type": "video",
             "name": "My PainNavigator",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648568989/For%20Mobile%20App/Education/My%20PainNavigator.mp4",
@@ -685,7 +741,7 @@
             "summary": "PainNavigator wrap up! Learn how to apply the skills learned in PainNavigator into your daily routine."
         },
         {
-            "id": 62,
+            "id": 67,
             "type": "text",
             "name": "My PainNavigator Summary",
             "source": "",

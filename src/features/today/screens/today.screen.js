@@ -36,7 +36,7 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 62;
+    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 67;
     const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress > 36;
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
     const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
