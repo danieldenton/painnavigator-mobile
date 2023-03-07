@@ -66,7 +66,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         setReviewGoal(prevGoal => (
             {
                 ...prevGoal,
-                [state]: change
+                state: change
             }
         ));
         // setChanges(change); This doesn't appear to do anything
@@ -76,15 +76,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         setReviewGoal(prevGoal => (
             {
                 ...prevGoal,
-                smart_goal_updates: prevGoal.smart_goal_updates.map(
-                    update => update.id === updateId ?
-                        {
-                            ...update,
-                            goal_update: change
-                        }
-                    :
-                        update
-                )
+                goal_updates: [...goal_updates, goal_updates[idx] = change]
             }
         ));
     };
