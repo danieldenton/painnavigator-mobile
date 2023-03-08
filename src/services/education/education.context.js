@@ -29,7 +29,7 @@ export const EducationContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: 0        
         };
-        postEducationModule(module, setLastCompletedModule, user.user.uid);
+        postEducationModule(module, setEducationProgress, user.user.uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
     };
 
