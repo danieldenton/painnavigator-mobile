@@ -69,25 +69,25 @@ export const SmartGoalContextProvider = ({ children }) => {
                 [state]: change
             }
         ));
-        setChanges(change);
+        console.log(reviewGoal)
     };
 
-    const editGoalUpdate = (change, updateId) => {
+    const editGoalUpdate = (change, idx) => {
         setReviewGoal(prevGoal => (
             {
                 ...prevGoal,
-                smart_goal_updates: prevGoal.smart_goal_updates.map(
-                    update => update.id === updateId ?
-                        {
-                            ...update,
-                            goal_update: change
-                        }
-                    :
-                        update
-                )
+                goalUpdates: prevGoal.goal_updates[idx].goal_update = change 
             }
-        ));
+            
+        ))
+        console.log(reviewGoal)
     };
+
+    const saveEdits = () => {
+        setActiveGoal(reviewGoal);
+        setChanges("");
+    };
+
     
     const finishGoal = () => {
         setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
@@ -109,11 +109,6 @@ export const SmartGoalContextProvider = ({ children }) => {
             reward: ""
         });
         setCurrentPage(1);
-    };
-
-    const saveEdits = () => {
-        setActiveGoal(reviewGoal);
-        setChanges("");
     };
 
     const saveActiveGoal = async (value) => {
