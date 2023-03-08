@@ -1,6 +1,12 @@
 # PainNavigator 1.4.8
 
-PainNavigator is a mobile app which utilizes the React-Native library and Expo for making native univeral apps that run on iOS and Android. It employs a server that uses Ruby on the Rails framework deployed on Heroku.
+PainNavigator is a mobile app which utilizes the React-Native library and Expo for making native universal apps that run on iOS and Android. It employs a server that uses Ruby on the Rails framework deployed on Heroku.
+
+What's new on v1.4.8?
+1. Expo SDK updated to 48
+2. React updated to 18
+3. Amplitude tracking re-added
+4. Minor bug fixes
 
 # What is it?
 
@@ -89,6 +95,17 @@ To add a global depency in you GitPod you should use npm
 
 After making changes in the code tests should be run. Run the command "yarn test". All tests should pass and if not a detailed report about the failures will show up in the terminal.
 
-# RESTful Routing Chart
-
 # File layout
+
+The root directory of this project contains the standard React Native files, App.js, app.json, package.json, etc. It also contans the node_modules and assets directories as well as a couple auto-generated expo directories. It is the src directory which could use a brief explanation. 
+Contained in this folder are a few utility files as well as 5 directories:
+
+1. features: This is where the screens and components rendered on the device are found. Within the directory each feature has it's own directory which includes 2-4 additional directories. The screens directory contains all screen files which render the total screen including additional components. The components directory, (not to be confused with the components directory outside of the features directory) contains the component files specifically related to this feature. The tests directory will contain all test files. Not every feature will have these as testing implementation is still in progress. And finally a data folder. This will only appear in a few features.
+
+2. components: The is where components used by multiple features will be found.
+
+3. infastructure: This directory contains a navigation directory, for all navigation, a theme directory for some repeat stylings as well as a helper function file.
+
+4. mocks: This is specifically for Mock Service Worker which mocks API calls for testing
+
+5. services: This directory contains a directory for each feature which contains 2 more directories. The context files contain all global context. The service files make all of the API calls. In some of these there are additional data files.
