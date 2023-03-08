@@ -18,16 +18,17 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
     const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
     const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
     
-    const updates = editing ? editUpdates : activeUpdates;
     
-    const updateElements = updates?.map((update, idx) => {
+    
+    const updateElements = activeUpdates?.map((update, idx) => {
         const date = formatDate(update.date_time_value);
+        let editUpdate = update.goal_update
         return (
             <GoalTextSection 
                 edit={editGoalUpdate}
                 editing={editing}
                 header={date} 
-                body={update.goal_update} 
+                body={editing ? editUpdate : update.goal_update} 
                 key={update.id} 
                 state={idx}
             />

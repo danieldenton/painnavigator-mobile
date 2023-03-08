@@ -69,17 +69,18 @@ export const SmartGoalContextProvider = ({ children }) => {
                 [state]: change
             }
         ));
-        // setChanges(change); This doesn't appear to do anything
+        console.log(reviewGoal)
     };
 
     const editGoalUpdate = (change, idx) => {
-        console.log(idx)
         setReviewGoal(prevGoal => (
             {
                 ...prevGoal,
-                goal_updates: [...prevGoal.goal_updates, prevGoal.goal_updates[idx].goal_update = change]
+                goalUpdates: prevGoal.goal_updates[idx].goal_update = change 
             }
-        ));
+            
+        ))
+        console.log(reviewGoal)
     };
 
     const saveEdits = () => {
