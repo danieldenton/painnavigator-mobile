@@ -47,9 +47,6 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
 
     useEffect(() => {
-        if (!isFocused) {
-            return;  
-        }
         getUser(
             user.user.uid,
             setUserInfo, 
