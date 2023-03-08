@@ -3,7 +3,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.4.13",
+    "version": "1.4.8",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
