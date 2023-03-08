@@ -62,10 +62,11 @@ export async function getUser(
   }
 }
 
-export async function getUserMessages(setMessages) {
+export async function getUserMessages(uid, setMessages) {
   try {
     const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
     const data = response.data.data.attributes;
+    console.log(data.conversation)
     setMessages(data.conversation)
   } catch (error) {
     console.error(error);
