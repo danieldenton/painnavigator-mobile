@@ -69,7 +69,6 @@ export const SmartGoalContextProvider = ({ children }) => {
                 [state]: change
             }
         ));
-        console.log(reviewGoal)
     };
 
     const editGoalUpdate = (change, idx) => {
@@ -77,15 +76,12 @@ export const SmartGoalContextProvider = ({ children }) => {
             {
                 ...prevGoal,
                 goalUpdates: prevGoal.goal_updates[idx].goal_update = change 
-            }
-            
+            }   
         ))
-        console.log(reviewGoal)
     };
 
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
-        setChanges("");
     };
 
     
