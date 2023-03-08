@@ -16,11 +16,11 @@ import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
-import { getUser } from "../../../services/authentication/authentication.service";
+import { getUser, getUserMessages } from "../../../services/authentication/authentication.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
@@ -49,8 +49,7 @@ export const TodayScreen = ({ navigation }) => {
     useEffect(() => {
         getUser(
             user.user.uid,
-            setUserInfo, 
-            setMessages, 
+            setUserInfo,  
             setEducationProgress, 
             setProfileComplete, 
             setMovementProgress,
@@ -64,11 +63,10 @@ export const TodayScreen = ({ navigation }) => {
         if (!isFocused) {
             return;
         }
-
+        getUserMessages(setMessages)
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);
-
         if(timeNumber < 12) {
             setGreeting("Good Morning")
         } else if(timeNumber > 11 & timeNumber < 17) {

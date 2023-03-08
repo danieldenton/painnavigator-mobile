@@ -39,8 +39,7 @@ export async function postUser(uid, onboardingData) {
 
 export async function getUser(
   uid, 
-  setUserInfo, 
-  setMessages, 
+  setUserInfo,  
   setEducationProgress, 
   setProfileComplete, 
   setMovementProgress,
@@ -52,13 +51,22 @@ export async function getUser(
     const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
     const data = response.data.data.attributes;
     setUserInfo(data.profile)
-    setMessages(data.conversation)
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile_status === 1)
     setPainJournals(data.pain_journals.reverse())
     setMoodJournals(data.mood_journals.reverse())
     setFoodJournals(data.food_journals.reverse())
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getUserMessages(setMessages) {
+  try {
+    const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
+    const data = response.data.data.attributes;
+    setMessages(data.conversation)
   } catch (error) {
     console.error(error);
   }
