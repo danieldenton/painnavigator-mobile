@@ -9,7 +9,7 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
-import format from 'date-fns/format';
+import { formatDate } from '../../../infrastructure/helpers'
 import { track } from "@amplitude/analytics-react-native";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
@@ -18,18 +18,19 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
     const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
     const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
     
-    const updates = editing ? editUpdates : activeUpdates;
     
-    const updateElements = updates?.map((update) => {
-        const date = format(new Date(update.created_at), 'M/dd/yyyy');
+    
+    const updateElements = activeUpdates?.map((update, idx) => {
+        const date = formatDate(update.date_time_value);
+        let editUpdate = update.goal_update
         return (
             <GoalTextSection 
                 edit={editGoalUpdate}
                 editing={editing}
                 header={date} 
-                body={update.goal_update} 
+                body={editing ? editUpdate : update.goal_update} 
                 key={update.id} 
-                state={update.id}
+                state={idx}
             />
         );
     });
