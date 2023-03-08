@@ -77,16 +77,6 @@ export const PainJournalContextProvider = ({ children }) => {
         track(PAIN_JOURNAL_EVENTS.DELETE_PAIN_JOURNAL);
     };
 
-    const editJournal = (change, state) => {
-        setReviewJournal(prevJournal => (
-            {
-                ...prevJournal,
-                [state]: change
-            }
-        ));
-        setChanges(change);
-    };
-
     const findCopingStrategies = () => {
         const selectedCopingStrategies = painJournal.copingStrategies;
         const options = painJournalQuestions[2].options;
@@ -116,6 +106,15 @@ export const PainJournalContextProvider = ({ children }) => {
         setCurrentPage(1);
     };
 
+    const editJournal = (change, state) => {
+        setReviewJournal(prevJournal => (
+            {
+                ...prevJournal,
+                [state]: change
+            }
+        ));
+    };
+
     const saveEdits = () => {
         const newJournals = painJournals.map(
             journal => journal.id === reviewJournal.id ?
@@ -127,8 +126,7 @@ export const PainJournalContextProvider = ({ children }) => {
                 journal
         );
         setPainJournals(newJournals);
-        updatePainJournal();
-        setChanges("");
+        patchPainJournal(reviewJournal.id, reviewJournal, setPainJournals);
         track(PAIN_JOURNAL_EVENTS.EDIT_PAIN_JOURNAL)
     };
 
@@ -152,18 +150,7 @@ export const PainJournalContextProvider = ({ children }) => {
         }
     };
 
-    const updatePainJournal = () => {
-        const updatedPainJournal = {
-            intensity: reviewJournal.intensity,
-            situation: reviewJournal.situation, 
-            feeling: reviewJournal.feeling, 
-            who_i_was_with: reviewJournal.whoIWasWith, 
-            coping_strategies: reviewJournal.copingStrategies, 
-            notes: reviewJournal.notes, 
-            intensity_after: reviewJournal.intensityAfter
-        }
-        patchPainJournal(reviewJournal.id, updatedPainJournal, setPainJournals);
-    };
+    
 
     return (
         <PainJournalContext.Provider
@@ -188,8 +175,7 @@ export const PainJournalContextProvider = ({ children }) => {
                 setPainGraphData,
                 setPainJournal,
                 setPainJournals,
-                setReviewJournal,
-                updatePainJournal
+                setReviewJournal
             }}
         >
             {children}
