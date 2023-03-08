@@ -95,7 +95,7 @@ To add a global depency in you GitPod you should use npm
 
 After making changes in the code tests should be run. Run the command "yarn test". All tests should pass and if not a detailed report about the failures will show up in the terminal.
 
-# File layout
+# Map of Directories
 
 The root directory of this project contains the standard React Native files, App.js, app.json, package.json, etc. It also contans the node_modules and assets directories as well as a couple auto-generated expo directories. It is the src directory which could use a brief explanation. 
 Contained in this folder are a few utility files as well as 5 directories:
