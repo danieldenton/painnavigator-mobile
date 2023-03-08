@@ -65,7 +65,6 @@ export const TodayScreen = ({ navigation }) => {
             return;
         }
         getUserMessages(user.user.uid, setMessages)
-        console.log(painJournals)
 
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)

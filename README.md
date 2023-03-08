@@ -12,7 +12,7 @@ PainNavigator is pain management application that provides a physical and psycho
 2. Download the Expo Go app on your phone. This app is available on iOS as well as Android. You can also run this app on the emulators provided by Xcode (iOS) or Android Studio. but it is probably best to run it on an actual device.
 3. Open a GitPod workspace. You will need an invitation to this repository as it is private. It is recommended that you work in a browser, you can however configure GitPod to work on your local code editor. 
 4. In the GitPod terminal run the command "npx expo start --tunnel" or if you are working on a locally "npx expo start"
-5. When working in the browser the terminal will tell you need to install eas-cli and then ngrok globally. Do it. It may not require eas-cli at first but to run any eas commands you will need it later. To install it type command "nom i eas-cli -g".
+5. When working in the browser the terminal will tell you need to install eas-cli and then ngrok globally. Do it. It may not require eas-cli at first but to run any eas commands you will need it later. To install it type commandnpm i eas-cli -g".
 6. Login to Expo with the PainNavigator account. You will need that password. 
 7. Scan the QR code with your camera for iOS or the Expo Go app on Android and this will run your application.
 
@@ -88,3 +88,7 @@ To add a global depency in you GitPod you should use npm
 # Testing
 
 After making changes in the code tests should be run. Run the command "yarn test". All tests should pass and if not a detailed report about the failures will show up in the terminal.
+
+# RESTful Routing Chart
+
+# File layout
