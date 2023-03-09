@@ -60,9 +60,10 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                         onPress={() => {
                             {deleteJournal ? 
                                 type === "goal" ? 
+                                    (handleTrackEvent(trackEvent),
                                     navigation.dispatch(StackActions.replace(destination, {
                                         type: type
-                                    }))
+                                    })))
                                     :
                                     (handleTrackEvent(trackEvent),
                                     navigation.navigate(destination, { type: type }))

@@ -4,7 +4,6 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { Provider } from 'react-native-paper';
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
-import { ReviewJournalButton } from "../../../components/button.component";
 import { ReviewSmartGoal } from "../components/review-smart-goal.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
@@ -85,6 +84,7 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
             <ExitModal 
                 destination={"SmartGoalDeleted"}
                 deleteJournal={deleteGoal}
+                trackEvent={SMART_GOAL_EVENTS.DELETE_SMART_GOAL}
                 navigation={navigation} 
                 setVisible={setShowDeleteModal}
                 visible={showDeleteModal}
