@@ -2,8 +2,6 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { track } from "@amplitude/analytics-react-native";
-import { SMART_GOAL_EVENTS } from "../../amplitude-events";
 
 export const SmartGoalContext = createContext();
 
@@ -57,8 +55,6 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const deleteGoal = () => {
         destroyGoal(activeGoal.id);
-        track(SMART_GOAL_EVENTS.DELETE_SMART_GOAL);
-        //setActiveGoal(null);
         setTimeout(() => {setActiveGoal(null)}, 1000);
     };
 

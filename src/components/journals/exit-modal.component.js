@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 import { StackActions } from '@react-navigation/native';
-import { track } from '@amplitude/analytics-react-native'
+import { handleTrackEvent, handleTrackExitEvent } from "../../infrastructure/helpers";
 
 const Modal = styled(PaperModal)`
     border-radius: 15px;
@@ -35,15 +35,9 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type, trackExitEvent }) => {
+export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type, trackExitEvent, trackEvent }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
-
-    const handleTrackExitEvent = () => {
-        if (trackExitEvent) {
-          track(trackExitEvent);
-        }
-      };
 
     return(
         <Portal>
@@ -66,13 +60,15 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                         onPress={() => {
                             {deleteJournal ? 
                                 type === "goal" ? 
+                                    (handleTrackEvent(trackEvent),
                                     navigation.dispatch(StackActions.replace(destination, {
                                         type: type
-                                    }))
+                                    })))
                                     :
-                                    navigation.navigate(destination, { type: type })
+                                    (handleTrackEvent(trackEvent),
+                                    navigation.navigate(destination, { type: type }))
                                 :
-                                (handleTrackExitEvent(), navigation.navigate(destination));
+                                (handleTrackExitEvent(trackExitEvent), navigation.navigate(destination));
                             }
                             {deleteJournal && setTimeout(() => {deleteJournal()}, 500);} 
                             {resetJournal && resetJournal();} 

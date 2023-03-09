@@ -2,7 +2,8 @@ import styled from "styled-components/native";
 import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 import { ButtonSection } from "./journals/journal.styles";
-import { track } from '@amplitude/analytics-react-native'
+import { handleTrackEvent } from "../infrastructure/helpers";
+import { track } from "@amplitude/analytics-react-native";
 
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.white,
@@ -41,17 +42,14 @@ export const JournalButton = ({ disabled, icon, title, onPress, fontSize }) => {
 }; 
 
 export const ReviewJournalButton = ({ saveEdits, setEditing, type, navigation, trackEvent }) => {
-    const handleTrackEvent = () => {
-        if (trackEvent) {
-          track(trackEvent);
-        }
-    }
+    
     return (
         <ButtonSection>
             <JournalButton 
                 title={"Save Changes"}
                 onPress={() => {
-                    handleTrackEvent()
+                    handleTrackEvent(trackEvent)
+                    // track("track this")
                     saveEdits(); 
                     setTimeout(() => {setEditing(false)}, 1000);
                     navigation.navigate("JournalUpdated", {
