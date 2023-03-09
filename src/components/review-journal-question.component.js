@@ -8,8 +8,7 @@ import { Next } from "../icons";
 import { genderOptions } from "../features/profile/data/gender-options.data.json";
 import { painDurationOptions } from "../features/profile/data/pain-duration-options.data.json";
 import { activityLevelOptions } from "../features/profile/data/activity-level-options.data.json";
-import { track } from "@amplitude/analytics-react-native";
-import { MY_ACTIVITIES_EVENTS } from "../amplitude-events";
+import { handleTrackEvent } from "../infrastructure/helpers";
 
 const QuestionWrapper = styled.View`
     border-top-color: hsl(218, 44%, 86%);
@@ -129,16 +128,10 @@ export const SelectQuestion = ({ changeEntry, editing, entry }) => {
 
 export const ReviewOptionButton = ({ destination, option, navigation, trackEvent }) => {
 
-    const handleTrackEvent = () => {
-        if (trackEvent) {
-            track(trackEvent);
-        }
-      };
-
     return (
         <QuestionWrapper style={{ borderTopWidth: .5 }}>
             <QuestionButtonPressable
-                onPress={() => (handleTrackEvent(), navigation.navigate(destination))}
+                onPress={() => (handleTrackEvent(trackEvent), navigation.navigate(destination))}
             >
                 <QuestionButtonText>
                     {option}
