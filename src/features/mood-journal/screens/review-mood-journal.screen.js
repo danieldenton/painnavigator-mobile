@@ -72,6 +72,7 @@ export const ReviewMoodJournalScreen = ({ route, navigation }) => {
                 changes={changes}
                 cancelEdits={cancelEdits}
                 deleteJournal={deleteMoodJournal} 
+                trackEvent={MOOD_JOURNAL_EVENTS.DELETE_MOOD_JOURNAL}
                 navigation={navigation} 
                 showDeleteModal={showDeleteModal} 
                 showExitModal={showExitModal}
