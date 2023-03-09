@@ -10,10 +10,17 @@ export function formatDate(date_time_value) {
     return date_time_value ? new Intl.DateTimeFormat('en-US').format(date_time_value) : null;
 };
 
-// export const handleTrackEvent = (trackEvent) => {
-//     if (trackEvent) {
-//         track(trackEvent)
-//     }
-// }
+export const handleTrackEvent = (trackEvent) => {
+    if (trackEvent) {
+        track(trackEvent)
+    }
+}
+
+export const handleTrackExitEvent = (trackExitEvent) => {
+    if (trackExitEvent) {
+        track(trackExitEvent)
+    }
+}
+
 
 

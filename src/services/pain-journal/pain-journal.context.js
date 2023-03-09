@@ -66,7 +66,6 @@ export const PainJournalContextProvider = ({ children }) => {
         }
         postPainJournal(user.user.uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
-        track(PAIN_JOURNAL_EVENTS.COMPLETE_PAIN_JOURNAL);
     };
 
     const deletePainJournal = () => {

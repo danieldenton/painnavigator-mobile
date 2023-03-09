@@ -6,6 +6,7 @@ export const ReviewJournalExitModals = (props) => {
         cancelEdits, 
         changes, 
         deleteJournal, 
+        trackEvent,
         navigation, 
         showExitModal, 
         showDeleteModal, 
@@ -19,6 +20,7 @@ export const ReviewJournalExitModals = (props) => {
             <ExitModal 
                 destination={"JournalDeleted"}
                 deleteJournal={deleteJournal}
+                trackEvent={trackEvent}
                 navigation={navigation} 
                 setVisible={setShowDeleteModal}
                 visible={showDeleteModal}

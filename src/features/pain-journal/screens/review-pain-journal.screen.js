@@ -70,6 +70,7 @@ export const ReviewPainJournalScreen = ({ navigation, route }) => {
                 changes={changes}
                 cancelEdits={cancelEdits}
                 deleteJournal={deletePainJournal}
+                trackEvent={PAIN_JOURNAL_EVENTS.DELETE_PAIN_JOURNAL}
                 navigation={navigation}
                 showDeleteModal={showDeleteModal}
                 showExitModal={showExitModal}

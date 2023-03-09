@@ -60,7 +60,8 @@ export const NewPainJournalEntry = ({ navigation }) => {
      };
 
      const handleCompletePainJournal = () => {
-       completePainJournal(),
+       completePainJournal()
+       track(PAIN_JOURNAL_EVENTS.COMPLETE_PAIN_JOURNAL)
          navigation.navigate("JournalCreated", {
            type: "PainJournal",
          });
