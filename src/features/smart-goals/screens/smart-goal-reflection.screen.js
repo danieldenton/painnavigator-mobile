@@ -1,47 +1,33 @@
 import React, { useContext} from "react";
-import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
+import { SafeView } from "../../../components/safe-area.component";
+import { ButtonSection } from "../../../components/journals/journal.styles";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { JournalButton } from "../../../components/button.component";
-import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { SkipQuestion } from "../../../components/skip-question.component";
+import { SmartGoalReflectionComponent } from "../components/smart-goal-reflection.component";
+import { track } from "@amplitude/analytics-react-native";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
-export const SmartGoalReflection = () => {
-
-    const meaningQuestion = {
-        question: "What does it mean for you to complete your SMART goal?",
-        helpText: "Did it decrease your negative thoughts? Did you feel good about achieving a realistic goal?"
-    }
-
-    const challengesQuestion = {
-        question: "Were there any challenges?",
-        helpText: "This could include mental, physical, logistical, emotional,"
-    }
+export const SmartGoalReflectionScreen = ({ navigation }) => {
 
     return (
-        <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
-            <QuestionSection>
-            <JournalQuestion question={meaningQuestion.question} helpText={meaningQuestion.helpText} />
-            <TextInputMedium
-                value={smartGoal.steps}
-                onChangeText={(change) => changeSmartGoal(change, "steps")}   
-                accessibilityLabel={"steps-input"}
-            />
-            <JournalQuestion question={challengesQuestion.question} helpText={challengesQuestion.helpText} />
-            <TextInputMedium
-                value={smartGoal.reward}
-                onChangeText={(change) => changeSmartGoal(change, "reward")}   
-                accessibilityLabel={"reward-input"}
-            />
-            </QuestionSection>
+         <SafeView>
+                    <NavigationBarLeft 
+                        screen={"Smart Goal"} 
+                        destination={"SmartGoalCompleted"} 
+                        navigation={navigation}
+                    />
+                    <SmartGoalReflectionComponent/>  
             <ButtonSection>
                 <JournalButton 
-                    disabled={pages[currentPage].submitCondition ? false : true} 
+                    // disabled={pages[currentPage].submitCondition ? false : true} 
                     title={"Finish Smart Goal"} 
-                    onPress={() => {
-                        {currentPage === 1 ?  handleCreateSmartGoal() : handleNextPage()}
-                    }}
+                    onPress={() => (track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_REFLECTION), navigation.navigate("Today"))}
+                />
+                 <SkipQuestion
+                    onPress={() => (track(SMART_GOAL_EVENTS.SKIP_SMART_GOAL_REFLECTION), navigation.navigate("Today"))}
                 />
             </ButtonSection>
-        </KeyboardAwareScrollView>
+        </SafeView>
     );
 }

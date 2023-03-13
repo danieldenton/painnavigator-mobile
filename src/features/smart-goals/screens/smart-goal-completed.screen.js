@@ -13,13 +13,10 @@ import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 
-// We’re marking your SMART goal complete as it’s been four weeks!
-// Wherever you are, you’ve done a great job. Now, take a moment to refelct on your experience.
-
 export const SmartGoalCompletedScreen = ({ navigation }) => {
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Smart Goal"} destination={"Today"} navigation={navigation} />
+            <NavigationBarLeft screen={"Smart Goal"} destination={"ReviewSmartGoal"} navigation={navigation} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
             <View style={{ marginBottom: 120 }}>
             <GraphicWrapper>
@@ -36,7 +33,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </View>
             </Scroll>
             <ButtonSection>
-                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Your Experience"} />
+                <ModuleButton onPress={() => navigation.navigate("SmartGoalReflection")} title={"Your Experience"} />
             </ButtonSection>
         </SafeView>
     );

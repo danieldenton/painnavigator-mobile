@@ -194,7 +194,7 @@ export const NavigationBarLeft = ({ destination, navigation, screen, previousPag
             </LeftPressableArea>
             <HeaderSection>
                 <HeaderName>
-                    {screen.toUpperCase()}
+                    {screen.toString().toUpperCase()}
                 </HeaderName>
             </HeaderSection>
             <RightSection>
