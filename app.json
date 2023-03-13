@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "PainNavigator",
@@ -33,7 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.stephenavocado.PainNavigator"
+      "bundleIdentifier": "com.stephenavocado.PainNavigator",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
@@ -45,7 +45,7 @@
       ],
       "icon": "./assets/icon.png",
       "package": "com.PainNavigator",
-      "versionCode": 4
+      "versionCode": 6
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -78,8 +78,9 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                     </ScrollView>
                 </UpdateWrapper>
             </KeyboardView>
-            {editing && 
+            
                 <ButtonSection>
+                {editing ?
                     <JournalButton 
                         title={"Save Changes"} 
                         onPress={() => {
@@ -88,8 +89,16 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                             track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
                         }}
                     />
+                :
+                <JournalButton 
+                        title={"Complete Smart Goal"} 
+                        onPress={() => {
+                            navigation.navigate("Today")
+                            track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL);
+                        }}
+                    />
+                 }
                 </ButtonSection>
-            }
         </>
     );
 };
