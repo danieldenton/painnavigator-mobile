@@ -36,7 +36,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </View>
             </Scroll>
             <ButtonSection>
-                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Back to Dashboard"} />
+                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Your Experience"} />
             </ButtonSection>
         </SafeView>
     );

@@ -6,8 +6,6 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { OngoingGoalTile } from "../components/ongoing-goal-tile.component";
 import { CompletedItemCard } from "../../../components/card/completed-card.component";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { JournalButton } from "../../../components/button.component";
 import { Add } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
