@@ -14,10 +14,9 @@ import { track } from "@amplitude/analytics-react-native";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
-    const { goal: activeGoal, steps: activeSteps, reward: activeReward, end_date, date_time_value, goal_updates: activeUpdates } = goal;
+    const { goal: activeGoal, steps: activeSteps, reward: activeReward, date_time_value, goal_updates: activeUpdates } = goal;
     const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
     const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
-    
     
     
     const updateElements = activeUpdates?.map((update, idx) => {

@@ -13,25 +13,25 @@ import format from 'date-fns/format';
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoalScreen = ({ navigation }) => {
-    const { activeGoal, cancelEdits, changes, deleteGoal, finishGoal } = useContext(SmartGoalContext);
-    const { date_time_value } = activeGoal;
+    const { activeGoal, cancelEdits, changes, deleteGoal } = useContext(SmartGoalContext);
+    // const { date_time_value } = activeGoal;
     const [editing, setEditing] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const reviewSmartGoalOptions = useRef(null);
 
-    useEffect(() => {
-        const end = add(new Date(date_time_value), {weeks: 4});
-        const formattedEndDate = format(end, 'MM/dd/yyyy');
-        const today = format(new Date(), 'MM/dd/yyyy');
+    // useEffect(() => {
+    //     const end = add(new Date(date_time_value), {weeks: 4});
+    //     const formattedEndDate = format(end, 'MM/dd/yyyy');
+    //     const today = format(new Date(), 'MM/dd/yyyy');
 
-        if(today === formattedEndDate) {
-            setTimeout(() => {
-                navigation.dispatch(StackActions.replace("SmartGoalCompleted"));
-                finishGoal()
-            }, 3000);
-        };
-    }, []);
+    //     if(today === formattedEndDate) {
+    //         setTimeout(() => {
+    //             navigation.dispatch(StackActions.replace("SmartGoalCompleted"));
+    //             finishGoal()
+    //         }, 3000);
+    //     };
+    // }, []);
 
     const closeModal = () => {
         reviewSmartGoalOptions.current?.close();

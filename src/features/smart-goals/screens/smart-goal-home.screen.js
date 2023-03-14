@@ -20,7 +20,7 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
             />
         );
     });
-
+    console.log(finishedGoals)
     return (
         <SafeView>
             <NavigationBarLeft destination={"Today"} screen={"Smart Goals"} navigation={navigation} />
