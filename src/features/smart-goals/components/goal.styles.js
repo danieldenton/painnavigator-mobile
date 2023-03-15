@@ -1,5 +1,5 @@
-import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 
 export const GoalWrapper = styled.View`
@@ -29,4 +29,25 @@ export const SmartGoalWrapper = styled.View`
 export const SmartGoal = styled.Text`
     font-family: Inter_400Regular;
     font-size: 16px;
+`;
+
+export const GoalCard = styled(Card)`
+    border-radius: 15px;
+    margin-top: 12px;
+`;
+
+export const CardContentWrapper = styled(Card.Content)`
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 21px;
+`;
+
+export const GoalTextSection = styled.View`
+    flex: .9;
+`;
+
+export const GoalText = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 18px;
 `;
