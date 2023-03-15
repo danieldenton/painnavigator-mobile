@@ -1,12 +1,13 @@
 import { JournalQuestion } from "./journal-question.component"
 import { TextInputMedium } from "./text-input.component"
 
-export const QuestionAndInput = ({ question, input }) => {
+export const QuestionAndInput = ({ question, input} ) => {
     return (<>
         <JournalQuestion question={question.question} helpText={question.helpText} />
             <TextInputMedium
-                onChangeText={(change) => input(change, question.state)}   
-                accessibilityLabel={"answer-input"}
+                value={question.value}
+                onChangeText={(change) => input(change, question.inputSting)}   
+                accessibilityLabel={question.accessibilityLabel}
             />
             </>)
 }

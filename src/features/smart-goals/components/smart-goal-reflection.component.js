@@ -1,10 +1,9 @@
 import React, { useContext} from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
-// import { JournalQuestion } from "../../../components/journal-question.component";
-import { QuestionAndInput } from "../../../components/question-and-input.component";
+import { JournalQuestion } from "../../../components/journal-question.component";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
-// import { TextInputMedium } from "../../../components/text-input.component";
+import { TextInputMedium } from "../../../components/text-input.component";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { track } from "@amplitude/analytics-react-native";
@@ -19,12 +18,14 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         {
             question: "What does it mean for you to complete your SMART goal?",
             helpText: "Did it decrease your negative thoughts? Did you feel good about achieving a realistic goal?",
-            state: meaning
+            state: meaning,
+            accessibilityLabel: "meaning-input"
         },
         {
             question: "Were there any challenges?",
             helpText: "This could include mental, physical, logistical, emotional, etc...",
-            state: challenges
+            state: challenges,
+            accessibilityLabel: "callenges-input"
         }
     ]
 
@@ -41,7 +42,15 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
-        return (<QuestionAndInput question={question} input={editGoal} key={idx}/>)
+        return (
+            <>
+            <JournalQuestion question={question.question} helpText={question.helpText} key={idx} />
+            <TextInputMedium
+                onChangeText={(change) => editGoal(change, question.state)}   
+                accessibilityLabel={question.accessibilityLabel}
+            />
+        </>
+        )
     })
 
     return (
