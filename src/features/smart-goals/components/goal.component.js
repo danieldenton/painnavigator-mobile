@@ -17,7 +17,7 @@ export const Goal = () => {
 
     return (
         <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
-            <QuestionAndInput question={question} input={changeSmartGoal}/>
+            <QuestionAndInput question={question} input={changeSmartGoal} />
         </KeyboardAwareScrollView>
     );
 }; 
