@@ -23,7 +23,7 @@ export const Steps = () => {
         accessibilityLabel: "reward-input"
      }]
 
-     const questionsAndAnswers = questions.map((question, idx) => {
+     const questionsAndInputs = questions.map((question, idx) => {
         return <QuestionAndInput question={question} input={changeSmartGoal} key={idx} />
      })
 
@@ -34,7 +34,7 @@ export const Steps = () => {
                     "{goal}"
                 </SmartGoal>
             </SmartGoalWrapper>
-            {questionsAndAnswers}
+            {questionsAndInputs}
         </KeyboardAwareScrollView>
     );
 }; 
