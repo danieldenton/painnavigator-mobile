@@ -6,7 +6,7 @@ import { SmartGoalWrapper, SmartGoal } from "./goal.styles";
 
 export const Steps = () => {
     const { changeSmartGoal, smartGoal } = useContext(SmartGoalContext);
-    const { steps, reward } = smartGoal
+    const { goal, steps, reward } = smartGoal
     
     const questions = [{
         question: "What will you do each week to work your way up to your goal?",
@@ -31,7 +31,7 @@ export const Steps = () => {
         <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
             <SmartGoalWrapper>
                 <SmartGoal>
-                    "{smartGoal.goal}"
+                    "{goal}"
                 </SmartGoal>
             </SmartGoalWrapper>
             {questionsAndAnswers}
