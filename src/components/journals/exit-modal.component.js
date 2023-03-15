@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { Close } from "../../icons";
 import { TouchableOpacity } from "react-native";
@@ -6,6 +6,7 @@ import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 import { StackActions } from '@react-navigation/native';
 import { handleTrackEvent, handleTrackExitEvent } from "../../infrastructure/helpers";
+import { SmartGoalContext } from "../../services/smart-goal/smart-goal.context"
 
 const Modal = styled(PaperModal)`
     border-radius: 15px;
@@ -38,6 +39,25 @@ const ButtonContainer = styled.View`
 export const ExitModal = ({ visible, setVisible, navigation, destination, deleteJournal, resetJournal, changes, type, trackExitEvent, trackEvent }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
     const hideModal = () => setVisible(false);
+    const { setCurrentPage } = useContext(SmartGoalContext);
+
+    const handleDeleteJournal = () => {
+        if (type === "goal") {
+          handleTrackEvent(trackEvent)
+          navigation.dispatch(StackActions.replace(destination, {
+              type: type
+          }))
+          setCurrentPage(0)
+        } else {
+          handleTrackEvent(trackEvent)
+          navigation.navigate(destination, { type: type })
+        }
+    }
+
+    const handleExit = () => {
+        handleTrackExitEvent(trackExitEvent) 
+        navigation.navigate(destination)
+    }
 
     return(
         <Portal>
@@ -58,18 +78,7 @@ export const ExitModal = ({ visible, setVisible, navigation, destination, delete
                 <ButtonContainer>
                     <JournalButtonOutline 
                         onPress={() => {
-                            {deleteJournal ? 
-                                type === "goal" ? 
-                                    (handleTrackEvent(trackEvent),
-                                    navigation.dispatch(StackActions.replace(destination, {
-                                        type: type
-                                    })))
-                                    :
-                                    (handleTrackEvent(trackEvent),
-                                    navigation.navigate(destination, { type: type }))
-                                :
-                                (handleTrackExitEvent(trackExitEvent), navigation.navigate(destination));
-                            }
+                            {deleteJournal ?  handleDeleteJournal() : handleExit()}
                             {deleteJournal && setTimeout(() => {deleteJournal()}, 500);} 
                             {resetJournal && resetJournal();} 
                         }}

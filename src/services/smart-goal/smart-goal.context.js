@@ -174,6 +174,7 @@ export const SmartGoalContextProvider = ({ children }) => {
                 createSmartGoal,
                 createSmartGoalUpdate,
                 currentPage,
+                setCurrentPage,
                 finishGoal,
                 finishedGoals,
                 nextPage,
