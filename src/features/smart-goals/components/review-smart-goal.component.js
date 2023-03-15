@@ -36,7 +36,6 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
 
     return (
         <>
-            <GoalProgress date_time_value={date_time_value} />
             <KeyboardView>
                 <GoalWrapper>
                     <GoalTextSection 
