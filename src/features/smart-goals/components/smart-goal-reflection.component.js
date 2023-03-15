@@ -12,8 +12,8 @@ import { QuestionAndInput } from "../../../components/question-and-input.compone
 
 
 export const SmartGoalReflectionComponent = ({ navigation }) => {
-    const { editGoal, smartGoal, finishGoal } = useContext(SmartGoalContext);
-    const { meaning, challenges } = smartGoal;
+    const { editGoal, reviewGoal, finishGoal } = useContext(SmartGoalContext);
+    const { meaning, challenges } = reviewGoal;
 
     const questions = [
         {
