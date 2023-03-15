@@ -54,7 +54,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         <ButtonSection>
         <JournalButton 
             // disabled={questions.state ? false : true} 
-            title={"Smart Goal Reached"} 
+            title={"Finish Smart Goal"} 
             onPress={() => handleFinishGoal()}
         />
          <SkipQuestion
