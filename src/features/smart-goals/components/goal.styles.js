@@ -20,3 +20,13 @@ export const KeyboardView = styled(KeyboardAwareScrollView)`
     padding-right: 16px; 
     padding-left: 16px; 
 `; 
+
+export const SmartGoalWrapper = styled.View`
+    align-items: center;
+    margin-top: 16px;
+`;
+
+export const SmartGoal = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+`;

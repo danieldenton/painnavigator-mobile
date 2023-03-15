@@ -7,31 +7,14 @@ import { ReviewJournalNavigationBar } from "../../../components/journals/navigat
 import { ReviewSmartGoal } from "../components/review-smart-goal.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
-import { StackActions } from '@react-navigation/native';
-import add from "date-fns/add";
-import format from 'date-fns/format';
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoalScreen = ({ navigation }) => {
     const { activeGoal, cancelEdits, changes, deleteGoal } = useContext(SmartGoalContext);
-    // const { date_time_value } = activeGoal;
     const [editing, setEditing] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const reviewSmartGoalOptions = useRef(null);
-
-    // useEffect(() => {
-    //     const end = add(new Date(date_time_value), {weeks: 4});
-    //     const formattedEndDate = format(end, 'MM/dd/yyyy');
-    //     const today = format(new Date(), 'MM/dd/yyyy');
-
-    //     if(today === formattedEndDate) {
-    //         setTimeout(() => {
-    //             navigation.dispatch(StackActions.replace("SmartGoalCompleted"));
-    //             finishGoal()
-    //         }, 3000);
-    //     };
-    // }, []);
 
     const closeModal = () => {
         reviewSmartGoalOptions.current?.close();
