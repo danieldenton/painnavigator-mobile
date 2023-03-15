@@ -66,7 +66,6 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                     {smartGoalDetails}
                 </GoalWrapper>
                 <SubHeader title={"UPDATES"} size={14} />
-                {!editing && 
                     <DailyActivitiesTile 
                         title={"Add New Update"} 
                         destination={"NewSmartGoalUpdate"} 
@@ -74,7 +73,6 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                         navigation={navigation} 
                         icon={<Add />}
                     />
-                }
                 <UpdateWrapper>
                     <ScrollView style={{ marginBottom: 8 }}>
                         {updateElements}
