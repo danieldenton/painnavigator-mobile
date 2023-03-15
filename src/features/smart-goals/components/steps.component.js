@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
 import { QuestionAndInput } from "../../../components/question-and-input.component"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
