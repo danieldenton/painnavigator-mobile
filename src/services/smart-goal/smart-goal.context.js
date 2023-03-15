@@ -158,6 +158,7 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     useEffect(() => {
         saveFinishedGoals(finishedGoals);
+        console.log(finishedGoals)
     }, [finishedGoals]);
 
     return (

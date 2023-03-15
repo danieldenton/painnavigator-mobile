@@ -8,23 +8,26 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { track } from "@amplitude/analytics-react-native";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
+import { QuestionAndInput } from "../../../components/question-and-input.component";
 
 
 export const SmartGoalReflectionComponent = ({ navigation }) => {
-    const { editGoal, reviewGoal, finishGoal } = useContext(SmartGoalContext);
-    const { meaning, challenges } = reviewGoal;
+    const { editGoal, smartGoal, finishGoal } = useContext(SmartGoalContext);
+    const { meaning, challenges } = smartGoal;
 
     const questions = [
         {
             question: "What does it mean for you to complete your SMART goal?",
             helpText: "Did it decrease your negative thoughts? Did you feel good about achieving a realistic goal?",
-            state: meaning,
+            value: meaning,
+            inputString: "meaning",
             accessibilityLabel: "meaning-input"
         },
         {
             question: "Were there any challenges?",
             helpText: "This could include mental, physical, logistical, emotional, etc...",
-            state: challenges,
+            value: challenges,
+            inputString: "challenges",
             accessibilityLabel: "callenges-input"
         }
     ]
@@ -42,15 +45,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
-        return (
-            <>
-            <JournalQuestion question={question.question} helpText={question.helpText} key={idx} />
-            <TextInputMedium
-                onChangeText={(change) => editGoal(change, question.state)}   
-                accessibilityLabel={question.accessibilityLabel}
-            />
-        </>
-        )
+        return <QuestionAndInput question={question} input={editGoal} key={idx} />
     })
 
     return (
@@ -62,7 +57,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         </KeyboardAwareScrollView>
         <ButtonSection>
         <JournalButton 
-            // disabled={questions.state ? false : true} 
+            // disabled={meaning || challenges ? false : true} 
             title={"Finish Smart Goal"} 
             onPress={() => handleFinishGoal()}
         />
