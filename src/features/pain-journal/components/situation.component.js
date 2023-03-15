@@ -7,27 +7,24 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 export const Situation = () => {
     const { changeEntry, currentPageData, painJournal } = useContext(PainJournalContext);
     const { questions } = currentPageData;
-    const painSettingQuestion = questions[0];
-    const painFeelingQuestion = questions[1];
-    const whoWithQuestion = questions[2];
+
+    const questionsAndInputs = questions.map((question, idx) => {
+        const situations = [painJournal.situation, painJournal.feeling, painJournal.whoIWasWith]
+        const situationStrings = ["situation", "feeling", "whoIWasWith"]
+        return(
+            <>
+            <JournalQuestion question={question.question} helpText={question.helpText} key={idx} />
+            <TextInputMedium 
+                value={situations[idx]}
+                onChangeText={(change) => changeEntry(change, situationStrings[idx])}
+            />
+            </>
+        )
+    })
 
     return(
         <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
-            <JournalQuestion question={painSettingQuestion.question} helpText={painSettingQuestion.helpText} />
-            <TextInputMedium 
-                value={painJournal.situation}
-                onChangeText={(change) => changeEntry(change, "situation")}
-            />
-            <JournalQuestion question={painFeelingQuestion.question} helpText={painFeelingQuestion.helpText} />
-            <TextInputMedium
-                value={painJournal.feeling}
-                onChangeText={(change) => changeEntry(change, "feeling")}
-            />
-            <JournalQuestion question={whoWithQuestion.question} helpText={whoWithQuestion.helpText} />
-            <TextInputMedium 
-                value={painJournal.whoIWasWith}
-                onChangeText={(change) => changeEntry(change, "whoIWasWith")}
-            />
+            {questionsAndInputs}
         </KeyboardAwareScrollView>
     );
 };

@@ -27,7 +27,8 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </CongratulationsHeaderWrapper>
             <CongratulationsMessageWrapper>
                 <CongratulationsMessage>
-                    You've completed your SMART goal! You've done a great job! Now, take a moment to refelct on your experience.
+                    You've completed your SMART goal! You've done a great job!
+                    Now, take a moment to refelct on your experience.
                 </CongratulationsMessage>
             </CongratulationsMessageWrapper>
             </View>

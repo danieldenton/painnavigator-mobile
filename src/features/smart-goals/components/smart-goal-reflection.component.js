@@ -1,9 +1,10 @@
 import React, { useContext} from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
-import { JournalQuestion } from "../../../components/journal-question.component";
+// import { JournalQuestion } from "../../../components/journal-question.component";
+import { QuestionAndInput } from "../../../components/question-and-input.component";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
+// import { TextInputMedium } from "../../../components/text-input.component";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { track } from "@amplitude/analytics-react-native";
@@ -40,13 +41,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
-        return (<>
-        <JournalQuestion question={question.question} helpText={question.helpText} />
-            <TextInputMedium
-                onChangeText={(change) => editGoal(change, questions.state)}   
-                accessibilityLabel={"answer-input"}
-            />
-            </>)
+        return (<QuestionAndInput question={question} input={editGoal} key={idx}/>)
     })
 
     return (
@@ -59,7 +54,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         <ButtonSection>
         <JournalButton 
             // disabled={questions.state ? false : true} 
-            title={"Finish Smart Goal"} 
+            title={"Smart Goal Reached"} 
             onPress={() => handleFinishGoal()}
         />
          <SkipQuestion
