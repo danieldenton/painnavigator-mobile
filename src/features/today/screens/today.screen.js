@@ -96,7 +96,7 @@ export const TodayScreen = ({ navigation }) => {
 
     function renderSmartGoalDailyActivity() { 
         const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
-        if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
+        if(USER_COMPLETED_SMART_GOAL_UNIT && activeGoal) {
             if(LAST_SMART_GOAL_UPDATE === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
             } else {

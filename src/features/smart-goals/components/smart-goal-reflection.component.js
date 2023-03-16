@@ -1,9 +1,7 @@
 import React, { useContext} from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
-import { JournalQuestion } from "../../../components/journal-question.component";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { track } from "@amplitude/analytics-react-native";
@@ -33,15 +31,8 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
     ]
 
     const handleFinishGoal = () => {
-        track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_REFLECTION)
         finishGoal() 
-        navigation.navigate("Today")
-    }
-
-    const handleSkipFinishGoalReview = () => {
-        track(SMART_GOAL_EVENTS.SKIP_SMART_GOAL_REFLECTION)
-        finishGoal()
-        navigation.navigate("Today")
+        navigation.navigate("SmartGoalCompleted")
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
@@ -59,10 +50,10 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         <JournalButton 
             // disabled={meaning || challenges ? false : true} 
             title={"Finish Smart Goal"} 
-            onPress={() => handleFinishGoal()}
+            onPress={() => (handleFinishGoal(), track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_REFLECTION))}
         />
          <SkipQuestion
-            onPress={() => handleSkipFinishGoalReview()}
+            onPress={() => (handleFinishGoal(), track(SMART_GOAL_EVENTS.SKIP_SMART_GOAL_REFLECTION))}
         />
     </ButtonSection>
     </>

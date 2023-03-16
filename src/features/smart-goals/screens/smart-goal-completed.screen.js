@@ -27,14 +27,13 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </CongratulationsHeaderWrapper>
             <CongratulationsMessageWrapper>
                 <CongratulationsMessage>
-                    You've completed your SMART goal! You've done a great job!
-                    Now, take a moment to refelct on your experience.
+                    You've completed your SMART goal!
                 </CongratulationsMessage>
             </CongratulationsMessageWrapper>
             </View>
             </Scroll>
             <ButtonSection>
-                <ModuleButton onPress={() => navigation.navigate("SmartGoalReflection")} title={"Your Experience"} />
+                <ModuleButton onPress={() => navigation.navigate("Today")} title={"Your Experience"} />
             </ButtonSection>
         </SafeView>
     );
