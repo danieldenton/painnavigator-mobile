@@ -5,6 +5,7 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const FinishedGoalScreen = ({ navigation, goal }) => {
+    console.log(goal)
 
     return (
         <SafeView>
