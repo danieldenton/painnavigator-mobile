@@ -104,7 +104,7 @@ export const SmartGoalContextProvider = ({ children }) => {
             meaning: "",
             challenges: ""
         });
-        setCurrentPage(1);
+        setCurrentPage(0);
     };
 
     const saveActiveGoal = async (value) => {
