@@ -4,9 +4,9 @@ import { TouchableOpacity } from "react-native";
 import { GoalCard, CardContentWrapper, GoalTextSection, GoalText } from "./goal.styles";
 import { track } from "@amplitude/analytics-react-native";
 
-export const OngoingGoalTile = ({ goal, navigation, trackEvent }) => {
+export const OngoingGoalTile = ({ goal, navigation, destination, trackEvent }) => {
     return ( 
-        <TouchableOpacity onPress={() => (track(trackEvent), navigation.navigate("ReviewSmartGoal"))}> 
+        <TouchableOpacity onPress={() => (track(trackEvent), navigation.navigate(destination))}> 
             <GoalCard>
                 <CardContentWrapper>
                     <GoalTextSection>

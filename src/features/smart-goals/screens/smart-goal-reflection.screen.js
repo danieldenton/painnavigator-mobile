@@ -7,7 +7,7 @@ export const SmartGoalReflectionScreen = ({ navigation }) => {
          <SafeView>
                 <NavigationBarLeft 
                     screen={"Smart Goal"} 
-                    destination={"SmartGoalCompleted"} 
+                    destination={"ReviewSmartGoal"} 
                     navigation={navigation}
                 />
                 <SmartGoalReflectionComponent navigation={navigation}/>  

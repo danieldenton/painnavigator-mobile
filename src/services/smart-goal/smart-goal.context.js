@@ -17,6 +17,10 @@ export const SmartGoalContextProvider = ({ children }) => {
         meaning: "",
         challenges: "" 
     });
+    const [smartGoalFinish, setSmartGoalFinish] = useState({
+        meaning: "",
+        challenges: ""
+    })
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
     const { user } = useContext(AuthenticationContext);
@@ -81,9 +85,9 @@ export const SmartGoalContextProvider = ({ children }) => {
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
     };
-
     
     const finishGoal = () => {
+        setActiveGoal({...activeGoal, smartGoalFinish})
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
         setTimeout(() => {setActiveGoal(null)}, 1000);
     };
@@ -120,7 +124,8 @@ export const SmartGoalContextProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem("@active_goal");
             if (value !== null) {
-                setActiveGoal(JSON.parse(value));
+                // setActiveGoal(JSON.parse(value));
+                setActiveGoal
             }
         } catch (e) {
             console.log("error loading smart goals", e);
@@ -158,7 +163,6 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     useEffect(() => {
         saveFinishedGoals(finishedGoals);
-        console.log(finishedGoals)
     }, [finishedGoals]);
 
     return (
@@ -184,7 +188,9 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoalUpdate,
                 smartGoal,
                 resetSmartGoal,
-                reviewGoal
+                reviewGoal,
+                smartGoalFinish,
+                setSmartGoalFinish
             }}
         >
             {children}

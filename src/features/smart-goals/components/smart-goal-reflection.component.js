@@ -10,21 +10,20 @@ import { QuestionAndInput } from "../../../components/question-and-input.compone
 
 
 export const SmartGoalReflectionComponent = ({ navigation }) => {
-    const { editGoal, reviewGoal, finishGoal } = useContext(SmartGoalContext);
-    const { meaning, challenges } = reviewGoal;
+    const { smartGoalFinish, setSmartGoalFinish, finishGoal } = useContext(SmartGoalContext);
 
     const questions = [
         {
             question: "What does it mean for you to complete your SMART goal?",
             helpText: "Did it decrease your negative thoughts? Did you feel good about achieving a realistic goal?",
-            value: meaning,
+            value: smartGoalFinish.meaning,
             inputString: "meaning",
             accessibilityLabel: "meaning-input"
         },
         {
             question: "Were there any challenges?",
             helpText: "This could include mental, physical, logistical, emotional, etc...",
-            value: challenges,
+            value: smartGoalFinish.challenges,
             inputString: "challenges",
             accessibilityLabel: "callenges-input"
         }
@@ -36,7 +35,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
-        return <QuestionAndInput question={question} input={editGoal} key={idx} />
+        return <QuestionAndInput question={question} input={setSmartGoalFinish} key={idx} />
     })
 
     return (

@@ -126,25 +126,25 @@ export const PainJournalContextProvider = ({ children }) => {
         patchPainJournal(reviewJournal.id, reviewJournal, setPainJournals);
     };
 
-    const saveJournals = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem("@pain_journals", jsonValue);
-        } catch (e) {
-          console.log("error storing pain journals", e);
-        }
-    };
+    // const saveJournals = async (value) => {
+    //     try {
+    //       const jsonValue = JSON.stringify(value);
+    //       await AsyncStorage.setItem("@pain_journals", jsonValue);
+    //     } catch (e) {
+    //       console.log("error storing pain journals", e);
+    //     }
+    // };
     
-    const loadJournals = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@pain_journals");
-            if (value !== null) {
-            setPainJournals(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading pain journals", e);
-        }
-    };
+    // const loadJournals = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@pain_journals");
+    //         if (value !== null) {
+    //         setPainJournals(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading pain journals", e);
+    //     }
+    // };
 
     
 

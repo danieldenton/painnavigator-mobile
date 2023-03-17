@@ -30,14 +30,14 @@ export async function postSmartGoalUpdate(id, smartGoalUpdate, setActiveGoal) {
     }
 };
 
-export async function postSmartGoalFinish(id, smartGoal, setFinishedGoals) {
+export async function patchSmartGoal(id, smartGoal, setFinishedGoals, finishedGoals) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/complete_smart_goals`, { 
             smart_goal: id, 
             complete_smart_goal: smartGoal  
         })
         const data = response.data.data.attributes;
-        setFinishedGoals(data);
+        setFinishedGoals(...finishedGoals, data);
     } catch (error) {
         console.error(error);
     }

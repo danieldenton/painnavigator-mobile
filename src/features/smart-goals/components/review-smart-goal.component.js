@@ -90,8 +90,8 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                             track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
                         }}
                     />
-                :
-                <JournalButton 
+                    :
+                    <JournalButton 
                         title={"Smart Goal Reached"} 
                         onPress={() => {
                             navigation.navigate("SmartGoalReflection")
