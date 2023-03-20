@@ -6,8 +6,8 @@ export const QuestionAndInput = ({ question, input} ) => {
     <>
         <JournalQuestion question={question.question} helpText={question.helpText} />
         <TextInputMedium
-            value={question.value}
-            onChangeText={(change) => input(change, question.inputSting)}   
+            value={question.value ? question.value : null}
+            onChangeText={(change) => input(change, question.inputSting)}
             accessibilityLabel={question.accessibilityLabel}
          />
     </>

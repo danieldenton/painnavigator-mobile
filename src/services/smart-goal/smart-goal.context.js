@@ -13,14 +13,8 @@ export const SmartGoalContextProvider = ({ children }) => {
     const [smartGoal, setSmartGoal] = useState({
         goal: "",
         steps: "",
-        reward: "",
-        meaning: "",
-        challenges: "" 
+        reward: ""
     });
-    const [smartGoalFinish, setSmartGoalFinish] = useState({
-        meaning: "",
-        challenges: ""
-    })
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
     const { user } = useContext(AuthenticationContext);
@@ -86,8 +80,9 @@ export const SmartGoalContextProvider = ({ children }) => {
         setActiveGoal(reviewGoal);
     };
     
-    const finishGoal = () => {
-        setActiveGoal({...activeGoal, smartGoalFinish})
+    const finishGoal = async () => {
+        const date = Date.now()
+        setReviewGoal(prevGoal => [...prevGoal,  prevGoal.end_date = date])
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
         setTimeout(() => {setActiveGoal(null)}, 1000);
     };
@@ -104,9 +99,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         setSmartGoal({
             goal: "",
             steps: "",
-            reward: "",
-            meaning: "",
-            challenges: ""
+            reward: ""
         });
         setCurrentPage(0);
     };
@@ -189,8 +182,6 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoal,
                 resetSmartGoal,
                 reviewGoal,
-                smartGoalFinish,
-                setSmartGoalFinish
             }}
         >
             {children}

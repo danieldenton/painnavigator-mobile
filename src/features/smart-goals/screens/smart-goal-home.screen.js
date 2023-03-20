@@ -4,9 +4,9 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { SubHeader } from "../../../components/typography.component"
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { OngoingGoalTile } from "../components/ongoing-goal-tile.component";
-import { CompletedItemCard } from "../../../components/card/completed-card.component";
+import { TouchableCompletedItemCard } from "../../../components/card/touchable-completed-card.component";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
-  import { Add } from "../../../icons";
+import { Add } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
@@ -15,7 +15,7 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
     const finishedGoalElements = finishedGoals?.map((finishedGoal, idx) => {
         console.log(finishedGoal)
         return (
-            <OngoingGoalTile
+            <TouchableCompletedItemCard
                 navigation={navigation} 
                 destination={"FinishedGoal"}
                 goal={finishedGoal} 

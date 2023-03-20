@@ -95,7 +95,8 @@ export const ONBOARD_EVENTS = {
     DELETE_SMART_GOAL: "Delete Smart Goal",
     COMPLETE_SMART_GOAL: "Complete Smart Goal",
     ENTER_SMART_GOAL_REFLECTION: "Enyer Smart Goal Reflection",
-    SKIP_SMART_GOAL_REFLECTION: "Skip Smart Goal Reflection"
+    SKIP_SMART_GOAL_REFLECTION: "Skip Smart Goal Reflection",
+    VIEW_PREVIOUS_SMART_GOAL: "View Previous Smart Goal"
   };
   
   export const MY_ACTIVITIES_EVENTS = {

@@ -47,12 +47,12 @@ export const ReviewSmartGoalScreen = ({ navigation }) => {
                         showBottomMenu={showModal}
                         resetJournal={cancelEdits}
                     />
-                    <ReviewSmartGoal 
+                     {activeGoal && <ReviewSmartGoal 
                         editing={editing} 
                         goal={activeGoal} 
                         navigation={navigation} 
                         setEditing={setEditing} 
-                    />
+                    />}
                     <BottomModal 
                         closeModal={closeModal}
                         destination={"SmartGoalHome"}
