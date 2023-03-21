@@ -16,6 +16,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         reward: ""
     });
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
+    const [finshedGoalData, setFinishedGoalData] = useState(null)
     const [currentPage, setCurrentPage] = useState(0);
     const { user } = useContext(AuthenticationContext);
 
@@ -55,7 +56,7 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const deleteGoal = () => {
         destroyGoal(activeGoal.id);
-        setTimeout(() => {setActiveGoal(null)}, 1000);
+        setActiveGoal(null)
     };
 
     const editGoal = (change, state) => {
@@ -84,7 +85,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         const date = Date.now()
         setReviewGoal(prevGoal => [...prevGoal,  prevGoal.end_date = date])
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
-        setTimeout(() => {setActiveGoal(null)}, 1000);
+        setActiveGoal(null)
     };
 
     const nextPage = () => {
@@ -182,6 +183,8 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoal,
                 resetSmartGoal,
                 reviewGoal,
+                finshedGoalData,
+                setFinishedGoalData
             }}
         >
             {children}

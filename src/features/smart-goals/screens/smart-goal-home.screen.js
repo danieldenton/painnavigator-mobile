@@ -12,14 +12,13 @@ import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 export const SmartGoalHomeScreen = ({ navigation }) => {
     const { activeGoal, finishedGoals } = useContext(SmartGoalContext);
     
-    const finishedGoalElements = finishedGoals?.map((finishedGoal, idx) => {
-        console.log(finishedGoal)
+    const finishedGoalElements = finishedGoals?.map((finishedGoal) => {
         return (
             <TouchableCompletedItemCard
                 navigation={navigation} 
                 destination={"FinishedGoal"}
                 goal={finishedGoal} 
-                key={idx}
+                key={finishedGoal.id}
             />
         );
     });
