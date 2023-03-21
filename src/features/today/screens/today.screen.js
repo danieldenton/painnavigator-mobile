@@ -42,7 +42,7 @@ export const TodayScreen = ({ navigation }) => {
     const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
     const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
     const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
-    const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
+    // const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
     const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
@@ -95,20 +95,20 @@ export const TodayScreen = ({ navigation }) => {
         }
     }
 
-    function renderSmartGoalDailyActivity() { 
-        const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
-        if(USER_COMPLETED_SMART_GOAL_UNIT && activeGoal) {
-            if(LAST_SMART_GOAL_UPDATE === timeZonedTodaysDate) {
-                return <DailyGoalCompleted type={"Smart Goal Update"} />
-            } else {
-                return <SmartGoalUpdate navigation={navigation} />
-            }
-        } else if(educationProgress > 7) {
-            return <NewSmartGoal navigation={navigation} />
-        } else {
-            return null
-        };
-    };
+    // function renderSmartGoalDailyActivity() { 
+    //     const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
+    //     if(USER_COMPLETED_SMART_GOAL_UNIT && activeGoal) {
+    //         if(LAST_SMART_GOAL_UPDATE === timeZonedTodaysDate) {
+    //             return <DailyGoalCompleted type={"Smart Goal Update"} />
+    //         } else {
+    //             return <SmartGoalUpdate navigation={navigation} />
+    //         }
+    //     } else if(educationProgress > 7) {
+    //         return <NewSmartGoal navigation={navigation} />
+    //     } else {
+    //         return null
+    //     };
+    // };
 
     return (
         <SafeView>
@@ -129,7 +129,7 @@ export const TodayScreen = ({ navigation }) => {
                     {renderWellnessCoachMessageActivity()}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
-                    {renderSmartGoalDailyActivity()}
+                    {/* {renderSmartGoalDailyActivity()} */}
                     {LAST_PAIN_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
                     {LAST_MOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
                     {LAST_FOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}

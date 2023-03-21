@@ -2,6 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { formatDate } from "../../infrastructure/helpers";
 
 export const SmartGoalContext = createContext();
 
@@ -16,7 +17,6 @@ export const SmartGoalContextProvider = ({ children }) => {
         reward: ""
     });
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
-    const [finshedGoalData, setFinishedGoalData] = useState(null)
     const [currentPage, setCurrentPage] = useState(0);
     const { user } = useContext(AuthenticationContext);
 
@@ -80,11 +80,31 @@ export const SmartGoalContextProvider = ({ children }) => {
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
     };
+
+    const endJournalDate = () => {
+        const date = formatDate(Date.now())
+        setActiveGoal(prevState => ({
+            ...prevState,
+            end_date: date
+        }))
+
+    }
+
+    const reflectGoal = (value, key) => {
+        key === 1 ?
+        setActiveGoal(prevState => ({
+              ...prevState,
+              meaning: value
+        })) :
+        setActiveGoal(prevState => ({
+                ...prevState,
+                challenges: value
+        }));
+
+    }
     
     const finishGoal = async () => {
-        const date = Date.now()
-        setReviewGoal(prevGoal => [...prevGoal,  prevGoal.end_date = date])
-        setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
+        setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
         setActiveGoal(null)
     };
 
@@ -183,8 +203,8 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoal,
                 resetSmartGoal,
                 reviewGoal,
-                finshedGoalData,
-                setFinishedGoalData
+                reflectGoal,
+                endJournalDate
             }}
         >
             {children}
