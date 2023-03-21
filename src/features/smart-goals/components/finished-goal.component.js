@@ -1,17 +1,16 @@
 import React from "react";
 import { Text } from "react-native";
 import { KeyboardView, GoalWrapper } from "./goal.styles"
-import { GoalTextSection } from "./goal.styles";
-import { formateDate } from "../../../infrastructure/helpers"
+import { GoalTextSection } from "./goal-text-section.component"
+import { formatDate } from "../../../infrastructure/helpers"
 
 export const FinishedGoalComponent = ({ goal }) => {
-    console.log(goal)
-
+    // console.log(goal)
     const goalDetails = [
-        // {
-        //     header: "Your goal begaon on:",
-        //     body: formateDate(goal.date_time_value)
-        // },
+        {
+            header: "Your goal begaon on:",
+            body: formatDate(goal.date_time_value)
+        },
         {
             header: "Your SMART goal was:",
             body: goal.goal,
@@ -26,7 +25,7 @@ export const FinishedGoalComponent = ({ goal }) => {
             body: goal.reward
         },
         {
-            header: "the updates were",
+            header: "The updates were:",
             body: goal.goal_updates
         },
         {
@@ -50,13 +49,11 @@ export const FinishedGoalComponent = ({ goal }) => {
                 key={idx} 
             />
     })
-return <Text>{"WTF"}</Text>
-    // return (
-
-        // <KeyboardView>
-        //         <GoalWrapper>
-        //             {smartGoalDetails}
-        //         </GoalWrapper>
-        // </ KeyboardView>
-    // )
+    return (
+        <KeyboardView>
+                <GoalWrapper>
+                    {smartGoalDetails}
+                </GoalWrapper>
+        </ KeyboardView>
+    )
 }
