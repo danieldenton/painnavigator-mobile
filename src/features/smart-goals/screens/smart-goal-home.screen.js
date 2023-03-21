@@ -10,7 +10,7 @@ import { Add } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
-    const { activeGoal, finishedGoals } = useContext(SmartGoalContext);
+    const { activeGoal, finishedGoals } = useContext(SmartGoalContext);    
     
     const finishedGoalElements = finishedGoals?.map((finishedGoal) => {
         return (

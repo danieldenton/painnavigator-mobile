@@ -14,7 +14,7 @@ import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
     const { goal: activeGoal, steps: activeSteps, reward: activeReward, date_time_value, goal_updates: activeUpdates } = goal;
-    const { editGoal, editGoalUpdate, reviewGoal, saveEdits } = useContext(SmartGoalContext);
+    const { editGoal, editGoalUpdate, reviewGoal, saveEdits, setActiveGoal } = useContext(SmartGoalContext);
     const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
 
     const goalDetails = [
@@ -35,6 +35,16 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
         }
     ]
 
+    // const setEndDate = () => {
+    //     date = Date.now()
+    //     console.log(activeGoal)
+    //     setActiveGoal(prevGoal => (
+    //         {
+    //         ...prevGoal, 
+    //         end_date: date
+    //         }
+    //       ))
+    //     }
     const smartGoalDetails = goalDetails.map((goalDetail, idx) => {
         return <GoalTextSection 
                 edit={editGoal} 
@@ -95,6 +105,7 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                         title={"Smart Goal Reached"} 
                         onPress={() => {
                             navigation.navigate("SmartGoalReflection")
+                            // setEndDate()
                             track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL);
                         }}
                     />
