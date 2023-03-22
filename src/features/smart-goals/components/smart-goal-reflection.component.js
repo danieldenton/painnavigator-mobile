@@ -1,8 +1,6 @@
 import React, { useContext} from "react";
 import { QuestionSection, ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
-import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
