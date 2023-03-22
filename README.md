@@ -59,7 +59,7 @@ To add a global depency in you GitPod you should use npm
 30. lodash v4.17.21
 31. react v18.2.0 - library using JSX  to break code down into reusable components as well as fast rendering
 32. react-dom v18.2.0
-33. react-native v0.71.3 - React for devolping on iOS and Android platforms
+33. react-native v0.71.3 - React for devolping on iOS and Android platforms. Last updated on 3/22/23
 34. react-native-cached-image v1.4.3
 35. react-native-circular-progress v1.3.7
 36. react-native-confetti v0.1.0
