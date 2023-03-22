@@ -205,7 +205,6 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoal,
                 resetSmartGoal,
                 reviewGoal,
-                reflectGoal,
                 endJournalDate,
                 addMeaning,
                 addChallenges

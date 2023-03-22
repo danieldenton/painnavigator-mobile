@@ -10,7 +10,7 @@ export const SmartGoalReflectionScreen = ({ navigation }) => {
                     destination={"ReviewSmartGoal"} 
                     navigation={navigation}
                 />
-                <SmartGoalReflectionComponent navigation={navigation}/>  
+               {reviewGoal && <SmartGoalReflectionComponent navigation={navigation}/> }
         </SafeView>
     );
 }

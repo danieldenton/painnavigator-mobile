@@ -43,7 +43,6 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
             return <QuestionAndInput question={question} input={question.function} key={idx} />
          })
 
-         console.log(reviewGoal)
 
     return (
         <>
