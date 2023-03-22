@@ -90,22 +90,24 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     }
 
-    const reflectGoal = (value, key) => {
-        key === 1 ?
-        setActiveGoal(prevState => ({
-              ...prevState,
+    const addMeaning = (value, key) => {
+        setReviewGoal(prevGoal => ({
+              ...prevGoal,
               meaning: value
-        })) :
-        setActiveGoal(prevState => ({
-                ...prevState,
-                challenges: value
-        }));
+        })) 
+    }
+     
 
+    const addChallenges = (value, key) => {
+        setReviewGoal(prevGoal => ({
+            ...prevGoal,
+            challenges: value
+        }))
     }
     
-    const finishGoal = async () => {
-        setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
-        setActiveGoal(null)
+    const finishGoal = () => {
+        setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
+         setTimeout(setActiveGoal(null), 10000)
     };
 
     const nextPage = () => {
@@ -204,7 +206,9 @@ export const SmartGoalContextProvider = ({ children }) => {
                 resetSmartGoal,
                 reviewGoal,
                 reflectGoal,
-                endJournalDate
+                endJournalDate,
+                addMeaning,
+                addChallenges
             }}
         >
             {children}
