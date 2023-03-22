@@ -35,6 +35,18 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
         }
     ]
 
+    const handleSaveChanges = () => {
+        saveEdits(); 
+        setEditing(false);
+        track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
+    }
+
+    const handleSmartGoalReached = () => {
+        navigation.navigate("SmartGoalReflection")
+        endJournalDate()
+        track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL);
+    }
+
     
     const smartGoalDetails = goalDetails.map((goalDetail, idx) => {
         return <GoalTextSection 
@@ -86,18 +98,14 @@ export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
                     <JournalButton 
                         title={"Save Changes"} 
                         onPress={() => {
-                            saveEdits(); 
-                            setEditing(false);
-                            track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
+                            handleSaveChanges()
                         }}
                     />
                     :
                     <JournalButton 
                         title={"Smart Goal Reached"} 
                         onPress={() => {
-                            navigation.navigate("SmartGoalReflection")
-                            endJournalDate()
-                            track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL);
+                            handleSmartGoalReached()
                         }}
                     />
                  }

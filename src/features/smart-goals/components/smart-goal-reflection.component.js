@@ -51,7 +51,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         </KeyboardAwareScrollView>
         <ButtonSection>
         <JournalButton 
-            // disabled={meaning || challenges ? false : true} 
+            disabled={meaning || challenges ? false : true} 
             title={"Finish Smart Goal"} 
             onPress={() => (handleFinishGoal(), track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_REFLECTION))}
         />
