@@ -83,9 +83,10 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const endJournalDate = () => {
         const date = formatDate(Date.now())
-        setActiveGoal(prevState => ({
+        setReviewGoal(prevState => ({
             ...prevState,
-            end_date: date
+            end_date: date,
+            status: "complete"
         }))
 
     }
