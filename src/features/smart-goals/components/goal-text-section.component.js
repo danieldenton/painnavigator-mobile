@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components/native";
 import { ReviewTextInput } from "../../../components/text-input.component";
 
@@ -15,11 +16,6 @@ const Body = styled.Text`
     font-family: Inter_400Regular;
     font-size: 16px;
     margin-top: 4px;
-`;
-
-const UpdateBody = styled.Text`
-    font-family: Inter_400Regular;
-    font-size: 16px;
 `;
 
 export const GoalTextSection = ({ edit, editing, header, body, state }) => {
@@ -54,7 +50,7 @@ export const UpdateGoalTextSection = ({ header, body }) => {
             <Header>
                 {header}
             </Header>
-                {updates}
+            {updates}
         </GoalTextWrapper>
     );
 };
