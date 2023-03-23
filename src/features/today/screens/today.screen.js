@@ -37,15 +37,15 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-    const COMPLETED_ALL_EDUCATION_MODULES = educationProgress > 67;
-    const COMPLETED_ALL_MOVEMENT_MODULES = movementProgress > 36;
-    const LAST_PAIN_JOURNAL = formatDate(painJournals[0]?.date_time_value);
-    const LAST_MOOD_JOURNAL = formatDate(moodJournals[0]?.date_time_value);
-    const LAST_FOOD_JOURNAL = formatDate(foodJournals[0]?.date_time_value);
-    const LAST_SMART_GOAL_UPDATE = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
-    const LAST_EDUCATION_MODULE = lastCompletedModule !== null && formatDate(lastCompletedModule);
-    const LAST_EDUCATION_MODULE_ID = educationProgress - 1;
-    const LAST_MOVEMENT_MODULE = lastMovement !== null && formatDate(lastMovement);
+    const completedAllEducationModules = educationProgress > 67;
+    const completedAllMovementModules = movementProgress > 36;
+    const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
+    const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
+    const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
+    const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
+    const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const lastEducationModuleId = educationProgress - 1;
+    
 
     useEffect(() => {
         getUser(
@@ -83,7 +83,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     function renderJournalDailyActivity() {
-        if(LAST_FOOD_JOURNAL !== timeZonedTodaysDate & LAST_MOOD_JOURNAL !== timeZonedTodaysDate & LAST_PAIN_JOURNAL !== timeZonedTodaysDate) {
+        if(lastFoodJournal !== timeZonedTodaysDate & lastMoodJournal !== timeZonedTodaysDate & lastPainJournal !== timeZonedTodaysDate) {
             return <Journals navigation={navigation} />
         };
     };
@@ -95,9 +95,9 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderSmartGoalDailyActivity() { 
-        const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
-        if(USER_COMPLETED_SMART_GOAL_UNIT < 7 && activeGoal) {
-            if(LAST_SMART_GOAL_UPDATE === timeZonedTodaysDate) {
+        const userCompletedSmartGoalUnit = educationProgress > 7;
+        if(userCompletedSmartGoalUnit && activeGoal) {
+            if(lastSmartGoalUpdate === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
             } else {
                 return <SmartGoalUpdate navigation={navigation} />
@@ -114,10 +114,10 @@ export const TodayScreen = ({ navigation }) => {
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
-                {!COMPLETED_ALL_EDUCATION_MODULES && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {LAST_EDUCATION_MODULE === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={LAST_EDUCATION_MODULE_ID} />}
-                {!COMPLETED_ALL_EDUCATION_MODULES && <EducationUnitCard navigation={navigation} />}
-                {!COMPLETED_ALL_MOVEMENT_MODULES && 
+                {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
+                { lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
+                {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
+                {!completedAllMovementModules && 
                     <>
                         <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                         <MovementUnitCard navigation={navigation} isFocused={isFocused} />
@@ -129,9 +129,9 @@ export const TodayScreen = ({ navigation }) => {
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
                     {renderSmartGoalDailyActivity()}
-                    {LAST_PAIN_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {LAST_MOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {LAST_FOOD_JOURNAL === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
+                    {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
+                    {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
+                    {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
                 </View>
             </Scroll>
         </SafeView>

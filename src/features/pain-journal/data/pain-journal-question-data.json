@@ -10,15 +10,18 @@
             "questions": [
                 {
                     "question": "What were you doing when your pain increased?",
-                    "helpText": "Walking down the street on the way to work."
+                    "helpText": "Walking down the street on the way to work.",
+                    "state": "situation"
                 },
                 {
                     "question": "What were you feeling?",
-                    "helpText": "I was feeling anxious because I was running late."
+                    "helpText": "I was feeling anxious because I was running late.",
+                    "state": "feeling"
                 },
                 {
                     "question": "Who were you with?",
-                    "helpText": "I was by myself."
+                    "helpText": "I was by myself.",
+                    "state": "whoIWasWith"
                 }
             ]
         },

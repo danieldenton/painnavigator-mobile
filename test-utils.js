@@ -21,17 +21,17 @@ const Providers = ({children}) => {
 
   
   const authenticationContextValueProvider =  {"user": {"user":{"uid":"6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"}}}
-  const smartGoalContextValueProvider = { "activeGoal": {
-    "id": 54,
-    "goal": "test",
-    "steps": "test",
-    "reward": "test",
-    "end_date": null,
-    "date_time_value": 1675737571419.8752,
-    "status": "active",
-    "goal_updates": []
-   }
-  }
+  // const smartGoalContextValueProvider = { "activeGoal": {
+  //   "id": 54,
+  //   "goal": "test",
+  //   "steps": "test",
+  //   "reward": "test",
+  //   "end_date": null,
+  //   "date_time_value": 1675737571419.8752,
+  //   "status": "active",
+  //   "goal_updates": []
+  //  }
+  // }
 
     return (
        <ThemeProvider theme={theme}>

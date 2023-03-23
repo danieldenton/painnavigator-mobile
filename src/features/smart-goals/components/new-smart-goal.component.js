@@ -14,12 +14,12 @@ export const NewSmartGoal = ({ navigation }) => {
 
     pages = [
         {
-            page: <Goal />,
+            component: <Goal />,
             trackEvent: SMART_GOAL_EVENTS.ENTER_SMART_GOAL,
             submitCondition: goal
         },
         {
-            page: <Steps />,
+            component: <Steps />,
             trackEvent: SMART_GOAL_EVENTS.ENTER_SMART_GOAL_DETAILS,
             submitCondition: steps && reward
         }
@@ -39,7 +39,7 @@ export const NewSmartGoal = ({ navigation }) => {
     return (
         <>
             <QuestionSection>
-                {pages[currentPage].page}
+                {pages[currentPage].component}
             </QuestionSection>
             <ButtonSection>
                 <JournalButton 

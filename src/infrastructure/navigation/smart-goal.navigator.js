@@ -8,6 +8,8 @@ import { SmartGoalCreatedScreen } from "../../features/smart-goals/screens/smart
 import { SmartGoalUpdateCreatedScreen } from "../../features/smart-goals/screens/smart-goal-update-created.screen";
 import { SmartGoalDeletedScreen } from "../../features/smart-goals/screens/smart-goal-deleted.screen";
 import { SmartGoalCompletedScreen } from "../../features/smart-goals/screens/smart-goal-completed.screen";
+import { SmartGoalReflectionScreen } from "../../features/smart-goals/screens/smart-goal-reflection.screen";
+import { FinishedGoalScreen } from "../../features/smart-goals/screens/finished-goal.screen";
 
 const SmartGoalStack = createStackNavigator();
 
@@ -22,6 +24,8 @@ export const SmartGoalNavigator = () => {
             <SmartGoalStack.Screen name="SmartGoalUpdateCreated" component={SmartGoalUpdateCreatedScreen} />
             <SmartGoalStack.Screen name="SmartGoalDeleted" component={SmartGoalDeletedScreen} />
             <SmartGoalStack.Screen name="SmartGoalCompleted" component={SmartGoalCompletedScreen} />
+            <SmartGoalStack.Screen name="SmartGoalReflection" component={SmartGoalReflectionScreen} />
+            <SmartGoalStack.Screen name="FinishedGoal" component={FinishedGoalScreen} />
         </SmartGoalStack.Navigator>
     );
 };

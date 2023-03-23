@@ -1,52 +1,42 @@
 import React, { useContext } from "react";
-import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
+import { QuestionAndInput } from "../../../components/question-and-input.component"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
-import styled from "styled-components/native";
+import { SmartGoalWrapper, SmartGoal } from "./goal.styles";
 
-const SmartGoalWrapper = styled.View`
-    align-items: center;
-    margin-top: 16px;
-`;
-
-const SmartGoal = styled.Text`
-    font-family: Inter_400Regular;
-    font-size: 16px;
-`;
- 
 export const Steps = () => {
     const { changeSmartGoal, smartGoal } = useContext(SmartGoalContext);
+    const { goal, steps, reward } = smartGoal
     
-    const stepsQuestion = {
-        question: "What will you do each week to work your way up to your goal?",
-        helpText: "For example: I will walk for 30 mins this week, 40 mins next week, 50 mins the week after, and 60 mins the last week."
-    }
+    const questions = [
+        {
+            question: "What will you do each week to work your way up to your goal?",
+            helpText: "For example: I will walk for 30 mins this week, 40 mins next week, 50 mins the week after, and 60 mins the last week.",
+            value: steps,
+            inputSting: "steps",
+            accessibilityLabel: "steps-input"
+        },
+        {
+            question: "What will your reward be?",
+            helpText: "Be creative and pick something you really want! This could be a magazine subscription or a dinner out with friends.",
+            value: reward,
+            inputSting: "reward",
+            accessibilityLabel: "reward-input"
+        }
+    ]
 
-    const rewardQuestion = {
-        question: "What will your reward be?",
-        helpText: "Be creative and pick something you really want! This could be a magazine subscription or a dinner out with friends."
-    }
+     const questionsAndInputs = questions.map((question, idx) => {
+        return <QuestionAndInput question={question} input={changeSmartGoal} key={idx} />
+     })
 
     return (
         <KeyboardAwareScrollView style={{ marginBottom: 120, marginRight: -16, paddingRight: 16 }}>
             <SmartGoalWrapper>
                 <SmartGoal>
-                    "{smartGoal.goal}"
+                    "{goal}"
                 </SmartGoal>
             </SmartGoalWrapper>
-            <JournalQuestion question={stepsQuestion.question} helpText={stepsQuestion.helpText} />
-            <TextInputMedium
-                value={smartGoal.steps}
-                onChangeText={(change) => changeSmartGoal(change, "steps")}   
-                accessibilityLabel={"steps-input"}
-            />
-            <JournalQuestion question={rewardQuestion.question} helpText={rewardQuestion.helpText} />
-            <TextInputMedium
-                value={smartGoal.reward}
-                onChangeText={(change) => changeSmartGoal(change, "reward")}   
-                accessibilityLabel={"reward-input"}
-            />
+            {questionsAndInputs}
         </KeyboardAwareScrollView>
     );
 }; 

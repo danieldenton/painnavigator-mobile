@@ -2,6 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { formatDate } from "../../infrastructure/helpers";
 
 export const SmartGoalContext = createContext();
 
@@ -13,7 +14,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     const [smartGoal, setSmartGoal] = useState({
         goal: "",
         steps: "",
-        reward: ""    
+        reward: ""
     });
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
@@ -55,7 +56,7 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const deleteGoal = () => {
         destroyGoal(activeGoal.id);
-        setTimeout(() => {setActiveGoal(null)}, 1000);
+        setActiveGoal(null)
     };
 
     const editGoal = (change, state) => {
@@ -80,10 +81,34 @@ export const SmartGoalContextProvider = ({ children }) => {
         setActiveGoal(reviewGoal);
     };
 
+    const endJournalDate = () => {
+        const date = formatDate(Date.now())
+        setReviewGoal(prevState => ({
+            ...prevState,
+            end_date: date,
+            status: "complete"
+        }))
+
+    }
+
+    const addMeaning = (value, key) => {
+        setReviewGoal(prevGoal => ({
+              ...prevGoal,
+              meaning: value
+        })) 
+    }
+     
+
+    const addChallenges = (value, key) => {
+        setReviewGoal(prevGoal => ({
+            ...prevGoal,
+            challenges: value
+        }))
+    }
     
     const finishGoal = () => {
-        setFinishedGoals(prevGoals => [activeGoal, ...prevGoals]);
-        setTimeout(() => {setActiveGoal(null)}, 1000);
+        setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
+         setTimeout(setActiveGoal(null), 10000)
     };
 
     const nextPage = () => {
@@ -100,7 +125,7 @@ export const SmartGoalContextProvider = ({ children }) => {
             steps: "",
             reward: ""
         });
-        setCurrentPage(1);
+        setCurrentPage(0);
     };
 
     const saveActiveGoal = async (value) => {
@@ -116,7 +141,8 @@ export const SmartGoalContextProvider = ({ children }) => {
         try {
             const value = await AsyncStorage.getItem("@active_goal");
             if (value !== null) {
-                setActiveGoal(JSON.parse(value));
+                // setActiveGoal(JSON.parse(value));
+                setActiveGoal
             }
         } catch (e) {
             console.log("error loading smart goals", e);
@@ -170,6 +196,7 @@ export const SmartGoalContextProvider = ({ children }) => {
                 createSmartGoal,
                 createSmartGoalUpdate,
                 currentPage,
+                setCurrentPage,
                 finishGoal,
                 finishedGoals,
                 nextPage,
@@ -178,7 +205,10 @@ export const SmartGoalContextProvider = ({ children }) => {
                 smartGoalUpdate,
                 smartGoal,
                 resetSmartGoal,
-                reviewGoal
+                reviewGoal,
+                endJournalDate,
+                addMeaning,
+                addChallenges
             }}
         >
             {children}
