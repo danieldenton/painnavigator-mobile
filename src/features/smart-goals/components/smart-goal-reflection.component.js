@@ -10,7 +10,7 @@ import { QuestionAndInput } from "../../../components/question-and-input.compone
 
 
 export const SmartGoalReflectionComponent = ({ navigation }) => {
-    const { addMeaning, addChallenges, editGoal, finishGoal, reviewGoal } = useContext(SmartGoalContext);
+    const { editGoal, finishGoal, reviewGoal } = useContext(SmartGoalContext);
     const { meaning, challenges } = reviewGoal
 
     const questions = [
@@ -20,7 +20,6 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
             value: meaning,
             inputString: "meaning",
             accessibilityLabel: "meaning-input",
-            function: addMeaning
         },
         {
             question: "Were there any challenges?",
@@ -28,7 +27,6 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
             value: challenges,
             inputString: "challenges",
             accessibilityLabel: "callenges-input",
-            function: addChallenges
         }
     ]
 

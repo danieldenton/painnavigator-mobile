@@ -91,21 +91,6 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     }
 
-    const addMeaning = (value, key) => {
-        setReviewGoal(prevGoal => ({
-              ...prevGoal,
-              meaning: value
-        })) 
-    }
-     
-
-    const addChallenges = (value, key) => {
-        setReviewGoal(prevGoal => ({
-            ...prevGoal,
-            challenges: value
-        }))
-    }
-    
     const finishGoal = () => {
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
          setTimeout(setActiveGoal(null), 10000)
@@ -207,8 +192,6 @@ export const SmartGoalContextProvider = ({ children }) => {
                 resetSmartGoal,
                 reviewGoal,
                 endJournalDate,
-                addMeaning,
-                addChallenges
             }}
         >
             {children}
