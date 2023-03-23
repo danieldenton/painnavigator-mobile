@@ -11,7 +11,7 @@ export const Goal = () => {
         question: "What is your goal?",
         helpText: "Pick something small to start! What’s something realistic you could see yourself doing in four weeks? This could be anything from cutting down on soda to walking an hour a week.",
         value: goal,
-        inputSting: "goal",
+        inputString: "goal",
         accessibilityLabel: "goal-input"
     }
 

@@ -13,14 +13,14 @@ export const Steps = () => {
             question: "What will you do each week to work your way up to your goal?",
             helpText: "For example: I will walk for 30 mins this week, 40 mins next week, 50 mins the week after, and 60 mins the last week.",
             value: steps,
-            inputSting: "steps",
+            inputString: "steps",
             accessibilityLabel: "steps-input"
         },
         {
             question: "What will your reward be?",
             helpText: "Be creative and pick something you really want! This could be a magazine subscription or a dinner out with friends.",
             value: reward,
-            inputSting: "reward",
+            inputString: "reward",
             accessibilityLabel: "reward-input"
         }
     ]
