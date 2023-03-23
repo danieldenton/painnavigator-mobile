@@ -65,6 +65,7 @@ export const TodayScreen = ({ navigation }) => {
             return;
         }
         getUserMessages(user.user.uid, setMessages)
+        console.log(activeGoal)
 
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
@@ -95,8 +96,8 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderSmartGoalDailyActivity() { 
-        const USER_COMPLETED_SMART_GOAL_UNIT = educationProgress > 7;
-        if(USER_COMPLETED_SMART_GOAL_UNIT && activeGoal) {
+        const userCompletedSmartGoalUnit = educationProgress > 7;
+        if(userCompletedSmartGoalUnit && activeGoal) {
             if(lastSmartGoalUpdate === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
             } else {

@@ -17,6 +17,11 @@ const Body = styled.Text`
     margin-top: 4px;
 `;
 
+const UpdateBody = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+`;
+
 export const GoalTextSection = ({ edit, editing, header, body, state }) => {
 
     return (
@@ -34,6 +39,22 @@ export const GoalTextSection = ({ edit, editing, header, body, state }) => {
                     {body}
                 </Body>
             }
+        </GoalTextWrapper>
+    );
+};
+
+export const UpdateGoalTextSection = ({ header, body }) => {
+
+    const updates = body.map((update, idx) => {
+        return <Body>{update}</Body>
+    })
+
+    return (
+        <GoalTextWrapper>
+            <Header>
+                {header}
+            </Header>
+                {updates}
         </GoalTextWrapper>
     );
 };

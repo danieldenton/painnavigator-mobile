@@ -56,6 +56,7 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
             onPress={() => (handleFinishGoal(), track(SMART_GOAL_EVENTS.ENTER_SMART_GOAL_REFLECTION))}
         />
          <SkipQuestion
+            moreThanOneQuestion={true}
             onPress={() => (handleFinishGoal(), track(SMART_GOAL_EVENTS.SKIP_SMART_GOAL_REFLECTION))}
         />
     </ButtonSection>

@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { space } from "../infrastructure/theme/spacing";
 
 export const SkipQuestionButton = styled.TouchableOpacity`
     margin-top: 16px;
@@ -11,11 +10,13 @@ export const SkipQuestionText = styled.Text`
     font-size: 16px;
 `;
 
-export const SkipQuestion = ({ onPress, module }) => {
+export const SkipQuestion = ({ onPress, module, moreThanOneQuestion }) => {
     return(
         <SkipQuestionButton onPress={() => onPress()}>
             <SkipQuestionText>
-                SKIP THIS {module ? "MODULE" : "QUESTION"}
+                {moreThanOneQuestion ?
+                "SKIP THESE QUESTIONS" :
+                `SKIP THIS ${module ? "MODULE" : "QUESTION"}`}
             </SkipQuestionText>
         </SkipQuestionButton>
     );

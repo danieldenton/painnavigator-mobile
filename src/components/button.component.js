@@ -48,7 +48,6 @@ export const ReviewJournalButton = ({ saveEdits, setEditing, type, navigation, t
                 title={"Save Changes"}
                 onPress={() => {
                     handleTrackEvent(trackEvent)
-                    // track("track this")
                     saveEdits(); 
                     setTimeout(() => {setEditing(false)}, 1000);
                     navigation.navigate("JournalUpdated", {

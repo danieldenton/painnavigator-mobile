@@ -1,11 +1,18 @@
 import React from "react";
 import { Text } from "react-native";
 import { KeyboardView, GoalWrapper } from "./goal.styles"
-import { GoalTextSection } from "./goal-text-section.component"
+import { GoalTextSection, UpdateGoalTextSection } from "./goal-text-section.component"
 import { formatDate } from "../../../infrastructure/helpers"
 
 export const FinishedGoalComponent = ({ goal }) => {
-    // console.log(goal)
+
+    const smartGoalUpdates = goal.goal_updates.map((update, idx) => {
+        return <GoalTextSection 
+        body={update.goal_update}
+        key={idx}
+        />
+    })
+
     const goalDetails = [
         {
             header: "Your goal begaon on:",
@@ -18,7 +25,6 @@ export const FinishedGoalComponent = ({ goal }) => {
         {
             header: "Your steps to work up to this goal were:",
             body: goal.steps,
-            state: "steps"
         },
         {
             header: "Your reward was:",
@@ -26,7 +32,7 @@ export const FinishedGoalComponent = ({ goal }) => {
         },
         {
             header: "The updates were:",
-            body: goal.goal_updates
+            body: smartGoalUpdates
         },
         {
             header: "What it meant to you:",
@@ -43,12 +49,23 @@ export const FinishedGoalComponent = ({ goal }) => {
     ]
 
     const smartGoalDetails = goalDetails.map((goalDetail, idx) => {
-        return <GoalTextSection 
+        return (
+            idx === 4 ?
+                <UpdateGoalTextSection 
                 header={goalDetail.header} 
                 body={goalDetail.body} 
                 key={idx} 
-            />
+                />
+                :
+                <GoalTextSection 
+                header={goalDetail.header} 
+                body={goalDetail.body} 
+                key={idx} 
+                />
+        )
     })
+
+    
     return (
         <KeyboardView>
                 <GoalWrapper>
