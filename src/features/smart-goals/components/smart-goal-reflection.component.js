@@ -10,7 +10,7 @@ import { QuestionAndInput } from "../../../components/question-and-input.compone
 
 
 export const SmartGoalReflectionComponent = ({ navigation }) => {
-    const { addMeaning, addChallenges, finishGoal, reviewGoal } = useContext(SmartGoalContext);
+    const { addMeaning, addChallenges, editGoal, finishGoal, reviewGoal } = useContext(SmartGoalContext);
     const { meaning, challenges } = reviewGoal
 
     const questions = [
@@ -32,13 +32,15 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         }
     ]
 
+console.log(reviewGoal)
+
     const handleFinishGoal = () => {
         finishGoal() 
         navigation.navigate("SmartGoalCompleted")
     }
 
     const questionsAndInputs = questions.map((question, idx) => {
-            return <QuestionAndInput question={question} input={question.function} key={idx} />
+            return <QuestionAndInput question={question} input={editGoal} key={idx} />
          })
 
 

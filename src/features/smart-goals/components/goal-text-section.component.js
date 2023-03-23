@@ -47,7 +47,7 @@ export const GoalTextSection = ({ edit, editing, header, body, state }) => {
 export const UpdateGoalTextSection = ({ header, body }) => {
 
     const updates = body.map((update, idx) => {
-        return <Body>{update}</Body>
+        return {update}
     })
 
     return (
