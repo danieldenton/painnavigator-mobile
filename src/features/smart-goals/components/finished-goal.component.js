@@ -15,7 +15,7 @@ export const FinishedGoalComponent = ({ goal }) => {
 
     const goalDetails = [
         {
-            header: "Your goal begaon on:",
+            header: "Your goal began on:",
             body: formatDate(goal.date_time_value)
         },
         {
