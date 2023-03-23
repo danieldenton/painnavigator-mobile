@@ -17,6 +17,7 @@ export const Situation = () => {
             <TextInputMedium 
                 value={situations[idx]}
                 onChangeText={(change) => changeEntry(change, situationStrings[idx])}
+                key={idx}
             />
             </>
         )
