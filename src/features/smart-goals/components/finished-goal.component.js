@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { KeyboardView, GoalWrapper } from "./goal.styles"
 import { GoalTextSection, UpdateGoalTextSection } from "./goal-text-section.component"
 import { formatDate } from "../../../infrastructure/helpers"

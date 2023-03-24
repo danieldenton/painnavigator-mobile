@@ -72,7 +72,7 @@
             "id": 7,
             "type": "video",
             "name": "SMART Goals",
-            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1648570183/For%20Mobile%20App/Education/SMART%20Goal.mp4",
+            "source": "https://res.cloudinary.com/painnavigator/video/upload/v1655824728/For%20Mobile%20App/Education/Setting%20a%20SMART%20Goal.mp4",
             "length": 6, 
             "post_video_destination": "SmartGoal",
             "skippable": false,
