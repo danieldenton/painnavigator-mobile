@@ -7,10 +7,7 @@ import { formatDate } from "../../../infrastructure/helpers"
 export const FinishedGoalComponent = ({ goal }) => {
 
     const smartGoalUpdates = goal.goal_updates.map((update, idx) => {
-        return <GoalTextSection 
-        body={update.goal_update}
-        key={idx}
-        />
+        return update.goal_update
     })
 
     const goalDetails = [
