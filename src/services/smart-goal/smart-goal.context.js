@@ -93,7 +93,7 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const finishGoal = () => {
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
-         setTimeout(setActiveGoal(null), 10000)
+        setActiveGoal(null), 10000
     };
 
     const nextPage = () => {

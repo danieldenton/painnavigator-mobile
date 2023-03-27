@@ -49,7 +49,7 @@ export const NewSmartGoal = ({ navigation }) => {
                         {currentPage === 1 ?  handleCreateSmartGoal() : handleNextPage()}
                     }}
                 />
-                <ProgressDots progress={currentPage} total={3} />
+                <ProgressDots progress={currentPage + 1} total={3} />
             </ButtonSection>
         </>
     );

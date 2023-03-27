@@ -93,7 +93,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                             }
                         }} 
                     />}
-                <ProgressDots progress={currentPage} total={5}/>
+                <ProgressDots progress={currentPage} total={4}/>
             </ButtonSection>       
         </>
     );
