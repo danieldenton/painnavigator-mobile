@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.4.9",
+    "version": "1.4.10",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -44,7 +44,7 @@
       ],
       "icon": "./assets/icon.png",
       "package": "com.PainNavigator",
-      "versionCode": 9
+      "versionCode": 10
     },
     "web": {
       "favicon": "./assets/favicon.png"

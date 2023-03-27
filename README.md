@@ -1,6 +1,9 @@
-# PainNavigator 1.4.9
+# PainNavigator 1.4.10
 
 PainNavigator is a mobile app which utilizes the React-Native library and Expo for making native universal apps that run on iOS and Android. It employs a server that uses Ruby on the Rails framework deployed on Heroku.
+
+What's new on v1.4.10
+1. View preavious SMART goal crash fixed.
 
 What's new on v1.4.9?
 1. React Native updated from 0.713 to 0.71.4
