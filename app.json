@@ -44,7 +44,7 @@
       ],
       "icon": "./assets/icon.png",
       "package": "com.PainNavigator",
-      "versionCode": 7
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.png"

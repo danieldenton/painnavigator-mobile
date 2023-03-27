@@ -36,8 +36,6 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
         navigation.navigate("ReviewFoodJournal", { journal: lastFoodJournalDate === foodJournalTimeZonedTodaysDate && foodJournals[0] })  
      }
 
-     console.log(foodJournals)
-
     return(
         <SafeView>
             <NavigationBarLeft navigation={navigation} destination={navigateBackDestination} screen={"Food Journal"} />
