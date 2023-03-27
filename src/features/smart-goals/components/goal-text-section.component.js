@@ -17,9 +17,8 @@ const Body = styled.Text`
     margin-top: 4px;
 `;
 
-const UpdateBody = styled.Text`
-    font-family: Inter_400Regular;
-    font-size: 16px;
+const HeaderNoBody = styled.Text`
+    padding: 16px
 `;
 
 export const GoalTextSection = ({ edit, editing, header, body, state }) => {
@@ -54,7 +53,7 @@ export const UpdateGoalTextSection = ({ header, body }) => {
             <Header>
                 {header}
             </Header>
-                {updates}
+                {updates.length > 0 ? updates : <Body></Body>}
         </GoalTextWrapper>
     );
 };
