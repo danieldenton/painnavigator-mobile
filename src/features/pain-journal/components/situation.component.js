@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { JournalQuestion } from "../../../components/journal-question.component";
-import { TextInputMedium } from "../../../components/text-input.component";
 import { QuestionAndInput } from "../../../components/question-and-input.component"
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 
 export const Situation = () => {
-    const { changeEntry, currentPageData, painJournal } = useContext(PainJournalContext);
-    // const { questions } = currentPageData;
+    const { changeEntry, painJournal } = useContext(PainJournalContext);
 
     const questions = [
         {
@@ -35,19 +32,7 @@ export const Situation = () => {
     ]
 
     const questionsAndInputs = questions.map((question, idx) => {
-        // const situations = [painJournal.situation, painJournal.feeling, painJournal.whoIWasWith]
-        // const situationStrings = ["situation", "feeling", "whoIWasWith"]
-        return <QuestionAndInput question={question} input={changeEntry} idx={idx}/>
-        // return(
-        //     <>
-        //     <JournalQuestion question={question.question} helpText={question.helpText} key={idx} />
-        //     <TextInputMedium 
-        //         value={situations[idx]}
-        //         onChangeText={(change) => changeEntry(change, situationStrings[idx])}
-        //         key={idx} 
-        //     />
-        //     </>
-        // )
+        return <QuestionAndInput question={question} input={changeEntry} key={idx}/>
     })
 
     return(
