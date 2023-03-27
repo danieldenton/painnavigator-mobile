@@ -8,12 +8,12 @@ import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewFoodJournalScreen = ({ route, navigation }) => {
 
-    // const journalCheck = (route) => {
-    //     if (route) {
-    //         const { journal } = route.params;
-    //         return { journal }
-    //     }    
-    // }
+    const journalCheck = (route) => {
+        if (route) {
+            const { journal } = route.params;
+            return { journal }
+        }    
+    }
     const { journal } = route.params;
 
     const meals = [

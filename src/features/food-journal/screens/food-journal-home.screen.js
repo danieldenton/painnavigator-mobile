@@ -9,7 +9,7 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
-import { timeZonedTodaysDate, formatDate } from "../../../infrastructure/helpers";
+import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../infrastructure/helpers";
 import { track } from "@amplitude/analytics-react-native";
 import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
@@ -33,8 +33,10 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
 
     const handleTodaysFoodJournal = () => {
         track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL)
-        navigation.navigate("ReviewFoodJournal", { journal: lastFoodJournalDate === timeZonedTodaysDate && foodJournals[0] })  
+        navigation.navigate("ReviewFoodJournal", { journal: lastFoodJournalDate === foodJournalTimeZonedTodaysDate && foodJournals[0] })  
      }
+
+     console.log(foodJournals)
 
     return(
         <SafeView>
