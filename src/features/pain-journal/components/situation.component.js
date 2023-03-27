@@ -6,7 +6,24 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 
 export const Situation = () => {
     const { changeEntry, currentPageData, painJournal } = useContext(PainJournalContext);
-    const { questions } = currentPageData;
+    // const { questions } = currentPageData;
+
+    const questions = [
+        {
+            question: "What were you doing when your pain increased?",
+            helpText: "Walking down the street on the way to work.",
+            value: painJournal.situation,
+            inputString: "situation",
+            accessibilityLabel: "situation-input"
+        },
+        {
+            question: "What will your reward be?",
+            helpText: "Be creative and pick something you really want! This could be a magazine subscription or a dinner out with friends.",
+            value: reward,
+            inputString: "reward",
+            accessibilityLabel: "reward-input"
+        }
+    ]
 
     const questionsAndInputs = questions.map((question, idx) => {
         const situations = [painJournal.situation, painJournal.feeling, painJournal.whoIWasWith]
@@ -17,7 +34,7 @@ export const Situation = () => {
             <TextInputMedium 
                 value={situations[idx]}
                 onChangeText={(change) => changeEntry(change, situationStrings[idx])}
-                key={idx + 3} 
+                key={idx} 
             />
             </>
         )

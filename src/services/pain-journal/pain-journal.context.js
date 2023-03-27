@@ -100,7 +100,7 @@ export const PainJournalContextProvider = ({ children }) => {
             notes: "", 
             intensityAfter: 5
         });
-        setCurrentPage(1);
+        setCurrentPage(0);
     };
 
     const editJournal = (change, state) => {
