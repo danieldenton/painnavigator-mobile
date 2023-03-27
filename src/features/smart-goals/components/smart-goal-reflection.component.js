@@ -30,8 +30,6 @@ export const SmartGoalReflectionComponent = ({ navigation }) => {
         }
     ]
 
-console.log(reviewGoal)
-
     const handleFinishGoal = () => {
         finishGoal() 
         navigation.navigate("SmartGoalCompleted")
