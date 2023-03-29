@@ -1,5 +1,6 @@
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { Platform } from 'react-native';
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -9,6 +10,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
+export const Notifications = () => {
 // Can use this function below OR use Expo's Push Notification Tool from: https://expo.dev/notifications
 async function sendPushNotification(expoPushToken) {
   const message = {
@@ -59,6 +61,8 @@ async function registerForPushNotificationsAsync() {
   }
 
   return token;
+}
+
 }
 
 export default function App() {
