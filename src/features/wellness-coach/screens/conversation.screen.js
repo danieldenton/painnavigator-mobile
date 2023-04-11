@@ -1,14 +1,29 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { SentMessage, RecievedMessage } from "../components/message.component";
+import { SentMessage, RecievedMessage, LinkText } from "../components/message.component";
 import { Scroll } from "../../../components/scroll.component";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 import { MessageInput } from "../components/message_input.component";
-import { View } from "react-native";
+import { View, Linking, TouchableOpacity } from "react-native";
+import { words } from "lodash";
 
 export const ConversationScreen = ({ navigation }) => {
     const { clearUnreadMessages, hasUnreadMessages, message, messages, sendMessage, writeMessage } = useContext(WellnessCoachContext);
+
+    const checkForLinks = (string) => {
+        words = string.split(" ")
+        for (let i = 0; i < words.lenngth; i++) {
+            if (words.startsWith("http")) {
+                return <TouchableOpacity
+                onPress={() => Linking.openURL(words[i])}
+              >
+                <LinkText style={{ color: blue }}>words[i]</LinkText>
+              </TouchableOpacity>
+            }
+        }
+    }
+
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
         <RecievedMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />

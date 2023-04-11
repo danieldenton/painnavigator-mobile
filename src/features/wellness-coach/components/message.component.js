@@ -21,6 +21,12 @@ const MessageText = styled.Text`
     font-family: Inter_400Regular;
     font-size: 16px;
 `;
+const LinkText = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+    color: blue;
+`;
+
 
 const TimeStampWrapper = styled.View`
     align-items: center;
