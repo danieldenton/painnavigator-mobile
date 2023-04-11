@@ -20,9 +20,9 @@ export const ConversationScreen = ({ navigation }) => {
               >
                 <LinkText>words[i]</LinkText>
               </TouchableOpacity>
-            }
         }
     }
+}
 
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
