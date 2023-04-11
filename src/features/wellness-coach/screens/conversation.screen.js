@@ -18,7 +18,7 @@ export const ConversationScreen = ({ navigation }) => {
                 return <TouchableOpacity
                 onPress={() => Linking.openURL(words[i])}
               >
-                <LinkText style={{ color: blue }}>words[i]</LinkText>
+                <LinkText>words[i]</LinkText>
               </TouchableOpacity>
             }
         }
@@ -26,7 +26,7 @@ export const ConversationScreen = ({ navigation }) => {
 
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
-        <RecievedMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />
+        <RecievedMessage body={checkForLinks(message.body)} timeStamp={message.date_time_value} key={message.id} />
         :
         <SentMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />
     );
