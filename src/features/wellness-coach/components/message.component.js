@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import format from 'date-fns/format';
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Linking } from "react-native";
 
 const SentMessageWrapper = styled.View`
     background-color: #CDEBE6;
