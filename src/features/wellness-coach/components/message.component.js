@@ -73,3 +73,21 @@ export const RecievedMessage = ({ body, timeStamp }) => {
         </>
     );
 };
+
+export const LinkMessage = ({ body, timeStamp }) => {
+    return (
+        <>
+            <TimeStampWrapper>
+                <TimeStamp>
+                    {format(new Date(timeStamp), 'E h:mm a')}
+                </TimeStamp>
+            </TimeStampWrapper>
+            <RecievedMessageWrapper>
+            <TouchableOpacity
+                onPress={() => Linking.openURL(body)}>
+                <LinkText>{body}</LinkText>
+            </TouchableOpacity>
+            </RecievedMessageWrapper>
+        </>
+    );
+};
