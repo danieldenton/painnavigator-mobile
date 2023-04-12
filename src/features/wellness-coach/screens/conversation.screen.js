@@ -11,18 +11,16 @@ import { words } from "lodash";
 export const ConversationScreen = ({ navigation }) => {
     const { clearUnreadMessages, hasUnreadMessages, message, messages, sendMessage, writeMessage } = useContext(WellnessCoachContext);
 
-    const checkForLinks = (string) => {
-        words = string.split(" ")
-        for (let i = 0; i < words.lenngth; i++) {
-            if (words.startsWith("http")) {
-                return <TouchableOpacity
-                onPress={() => Linking.openURL(words[i])}
-              >
-                <LinkText>words[i]</LinkText>
-              </TouchableOpacity>
+    const checkForLinks = (messageString) => {
+        if (messageString.startsWith("http")) {
+            return <TouchableOpacity
+                    onPress={() => Linking.openURL(messageString)}>
+                    <LinkText>messageString</LinkText>
+                  </TouchableOpacity>
+        } else {
+            return messageString
         }
     }
-}
 
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
