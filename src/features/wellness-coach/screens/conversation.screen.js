@@ -6,25 +6,20 @@ import { Scroll } from "../../../components/scroll.component";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 import { MessageInput } from "../components/message_input.component";
 import { View, Linking, TouchableOpacity } from "react-native";
-import { words } from "lodash";
 
 export const ConversationScreen = ({ navigation }) => {
     const { clearUnreadMessages, hasUnreadMessages, message, messages, sendMessage, writeMessage } = useContext(WellnessCoachContext);
 
-    const checkForLinks = (messageString) => {
-        if (messageString.startsWith("http")) {
-            return <TouchableOpacity
-                    onPress={() => Linking.openURL(messageString)}>
-                    <LinkText>messageString</LinkText>
-                  </TouchableOpacity>
-        } else {
-            return messageString
-        }
-    }
 
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
-        <RecievedMessage body={checkForLinks(message.body)} timeStamp={message.date_time_value} key={message.id} />
+        message.body.startsWith("http") ?
+            <TouchableOpacity
+                onPress={() => Linking.openURL(message.body)}>
+                <LinkText>{message.body}</LinkText>
+            </TouchableOpacity>
+            :
+            <RecievedMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />
         :
         <SentMessage body={message.body} timeStamp={message.date_time_value} key={message.id} />
     );
