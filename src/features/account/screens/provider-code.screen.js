@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext }from "react";
+import { useState, useContext }from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
