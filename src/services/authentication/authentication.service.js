@@ -16,6 +16,7 @@ export async function checkReferralCode(
   setError,
   navigation
 ) {
+  // console.log(API_URL)
   try {
     const response = await axios.get(
       `${API_URL}/api/v1/providers/${referralCode}`
@@ -32,11 +33,11 @@ export async function checkReferralCode(
 };
 
 export async function postUser(uid, onboardingData) {
-  // console.log(API_URL)
   const userData = {
     uid: uid,
     ...onboardingData
   };
+  console.log(userData)
   const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData });
 };
 
