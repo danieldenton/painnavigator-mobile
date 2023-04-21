@@ -72,7 +72,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                     pace: onboardingData.pace,
                     commitment: onboardingData.commitment
                 }
-                console.log(strippedOnboardingData)
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
             })

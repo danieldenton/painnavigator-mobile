@@ -16,12 +16,12 @@ export async function checkReferralCode(
   setError,
   navigation
 ) {
-  // console.log(API_URL)
   try {
     const response = await axios.get(
       `${API_URL}/api/v1/providers/${referralCode}`
     );
     const data = response.data.data.attributes;
+    console.log(data)
     const provider_id = data.id;
     setProviderId(provider_id);
     setError(null);
