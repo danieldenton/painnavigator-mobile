@@ -35,6 +35,8 @@
       "buildNumber": "6"
     },
     "android": {
+      "package": "com.PainNavigator",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#5CCBB8"
@@ -43,7 +45,6 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "package": "com.PainNavigator",
       "versionCode": 12
     },
     "web": {
