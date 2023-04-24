@@ -5,6 +5,18 @@ import { LogBox } from 'react-native';
 import * as Sentry from 'sentry-expo';
 import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
+import { useState, useEffect, useRef } from 'react';
+import { Text, View, Button, Platform } from 'react-native';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 init(AMPLITUDE_API_KEY);
 // console.log(AMPLITUDE_API_KEY)
