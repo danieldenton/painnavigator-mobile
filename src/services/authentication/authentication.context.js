@@ -22,6 +22,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
+    const [expoPushToken, setExpoPushToken] = useState('');
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -70,7 +71,8 @@ export const AuthenticationContextProvider = ({ children }) => {
                     email: onboardingData.email.trim(),
                     starting_pain_score: onboardingData.starting_pain_score,
                     pace: onboardingData.pace,
-                    commitment: onboardingData.commitment
+                    commitment: onboardingData.commitment,
+                    expo_push_token: expoPushToken
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 

@@ -12,7 +12,7 @@ import * as Notifications from 'expo-notifications';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -114,20 +114,21 @@ export default function App() {
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
-
+  
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
-
+  
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-
+  
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
+  
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
     Poppins_500Medium
