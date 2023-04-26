@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.4.11",
+    "version": "1.4.12",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -32,7 +32,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "6"
+      "buildNumber": "7"
     },
     "android": {
       "package": "com.PainNavigator",

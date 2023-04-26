@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from "@env";
+import { API_URL } from "@env"
 
 export async function getUserMessages(uid, setMessages) {
     // console.log(API_URL)

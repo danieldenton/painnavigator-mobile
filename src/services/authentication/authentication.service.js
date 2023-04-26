@@ -32,7 +32,6 @@ export async function checkReferralCode(
 };
 
 export async function postUser(uid, onboardingData) {
-  // console.log(API_URL)
   const userData = {
     uid: uid,
     ...onboardingData
