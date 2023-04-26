@@ -58,9 +58,10 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
-        if (expoPushToken) {
-            patchExpoPushToken(user.user.uid, expoPushToken)
-        }
+        // console.log(user.user.uid)
+        // if (expoPushToken) {
+        //     patchExpoPushToken(user.user.uid, expoPushToken)
+        // }
     }, []);
     
     useEffect(() => {
