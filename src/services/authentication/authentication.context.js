@@ -23,6 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
+    const [expoPushToken, setExpoPushToken] = useState('');
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -145,6 +146,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 setCurrentQuestion,
                 signOut,
                 setProviderId,
+                setExpoPushToken,
                 setError
             }}
         >

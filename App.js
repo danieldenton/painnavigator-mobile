@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
@@ -46,7 +46,7 @@ import {
   Inter_300Light
 } from "@expo-google-fonts/inter";
 
-import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { AuthenticationContextProvider, AuthenticationContext } from "./src/services/authentication/authentication.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
@@ -107,7 +107,7 @@ async function registerForPushNotificationsAsync() {
 }
 
 export default function App() {
-  const [expoPushToken, setExpoPushToken] = useState('');
+  const setExpoPushToken = useContext(AuthenticationContext)
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
