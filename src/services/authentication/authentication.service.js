@@ -6,9 +6,9 @@ import { months } from "../../features/pain-journal/data/months";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from '../../amplitude-events';
 
-
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
+  // console.log(API_URL)
 
 export async function checkReferralCode(
   referralCode,
@@ -32,10 +32,12 @@ export async function checkReferralCode(
 };
 
 export async function postUser(uid, onboardingData) {
+  // console.log(API_URL)
   const userData = {
     uid: uid,
     ...onboardingData
   };
+  console.log(userData)
   const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData });
 };
 

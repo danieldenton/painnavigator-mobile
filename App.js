@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
 import * as Sentry from 'sentry-expo';
 import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
+import { Platform } from 'react-native';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 
 init(AMPLITUDE_API_KEY);
 // console.log(AMPLITUDE_API_KEY)
@@ -35,7 +46,7 @@ import {
   Inter_300Light
 } from "@expo-google-fonts/inter";
 
-import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { AuthenticationContextProvider, AuthenticationContext } from "./src/services/authentication/authentication.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
@@ -64,7 +75,60 @@ if(!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+async function registerForPushNotificationsAsync() {
+  let token;
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    token = (await Notifications.getExpoPushTokenAsync()).data;
+    console.log(token);
+  } else {
+    alert('Must use physical device for Push Notifications');
+  }
+
+  if (Platform.OS === 'android') {
+    Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  return token;
+}
+
 export default function App() {
+  const setExpoPushToken = useContext(AuthenticationContext)
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+  
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+  
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+  
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+  
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
     Poppins_500Medium
