@@ -2,8 +2,8 @@ import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, postUser } from "./authentication.service";
-import { expoPushToken } from "../../../App";
+import { loginRequest, postUser, patchExpoPushToken } from "./authentication.service";
+
 
 export const AuthenticationContext = createContext();
 
@@ -126,6 +126,10 @@ export const AuthenticationContextProvider = ({ children }) => {
     useEffect(() => {
         saveUser(user);
     }, [user]);
+
+    useEffect(() => {
+        patchExpoPushToken(user.user.uid, expoPushToken)
+    }, [user.user.uid, expoPushToken])
 
     return (
         <AuthenticationContext.Provider
