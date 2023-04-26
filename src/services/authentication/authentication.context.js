@@ -146,6 +146,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 signOut,
                 setProviderId,
                 setExpoPushToken,
+                expoPushToken,
                 setError
             }}
         >
