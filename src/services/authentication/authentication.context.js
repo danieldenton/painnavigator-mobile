@@ -73,7 +73,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                     starting_pain_score: onboardingData.starting_pain_score,
                     pace: onboardingData.pace,
                     commitment: onboardingData.commitment,
-                    expo_push_token: expoPushToken
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
