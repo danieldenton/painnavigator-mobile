@@ -20,12 +20,12 @@ import { View } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
-import { getUser } from "../../../services/authentication/authentication.service";
+import { getUser, patchExpoPushToken } from "../../../services/authentication/authentication.service";
 import { getUserMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user } = useContext(AuthenticationContext);
+    const {  user, expoPushToken } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -58,6 +58,9 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
+        if (expoPushToken) {
+            patchExpoPushToken(user.user.uid, expoPushToken)
+        }
     }, []);
     
     useEffect(() => {
@@ -69,7 +72,7 @@ export const TodayScreen = ({ navigation }) => {
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);
-        if(timeNumber < 12) {
+        if (timeNumber < 12) {
             setGreeting("Good Morning")
         } else if(timeNumber > 11 & timeNumber < 17) {
             setGreeting("Good Afternoon")
