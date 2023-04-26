@@ -126,10 +126,6 @@ export const AuthenticationContextProvider = ({ children }) => {
         saveUser(user);
     }, [user]);
 
-    useEffect(() => {
-        patchExpoPushToken(user.user.uid, expoPushToken)
-    }, [user.user.uid, expoPushToken])
-
     return (
         <AuthenticationContext.Provider
             value={{
