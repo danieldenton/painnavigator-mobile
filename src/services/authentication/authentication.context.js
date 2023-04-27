@@ -83,9 +83,15 @@ export const AuthenticationContextProvider = ({ children }) => {
             })
     };
 
-    const signOut = () => {
-        setUser(null);
-    };
+    const signOut = async () => {
+        try {
+          setUser(null);
+          await AsyncStorage.removeItem("@user");
+          setUser(null); // Optional: reset user state in your component
+        } catch (e) {
+          console.log("error clearing user", e);
+        }
+      };
 
     const saveUser = async (value) => {
         try {
