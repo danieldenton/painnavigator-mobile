@@ -5,8 +5,6 @@ import { LogBox } from 'react-native';
 import * as Sentry from 'sentry-expo';
 import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
-import { Platform } from 'react-native';
-import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 
 Notifications.setNotificationHandler({
@@ -18,7 +16,6 @@ Notifications.setNotificationHandler({
 });
 
 init(AMPLITUDE_API_KEY);
-// console.log(AMPLITUDE_API_KEY)
 
 Sentry.init({
   dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
@@ -60,6 +57,8 @@ import { WellnessCoachContextProvider } from "./src/services/wellness-coach/well
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
+import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
+import { patchExpoPushToken } from "./src/services/authentication/authentication.service";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
@@ -75,45 +74,17 @@ if(!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-async function registerForPushNotificationsAsync() {
-  let token;
-  if (Device.isDevice) {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    // console.log(token);
-  } else {
-    alert('Must use physical device for Push Notifications');
-  }
-
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
-    });
-  }
-
-  return token;
-}
 
 export default function App() {
-  const setExpoPushToken = useContext(AuthenticationContext)
+  const user = useContext(AuthenticationContext)
+  const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    console.log(expoPushToken)
   
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);

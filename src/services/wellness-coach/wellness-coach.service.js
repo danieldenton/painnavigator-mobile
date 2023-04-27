@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { API_URL } from "@env"
+import { API_URL, SERVER_API_URL } from "@env"
 
 export async function getUserMessages(uid, setMessages) {
-    // console.log(API_URL)
     try {
       const response = await axios.get(`${API_URL}/api/v1/users/${uid}`);
       const data = response.data.data.attributes;
