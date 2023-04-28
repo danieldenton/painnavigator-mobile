@@ -20,12 +20,12 @@ import { View } from "react-native";
 import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
-import { getUser } from "../../../services/authentication/authentication.service";
+import { getUser, patchExpoPushToken } from "../../../services/authentication/authentication.service";
 import { getUserMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user } = useContext(AuthenticationContext);
+    const {  user, expoPushToken } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -58,7 +58,14 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
+        console.log(user.user.uid)
     }, []);
+
+    useEffect(() => {
+        if (user && expoPushToken) {
+            patchExpoPushToken(user.user.uid, expoPushToken)
+        }
+    }, [user, expoPushToken])
     
     useEffect(() => {
         if (!isFocused) {
