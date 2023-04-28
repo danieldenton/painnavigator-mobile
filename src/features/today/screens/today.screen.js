@@ -58,7 +58,6 @@ export const TodayScreen = ({ navigation }) => {
             setMoodJournals,
             setFoodJournals,
         );
-        console.log(user.user.uid)
     }, []);
 
     
