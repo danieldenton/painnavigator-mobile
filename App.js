@@ -116,7 +116,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider>
+        <AuthenticationContextProvider value={{ expoPushToken }}>
           <ProfileContextProvider>
             <BookmarksContextProvider>
               <EducationContextProvider>

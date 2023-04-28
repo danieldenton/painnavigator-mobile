@@ -7,7 +7,7 @@ import { loginRequest, patchExpoPushToken, postUser } from "./authentication.ser
 
 export const AuthenticationContext = createContext();
 
-export const AuthenticationContextProvider = ({ children }) => {
+export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [userLoading, setUserLoading] = useState(null);
     // user set to true for testing
     const [user, setUser] = useState(null);
@@ -132,11 +132,11 @@ export const AuthenticationContextProvider = ({ children }) => {
         saveUser(user);
     }, [user]);
 
-    // useEffect(() => {
-    //     if (user && expoPushToken) {
-    //         patchExpoPushToken(user.user.uid, expoPushToken)
-    //     }
-    // }, [user, expoPushToken])
+    useEffect(() => {
+        if (user && expoPushToken) {
+            patchExpoPushToken(user.user.uid, expoPushToken)
+        }
+    }, [user, expoPushToken])
     
     return (
         <AuthenticationContext.Provider
