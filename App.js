@@ -43,7 +43,7 @@ import {
   Inter_300Light
 } from "@expo-google-fonts/inter";
 
-import { AuthenticationContextProvider, AuthenticationContext } from "./src/services/authentication/authentication.context";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
@@ -116,7 +116,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider value={{ expoPushToken }}>
+        <AuthenticationContextProvider expoPushToken={expoPushToken}>
           <ProfileContextProvider>
             <BookmarksContextProvider>
               <EducationContextProvider>
