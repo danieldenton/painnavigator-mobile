@@ -59,7 +59,7 @@ import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 // import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
-// import { patchExpoPushToken } from "./src/services/authentication/authentication.service";
+import { patchExpoPushToken } from "./src/services/authentication/authentication.service";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
