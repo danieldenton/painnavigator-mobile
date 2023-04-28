@@ -23,6 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
+    // console.log(expoPushToken)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -130,6 +131,12 @@ export const AuthenticationContextProvider = ({ children }) => {
     useEffect(() => {
         saveUser(user);
     }, [user]);
+
+    // useEffect(() => {
+    //     if (user && expoPushToken) {
+    //         patchExpoPushToken(user.user.uid, expoPushToken)
+    //     }
+    // }, [user, expoPushToken])
     
     return (
         <AuthenticationContext.Provider
