@@ -126,6 +126,10 @@ export const AuthenticationContextProvider = ({ children }) => {
     useEffect(() => {
         loadUser();
     }, []);
+
+    useEffect(() => {
+        saveUser(user);
+    }, [user]);
     
     return (
         <AuthenticationContext.Provider
