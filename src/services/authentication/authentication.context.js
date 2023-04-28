@@ -2,12 +2,12 @@ import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, postUser } from "./authentication.service";
-import { expoPushToken } from "../../../App";
+import { loginRequest, patchExpoPushToken, postUser } from "./authentication.service";
+
 
 export const AuthenticationContext = createContext();
 
-export const AuthenticationContextProvider = ({ children }) => {
+export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [userLoading, setUserLoading] = useState(null);
     // user set to true for testing
     const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
-    const [expoPushToken, setExpoPushToken] = useState('');
+    // console.log(expoPushToken)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -73,7 +73,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                     starting_pain_score: onboardingData.starting_pain_score,
                     pace: onboardingData.pace,
                     commitment: onboardingData.commitment,
-                    expo_push_token: expoPushToken
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
@@ -85,9 +84,15 @@ export const AuthenticationContextProvider = ({ children }) => {
             })
     };
 
-    const signOut = () => {
-        setUser(null);
-    };
+    const signOut = async () => {
+        try {
+          setUser(null);
+          await AsyncStorage.removeItem("@user");
+          setUser(null); // Optional: reset user state in your component
+        } catch (e) {
+          console.log("error clearing user", e);
+        }
+      };
 
     const saveUser = async (value) => {
         try {
@@ -122,11 +127,17 @@ export const AuthenticationContextProvider = ({ children }) => {
     useEffect(() => {
         loadUser();
     }, []);
-    
+
     useEffect(() => {
         saveUser(user);
     }, [user]);
 
+    useEffect(() => {
+        if (user && expoPushToken) {
+            patchExpoPushToken(user.user.uid, expoPushToken)
+        }
+    }, [user, expoPushToken])
+    
     return (
         <AuthenticationContext.Provider
             value={{
@@ -146,7 +157,6 @@ export const AuthenticationContextProvider = ({ children }) => {
                 setCurrentQuestion,
                 signOut,
                 setProviderId,
-                setExpoPushToken,
                 setError
             }}
         >

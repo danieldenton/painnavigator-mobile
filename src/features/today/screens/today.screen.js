@@ -69,7 +69,7 @@ export const TodayScreen = ({ navigation }) => {
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);
-        if(timeNumber < 12) {
+        if (timeNumber < 12) {
             setGreeting("Good Morning")
         } else if(timeNumber > 11 & timeNumber < 17) {
             setGreeting("Good Afternoon")

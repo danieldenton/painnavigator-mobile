@@ -1,7 +1,7 @@
 import axios from 'axios';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { API_URL } from "@env";
+import { API_URL, SERVER_API_URL } from "@env";
 import { months } from "../../features/pain-journal/data/months";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from '../../amplitude-events';
@@ -36,9 +36,18 @@ export async function postUser(uid, onboardingData) {
     uid: uid,
     ...onboardingData
   };
-  console.log(userData)
+  // console.log(userData)
   const response = await axios.post(`${API_URL}/api/v1/users`, { user: userData });
 };
+
+export const patchExpoPushToken = async (uid, token) => {
+  try {
+    const response = await axios.patch(`${API_URL}/api/v1/users/${uid}`, { expo_push_token: token });
+    console.log(response)
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function getUser(
   uid, 
