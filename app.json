@@ -34,7 +34,7 @@
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
       "buildNumber": "8",
       "infoPlist": {
-        "UIBackgroundModes": ["location", "fetch"]
+        "UIBackgroundModes": ["remote-notification"]
       }
     },
     "android": {
