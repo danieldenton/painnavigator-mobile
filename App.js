@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
@@ -72,6 +72,7 @@ import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
+import { navigationRef, navigate } from "./src/infrastructure/navigation/wellness-coach.navigator";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
@@ -114,12 +115,12 @@ export default function App() {
 
   const lastNotificationResponse = Notifications.useLastNotificationResponse()
 
-
   useEffect(() => {
     if (lastNotificationResponse) {
-      Navigation.navigate('WellnessCoach');
+      navigate('Conversation');
     }
-  }, [lastNotificationResponse])
+  }, [lastNotificationResponse]);
+  
 
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
@@ -152,7 +153,7 @@ export default function App() {
                         <MoodJournalContextProvider>
                           <WellnessCoachContextProvider>
                             <FavoriteActivitiesContextProvider>
-                              <Navigation />
+                              <Navigation ref={navigationRef} />
                             </FavoriteActivitiesContextProvider>
                           </WellnessCoachContextProvider>
                         </MoodJournalContextProvider>
