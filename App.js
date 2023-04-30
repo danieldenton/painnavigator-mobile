@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { LogBox } from 'react-native';
@@ -6,6 +6,20 @@ import * as Sentry from 'sentry-expo';
 import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
 import * as Notifications from 'expo-notifications';
+import * as TaskManager from 'expo-task-manager';
+
+
+const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK"
+
+TaskManager.defineTask(BACKGROUND_NOTIFICATIONS, ({ data, error }) => {
+  if (error) {
+    console.log('An error occurred while handling background push notification:', error);
+    return;
+  }
+  if (data) {
+    console.log('Received background push notification:', data);
+  }
+});
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -58,6 +72,7 @@ import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
+import { navigationRef, navigate } from "./src/infrastructure/navigation/wellness-coach.navigator";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
@@ -79,6 +94,8 @@ export default function App() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  Notifications.registerTaskAsync(BACKGROUND_NOTIFICATIONS)
+
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token))
   
@@ -95,7 +112,16 @@ export default function App() {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
+
+  const lastNotificationResponse = Notifications.useLastNotificationResponse()
+
+  useEffect(() => {
+    if (lastNotificationResponse) {
+      navigate('Conversation');
+    }
+  }, [lastNotificationResponse]);
   
+
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
     Poppins_500Medium
@@ -127,7 +153,7 @@ export default function App() {
                         <MoodJournalContextProvider>
                           <WellnessCoachContextProvider>
                             <FavoriteActivitiesContextProvider>
-                              <Navigation />
+                              <Navigation ref={navigationRef} />
                             </FavoriteActivitiesContextProvider>
                           </WellnessCoachContextProvider>
                         </MoodJournalContextProvider>

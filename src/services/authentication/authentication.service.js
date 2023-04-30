@@ -42,8 +42,7 @@ export async function postUser(uid, onboardingData) {
 
 export const patchExpoPushToken = async (uid, token) => {
   try {
-    const response = await axios.patch(`${API_URL}/api/v1/users/${uid}`, { expo_push_token: token });
-    console.log(response)
+    await axios.patch(`${API_URL}/api/v1/users/${uid}`, { expo_push_token: token });
   } catch (error) {
     console.error(error);
   }

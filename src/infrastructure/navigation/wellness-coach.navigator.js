@@ -1,8 +1,13 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ConversationScreen } from "../../features/wellness-coach/screens/conversation.screen";
-//import { ConversationsScreen } from "../../features/wellness-coach/screens/conversations.screen";
 import { MessageSentScreen } from "../../features/wellness-coach/screens/message-sent.screen";
+
+export const navigationRef = React.createRef();
+
+export function navigate(name, params) {
+  navigationRef.current?.navigate(name, params);
+}
 
 const WellnessCoachStack = createStackNavigator();
 

@@ -23,7 +23,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
-    console.log(expoPushToken)
+    // console.log(expoPushToken)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -88,7 +88,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         try {
           setUser(null);
           await AsyncStorage.removeItem("@user");
-          setUser(null); // Optional: reset user state in your component
         } catch (e) {
           console.log("error clearing user", e);
         }
@@ -135,7 +134,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     useEffect(() => {
         if (user && expoPushToken) {
             patchExpoPushToken(user.user.uid, expoPushToken)
-            console.log("It worked")
         }
     }, [user, expoPushToken])
     
