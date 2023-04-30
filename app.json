@@ -32,9 +32,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "8",
+      "buildNumber": "9",
       "infoPlist": {
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       }
     },
     "android": {
@@ -48,7 +50,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 12
+      "versionCode": 13
     },
     "web": {
       "favicon": "./assets/favicon.png"
