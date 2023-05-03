@@ -55,7 +55,7 @@ export const MovementLineSegmentCompleted = styled.View`
 `;
 
 export const MoveOnQuestionWrapper = styled.View`
-border: solid white 1px
+padding: 1px;
 flex: .08;
 align-items: center
 `
