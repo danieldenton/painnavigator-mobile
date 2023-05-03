@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 export const ProgressScreenWrapper = styled.View`
-    flex: .5;
+    flex: .8;
     flex-direction: row;
     justify-content: center;
 `;
@@ -53,6 +53,18 @@ export const MovementLineSegmentCompleted = styled.View`
     height: 63px;
     width: 2.5px;
 `;
+
+export const MoveOnQuestionWrapper = styled.View`
+border: solid white 1px
+flex: .08;
+align-items: center
+`
+
+export const MoveOnQuestion = styled.Text`
+font-family: Inter_500Medium;
+color: #4056F4;
+font-size: 16px;
+`
 
 export const MovementProgressLine = styled.View`
     position: absolute;
