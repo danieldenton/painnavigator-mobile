@@ -7,7 +7,7 @@ export const SkipQuestionButton = styled.TouchableOpacity`
 export const SkipQuestionText = styled.Text`
     align-self: center;
     font-family: Poppins_600SemiBold;
-    font-size: 16px;
+    font-size: 17px;
 `;
 
 export const SkipQuestion = ({ onPress, module, moreThanOneQuestion }) => {

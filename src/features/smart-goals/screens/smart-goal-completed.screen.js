@@ -8,7 +8,8 @@ import {
     CongratulationsHeaderWrapper, 
     CongratulationsHeader,
     CongratulationsMessageWrapper,
-    CongratulationsMessage
+    CongratulationsMessage,
+    CongratulationsQuestion
 } from "../../../components/completion/components/completion.styles";
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
@@ -17,7 +18,7 @@ import { View } from "react-native";
 export const SmartGoalCompletedScreen = ({ navigation }) => {
     return (
         <SafeView>
-            <NavigationBarLeft screen={"Smart Goal"} destination={"ReviewSmartGoal"} navigation={navigation} />
+            <NavigationBarLeft screen={"Smart Goal"} destination={"SmartGoalHome"} navigation={navigation} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
             <View style={{ marginBottom: 120 }}>
             <GraphicWrapper>
@@ -28,13 +29,19 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </CongratulationsHeaderWrapper>
             <CongratulationsMessageWrapper>
                 <CongratulationsMessage>
-                    You've completed your SMART goal! Do you feel like you're ready to move into the maintenance portion of our program?
+                    You've completed your SMART goal!
                 </CongratulationsMessage>
-            </CongratulationsMessageWrapper>
+                </CongratulationsMessageWrapper>
+                <CongratulationsMessageWrapper>
+                <CongratulationsQuestion>
+                Do you feel like you're ready to move into the maintenance portion of our program?
+                </CongratulationsQuestion>
+                </CongratulationsMessageWrapper>
+            
             </View>
             </Scroll>
             <ButtonSection>
-                <JournalButton onPress={() => navigation.navigate("Today")} title={"Move into Maintenance"} />
+                <JournalButton onPress={() => navigation.navigate("ProgramCompleted")} title={"Move into Maintenance"} />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}} >
                     <SkipQuestionText>
