@@ -1,6 +1,7 @@
 import React from "react";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
+import { JournalButton } from "../../../components/button.component";
+import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { 
@@ -27,13 +28,19 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </CongratulationsHeaderWrapper>
             <CongratulationsMessageWrapper>
                 <CongratulationsMessage>
-                    You've completed your SMART goal!
+                    You've completed your SMART goal! Do you feel like you're ready to move into the maintenance portion of our program?
                 </CongratulationsMessage>
             </CongratulationsMessageWrapper>
             </View>
             </Scroll>
             <ButtonSection>
-                <ModuleButton onPress={() => navigation.navigate("Today")} title={"You Got This"} />
+                <JournalButton onPress={() => navigation.navigate("Today")} title={"Move into Maintenance"} />
+                <SkipQuestionButton
+                    onPress={() => {navigation.navigate("Today")}} >
+                    <SkipQuestionText>
+                        CONTINUE WITH THE PROGRAM
+                    </SkipQuestionText>
+                </SkipQuestionButton>
             </ButtonSection>
         </SafeView>
     );

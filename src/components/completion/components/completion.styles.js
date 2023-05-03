@@ -19,16 +19,6 @@ export const CongratulationsMessageWrapper = styled.View`
     margin-right: 4px;
 `;
 
-// export const CongratulationsMessage = styled(Text).attrs({
-//     textAlign: "center",
-// })`
-//     align-items: center;
-//     font-family: Inter_400Regular;
-//     font-size: 18px;
-//     margin-bottom: 4px;
-//     line-height: 26px;
-// `;
-
 export const CongratulationsMessage = styled.Text`
     font-family: Inter_400Regular;
     font-size: 18px;
