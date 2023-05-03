@@ -72,7 +72,7 @@ export async function getUser(
     setCompletedProgram(data.completed_program)
   } catch (error) {
     console.error(error);
-  }
+  } console.log(API_URL)
 }
 
 export const patchCompletedProgram = async (uid) => {

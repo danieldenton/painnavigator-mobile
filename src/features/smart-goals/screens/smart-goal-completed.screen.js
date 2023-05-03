@@ -17,7 +17,8 @@ import { View } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {
-    const { user, completeProgram } = useContext(AuthenticationContext)
+    const { user, completeProgram, completedProgram } = useContext(AuthenticationContext)
+
     return (
         <SafeView>
             <NavigationBarLeft screen={"Smart Goal"} destination={"SmartGoalHome"} navigation={navigation} />
@@ -34,14 +35,18 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
                     You've completed your SMART goal!
                 </CongratulationsMessage>
                 </CongratulationsMessageWrapper>
-                <CongratulationsMessageWrapper>
+                {completedProgram ? <></> : <CongratulationsMessageWrapper>
                 <CongratulationsQuestion>
                 Do you feel like you're ready to move into the maintenance portion of our program?
                 </CongratulationsQuestion>
-                </CongratulationsMessageWrapper>
+                </CongratulationsMessageWrapper>}
             
             </View>
             </Scroll>
+            {completedProgram ? 
+            <ButtonSection>
+                <JournalButton onPress={() => {navigation.navigate("Today"), completeProgram(user.user.uid)}} title={"Back To Home"} /> 
+                </ButtonSection> :
             <ButtonSection>
                 <JournalButton onPress={() => {navigation.navigate("ProgramCompleted"), completeProgram(user.user.uid)}} title={"Move into Maintenance"} />
                 <SkipQuestionButton
@@ -50,7 +55,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
                         CONTINUE WITH THE PROGRAM
                     </SkipQuestionText>
                 </SkipQuestionButton>
-            </ButtonSection>
+            </ButtonSection>}
         </SafeView>
     );
 };
