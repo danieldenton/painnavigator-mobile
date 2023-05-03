@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";
@@ -14,8 +14,10 @@ import {
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {
+    const { user, completeProgram } = useContext(AuthenticationContext)
     return (
         <SafeView>
             <NavigationBarLeft screen={"Smart Goal"} destination={"SmartGoalHome"} navigation={navigation} />
@@ -41,7 +43,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </View>
             </Scroll>
             <ButtonSection>
-                <JournalButton onPress={() => navigation.navigate("ProgramCompleted")} title={"Move into Maintenance"} />
+                <JournalButton onPress={() => {navigation.navigate("ProgramCompleted"), completeProgram(user.user.uid)}} title={"Move into Maintenance"} />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}} >
                     <SkipQuestionText>
