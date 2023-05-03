@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TodayScreen } from "../../features/today/screens/today.screen";
 import { MyProgress } from "../../features/progress/screens/my-progress.screen";
+import { ProgramCompletedScreen } from "../../features/completion/screens/program-completed.screen";
 import { UnitsNavigator } from "./units.navigator";
 import { EducationNavigator } from "./education.navigator";
 import { MovementNavigator } from "./movement.navigator";
@@ -29,6 +30,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
             <TodayStack.Screen name="Progress" component={MyProgress} />
+            <TodayStack.Screen name="ProgramCompleted" component={ProgramCompletedScreen} />
             <TodayStack.Screen name="Settings" component={SettingsNavigator} />
             <TodayStack.Screen name="SmartGoals" component={SmartGoalNavigator} />
             <TodayStack.Screen name="JournalCreated" component={JournalCreatedScreen} />
