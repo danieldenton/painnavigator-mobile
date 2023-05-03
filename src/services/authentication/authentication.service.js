@@ -57,6 +57,7 @@ export async function getUser(
   setPainJournals,
   setMoodJournals,
   setFoodJournals,
+  setCompletedProgram
 ) {
   try {
     const response = await axios.get(`${SERVER_API_URL}/api/v1/users/${uid}`);
@@ -68,6 +69,7 @@ export async function getUser(
     setPainJournals(data.pain_journals.reverse())
     setMoodJournals(data.mood_journals.reverse())
     setFoodJournals(data.food_journals.reverse())
+    setCompletedProgram(data.completed_program)
   } catch (error) {
     console.error(error);
   }
@@ -80,10 +82,6 @@ export const patchCompletedProgram = async (uid) => {
     console.error(error);
   }
 }
-
-
-
-
 
 // function painGraphDataTransform(data) {
 //   const painDataArray = [];

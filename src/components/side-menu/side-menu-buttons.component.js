@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { EducationContext } from "../../services/education/education.context";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { View } from "react-native";
 import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
+    const { completedProgram } = useContext(AuthenticationContext)
     const showSmartGoal = educationProgress > 7 ? true : false;
 
     const menuOptions = [
@@ -14,7 +16,7 @@ export const MenuButtons = ({ navigation }) => {
             label: "My Progress",
             destination: "Progress",
             icon: <ProgressMenuIcon />,
-            show: true
+            show: completedProgram ? false : true
         },
         {
             id: 2,

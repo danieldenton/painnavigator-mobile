@@ -25,14 +25,14 @@ import { getUserMessages } from "../../../services/wellness-coach/wellness-coach
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
-    const { movementProgress, lastMovement, setLastMovement, setMovementProgress } = useContext(MovementContext);
-    const { educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
+    const { movementProgress, setMovementProgress } = useContext(MovementContext);
+    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
@@ -57,6 +57,7 @@ export const TodayScreen = ({ navigation }) => {
             setPainJournals,
             setMoodJournals,
             setFoodJournals,
+            setCompletedProgram
         );
     }, []);
 
