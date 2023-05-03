@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, patchExpoPushToken, postUser } from "./authentication.service";
+import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 
 
 export const AuthenticationContext = createContext();
@@ -23,7 +23,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         commitment: 5
     });
     const [providerId, setProviderId] = useState(null);
-    // console.log(expoPushToken)
+    const [completedProgram, setCompletedProgram] = useState(false)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
@@ -123,6 +123,11 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
+    const completeProgram = (uid) => {
+        patchCompletedProgram(uid)
+        setCompletedProgram(true)
+    }
+
     useEffect(() => {
         loadUser();
     }, []);
@@ -158,7 +163,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 signOut,
                 setProviderId,
                 expoPushToken,
-                setError
+                setError,
+                setCompletedProgram,
+                completedProgram,
+                completeProgram
             }}
         >
             {children}
