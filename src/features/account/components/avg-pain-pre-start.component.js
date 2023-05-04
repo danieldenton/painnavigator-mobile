@@ -3,7 +3,7 @@ import { IntensitySlider } from "../../../components/slider.component";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-export const AvgPainPreStart = () => {
+export const EnjoymentOfLife = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { starting_pain_score } = onboardingData;
 

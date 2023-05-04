@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
+import { EnjoymentOfLife } from "../components/avg-pain-pre-start.component";
 import { Commitment } from "../components/commitment.component";
 import { ProgramPaceGoal } from "../components/program-pace-goal.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
@@ -16,7 +16,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
 
     pages = [
         {
-            page: <AvgPainPreStart />,
+            page: <EnjoymentOfLife />,
             trackEvent: ONBOARD_EVENTS.BASELINE_PAIN_SCALE
         },
         {
