@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
 import { Activities } from "../components/activities.component";
-import { HopeToAchieve } from "../components/program-pace-goal.component";
+import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
