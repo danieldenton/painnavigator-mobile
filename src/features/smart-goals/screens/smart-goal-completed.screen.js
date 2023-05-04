@@ -52,7 +52,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}} >
                     <SkipQuestionText>
-                        CONTINUE WITH THE PROGRAM
+                        CONTINUE PROGRAM AS IS
                     </SkipQuestionText>
                 </SkipQuestionButton>
             </ButtonSection>}
