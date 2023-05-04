@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { EnjoymentOfLife } from "../components/avg-pain-pre-start.component";
-import { Commitment } from "../components/commitment.component";
-import { ProgramPaceGoal } from "../components/program-pace-goal.component";
+import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
+import { Activities } from "../components/activities.component";
+import { HopeToAchieve } from "../components/program-pace-goal.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -20,11 +20,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
             trackEvent: ONBOARD_EVENTS.BASELINE_PAIN_SCALE
         },
         {
-            page: <Commitment />,
+            page: <Activities />,
             trackEvent: ONBOARD_EVENTS.BASELINE_COMMITTED_TO_PROGRAM
         },
         {
-            page: <ProgramPaceGoal />,
+            page: <HopeToAchieve />,
             trackEvent: ONBOARD_EVENTS.BASELINE_PACE_FOR_PROGRAM
         }
     ]
