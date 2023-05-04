@@ -10,8 +10,8 @@ export const AvgPainPreStart = () => {
     return (
         <>
             <JournalQuestion 
-                question={"Over the last two weeks whats the average amount of pain that you’ve had?"}
-                helpText={"0 is no pain, 10 is the worst pain you can imagine"}
+                question={"What number best describes how, during the past week, pain has interfered with your enjoyment of life?"}
+                helpText={"0 is no pain, 10 is pain has taken away all enjoyment of life"}
             />
             <IntensitySlider 
                 value={starting_pain_score} 
