@@ -19,8 +19,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         last_name: "", 
         email: "",
         enjoyment_of_life: 5,
-        pace: 1,
-        commitment: 5
+        activity_interference: 5,
+        pace: 1
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
@@ -71,8 +71,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     last_name: onboardingData.last_name.trim(),
                     email: onboardingData.email.trim(),
                     enjoyment_of_life: onboardingData.enjoyment_of_life,
+                    activity_interference: onboardingData.activity_interference,
                     pace: onboardingData.pace,
-                    commitment: onboardingData.commitment,
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 

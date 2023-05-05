@@ -22,7 +22,7 @@ export const handlers = [
                         "starting_pain_duration": null,
                         "enjoyment_of_life": 5,
                         "pace": "just_right",
-                        "commitment": 5,
+                        "activity_interference": 5,
                         "gender": null,
                         "dob": null,
                         "phone": null

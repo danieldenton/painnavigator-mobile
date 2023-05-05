@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 export const ActivityInterference = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { commitment } = onboardingData;
+    const { activity_interference } = onboardingData;
 
     return (
         <>
@@ -14,9 +14,9 @@ export const ActivityInterference = () => {
                 helpText={"0 is not commited at all, 10 is pain has made normal activities impossible"}
             />
             <IntensitySlider 
-                value={commitment} 
+                value={activity_interference} 
                 onValueChange={changeOnboardEntry} 
-                state={"commitment"}
+                state={"activity_interference"}
             />
         </> 
     );
