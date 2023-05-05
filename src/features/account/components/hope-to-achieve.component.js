@@ -9,6 +9,36 @@ export const HopeToAchieve = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { pace } = onboardingData;
 
+    const add = (optionId) => {
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: [...selectedCopingStrategies, optionId]
+        }));
+    };
+    
+    const remove = (optionId) => {
+        const newCopingStrategies = selectedCopingStrategies.filter(
+          (x) => x !== optionId
+        );
+
+        setPainJournal(journal => ({
+            ...journal,
+            ["copingStrategies"]: newCopingStrategies
+        }));    
+    };
+
+    const copingStrategies = options.map((option) => {
+        return (
+            <MultiSelectCheckBox 
+                add={add}
+                key={option.id}
+                optionData={option} 
+                remove={remove}
+                selectedOptions={selectedCopingStrategies}
+            />            
+        );
+    });
+
     return(
         <>
             <JournalQuestion 
