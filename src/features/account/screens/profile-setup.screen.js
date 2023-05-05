@@ -46,7 +46,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                         onboardStep === 2 ? navigation.navigate("Register") : nextOnboardingStep()
                     }} 
                 />
-                <ProgressDots progress={onboardStep} total={3} />
+                <ProgressDots progress={onboardStep +1} total={3} />
             </ButtonSection>
         </SafeView>
     );

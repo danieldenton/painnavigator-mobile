@@ -3,6 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
+import { hopesOptions } from '../../features/account/data/hopes-to-achieve.json'
 
 
 export const AuthenticationContext = createContext();
@@ -20,7 +21,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         email: "",
         enjoyment_of_life: 5,
         activity_interference: 5,
-        hopes_to_achieve: new Array()
+        hopesToAchieve: new Array()
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
@@ -48,11 +49,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     };
 
     const findHopesToAchieve = () => {
-        const selectedHopes = onboardingData.hopes_to_achieve;
-        const options = painJournalQuestions[2].options;
-        const text = options.filter(option => selectedHopes.includes(option.id));
-        const hopes_to_achieve = text.map((option) => option.option);
-        return String(hopes_to_achieve).replace(/,/g, ', ');
+        const selectedHopes = onboardingData.hopesToAchieve;
+        const text = hopesOptions.filter(option => selectedHopes.includes(option.id));
+        const hopesToAchieve = text.map((option) => option.option);
+        return String(hopesToAchieve).replace(/,/g, ', ');
     };
 
 
@@ -74,6 +74,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
+                const hopes_to_achieve = findHopesToAchieve()
+                console.log(hopes_to_achieve)
                 const strippedOnboardingData = {
                     provider_id: providerId,
                     first_name: onboardingData.first_name.trim(),
@@ -164,6 +166,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 onboardStep,
                 onLogin,
                 onRegister,
+                setOnboardingData,
                 onboardingData,
                 previousOnboardingStep,
                 user,
