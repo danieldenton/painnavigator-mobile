@@ -30,7 +30,6 @@ export const HopeToAchieve = () => {
     };
 
     const hopes = hopesOptions.map((option) => {
-        // console.log(option)
         return (
             <MultiSelectCheckBox 
                 add={add}
