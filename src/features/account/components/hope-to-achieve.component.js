@@ -9,6 +9,10 @@ export const HopeToAchieve = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { pace } = onboardingData;
 
+    // const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);
+    // const { options } = currentPageData;
+    // const selectedCopingStrategies = painJournal.copingStrategies;
+
     const add = (optionId) => {
         setPainJournal(journal => ({
             ...journal,
