@@ -7,10 +7,10 @@ import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/mult
 
 export const HopeToAchieve = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { pace } = onboardingData;
+    const { hopes_to_achieve } = onboardingData;
 
     // const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);
-    // const selectedCopingStrategies = painJournal.copingStrategies;
+    const selectedHopes = onboardingData.hopes_to_achieve;
 
     const options = [
         {
@@ -32,31 +32,31 @@ export const HopeToAchieve = () => {
     ]
 
     const add = (optionId) => {
-        setPainJournal(journal => ({
-            ...journal,
-            ["copingStrategies"]: [...selectedCopingStrategies, optionId]
+        changeOnboardEntry(entry => ({
+            ...entry,
+            ["hopes_to_achieve"]: [...selectedHopes, optionId]
         }));
     };
     
     const remove = (optionId) => {
-        const newCopingStrategies = selectedCopingStrategies.filter(
+        const newHopes = selectedHopes.filter(
           (x) => x !== optionId
         );
 
-        setPainJournal(journal => ({
-            ...journal,
-            ["copingStrategies"]: newCopingStrategies
+        changeOnboardEntry(entry => ({
+            ...entry,
+            ["chopes_to_achieve"]: newHopes
         }));    
     };
 
-    const copingStrategies = options.map((option) => {
+    const hopesToAchieve = options.map((option) => {
         return (
             <MultiSelectCheckBox 
                 add={add}
                 key={option.id}
                 optionData={option} 
                 remove={remove}
-                selectedOptions={selectedCopingStrategies}
+                selectedOptions={selectedHopes}
             />            
         );
     });
@@ -64,10 +64,10 @@ export const HopeToAchieve = () => {
     return(
         <>
             <JournalQuestion 
-                question={"How quickly would you like to move through this program?"} />
+                question={"What do you hope to achieve by completing PainNavigator?"} />
          <MultiSelectScroll>
                 <View style={{ marginBottom: 60 }}>
-                    {copingStrategies}
+                    {hopesToAchieve}
                 </View>
             </MultiSelectScroll>
         </> 
