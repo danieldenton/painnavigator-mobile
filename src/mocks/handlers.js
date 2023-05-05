@@ -21,7 +21,7 @@ export const handlers = [
                         "activity_level": null,
                         "starting_pain_duration": null,
                         "enjoyment_of_life": 5,
-                        "pace": "just_right",
+                        "hopes_to_achieve": "just_right",
                         "activity_interference": 5,
                         "gender": null,
                         "dob": null,

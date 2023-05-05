@@ -9,25 +9,28 @@ export const HopeToAchieve = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { hopes_to_achieve } = onboardingData;
 
-    // const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);
-    const selectedHopes = onboardingData.hopes_to_achieve;
+    const selectedHopes = hopes_to_achieve;
 
     const options = [
         {
             id: 1,
-            option: "Less Pain"
+            option: "Less Pain",
+            helpText: null
         },
         {
             id: 2,
-            option: "Improved Function"
+            option: "Improved Function",
+            helpText: null
         },
         {
             id: 3,
-            option: "Improved Mood"
+            option: "Improved Mood",
+            helpText: null
         },
         {
             id: 4,
-            option: "Strength & Prevention"
+            option: "Strength & Prevention",
+            helpText: null
         }
     ]
 

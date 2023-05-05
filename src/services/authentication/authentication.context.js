@@ -20,7 +20,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         email: "",
         enjoyment_of_life: 5,
         activity_interference: 5,
-        hopes_to_achieve: 1
+        hopes_to_achieve: new Array()
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
