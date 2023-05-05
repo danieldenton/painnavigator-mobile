@@ -33,6 +33,7 @@ export const HopeToAchieve = () => {
             helpText: null
         }
     ]
+    console.log(onboardingData)
 
     const add = (optionId) => {
         changeOnboardEntry(entry => ({
@@ -53,7 +54,7 @@ export const HopeToAchieve = () => {
     };
 
     const hopesToAchieve = options.map((option) => {
-        console.log(option)
+        // console.log(option)
         return (
             <MultiSelectCheckBox 
                 add={add}

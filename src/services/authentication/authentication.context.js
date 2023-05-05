@@ -47,6 +47,15 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
 
+    const findHopesToAchieve = () => {
+        const selectedHopes = onboardingData.hopes_to_achieve;
+        const options = painJournalQuestions[2].options;
+        const text = options.filter(option => selectedHopes.includes(option.id));
+        const hopes_to_achieve = text.map((option) => option.option);
+        return String(hopes_to_achieve).replace(/,/g, ', ');
+    };
+
+
     const onRegister = (password, repeatedPassword) => {
         const { first_name, last_name, email } = onboardingData;
         
@@ -72,7 +81,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     email: onboardingData.email.trim(),
                     enjoyment_of_life: onboardingData.enjoyment_of_life,
                     activity_interference: onboardingData.activity_interference,
-                    hopes_to_achieve: onboardingData.hopes_to_achieve,
+                    hopes_to_achieve: hopes_to_achieve,
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
