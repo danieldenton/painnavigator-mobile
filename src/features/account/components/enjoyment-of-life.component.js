@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 export const EnjoymentOfLife = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { starting_pain_score } = onboardingData;
+    const { enjoyment_of_life } = onboardingData;
 
     return (
         <>
@@ -14,9 +14,9 @@ export const EnjoymentOfLife = () => {
                 helpText={"0 is no pain, 10 is pain has taken away all enjoyment of life"}
             />
             <IntensitySlider 
-                value={starting_pain_score} 
+                value={enjoyment_of_life} 
                 onValueChange={changeOnboardEntry} 
-                state={"starting_pain_score"}
+                state={"enjoyment_of_life"}
             />
         </> 
     );

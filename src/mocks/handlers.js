@@ -20,7 +20,7 @@ export const handlers = [
                         "role": "standard",
                         "activity_level": null,
                         "starting_pain_duration": null,
-                        "starting_pain_score": 5,
+                        "enjoyment_of_life": 5,
                         "pace": "just_right",
                         "commitment": 5,
                         "gender": null,

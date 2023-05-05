@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
 
 
-export const ProgramPaceGoal = () => {
+export const HopeToAchieve = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { pace } = onboardingData;
 
