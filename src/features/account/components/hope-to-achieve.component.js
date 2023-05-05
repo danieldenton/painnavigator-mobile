@@ -10,8 +10,26 @@ export const HopeToAchieve = () => {
     const { pace } = onboardingData;
 
     // const { currentPageData, painJournal, setPainJournal } = useContext(PainJournalContext);
-    // const { options } = currentPageData;
     // const selectedCopingStrategies = painJournal.copingStrategies;
+
+    const options = [
+        {
+            id: 1,
+            option: "Less Pain"
+        },
+        {
+            id: 2,
+            option: "Improved Function"
+        },
+        {
+            id: 3,
+            option: "Improved Mood"
+        },
+        {
+            id: 4,
+            option: "Strength & Prevention"
+        }
+    ]
 
     const add = (optionId) => {
         setPainJournal(journal => ({
