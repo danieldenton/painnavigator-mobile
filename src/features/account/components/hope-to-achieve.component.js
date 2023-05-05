@@ -48,11 +48,12 @@ export const HopeToAchieve = () => {
 
         changeOnboardEntry(entry => ({
             ...entry,
-            ["chopes_to_achieve"]: newHopes
+            ["hopes_to_achieve"]: newHopes
         }));    
     };
 
     const hopesToAchieve = options.map((option) => {
+        console.log(option)
         return (
             <MultiSelectCheckBox 
                 add={add}
@@ -69,7 +70,7 @@ export const HopeToAchieve = () => {
             <JournalQuestion 
                 question={"What do you hope to achieve by completing PainNavigator?"} helpText={"Tap the circle to select"} />
          <MultiSelectScroll>
-                <View style={{ marginTop: 20, marginBottom: 60 }}>
+                <View style={{ marginTop: 10, marginBottom: 60 }}>
                     {hopesToAchieve}
                 </View>
             </MultiSelectScroll>
