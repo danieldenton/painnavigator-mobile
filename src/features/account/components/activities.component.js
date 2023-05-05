@@ -3,7 +3,7 @@ import { IntensitySlider } from "../../../components/slider.component";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-export const Activity = () => {
+export const ActivityInterference = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { commitment } = onboardingData;
 

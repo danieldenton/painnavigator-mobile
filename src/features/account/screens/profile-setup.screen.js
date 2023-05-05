@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
-import { Activities } from "../components/activities.component";
+import { ActivityInterference } from "../components/activities.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
@@ -20,7 +20,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
             trackEvent: ONBOARD_EVENTS.BASELINE_PAIN_SCALE
         },
         {
-            page: <Activities />,
+            page: <ActivityInterference />,
             trackEvent: ONBOARD_EVENTS.BASELINE_COMMITTED_TO_PROGRAM
         },
         {
