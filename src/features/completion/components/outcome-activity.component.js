@@ -4,16 +4,15 @@ import { JournalQuestionAndIntensitySlider } from '../../../components/JournalQu
 
 export const OutcomeActivity = () => {
     const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
-    const { outcomeActivityInterference } = outcomeData;
+    const { outcomeRecommendation } = outcomeData;
 
     return (
         <JournalQuestionAndIntensitySlider
-            question={"What number best describes how, during the past week, pain has interfered with your general activity?"}
-            helpText={"0 is not at all, 10 is pain has made normal activities impossible"}
-            value={outcomeActivityInterference}
+            question={"On a scale of 1-10, how likely are you to recommend the PainNavigator app to others?"}
+            helpText={"0 is not at all, 10 is very likely"}
+            value={outcomeRecommendation}
             onValueChange={changeOutcomeEntry}
-            state={"outcomeActivityInterference"}
+            state={"outcomeRecommendation"}
         />
     );
-
 }
