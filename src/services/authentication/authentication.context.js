@@ -19,6 +19,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         first_name: "", 
         last_name: "", 
         email: "",
+        startingPainScore: "",
         enjoymentOfLife: 5,
         activityInterference: 5,
         hopesToAchieve: new Array()
@@ -81,6 +82,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     first_name: onboardingData.first_name.trim(),
                     last_name: onboardingData.last_name.trim(),
                     email: onboardingData.email.trim(),
+                    starting_pain_score: onboardingData.startingPainScore,
                     enjoyment_of_life: onboardingData.enjoymentOfLife,
                     activity_interference: onboardingData.activityInterference,
                     hopes_to_achieve: hopes_to_achieve,
