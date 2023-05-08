@@ -4,6 +4,7 @@ export const ONBOARD_EVENTS = {
     CHOSE_SIGN_UP: "Chose Sign Up",
     ENTER_REFERRAL_CODE: "Enter Referral Code",
     COMPLETE_CREATE_ACCOUNT: "Complete Create Account",
+    ALLOWS_PUSH_NOTIFICATIONS: "Allows Push Notifications"
   };
   
   export const EDUCATION_UNIT_EVENTS = {

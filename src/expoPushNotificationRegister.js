@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-
+import { track } from '@amplitude/analytics-react-native';
+import { ONBOARD_EVENTS } from './amplitude-events';
 
 export async function registerForPushNotificationsAsync() {
     let token;
@@ -17,7 +18,7 @@ export async function registerForPushNotificationsAsync() {
         return;
       }
       token = (await Notifications.getExpoPushTokenAsync()).data;
-    //   console.log(token);
+      track(ONBOARD_EVENTS.ALLOWS_PUSH_NOTIFICATIONS)
     } else {
       alert('Must use physical device for Push Notifications');
     }
