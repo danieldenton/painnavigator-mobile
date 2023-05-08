@@ -8,9 +8,6 @@ import { ONBOARD_EVENTS } from '../../amplitude-events';
 
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
-  console.log(API_URL)
-
-  console.log(SERVER_API_URL)
 
 export async function checkReferralCode(
   referralCode,
@@ -20,7 +17,7 @@ export async function checkReferralCode(
 ) {
   try {
     const response = await axios.get(
-      `${SERVER_API_URL}/api/v1/providers/${referralCode}`
+      `${API_URL}/api/v1/providers/${referralCode}`
     );
     const data = response.data.data.attributes;
     const provider_id = data.id;
@@ -39,12 +36,12 @@ export async function postUser(uid, onboardingData) {
     ...onboardingData
   };
   // console.log(userData)
-  const response = await axios.post(`${SERVER_API_URL}/api/v2/users`, { user: userData });
+  const response = await axios.post(`${API_URL}/api/v2/users`, { user: userData });
 };
 
 export const patchExpoPushToken = async (uid, token) => {
   try {
-    await axios.patch(`${SERVER_API_URL}/api/v2/users/${uid}`, { expo_push_token: token });
+    await axios.patch(`${API_URL}/api/v2/users/${uid}`, { expo_push_token: token });
   } catch (error) {
     console.error(error);
   }
@@ -62,7 +59,7 @@ export async function getUser(
   setCompletedProgram
 ) {
   try {
-    const response = await axios.get(`${SERVER_API_URL}/api/v2/users/${uid}`);
+    const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
     const data = response.data.data.attributes;
     setUserInfo(data.profile)
     setEducationProgress(data.education_progress.progress)

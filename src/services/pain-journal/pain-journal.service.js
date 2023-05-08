@@ -30,10 +30,10 @@ export async function patchPainJournal(journalId, painJournal, setPainJournals) 
         console.error(error);
     }
 };
-console.log(SERVER_API_URL)
+
 export async function postPainJournal(uid, painJournal, setPainJournals) {
     try {
-        const response = await axios.post(`${SERVER_API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
+        const response = await axios.post(`${API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
         const data = response.data.data.attributes;
         setPainJournals(prevJournals => (
             [
