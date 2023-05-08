@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
-import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
-import { ActivityInterference } from "../components/activity-interference.component";
-import { HopeToAchieve } from "../components/hope-to-achieve.component";
+import { Recommend } from "../components/recommend.component";
+import { OutcomeEnjoyment } from "../components/outcome-enjoyment.component";
+import { OutcomeActivity } from "../components/outcome-activity.component";
+import { OutcomeMultipleChoice } from "../components/outcome-multiple-choice.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -12,9 +12,9 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const OutcomeScreen = ({ navigation }) => {
-    const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep } = useContext(AuthenticationContext);
 
-    pages = [{ page: <AvgPainPreStart />}, { page: <EnjoymentOfLife />, }, { page: <ActivityInterference />, }, { page: <HopeToAchieve />, }]
+    pages = [<Recommend />, <OutcomeEnjoyment />, <OutcomeActivity />, <OutcomeMultipleChoice step={step} />]
 
     return(
         <SafeView>
@@ -22,17 +22,17 @@ export const OutcomeScreen = ({ navigation }) => {
                 destination={"Onboard"} 
                 navigation={navigation} 
                 screen={"Sign Up"} 
-                previousPage={onboardStep >  0 ? previousOnboardingStep : null} 
+                previousPage={step >  0 ? previousStep : null} 
             />
-            {pages[onboardStep].page}
+            {pages[step].page}
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()
+                        step === 3 ? navigation.navigate("Register") : nextStep()
                     }} 
                 />
-                <ProgressDots progress={onboardStep +1} total={4} />
+                <ProgressDots progress={step +1} total={4} />
             </ButtonSection>
         </SafeView>
     );

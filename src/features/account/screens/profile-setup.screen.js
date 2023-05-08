@@ -12,9 +12,9 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep } = useContext(AuthenticationContext);
 
-    pages = [{ page: <AvgPainPreStart />}, { page: <EnjoymentOfLife />, }, { page: <ActivityInterference />, }, { page: <HopeToAchieve />, }]
+    pages = [<AvgPainPreStart />, <EnjoymentOfLife />, <ActivityInterference />, <HopeToAchieve />]
 
     return(
         <SafeView>
@@ -22,17 +22,17 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 destination={"Onboard"} 
                 navigation={navigation} 
                 screen={"Sign Up"} 
-                previousPage={onboardStep >  0 ? previousOnboardingStep : null} 
+                previousPage={step >  0 ? previousStep : null} 
             />
-            {pages[onboardStep].page}
+            {pages[step]}
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()
+                        step === 3 ? navigation.navigate("Register") : nextStep()
                     }} 
                 />
-                <ProgressDots progress={onboardStep +1} total={4} />
+                <ProgressDots progress={step +1} total={4} />
             </ButtonSection>
         </SafeView>
     );

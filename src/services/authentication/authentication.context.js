@@ -14,7 +14,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [onboardStep, setOnboardStep] = useState(0);
+    const [step, setStep] = useState(0);
     const [onboardingData, setOnboardingData] = useState({
         first_name: "", 
         last_name: "", 
@@ -123,14 +123,14 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
-    const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => {
+    const nextStep = () => {
+        setStep((prevPage) => {
           return prevPage + 1;
         });
       };
 
-    const previousOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
+    const previousStep = () => {
+        setStep((prevPage) => { return ( prevPage - 1 ) });
     };
     
     const loadUser = async () => {
@@ -171,14 +171,14 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 currentQuestion,
                 error,
                 isAuthenticated: !!user,
-                nextOnboardingStep,
+                nextStep,
                 nextQuestion,
-                onboardStep,
+                step,
                 onLogin,
                 onRegister,
                 setOnboardingData,
                 onboardingData,
-                previousOnboardingStep,
+                previousStep,
                 user,
                 userLoading,
                 setCurrentQuestion,

@@ -17,7 +17,7 @@ export async function checkReferralCode(
 ) {
   try {
     const response = await axios.get(
-      `${API_URL}/api/v1/providers/${referralCode}`
+      `${SERVER_API_URL}/api/v1/providers/${referralCode}`
     );
     const data = response.data.data.attributes;
     const provider_id = data.id;
