@@ -60,6 +60,7 @@ export const TodayScreen = ({ navigation }) => {
             setCompletedProgram
         );
     }, []);
+    console.log(user.user.uid)
     
     useEffect(() => {
         if (!isFocused) {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelize from "camelize";
-import { API_URL } from "@env"
+import { API_URL, SERVER_API_URL } from "@env"
 
 export const destroyPainJournal = (journalId) => {
     axios.delete(`${API_URL}/api/v1/pain_journals/${journalId}`)
@@ -30,10 +30,10 @@ export async function patchPainJournal(journalId, painJournal, setPainJournals) 
         console.error(error);
     }
 };
-
+console.log(SERVER_API_URL)
 export async function postPainJournal(uid, painJournal, setPainJournals) {
     try {
-        const response = await axios.post(`${API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
+        const response = await axios.post(`${SERVER_API_URL}/api/v1/pain_journals`, { pain_journal: painJournal, uid: uid })
         const data = response.data.data.attributes;
         setPainJournals(prevJournals => (
             [

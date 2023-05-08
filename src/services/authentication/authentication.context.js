@@ -19,7 +19,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         first_name: "", 
         last_name: "", 
         email: "",
-        startingPainScore: "",
+        startingPainScore: 5,
         enjoymentOfLife: 5,
         activityInterference: 5,
         hopesToAchieve: new Array()
@@ -52,8 +52,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const findHopesToAchieve = () => {
         const selectedHopes = onboardingData.hopesToAchieve;
         const text = hopesOptions.filter(option => selectedHopes.includes(option.id));
-        const hopesToAchieve = text.map((option) => option.option);
-        return String(hopesToAchieve).replace(/,/g, ', ');
+        const hopes = text.map((option) => option.option);
+        return String(hopes).replace(/,/g, ', ');
     };
 
 
@@ -85,7 +85,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     starting_pain_score: onboardingData.startingPainScore,
                     enjoyment_of_life: onboardingData.enjoymentOfLife,
                     activity_interference: onboardingData.activityInterference,
-                    hopes_to_achieve: hopes_to_achieve,
+                    hopes_to_achieve: hopes_to_achieve
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
