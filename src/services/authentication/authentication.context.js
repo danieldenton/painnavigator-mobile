@@ -26,6 +26,15 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
+    const [outcomeData, setOutcomeData] = useState({
+        outcomeEnjoymentOfLife: 5,
+        outcomeActivityInterference: 5,
+        outcomeRecommendation: 5,
+        anxious: "",
+        worrying: "",
+        littleInterestOrPleasure: "",
+        depressed: ""
+    })
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(journal => ({
