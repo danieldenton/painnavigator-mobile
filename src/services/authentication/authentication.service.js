@@ -8,7 +8,7 @@ import { ONBOARD_EVENTS } from '../../amplitude-events';
 
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
-  // console.log(API_URL)
+  console.log(API_URL)
 
   console.log(SERVER_API_URL)
 
