@@ -28,18 +28,14 @@ export const BookmarksContextProvider = ({ children }) => {
   };
 
   const add = (moduleId) => {
-    //addBookmarkToDataBase(moduleId);
     setBookmarks([...bookmarks, moduleId]);
-    //console.log(bookmarks);
   };
 
   const remove = (moduleId) => {
     const newBookmarks = bookmarks.filter(
       (x) => x !== moduleId
     );
-
     setBookmarks(newBookmarks);
-    //console.log(bookmarks);
   };
 
   useEffect(() => {

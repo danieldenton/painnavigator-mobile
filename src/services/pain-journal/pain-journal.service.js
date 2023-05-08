@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelize from "camelize";
-import { API_URL } from "@env"
+import { API_URL, SERVER_API_URL } from "@env"
 
 export const destroyPainJournal = (journalId) => {
     axios.delete(`${API_URL}/api/v1/pain_journals/${journalId}`)

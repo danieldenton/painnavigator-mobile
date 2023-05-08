@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
 import { ActivityInterference } from "../components/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
@@ -9,10 +10,11 @@ import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component"; 
 
+
 export const ProfileSetupScreen = ({ navigation }) => {
     const { onboardStep, previousOnboardingStep, nextOnboardingStep } = useContext(AuthenticationContext);
 
-    pages = [{ page: <EnjoymentOfLife />, }, { page: <ActivityInterference />, }, { page: <HopeToAchieve />, }]
+    pages = [{ page: <AvgPainPreStart />}, { page: <EnjoymentOfLife />, }, { page: <ActivityInterference />, }, { page: <HopeToAchieve />, }]
 
     return(
         <SafeView>
@@ -27,10 +29,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        onboardStep === 2 ? navigation.navigate("Register") : nextOnboardingStep()
+                        onboardStep === 3 ? navigation.navigate("Register") : nextOnboardingStep()
                     }} 
                 />
-                <ProgressDots progress={onboardStep +1} total={3} />
+                <ProgressDots progress={onboardStep +1} total={4} />
             </ButtonSection>
         </SafeView>
     );
