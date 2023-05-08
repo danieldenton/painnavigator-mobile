@@ -37,8 +37,15 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     })
 
     const changeOnboardEntry = (change, state) => {
-        setOnboardingData(journal => ({
-            ...journal,
+        setOnboardingData(entry => ({
+            ...entry,
+            [state]: change
+        }));
+    };
+
+    const changeOutcomeEntry = (change, state) => {
+        setOutcomeData(entry => ({
+            ...entry,
             [state]: change
         }));
     };
@@ -188,7 +195,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 setError,
                 setCompletedProgram,
                 completedProgram,
-                completeProgram
+                completeProgram,
+                changeOutcomeEntry
             }}
         >
             {children}

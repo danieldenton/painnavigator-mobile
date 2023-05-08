@@ -3,8 +3,8 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
 
 export const EnjoymentOfLife = () => {
-    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { enjoymentOfLife } = onboardingData;
+    const { onboardData, changeOnboardEntry } = useContext(AuthenticationContext)
+    const { enjoymentOfLife } = onboardData
 
     return (
         <JournalQuestionAndIntensitySlider 
