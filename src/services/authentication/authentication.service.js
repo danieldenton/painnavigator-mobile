@@ -35,8 +35,7 @@ export async function postUser(uid, onboardingData) {
     uid: uid,
     ...onboardingData
   };
-  // console.log(userData)
-  const response = await axios.post(`${API_URL}/api/v2/users`, { user: userData });
+  await axios.post(`${API_URL}/api/v2/users`, { user: userData });
 };
 
 export const patchExpoPushToken = async (uid, token) => {

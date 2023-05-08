@@ -76,7 +76,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
                 const hopes_to_achieve = findHopesToAchieve()
-                console.log(hopes_to_achieve)
                 const strippedOnboardingData = {
                     provider_id: providerId,
                     first_name: onboardingData.first_name.trim(),
