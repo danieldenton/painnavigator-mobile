@@ -3,20 +3,20 @@ import { IntensitySlider } from "../../../components/slider.component";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-export const AvgPainPreStart = () => {
+export const ActivityInterference = () => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { starting_pain_score } = onboardingData;
+    const { activityInterference } = onboardingData;
 
     return (
         <>
             <JournalQuestion 
-                question={"Over the last two weeks whats the average amount of pain that you’ve had?"}
-                helpText={"0 is no pain, 10 is the worst pain you can imagine"}
+                question={"What number best describes how, during the past week, pain has interfered with your general activity?"}
+                helpText={"0 is not commited at all, 10 is pain has made normal activities impossible"}
             />
             <IntensitySlider 
-                value={starting_pain_score} 
+                value={activityInterference} 
                 onValueChange={changeOnboardEntry} 
-                state={"starting_pain_score"}
+                state={"activityInterference"}
             />
         </> 
     );

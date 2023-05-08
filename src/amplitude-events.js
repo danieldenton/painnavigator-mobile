@@ -3,10 +3,8 @@ export const ONBOARD_EVENTS = {
     COMPLETE_LOGIN: "Complete Login",
     CHOSE_SIGN_UP: "Chose Sign Up",
     ENTER_REFERRAL_CODE: "Enter Referral Code",
-    BASELINE_PAIN_SCALE: "Baseline Pain Scale",
-    BASELINE_COMMITTED_TO_PROGRAM: "Baseline Committed to Program",
-    BASELINE_PACE_FOR_PROGRAM: "Baseline Pace for Program",
     COMPLETE_CREATE_ACCOUNT: "Complete Create Account",
+    ALLOWS_PUSH_NOTIFICATIONS: "Allows Push Notifications"
   };
   
   export const EDUCATION_UNIT_EVENTS = {

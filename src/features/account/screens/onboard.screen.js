@@ -24,9 +24,9 @@ export const OnboardScreen = ({ navigation }) => {
         <SafeView>
             <OnboardSwiper onPageScroll={onPageScroll} />
             <ButtonSection>
-                <View style={{ marginBottom: 32 }}>
+                {/* <View style={{ marginBottom: 32 }}>
                 <SwiperDots progress={currentPage + 1} total={4} />
-                </View>
+                </View> */}
                 <JournalButton 
                     title={"Sign Up"}
                     onPress={() => {navigation.navigate("Provider")

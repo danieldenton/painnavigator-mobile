@@ -70,6 +70,7 @@ export const MultiSelectCheckBox = ({ add, optionData, remove, selectedOptions }
     const { helpText, id, option } = optionData;
 
     const selected = selectedOptions.find((optionId) => optionId === id);
+    
         
     return (
         <CheckBoxPressableArea
