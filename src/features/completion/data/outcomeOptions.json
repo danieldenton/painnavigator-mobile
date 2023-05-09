@@ -1,0 +1,24 @@
+{
+    "outcomeOtions": [
+        { 
+            "id": 1,
+            "option": "Not At All",
+            "helpText": null
+        }, 
+        {
+            "id": 2,
+            "option": "Several Days",
+            "helpText": null
+        },
+        {
+            "id":3,
+            "option": "More Than Half the Days",
+            "helpText": null
+         },
+         {
+            "id": 4,
+            "option": "Nearly Every Day",
+            "helpText": null
+         }
+        ]
+}

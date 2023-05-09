@@ -31,7 +31,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         outcome_enjoyment_of_life: 5,
         outcome_activity_interference: 5,
         anxious: "",
-        worrying: "",
+        unable_to_stop_worrying: "",
         little_interest_or_pleasure: "",
         depressed: ""
     })

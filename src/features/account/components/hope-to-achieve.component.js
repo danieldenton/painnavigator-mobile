@@ -22,7 +22,6 @@ export const HopeToAchieve = () => {
         const newHopes = selectedHopes.filter(
           (x) => x !== optionId
         );
-
         setOnboardingData(entry => ({
             ...entry,
             ["hopesToAchieve"]: newHopes
@@ -45,7 +44,7 @@ export const HopeToAchieve = () => {
         <>
             <JournalQuestion 
                 question={"What do you hope to achieve by completing PainNavigator?"} helpText={"Tap the circle to select"} />
-         <MultiSelectScroll>
+            <MultiSelectScroll>
                 <View style={{ marginTop: 10, marginBottom: 60 }}>
                     {hopes}
                 </View>
