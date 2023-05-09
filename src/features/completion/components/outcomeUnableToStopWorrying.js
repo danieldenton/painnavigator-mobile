@@ -5,19 +5,14 @@ import { SingleSelectCheckBox } from "../../../components/checkbox/single-select
 import { View } from 'react-native';
 import { outcomeOptions } from '../data/outcomeOptions.json'
 
-export const OutcomeUnableToStopWorrying = ({ step, choice, setChoice }) => {
+export const OutcomeUnableToStopWorrying = () => {
     const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
-    const questions = [
-        "Over the last 2 weeks, how often have you been bothered by the following problem: little interest or pleasure in doing things?",
-        "Over the last 2 weeks, how often have you been bothered by the following problem: feeling down, depressed, or hopeless?"
-    ]
-    const states = ["anxious", "unable_to_stop_worrying", "little_interest_or_pleasure", "depressed"]
+    
+    const add = (optionId) => {
+        changeOutcomeEntry(optionId, "unable_to_stop_worrying")
+    };
     
     const options = outcomeOptions.map((option, idx) => {
-        
-        const add = (optionId) => {
-            changeOutcomeEntry(optionId, "anxious")
-        };
         return (
             <SingleSelectCheckBox 
                 add={add}
@@ -30,7 +25,10 @@ export const OutcomeUnableToStopWorrying = ({ step, choice, setChoice }) => {
 
     return (
         <>
-            <JournalQuestion question={"Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?"} helpText={"Choose one"} />
+            <JournalQuestion 
+                 question={"Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?"} 
+                 helpText={"Choose one"} 
+            />
                 <View style={{ marginBottom: 140 }}>
                     {options}
                 </View>

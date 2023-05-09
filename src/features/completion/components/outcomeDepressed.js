@@ -5,8 +5,7 @@ import { SingleSelectCheckBox } from "../../../components/checkbox/single-select
 import { View } from 'react-native';
 import { outcomeOptions } from '../data/outcomeOptions.json'
 
-export const OutcomeDepressed
- = () => {
+export const OutcomeDepressed = () => {
     const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
 
     const add = (optionId) => {
@@ -26,7 +25,10 @@ export const OutcomeDepressed
 
     return (
         <>
-            <JournalQuestion question={"Over the last 2 weeks, how often have you been bothered by the following problem: feeling down, depressed, or hopeless?"} helpText={"Choose one"} />
+            <JournalQuestion 
+                question={"Over the last 2 weeks, how often have you been bothered by the following problem: feeling down, depressed, or hopeless?"} 
+                helpText={"Choose one"} 
+            />
                 <View style={{ marginBottom: 140 }}>
                     {options}
                 </View>
