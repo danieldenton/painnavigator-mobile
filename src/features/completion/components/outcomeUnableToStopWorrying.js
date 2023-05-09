@@ -3,40 +3,36 @@ import { AuthenticationContext } from '../../../services/authentication/authenti
 import { JournalQuestion } from '../../../components/journal-question.component'
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { outcomeOptions } from './../data/outcomeOptions.json'
+import { outcomeOptions } from '../data/outcomeOptions.json'
 
-export const OutcomeMultipleChoice = ({ step, choice, setChoice }) => {
-    const { setOutcomeData, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
-    const { anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed } = outcomeData
+export const OutcomeUnableToStopWorrying = ({ step, choice, setChoice }) => {
+    const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
     const questions = [
-        "Over the last 2 weeks, how often have you been bothered by the following problem: feeling nervous, anxious or on edge?",
-        "Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?",
         "Over the last 2 weeks, how often have you been bothered by the following problem: little interest or pleasure in doing things?",
         "Over the last 2 weeks, how often have you been bothered by the following problem: feeling down, depressed, or hopeless?"
     ]
     const states = ["anxious", "unable_to_stop_worrying", "little_interest_or_pleasure", "depressed"]
     
-    const answers = outcomeOptions.map((option, idx) => {
-        const choices = [anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed]
+    const options = outcomeOptions.map((option, idx) => {
+        
         const add = (optionId) => {
-            changeOutcomeEntry(optionId, states[idx])
-            console.log(choices[idx])
+            changeOutcomeEntry(optionId, "anxious")
         };
         return (
             <SingleSelectCheckBox 
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={choices[idx]}
+                selectedOption={outcomeData.unable_to_stop_worrying}
             />            
         );
     });
 
     return (
         <>
-            <JournalQuestion question={questions[step - 3]} helpText={"Choose one"} />
+            <JournalQuestion question={"Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?"} helpText={"Choose one"} />
                 <View style={{ marginBottom: 140 }}>
-                    {answers}
+                    {options}
                 </View>
         </>
     )

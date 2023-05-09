@@ -3,7 +3,10 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { Recommend } from "../components/recommend.component";
 import { OutcomeEnjoyment } from "../components/outcome-enjoyment.component";
 import { OutcomeActivity } from "../components/outcome-activity.component";
-import { OutcomeMultipleChoice } from "../components/outcome-multiple-choice.component";
+import { OutcomeAnxious } from "../components/outcomeAnxious";
+import { OutcomeUnableToStopWorrying } from "../components/outcomeUnableToStopWorrying";
+import { OutcomeLittleInterestOrPleasure } from "../components/outcomeLittleInterestOrPleasure";
+import { OutcomeDepressed } from "../components/outcomeDepressed";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -13,16 +16,16 @@ import { SafeView } from "../../../components/safe-area.component";
 
 export const OutcomeScreen = ({ navigation }) => {
     const { step, previousStep, nextStep, completeProgram } = useContext(AuthenticationContext);
-    const [choice, setChoice] = useState(null)
 
-    pages = [<Recommend />, <OutcomeEnjoyment />, <OutcomeActivity />, <OutcomeMultipleChoice step={step} choice={choice} setChoice={setChoice} />]
-
-    const handleNextStep = () => {
-        if (step >= 3){
-            setChoice(null)
-        }
-        nextStep()
-    }
+    pages = [
+        <Recommend />, 
+        <OutcomeEnjoyment />, 
+        <OutcomeActivity />, 
+        <OutcomeAnxious />, 
+        <OutcomeUnableToStopWorrying />, 
+        <OutcomeLittleInterestOrPleasure />, 
+        <OutcomeDepressed />
+    ]
 
     const handleCompletProgram = () => {
         completeProgram()
@@ -37,12 +40,12 @@ export const OutcomeScreen = ({ navigation }) => {
                 screen={"Outcome"} 
                 previousPage={step >  0 ? previousStep : null} 
             />
-            {step >= 3 ? pages[3] : pages[step]}
+            {pages[step]}
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        step === 6 ?  handleCompletProgram() : handleNextStep()
+                        step === 6 ?  handleCompletProgram() : nextStep()
                     }} 
                 />
                 <ProgressDots progress={step +1} total={7} />
