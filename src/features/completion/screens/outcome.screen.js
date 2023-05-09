@@ -15,7 +15,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const OutcomeScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, completeProgram } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, completeProgram, outcomeData } = useContext(AuthenticationContext);
 
     pages = [
         <Recommend />, 
@@ -31,6 +31,8 @@ export const OutcomeScreen = ({ navigation }) => {
         completeProgram()
         navigation.navigate("ProgramCompleted")
     }
+
+    console.log(outcomeData)
 
     return(
         <SafeView>

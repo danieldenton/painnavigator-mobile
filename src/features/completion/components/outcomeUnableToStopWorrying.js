@@ -12,7 +12,7 @@ export const OutcomeUnableToStopWorrying = () => {
         changeOutcomeEntry(optionId, "unable_to_stop_worrying")
     };
     
-    const options = outcomeOptions.map((option, idx) => {
+    const options = outcomeOptions.map((option) => {
         return (
             <SingleSelectCheckBox 
                 add={add}

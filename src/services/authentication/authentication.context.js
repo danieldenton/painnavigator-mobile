@@ -4,6 +4,8 @@ import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/hopes-to-achieve.json'
+import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
+import { includes } from "lodash";
 
 
 export const AuthenticationContext = createContext();
@@ -71,7 +73,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         const hopes = text.map((option) => option.option);
         return String(hopes).replace(/,/g, ', ');
     };
-
 
     const onRegister = (password, repeatedPassword) => {
         const { first_name, last_name, email } = onboardingData;
@@ -151,6 +152,12 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
             console.log("error loading user", e);
         }
     };
+
+    // const findOutcomeOption = (key) => {
+    //     const opt = outcomeOptions.filter((option) => key.includes(option.id))
+    //     const value = opt.option
+    //     return value
+    // }
 
     const completeProgram = () => {
         patchCompletedProgram(user.user.uid, outcomeData)
