@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
 import { AuthenticationContext } from '../../../services/authentication/authentication.context'
 import { JournalQuestion } from '../../../components/journal-question.component'
-import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
+import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { outcomeOptions } from './../data//outcomeOptions.json'
+import { outcomeOptions } from './../data/outcomeOptions.json'
 
-export const OutcomeMultipleChoice = ({ step }) => {
-    const { outcomeData, setOutcomeData } = useContext(AuthenticationContext)
+export const OutcomeMultipleChoice = ({ step, choice, setChoice }) => {
+    const { setOutcomeData, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
+    const { anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed } = outcomeData
+    const choices = [anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed]
     const questions = [
         "Over the last 2 weeks, how often have you been bothered by the following problem: feeling nervous, anxious or on edge?",
         "Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?",
@@ -14,30 +16,18 @@ export const OutcomeMultipleChoice = ({ step }) => {
         "Over the last 2 weeks, how often have you been bothered by the following problem: feeling down, depressed, or hopeless?"
     ]
     const states = ["anxious", "unable_to_stop_worrying", "little_interest_or_pleasure", "depressed"]
-
-    const add = (optionId) => {
-        setOutcomeData(entry => ({
-            ...entry,
-            [states[step - 3]]: [optionId]
-        }));
-    };
     
-    const remove = () => {
-        setOutcomeData(entry => ({
-            ...entry,
-            [states[step - 3]]: ""
-        }));    
-    };
-
     const answers = outcomeOptions.map((option, idx) => {
-        console.log(idx)
+        const add = (optionId) => {
+            changeOutcomeEntry(optionId, states[states[idx - 1]])
+            console.log("please")
+        };
         return (
-            <MultiSelectCheckBox 
+            <SingleSelectCheckBox 
                 add={add}
                 key={option.id}
                 optionData={option} 
-                remove={remove}
-                // selectedOptions={}
+                selectedOption={choices[idx - 1]}
             />            
         );
     });
@@ -45,11 +35,9 @@ export const OutcomeMultipleChoice = ({ step }) => {
     return (
         <>
             <JournalQuestion question={questions[step - 3]} helpText={"Choose one"} />
-            <MultiSelectScroll>
-                <View style={{ marginTop: 10, marginBottom: 60 }}>
+                <View style={{ marginBottom: 140 }}>
                     {answers}
                 </View>
-            </MultiSelectScroll>
         </>
     )
     

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
 import { OutcomeEnjoyment } from "../components/outcome-enjoyment.component";
@@ -13,8 +13,16 @@ import { SafeView } from "../../../components/safe-area.component";
 
 export const OutcomeScreen = ({ navigation }) => {
     const { step, previousStep, nextStep, completeProgram } = useContext(AuthenticationContext);
+    const [choice, setChoice] = useState(null)
 
-    pages = [<Recommend />, <OutcomeEnjoyment />, <OutcomeActivity />, <OutcomeMultipleChoice step={step} />]
+    pages = [<Recommend />, <OutcomeEnjoyment />, <OutcomeActivity />, <OutcomeMultipleChoice step={step} choice={choice} setChoice={setChoice} />]
+
+    const handleNextStep = () => {
+        if (step >= 3){
+            setChoice(null)
+        }
+        nextStep()
+    }
 
     const handleCompletProgram = () => {
         completeProgram()
@@ -34,7 +42,7 @@ export const OutcomeScreen = ({ navigation }) => {
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        step === 6 ?  handleCompletProgram() : nextStep()
+                        step === 6 ?  handleCompletProgram() : handleNextStep()
                     }} 
                 />
                 <ProgressDots progress={step +1} total={7} />

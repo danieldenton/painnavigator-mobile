@@ -153,7 +153,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     };
 
     const completeProgram = () => {
-        patchCompletedProgram(uid, outcomeData)
+        patchCompletedProgram(user.user.uid, outcomeData)
         setCompletedProgram(true)
         setStep(0)
     }
