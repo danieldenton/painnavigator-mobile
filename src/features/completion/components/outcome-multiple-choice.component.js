@@ -8,7 +8,6 @@ import { outcomeOptions } from './../data/outcomeOptions.json'
 export const OutcomeMultipleChoice = ({ step, choice, setChoice }) => {
     const { setOutcomeData, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
     const { anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed } = outcomeData
-    const choices = [anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed]
     const questions = [
         "Over the last 2 weeks, how often have you been bothered by the following problem: feeling nervous, anxious or on edge?",
         "Over the last 2 weeks, how often have you been bothered by the following problem: not being able to stop or control worrying?",
@@ -18,16 +17,17 @@ export const OutcomeMultipleChoice = ({ step, choice, setChoice }) => {
     const states = ["anxious", "unable_to_stop_worrying", "little_interest_or_pleasure", "depressed"]
     
     const answers = outcomeOptions.map((option, idx) => {
+        const choices = [anxious, unable_to_stop_worrying,little_interest_or_pleasure, depressed]
         const add = (optionId) => {
-            changeOutcomeEntry(optionId, states[states[idx - 1]])
-            console.log("please")
+            changeOutcomeEntry(optionId, states[idx])
+            console.log(choices[idx])
         };
         return (
             <SingleSelectCheckBox 
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={choices[idx - 1]}
+                selectedOption={choices[idx]}
             />            
         );
     });
