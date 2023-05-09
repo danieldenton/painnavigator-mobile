@@ -27,9 +27,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
     const [outcomeData, setOutcomeData] = useState({
+        recommendation: 5,
         outcome_enjoyment_of_life: 5,
         outcome_activity_interference: 5,
-        outcome_recommendation: 5,
         anxious: "",
         worrying: "",
         little_interest_or_pleasure: "",
@@ -152,9 +152,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
-    const completeProgram = (uid) => {
+    const completeProgram = () => {
         patchCompletedProgram(uid, outcomeData)
         setCompletedProgram(true)
+        setStep(0)
     }
 
     useEffect(() => {
@@ -195,9 +196,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 expoPushToken,
                 setError,
                 setCompletedProgram,
+                outcomeData,
+                changeOutcomeEntry,
                 completedProgram,
-                completeProgram,
-                changeOutcomeEntry
+                completeProgram
             }}
         >
             {children}

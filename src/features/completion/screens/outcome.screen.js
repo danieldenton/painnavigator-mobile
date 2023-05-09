@@ -12,27 +12,32 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const OutcomeScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, completeProgram } = useContext(AuthenticationContext);
 
     pages = [<Recommend />, <OutcomeEnjoyment />, <OutcomeActivity />, <OutcomeMultipleChoice step={step} />]
+
+    const handleCompletProgram = () => {
+        completeProgram()
+        navigation.navigate("ProgramCompleted")
+    }
 
     return(
         <SafeView>
             <NavigationBarLeft 
-                destination={"Onboard"} 
+                destination={"Today"} 
                 navigation={navigation} 
-                screen={"Sign Up"} 
+                screen={"Outcome"} 
                 previousPage={step >  0 ? previousStep : null} 
             />
-            {pages[step].page}
+            {step >= 3 ? pages[3] : pages[step]}
             <ButtonSection>
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        step === 3 ? navigation.navigate("Register") : nextStep()
+                        step === 6 ?  handleCompletProgram() : nextStep()
                     }} 
                 />
-                <ProgressDots progress={step +1} total={4} />
+                <ProgressDots progress={step +1} total={7} />
             </ButtonSection>
         </SafeView>
     );
