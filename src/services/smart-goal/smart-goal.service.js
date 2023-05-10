@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from "@env"
+import { API_URL, SERVER_API_URL } from "@env"
 
 export const destroyGoal = (goalId) => {
     axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
@@ -9,7 +9,7 @@ export const destroyGoal = (goalId) => {
 
 export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
     try {
-        const response = await axios.post(`${API_URL}/api/v1/smart_goals`, { smart_goal: smartGoal, uid: uid })
+        const response = await axios.post(`${SERVER_API_URL}/api/v1/smart_goals`, { smart_goal: smartGoal, uid: uid })
         const data = response.data.data.attributes;
         setActiveGoal(data);
     } catch (error) {

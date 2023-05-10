@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TodayScreen } from "../../features/today/screens/today.screen";
 import { MyProgress } from "../../features/progress/screens/my-progress.screen";
-import { ProgramCompletedScreen } from "../../features/completion/screens/program-completed.screen";
 import { UnitsNavigator } from "./units.navigator";
 import { EducationNavigator } from "./education.navigator";
 import { MovementNavigator } from "./movement.navigator";
@@ -18,6 +17,7 @@ import { ContactScreen } from "../../features/today/screens/contact.screen";
 import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 import { Privacy } from "../../features/account/screens/privacy-policy.screen";
 import { SentScreen } from "../../features/today/screens/sent.screen";
+import { CompletiontNavigator } from "./completion.navigator";
 
 const TodayStack = createStackNavigator();
 
@@ -30,7 +30,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
             <TodayStack.Screen name="Progress" component={MyProgress} />
-            <TodayStack.Screen name="ProgramCompleted" component={ProgramCompletedScreen} />
+            <TodayStack.Screen name="Completion" component={CompletiontNavigator} />
             <TodayStack.Screen name="Settings" component={SettingsNavigator} />
             <TodayStack.Screen name="SmartGoals" component={SmartGoalNavigator} />
             <TodayStack.Screen name="JournalCreated" component={JournalCreatedScreen} />

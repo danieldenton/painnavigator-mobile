@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { IntensitySlider } from "../../../components/slider.component";
-import { JournalQuestion } from "../../../components/journal-question.component";
+import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const AvgPainPreStart = () => {
@@ -8,16 +7,12 @@ export const AvgPainPreStart = () => {
     const { startingPainScore } = onboardingData;
 
     return (
-        <>
-            <JournalQuestion 
-                question={"What number best describes your pain on average in the past week?"}
-                helpText={"0 is no pain, 10 is the worst pain you can imagine"}
-            />
-            <IntensitySlider 
-                value={startingPainScore} 
-                onValueChange={changeOnboardEntry} 
-                state={"startingPainScore"}
-            />
-        </> 
+        <JournalQuestionAndIntensitySlider
+            question={"What number best describes your pain on average in the past week?"}
+            helpText={"0 is no pain, 10 is the worst pain you can imagine"}
+            value={startingPainScore}
+            onValueChange={changeOnboardEntry}
+            state={"startingPainScore"}
+        />
     );
 };

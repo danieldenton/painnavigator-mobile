@@ -4,6 +4,8 @@ import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/hopes-to-achieve.json'
+import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
+import { includes } from "lodash";
 
 
 export const AuthenticationContext = createContext();
@@ -14,7 +16,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(1);
-    const [onboardStep, setOnboardStep] = useState(0);
+    const [step, setStep] = useState(0);
     const [onboardingData, setOnboardingData] = useState({
         first_name: "", 
         last_name: "", 
@@ -26,10 +28,26 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
+    const [outcomeData, setOutcomeData] = useState({
+        recommendation: 5,
+        outcome_enjoyment_of_life: 5,
+        outcome_activity_interference: 5,
+        anxious: "",
+        unable_to_stop_worrying: "",
+        little_interest_or_pleasure: "",
+        depressed: ""
+    })
 
     const changeOnboardEntry = (change, state) => {
-        setOnboardingData(journal => ({
-            ...journal,
+        setOnboardingData(entry => ({
+            ...entry,
+            [state]: change
+        }));
+    };
+
+    const changeOutcomeEntry = (change, state) => {
+        setOutcomeData(entry => ({
+            ...entry,
             [state]: change
         }));
     };
@@ -55,7 +73,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         const hopes = text.map((option) => option.option);
         return String(hopes).replace(/,/g, ', ');
     };
-
 
     const onRegister = (password, repeatedPassword) => {
         const { first_name, last_name, email } = onboardingData;
@@ -88,6 +105,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
+                setStep(0)
             })
             .catch((e) => {
                 setError(e.toString());
@@ -114,14 +132,14 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
-    const nextOnboardingStep = () => {
-        setOnboardStep((prevPage) => {
+    const nextStep = () => {
+        setStep((prevPage) => {
           return prevPage + 1;
         });
       };
 
-    const previousOnboardingStep = () => {
-        setOnboardStep((prevPage) => { return ( prevPage - 1 ) });
+    const previousStep = () => {
+        setStep((prevPage) => { return ( prevPage - 1 ) });
     };
     
     const loadUser = async () => {
@@ -135,9 +153,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
-    const completeProgram = (uid) => {
-        patchCompletedProgram(uid)
+    const completeProgram = () => {
+        patchCompletedProgram(user.user.uid, outcomeData)
         setCompletedProgram(true)
+        setStep(0)
     }
 
     useEffect(() => {
@@ -162,14 +181,14 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 currentQuestion,
                 error,
                 isAuthenticated: !!user,
-                nextOnboardingStep,
+                nextStep,
                 nextQuestion,
-                onboardStep,
+                step,
                 onLogin,
                 onRegister,
                 setOnboardingData,
                 onboardingData,
-                previousOnboardingStep,
+                previousStep,
                 user,
                 userLoading,
                 setCurrentQuestion,
@@ -178,6 +197,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 expoPushToken,
                 setError,
                 setCompletedProgram,
+                outcomeData,
+                changeOutcomeEntry,
                 completedProgram,
                 completeProgram
             }}

@@ -6,6 +6,8 @@ import { API_URL, SERVER_API_URL } from "@env";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from '../../amplitude-events';
 
+console.log(SERVER_API_URL)
+
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
@@ -17,7 +19,7 @@ export async function checkReferralCode(
 ) {
   try {
     const response = await axios.get(
-      `${API_URL}/api/v1/providers/${referralCode}`
+      `${SERVER_API_URL}/api/v1/providers/${referralCode}`
     );
     const data = response.data.data.attributes;
     const provider_id = data.id;
@@ -35,12 +37,12 @@ export async function postUser(uid, onboardingData) {
     uid: uid,
     ...onboardingData
   };
-  await axios.post(`${API_URL}/api/v2/users`, { user: userData });
+  await axios.post(`${SERVER_API_URL}/api/v2/users`, { user: userData });
 };
 
 export const patchExpoPushToken = async (uid, token) => {
   try {
-    await axios.patch(`${API_URL}/api/v2/users/${uid}`, { expo_push_token: token });
+    await axios.patch(`${SERVER_API_URL}/api/v2/users/${uid}`, { expo_push_token: token });
   } catch (error) {
     console.error(error);
   }
@@ -58,7 +60,7 @@ export async function getUser(
   setCompletedProgram
 ) {
   try {
-    const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
+    const response = await axios.get(`${SERVER_API_URL}/api/v2/users/${uid}`);
     const data = response.data.data.attributes;
     setUserInfo(data.profile)
     setEducationProgress(data.education_progress.progress)
@@ -73,9 +75,12 @@ export async function getUser(
   }
 }
 
-export const patchCompletedProgram = async (uid) => {
+export const patchCompletedProgram = async (uid, outcomeData) => {
   try {
-    await axios.patch(`${API_URL}/api/v2/users/${uid}`, { completed_program: true});
+    await axios.patch(`${SERVER_API_URL}/api/v2/users/${uid}`, 
+    { ...outcomeData,
+      completed_program: true 
+    });
   } catch (error) {
     console.error(error);
   }
