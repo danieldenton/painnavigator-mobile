@@ -48,7 +48,7 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
                 <JournalButton onPress={() => {navigation.navigate("Today"), completeProgram(user.user.uid)}} title={"Back To Home"} /> 
                 </ButtonSection> :
             <ButtonSection>
-                <JournalButton onPress={() => {navigation.navigate("ProgramCompleted"), completeProgram(user.user.uid)}} title={"Move into Maintenance"} />
+                <JournalButton onPress={() => {navigation.navigate("Completion"), completeProgram(user.user.uid)}} title={"Move into Maintenance"} />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}} >
                     <SkipQuestionText>

@@ -153,12 +153,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }
     };
 
-    // const findOutcomeOption = (key) => {
-    //     const opt = outcomeOptions.filter((option) => key.includes(option.id))
-    //     const value = opt.option
-    //     return value
-    // }
-
     const completeProgram = () => {
         patchCompletedProgram(user.user.uid, outcomeData)
         setCompletedProgram(true)

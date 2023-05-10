@@ -6,6 +6,8 @@ import { API_URL, SERVER_API_URL } from "@env";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from '../../amplitude-events';
 
+console.log(SERVER_API_URL)
+
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
@@ -75,7 +77,7 @@ export async function getUser(
 
 export const patchCompletedProgram = async (uid, outcomeData) => {
   try {
-    await axios.patch(`${API_URL}/api/v2/users/${uid}`, 
+    await axios.patch(`${SERVER_API_URL}/api/v2/users/${uid}`, 
     { ...outcomeData,
       completed_program: true 
     });
