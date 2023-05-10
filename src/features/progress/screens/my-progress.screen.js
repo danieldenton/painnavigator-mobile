@@ -27,7 +27,7 @@ export const MyProgress = ({ navigation }) => {
             <ButtonSection>
                 <ModuleButton 
                     onPress={() => {
-                    navigation.navigate("Outcome")
+                    navigation.navigate("Completion")
                     }}
                     title={"Move Into Maintenance"} 
                 />

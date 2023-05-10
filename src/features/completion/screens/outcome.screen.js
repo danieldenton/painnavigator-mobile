@@ -32,8 +32,6 @@ export const OutcomeScreen = ({ navigation }) => {
         navigation.navigate("ProgramCompleted")
     }
 
-    console.log(outcomeData)
-
     return(
         <SafeView>
             <NavigationBarLeft 

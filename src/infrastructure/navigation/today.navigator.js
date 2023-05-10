@@ -30,7 +30,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
             <TodayStack.Screen name="Progress" component={MyProgress} />
-            <TodayStack.Screen name="Outcome" component={CompletiontNavigator} />
+            <TodayStack.Screen name="Completion" component={CompletiontNavigator} />
             <TodayStack.Screen name="Settings" component={SettingsNavigator} />
             <TodayStack.Screen name="SmartGoals" component={SmartGoalNavigator} />
             <TodayStack.Screen name="JournalCreated" component={JournalCreatedScreen} />
