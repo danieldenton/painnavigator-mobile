@@ -19,10 +19,10 @@ export const EducationContextProvider = ({ children }) => {
         setCurrentModule(module);
     }, [educationProgress])
 
-    const advanceProgress = () => {
-        const NEXT_MODULE_ID = educationProgress + 1;
-        setEducationProgress(NEXT_MODULE_ID);
-    };
+    // const advanceProgress = () => {
+    //     const NEXT_MODULE_ID = educationProgress + 1;
+    //     setEducationProgress(NEXT_MODULE_ID);
+    // };
 
     const completeModule = () => {
         const module = {
@@ -62,25 +62,25 @@ export const EducationContextProvider = ({ children }) => {
         };
     };
 
-    const saveEducationProgress = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@education_progress", jsonValue);
-        } catch (e) {
-            console.log("error storing education_progress", e);
-        }
-    };
+    // const saveEducationProgress = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //         await AsyncStorage.setItem("@education_progress", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing education_progress", e);
+    //     }
+    // };
 
-    const loadEducationProgress = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@education_progress");
-            if (value !== null) {
-                setEducationProgress(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading education_progress", e);
-        }
-    };
+    // const loadEducationProgress = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@education_progress");
+    //         if (value !== null) {
+    //             setEducationProgress(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading education_progress", e);
+    //     }
+    // };
 
     const saveCompletedEducationModules = async (value) => {
         try {
