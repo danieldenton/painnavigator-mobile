@@ -131,3 +131,7 @@ export const ONBOARD_EVENTS = {
     VIEW_MESSAGE_FROM_WELLNESS_COACH: "View Message From Wellness Coach",
     REPLIED_TO_WELLNESS_COACH: "Replied to Wellness Coach"
   }
+
+  export const COMPLETION_EVENTS = {
+    COMPLETE_PROGRAM: "Complete Program"
+  }
