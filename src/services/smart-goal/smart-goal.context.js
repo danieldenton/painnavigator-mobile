@@ -192,6 +192,7 @@ export const SmartGoalContextProvider = ({ children }) => {
                 resetSmartGoal,
                 reviewGoal,
                 endJournalDate,
+                setFinishedGoals
             }}
         >
             {children}

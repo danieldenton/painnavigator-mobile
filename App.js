@@ -153,7 +153,7 @@ export default function App() {
                         <MoodJournalContextProvider>
                           <WellnessCoachContextProvider>
                             <FavoriteActivitiesContextProvider>
-                              <Navigation ref={navigationRef} />
+                              <Navigation />
                             </FavoriteActivitiesContextProvider>
                           </WellnessCoachContextProvider>
                         </MoodJournalContextProvider>

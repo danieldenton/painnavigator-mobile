@@ -27,7 +27,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
-    const { activeGoal } = useContext(SmartGoalContext);
+    const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
@@ -59,6 +59,7 @@ export const TodayScreen = ({ navigation }) => {
             setFoodJournals,
             setCompletedProgram
         );
+        setFinishedGoals([])
     }, []);
     
     useEffect(() => {
