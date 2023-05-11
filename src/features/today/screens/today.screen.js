@@ -61,8 +61,6 @@ export const TodayScreen = ({ navigation }) => {
         );
         setFinishedGoals([])
     }, []);
-
-    console.log(user.user.uid)
     
     useEffect(() => {
         if (!isFocused) {
