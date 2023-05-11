@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, SERVER_API_URL } from "@env"
+import { API_URL } from "@env"
 
 export const destroyGoal = (goalId) => {
     axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)

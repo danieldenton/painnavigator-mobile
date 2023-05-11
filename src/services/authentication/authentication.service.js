@@ -1,7 +1,7 @@
 import axios from 'axios';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { API_URL, SERVER_API_URL } from "@env";
+import { API_URL } from "@env";
 // import { months } from "../../features/pain-journal/data/months";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from '../../amplitude-events';

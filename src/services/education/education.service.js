@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { API_URL, SERVER_API_URL } from "@env"
+import { API_URL } from "@env"
+
+console.log(API_URL)
 
 export async function postEducationModule(module, setEducationProgress, uid) {
     try {
