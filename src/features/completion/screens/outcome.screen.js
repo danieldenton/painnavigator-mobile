@@ -3,7 +3,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
-import { Anxious } from "../components/anxious";
+import { Anxious } from "../../../components/onboard-coutcome/anxious";
 import { UnableToStopWorrying } from "../components/unable-to-stop-worrying";
 import { LittleInterestOrPleasure } from "../components/little-interest-or-pleasure";
 import { Depressed } from "../components/depressed";
