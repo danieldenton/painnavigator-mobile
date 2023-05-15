@@ -18,7 +18,16 @@ import { SafeView } from "../../../components/safe-area.component";
 export const ProfileSetupScreen = ({ navigation }) => {
     const { step, previousStep, nextStep } = useContext(AuthenticationContext);
 
-    pages = [<AvgPainPreStart />, <EnjoymentOfLife />, <ActivityInterference />, <HopeToAchieve />]
+    pages = [
+        <AvgPainPreStart />, 
+        <EnjoymentOfLife />, 
+        <ActivityInterference />, 
+        <HopeToAchieve />, 
+        <OutcomeAnxious />, 
+        <OutcomeUnableToSopWorrying />, 
+        <OutcomeLittleInterestOrPleasure />, 
+        <OutcomeDepressed />
+    ]
 
     return(
         <SafeView>
