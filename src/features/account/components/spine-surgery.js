@@ -26,8 +26,7 @@ export const SpineSurgery = () => {
     return (
         <>
             <JournalQuestion 
-                question={"Over the last 2 weeks, how often have you been bothered by the following problem: feeling nervous, anxious or on edge?"} 
-                helpText={"Choose one"} 
+                question={"Have you undergone spine surgery in the past 3 months?"} 
             />
                 <View style={{ marginBottom: 140 }}>
                     {options}

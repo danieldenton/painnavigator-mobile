@@ -26,8 +26,7 @@ export const PainInjections = () => {
     return (
         <>
             <JournalQuestion 
-                question={"Over the last 2 weeks, how often have you been bothered by the following problem: feeling nervous, anxious or on edge?"} 
-                helpText={"Choose one"} 
+                question={"Are you currently undergoing pain injections as part of your treatment plan?"} 
             />
                 <View style={{ marginBottom: 140 }}>
                     {options}
