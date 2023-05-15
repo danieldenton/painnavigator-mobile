@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../services/authentication/authentication.context'
+import React from 'react'
 import { JournalQuestion } from '../journal-question.component'
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
