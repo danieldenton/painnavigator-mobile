@@ -3,9 +3,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
-import { hopesOptions } from '../../features/account/data/hopes-to-achieve.json'
-import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
-import { includes } from "lodash";
+import { hopesOptions } from '../../features/account/data/onboard-data.json'
 
 
 export const AuthenticationContext = createContext();
@@ -36,7 +34,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [completedProgram, setCompletedProgram] = useState(false)
     const [outcomeData, setOutcomeData] = useState({
         recommendation: 5,
-        outcome_enjoyment_of_life: 5,
+        enjoymentOfLife: 5,
         outcome_activity_interference: 5,
         anxious: "",
         unable_to_stop_worrying: "",

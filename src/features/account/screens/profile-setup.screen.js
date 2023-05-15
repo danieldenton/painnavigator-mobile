@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
-import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
-import { ActivityInterference } from "../components/activity-interference.component";
+import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
+import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
-import { OutcomeAnxious } from "../../completion/components/outcomeAnxious"
-import { OutcomeUnableToSopWorrying } from "../../completion/components/outcomeUnableToStopWorrying"
-import { OutcomeLittleInterestOrPleasure } from "../../completion/components/outcomeLittleInterestOrPleasure"
-import { OutcomeDepressed } from "../../completion/components/outcomeDepressed"
+import { Anxious } from "../../../components/onboard-coutcome/anxious"
+import { OutcomeUnableToSopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worryinfg"
+import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure"
+import { Depressed } from "../../../components/onboard-coutcome/depressed"
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { ButtonSection } from "../../../components/journals/journal.styles";
@@ -18,17 +18,17 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
 
     pages = [
         <AvgPainPreStart />, 
-        <EnjoymentOfLife />, 
-        <ActivityInterference />, 
+        <EnjoymentOfLife onValueChange={changeOnboardEntry} data={onboardingData} />, 
+        <ActivityInterference onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <HopeToAchieve />, 
-        <OutcomeAnxious />, 
-        <OutcomeUnableToSopWorrying />, 
-        <OutcomeLittleInterestOrPleasure />, 
-        <OutcomeDepressed />,
+        <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />, 
+        <OutcomeUnableToSopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, 
+        <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, 
+        <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />,
         <PainInjections />,
         <SpineSurgery />
     ]

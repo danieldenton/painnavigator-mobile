@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
-import { OutcomeEnjoyment } from "../components/outcome-enjoyment.component";
+import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { OutcomeActivity } from "../components/outcome-activity.component";
-import { OutcomeAnxious } from "../components/outcomeAnxious";
-import { OutcomeUnableToStopWorrying } from "../components/outcomeUnableToStopWorrying";
-import { OutcomeLittleInterestOrPleasure } from "../components/outcomeLittleInterestOrPleasure";
-import { OutcomeDepressed } from "../components/outcomeDepressed";
+import { Anxious } from "../components/anxious";
+import { UnableToStopWorrying } from "../components/unable-to-stop-worrying";
+import { LittleInterestOrPleasure } from "../components/little-interest-or-pleasure";
+import { Depressed } from "../components/depressed";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -17,16 +17,16 @@ import { COMPLETION_EVENTS } from "../../../amplitude-events";
 
 
 export const OutcomeScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, completeProgram, outcomeData } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, completeProgram, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext);
 
     pages = [
         <Recommend />, 
-        <OutcomeEnjoyment />, 
+        <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <OutcomeActivity />, 
-        <OutcomeAnxious />, 
-        <OutcomeUnableToStopWorrying />, 
-        <OutcomeLittleInterestOrPleasure />, 
-        <OutcomeDepressed />
+        <Anxious />, 
+        <UnableToStopWorrying />, 
+        <LittleInterestOrPleasure />, 
+        <Depressed />
     ]
 
     const handleCompletProgram = () => {

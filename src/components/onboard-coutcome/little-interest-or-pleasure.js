@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../../services/authentication/authentication.context'
-import { JournalQuestion } from '../../../components/journal-question.component'
-import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
+import { AuthenticationContext } from '../../services/authentication/authentication.context'
+import { JournalQuestion } from '../journal-question.component'
+import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { outcomeOptions } from '../data/outcomeOptions.json'
+import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
 
-export const OutcomeLittleInterestOrPleasure = () => {
+export const LittleInterestOrPleasure = () => {
     const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
     
     const add = (optionId) => {

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { JournalQuestionAndIntensitySlider } from "../JournalQuestionAndIntensitySlider";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-export const ActivityInterference = () => {
+export const ActivityInterference = ({ onValueChange, data }) => {
     const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
     const { activityInterference } = onboardingData;
 
