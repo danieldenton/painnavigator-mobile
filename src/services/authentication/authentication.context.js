@@ -24,21 +24,21 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         activityInterference: 5,
         hopesToAchieve: new Array(),
         anxious: "",
-        unable_to_stop_worrying: "",
-        little_interest_or_pleasure: "",
+        unableToStopWorrying: "",
+        littleInterestOrPleasure: "",
         depressed: "",
-        pain_injections: "",
-        spine_surgery: ""
+        painInjections: "",
+        spineSurgery: ""
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
     const [outcomeData, setOutcomeData] = useState({
         recommendation: 5,
         enjoymentOfLife: 5,
-        outcome_activity_interference: 5,
+        activityInterference: 5,
         anxious: "",
-        unable_to_stop_worrying: "",
-        little_interest_or_pleasure: "",
+        unableToStopWorrying: "",
+        littleInterestOrPleasure: "",
         depressed: "" 
     })
 
@@ -105,7 +105,13 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     starting_pain_score: onboardingData.startingPainScore,
                     enjoyment_of_life: onboardingData.enjoymentOfLife,
                     activity_interference: onboardingData.activityInterference,
-                    hopes_to_achieve: hopes_to_achieve
+                    hopes_to_achieve: hopes_to_achieve,
+                    anxious: onboardingData.anxious,
+                    unable_to_stop_worrying: onboardingData.unableToStopWorrying,
+                    little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
+                    depressed: onboardingData.depressed,
+                    pain_injections: onboardingData.painInjections,
+                    spine_surgery: onboardingData.spineSurgery
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
