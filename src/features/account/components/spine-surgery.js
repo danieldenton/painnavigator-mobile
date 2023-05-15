@@ -6,10 +6,10 @@ import { View } from 'react-native';
 import { injectionsAndSurgery } from "./../data/onboard-data.json"
 
 export const SpineSurgery = () => {
-    const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
+    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
 
     const add = (optionId) => {
-        changeOutcomeEntry(optionId, "anxious")
+        changeOnboardEntry(optionId, "spine_surgery")
     };
     
     const options = injectionsAndSurgery.map((option) => {
@@ -18,7 +18,7 @@ export const SpineSurgery = () => {
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={outcomeData.anxious}
+                selectedOption={onboardingData.spine_surgery}
             />            
         );
     });

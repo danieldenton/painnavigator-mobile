@@ -24,7 +24,13 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         startingPainScore: 5,
         enjoymentOfLife: 5,
         activityInterference: 5,
-        hopesToAchieve: new Array()
+        hopesToAchieve: new Array(),
+        anxious: "",
+        unable_to_stop_worrying: "",
+        little_interest_or_pleasure: "",
+        depressed: "",
+        pain_injections: "",
+        spine_surgery: ""
     });
     const [providerId, setProviderId] = useState(null);
     const [completedProgram, setCompletedProgram] = useState(false)
@@ -35,7 +41,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         anxious: "",
         unable_to_stop_worrying: "",
         little_interest_or_pleasure: "",
-        depressed: ""
+        depressed: "" 
     })
 
     const changeOnboardEntry = (change, state) => {
