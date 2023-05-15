@@ -8,6 +8,8 @@ import { OutcomeAnxious } from "../../completion/components/outcomeAnxious"
 import { OutcomeUnableToSopWorrying } from "../../completion/components/outcomeUnableToStopWorrying"
 import { OutcomeLittleInterestOrPleasure } from "../../completion/components/outcomeLittleInterestOrPleasure"
 import { OutcomeDepressed } from "../../completion/components/outcomeDepressed"
+import { PainInjections } from "../components/pain-injections";
+import { SpineSurgery } from "../components/spine-surgery";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -26,7 +28,9 @@ export const ProfileSetupScreen = ({ navigation }) => {
         <OutcomeAnxious />, 
         <OutcomeUnableToSopWorrying />, 
         <OutcomeLittleInterestOrPleasure />, 
-        <OutcomeDepressed />
+        <OutcomeDepressed />,
+        <PainInjections />,
+        <SpineSurgery />
     ]
 
     return(
@@ -42,10 +46,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 <JournalButton 
                     title={"Next"} 
                     onPress={() => {
-                        step === 3 ? navigation.navigate("Register") : nextStep()
+                        step === 9 ? navigation.navigate("Register") : nextStep()
                     }} 
                 />
-                <ProgressDots progress={step +1} total={4} />
+                <ProgressDots progress={step +1} total={10} />
             </ButtonSection>
         </SafeView>
     );
