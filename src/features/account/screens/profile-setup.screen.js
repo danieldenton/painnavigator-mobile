@@ -4,6 +4,10 @@ import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../components/enjoyment-of-life.component";
 import { ActivityInterference } from "../components/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
+import { OutcomeAnxious } from "../../completion/components/outcomeAnxious"
+import { OutcomeUnableToSopWorrying } from "../../completion/components/outcomeUnableToStopWorrying"
+import { OutcomeLittleInterestOrPleasure } from "../../completion/components/outcomeLittleInterestOrPleasure"
+import { OutcomeDepressed } from "../../completion/components/outcomeDepressed"
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
