@@ -1,15 +1,13 @@
-import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../services/authentication/authentication.context'
+import React from 'react'
 import { JournalQuestion } from '../journal-question.component'
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
 import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
 
-export const UnableToStopWorrying = () => {
-    const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
+export const UnableToStopWorrying = ({ onValueChange, data }) => {
     
     const add = (optionId) => {
-        changeOutcomeEntry(optionId, "unable_to_stop_worrying")
+        onValueChange(optionId, "unableToStopWorrying")
     };
     
     const options = outcomeOptions.map((option) => {
@@ -18,7 +16,7 @@ export const UnableToStopWorrying = () => {
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={outcomeData.unable_to_stop_worrying}
+                selectedOption={data.unableToStopWorrying}
             />            
         );
     });

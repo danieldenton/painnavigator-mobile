@@ -5,7 +5,7 @@ import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { Anxious } from "../../../components/onboard-coutcome/anxious"
-import { OutcomeUnableToSopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worryinfg"
+import { UnableToSopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worryinfg"
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure"
 import { Depressed } from "../../../components/onboard-coutcome/depressed"
 import { PainInjections } from "../components/pain-injections";
@@ -26,7 +26,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         <ActivityInterference onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <HopeToAchieve />, 
         <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <OutcomeUnableToSopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, 
+        <UnableToSopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />,
         <PainInjections />,
