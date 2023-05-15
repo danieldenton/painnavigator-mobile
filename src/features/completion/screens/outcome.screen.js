@@ -4,9 +4,9 @@ import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { Anxious } from "../../../components/onboard-coutcome/anxious";
-import { UnableToStopWorrying } from "../components/unable-to-stop-worrying";
-import { LittleInterestOrPleasure } from "../components/little-interest-or-pleasure";
-import { Depressed } from "../components/depressed";
+import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worrying";
+import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
+import { Depressed } from "../../../components/onboard-coutcome/depressed";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -26,7 +26,7 @@ export const OutcomeScreen = ({ navigation }) => {
         <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <UnableToStopWorrying onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <LittleInterestOrPleasure onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <Depressed />
+        <Depressed onValueChange={changeOutcomeEntry} data={outcomeData} />
     ]
 
     const handleCompletProgram = () => {

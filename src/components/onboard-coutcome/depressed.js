@@ -5,11 +5,10 @@ import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.compone
 import { View } from 'react-native';
 import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
 
-export const Depressed = () => {
-    const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
+export const Depressed = ({ onValueChange, data }) => {
 
     const add = (optionId) => {
-        changeOutcomeEntry(optionId, "depressed")
+        onValueChange(optionId, "depressed")
     };
    
     const options = outcomeOptions.map((option) => {  
@@ -18,7 +17,7 @@ export const Depressed = () => {
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={outcomeData.depressed}
+                selectedOption={data.depressed}
             />            
         );
     });
