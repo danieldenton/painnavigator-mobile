@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
-import { OutcomeActivity } from "../components/outcome-activity.component";
+import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { Anxious } from "../components/anxious";
 import { UnableToStopWorrying } from "../components/unable-to-stop-worrying";
 import { LittleInterestOrPleasure } from "../components/little-interest-or-pleasure";
@@ -22,7 +22,7 @@ export const OutcomeScreen = ({ navigation }) => {
     pages = [
         <Recommend />, 
         <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <OutcomeActivity />, 
+        <ActivityInterference onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <Anxious />, 
         <UnableToStopWorrying />, 
         <LittleInterestOrPleasure />, 

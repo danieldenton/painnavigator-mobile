@@ -1,17 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { JournalQuestionAndIntensitySlider } from "../JournalQuestionAndIntensitySlider";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 export const ActivityInterference = ({ onValueChange, data }) => {
-    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-    const { activityInterference } = onboardingData;
-
     return (
         <JournalQuestionAndIntensitySlider
             question={"What number best describes how, during the past week, pain has interfered with your general activity?"}
             helpText={"0 is not at all, 10 is pain has made normal activities impossible"}
-            value={activityInterference}
-            onValueChange={changeOnboardEntry}
+            value={data.activityInterference}
+            onValueChange={onValueChange}
             state={"activityInterference"}
         />
     );
