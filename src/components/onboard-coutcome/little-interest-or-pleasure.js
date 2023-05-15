@@ -1,15 +1,13 @@
-import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../services/authentication/authentication.context'
+import React from 'react'
 import { JournalQuestion } from '../journal-question.component'
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
 import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
 
-export const LittleInterestOrPleasure = () => {
-    const { outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext)
+export const LittleInterestOrPleasure = ({ onValueChange, data}) => {
     
     const add = (optionId) => {
-        changeOutcomeEntry(optionId, "little_interest_or_pleasure")
+        onValueChange(optionId, "littleInterestOrPleasure")
     };
     
     const options = outcomeOptions.map((option) => {
@@ -18,7 +16,7 @@ export const LittleInterestOrPleasure = () => {
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={outcomeData.little_interest_or_pleasure}
+                selectedOption={data.littleInterestOrPleasure}
             />            
         );
     });
