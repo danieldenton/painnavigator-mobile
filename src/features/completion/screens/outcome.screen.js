@@ -23,7 +23,7 @@ export const OutcomeScreen = ({ navigation }) => {
         <Recommend />, 
         <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <ActivityInterference onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <Anxious />, 
+        <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />, 
         <UnableToStopWorrying />, 
         <LittleInterestOrPleasure />, 
         <Depressed />
