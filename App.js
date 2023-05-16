@@ -115,11 +115,11 @@ export default function App() {
 
   const lastNotificationResponse = Notifications.useLastNotificationResponse()
 
-  useEffect(() => {
-    if (lastNotificationResponse) {
-      navigate('Conversation');
-    }
-  }, [lastNotificationResponse]);
+  // useEffect(() => {
+  //   if (lastNotificationResponse) {
+  //     navigate('Conversation');
+  //   }
+  // }, [lastNotificationResponse]);
   
 
   const [poppinsLoaded] = usePoppins({
