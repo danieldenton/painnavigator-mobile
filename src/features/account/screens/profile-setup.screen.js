@@ -32,7 +32,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
         <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />,
         <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />
     ]
-    console.log(onboardingData)
 
     return(
         <SafeView>
