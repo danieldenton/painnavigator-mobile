@@ -2,7 +2,7 @@ import React from 'react'
 import { JournalQuestion } from '../journal-question.component'
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { options } from '../../components/onboard-coutcome/options.json'
+import { options } from './options.json'
 
 export const Anxious = ({ onValueChange, data}) => {
     const add = (optionId) => {
