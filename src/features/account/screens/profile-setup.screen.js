@@ -5,7 +5,7 @@ import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { Anxious } from "../../../components/onboard-coutcome/anxious"
-import { UnableToSopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worryinfg"
+import { UnableToSopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worrying"
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure"
 import { Depressed } from "../../../components/onboard-coutcome/depressed"
 import { PainInjections } from "../components/pain-injections";
@@ -32,6 +32,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />,
         <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />
     ]
+    console.log(onboardingData)
 
     return(
         <SafeView>

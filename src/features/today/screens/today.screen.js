@@ -59,7 +59,7 @@ export const TodayScreen = ({ navigation }) => {
             setFoodJournals,
             setCompletedProgram
         );
-        setFinishedGoals([])
+        console.log(user.user.uid)
     }, []);
     
     useEffect(() => {

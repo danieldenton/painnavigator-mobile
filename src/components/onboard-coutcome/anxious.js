@@ -2,14 +2,14 @@ import React from 'react'
 import { JournalQuestion } from '../journal-question.component'
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
+import { options } from '../../components/onboard-coutcome/options.json'
 
 export const Anxious = ({ onValueChange, data}) => {
     const add = (optionId) => {
         onValueChange(optionId, "anxious")
     };
     
-    const options = outcomeOptions.map((option) => {
+    const opts = options.map((option) => {
         return (
             <SingleSelectCheckBox 
                 add={add}
@@ -27,7 +27,7 @@ export const Anxious = ({ onValueChange, data}) => {
                 helpText={"Choose one"} 
             />
                 <View style={{ marginBottom: 140 }}>
-                    {options}
+                    {opts}
                 </View>
         </>
     )
