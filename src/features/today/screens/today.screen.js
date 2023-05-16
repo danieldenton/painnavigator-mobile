@@ -59,7 +59,6 @@ export const TodayScreen = ({ navigation }) => {
             setFoodJournals,
             setCompletedProgram
         );
-        setFinishedGoals([])
     }, []);
     
     useEffect(() => {

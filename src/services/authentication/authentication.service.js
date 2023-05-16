@@ -76,8 +76,15 @@ export async function getUser(
 export const patchCompletedProgram = async (uid, outcomeData) => {
   try {
     await axios.patch(`${API_URL}/api/v2/users/${uid}`, 
-    { ...outcomeData,
-      completed_program: true 
+    { 
+      completed_program: true ,
+      recommendation: outcomeData.recommendation,
+      outcome_enjoyment_of_life: outcomeData.enjoymentOfLife,
+      outcome_activity_interference: outcomeData.activityInterference,
+      outcome_anxious: outcomeData.anxious,
+      outcome_unable_to_stop_worrying: outcomeData.unableToStopWorrying,
+      outcome_little_interest_or_pleasure: outcomeData.littleInterestOrPleasure,
+      outcome_depressed: outcomeData.depressed,
     });
   } catch (error) {
     console.error(error);

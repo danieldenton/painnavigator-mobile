@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { MultiSelectCheckBox, MultiSelectScroll } from "../../../components/multi-select-checkbox.component";
-import { hopesOptions } from "./../data/hopes-to-achieve.json"
+import { hopesOptions } from "./../data/onboard-data.json"
 
 export const HopeToAchieve = () => {
     const { onboardingData, setOnboardingData} = useContext(AuthenticationContext);

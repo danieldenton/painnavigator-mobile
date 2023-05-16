@@ -20,6 +20,24 @@
             "option": "Strength & Prevention",
             "helpText": null
         }
+    ],
+
+    "injectionsAndSurgery": [
+        {
+            "id": "Yes and cleared for exercise",
+            "option": "Yes and cleared for exercise",
+            "helpText": null
+        },
+        {
+            "id": "Yes but not yet cleared for exercise",
+            "option": "Yes but not yet and cleared for exercise",
+            "helpText": null
+        },
+        {
+            "id": "No",
+            "option": "No",
+            "helpText": null
+        }
     ]
 }
 
