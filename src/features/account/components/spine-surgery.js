@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../../services/authentication/authentication.context'
+import React from 'react'
 import { JournalQuestion } from '../../../components/journal-question.component'
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
 import { injectionsAndSurgery } from "./../data/onboard-data.json"
 
-export const SpineSurgery = () => {
-    const { onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
-
+export const SpineSurgery = ({ onValueChange, data }) => {
     const add = (optionId) => {
-        changeOnboardEntry(optionId, "spine_surgery")
+        onValueChange(optionId, "spineSurgery")
     };
     
     const options = injectionsAndSurgery.map((option) => {
@@ -18,7 +15,7 @@ export const SpineSurgery = () => {
                 add={add}
                 key={option.id}
                 optionData={option} 
-                selectedOption={onboardingData.spine_surgery}
+                selectedOption={data.spineSurgery}
             />            
         );
     });

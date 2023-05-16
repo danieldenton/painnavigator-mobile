@@ -29,8 +29,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
         <UnableToSopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, 
         <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />,
-        <PainInjections />,
-        <SpineSurgery />
+        <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />,
+        <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />
     ]
 
     return(

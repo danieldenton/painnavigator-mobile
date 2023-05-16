@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { outcomeOptions } from '../../features/completion/data/outcomeOptions.json'
 
 export const Depressed = ({ onValueChange, data }) => {
-
     const add = (optionId) => {
         onValueChange(optionId, "depressed")
     };
