@@ -25,7 +25,7 @@ export const SpineSurgery = ({ onValueChange, data }) => {
             <JournalQuestion 
                 question={"Have you undergone spine surgery in the past 3 months?"} 
             />
-                <View style={{ marginBottom: 140 }}>
+                <View style={{ marginTop: 20, marginBottom: 140 }}>
                     {options}
                 </View>
         </>

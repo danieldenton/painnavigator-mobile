@@ -25,7 +25,7 @@ export const PainInjections = ({ onValueChange, data }) => {
             <JournalQuestion 
                 question={"Are you currently undergoing pain injections as part of your treatment plan?"} 
             />
-                <View style={{ marginBottom: 140 }}>
+                <View style={{ marginTop: 20, marginBottom: 140 }}>
                     {options}
                 </View>
         </>
