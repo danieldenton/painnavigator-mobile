@@ -49,13 +49,15 @@ export const SettingsScreen = ({ navigation }) => {
                     <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
                         <ProfileData editing={editing} profile={userInfo} />
                         {!editing && 
+                        <>
                             <ProfileOptionsButtons 
                                 navigation={navigation} 
                                 profileComplete={profileComplete} 
                                 educationProgress={educationProgress}
                             />
-                        }
-                        <DeleteProfile />
+                            <DeleteProfile />
+                     </>
+                        } 
                     </KeyboardAwareScrollView>
                     {editing && <ReviewJournalButton navigation={navigation} saveEdits={saveEdits} setEditing={setEditing} type={"Profile"}/>}
                     <BottomModal 
