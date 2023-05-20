@@ -1,10 +1,10 @@
 import React from "react"
-import { Text, TouchableOpacity, Linking } from "react-native";
+import { Text, TouchableOpacity, Linking, View } from "react-native";
 import { styles } from "../../account/styles/referral-code.styles";
 
 export const DeleteProfile = () => {
     return (
-        <>
+        <View style={{ marginTop: 16 }}>
         <Text style={styles.referralMessage}>
             Follow this link if you wish to{" "}
             <TouchableOpacity
@@ -14,6 +14,6 @@ export const DeleteProfile = () => {
             </TouchableOpacity>{" "}
           </Text>
         
-        </>
+        </View>
     )
 }
