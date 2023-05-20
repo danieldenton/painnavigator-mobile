@@ -68,7 +68,7 @@ export const NewFavoriteActivities = ({ navigation }) => {
                         }
                     }} 
                 />
-                <ProgressDots progress={currentPage} total={3} />
+                <ProgressDots progress={currentPage +1} total={3} />
             </ButtonSection>
         </>
     );

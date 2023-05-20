@@ -7,6 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { ProfileData } from "../components/profile-data.component";
 import { ProfileOptionsButtons } from "../components/profile-option-buttons.component";
+import { DeleteProfile } from "../components/delete-profile.component";
 import { Provider } from 'react-native-paper';
 import { ReviewJournalButton } from "../../../components/button.component";
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
@@ -54,6 +55,7 @@ export const SettingsScreen = ({ navigation }) => {
                                 educationProgress={educationProgress}
                             />
                         }
+                        <DeleteProfile />
                     </KeyboardAwareScrollView>
                     {editing && <ReviewJournalButton navigation={navigation} saveEdits={saveEdits} setEditing={setEditing} type={"Profile"}/>}
                     <BottomModal 
