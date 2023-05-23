@@ -20,13 +20,13 @@ export const OutcomeScreen = ({ navigation }) => {
     const { step, previousStep, nextStep, completeProgram, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext);
 
     pages = [
-        <Recommend />, 
-        <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <ActivityInterference onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <UnableToStopWorrying onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <LittleInterestOrPleasure onValueChange={changeOutcomeEntry} data={outcomeData} />, 
-        <Depressed onValueChange={changeOutcomeEntry} data={outcomeData} />
+        { component: <Recommend />, disabled: false }, 
+        { component: <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: false }, 
+        { component: <ActivityInterference onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: false },
+        { component: <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.anxious ? false : true },
+        { component: <UnableToStopWorrying onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.unableToStopWorrying ? false : true},
+        { component:  <LittleInterestOrPleasure onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.littleInterestOrPleasure ? false : true},
+        { component: <Depressed onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.depressed ? false : true}
     ]
 
     const handleCompletProgram = () => {
@@ -43,9 +43,10 @@ export const OutcomeScreen = ({ navigation }) => {
                 screen={"Outcome"} 
                 previousPage={step >  0 ? previousStep : null} 
             />
-            {pages[step]}
+            {pages[step].component}
             <ButtonSection>
                 <JournalButton 
+                disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
                         step === 6 ?  handleCompletProgram() : nextStep()

@@ -43,7 +43,7 @@ export const HopeToAchieve = () => {
     return(
         <>
             <JournalQuestion 
-                question={"What do you hope to achieve by completing PainNavigator?"} helpText={"Tap the circle to select"} />
+                question={"What do you hope to achieve by completing PainNavigator?"} helpText={"Tap the circle to select. You can select more then one of these."} />
             <MultiSelectScroll>
                 <View style={{ marginTop: 10, marginBottom: 60 }}>
                     {hopes}
