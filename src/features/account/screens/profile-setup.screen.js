@@ -21,16 +21,16 @@ export const ProfileSetupScreen = ({ navigation }) => {
     const { step, previousStep, nextStep, onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
 
     pages = [
-        <AvgPainPreStart />, 
-        <EnjoymentOfLife onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <ActivityInterference onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <HopeToAchieve />, 
-        <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <UnableToStopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, 
-        <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />,
-        <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />,
-        <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />
+        { component: <AvgPainPreStart />, disabled: false },
+        { component: <EnjoymentOfLife onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: false },
+        { component: <ActivityInterference onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: false },
+        { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
+        { component: <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.anxious ? false : true },
+        { component: <UnableToStopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.unableToStopWorrying ? false : true },
+        { component: <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.littleInterestOrPleasure ? false : true },
+        { component: <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.depressed ? false : true },
+        { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
+        { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true }
     ]
 
     return(
@@ -41,9 +41,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 screen={"Sign Up"} 
                 previousPage={step >  0 ? previousStep : null} 
             />
-            {pages[step]}
+            {pages[step].component}
             <ButtonSection>
                 <JournalButton 
+                    disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
                         step === 9 ? navigation.navigate("Register") : nextStep()
