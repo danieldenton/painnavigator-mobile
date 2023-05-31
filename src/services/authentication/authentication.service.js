@@ -63,11 +63,11 @@ export async function getUser(
     setUserInfo(data.profile)
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
-    setProfileComplete(data.profile_status === 1)
+    setProfileComplete(data.profile.profile_status === 1)
     setPainJournals(data.pain_journals.reverse())
     setMoodJournals(data.mood_journals.reverse())
     setFoodJournals(data.food_journals.reverse())
-    setCompletedProgram(data.completed_program)
+    setCompletedProgram(data.outcome.completed_program === true)
   } catch (error) {
     console.error(error);
   }

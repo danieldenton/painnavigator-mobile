@@ -3,8 +3,8 @@ import { API_URL } from "@env"
 
 export async function getUserMessages(uid, setMessages) {
     try {
-      const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
-      const data = response.data.data.attributes;
+      const response = await axios.get(`${API_URL}/api/v1/messages/${uid}`);
+      const data = response.data.data;
       setMessages(data.conversation)
     } catch (error) {
       console.error(error);
