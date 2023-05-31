@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { patchMessage, postMessage } from "./wellness-coach.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
@@ -40,17 +39,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
         patchMessage(user.user.uid);
     };
 
-    // const loadMessages = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem("@messages");
-    //         if (value !== null) {
-    //         setMessages(JSON.parse(value));
-    //         }
-    //     } catch (e) {
-    //         console.log("error loading messages", e);
-    //     }
-    // };
-
     const resetMessage = () => {
         setMessage({
             recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
@@ -58,15 +46,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
             status: 0
         }); 
     };
-
-    // const saveMessages = async (value) => {
-    //     try {
-    //       const jsonValue = JSON.stringify(value);
-    //       await AsyncStorage.setItem("@messages", jsonValue);
-    //     } catch (e) {
-    //       console.log("error storing messages", e);
-    //     }
-    // };
 
     const sendMessage = () => {
         const newMessage = {
@@ -83,14 +62,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
             body: change
         }));
     };
-
-    // useEffect(() => {
-    //     loadMessages();
-    //   }, []);
-    
-    // useEffect(() => {
-    //     saveMessages(messages);
-    // }, [messages]);
 
     return (
         <WellnessCoachContext.Provider
