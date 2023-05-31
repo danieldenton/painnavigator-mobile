@@ -40,16 +40,16 @@ export const WellnessCoachContextProvider = ({ children }) => {
         patchMessage(user.user.uid);
     };
 
-    const loadMessages = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@messages");
-            if (value !== null) {
-            setMessages(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading messages", e);
-        }
-    };
+    // const loadMessages = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@messages");
+    //         if (value !== null) {
+    //         setMessages(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading messages", e);
+    //     }
+    // };
 
     const resetMessage = () => {
         setMessage({
@@ -59,14 +59,14 @@ export const WellnessCoachContextProvider = ({ children }) => {
         }); 
     };
 
-    const saveMessages = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem("@messages", jsonValue);
-        } catch (e) {
-          console.log("error storing messages", e);
-        }
-    };
+    // const saveMessages = async (value) => {
+    //     try {
+    //       const jsonValue = JSON.stringify(value);
+    //       await AsyncStorage.setItem("@messages", jsonValue);
+    //     } catch (e) {
+    //       console.log("error storing messages", e);
+    //     }
+    // };
 
     const sendMessage = () => {
         const newMessage = {
@@ -84,13 +84,13 @@ export const WellnessCoachContextProvider = ({ children }) => {
         }));
     };
 
-    useEffect(() => {
-        loadMessages();
-      }, []);
+    // useEffect(() => {
+    //     loadMessages();
+    //   }, []);
     
-    useEffect(() => {
-        saveMessages(messages);
-    }, [messages]);
+    // useEffect(() => {
+    //     saveMessages(messages);
+    // }, [messages]);
 
     return (
         <WellnessCoachContext.Provider
