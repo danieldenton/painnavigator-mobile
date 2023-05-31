@@ -21,7 +21,7 @@ import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } 
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
-import { getUserMessages } from "../../../services/wellness-coach/wellness-coach.service";
+import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
@@ -62,10 +62,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
     
     useEffect(() => {
-        if (!isFocused) {
-            return;
-        }
-        getUserMessages(user.user.uid, setMessages)
+        getMessages(user.user.uid, setMessages)
 
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
