@@ -1,8 +1,19 @@
 import React from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
-import { JournalEntryIcon, Profile, SmartGoalDailyActivity, WellnessCoachIcon } from "../../../icons";
+import { JournalEntryIcon, Profile, SmartGoalDailyActivity, WellnessCoachIcon, PainJournalIcon } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 import { MESSAGE_EVENTS } from "../../../amplitude-events";
+
+export const DailyPainScore = ({ navigation }) => {
+    return (
+        <DailyActivitiesTile 
+            navigation={navigation} 
+            destination={"JournalsNavigator"} 
+            title={"Log Your Daily Pain Score"}
+            icon={<PainJournalIcon />}
+        />
+    );
+};
 
 export const Journals = ({ navigation }) => {
     return (
