@@ -1,0 +1,35 @@
+import React, { useState, useContext } from "react";
+import { Provider } from 'react-native-paper';
+import { SafeView } from "../../../components/safe-area.component";
+import { NavigationBar } from "../../../components/journals/navigation-bar.component";
+import { ExitModal } from "../../../components/journals/exit-modal.component";
+import { DailyPainScoreComponent } from "../components/daily-pain-score.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+// import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
+
+export const DailyPainScoreScreen = ({ navigation }) => {
+    const { currentPage, previousPage, resetPainJournal } = useContext(AuthenticationContext);
+    const [visible, setVisible] = useState(false);
+
+    return(
+        <Provider>
+            <SafeView>
+                <NavigationBar 
+                    currentPage={currentPage} 
+                    headerName={"DAILY PAIN SCORE"} 
+                    previousPage={previousPage}
+                    setVisible={setVisible} 
+                />
+                <DailyPainScoreComponent navigation={navigation} />
+                <ExitModal 
+                    destination={"Today"}
+                    navigation={navigation} 
+                    resetJournal={resetPainJournal}
+                    setVisible={setVisible}
+                    visible={visible} 
+                    // trackExitEvent={PAIN_JOURNAL_EVENTS.EXIT_PAIN_JOURNAL}
+                />
+            </SafeView>
+        </Provider>
+    );
+};

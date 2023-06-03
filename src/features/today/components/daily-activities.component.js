@@ -8,7 +8,7 @@ export const DailyPainScore = ({ navigation }) => {
     return (
         <DailyActivitiesTile 
             navigation={navigation} 
-            destination={"JournalsNavigator"} 
+            destination={"DailyPainScore"} 
             title={"Log Your Daily Pain Score"}
             icon={<PainJournalIcon />}
         />

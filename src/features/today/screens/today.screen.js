@@ -17,7 +17,7 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
-import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach } from "../components/daily-activities.component";
+import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach, DailyPainScore } from "../components/daily-activities.component";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
@@ -25,7 +25,7 @@ import { getMessages } from "../../../services/wellness-coach/wellness-coach.ser
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram, dailyPainScore } = useContext(AuthenticationContext);
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -39,6 +39,7 @@ export const TodayScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const completedAllEducationModules = educationProgress > 67;
     const completedAllMovementModules = movementProgress > 36;
+    const todaysPain = formatDate(dailyPainScore?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
@@ -79,6 +80,14 @@ export const TodayScreen = ({ navigation }) => {
     useEffect(() => { 
         Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
     }, []);
+
+    function renderDailyPainScore() {
+        if(todaysPain === timeZonedTodaysDate) {
+            return <DailyGoalCompleted type={"Daily Pain Score"} />
+        } else {
+            return <DailyPainScore navigation={navigation} />
+        }
+    }
 
     function renderJournalDailyActivity() {
         if(lastFoodJournal !== timeZonedTodaysDate & lastMoodJournal !== timeZonedTodaysDate & lastPainJournal !== timeZonedTodaysDate) {
@@ -124,6 +133,7 @@ export const TodayScreen = ({ navigation }) => {
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
                     {renderWellnessCoachMessageActivity()}
+                    {renderDailyPainScore()}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
                     {renderSmartGoalDailyActivity()}
