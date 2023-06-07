@@ -31,10 +31,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         spineSurgery: ""
     });
     const [providerId, setProviderId] = useState(null);
-    const [dailyPainScore, setDailyPainScore] = useState({
-        score: 5,
-        date_time_value: null
-    })
     const [completedProgram, setCompletedProgram] = useState(false)
     const [outcomeData, setOutcomeData] = useState({
         recommendation: 5,
@@ -221,9 +217,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 outcomeData,
                 changeOutcomeEntry,
                 completedProgram,
-                completeProgram,
-                dailyPainScore,
-                dailyPain
+                completeProgram
             }}
         >
             {children}
