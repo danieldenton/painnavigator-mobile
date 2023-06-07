@@ -14,7 +14,7 @@ export const DailyPainScoreComponent = () => {
             <IntensitySlider value={dailyPainScore.score} onValueChange={dailyPain} state={"score"} />
             <ButtonSection>
                 <JournalButton 
-                    title={"Log Today's Pain Score"} 
+                    title={"Log Pain Score"} 
                     // onPress={() => {
                     // }} 
                 />

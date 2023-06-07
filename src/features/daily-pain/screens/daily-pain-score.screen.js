@@ -16,7 +16,7 @@ export const DailyPainScoreScreen = ({ navigation }) => {
             <SafeView>
                 <NavigationBarLeft 
                     currentPage={currentPage} 
-                    headerName={"DAILY PAIN SCORE"} 
+                    screen={"DAILY PAIN SCORE"} 
                     previousPage={previousPage}
                     setVisible={setVisible} 
                 />
