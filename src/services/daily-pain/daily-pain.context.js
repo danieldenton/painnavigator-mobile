@@ -12,6 +12,13 @@ export const DailyPainContextProvider = ({ children }) => {
     const [dailyPainScores, setDailyPainScores] = useState([])
     const { user } = useContext(AuthenticationContext);
 
+    const dailyPain = (change, state) => {
+        setDailyPainScore(score => ({
+            ...score,
+            [state]: change
+        }));
+    };
+
     return (
         <DailyPainContext.Provider
             value={{

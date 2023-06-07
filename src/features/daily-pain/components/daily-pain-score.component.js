@@ -3,10 +3,10 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { AuthenticationContext } from '../../../services/authentication/authentication.context';
+import { DailyPainContext } from '../../../services/daily-pain/daily-pain.context';
 
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, setDailyPainScore, dailyPain } = useContext(AuthenticationContext)
+    const { dailyPainScore, setDailyPainScore, dailyPain } = useContext(DailyPainContext)
 
     return (
         <>

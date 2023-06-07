@@ -49,13 +49,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         }));
     };
 
-    const dailyPain = (change, state) => {
-        setDailyPainScore(score => ({
-            ...score,
-            [state]: change
-        }));
-    };
-
     const changeOutcomeEntry = (change, state) => {
         setOutcomeData(entry => ({
             ...entry,
