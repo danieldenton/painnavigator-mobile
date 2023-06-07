@@ -5,19 +5,16 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const DailyPainContext = createContext();
 
 export const DailyPainContextProvider = ({ children }) => {
-    const [dailyPainScore, setDailyPainScore] = useState({
-        score: 5,
-        created_at: null
-    })
+    const [dailyPainScore, setDailyPainScore] = useState(5)
     const [dailyPainScores, setDailyPainScores] = useState([])
     const { user } = useContext(AuthenticationContext);
 
-    const dailyPain = (change, state) => {
-        setDailyPainScore(score => ({
-            ...score,
-            [state]: change
-        }));
-    };
+    // const dailyPain = (change, state) => {
+    //     setDailyPainScore(score => ({
+    //         ...score,
+    //         [state]: change
+    //     }));
+    // };
 
     return (
         <DailyPainContext.Provider

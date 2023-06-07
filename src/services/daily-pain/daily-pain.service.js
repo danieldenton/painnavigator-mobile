@@ -3,7 +3,12 @@ import { API_URL } from "@env"
 
 export async function postDailyPainScore(uid, dailyPainScore, setDailyPainScores) {
     try {
-        const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, { uid: uid, dailyPainScore })
+        const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, 
+        { 
+            uid: uid, 
+            score: dailyPainScore, 
+            created_at: Date.now()
+        })
         const data = response.data.
         setDailyPainScores(prevPainScores => [...prevPainScores, data])
     } catch (error) {
