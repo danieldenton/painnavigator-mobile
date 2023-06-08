@@ -5,6 +5,7 @@ import { EducationUnitCard } from "../../education/components/education-unit-car
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";

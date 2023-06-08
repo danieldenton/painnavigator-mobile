@@ -3,9 +3,16 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context"
-export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, dailyPain } = useContext(DailyPainContext)
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
+import { postDailyPainScore } from '../../../services/daily-pain/daily-pain.service';
+
+
+
+export const DailyPainScoreComponent = ({ navigation }) => {
+    const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainScores } = useContext(DailyPainContext)
+    const { user } = useContext(AuthenticationContext)
+    const uid = user.user.uid
 
     return (
         <>
@@ -14,8 +21,8 @@ export const DailyPainScoreComponent = () => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Pain Score"} 
-                    // onPress={() => {
-                    // }} 
+                    onPress={() => {(postDailyPainScore(uid, dailyPainScore, setDailyPainScore, setDailyPainScores),
+                        navigation.navigate())}} 
                 />
             </ButtonSection>       
         </>
