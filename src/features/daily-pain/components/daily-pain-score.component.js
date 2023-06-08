@@ -3,10 +3,9 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { DailyPainContext } from '../../../services/daily-pain/daily-pain.context';
-
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context"
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, setDailyPainScore, dailyPain } = useContext(DailyPainContext)
+    const { dailyPainScore, dailyPain } = useContext(DailyPainContext)
 
     return (
         <>
