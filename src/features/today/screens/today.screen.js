@@ -65,7 +65,7 @@ export const TodayScreen = ({ navigation }) => {
     
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
-console.log(user.user.uid)
+console.log(Date.now())
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);
