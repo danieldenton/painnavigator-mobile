@@ -7,8 +7,7 @@ export const DailyPainContextProvider = ({ children }) => {
     const [dailyPainScore, setDailyPainScore] = useState({
         id: null,
         score: 5,
-        created_at: null,
-        updated_at: null
+        date_time_value: null
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
 
