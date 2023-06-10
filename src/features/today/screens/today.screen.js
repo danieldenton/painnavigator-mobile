@@ -71,7 +71,7 @@ console.log(Date.now())
         const timeNumber = Number(timeZoneDateNumber);
         if (timeNumber < 12) {
             setGreeting("Good Morning")
-        } else if(timeNumber > 11 & timeNumber < 17) {
+        } else if (timeNumber > 11 & timeNumber < 17) {
             setGreeting("Good Afternoon")
         } else {
             setGreeting("Good Evening")
