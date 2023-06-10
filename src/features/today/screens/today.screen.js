@@ -27,6 +27,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, dailyPainScore } = useContext(AuthenticationContext);
+    const { setDailyPainScore, todaysPain, setTodaysPain } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -40,7 +41,7 @@ export const TodayScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const completedAllEducationModules = educationProgress > 67;
     const completedAllMovementModules = movementProgress > 36;
-    const todaysPain = formatDate(dailyPainScore?.date_time_value)
+    const painToday = formatDate(dailyPainScore?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
@@ -65,7 +66,6 @@ export const TodayScreen = ({ navigation }) => {
     
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
-console.log(Date.now())
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);
@@ -76,6 +76,15 @@ console.log(Date.now())
         } else {
             setGreeting("Good Evening")
         }
+
+        if(painToday !== timeZonedTodaysDate) {
+            setTodaysPain(false)
+            setDailyPainScore({
+                id: null,
+                score: 5,
+                date_time_value: null
+            })
+        }
     }, [isFocused]);
 
     useEffect(() => { 
@@ -83,8 +92,8 @@ console.log(Date.now())
     }, []);
 
     function renderDailyPainScore() {
-        if(todaysPain === timeZonedTodaysDate) {
-            return <DailyGoalCompleted type={"Daily Pain Score"} />
+        if(todaysPain) {
+            return <DailyGoalCompleted type={"Daily Pain Score Logged"} />
         } else {
             return <DailyPainScore navigation={navigation} />
         }

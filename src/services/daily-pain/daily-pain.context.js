@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
+import { formatDate, timeZonedTodaysDate } from "../../infrastructure/helpers";
 // import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const DailyPainContext = createContext();
@@ -10,6 +11,7 @@ export const DailyPainContextProvider = ({ children }) => {
         date_time_value: null
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
+    const [todaysPain, setTodaysPain] = useState(false)
 
     
 
@@ -27,7 +29,9 @@ export const DailyPainContextProvider = ({ children }) => {
                 setDailyPainScore,
                 dailyPainScores,
                 setDailyPainScores,
-                dailyPain
+                dailyPain,
+                todaysPain,
+                setTodaysPain
             }}
         >
             {children}
