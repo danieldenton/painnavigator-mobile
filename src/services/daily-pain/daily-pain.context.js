@@ -12,7 +12,6 @@ export const DailyPainContextProvider = ({ children }) => {
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
     const [todaysPain, setTodaysPain] = useState(false)
-
     
 
     const dailyPain = (change, state) => {
