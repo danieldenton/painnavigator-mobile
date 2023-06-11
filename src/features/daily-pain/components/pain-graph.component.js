@@ -6,7 +6,7 @@ import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
 
 export const PainTrackerComponent = ({ navigation }) => {
-    const { setDailyPainScores } = useContext(DailyPainContext)
+    const { setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
     const { user } = useContext(AuthenticationContext)
 
     useEffect(() => {
@@ -15,6 +15,7 @@ export const PainTrackerComponent = ({ navigation }) => {
 
     return (
         <>
+        {dailyPainScores}
             <ButtonSection>
                 <JournalButton 
                     title={"Back To Home"} 

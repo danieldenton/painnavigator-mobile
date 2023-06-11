@@ -15,8 +15,6 @@ export const DailyPainScoreComponent = () => {
     const { user } = useContext(AuthenticationContext)
     const uid = user.user.uid
 
-    console.log(todaysPain)
-
     const handleDailyPainScore = () => {
         if (todaysPain) {
             patchDailyPainScore(uid, dailyPainScore, setDailyPainScore)
@@ -24,7 +22,7 @@ export const DailyPainScoreComponent = () => {
         } else {
             postDailyPainScore(uid, dailyPainScore, setDailyPainScore)
             setTodaysPain(true) 
-            console.log("goodbye")
+            console.log(dailyPainScore, todaysPain)
         }
     }
 

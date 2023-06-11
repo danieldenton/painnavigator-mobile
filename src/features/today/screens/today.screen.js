@@ -48,7 +48,6 @@ export const TodayScreen = ({ navigation }) => {
     const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
     const lastEducationModuleId = educationProgress - 1;
-    console.log(Date.now(), user.user.uid)
 
     useEffect(() => {
         getUser(
