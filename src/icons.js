@@ -368,6 +368,14 @@ export const ProgressMenuIcon = () => {
     );
 };
 
+export const PainJournalMenuIcon = () => {
+    return (
+        <Svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Path d="M0.5 13.5H9L5 23.5L13.5 10.5H5L9 0.5L0.5 13.5Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </Svg>
+    );
+};
+
 export const PurpleCheckMark = () => {
     return (
         <Svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">

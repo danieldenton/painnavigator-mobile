@@ -10,7 +10,7 @@ import { patchDailyPainScore, postDailyPainScore } from '../../../services/daily
 
 
 
-export const DailyPainScoreComponent = () => {
+export const DailyPainScoreComponent = ({ naviagtion }) => {
     const { dailyPainScore, dailyPain, setDailyPainScore, todaysPain, setTodaysPain } = useContext(DailyPainContext)
     const { user } = useContext(AuthenticationContext)
     const uid = user.user.uid
@@ -24,6 +24,7 @@ export const DailyPainScoreComponent = () => {
             setTodaysPain(true) 
             console.log(dailyPainScore, todaysPain)
         }
+        naviagtion.navigate("PainTrackerScreen")  
     }
 
     return (

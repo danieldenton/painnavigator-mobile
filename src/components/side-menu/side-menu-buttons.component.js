@@ -3,7 +3,7 @@ import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { EducationContext } from "../../services/education/education.context";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { View } from "react-native";
-import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon } from "../../icons";
+import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon, PainJournalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
@@ -17,6 +17,13 @@ export const MenuButtons = ({ navigation }) => {
             destination: "Progress",
             icon: <ProgressMenuIcon />,
             show: completedProgram ? false : true
+        },
+        {
+            id: 1,
+            label: "Daily Pain Scores",
+            destination: "DailyPainScore",
+            icon: <PainJournalMenuIcon />,
+            show: true
         },
         {
             id: 2,

@@ -16,10 +16,10 @@ export const PainTrackerScreen = ({ navigation }) => {
             <SafeView>
                 <NavigationBarLeft 
                     // currentPage={} 
-                    screen={"DAILY PAIN SCORE"} 
+                    screen={"DAILY PAIN SCORES"} 
                     // previousPage={previousPage}
                 />
-                <PainTrackerComponent />
+                <PainTrackerComponent navigation={navigation}/>
             </SafeView>
         </Provider>
     );

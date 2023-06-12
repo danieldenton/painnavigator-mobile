@@ -19,7 +19,7 @@ export const DailyPainScoreScreen = ({ navigation }) => {
                     screen={"DAILY PAIN SCORE"} 
                     // previousPage={previousPage}
                 />
-                <DailyPainScoreComponent />
+                <DailyPainScoreComponent naviagtion={navigation}/>
             </SafeView>
         </Provider>
     );
