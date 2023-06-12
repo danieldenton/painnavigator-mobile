@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { API_URL } from "@env"
 
-
 export async function getDailyPainScores(userUid, setDailyPainScores) {
     try {
       const response = await axios.get(`${API_URL}/api/v2/daily_pain_scores`, {

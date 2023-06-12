@@ -11,18 +11,16 @@ import { patchDailyPainScore, postDailyPainScore } from '../../../services/daily
 
 
 export const DailyPainScoreComponent = ({ naviagtion }) => {
-    const { dailyPainScore, dailyPain, setDailyPainScore, todaysPain, setTodaysPain } = useContext(DailyPainContext)
+    const { dailyPainScore, dailyPain, setDailyPainScore } = useContext(DailyPainContext)
     const { user } = useContext(AuthenticationContext)
     const uid = user.user.uid
 
     const handleDailyPainScore = () => {
-        if (todaysPain) {
+        if (dailyPainScore.id) {
             patchDailyPainScore(uid, dailyPainScore, setDailyPainScore)
-            console.log("hello")
+            console.log("patch")
         } else {
             postDailyPainScore(uid, dailyPainScore, setDailyPainScore)
-            setTodaysPain(true) 
-            console.log(dailyPainScore, todaysPain)
         }
         naviagtion.navigate("PainTrackerScreen")  
     }

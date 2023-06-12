@@ -18,10 +18,7 @@ export const PainTrackerComponent = ({ navigation }) => {
     const scores = dailyPainScores.map((day) => {
         const date = formatDate(day.date_time_value)
         return (
-            <>
-            <Text>{day.score}</Text>
-            <Text>{date}</Text>
-            </>
+            <Text>{day.score} {date} {day.id}</Text>
         )
     })
 

@@ -26,8 +26,8 @@ import { getMessages } from "../../../services/wellness-coach/wellness-coach.ser
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, dailyPainScore } = useContext(AuthenticationContext);
-    const { setDailyPainScore } = useContext(DailyPainContext)
+    const {  user, setCompletedProgram } = useContext(AuthenticationContext);
+    const { setDailyPainScore, dailyPainScore } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -90,7 +90,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     function renderDailyPainScore() {
-        if(painToday !== timeZonedTodaysDate) {
+        if(dailyPainScore.id) {
             return <DailyGoalCompleted type={"Daily Pain Score Logged"} />
         } else {
             return <DailyPainScore navigation={navigation} />
