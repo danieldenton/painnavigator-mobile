@@ -27,7 +27,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, dailyPainScore } = useContext(AuthenticationContext);
-    const { setDailyPainScore, todaysPain, setTodaysPain } = useContext(DailyPainContext)
+    const { setDailyPainScore } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -75,9 +75,8 @@ export const TodayScreen = ({ navigation }) => {
         } else {
             setGreeting("Good Evening")
         }
-
+        console.log(dailyPainScore)
         if(painToday !== timeZonedTodaysDate) {
-            setTodaysPain(false)
             setDailyPainScore({
                 id: null,
                 score: 5,
@@ -91,7 +90,7 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     function renderDailyPainScore() {
-        if(todaysPain) {
+        if(painToday !== timeZonedTodaysDate) {
             return <DailyGoalCompleted type={"Daily Pain Score Logged"} />
         } else {
             return <DailyPainScore navigation={navigation} />

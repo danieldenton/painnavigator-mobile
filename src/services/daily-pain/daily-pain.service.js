@@ -10,8 +10,6 @@ export async function getDailyPainScores(userUid, setDailyPainScores) {
         },
       });
       setDailyPainScores(response.data);
-      console.log(response.data);
-      console.log("yo");
     } catch (error) {
       console.error(error);
     }
