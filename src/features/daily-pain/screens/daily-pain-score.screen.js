@@ -3,7 +3,7 @@ import { Provider } from 'react-native-paper';
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScoreComponent } from "../components/daily-pain-score.component";
-import { PainTrackerComponent } from "../components/pain-graph.component";
+import { PainTrackerComponent } from "../components/pain-tracker.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 // import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
@@ -20,7 +20,7 @@ export const DailyPainScoreScreen = ({ navigation }) => {
                     screen={"DAILY PAIN SCORE"} 
                     // previousPage={previousPage}
                 />
-                {todaysPain ? <PainTrackerComponent navigation={navigation}/> : <DailyPainScoreComponent />} 
+                <DailyPainScoreComponent />
             </SafeView>
         </Provider>
     );
