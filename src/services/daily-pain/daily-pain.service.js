@@ -23,7 +23,6 @@ export async function postDailyPainScore(userUid, dailyPainScore, setDailyPainSc
             date_time_value: Date.now()
         })
         const data = response.data
-        console.log(data, "hello")
         setDailyPainScore(data)
     } catch (error) {
         console.error(error);

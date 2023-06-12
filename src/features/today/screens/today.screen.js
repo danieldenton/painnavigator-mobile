@@ -27,7 +27,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram } = useContext(AuthenticationContext);
-    const { setDailyPainScore, dailyPainScore } = useContext(DailyPainContext)
+    const { setDailyPainScore, dailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -82,6 +82,7 @@ export const TodayScreen = ({ navigation }) => {
                 score: 5,
                 date_time_value: null
             })
+            setDailyPainStep(0)
         }
     }, [isFocused]);
 

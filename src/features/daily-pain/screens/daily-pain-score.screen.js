@@ -10,24 +10,24 @@ import { DailyPainContext } from "../../../services/daily-pain/daily-pain.contex
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
-    const { dailyPainScore, setDailyPainScore, todaysPain, setTodaysPain } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep, dailyPainScore, setDailyPainScore } = useContext(DailyPainContext)
 
-    useEffect(() => {
-        if (dailyPainScore.id !== null) {
-            // Navigate to PainTrackerScreen if dailyPainScore.id is not null
-            navigation.navigate('PainTrackerScreen');
-        }
-    }, [dailyPainScore]);
+    const previousPage = () => {
+        setDailyPainStep(0)
+    }
+
+    const pages = [<DailyPainScoreComponent />, <PainTrackerComponent navigation={navigation}/>]
 
     return(
         <Provider>
             <SafeView>
                 <NavigationBarLeft 
-                    // currentPage={} 
-                    screen={"DAILY PAIN SCORE"} 
-                    // previousPage={previousPage}
+                    navigation={navigation}
+                    destination={"Today"}
+                    screen={"DAILY PAIN SCORES"} 
+                    previousPage={dailyPainStep === 1 ? previousPage : null}
                 />
-                <DailyPainScoreComponent naviagtion={navigation}/>
+                {pages[dailyPainStep]}
             </SafeView>
         </Provider>
     );
