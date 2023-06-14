@@ -75,7 +75,7 @@ export const TodayScreen = ({ navigation }) => {
         } else {
             setGreeting("Good Evening")
         }
-        console.log(dailyPainScore)
+        
         if(painToday !== timeZonedTodaysDate) {
             setDailyPainScore({
                 id: null,

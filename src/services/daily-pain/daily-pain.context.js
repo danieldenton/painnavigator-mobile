@@ -12,6 +12,7 @@ export const DailyPainContextProvider = ({ children }) => {
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
     const [dailyPainStep, setDailyPainStep] = useState(0)
+    const [dailyPainGraphData, setDailyPainGraphData] = useState({})
     
 
     const dailyPain = (change, state) => {
@@ -30,7 +31,9 @@ export const DailyPainContextProvider = ({ children }) => {
                 setDailyPainScores,
                 dailyPain,
                 dailyPainStep,
-                setDailyPainStep
+                setDailyPainStep,
+                dailyPainGraphData,
+                setDailyPainGraphData
             }}
         >
             {children}

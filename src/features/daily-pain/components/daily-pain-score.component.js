@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useContext } from 'react'
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
@@ -10,7 +10,7 @@ import { patchDailyPainScore, postDailyPainScore } from '../../../services/daily
 
 
 
-export const DailyPainScoreComponent = ({ naviagtion }) => {
+export const DailyPainScoreComponent = () => {
     const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { user } = useContext(AuthenticationContext)
     const uid = user.user.uid
@@ -18,7 +18,6 @@ export const DailyPainScoreComponent = ({ naviagtion }) => {
     const handleDailyPainScore = () => {
         if (dailyPainScore.id) {
             patchDailyPainScore(dailyPainScore, setDailyPainScore)
-            console.log("patch")
         } else {
             postDailyPainScore(uid, dailyPainScore, setDailyPainScore)
         }

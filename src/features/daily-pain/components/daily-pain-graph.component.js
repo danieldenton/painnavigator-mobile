@@ -1,6 +1,6 @@
 import React from "react";
 import { colors } from "../../../infrastructure/theme/colors";
-import { VictoryAxis, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
+import { VictoryZoomContainer, VictoryAxis, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
 import styled from "styled-components/native";
 
 const GraphWrapper = styled.View`
@@ -8,22 +8,17 @@ const GraphWrapper = styled.View`
     margin-top: 16px;
 `;
 
-export const PainGraph = ({ painGraphData }) => {
-    const sampleData = { line: { x: "Jun", y: 2 }, graph: { x: "Jun", y: 2 }, current: { x: "Jun", y: 2 }, xAxis: ["Jun"] };
-    const DATA = painGraphData ? painGraphData : sampleData;
-
+export const DailyPainGraph = ({ graphData }) => {
+    
     return (
         <GraphWrapper>
+            
             <VictoryChart
+                // containerComponent={<VictoryZoomContainer/>}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
                 padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
                 domainPadding={{ x: 40, y: 40 }}
-                style={{
-                    grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
-                    background: { fill: "white" },
-                    tickLabels: { color: "blue" }
-                }}
                 backgroundComponent={<Background y={0} height={275} />}
             >
                 <VictoryAxis
@@ -31,7 +26,7 @@ export const PainGraph = ({ painGraphData }) => {
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
                         tickLabels: { fontFamily: "", fontSize: 12, padding: 8 }
                     }}
-                    tickValues={DATA.xAxis}
+                    tickValues={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={400}
@@ -52,15 +47,17 @@ export const PainGraph = ({ painGraphData }) => {
                         labels: { fontSize: 12, color: "#606C81" },
                         parent: { border: "2px solid #ccc"}
                     }}
-                    data={DATA.line}
+                    data={graphData}
+                    x="day"
+                    y="score"
                 />
-                <VictoryScatter
+                {/* <VictoryScatter
                     style={{
                         parent: { backgroundColor: "#FFFFFF" },
                         data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={DATA.current}
+                    data={graphData}
                     size={6}
                 />
                 <VictoryScatter
@@ -68,9 +65,9 @@ export const PainGraph = ({ painGraphData }) => {
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={DATA.graph}
+                    data={graphData}
                     size={6}
-                />
+                /> */}
             </VictoryChart>
         </GraphWrapper>
     );

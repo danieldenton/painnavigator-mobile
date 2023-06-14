@@ -37,33 +37,49 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
         );
     });
 
-    function noPainData() {
-        Object.keys(painGraphData.line).length === 0;
-    };
+    // function noPainData() {
+    //     Object.keys(painGraphData.line).length === 0;
+    // };
 
-    return(
+    return (
         <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={NAVIGATE_BACK_DESTINATION} screen={"Pain Journal"} />
-            <GraphicWrapper>
+          <NavigationBarLeft
+            navigation={navigation}
+            destination={NAVIGATE_BACK_DESTINATION}
+            screen={"Pain Journal"}
+          />
+          {/* {noPainData() ? ( */}
+            <>
+              <GraphicWrapper>
                 <GraphGraphic />
-            </GraphicWrapper>
-            <View style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}>
+              </GraphicWrapper>
+              <View
+                style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}
+              >
                 <HelpText style={{ textAlign: "center" }}>
-                    Tap "Add New Entry" to log your first pain score 
-                    and watch how your pain progresses over time. 
+                  Tap "Add New Entry" to log your first pain score and watch how
+                  your pain progresses over time.
                 </HelpText>
-            </View>
-            <DailyActivitiesTile 
-                title={"Add New Entry"} 
-                destination={"NewPainJournal"} 
-                navigation={navigation} 
-                trackEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
-                setCurrentPage={setCurrentPage}
+              </View>
+            </>
+          {/* ) : (
+            <PainGraph painGraphData={painGraphData} />
+          )} */}
+          <DailyActivitiesTile
+            title={"Add New Entry"}
+            destination={"NewPainJournal"}
+            navigation={navigation}
+            trackPainEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
+          />
+          {painJournals.length > 0 && (
+            <SubHeader
+              title={"PREVIOUS ENTRIES"}
+              size={14}
+              marginTop={32}
+              marginBottom={14}
             />
-            {painJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={32} marginBottom={14} />}
-            <Scroll style={{ marginBottom: 24 }}>
-                {painJournalElements}
-            </Scroll>
+          )}
+          <Scroll style={{ marginBottom: 24 }}>{painJournalElements}</Scroll>
         </SafeView>
-    );
+      );
 };

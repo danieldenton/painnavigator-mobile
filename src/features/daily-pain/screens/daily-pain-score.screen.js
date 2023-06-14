@@ -6,11 +6,17 @@ import { DailyPainScoreComponent } from "../components/daily-pain-score.componen
 import { PainTrackerComponent } from "../components/pain-tracker.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
+import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
+import { formatDate, timeZonedTodaysDate } from "../../../infrastructure/helpers";
 // import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
-    const { dailyPainStep, setDailyPainStep, dailyPainScore, setDailyPainScore } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep, setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
+
+    useEffect(() => {
+        getDailyPainScores(user.user.uid, setDailyPainScores)
+    }, [])
 
     const previousPage = () => {
         setDailyPainStep(0)
