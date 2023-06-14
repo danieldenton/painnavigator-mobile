@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { ScrollView } from 'react-native';
 import { colors } from "../../../infrastructure/theme/colors";
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background } from "victory-native";
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
 import styled from "styled-components/native";
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
-    margin-top: 16px;
+    margin-top: 20px;
 `;
 
 export const DailyPainGraph = ({ graphData }) => {
-    const graphWidth = graphData.length * 45
+
+    const graphWidth = graphData.length * 50
     
     return (
         <GraphWrapper>
@@ -26,6 +27,7 @@ export const DailyPainGraph = ({ graphData }) => {
                     background: { fill: "white" }
                 }}
                 backgroundComponent={<Background y={0} height={275} />}
+                
             >
                 <VictoryAxis
                     style={{
@@ -53,6 +55,23 @@ export const DailyPainGraph = ({ graphData }) => {
                     data={graphData}
                     x="date"
                     y="score"
+                />
+                 <VictoryScatter
+                    style={{
+                        parent: { backgroundColor: "#FFFFFF" },
+                        data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
+                        labels: { fontSize: 12, color: "#606C81" },
+                    }}
+                    data={graphData}
+                    size={6}
+                />
+                <VictoryScatter
+                    style={{
+                        data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
+                        labels: { fontSize: 12, color: "#606C81" },
+                    }}
+                    data={graphData}
+                    size={6}
                 />
             </VictoryChart>
             </ScrollView>
