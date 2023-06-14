@@ -1,7 +1,7 @@
 import React from "react";
-import { ScrollView, Dimensions, FlatList } from 'react-native';
+import { ScrollView } from 'react-native';
 import { colors } from "../../../infrastructure/theme/colors";
-import { VictoryZoomContainer, VictoryAxis, VictoryChart, VictoryScatter, VictoryLine, VictoryTheme, Background } from "victory-native";
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background } from "victory-native";
 import styled from "styled-components/native";
 
 const GraphWrapper = styled.View`
@@ -10,28 +10,27 @@ const GraphWrapper = styled.View`
 `;
 
 export const DailyPainGraph = ({ graphData }) => {
-    // const daysOfTheWeek =
-    const screenWidth = Dimensions.get('window').width;
     const graphWidth = graphData.length * 45
     
     return (
         <GraphWrapper>
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
-                // containerComponent={<VictoryZoomContainer/>}
                 width={graphWidth}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
                 padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
                 domainPadding={{ x: 40, y: 40 }}
+                style={{
+                    grid: { stroke: `${colors.bg.primary}` },
+                    background: { fill: "white" }
+                }}
                 backgroundComponent={<Background y={0} height={275} />}
             >
                 <VictoryAxis
                     style={{
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
-                        tickLabels: { fontFamily: "", fontSize: 12 }
                     }}
-                    // tickValues={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]}
                 />
                 <VictoryAxis dependentAxis crossAxis
                     width={100}
@@ -43,7 +42,6 @@ export const DailyPainGraph = ({ graphData }) => {
                     style={{
                         axis: { stroke: `${colors.bg.primary}`, strokeWidth: 2 },
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
-                        tickLabels: { fontSize: 12 }
                     }}
                 />
                 <VictoryLine
@@ -56,23 +54,6 @@ export const DailyPainGraph = ({ graphData }) => {
                     x="date"
                     y="score"
                 />
-                {/* <VictoryScatter
-                    style={{
-                        parent: { backgroundColor: "#FFFFFF" },
-                        data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
-                        labels: { fontSize: 12, color: "#606C81" },
-                    }}
-                    data={graphData}
-                    size={6}
-                />
-                <VictoryScatter
-                    style={{
-                        data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
-                        labels: { fontSize: 12, color: "#606C81" },
-                    }}
-                    data={graphData}
-                    size={6}
-                /> */}
             </VictoryChart>
             </ScrollView>
         </GraphWrapper>
