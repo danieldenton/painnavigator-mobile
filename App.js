@@ -58,6 +58,7 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
@@ -143,27 +144,29 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider expoPushToken={expoPushToken}>
-          <ProfileContextProvider>
-            <BookmarksContextProvider>
-              <EducationContextProvider>
-                <MovementContextProvider>
-                  <SmartGoalContextProvider>
-                    <PainJournalContextProvider>
-                      <FoodJournalContextProvider>
-                        <MoodJournalContextProvider>
-                          <WellnessCoachContextProvider>
-                            <FavoriteActivitiesContextProvider>
-                              <Navigation />
-                            </FavoriteActivitiesContextProvider>
-                          </WellnessCoachContextProvider>
-                        </MoodJournalContextProvider>
-                      </FoodJournalContextProvider>
-                    </PainJournalContextProvider>
-                  </SmartGoalContextProvider>
-                </MovementContextProvider>
-              </EducationContextProvider>
-            </BookmarksContextProvider>
-          </ProfileContextProvider>
+          <DailyPainContextProvider>
+            <ProfileContextProvider>
+              <BookmarksContextProvider>
+                <EducationContextProvider>
+                  <MovementContextProvider>
+                    <SmartGoalContextProvider>
+                      <PainJournalContextProvider>
+                        <FoodJournalContextProvider>
+                          <MoodJournalContextProvider>
+                            <WellnessCoachContextProvider>
+                              <FavoriteActivitiesContextProvider>
+                                <Navigation />
+                              </FavoriteActivitiesContextProvider>
+                            </WellnessCoachContextProvider>
+                          </MoodJournalContextProvider>
+                        </FoodJournalContextProvider>
+                      </PainJournalContextProvider>
+                    </SmartGoalContextProvider>
+                  </MovementContextProvider>
+                </EducationContextProvider>
+              </BookmarksContextProvider>
+            </ProfileContextProvider>
+          </DailyPainContextProvider>
         </AuthenticationContextProvider>
       </ThemeProvider>
     </>

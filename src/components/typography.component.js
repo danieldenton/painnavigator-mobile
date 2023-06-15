@@ -12,7 +12,7 @@ const InterHeader = styled.Text`
 export const SubHeader = ({ title, size }) => {
     return (
         <Header>
-            <InterHeader style={{ fontSize: size}}>{title}</InterHeader>
+            <InterHeader style={{ fontSize: size} }>{title}</InterHeader>
         </Header>
     );
 };

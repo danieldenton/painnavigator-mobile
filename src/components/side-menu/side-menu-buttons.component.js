@@ -3,7 +3,7 @@ import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { EducationContext } from "../../services/education/education.context";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { View } from "react-native";
-import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon } from "../../icons";
+import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon, PainJournalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
@@ -20,27 +20,34 @@ export const MenuButtons = ({ navigation }) => {
         },
         {
             id: 2,
+            label: "Daily Pain Scores",
+            destination: "DailyPainScore",
+            icon: <PainJournalMenuIcon />,
+            show: true
+        },
+        {
+            id: 3,
             label: "Journals",
             destination: "JournalsNavigator",
             icon: <JournalMenuIcon />,
             show: true
         },
         {
-            id: 3, 
+            id: 4, 
             label: "Smart Goals",
             destination: "SmartGoals",
             icon: <SmartGoalMenuIcon />,
             show: showSmartGoal
         },
         {
-            id: 4,
+            id: 5,
             label: "Units",
             destination: "Units",
             icon: <Units />,
             show: true
         },
         {
-            id: 5,
+            id: 6,
             label: "Settings",
             destination: "Settings",
             icon: <Settings />,

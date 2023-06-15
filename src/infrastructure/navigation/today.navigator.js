@@ -17,6 +17,7 @@ import { ContactScreen } from "../../features/today/screens/contact.screen";
 import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 import { Privacy } from "../../features/account/screens/privacy-policy.screen";
 import { SentScreen } from "../../features/today/screens/sent.screen";
+import { DailyPainNavigator } from "./daily-pain.navigator";
 import { CompletiontNavigator } from "./completion.navigator";
 
 const TodayStack = createStackNavigator();
@@ -28,6 +29,7 @@ export const TodayNavigator = () => {
             <TodayStack.Screen name="Units" component={UnitsNavigator} />
             <TodayStack.Screen name="Education" component={EducationNavigator} />
             <TodayStack.Screen name="Movement" component={MovementNavigator} />
+            <TodayStack.Screen name="DailyPainScore" component={DailyPainNavigator} />
             <TodayStack.Screen name="JournalsNavigator" component={JournalsNavigator} />
             <TodayStack.Screen name="Progress" component={MyProgress} />
             <TodayStack.Screen name="Completion" component={CompletiontNavigator} />
