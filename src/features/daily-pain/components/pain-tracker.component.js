@@ -5,7 +5,7 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
 import { DailyPainGraph } from "./daily-pain-graph.component";
-import { formatDate } from "../../../infrastructure/helpers";
+import { formatDate, formatDateNoYear } from "../../../infrastructure/helpers";
 import styled from "styled-components/native";
 
 
@@ -24,6 +24,15 @@ export const DescriptionMessage = styled.Text`
     text-align: center;
 `;
 
+export const DescriptionHelpMessage = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+    margin-top: 7px;
+    line-height: 26px;
+    text-align: center;
+`;
+
+
 
 export const PainTrackerComponent = ({ navigation }) => {
     const { dailyPainScores, setDailyPainScores } = useContext(DailyPainContext)
@@ -38,19 +47,16 @@ export const PainTrackerComponent = ({ navigation }) => {
 
     const startDate = formatDate(dailyPainScores[0].date_time_value)
 
-    // const graphData = dailyPainScores.map((score) => {
-    //     return { score: score.score, date: formatDateNoYear(score.date_time_value) }
-    // })
-
-    const graphData = [
-        {score: 1, date: "6/1"},
-    ]
+    const graphData = dailyPainScores.map((score) => {
+        return { score: score.score, date: formatDateNoYear(score.date_time_value) }
+    })
 
     return (
         <>
         <DailyPainGraph graphData={graphData} />
         <DesriptionMessageWrapper>
             <DescriptionMessage>This graph displays your daily pain score progress since you began on {startDate}.</DescriptionMessage>
+            <DescriptionHelpMessage>Scroll to the right to see all of the data.</DescriptionHelpMessage>
         </DesriptionMessageWrapper>
             <ButtonSection>
                 <JournalButton 

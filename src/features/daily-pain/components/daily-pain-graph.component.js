@@ -17,7 +17,7 @@ export const DailyPainGraph = ({ graphData }) => {
         <GraphWrapper>
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
-                width={graphWidth}
+                // width={graphWidth > 400 ? graphWidth : 400}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
                 padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
@@ -31,11 +31,11 @@ export const DailyPainGraph = ({ graphData }) => {
             >
                 <VictoryAxis
                     style={{
-                        grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },
+                        grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 }
                     }}
                 />
                 <VictoryAxis dependentAxis crossAxis
-                    width={100}
+                    width={400}
                     height={400}
                     domain={[0, 10]}
                     theme={VictoryTheme.material}
@@ -63,14 +63,8 @@ export const DailyPainGraph = ({ graphData }) => {
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
                     data={graphData}
-                    size={6}
-                />
-                <VictoryScatter
-                    style={{
-                        data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
-                        labels: { fontSize: 12, color: "#606C81" },
-                    }}
-                    data={graphData}
+                    x="date"
+                    y="score"
                     size={6}
                 />
             </VictoryChart>
