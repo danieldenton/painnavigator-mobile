@@ -41,7 +41,6 @@ export const TodayScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const completedAllEducationModules = educationProgress > 67;
     const completedAllMovementModules = movementProgress > 36;
-    const painToday = formatDate(dailyPainScore?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
@@ -74,15 +73,6 @@ export const TodayScreen = ({ navigation }) => {
             setGreeting("Good Afternoon")
         } else {
             setGreeting("Good Evening")
-        }
-        
-        if(painToday !== timeZonedTodaysDate) {
-            setDailyPainScore({
-                id: null,
-                score: 5,
-                date_time_value: null
-            })
-            setDailyPainStep(0)
         }
     }, [isFocused]);
 
