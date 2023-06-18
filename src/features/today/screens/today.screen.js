@@ -23,11 +23,12 @@ import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
+import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram } = useContext(AuthenticationContext);
-    const { setDailyPainScore, dailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
+    const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
@@ -41,6 +42,7 @@ export const TodayScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const completedAllEducationModules = educationProgress > 67;
     const completedAllMovementModules = movementProgress > 36;
+    const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
@@ -75,6 +77,24 @@ export const TodayScreen = ({ navigation }) => {
             setGreeting("Good Evening")
         }
     }, [isFocused]);
+
+    useEffect(() => {
+        getDailyPainScores(user.user.uid, setDailyPainScores)
+    }, [])
+
+    useEffect(() => {
+        if (dailyPain === timeZonedTodaysDate) {
+            setDailyPainScore(dailyPainScores[dailyPainScores.length -1])
+            setDailyPainStep(1)
+        } else {
+            setDailyPainScore({
+                id: null,
+                score: 5,
+                date_time_value: null
+            })
+            setDailyPainStep(0)
+        }
+    }, [dailyPainScores])
 
     useEffect(() => { 
         Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
