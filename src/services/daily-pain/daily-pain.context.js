@@ -1,10 +1,13 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { formatDate, timeZonedTodaysDate } from "../../infrastructure/helpers";
+import { getDailyPainScores } from "./daily-pain.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
 // import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const DailyPainContext = createContext();
 
 export const DailyPainContextProvider = ({ children }) => {
+    const { user } = useContext(AuthenticationContext)
     const [dailyPainScore, setDailyPainScore] = useState({
         id: null,
         score: 5,
@@ -12,8 +15,6 @@ export const DailyPainContextProvider = ({ children }) => {
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
     const [dailyPainStep, setDailyPainStep] = useState(0)
-    const [dailyPainGraphData, setDailyPainGraphData] = useState({})
-    
 
     const dailyPain = (change, state) => {
         setDailyPainScore(score => ({
@@ -31,9 +32,7 @@ export const DailyPainContextProvider = ({ children }) => {
                 setDailyPainScores,
                 dailyPain,
                 dailyPainStep,
-                setDailyPainStep,
-                dailyPainGraphData,
-                setDailyPainGraphData
+                setDailyPainStep
             }}
         >
             {children}
