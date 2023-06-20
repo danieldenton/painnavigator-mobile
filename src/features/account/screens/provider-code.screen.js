@@ -10,11 +10,9 @@ import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/referral-code.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
-import { EducationContext } from "../../../services/education/education.context";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, setError, setProviderId } = useContext(AuthenticationContext);
-  const { setEducationProgram } = useContext(EducationContext)
+  const { changeOnboardEntry, error, setError, setProviderId, setEducationProgram } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
   
   return (
@@ -62,8 +60,10 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              checkReferralCode(referralCode, setProviderId, setError, navigation),
-              setEducationProgram(2)
+              checkReferralCode(referralCode, setProviderId, setError, navigation)
+              if (referralCode === "ISCS23") {
+                setEducationProgram(2)
+              }
             }}
           />
         </View>
