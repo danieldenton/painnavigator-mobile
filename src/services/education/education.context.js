@@ -13,8 +13,9 @@ export const EducationContextProvider = ({ children }) => {
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);
     const [lastCompletedModule, setLastCompletedModule] = useState(null);
-    const [educationProgram, setEducationProgram] = useState(1)
+    const [educationProgram, setEducationProgram] = useState(null)
     const { user } = useContext(AuthenticationContext);
+    let programArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress]);
