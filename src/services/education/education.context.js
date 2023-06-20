@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
-    const [educationProgress, setEducationProgress] = useState(0);
+    const [educationProgress, setEducationProgress] = useState(1);
     const [currentModule, setCurrentModule] = useState({});
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);
@@ -16,7 +16,7 @@ export const EducationContextProvider = ({ children }) => {
     const { user, educationProgram } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1]);
+        const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
         setCurrentModule(module);
     }, [educationProgress])
 

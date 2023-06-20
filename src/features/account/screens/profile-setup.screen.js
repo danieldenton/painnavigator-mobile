@@ -32,11 +32,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
         { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
         { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true }
     ] 
-    console.log(onboardingData.hopesToAchieve)
 
     const handleEducationProgram = () => {
         if (educationProgram !== 2) {
-            if (onboardingData.hopesToAchieve === [4]) {
+            if (onboardingData.hopesToAchieve.length === 1 && onboardingData.hopesToAchieve[0] === 4) {
                 if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {
                     setEducationProgram(5)
                 } else if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections === "No") {
