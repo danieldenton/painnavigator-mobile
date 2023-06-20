@@ -13,10 +13,11 @@ export const EducationContextProvider = ({ children }) => {
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);
     const [lastCompletedModule, setLastCompletedModule] = useState(null);
+    const [educationProgram, setEducationProgram] = useState(1)
     const { user } = useContext(AuthenticationContext);
 
     useEffect(() => {
-        const module = educationModules.find(unit => unit.id === educationPrograms[educationProgress] );
+        const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress]);
         setCurrentModule(module);
     }, [educationProgress])
 
@@ -179,7 +180,9 @@ export const EducationContextProvider = ({ children }) => {
                 setEducationProgress,
                 setLastCompletedModule,
                 skipModule,
-                skippedEducationModules
+                skippedEducationModules,
+                setEducationProgram,
+                educationProgram
             }}
         >
             {children}

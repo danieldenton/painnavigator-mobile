@@ -1,9 +1,10 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/onboard-data.json'
+import { EducationContext } from "../education/education.context";
 
 
 export const AuthenticationContext = createContext();
@@ -41,6 +42,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         littleInterestOrPleasure: "",
         depressed: "" 
     })
+    const { educationProgram } = useContext(EducationContext)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({
