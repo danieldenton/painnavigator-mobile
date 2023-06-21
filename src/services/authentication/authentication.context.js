@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -41,6 +41,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         littleInterestOrPleasure: "",
         depressed: "" 
     })
+    const [educationProgram, setEducationProgram] = useState(1)
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({
@@ -111,7 +112,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
                     depressed: onboardingData.depressed,
                     pain_injections: onboardingData.painInjections,
-                    spine_surgery: onboardingData.spineSurgery
+                    spine_surgery: onboardingData.spineSurgery,
+                    education_program: educationProgram
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
@@ -210,7 +212,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 outcomeData,
                 changeOutcomeEntry,
                 completedProgram,
-                completeProgram
+                completeProgram,
+                educationProgram,
+                setEducationProgram
             }}
         >
             {children}

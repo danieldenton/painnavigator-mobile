@@ -18,7 +18,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
 
     pages = [
         { component: <AvgPainPreStart />, disabled: false },
@@ -31,7 +31,35 @@ export const ProfileSetupScreen = ({ navigation }) => {
         { component: <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.depressed ? false : true },
         { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
         { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true }
-    ]
+    ] 
+
+    const handleEducationProgram = () => {
+        if (educationProgram !== 2) {
+            if (onboardingData.hopesToAchieve.length === 1 && onboardingData.hopesToAchieve[0] === 4) {
+                if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {
+                    setEducationProgram(5)
+                } else if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections === "No") {
+                    setEducationProgram(6)
+                } else if (onboardingData.spineSurgery === "No" && onboardingData.painInjections !== "No") {
+                    setEducationProgram(4)
+                } else if (onboardingData.spineSurgery === "No" && onboardingData.painInjections === "No") {
+                    setEducationProgram(3)
+                }
+            } else {
+                if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {
+                    setEducationProgram(8)
+                } else if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections === "No") {
+                    setEducationProgram(9)
+                } else if (onboardingData.spineSurgery === "No" && onboardingData.painInjections !== "No") {
+                    setEducationProgram(7)
+                } else {
+                    return
+                }
+            }
+        } else {
+            return
+        }
+    }
 
     return(
         <SafeView>
@@ -47,7 +75,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step === 9 ? navigation.navigate("Register") : nextStep()
+                        step === 9 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
                     }} 
                 />
                 <ProgressDots progress={step +1} total={10} />

@@ -12,12 +12,7 @@ import { styles } from "../styles/referral-code.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const {
-    changeOnboardEntry,
-    error,
-    setError,
-    setProviderId,
-  } = useContext(AuthenticationContext);
+  const { changeOnboardEntry, error, setError, setProviderId, setEducationProgram } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
   
   return (
@@ -65,12 +60,10 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              checkReferralCode(
-                referralCode,
-                setProviderId,
-                setError,
-                navigation
-              );
+              checkReferralCode(referralCode, setProviderId, setError, navigation)
+              if (referralCode === "ISCS23") {
+                setEducationProgram(2)
+              }
             }}
           />
         </View>
