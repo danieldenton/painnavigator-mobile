@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { ScrollView } from 'react-native';
-import { colors } from "../../../infrastructure/theme/colors";
+import { colors } from "../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
 import styled from "styled-components/native";
 
@@ -9,7 +9,7 @@ const GraphWrapper = styled.View`
     margin-top: 20px;
 `;
 
-export const DailyPainGraph = ({ graphData }) => {
+export const PainGraph = ({ graphData }) => {
 
     const graphWidth = graphData.length * 50
     
@@ -17,7 +17,7 @@ export const DailyPainGraph = ({ graphData }) => {
         <GraphWrapper>
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
-                // width={graphWidth > 400 ? graphWidth : 400}
+                width={graphWidth > 400 ? graphWidth : 400}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
                 padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
