@@ -25,6 +25,20 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
+    const graphData = [
+      { score: 2, score: 5, date: "6/1" },
+      { score: 1, score: 3, date: "6/2" },
+      { score: 10, score: 9, date: "6/3" },
+      { score: 2, score: 5, date: "6/4" },
+      { score: 4, score: 1, date: "6/5" },
+      { score: 2, score: 5, date: "6/6" },
+  ]
+
+//   const graphData = painJournals.map((painJournalScore => {
+//     return { scoreBefore: painJournalScore.intensity, scoreAfter: painJournalScore.intensity_after, date: formatDateNoYear(score.date_time_value) }
+// })
+// console.log(painJournals)
+
     const painJournalElements = painJournals?.map((journal) => {
         return (
             <JournalTile 
@@ -37,10 +51,6 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
         );
     });
 
-    // function noPainData() {
-    //     Object.keys(painGraphData.line).length === 0;
-    // };
-
     return (
         <SafeView>
           <NavigationBarLeft
@@ -48,23 +58,23 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
             destination={NAVIGATE_BACK_DESTINATION}
             screen={"Pain Journal"}
           />
-          {/* {noPainData() ? ( */}
+          {painJournals ? (
+            <PainGraph graphData={graphData} />
+            ) : ( 
             <>
-              <GraphicWrapper>
-                <GraphGraphic />
-              </GraphicWrapper>
-              <View
-                style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}
-              >
-                <HelpText style={{ textAlign: "center" }}>
-                  Tap "Add New Entry" to log your first pain score and watch how
-                  your pain progresses over time.
-                </HelpText>
-              </View>
-            </>
-          {/* ) : (
-            <PainGraph painGraphData={painGraphData} />
-          )} */}
+            <GraphicWrapper>
+              <GraphGraphic />
+            </GraphicWrapper>
+            <View
+              style={{ marginTop: -12, marginBottom: 12, alignItems: "center" }}
+            >
+              <HelpText style={{ textAlign: "center" }}>
+                Tap "Add New Entry" to log your first pain score and watch how
+                your pain progresses over time.
+              </HelpText>
+            </View>
+          </>
+        )}
           <DailyActivitiesTile
             title={"Add New Entry"}
             destination={"NewPainJournal"}

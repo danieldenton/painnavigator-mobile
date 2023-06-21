@@ -4,7 +4,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { PainGraph } from "../../../components/pain-graph.component";
+import { PainGraph } from "./pain-graph.component";
 import { formatDate, formatDateNoYear } from "../../../infrastructure/helpers";
 import styled from "styled-components/native";
 
@@ -43,8 +43,6 @@ export const PainTrackerComponent = ({ navigation }) => {
         getDailyPainScores(user.user.uid, setDailyPainScores)
     }, [])
     
-
-
     const startDate = formatDate(dailyPainScores[0].date_time_value)
 
     const graphData = dailyPainScores.map((score) => {

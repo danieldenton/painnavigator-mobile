@@ -1,6 +1,6 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { ScrollView } from 'react-native';
-import { colors } from "../infrastructure/theme/colors";
+import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
 import styled from "styled-components/native";
 
@@ -10,7 +10,6 @@ const GraphWrapper = styled.View`
 `;
 
 export const PainGraph = ({ graphData }) => {
-
     const graphWidth = graphData.length * 50
     
     return (
