@@ -26,15 +26,6 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
-  //   const graphData = [
-  //     { score: 2, score: 5, date: "6/1" },
-  //     { score: 1, score: 3, date: "6/2" },
-  //     { score: 10, score: 9, date: "6/3" },
-  //     { score: 2, score: 5, date: "6/4" },
-  //     { score: 4, score: 1, date: "6/5" },
-  //     { score: 2, score: 5, date: "6/6" },
-  // ]
-
   const graphDataBefore = painJournals.map((painJournalScore) => {
     return { score: painJournalScore.intensity, date: formatDateNoYear(painJournalScore.date_time_value) }
 })
@@ -43,7 +34,7 @@ const graphDataAfter = painJournals.map((painJournalScore) => {
   return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
 })
 
-const graphData = graphDataBefore.concat(graphDataAfter)
+const graphData = graphDataBefore.concat(graphDataAfter).reverse()
 
     const painJournalElements = painJournals?.map((journal) => {
         return (

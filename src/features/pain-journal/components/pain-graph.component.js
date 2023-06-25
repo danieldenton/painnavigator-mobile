@@ -10,7 +10,7 @@ const GraphWrapper = styled.View`
 `;
 
 export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
-    const graphWidth = graphData.length * 50
+    const graphWidth = graphData.length * 40
     
     return (
         <GraphWrapper>
@@ -19,7 +19,7 @@ export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
                 width={graphWidth > 400 ? graphWidth : 400}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
-                padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
+                padding={{ top: 0, bottom: 25, left: 25, right: 55 }}
                 domainPadding={{ x: 40, y: 40 }}
                 style={{
                     grid: { stroke: `${colors.bg.primary}` },
@@ -28,7 +28,8 @@ export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
                 backgroundComponent={<Background y={0} height={275} />}
                 
             >
-                <VictoryAxis
+                <VictoryAxis crossAxis
+                width={400}
                     style={{
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 }
                     }}
@@ -51,7 +52,7 @@ export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
                         labels: { fontSize: 12, color: "#606C81", padding: 2 },
                         parent: { border: "2px solid #ccc"}
                     }}
-                    data={graphData}
+                    data={graphDataBefore}
                     x="date"
                     y="score"
                 />
@@ -66,7 +67,7 @@ export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
                     y="score"
                     size={6}
                 />
-                <VictoryScatter
+                {/* <VictoryScatter
                     style={{
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
@@ -75,7 +76,7 @@ export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
                     x="date"
                     y="score"
                     size={6}
-                />
+                /> */}
             </VictoryChart>
             </ScrollView>
         </GraphWrapper>
