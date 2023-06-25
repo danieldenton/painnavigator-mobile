@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { ScrollView } from 'react-native';
 import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
@@ -9,18 +9,17 @@ const GraphWrapper = styled.View`
     margin-top: 20px;
 `;
 
-export const DailyPainGraph = ({ graphData }) => {
-
-    const graphWidth = graphData.length * 50
+export const PainGraph = ({ graphData }) => {
+    const graphWidth = graphData.length * 40
     
     return (
         <GraphWrapper>
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
-                // width={graphWidth > 400 ? graphWidth : 400}
+                width={graphWidth > 400 ? graphWidth : 400}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
-                padding={{ top: 0, bottom: 25, left: 25, right: 35 }}
+                padding={{ top: 0, bottom: 25, left: 25, right: 55 }}
                 domainPadding={{ x: 40, y: 40 }}
                 style={{
                     grid: { stroke: `${colors.bg.primary}` },
@@ -30,17 +29,13 @@ export const DailyPainGraph = ({ graphData }) => {
                 
             >
                 <VictoryAxis
+
                     style={{
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 }
                     }}
                 />
-                <VictoryAxis dependentAxis crossAxis
-                    width={400}
-                    height={400}
-                    domain={[0, 10]}
-                    theme={VictoryTheme.material}
+                <VictoryAxis dependentAxis 
                     tickValues={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                    standalone={false}
                     style={{
                         axis: { stroke: `${colors.bg.primary}`, strokeWidth: 2 },
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 },

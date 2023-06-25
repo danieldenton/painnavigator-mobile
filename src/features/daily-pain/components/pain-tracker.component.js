@@ -4,7 +4,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { DailyPainGraph } from "./daily-pain-graph.component";
+import { PainGraph } from "./pain-graph.component";
 import { formatDate, formatDateNoYear } from "../../../infrastructure/helpers";
 import styled from "styled-components/native";
 
@@ -26,8 +26,8 @@ export const DescriptionMessage = styled.Text`
 
 export const DescriptionHelpMessage = styled.Text`
     font-family: Inter_400Regular;
-    font-size: 16px;
-    margin-top: 7px;
+    font-size: 14px;
+    margin-top: 9px;
     line-height: 26px;
     text-align: center;
 `;
@@ -43,8 +43,6 @@ export const PainTrackerComponent = ({ navigation }) => {
         getDailyPainScores(user.user.uid, setDailyPainScores)
     }, [])
     
-
-
     const startDate = formatDate(dailyPainScores[0].date_time_value)
 
     const graphData = dailyPainScores.map((score) => {
@@ -53,10 +51,11 @@ export const PainTrackerComponent = ({ navigation }) => {
 
     return (
         <>
-        <DailyPainGraph graphData={graphData} />
+        <PainGraph graphData={graphData} />
         <DesriptionMessageWrapper>
             <DescriptionMessage>This graph displays your daily pain score progress since you began on {startDate}.</DescriptionMessage>
             <DescriptionHelpMessage>Scroll to the right to see all of the data.</DescriptionHelpMessage>
+            <DescriptionHelpMessage>If you need to update today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
         </DesriptionMessageWrapper>
             <ButtonSection>
                 <JournalButton 
