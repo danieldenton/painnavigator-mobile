@@ -11,7 +11,6 @@ import styled from "styled-components/native";
 
 export const DesriptionMessageWrapper = styled.View`
     align-items: center;
-    margin-top: 25px; 
     margin-left: 4px;
     margin-right: 4px;
 `;

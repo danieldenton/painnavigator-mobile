@@ -7,7 +7,7 @@ import { PainTrackerComponent } from "../components/pain-tracker.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { formatDate, timeZonedTodaysDate } from "../../../infrastructure/helpers";
+import { isAndroid } from "../../../utils";
 // import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
@@ -22,6 +22,8 @@ export const DailyPainScoreScreen = ({ navigation }) => {
         setDailyPainStep(0)
     }
 
+    const screenName = isAndroid ? "DAILY SCORES" : "DAILY PAIN SCORES"
+
     const pages = [<DailyPainScoreComponent />, <PainTrackerComponent navigation={navigation}/>]
 
     return(
@@ -30,7 +32,7 @@ export const DailyPainScoreScreen = ({ navigation }) => {
                 <NavigationBarLeft 
                     navigation={navigation}
                     destination={"Today"}
-                    screen={"DAILY PAIN SCORES"} 
+                    screen={screenName} 
                     previousPage={dailyPainStep === 1 ? previousPage : null}
                 />
                 {pages[dailyPainStep]}
