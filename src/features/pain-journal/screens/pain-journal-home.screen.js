@@ -12,6 +12,7 @@ import { GraphGraphic } from "../../../graphics";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
 import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
+import { formatDateNoYear } from "../../../infrastructure/helpers";
 
 const HelpText = styled.Text`
     font-family: Inter_300Light;
@@ -25,19 +26,24 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
     const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
-    const graphData = [
-      { score: 2, score: 5, date: "6/1" },
-      { score: 1, score: 3, date: "6/2" },
-      { score: 10, score: 9, date: "6/3" },
-      { score: 2, score: 5, date: "6/4" },
-      { score: 4, score: 1, date: "6/5" },
-      { score: 2, score: 5, date: "6/6" },
-  ]
+  //   const graphData = [
+  //     { score: 2, score: 5, date: "6/1" },
+  //     { score: 1, score: 3, date: "6/2" },
+  //     { score: 10, score: 9, date: "6/3" },
+  //     { score: 2, score: 5, date: "6/4" },
+  //     { score: 4, score: 1, date: "6/5" },
+  //     { score: 2, score: 5, date: "6/6" },
+  // ]
 
-//   const graphData = painJournals.map((painJournalScore => {
-//     return { scoreBefore: painJournalScore.intensity, scoreAfter: painJournalScore.intensity_after, date: formatDateNoYear(score.date_time_value) }
-// })
-// console.log(painJournals)
+  const graphDataBefore = painJournals.map((painJournalScore) => {
+    return { score: painJournalScore.intensity, date: formatDateNoYear(painJournalScore.date_time_value) }
+})
+
+const graphDataAfter = painJournals.map((painJournalScore) => {
+  return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
+})
+
+const graphData = graphDataBefore.concat(graphDataAfter)
 
     const painJournalElements = painJournals?.map((journal) => {
         return (
@@ -59,7 +65,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
             screen={"Pain Journal"}
           />
           {painJournals ? (
-            <PainGraph graphData={graphData} />
+            <PainGraph graphData={graphData} graphDataBefore={graphDataBefore} graphDataAfter={graphDataAfter} />
             ) : ( 
             <>
             <GraphicWrapper>

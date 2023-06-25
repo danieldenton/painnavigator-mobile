@@ -9,7 +9,7 @@ const GraphWrapper = styled.View`
     margin-top: 20px;
 `;
 
-export const PainGraph = ({ graphData }) => {
+export const PainGraph = ({ graphData, graphDataBefore, graphDataAfter }) => {
     const graphWidth = graphData.length * 50
     
     return (
@@ -61,7 +61,7 @@ export const PainGraph = ({ graphData }) => {
                         data: { fill: `${colors.brand.primary}`, stroke: `${colors.brand.primary}`, strokeWidth: 2 },
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={graphData}
+                    data={graphDataBefore}
                     x="date"
                     y="score"
                     size={6}
@@ -71,7 +71,7 @@ export const PainGraph = ({ graphData }) => {
                         data: { fill: `white`, stroke: `${colors.brand.primary}`, strokeWidth: 2},
                         labels: { fontSize: 12, color: "#606C81" },
                     }}
-                    data={graphData}
+                    data={graphDataAfter}
                     x="date"
                     y="score"
                     size={6}
