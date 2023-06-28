@@ -32,7 +32,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                       theme={VictoryTheme.material}
                       backgroundComponent={<Background/>}
                 >
-                    <VictoryGroup colorScale={"warm"} offset={20}>
+                    <VictoryGroup colorScale={"qualitative"} offset={20}>
                         <VictoryBar data={graphData} y="score" x="date" />
                         <VictoryBar data={graphDataAfter} y="score" x="date" />
                     </VictoryGroup>
