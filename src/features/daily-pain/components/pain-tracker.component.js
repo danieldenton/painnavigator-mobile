@@ -16,7 +16,7 @@ export const DesriptionMessageWrapper = styled.View`
 `;
 
 export const DescriptionMessage = styled.Text`
-    font-family: Inter_400Regular;
+    font-family: Inter_500Medium;
     font-size: 18px;
     margin-bottom: 4px;
     line-height: 26px;
@@ -25,12 +25,21 @@ export const DescriptionMessage = styled.Text`
 
 export const DescriptionHelpMessage = styled.Text`
     font-family: Inter_400Regular;
+    font-style: italic;
     font-size: 14px;
     margin-top: 9px;
     line-height: 26px;
     text-align: center;
 `;
 
+export const DescriptionHelpMessageTwo = styled.Text`
+    font-family: Inter_400Regular;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 9px;
+    line-height: 26px;
+    text-align: center;
+`;
 
 
 export const PainTrackerComponent = ({ navigation }) => {
@@ -54,7 +63,7 @@ export const PainTrackerComponent = ({ navigation }) => {
         <DesriptionMessageWrapper>
             <DescriptionMessage>This graph displays your daily pain score progress since you began on {startDate}.</DescriptionMessage>
             <DescriptionHelpMessage>Scroll to the right to see all of the data.</DescriptionHelpMessage>
-            <DescriptionHelpMessage>If you need to update today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
+            <DescriptionHelpMessage>To update today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
         </DesriptionMessageWrapper>
             <ButtonSection>
                 <JournalButton 

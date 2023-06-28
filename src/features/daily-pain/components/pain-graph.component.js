@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
 import styled from "styled-components/native";
+import { isAndroid } from '../../../utils'
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
@@ -17,19 +18,18 @@ export const PainGraph = ({ graphData }) => {
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
                 width={graphWidth > 400 ? graphWidth : 400}
+                height={isAndroid ? 250 : 300}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
-                padding={{ top: 0, bottom: 25, left: 25, right: 55 }}
+                padding={{ top: 0, bottom: 35, left: 25, right: 55 }}
                 domainPadding={{ x: 40, y: 40 }}
                 style={{
-                    grid: { stroke: `${colors.bg.primary}` },
+                   
                     background: { fill: "white" }
                 }}
-                backgroundComponent={<Background y={0} height={275} />}
-                
+                backgroundComponent={<Background y={0} height={275} />} 
             >
                 <VictoryAxis
-
                     style={{
                         grid: { stroke: `${colors.bg.primary}`, strokeWidth: 5.5 }
                     }}
