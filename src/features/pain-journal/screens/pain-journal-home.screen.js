@@ -11,6 +11,7 @@ import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
+import { colors } from "../../../infrastructure/theme/colors";
 import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 import { formatDateNoYear } from "../../../infrastructure/helpers";
 
@@ -23,30 +24,31 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
-    const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
-    const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
+  const { painJournals } = useContext(PainJournalContext);
+  const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
-  const graphDataBefore = painJournals.map((painJournalScore) => {
+  painJournals.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).reverse()
+
+  const graphData = painJournals.map((painJournalScore) => {
     return { score: painJournalScore.intensity, date: formatDateNoYear(painJournalScore.date_time_value) }
-})
+  })
 
-const graphDataAfter = painJournals.map((painJournalScore) => {
-  return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
-})
+  
+  const graphDataAfter = painJournals.map((painJournalScore) => {
+    return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
+  })
 
-const graphData = graphDataBefore.concat(graphDataAfter).reverse()
-
-    const painJournalElements = painJournals?.map((journal) => {
-        return (
-            <JournalTile 
-                navigation={navigation}
-                destination={"ReviewPainJournal"}
-                journal={journal}
-                key={journal.id}
-                trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
-            />
-        );
-    });
+  const painJournalElements = painJournals?.map((journal) => {
+      return (
+          <JournalTile 
+              navigation={navigation}
+              destination={"ReviewPainJournal"}
+              journal={journal}
+              key={journal.id}
+              trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
+          />
+      );
+  });
 
     return (
         <SafeView>
@@ -56,7 +58,10 @@ const graphData = graphDataBefore.concat(graphDataAfter).reverse()
             screen={"Pain Journal"}
           />
           {painJournals ? (
-            <PainGraph graphData={graphData} graphDataBefore={graphDataBefore} graphDataAfter={graphDataAfter} />
+            <>
+            <PainGraph graphData={graphData} graphDataAfter={graphDataAfter} />
+           
+            </>
             ) : ( 
             <>
             <GraphicWrapper>

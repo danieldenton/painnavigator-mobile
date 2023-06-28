@@ -84,7 +84,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                         }
                     }} 
                 />
-                {currentPage > 2 && 
+                {currentPage === 3 && 
                     <SkipQuestion 
                         onPress={() => {
                             {   currentPage === 4 ? 
@@ -93,7 +93,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                             }
                         }} 
                     />}
-                <ProgressDots progress={currentPage} total={4}/>
+                <ProgressDots progress={currentPage + 1} total={5}/>
             </ButtonSection>       
         </>
     );
