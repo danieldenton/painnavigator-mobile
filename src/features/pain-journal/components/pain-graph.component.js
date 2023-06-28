@@ -34,8 +34,8 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                       backgroundComponent={<Background/>}
                 >
                     <VictoryGroup colorScale={"warm"}>
-                        <VictoryBar data={graphData} y="date" x="score" />
-                        <VictoryBar data={graphDataAfter} y="date" x="score" />
+                        <VictoryBar data={graphData} y="score" x="date" />
+                        <VictoryBar data={graphDataAfter} y="score" x="date" />
                        {/* {score}
                        {scoreAfter} */}
                     </VictoryGroup>
