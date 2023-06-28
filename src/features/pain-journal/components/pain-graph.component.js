@@ -1,11 +1,23 @@
 import React from "react";
 import { ScrollView } from 'react-native';
-import { colors } from "../../../infrastructure/theme/colors";
-import { VictoryChart, VictoryTheme, Background, VictoryAxis,  VictoryBar, VictoryGroup } from "victory-native";
+import { VictoryChart, VictoryTheme, VictoryBar, VictoryGroup } from "victory-native";
 import styled from "styled-components/native";
 
 const GraphWrapper = styled.View`
-    margin-bottom: 16px;
+  padding-right: 8px;
+  padding-lefy: 8px;
+`;
+
+const HelpTextColoredWrapper = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+  `;
+
+const HelpTextColored = styled.Text`
+    font-family: Inter_500Medium;
+    font-size: 12px;
+    flex: 1
+    text-align: center;
 `;
 
 export const PainGraph = ({ graphData, graphDataAfter }) => {
@@ -21,14 +33,22 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
     
     return (
         <GraphWrapper>
+            <HelpTextColoredWrapper>
+              <HelpTextColored style={{ color: '#344D5B', marginLeft: 12 }}>intensity score</HelpTextColored>
+              <HelpTextColored style={{ color: '#4AB19E'}}>intensity score after</HelpTextColored>
+            </HelpTextColoredWrapper>
+            
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
                 <VictoryChart 
                     animate={{
                         duration: 2000,
                         onLoad: { duration: 1000 }
                       }}
+                      marginTop={0}
                       width={graphWidth < 400 ? 400 : graphData}
-                      domain={{y: [0, 10]}}
+                      height={300}
+                      maxDomain={{y: 11}}
+                      minDomain={{y: 0}}
                       domainPadding={40}
                       theme={VictoryTheme.material}
                 >
@@ -38,6 +58,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                     </VictoryGroup>
                 </VictoryChart>
             </ScrollView>
+            
         </GraphWrapper>
     );
 };
