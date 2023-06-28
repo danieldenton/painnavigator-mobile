@@ -18,7 +18,7 @@ export const PainGraph = ({ graphData }) => {
             <ScrollView horizontal style={{ flexDirection: 'row' }}>
             <VictoryChart
                 width={graphWidth > 400 ? graphWidth : 400}
-                height={isAndroid ? 250 : 300}
+                height={300}
                 maxDomain={{ y: 11 }}
                 minDomain={{ y: 0 }}
                 padding={{ top: 0, bottom: 35, left: 25, right: 55 }}
@@ -27,7 +27,7 @@ export const PainGraph = ({ graphData }) => {
                    
                     background: { fill: "white" }
                 }}
-                backgroundComponent={<Background y={0} height={275} />} 
+                // backgroundComponent={<Background y={0} height={275} />} 
             >
                 <VictoryAxis
                     style={{

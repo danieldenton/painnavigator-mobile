@@ -32,15 +32,6 @@ export const DescriptionHelpMessage = styled.Text`
     text-align: center;
 `;
 
-export const DescriptionHelpMessageTwo = styled.Text`
-    font-family: Inter_400Regular;
-    font-style: italic;
-    font-size: 12px;
-    margin-top: 9px;
-    line-height: 26px;
-    text-align: center;
-`;
-
 
 export const PainTrackerComponent = ({ navigation }) => {
     const { dailyPainScores, setDailyPainScores } = useContext(DailyPainContext)
@@ -61,7 +52,7 @@ export const PainTrackerComponent = ({ navigation }) => {
         <>
         <PainGraph graphData={graphData} />
         <DesriptionMessageWrapper>
-            <DescriptionMessage>This graph displays your daily pain score progress since you began on {startDate}.</DescriptionMessage>
+            <DescriptionMessage>Your daily pain score progress since you began on {startDate}.</DescriptionMessage>
             <DescriptionHelpMessage>Scroll to the right to see all of the data.</DescriptionHelpMessage>
             <DescriptionHelpMessage>To update today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
         </DesriptionMessageWrapper>
