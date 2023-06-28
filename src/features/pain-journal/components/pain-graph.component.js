@@ -6,7 +6,6 @@ import styled from "styled-components/native";
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
-    margin-top: 20px;
 `;
 
 export const PainGraph = ({ graphData, graphDataAfter }) => {
@@ -28,16 +27,14 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                         duration: 2000,
                         onLoad: { duration: 1000 }
                       }}
-                      width={graphWidth < 350 ? 350 : graphData}
+                      width={graphWidth < 400 ? 400 : graphData}
                       domainPadding={20}
                       theme={VictoryTheme.material}
                       backgroundComponent={<Background/>}
                 >
-                    <VictoryGroup colorScale={"warm"}>
+                    <VictoryGroup colorScale={"warm"} offset={20}>
                         <VictoryBar data={graphData} y="score" x="date" />
                         <VictoryBar data={graphDataAfter} y="score" x="date" />
-                       {/* {score}
-                       {scoreAfter} */}
                     </VictoryGroup>
                 </VictoryChart>
             </ScrollView>
