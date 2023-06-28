@@ -23,18 +23,16 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
-    const { painJournals, painGraphData, setCurrentPage } = useContext(PainJournalContext);
+    const { painJournals } = useContext(PainJournalContext);
     const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
 
-  const graphDataBefore = painJournals.map((painJournalScore) => {
+  const graphData = painJournals.map((painJournalScore) => {
     return { score: painJournalScore.intensity, date: formatDateNoYear(painJournalScore.date_time_value) }
 })
 
 const graphDataAfter = painJournals.map((painJournalScore) => {
   return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
 })
-
-const graphData = graphDataBefore.concat(graphDataAfter).reverse()
 
     const painJournalElements = painJournals?.map((journal) => {
         return (
@@ -56,7 +54,7 @@ const graphData = graphDataBefore.concat(graphDataAfter).reverse()
             screen={"Pain Journal"}
           />
           {painJournals ? (
-            <PainGraph graphData={graphData} graphDataBefore={graphDataBefore} graphDataAfter={graphDataAfter} />
+            <PainGraph graphData={graphData} graphDataAfter={graphDataAfter} />
             ) : ( 
             <>
             <GraphicWrapper>
