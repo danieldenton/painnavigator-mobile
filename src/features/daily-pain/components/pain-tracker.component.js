@@ -7,6 +7,7 @@ import { JournalButton } from "../../../components/button.component";
 import { PainGraph } from "./pain-graph.component";
 import { formatDate, formatDateNoYear } from "../../../infrastructure/helpers";
 import styled from "styled-components/native";
+import { isAndroid } from "../../../utils";
 
 
 export const DesriptionMessageWrapper = styled.View`
@@ -25,7 +26,6 @@ export const DescriptionMessage = styled.Text`
 
 export const DescriptionHelpMessage = styled.Text`
     font-family: Inter_400Regular;
-    font-style: italic;
     font-size: 14px;
     margin-top: 9px;
     line-height: 26px;
@@ -54,7 +54,7 @@ export const PainTrackerComponent = ({ navigation }) => {
         <DesriptionMessageWrapper>
             <DescriptionMessage>Your daily pain score progress since you began on {startDate}.</DescriptionMessage>
             <DescriptionHelpMessage>Scroll to the right to see all of the data.</DescriptionHelpMessage>
-            <DescriptionHelpMessage>To update today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
+            <DescriptionHelpMessage>To adjust today's pain score use the arrow in the upper left corner.</DescriptionHelpMessage>
         </DesriptionMessageWrapper>
             <ButtonSection>
                 <JournalButton 
