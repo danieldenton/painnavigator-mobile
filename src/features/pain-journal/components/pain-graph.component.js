@@ -28,9 +28,9 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                         onLoad: { duration: 1000 }
                       }}
                       width={graphWidth < 400 ? 400 : graphData}
-                      domainPadding={20}
+                      domain={{y: [0, 10]}}
+                      domainPadding={40}
                       theme={VictoryTheme.material}
-                      backgroundComponent={<Background/>}
                 >
                     <VictoryGroup colorScale={"qualitative"} offset={20}>
                         <VictoryBar data={graphData} y="score" x="date" />

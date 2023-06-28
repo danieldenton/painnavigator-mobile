@@ -23,28 +23,31 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
-    const { painJournals } = useContext(PainJournalContext);
-    const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
+  const { painJournals } = useContext(PainJournalContext);
+  const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
+
+  painJournals.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).reverse()
 
   const graphData = painJournals.map((painJournalScore) => {
     return { score: painJournalScore.intensity, date: formatDateNoYear(painJournalScore.date_time_value) }
-})
+  })
 
-const graphDataAfter = painJournals.map((painJournalScore) => {
-  return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
-})
+  
+  const graphDataAfter = painJournals.map((painJournalScore) => {
+    return { score: painJournalScore.intensity_after, date: formatDateNoYear(painJournalScore.date_time_value) }
+  })
 
-    const painJournalElements = painJournals?.map((journal) => {
-        return (
-            <JournalTile 
-                navigation={navigation}
-                destination={"ReviewPainJournal"}
-                journal={journal}
-                key={journal.id}
-                trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
-            />
-        );
-    });
+  const painJournalElements = painJournals?.map((journal) => {
+      return (
+          <JournalTile 
+              navigation={navigation}
+              destination={"ReviewPainJournal"}
+              journal={journal}
+              key={journal.id}
+              trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
+          />
+      );
+  });
 
     return (
         <SafeView>
