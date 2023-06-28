@@ -84,7 +84,7 @@ export const NewPainJournalEntry = ({ navigation }) => {
                         }
                     }} 
                 />
-                {currentPage > 2 && 
+                {currentPage === 3 && 
                     <SkipQuestion 
                         onPress={() => {
                             {   currentPage === 4 ? 
