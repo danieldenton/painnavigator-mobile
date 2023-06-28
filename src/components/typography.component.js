@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 
 const Header = styled.View`
     margin-top: 16px;
+    margin-left: 4px;
 `
 
 const InterHeader = styled.Text`
