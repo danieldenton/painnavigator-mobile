@@ -135,3 +135,8 @@ export const ONBOARD_EVENTS = {
   export const COMPLETION_EVENTS = {
     COMPLETE_PROGRAM: "Complete Program"
   }
+
+  export const DAILY_PAIN_EVENTS = {
+    LOG_DAILY_PAIN_SCORE: "Log Daily Pain Score",
+    EDIT_DAILY_PAIN_SCORE: "Edit Daily Pain Score"
+  }
