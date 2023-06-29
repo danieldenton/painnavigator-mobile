@@ -84,17 +84,13 @@ export const styles = StyleSheet.create({
   },
   almostThereMessageWrapper: {
     alignItems: "center",
-    marginTop: 60,
+    marginTop: isAndroid ? 40 : 60,
     marginLeft: 4,
     marginRight: 4,
   },
   graphicWrapper: {
     alignItems: "center",
-    marginTop: isAndroid ? 60 : 80,
-  },
-  graphicWrapper: {
-    alignItems: "center",
-    marginTop: isAndroid ? 60 : 80,
+    marginTop: isAndroid ? 35 : 80,
   },
   linkText: {
     fontFamily: "Inter_400Regular",
