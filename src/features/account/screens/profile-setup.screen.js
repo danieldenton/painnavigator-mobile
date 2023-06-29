@@ -77,7 +77,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step === 9 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
+                        step === 10 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
                     }} 
                 />
                 <ProgressDots progress={step +1} total={11} />

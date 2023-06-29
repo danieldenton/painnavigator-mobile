@@ -21,7 +21,7 @@ export const Signup = ({ navigation }) => {
 
     return(
         <>
-            <NavigationBarLeft screen={"Sign up"} destination={"Onboard"} navigation={navigation} />
+            <NavigationBarLeft screen={"Sign up"} destination={"ProfileSetup"} navigation={navigation} />
             <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
             <View style={{ marginBottom: 200 }}>
             <InputWrapper>
