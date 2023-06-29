@@ -60,7 +60,8 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              checkReferralCode(referralCode, setProviderId, setError, navigation)
+              checkReferralCode(referralCode, setProviderId, setError)
+              navigation.navigate("Explanation")
               if (referralCode === "ISCS23") {
                 setEducationProgram(2)
               }

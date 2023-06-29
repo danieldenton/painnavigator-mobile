@@ -15,8 +15,8 @@ export const AccountNavigator = () => {
     return (
         <AccountStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <AccountStack.Screen name="Onboard" component={OnboardScreen} />
-            <AccountStack.Screen name="Explanation" component={ExplanationScreen}/>
             <AccountStack.Screen name="Provider" component={ProviderCodeScreen} />
+            <AccountStack.Screen name="Explanation" component={ExplanationScreen}/>
             <AccountStack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
             <AccountStack.Screen name="Register" component={RegisterScreen} />
             <AccountStack.Group screenOptions={{ presentation: 'modal' }}>

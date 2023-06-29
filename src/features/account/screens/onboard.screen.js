@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { OnboardSwiper } from "../components/onboard-swiper.component";
-import { ProgressDots, SwiperDots } from "../../../components/progress-dots.component";
-import { View } from "react-native";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";

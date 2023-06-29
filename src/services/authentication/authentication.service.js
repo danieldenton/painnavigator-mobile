@@ -9,12 +9,7 @@ import { ONBOARD_EVENTS } from '../../amplitude-events';
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-export async function checkReferralCode(
-  referralCode,
-  setProviderId,
-  setError,
-  navigation
-) {
+export async function checkReferralCode(referralCode, setProviderId, setError) {
   try {
     const response = await axios.get(
       `${API_URL}/api/v1/providers/${referralCode}`
@@ -23,7 +18,6 @@ export async function checkReferralCode(
     const provider_id = data.id;
     setProviderId(provider_id);
     setError(null);
-    navigation.navigate("ProfileSetup");
     track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE);
   } catch (err) {
     setError("Please enter a valid code");
