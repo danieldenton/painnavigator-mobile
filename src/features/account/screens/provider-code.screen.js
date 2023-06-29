@@ -8,7 +8,7 @@ import { ErrorMessage } from "../styles/account.styles";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
-import { styles } from "../styles/referral-code.styles";
+import { styles } from "../styles/account.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
 
 export const ProviderCodeScreen = ({ navigation }) => {

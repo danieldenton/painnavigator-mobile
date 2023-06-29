@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
+import { StyleSheet } from "react-native";
+import { isAndroid } from "../../../utils";
 
 export const InputWrapper = styled.View`
   margin-top: 24px;
@@ -51,7 +53,47 @@ export const SignUpOptions = () => {
 export const OnboardGraphicWrapper = styled.View`
   align-items: center;
 `;
-export const CodeGraphicWrapper = styled.View`
-  align-items: center;
-  margin-top: 70px;
-`;
+
+export const styles = StyleSheet.create({
+  rerferralHeaderWrapper: {
+    alignItems: "center",
+    marginTop: isAndroid ? 6 : 16,
+  },
+  referralHeader: {
+    fontFamily: "Inter_500Medium",
+    fontSize: isAndroid ? 23 : 25,
+  },
+  referralMessageWrapper: {
+    alignItems: "center",
+    marginTop: 16,
+    marginLeft: 4,
+    marginRight: 4,
+  },
+  referralMessage: {
+    textAlign: "center",
+    fontFamily: "Inter_400Regular",
+    fontSize: isAndroid ? 15.5 : 18,
+    marginBottom: isAndroid ? 6 : 4,
+    lineHeight: 26,
+  },
+  explanationMessageWrapper: {
+    alignItems: "center",
+    marginTop: 80,
+    marginLeft: 4,
+    marginRight: 4,
+  },
+  graphGraphicWrapper: {
+    alignItems: "center",
+    marginTop: isAndroid ? 80 : 100,
+  },
+  linkText: {
+    fontFamily: "Inter_400Regular",
+    fontSize: isAndroid ? 16 : 18,
+    color: "blue",
+    lineHeight: 26,
+  },
+  codeGraphicWrapper: {
+    alignItems: "center",
+    marginTop: isAndroid ? 45 : 65,
+  },
+});
