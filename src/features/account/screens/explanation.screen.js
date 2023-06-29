@@ -4,12 +4,19 @@ import { SafeView } from "../../../components/safe-area.component";
 import { GraphGraphic } from "../../../graphics"
 import { ButtonSection } from "../../../components/journals/journal.styles"
 import { JournalButton } from "../../../components/button.component"
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { styles } from "../styles/account.styles"
 
 export const ExplanationScreen = ({ navigation }) => {
     return (
         <SafeView>
-            <View style={styles.graphGraphicWrapper}>
+            <NavigationBarLeft 
+                destination={"Onboard"} 
+                navigation={navigation} 
+                screen={"Sign Up"} 
+                previousPage={null} 
+            />
+            <View style={styles.graphicWrapper}>
                 <GraphGraphic />
             </View>
             <View style={styles.explanationMessageWrapper}>

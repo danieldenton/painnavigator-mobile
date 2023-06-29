@@ -79,12 +79,22 @@ export const styles = StyleSheet.create({
   explanationMessageWrapper: {
     alignItems: "center",
     marginTop: 80,
+    marginLeft: 8,
+    marginRight: 8,
+  },
+  almostThereMessageWrapper: {
+    alignItems: "center",
+    marginTop: 60,
     marginLeft: 4,
     marginRight: 4,
   },
-  graphGraphicWrapper: {
+  graphicWrapper: {
     alignItems: "center",
-    marginTop: isAndroid ? 80 : 100,
+    marginTop: isAndroid ? 60 : 80,
+  },
+  graphicWrapper: {
+    alignItems: "center",
+    marginTop: isAndroid ? 60 : 80,
   },
   linkText: {
     fontFamily: "Inter_400Regular",
