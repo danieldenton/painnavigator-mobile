@@ -7,7 +7,7 @@ import {
     CongratulationsMessage 
 } from "../../../components/completion/components/completion.styles";
 import { WelcomeGraphic, MovementGraphic, ShoesGraphic, GraphGraphic } from "../../../graphics";
-import { OnboardGraphicWrapper } from "../components/account.styles";
+import { OnboardGraphicWrapper } from "../styles/account.styles"
 import styled from "styled-components/native";
 
 const SwiperSection = styled.View`
