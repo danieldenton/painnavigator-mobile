@@ -10,6 +10,7 @@ import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/l
 import { Depressed } from "../../../components/onboard-coutcome/depressed"
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
+import { AlmostThere } from "../components/almost-there.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -24,11 +25,12 @@ export const ProfileSetupScreen = ({ navigation }) => {
         { component: <AvgPainPreStart />, disabled: false },
         { component: <EnjoymentOfLife onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: false },
         { component: <ActivityInterference onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: false },
-        { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
         { component: <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.anxious ? false : true },
         { component: <UnableToStopWorrying onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.unableToStopWorrying ? false : true },
         { component: <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.littleInterestOrPleasure ? false : true },
         { component: <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.depressed ? false : true },
+        { component: <AlmostThere />, disabled: false },
+        { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
         { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
         { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true }
     ] 
@@ -75,10 +77,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step === 9 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
+                        step === 10 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
                     }} 
                 />
-                <ProgressDots progress={step +1} total={10} />
+                <ProgressDots progress={step +1} total={11} />
             </ButtonSection>
         </SafeView>
     );

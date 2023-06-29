@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AuthTextInput, InputLabel } from "../../../components/text-input.component";
 import { JournalButton } from "../../../components/button.component";
-import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
+import { ErrorMessage, InputWrapper } from "../styles/account.styles";
 import { TermsAndConditions } from "./terms-and-conditions.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -21,7 +21,7 @@ export const Signup = ({ navigation }) => {
 
     return(
         <>
-            <NavigationBarLeft screen={"Sign up"} destination={"Onboard"} navigation={navigation} />
+            <NavigationBarLeft screen={"Sign up"} destination={"ProfileSetup"} navigation={navigation} />
             <KeyboardAwareScrollView style={{ marginRight: -16, paddingRight: 16 }}>
             <View style={{ marginBottom: 200 }}>
             <InputWrapper>

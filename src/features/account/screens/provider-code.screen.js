@@ -8,7 +8,7 @@ import { ErrorMessage } from "../styles/account.styles";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
-import { styles } from "../styles/referral-code.styles";
+import { styles } from "../styles/account.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
 
 export const ProviderCodeScreen = ({ navigation }) => {
@@ -60,7 +60,8 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              checkReferralCode(referralCode, setProviderId, setError, navigation)
+              checkReferralCode(referralCode, setProviderId, setError)
+              navigation.navigate("Explanation")
               if (referralCode === "ISCS23") {
                 setEducationProgram(2)
               }

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AuthTextInput, InputLabel } from "../../../components/text-input.component";
 import { JournalButton } from "../../../components/button.component";
-import { ErrorMessage, InputWrapper, SignUpOptions } from "../components/account.styles";
+import { ErrorMessage, InputWrapper, SignUpOptions } from "../styles/account.styles";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { ActivityIndicator } from "../../../components/activity-indicator.component";

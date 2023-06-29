@@ -6,9 +6,8 @@ import { JournalButton } from "../../../components/button.component";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import { patchDailyPainScore, postDailyPainScore } from '../../../services/daily-pain/daily-pain.service';
-
-
-
+import { track } from '@amplitude/analytics-react-native';
+import { DAILY_PAIN_EVENTS } from '../../../amplitude-events';
 
 export const DailyPainScoreComponent = () => {
     const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
@@ -18,8 +17,10 @@ export const DailyPainScoreComponent = () => {
     const handleDailyPainScore = () => {
         if (dailyPainScore.id) {
             patchDailyPainScore(dailyPainScore, setDailyPainScore)
+            track(DAILY_PAIN_EVENTS.EDIT_DAILY_PAIN_SCORE)
         } else {
             postDailyPainScore(uid, dailyPainScore, setDailyPainScore)
+            track(DAILY_PAIN_EVENTS.LOG_DAILY_PAIN_SCORE)
         }
         setDailyPainStep(1)  
     }
@@ -36,5 +37,4 @@ export const DailyPainScoreComponent = () => {
             </ButtonSection>  
         </>
     )
-
 }
