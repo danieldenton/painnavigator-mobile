@@ -7,6 +7,7 @@ import { Privacy } from "../../features/account/screens/privacy-policy.screen";
 import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 import { ProfileSetupScreen } from "../../features/account/screens/profile-setup.screen";
 import { ProviderCodeScreen } from "../../features/account/screens/provider-code.screen";
+import { ExplanationScreen } from "../../features/account/screens/explanation.screen";
 
 const AccountStack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export const AccountNavigator = () => {
     return (
         <AccountStack.Navigator screenOptions={{ headerShown: false, gestureEnabled: false }}>
             <AccountStack.Screen name="Onboard" component={OnboardScreen} />
+            <AccountStack.Screen name="Explanation" component={ExplanationScreen}/>
             <AccountStack.Screen name="Provider" component={ProviderCodeScreen} />
             <AccountStack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
             <AccountStack.Screen name="Register" component={RegisterScreen} />
