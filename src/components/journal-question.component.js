@@ -1,9 +1,11 @@
 import styled from "styled-components/native";
 import { space } from "../infrastructure/theme/spacing";
+import { StyleSheet, Text } from "react-native";
+import { isAndroid } from "../utils";
 
 const QuestionWrapper = styled.View`
     margin-bottom: ${space[3]};
-    margin-top: 24px;
+    margin-top: 10px;
 `;
 
 const QuestionText = styled.Text`
@@ -11,6 +13,13 @@ const QuestionText = styled.Text`
     font-size: 25px;
     width: 90%;
 `;
+const styles = StyleSheet.create({
+    questionText: {
+        fontFamily: "Poppins_500Medium",
+        fontSize: isAndroid ? 22 : 25,
+        width: 320
+    }
+})
 
 export const HelpText = styled.Text`
     font-family: Inter_300Light;
@@ -23,7 +32,7 @@ export const HelpText = styled.Text`
 export const JournalQuestion = ({ question, helpText }) => {
     return(
         <QuestionWrapper>
-            <QuestionText>{question}</QuestionText>
+            <Text style={styles.questionText}>{question}</Text>
             {helpText && <HelpText>{helpText}</HelpText>}
         </QuestionWrapper>
     );
