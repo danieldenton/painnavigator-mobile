@@ -7,6 +7,14 @@ export const destroyGoal = (goalId) => {
     });
 };
 
+export const getSmartGoals = async (uid, setActiveGoal, setFinishedGoals) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v1/smart_goals/${uid}`)
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/smart_goals`, { smart_goal: smartGoal, uid: uid })
