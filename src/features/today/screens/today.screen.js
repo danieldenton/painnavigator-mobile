@@ -24,7 +24,7 @@ import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
+import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, setEducationProgram } = useContext(AuthenticationContext);

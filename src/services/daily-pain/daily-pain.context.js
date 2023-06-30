@@ -1,8 +1,5 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
-import { formatDate, timeZonedTodaysDate } from "../../infrastructure/helpers";
-import { getDailyPainScores } from "./daily-pain.service";
+import React, { createContext, useState, useContext } from "react";
 import { AuthenticationContext } from "../authentication/authentication.context";
-// import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const DailyPainContext = createContext();
 
