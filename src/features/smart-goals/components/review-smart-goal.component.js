@@ -8,7 +8,7 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
-import { formatDate } from '../../../infrastructure/helpers'
+import { formatDate } from "../../../utils";
 import { track } from "@amplitude/analytics-react-native";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 

@@ -5,7 +5,7 @@ import { Card } from "react-native-paper";
 import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
-import { track } from "@amplitude/analytics-react-native";
+import { handleTrackEvent } from "../../../utils";
 
 const PlaylistTileCard = styled(Card)`
     border-radius: 15px;
@@ -103,12 +103,6 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
             <DottedLineSegement key={index} />
         );
     });
-    
-    const handleTrackEvent = () => {
-        if (trackEvent) {
-          track(trackEvent);
-        }
-      };
 
     return(
         <PlaylistTileWrapper>

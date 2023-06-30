@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Next } from "../icons";
 import { Card } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
-import { formatDate } from "../infrastructure/helpers";
+import { formatDate } from "../utils";
 import { track } from '@amplitude/analytics-react-native'
 
 const JournalCard = styled(Card)`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { Close, Delete, Edit } from "../icons";
 import { space } from "../infrastructure/theme/spacing";
-import { handleTrackEvent } from "../../infrastructure/helpers";
+import { handleTrackEvent } from "../../utils";
 
 const CloseButtonRow = styled.View`
     margin-left: ${space[3]};

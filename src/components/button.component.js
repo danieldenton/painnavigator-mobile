@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 import { ButtonSection } from "./journals/journal.styles";
-import { handleTrackEvent } from "../infrastructure/helpers";
+import { handleTrackEvent } from "../utils";
 
 export const Button = styled(ReactPaperButton).attrs({
     color: colors.text.white,

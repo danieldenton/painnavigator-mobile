@@ -3,7 +3,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { View } from "react-native";
-import { formatDate } from "../../../infrastructure/helpers";
+import { formatDate } from "../../../utils";
 
 export const ReviewPainJournalEntry = ({ editing, journal }) => {
     const { editJournal, reviewJournal, setReviewJournal } = useContext(PainJournalContext);

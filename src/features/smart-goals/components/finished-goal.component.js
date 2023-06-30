@@ -1,7 +1,7 @@
 import React from "react";
 import { KeyboardView, GoalWrapper } from "./goal.styles"
 import { GoalTextSection, UpdateGoalTextSection } from "./goal-text-section.component"
-import { formatDate } from "../../../infrastructure/helpers"
+import { formatDate } from "../../../utils";
 
 export const FinishedGoalComponent = ({ goal }) => {
 

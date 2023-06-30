@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 import { StackActions } from '@react-navigation/native';
-import { handleTrackEvent, handleTrackExitEvent } from "../../infrastructure/helpers";
+import { handleTrackEvent, handleTrackExitEvent } from "../../utils";
 import { SmartGoalContext } from "../../services/smart-goal/smart-goal.context"
 
 const Modal = styled(PaperModal)`
