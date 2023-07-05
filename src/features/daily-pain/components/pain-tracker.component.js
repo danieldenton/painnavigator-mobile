@@ -43,24 +43,9 @@ export const PainTrackerComponent = ({ navigation }) => {
     
     const startDate = formatDate(dailyPainScores[0].date_time_value)
 
-    // const graphData = dailyPainScores.map((score) => {
-    //     return { score: score.score, date: formatDateNoYear(score.date_time_value) }
-    // })
-
-    const graphData = [
-       { score: 3, date: "6/1" },
-       { score: 9, date: "6/2" },
-       { score: 3, date: "6/3" },
-       { score: 9, date: "6/4" },
-       { score: 3, date: "6/5" },
-       { score: 9, date: "6/6" },
-       { score: 3, date: "6/7" },
-       { score: 9, date: "6/8" },
-       { score: 3, date: "6/9" },
-       { score: 3, date: "6/10" },
-       { score: 9, date: "6/11" },
-       { score: 3, date: "6/12" },
-    ]
+    const graphData = dailyPainScores.map((score) => {
+        return { score: score.score, date: formatDateNoYear(score.date_time_value) }
+    })
 
     return (
         <>

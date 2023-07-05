@@ -3,7 +3,6 @@ import { ScrollView } from 'react-native';
 import { colors } from "../../../infrastructure/theme/colors";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, Background, VictoryScatter } from "victory-native";
 import styled from "styled-components/native";
-import { isAndroid } from '../../../utils'
 
 const GraphWrapper = styled.View`
     margin-bottom: 16px;
