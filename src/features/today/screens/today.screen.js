@@ -10,6 +10,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -32,7 +33,7 @@ export const TodayScreen = ({ navigation }) => {
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
-    const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
+    const { painJournals, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
@@ -59,13 +60,13 @@ export const TodayScreen = ({ navigation }) => {
             setEducationProgress, 
             setProfileComplete, 
             setMovementProgress,
-            setPainJournals,
             setMoodJournals,
             setFoodJournals,
             setCompletedProgram
         );
         getDailyPainScores(user.user.uid, setDailyPainScores)
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
+        getPainJournals(user.user.uid, setPainJournals)
     }, []);
     
     useEffect(() => {

@@ -8,12 +8,16 @@ export const destroyPainJournal = (journalId) => {
     });
 };
 
-export const getPainJournals = (setPainJournals) => {
-    axios.get(`${API_URL}/api/v1/pain_journals`)
-    .then( resp => {
-        setPainJournals(camelize(resp.data.data)); 
-    })
-    //.catch(resp => console.log(resp))
+export const getPainJournals = async (userUid, setPainJournals) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v1/pain_journals`, { params: { uid: userUid } })
+        const data = response.data.data.map(journal => {
+            return journal.attributes
+        })
+        setPainJournals(data)
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export async function patchPainJournal(journalId, painJournal, setPainJournals) {

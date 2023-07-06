@@ -47,7 +47,6 @@ export async function getUser(
   setEducationProgress, 
   setProfileComplete, 
   setMovementProgress,
-  setPainJournals,
   setMoodJournals,
   setFoodJournals,
   setCompletedProgram,
@@ -60,7 +59,6 @@ export async function getUser(
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile.profile_status === 1)
-    setPainJournals(data.pain_journals.reverse())
     setMoodJournals(data.mood_journals.reverse())
     setFoodJournals(data.food_journals.reverse())
     setCompletedProgram(data.outcome.completed_program === true)
