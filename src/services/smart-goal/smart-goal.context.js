@@ -116,60 +116,6 @@ export const SmartGoalContextProvider = ({ children }) => {
         setCurrentPage(0);
     };
 
-    const saveActiveGoal = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem("@active_goal", jsonValue);
-        } catch (e) {
-          console.log("error storing smart goals", e);
-        }
-    };
-    
-    const loadActiveGoal = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@active_goal");
-            if (value !== null) {
-                // setActiveGoal(JSON.parse(value));
-                setActiveGoal
-            }
-        } catch (e) {
-            console.log("error loading smart goals", e);
-        }
-    };
-
-    const saveFinishedGoals = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@finished_goals", jsonValue);
-        } catch (e) {
-            console.log("error storing finished goals", e);
-        }
-    };
-
-    const loadFinishedGoals = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@finished_goals");
-            if (value !== null) {
-                setFinishedGoals(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading finished goals", e);
-        }
-    };
-
-    // useEffect(() => {
-    //     loadActiveGoal();
-    //     loadFinishedGoals();
-    // }, []);
-    
-    // useEffect(() => {
-    //     saveActiveGoal(activeGoal);
-    // }, [activeGoal]);
-
-    // useEffect(() => {
-    //     saveFinishedGoals(finishedGoals);
-    // }, [finishedGoals]);
-
     return (
         <SmartGoalContext.Provider
             value={{
