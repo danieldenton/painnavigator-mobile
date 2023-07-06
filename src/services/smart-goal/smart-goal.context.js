@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
+import { destroyGoal, patchSmartGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate } from "../../utils";
 
@@ -79,6 +79,7 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
+        patchSmartGoal(reviewGoal)
     };
 
     const endJournalDate = () => {
@@ -86,7 +87,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         setReviewGoal(prevState => ({
             ...prevState,
             end_date: date,
-            status: "complete"
+            status: "finished"
         }))
 
     }
