@@ -9,15 +9,11 @@ export const destroyGoal = (goalId) => {
 
 export const getSmartGoals = async (userUid, setActiveGoal, setFinishedGoals, finishedGoals) => {
     try {
-        const response = await axios.get(`${API_URL}/api/v2/smart_goals`, { uid: userUid })
+        const response = await axios.get(`${API_URL}/api/v1/smart_goals`, {params: { uid: userUid }})
         const data = response.data.data
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].status === "active") {
-                setActiveGoal(data[i])
-            } else {
-                setFinishedGoals(...finishedGoals, data[i])
-            }
-        }
+        const goal = data.filter(goal => goal.attributes.status === "active")
+        console.log(goal[0].attributes)
+        setActiveGoal(goal[0].attributes)
     } catch (error) {
         console.error(error);
     }

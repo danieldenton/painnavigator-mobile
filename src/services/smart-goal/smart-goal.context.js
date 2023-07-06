@@ -154,18 +154,18 @@ export const SmartGoalContextProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        loadActiveGoal();
-        loadFinishedGoals();
-    }, []);
+    // useEffect(() => {
+    //     loadActiveGoal();
+    //     loadFinishedGoals();
+    // }, []);
     
-    useEffect(() => {
-        saveActiveGoal(activeGoal);
-    }, [activeGoal]);
+    // useEffect(() => {
+    //     saveActiveGoal(activeGoal);
+    // }, [activeGoal]);
 
-    useEffect(() => {
-        saveFinishedGoals(finishedGoals);
-    }, [finishedGoals]);
+    // useEffect(() => {
+    //     saveFinishedGoals(finishedGoals);
+    // }, [finishedGoals]);
 
     return (
         <SmartGoalContext.Provider
@@ -192,7 +192,8 @@ export const SmartGoalContextProvider = ({ children }) => {
                 resetSmartGoal,
                 reviewGoal,
                 endJournalDate,
-                setFinishedGoals
+                setFinishedGoals, 
+                setActiveGoal
             }}
         >
             {children}
