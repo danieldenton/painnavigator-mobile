@@ -1,5 +1,4 @@
 import axios from 'axios';
-import camelize from "camelize";
 import { API_URL } from "@env"
 
 export const destroyPainJournal = (journalId) => {
@@ -24,7 +23,6 @@ export async function patchPainJournal(journalId, painJournal, setPainJournals) 
     try {
         const response = await axios.patch(`${API_URL}/api/v1/pain_journals/${journalId}`, { pain_journal: painJournal })
         const data = response.data.data.attributes;
-        //console.log(data);
         setPainJournals(prevJournals => prevJournals.map(journal => journal.id === journalId ?
             data
             :
