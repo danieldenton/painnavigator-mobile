@@ -31,7 +31,7 @@ export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, setEducationProgram } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
-    const { activeGoal, setActiveGoal, setFinishedGoals, finishedGoals } = useContext(SmartGoalContext);
+    const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
@@ -65,7 +65,7 @@ export const TodayScreen = ({ navigation }) => {
             setCompletedProgram
         );
         getDailyPainScores(user.user.uid, setDailyPainScores)
-        getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals, finishedGoals)
+        getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
     }, []);
     
     useEffect(() => {

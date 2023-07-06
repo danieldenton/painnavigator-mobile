@@ -7,13 +7,17 @@ export const destroyGoal = (goalId) => {
     });
 };
 
-export const getSmartGoals = async (userUid, setActiveGoal, setFinishedGoals, finishedGoals) => {
+export const getSmartGoals = async (userUid, setActiveGoal, setFinishedGoals) => {
     try {
         const response = await axios.get(`${API_URL}/api/v1/smart_goals`, {params: { uid: userUid }})
         const data = response.data.data
         const goal = data.filter(goal => goal.attributes.status === "active")
-        console.log(goal[0].attributes)
+        const finished = data.filter(goal => goal.attributes.status === "finished")
+        const goals = finished.map(goal => {
+            return goal.attributes
+        })
         setActiveGoal(goal[0].attributes)
+        setFinishedGoals(goals)
     } catch (error) {
         console.error(error);
     }
