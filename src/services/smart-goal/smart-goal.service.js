@@ -49,9 +49,10 @@ export async function patchSmartGoal(smartGoal) {
     }
 };
 
-export const patchSmartGoalUpdate = async () => {
+export const patchSmartGoalUpdate = async (smartGoalUpdate) => {
     try {
-
+        const response = await axios.patch(`${API_URL}/api/v1/smart_goal_updates/${smartGoalUpdate.id}`, smartGoalUpdate)
+        const data = response.data.data.attributes;
     } catch (error) {
         console.error(error);
     }
