@@ -31,7 +31,7 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, setEducationProgram } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram, setEducationProgram, educationProgram } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
@@ -69,8 +69,9 @@ export const TodayScreen = ({ navigation }) => {
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
-        console.log(educationProgress)
     }, []);
+
+    console.log(educationProgress, educationProgram)
     
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
