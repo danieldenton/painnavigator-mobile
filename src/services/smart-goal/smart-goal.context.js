@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { destroyGoal, patchSmartGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
+import { destroyGoal, patchSmartGoal, patchSmartGoalUpdate, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate } from "../../utils";
 
@@ -77,9 +77,11 @@ export const SmartGoalContextProvider = ({ children }) => {
     };
 
     const saveEdits = () => {
-        console.log(reviewGoal)
         setActiveGoal(reviewGoal);
         patchSmartGoal(reviewGoal)
+        for (let i; i < reviewGoal.goal_updates; i++) {
+            patchSmartGoalUpdate(reviewGoal.goal_updates[i])
+        }
     };
 
     const endJournalDate = () => {
