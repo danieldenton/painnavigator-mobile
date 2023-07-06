@@ -1,5 +1,4 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { destroyGoal, patchSmartGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate } from "../../utils";

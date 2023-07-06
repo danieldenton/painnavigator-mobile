@@ -27,21 +27,6 @@ export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
     }
 };
 
-export async function patchSmartGoal(smartGoal) {
-    try {
-        const response = await axios.patch(`${API_URL}/api/v1/smart_goals/${smartGoal.id}`, smartGoal)
-        const data = response.data.data.attributes;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const destroyGoal = (goalId) => {
-    axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
-    .then((response) => {
-    });
-};
-
 export async function postSmartGoalUpdate(id, smartGoalUpdate, setActiveGoal) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/smart_goal_updates`, {   
@@ -54,4 +39,28 @@ export async function postSmartGoalUpdate(id, smartGoalUpdate, setActiveGoal) {
         console.error(error);
     }
 };
+
+export async function patchSmartGoal(smartGoal) {
+    try {
+        const response = await axios.patch(`${API_URL}/api/v1/smart_goals/${smartGoal.id}`, smartGoal)
+        const data = response.data.data.attributes;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const patchSmartGoalUpdate = async () => {
+    try {
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const destroyGoal = (goalId) => {
+    axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
+    .then((response) => {
+    });
+};
+
 
