@@ -79,7 +79,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
         patchSmartGoal(reviewGoal)
-        for (let i; i < reviewGoal.goal_updates; i++) {
+        for (let i = 0; i < reviewGoal.goal_updates.length; i++) {
             patchSmartGoalUpdate(reviewGoal.goal_updates[i])
         }
     };
