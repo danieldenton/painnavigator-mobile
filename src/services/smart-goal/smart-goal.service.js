@@ -29,9 +29,7 @@ export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
 
 export async function patchSmartGoal(smartGoal) {
     try {
-        const response = await axios.post(`${API_URL}/api/v1/smart_goals`, { 
-            smart_goal: smartGoal  
-        })
+        const response = await axios.patch(`${API_URL}/api/v1/smart_goals/${smartGoal.id}`, smartGoal)
         const data = response.data.data.attributes;
     } catch (error) {
         console.error(error);
