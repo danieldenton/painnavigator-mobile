@@ -47,8 +47,6 @@ export async function getUser(
   setEducationProgress, 
   setProfileComplete, 
   setMovementProgress,
-  setMoodJournals,
-  setFoodJournals,
   setCompletedProgram,
 ) {
   try {
@@ -59,8 +57,6 @@ export async function getUser(
     setEducationProgress(data.education_progress.progress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile.profile_status === 1)
-    setMoodJournals(data.mood_journals.reverse())
-    setFoodJournals(data.food_journals.reverse())
     setCompletedProgram(data.outcome.completed_program === true)
   } catch (error) {
     console.error(error);

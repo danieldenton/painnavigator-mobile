@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { API_URL } from "@env"
 
-export const getFoodJournals = (setFoodJournals) => {
-    axios.get(`${API_URL}/api/v1/food_journals`)
-    .then((response) => {
-        setFoodJournals(response.data.data);
-    })
-    .catch(response => console.log(response))
+export const getFoodJournals = async (userUid, setFoodJournals) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v1/food_journals`, { params: { uid: userUid } })
+        const data = response.data.data.map(journal => {
+            return journal.attributes
+        })
+        setFoodJournals(data)
+    } catch (error) {
+        console.error(error);
+    }
 };
-
 export async function patchFoodJournal(journalId, journalEntry, setFoodJournals) {
     try {
         const response = await axios.patch(`${API_URL}/api/v1/food_journals/${journalId}`, { food_journal: journalEntry })

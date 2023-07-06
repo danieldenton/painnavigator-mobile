@@ -12,7 +12,9 @@ import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
@@ -60,13 +62,14 @@ export const TodayScreen = ({ navigation }) => {
             setEducationProgress, 
             setProfileComplete, 
             setMovementProgress,
-            setMoodJournals,
-            setFoodJournals,
             setCompletedProgram
         );
         getDailyPainScores(user.user.uid, setDailyPainScores)
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
         getPainJournals(user.user.uid, setPainJournals)
+        getMoodJournals(user.user.uid, setMoodJournals)
+        getFoodJournals(user.user.uid, setFoodJournals)
+        console.log(educationProgress)
     }, []);
     
     useEffect(() => {
