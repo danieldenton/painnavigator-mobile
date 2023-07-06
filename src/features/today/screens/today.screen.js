@@ -15,6 +15,7 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
+import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
@@ -30,7 +31,7 @@ export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, setEducationProgram } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
-    const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
+    const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
@@ -63,6 +64,9 @@ export const TodayScreen = ({ navigation }) => {
             setFoodJournals,
             setCompletedProgram
         );
+
+        getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
+
     }, []);
     
     useEffect(() => {
