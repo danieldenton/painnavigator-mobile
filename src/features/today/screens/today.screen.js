@@ -60,8 +60,8 @@ export const TodayScreen = ({ navigation }) => {
             setUserInfo,  
             setEducationProgram,
             setEducationProgress, 
-            setProfileComplete, 
             setMovementProgress,
+            setProfileComplete, 
             setCompletedProgram
         );
         getDailyPainScores(user.user.uid, setDailyPainScores)

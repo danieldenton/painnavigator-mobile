@@ -45,9 +45,9 @@ export async function getUser(
   setUserInfo, 
   setEducationProgram, 
   setEducationProgress, 
-  setProfileComplete, 
   setMovementProgress,
-  setCompletedProgram,
+  setProfileComplete, 
+  setCompletedProgram
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
