@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
+import { educationPrograms } from "./../../education/data/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -44,7 +45,8 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-    const completedAllEducationModules = educationProgress > 67;
+    const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
+    const completedAllEducationModules = educationProgress > educationProgramLength
     const completedAllMovementModules = movementProgress > 36;
     const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);

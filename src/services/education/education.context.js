@@ -18,6 +18,7 @@ export const EducationContextProvider = ({ children }) => {
     useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
         setCurrentModule(module);
+        console.log(module)
     }, [educationProgress])
 
     // const advanceProgress = () => {
@@ -28,7 +29,8 @@ export const EducationContextProvider = ({ children }) => {
     const completeModule = () => {
         const module = {
             module_id: currentModule.id,
-            status: 0        
+            status: 0, 
+            education_progress: educationProgress   
         };
         postEducationModule(module, setEducationProgress, user.user.uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
