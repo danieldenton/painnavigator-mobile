@@ -71,7 +71,7 @@ export const TodayScreen = ({ navigation }) => {
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
-        console.log(movementProgress)
+        console.log(user.user.uid)
     }, []);
     
     useEffect(() => {
