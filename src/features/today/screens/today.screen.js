@@ -50,7 +50,6 @@ export const TodayScreen = ({ navigation }) => {
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
-    console.log(activeGoal)
     const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
     const lastEducationModuleId = educationProgress - 1;
