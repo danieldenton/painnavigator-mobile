@@ -18,6 +18,7 @@ export const EducationContextProvider = ({ children }) => {
     useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
         setCurrentModule(module);
+        console.log(educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[42]))
     }, [educationProgress])
 
     // const advanceProgress = () => {

@@ -70,8 +70,6 @@ export const TodayScreen = ({ navigation }) => {
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
     }, []);
-
-    console.log(educationProgress, educationProgram)
     
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
