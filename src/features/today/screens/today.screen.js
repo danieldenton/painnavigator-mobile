@@ -69,7 +69,7 @@ export const TodayScreen = ({ navigation }) => {
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
-        console.log(user.user.uid)
+        console.log(movementProgress)
     }, []);
     
     useEffect(() => {
@@ -85,10 +85,6 @@ export const TodayScreen = ({ navigation }) => {
             setGreeting("Good Evening")
         }
     }, [isFocused]);
-
-    useEffect(() => {
-        
-    }, [])
 
     useEffect(() => {
         if (dailyPain === timeZonedTodaysDate) {
