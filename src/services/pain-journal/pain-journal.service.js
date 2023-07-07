@@ -9,11 +9,8 @@ export const destroyPainJournal = (journalId) => {
 
 export const getPainJournals = async (userUid, setPainJournals) => {
     try {
-        const response = await axios.get(`${API_URL}/api/v1/pain_journals`, { params: { uid: userUid } })
-        const data = response.data.data.map(journal => {
-            return journal.attributes
-        })
-        setPainJournals(data)
+        const response = await axios.get(`${API_URL}/api/v2/pain_journals`, { params: { uid: userUid } })
+        setPainJournals(response.data)
     } catch (error) {
         console.error(error);
     }

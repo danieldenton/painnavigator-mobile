@@ -50,6 +50,7 @@ export const TodayScreen = ({ navigation }) => {
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
+    console.log(activeGoal)
     const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
     const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
     const lastEducationModuleId = educationProgress - 1;
@@ -69,6 +70,7 @@ export const TodayScreen = ({ navigation }) => {
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
+        console.log(user.user.uid)
     }, []);
     
     useEffect(() => {

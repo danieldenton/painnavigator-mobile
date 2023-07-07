@@ -3,11 +3,8 @@ import { API_URL } from "@env"
 
 export const getMoodJournals = async (userUid, setMoodJournals) => {
     try {
-        const response = await axios.get(`${API_URL}/api/v1/mood_journals`, { params: { uid: userUid } })
-        const data = response.data.data.map(journal => {
-            return journal.attributes
-        })
-        setMoodJournals(data)
+        const response = await axios.get(`${API_URL}/api/v2/mood_journals`, { params: { uid: userUid } })
+        setMoodJournals(response.data)
     } catch (error) {
         console.error(error);
     }
