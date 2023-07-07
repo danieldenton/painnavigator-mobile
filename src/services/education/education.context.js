@@ -28,9 +28,11 @@ export const EducationContextProvider = ({ children }) => {
     const completeModule = () => {
         const module = {
             module_id: currentModule.id,
-            status: 0        
+            status: 0, 
+            education_progress: educationProgress   
         };
-        postEducationModule(module, setEducationProgress, user.user.uid);
+        setEducationProgress(educationProgress + 1)
+        postEducationModule(module, user.user.uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
     };
 
@@ -62,26 +64,6 @@ export const EducationContextProvider = ({ children }) => {
             setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
         };
     };
-
-    // const saveEducationProgress = async (value) => {
-    //     try {
-    //         const jsonValue = JSON.stringify(value);
-    //         await AsyncStorage.setItem("@education_progress", jsonValue);
-    //     } catch (e) {
-    //         console.log("error storing education_progress", e);
-    //     }
-    // };
-
-    // const loadEducationProgress = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem("@education_progress");
-    //         if (value !== null) {
-    //             setEducationProgress(JSON.parse(value));
-    //         }
-    //     } catch (e) {
-    //         console.log("error loading education_progress", e);
-    //     }
-    // };
 
     const saveCompletedEducationModules = async (value) => {
         try {

@@ -1,11 +1,21 @@
 import axios from 'axios';
 import { API_URL } from "@env"
 
-export const destroyGoal = (goalId) => {
-    axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
-    .then((response) => {
-    });
-};
+
+export const getSmartGoals = async (userUid, setActiveGoal, setFinishedGoals) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v2/smart_goals`, { params: { uid: userUid } })
+        const data = response.data.data.map(goal => {
+            return goal.attributes
+        })
+        const goal = data.find(goal => goal.status === "active")
+        const finished = data.filter(goal => goal.status === "finished")
+        setActiveGoal(goal)
+        setFinishedGoals(finished)
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 export async function postSmartGoal(uid, smartGoal, setActiveGoal) {
     try {
@@ -30,15 +40,28 @@ export async function postSmartGoalUpdate(id, smartGoalUpdate, setActiveGoal) {
     }
 };
 
-export async function patchSmartGoal(id, smartGoal, setFinishedGoals, finishedGoals) {
+export async function patchSmartGoal(smartGoal) {
     try {
-        const response = await axios.post(`${API_URL}/api/v1/complete_smart_goals`, { 
-            smart_goal: id, 
-            complete_smart_goal: smartGoal  
-        })
+        const response = await axios.patch(`${API_URL}/api/v1/smart_goals/${smartGoal.id}`, smartGoal)
         const data = response.data.data.attributes;
-        setFinishedGoals(...finishedGoals, data);
     } catch (error) {
         console.error(error);
     }
 };
+
+export const patchSmartGoalUpdate = async (smartGoalUpdate) => {
+    try {
+        const response = await axios.patch(`${API_URL}/api/v1/smart_goal_updates/${smartGoalUpdate.id}`, smartGoalUpdate)
+        const data = response.data.data.attributes;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const destroyGoal = (goalId) => {
+    axios.delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
+    .then((response) => {
+    });
+};
+
+

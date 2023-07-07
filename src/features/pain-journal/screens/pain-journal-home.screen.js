@@ -11,9 +11,8 @@ import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
-import { colors } from "../../../infrastructure/theme/colors";
 import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
-import { formatDateNoYear } from "../../../infrastructure/helpers";
+import { formatDateNoYear } from "../../../utils";
 
 const HelpText = styled.Text`
     font-family: Inter_300Light;

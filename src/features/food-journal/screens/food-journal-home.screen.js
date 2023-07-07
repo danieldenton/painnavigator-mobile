@@ -9,7 +9,7 @@ import { FoodJournalContext } from "../../../services/food-journal/food-journal.
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
-import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../infrastructure/helpers";
+import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../utils";
 import { track } from "@amplitude/analytics-react-native";
 import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 

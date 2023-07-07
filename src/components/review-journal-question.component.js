@@ -8,7 +8,7 @@ import { Next } from "../icons";
 import { genderOptions } from "../features/profile/data/gender-options.data.json";
 import { painDurationOptions } from "../features/profile/data/pain-duration-options.data.json";
 import { activityLevelOptions } from "../features/profile/data/activity-level-options.data.json";
-import { handleTrackEvent } from "../infrastructure/helpers";
+import { handleTrackEvent } from "../utils";
 
 const QuestionWrapper = styled.View`
     border-top-color: hsl(218, 44%, 86%);

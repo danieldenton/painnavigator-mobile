@@ -1,5 +1,4 @@
 import axios from 'axios';
-import camelize from "camelize";
 import { API_URL } from "@env"
 
 export const destroyPainJournal = (journalId) => {
@@ -8,19 +7,19 @@ export const destroyPainJournal = (journalId) => {
     });
 };
 
-export const getPainJournals = (setPainJournals) => {
-    axios.get(`${API_URL}/api/v1/pain_journals`)
-    .then( resp => {
-        setPainJournals(camelize(resp.data.data)); 
-    })
-    //.catch(resp => console.log(resp))
+export const getPainJournals = async (userUid, setPainJournals) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v2/pain_journals`, { params: { uid: userUid } })
+        setPainJournals(response.data)
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export async function patchPainJournal(journalId, painJournal, setPainJournals) {
     try {
         const response = await axios.patch(`${API_URL}/api/v1/pain_journals/${journalId}`, { pain_journal: painJournal })
         const data = response.data.data.attributes;
-        //console.log(data);
         setPainJournals(prevJournals => prevJournals.map(journal => journal.id === journalId ?
             data
             :

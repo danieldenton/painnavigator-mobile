@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
-import { formatDate } from "../../../infrastructure/helpers";
+import { formatDate } from "../../../utils";
 import { View } from "react-native";
 
 export const ReviewMoodJournalEntry = ({ editing, journal }) => {

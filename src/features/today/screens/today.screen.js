@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
+import { educationPrograms } from "./../../education/data/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -10,11 +11,15 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
+import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
@@ -24,14 +29,14 @@ import { useIsFocused } from '@react-navigation/native';
 import { getUser } from "../../../services/authentication/authentication.service";
 import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../infrastructure/helpers"
+import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, setEducationProgram } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram, setEducationProgram, educationProgram } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
-    const { activeGoal, setFinishedGoals } = useContext(SmartGoalContext);
-    const { painJournals, setPainGraphData, setPainJournals } = useContext(PainJournalContext);
+    const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
+    const { painJournals, setPainJournals } = useContext(PainJournalContext);
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
@@ -40,7 +45,8 @@ export const TodayScreen = ({ navigation }) => {
     const [greeting, setGreeting] = useState("");
 
     const isFocused = useIsFocused();
-    const completedAllEducationModules = educationProgress > 67;
+    const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
+    const completedAllEducationModules = educationProgress > educationProgramLength
     const completedAllMovementModules = movementProgress > 36;
     const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
@@ -56,13 +62,16 @@ export const TodayScreen = ({ navigation }) => {
             setUserInfo,  
             setEducationProgram,
             setEducationProgress, 
-            setProfileComplete, 
             setMovementProgress,
-            setPainJournals,
-            setMoodJournals,
-            setFoodJournals,
+            setProfileComplete, 
             setCompletedProgram
         );
+        getDailyPainScores(user.user.uid, setDailyPainScores)
+        getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
+        getPainJournals(user.user.uid, setPainJournals)
+        getMoodJournals(user.user.uid, setMoodJournals)
+        getFoodJournals(user.user.uid, setFoodJournals)
+        console.log(user.user.uid)
     }, []);
     
     useEffect(() => {
@@ -78,10 +87,6 @@ export const TodayScreen = ({ navigation }) => {
             setGreeting("Good Evening")
         }
     }, [isFocused]);
-
-    useEffect(() => {
-        getDailyPainScores(user.user.uid, setDailyPainScores)
-    }, [])
 
     useEffect(() => {
         if (dailyPain === timeZonedTodaysDate) {

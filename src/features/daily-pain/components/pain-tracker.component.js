@@ -5,9 +5,8 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
 import { PainGraph } from "./pain-graph.component";
-import { formatDate, formatDateNoYear } from "../../../infrastructure/helpers";
+import { formatDate, formatDateNoYear } from "../../../utils";
 import styled from "styled-components/native";
-import { isAndroid } from "../../../utils";
 
 
 export const DesriptionMessageWrapper = styled.View`

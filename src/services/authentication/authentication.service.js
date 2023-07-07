@@ -45,24 +45,19 @@ export async function getUser(
   setUserInfo, 
   setEducationProgram, 
   setEducationProgress, 
-  setProfileComplete, 
   setMovementProgress,
-  setPainJournals,
-  setMoodJournals,
-  setFoodJournals,
-  setCompletedProgram,
+  setProfileComplete, 
+  setCompletedProgram
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
-    const data = response.data.data.attributes;
+    const data = response.data.data.attributes
+    const eProgress = data.education_progress.education_progress ? data.education_progress.education_progress : data.education_progress.progress
     setUserInfo(data.profile)
     setEducationProgram(data.education_program)
-    setEducationProgress(data.education_progress.progress)
+    setEducationProgress(eProgress)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile.profile_status === 1)
-    setPainJournals(data.pain_journals.reverse())
-    setMoodJournals(data.mood_journals.reverse())
-    setFoodJournals(data.food_journals.reverse())
     setCompletedProgram(data.outcome.completed_program === true)
   } catch (error) {
     console.error(error);

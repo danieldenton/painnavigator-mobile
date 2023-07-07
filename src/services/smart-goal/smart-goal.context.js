@@ -1,8 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { destroyGoal, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
+import { destroyGoal, patchSmartGoal, patchSmartGoalUpdate, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { formatDate } from "../../infrastructure/helpers";
+import { formatDate } from "../../utils";
 
 export const SmartGoalContext = createContext();
 
@@ -79,6 +78,10 @@ export const SmartGoalContextProvider = ({ children }) => {
 
     const saveEdits = () => {
         setActiveGoal(reviewGoal);
+        patchSmartGoal(reviewGoal)
+        for (let i = 0; i < reviewGoal.goal_updates.length; i++) {
+            patchSmartGoalUpdate(reviewGoal.goal_updates[i])
+        }
     };
 
     const endJournalDate = () => {
@@ -86,13 +89,14 @@ export const SmartGoalContextProvider = ({ children }) => {
         setReviewGoal(prevState => ({
             ...prevState,
             end_date: date,
-            status: "complete"
+            status: "finished"
         }))
 
     }
 
     const finishGoal = () => {
         setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
+        patchSmartGoal(reviewGoal)
         setActiveGoal(null), 10000
     };
 
@@ -112,60 +116,6 @@ export const SmartGoalContextProvider = ({ children }) => {
         });
         setCurrentPage(0);
     };
-
-    const saveActiveGoal = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem("@active_goal", jsonValue);
-        } catch (e) {
-          console.log("error storing smart goals", e);
-        }
-    };
-    
-    const loadActiveGoal = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@active_goal");
-            if (value !== null) {
-                // setActiveGoal(JSON.parse(value));
-                setActiveGoal
-            }
-        } catch (e) {
-            console.log("error loading smart goals", e);
-        }
-    };
-
-    const saveFinishedGoals = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@finished_goals", jsonValue);
-        } catch (e) {
-            console.log("error storing finished goals", e);
-        }
-    };
-
-    const loadFinishedGoals = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@finished_goals");
-            if (value !== null) {
-                setFinishedGoals(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading finished goals", e);
-        }
-    };
-
-    useEffect(() => {
-        loadActiveGoal();
-        loadFinishedGoals();
-    }, []);
-    
-    useEffect(() => {
-        saveActiveGoal(activeGoal);
-    }, [activeGoal]);
-
-    useEffect(() => {
-        saveFinishedGoals(finishedGoals);
-    }, [finishedGoals]);
 
     return (
         <SmartGoalContext.Provider
@@ -192,7 +142,8 @@ export const SmartGoalContextProvider = ({ children }) => {
                 resetSmartGoal,
                 reviewGoal,
                 endJournalDate,
-                setFinishedGoals
+                setFinishedGoals, 
+                setActiveGoal
             }}
         >
             {children}

@@ -3,8 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { Add, FoodJournalIcon, Locked } from "../icons";
-import { handleTrackEvent } from "../infrastructure/helpers";
-
+import { handleTrackEvent } from "../utils";
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
