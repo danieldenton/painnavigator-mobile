@@ -133,33 +133,33 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
-    const saveCurrentModule = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@current_movement_module", jsonValue);
-        } catch (e) {
-            console.log("error storing current_movement_module", e);
-        }
-    };
+    // const saveCurrentModule = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //         await AsyncStorage.setItem("@current_movement_module", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing current_movement_module", e);
+    //     }
+    // };
 
-    const loadCurrentModule = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@current_movement_module");
-            if (value !== null) {
-                setCurrentModule(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading current_movement_module", e);
-        }
-    };
+    // const loadCurrentModule = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@current_movement_module");
+    //         if (value !== null) {
+    //             setCurrentModule(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading current_movement_module", e);
+    //     }
+    // };
 
-    useEffect(() => {
-        loadCurrentModule();
-    }, []);
+    // useEffect(() => {
+    //     loadCurrentModule();
+    // }, []);
 
-    useEffect(() => {
-        saveCurrentModule(currentModule);
-    }, [currentModule]);
+    // useEffect(() => {
+    //     saveCurrentModule(currentModule);
+    // }, [currentModule]);
 
     const saveCompletedMovementModules = async (value) => {
         try {

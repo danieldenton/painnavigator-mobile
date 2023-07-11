@@ -47,7 +47,8 @@ export async function getUser(
   setEducationProgress, 
   setMovementProgress,
   setProfileComplete, 
-  setCompletedProgram
+  setCompletedProgram,
+  setLastDateOnApp
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
@@ -59,6 +60,18 @@ export async function getUser(
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile.profile_status === 1)
     setCompletedProgram(data.outcome.completed_program === true)
+    setLastDateOnApp(data.last_date_on_app)
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const patchLastDateOnApp = async (uid, date) => {
+  try {
+    await axios.patch(`${API_URL}/api/v2/users/${uid}`, 
+    {
+      last_date_on_app: date
+    })
   } catch (error) {
     console.error(error);
   }

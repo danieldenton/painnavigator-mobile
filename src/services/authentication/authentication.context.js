@@ -42,6 +42,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         depressed: "" 
     })
     const [educationProgram, setEducationProgram] = useState(1)
+    const [lastDateOnApp, setLastDateOnApp] = useState("")
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({
@@ -214,7 +215,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 completedProgram,
                 completeProgram,
                 educationProgram,
-                setEducationProgram
+                setEducationProgram,
+                lastDateOnApp,
+                setLastDateOnApp
             }}
         >
             {children}
