@@ -215,7 +215,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 completedProgram,
                 completeProgram,
                 educationProgram,
-                setEducationProgram
+                setEducationProgram,
+                lastDateOnApp,
+                setLastDateOnApp
             }}
         >
             {children}

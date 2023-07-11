@@ -79,7 +79,7 @@ export const TodayScreen = ({ navigation }) => {
             patchLastDateOnApp(user.user.uid, timeZonedTodaysDate)
         }
     }, [lastDateOnApp])
-    console.log(user.user.uid)
+   
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
