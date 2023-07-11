@@ -66,11 +66,11 @@ export async function getUser(
   }
 }
 
-export const patchLastDateOnApp = async (uid, lastDateOnApp) => {
+export const patchLastDateOnApp = async (uid, date) => {
   try {
     await axios.patch(`${API_URL}/api/v2/users/${uid}`, 
     {
-      last_date_on_app: lastDateOnApp
+      last_date_on_app: date
     })
   } catch (error) {
     console.error(error);
