@@ -32,7 +32,7 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, setEducationProgram, educationProgram } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
@@ -64,7 +64,8 @@ export const TodayScreen = ({ navigation }) => {
             setEducationProgress, 
             setMovementProgress,
             setProfileComplete, 
-            setCompletedProgram
+            setCompletedProgram,
+            setLastDateOnApp
         );
         getDailyPainScores(user.user.uid, setDailyPainScores)
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
