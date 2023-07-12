@@ -10,11 +10,11 @@ const GraphWrapper = styled.View`
 `;
 
 export const PainGraph = ({ graphData }) => {
-    const graphWidth = graphData.length * 45
+    const graphWidth = graphData.length
     
     return (
         <GraphWrapper>
-            <ScrollView horizontal style={{ flexDirection: 'row' }}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
             <VictoryChart
                 width={graphWidth > 400 ? graphWidth : 400}
                 height={300}
@@ -26,7 +26,7 @@ export const PainGraph = ({ graphData }) => {
                     background: { fill: "white" }
                 }}
                 theme={VictoryTheme.material}
-                // backgroundComponent={<Background y={0} height={275} />} 
+                backgroundComponent={<Background y={0} height={275} />} 
             >
                 <VictoryAxis
                     style={{
