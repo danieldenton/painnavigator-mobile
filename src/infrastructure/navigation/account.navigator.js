@@ -8,6 +8,7 @@ import { TermsOfUse } from "../../features/account/screens/terms-of-use.screen";
 import { ProfileSetupScreen } from "../../features/account/screens/profile-setup.screen";
 import { ProviderCodeScreen } from "../../features/account/screens/provider-code.screen";
 import { ExplanationScreen } from "../../features/account/screens/explanation.screen";
+import { ForgotPasswordScreen } from "../../features/account/screens/forgot-password.screen";
 
 const AccountStack = createStackNavigator();
 
@@ -24,6 +25,7 @@ export const AccountNavigator = () => {
                 <AccountStack.Screen name="Terms" component={TermsOfUse} />
             </AccountStack.Group>
             <AccountStack.Screen name="Login" component={LoginScreen} />
+            <AccountStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         </AccountStack.Navigator>
     )
 };
