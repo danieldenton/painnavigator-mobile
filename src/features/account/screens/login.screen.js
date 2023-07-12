@@ -20,7 +20,7 @@ export const LoginScreen = ({ navigation }) => {
         color: #4056F4;
         font-size: 16px;
         text-align: center;
-        margin-top: 300px;
+        margin-top: 350px;
         `
 
     return(
