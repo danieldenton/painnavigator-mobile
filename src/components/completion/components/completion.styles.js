@@ -8,6 +8,7 @@ export const CongratulationsHeaderWrapper = styled.View`
 `;
 
 export const CongratulationsHeader = styled.Text`
+    text-align: center;
     font-family: Inter_500Medium;
     font-size: 25px;
 `;
