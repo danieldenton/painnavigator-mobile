@@ -59,7 +59,7 @@ export const PainGraph = ({ graphData }) => {
                     data={graphData}
                     x="date"
                     y="score"
-                    size={6}
+                    size={3}
                 />
             </VictoryChart>
             </ScrollView>

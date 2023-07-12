@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components/native";
-import { Text } from "react-native";
 
 export const CongratulationsHeaderWrapper = styled.View`
     align-items: center;
@@ -8,6 +6,7 @@ export const CongratulationsHeaderWrapper = styled.View`
 `;
 
 export const CongratulationsHeader = styled.Text`
+    text-align: center;
     font-family: Inter_500Medium;
     font-size: 25px;
 `;

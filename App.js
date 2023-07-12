@@ -73,7 +73,6 @@ import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
-import { navigationRef, navigate } from "./src/infrastructure/navigation/wellness-coach.navigator";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
@@ -115,13 +114,6 @@ export default function App() {
   }, []);
 
   const lastNotificationResponse = Notifications.useLastNotificationResponse()
-
-  // useEffect(() => {
-  //   if (lastNotificationResponse) {
-  //     navigate('Conversation');
-  //   }
-  // }, [lastNotificationResponse]);
-  
 
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,

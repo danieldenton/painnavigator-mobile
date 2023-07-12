@@ -69,6 +69,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         })
     };
 
+    function resetPassword(email) {
+        return firebase.auth().sendPasswordResetEmail(email)
+    }
+
     const nextQuestion = () => {
         setCurrentQuestion((prevQuestion) => { return ( prevQuestion + 1 ) });
     };
@@ -217,7 +221,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 educationProgram,
                 setEducationProgram,
                 lastDateOnApp,
-                setLastDateOnApp
+                setLastDateOnApp,
+                resetPassword
             }}
         >
             {children}

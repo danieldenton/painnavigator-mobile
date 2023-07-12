@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { OnboardSwiper } from "../components/onboard-swiper.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
@@ -9,7 +10,7 @@ import { ONBOARD_EVENTS } from "../../../amplitude-events";
 
 export const OnboardScreen = ({ navigation }) => {
     const [currentPage, setCurrentPage] = useState(0);
-    //TODO: fix page zero interaction when you hit the back button
+    const { setError } = useContext(AuthenticationContext)
 
     const onPageScroll = (event) => {
         const {position} = event.nativeEvent;
@@ -22,17 +23,16 @@ export const OnboardScreen = ({ navigation }) => {
         <SafeView>
             <OnboardSwiper onPageScroll={onPageScroll} />
             <ButtonSection>
-                {/* <View style={{ marginBottom: 32 }}>
-                <SwiperDots progress={currentPage + 1} total={4} />
-                </View> */}
                 <JournalButton 
                     title={"Sign Up"}
                     onPress={() => {navigation.navigate("Provider")
-                    track(ONBOARD_EVENTS.CHOSE_SIGN_UP)}}
+                    track(ONBOARD_EVENTS.CHOSE_SIGN_UP)
+                    setError(null)}}
                 />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Login")
-                    track(ONBOARD_EVENTS.CHOSE_LOGIN)}}
+                    track(ONBOARD_EVENTS.CHOSE_LOGIN)
+                    setError(null)}}
                 >
                     <SkipQuestionText>
                         LOGIN
