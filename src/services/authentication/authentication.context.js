@@ -70,7 +70,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     };
 
     function resetPassword(email) {
-        return firebase.auth.sendPasswordResetEmail(email)
+        return firebase.auth().sendPasswordResetEmail(email)
     }
 
     const nextQuestion = () => {
