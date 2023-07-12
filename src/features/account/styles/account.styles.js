@@ -7,6 +7,22 @@ export const InputWrapper = styled.View`
   margin-top: 24px;
 `;
 
+export const ForgotPasswordWrapper = styled.Pressable`
+  align-self: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 30px;
+  height: 40;
+  width: 160px;
+`
+
+export const ForgotPassword = styled.Text`
+  font-family: Inter_500Medium;
+  color: #4056F4;
+  font-size: 16px;
+  text-align: center;
+`
+
 const ErrorContainer = styled.View`
   max-width: 300px;
   align-items: center;
@@ -19,6 +35,7 @@ const ErrorText = styled.Text`
   color: #c12b21;
   font-family: Inter_300Light;
   font-size: 14px;
+  text-align: center;
 `;
 
 export const ErrorMessage = ({ error }) => {
