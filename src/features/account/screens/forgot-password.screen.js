@@ -5,13 +5,12 @@ import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, ForgotPassword, ForgotPasswordWrapper } from "../styles/account.styles";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
-import styled from "styled-components/native";
 
 
 export const ForgotPasswordScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
-    const { onLogin, error, userLoading } = useContext(AuthenticationContext);
+    const { resetPassword } = useContext(AuthenticationContext);
 
     return(
         <SafeView>
@@ -29,7 +28,8 @@ export const ForgotPasswordScreen = ({ navigation }) => {
             </InputWrapper>
             <JournalButton 
                 title={"Send Reset Password Link"} 
-                onPress={() => {setMessage("If there is an account associated with this email address you will recieve an email with a link to reset the password.")}}
+                onPress={() => {setMessage("If there is an account associated with this email address you will recieve an email with a link to reset the password.")
+                resetPassword(email)}}
             />
             {message &&  <ErrorMessage error={message} />}
             <ForgotPasswordWrapper onPress={() => navigation.navigate("Onboard")}>
