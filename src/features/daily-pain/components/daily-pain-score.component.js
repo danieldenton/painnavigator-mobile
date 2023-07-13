@@ -15,14 +15,14 @@ export const DailyPainScoreComponent = () => {
     const uid = user.user.uid
 
     const handleDailyPainScore = () => {
+        setDailyPainStep(1)
         if (dailyPainScore.id) {
             patchDailyPainScore(dailyPainScore, setDailyPainScore)
             track(DAILY_PAIN_EVENTS.EDIT_DAILY_PAIN_SCORE)
         } else {
             postDailyPainScore(uid, dailyPainScore, setDailyPainScore)
             track(DAILY_PAIN_EVENTS.LOG_DAILY_PAIN_SCORE)
-        }
-        setDailyPainStep(1)  
+        }  
     }
 
     return (

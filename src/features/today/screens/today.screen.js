@@ -79,7 +79,7 @@ export const TodayScreen = ({ navigation }) => {
             patchLastDateOnApp(user.user.uid, timeZonedTodaysDate)
         }
     }, [lastDateOnApp])
-   
+
     useEffect(() => {
         getMessages(user.user.uid, setMessages)
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
@@ -152,6 +152,8 @@ export const TodayScreen = ({ navigation }) => {
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
+                <SubHeader title={"LOG TODAY'S PAIN SCORE"} size={14} />
+                {renderDailyPainScore()}
                 {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
                 { lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
                 {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
@@ -164,7 +166,6 @@ export const TodayScreen = ({ navigation }) => {
                 <SubHeader title={"DAILY ACTIVITIES"} size={14} />
                 <View style={{ marginBottom: 16 }}>
                     {renderWellnessCoachMessageActivity()}
-                    {renderDailyPainScore()}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
                     {renderSmartGoalDailyActivity()}

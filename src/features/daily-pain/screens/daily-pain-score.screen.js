@@ -12,7 +12,7 @@ import { isAndroid } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
-    const { dailyPainStep, setDailyPainStep, setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep, setDailyPainScores } = useContext(DailyPainContext)
 
     useEffect(() => {
         getDailyPainScores(user.user.uid, setDailyPainScores)
