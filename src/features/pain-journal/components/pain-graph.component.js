@@ -29,7 +29,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
         return  <VictoryBar data={[{ x: bar.date, y: bar.score }]} barWidth={10} />
     })
 
-    const graphWidth = score.length * 40
+    const graphWidth = score.length 
     
     return (
         <GraphWrapper>
@@ -52,9 +52,9 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                       domainPadding={40}
                       theme={VictoryTheme.material}
                 >
-                    <VictoryGroup colorScale={"qualitative"} offset={20}>
-                        <VictoryBar data={graphData} y="score" x="date" />
-                        <VictoryBar data={graphDataAfter} y="score" x="date" />
+                    <VictoryGroup colorScale={"qualitative"} offset={12}>
+                        <VictoryBar data={graphData} y="score" x="date" barWidth={12}/>
+                        <VictoryBar data={graphDataAfter} y="score" x="date" barWidth={12}/>
                     </VictoryGroup>
                 </VictoryChart>
             </ScrollView>
