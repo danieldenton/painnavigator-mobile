@@ -152,7 +152,7 @@ export const TodayScreen = ({ navigation }) => {
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
-                <SubHeader title={"LOG TODAY'S PAIN SCORE"} size={14} />
+                <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
                 {renderDailyPainScore()}
                 {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
                 { lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
