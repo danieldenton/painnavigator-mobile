@@ -30,6 +30,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
     })
 
     const graphWidth = score.length 
+    const yTickValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     
     return (
         <GraphWrapper>
