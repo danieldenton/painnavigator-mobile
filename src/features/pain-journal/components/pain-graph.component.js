@@ -38,7 +38,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
               <HelpTextColored style={{ color: '#4AB19E'}}>intensity score after</HelpTextColored>
             </HelpTextColoredWrapper>
             
-            <ScrollView horizontal style={{ flexDirection: 'row' }}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
                 <VictoryChart 
                     animate={{
                         duration: 2000,
