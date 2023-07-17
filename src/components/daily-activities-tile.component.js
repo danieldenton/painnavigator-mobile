@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { Add, FoodJournalIcon, Locked } from "../icons";
 import { handleTrackEvent } from "../utils";
+
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
