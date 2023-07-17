@@ -54,7 +54,6 @@ export const JournalScreen = ({ navigation }) => {
                 screen={"Journals"} 
             />
             {journalTiles}
-            {!USER_COMPLETED_MOOD_UNIT && <LockedActivityText />}
         </SafeView>
     );
 };
