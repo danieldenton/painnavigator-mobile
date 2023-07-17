@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { DailyActivitiesTile, LockedActivity, LockedActivityText } from "../../../components/daily-activities-tile.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalIcon, MoodJournalIcon, FoodJournalIcon } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
 
