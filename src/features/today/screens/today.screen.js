@@ -122,8 +122,9 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderJournalDailyActivity() {
-        if(lastFoodJournal !== timeZonedTodaysDate & lastMoodJournal !== timeZonedTodaysDate & lastPainJournal !== timeZonedTodaysDate) {
-            return <Journals navigation={navigation} />
+        const userCompletedPainJournallUnit = educationProgress > 4;
+        if(userCompletedPainJournallUnit && lastFoodJournal !== timeZonedTodaysDate && lastMoodJournal !== timeZonedTodaysDate && lastPainJournal !== timeZonedTodaysDate) {
+            return <Journals navigation={navigation} /> 
         };
     };
 
