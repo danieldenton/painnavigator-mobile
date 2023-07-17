@@ -42,7 +42,7 @@ export const JournalScreen = ({ navigation }) => {
                     key={title}
                 />
             :
-                <LockedActivity title={title} key={title} />
+                null
         );
     });
 
