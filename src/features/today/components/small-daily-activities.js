@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext} from "react";
 import { SmallDailyActivitiesTile } from "../../../components/small-daily-activities-tile";
 import { JournalEntryIcon, WellnessCoachIcon, SmartGoalDailyActivity, Profile } from "../../../icons";
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 import { MESSAGE_EVENTS } from "../../../amplitude-events";
+import { EducationContext } from "../../../services/education/education.context";
 
 export const Journals = ({ navigation }) => {
+    const { educationProgress } = useContext(EducationContext)
+    const additionalJournals = educationProgress > 24
     return (
         <SmallDailyActivitiesTile
             navigation={navigation} 
-            destination={"JournalsNavigator"} 
+            destination={additionalJournals ? "JournalsNavigator" : "PainJournals"} 
             title={"Make a Journal Entry"}
             icon={<JournalEntryIcon />}
         />
