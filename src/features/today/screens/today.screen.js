@@ -41,7 +41,7 @@ export const TodayScreen = ({ navigation }) => {
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
-    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
@@ -122,7 +122,7 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderJournalDailyActivity() {
-        const userCompletedPainJournallUnit = educationProgress > 4;
+        const userCompletedPainJournallUnit = currentModule.id > 4;
         if(userCompletedPainJournallUnit && lastFoodJournal !== timeZonedTodaysDate && lastMoodJournal !== timeZonedTodaysDate && lastPainJournal !== timeZonedTodaysDate) {
             return <Journals navigation={navigation} /> 
         };
@@ -135,7 +135,7 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderSmartGoalDailyActivity() { 
-        const userCompletedSmartGoalUnit = educationProgress > 7;
+        const userCompletedSmartGoalUnit = currentModule.id > 7;
         if(userCompletedSmartGoalUnit && activeGoal) {
             if(lastSmartGoalUpdate === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />

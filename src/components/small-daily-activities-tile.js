@@ -8,7 +8,7 @@ const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
     padding: 16px;
-    background-color: #EdF1F5
+    background-color: #edf1f5
 `;
 
 const ModuleCardContent = styled(Card.Content)`
