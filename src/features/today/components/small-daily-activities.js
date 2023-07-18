@@ -12,7 +12,7 @@ export const Journals = ({ navigation }) => {
         <SmallDailyActivitiesTile
             navigation={navigation} 
             destination={additionalJournals ? "JournalsNavigator" : "PainJournals"} 
-            title={"Make a Journal Entry"}
+            title={"Create a Journal Entry"}
             icon={<JournalEntryIcon />}
         />
     );
