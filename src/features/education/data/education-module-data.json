@@ -153,7 +153,7 @@
             "name": "Pain Score",
             "source": "https://res.cloudinary.com/painnavigator/video/upload/v1650905999/For%20Mobile%20App/Education/Pain%20Score.mp4",
             "length": 8,
-            "post_video_destination": "PainJournalHome",
+            "post_video_destination": "DailyPainScore",
             "skippable": false,
             "condensed_program": true,
             "summary": "What does a pain score communicate? Learn how to rate your pain on a scale from 0 to 10."
