@@ -6,8 +6,8 @@ import { MESSAGE_EVENTS } from "../../../amplitude-events";
 import { EducationContext } from "../../../services/education/education.context";
 
 export const Journals = ({ navigation }) => {
-    const { educationProgress } = useContext(EducationContext)
-    const additionalJournals = educationProgress > 24
+    const { currentModule } = useContext(EducationContext)
+    const additionalJournals = currentModule.id > 24
     return (
         <SmallDailyActivitiesTile
             navigation={navigation} 

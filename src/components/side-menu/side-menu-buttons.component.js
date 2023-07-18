@@ -10,8 +10,8 @@ export const MenuButtons = ({ navigation }) => {
     const { completedProgram } = useContext(AuthenticationContext)
     const showSmartGoal = educationProgress > 7 ? true : false;
     const showJournals = educationProgress > 4 ? true : false;
-    const journalDestination = currentModule.id >= 24 ? "JournalsNavigator" : "PainJournals";
-    const journalLabel = currentModule.id >= 24 ? "Journals" : "Pain Journals";
+    const journalDestination = currentModule.id > 24 ? "JournalsNavigator" : "PainJournals";
+    const journalLabel = currentModule.id > 24 ? "Journals" : "Pain Journals";
 
     const menuOptions = [
         {
