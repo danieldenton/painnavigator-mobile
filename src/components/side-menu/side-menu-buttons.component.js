@@ -9,6 +9,9 @@ export const MenuButtons = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext);
     const { completedProgram } = useContext(AuthenticationContext)
     const showSmartGoal = educationProgress > 7 ? true : false;
+    const showJournals = educationProgress > 4 ? true : false;
+    const journalDestination = educationProgress > 24 ? "JournalsNavigator" : "PainJournals";
+    const journalLabel = educationProgress > 24 ? "Journals" : "Pain Journals";
 
     const menuOptions = [
         {
@@ -27,10 +30,10 @@ export const MenuButtons = ({ navigation }) => {
         },
         {
             id: 3,
-            label: "Journals",
-            destination: "JournalsNavigator",
+            label: journalLabel,
+            destination: journalDestination,
             icon: <JournalMenuIcon />,
-            show: true
+            show: showJournals
         },
         {
             id: 4, 
