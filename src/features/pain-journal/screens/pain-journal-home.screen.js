@@ -25,8 +25,8 @@ const HelpText = styled.Text`
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
   const { painJournals } = useContext(PainJournalContext);
-  const { educationProgress } = useContext(EducationContext)
-  const additionalJournals = educationProgress > 24
+  const { currentModule } = useContext(EducationContext)
+  const additionalJournals = currentModule.id >= 24 
   const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : additionalJournals ? "Journals" : "Today";
 
   painJournals.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).reverse()
