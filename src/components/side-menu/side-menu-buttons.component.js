@@ -6,7 +6,7 @@ import { View } from "react-native";
 import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon, PainJournalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
-    const { currentModule } = useContext(EducationContext);
+    const { currentModule, educationProgress } = useContext(EducationContext);
     const { completedProgram } = useContext(AuthenticationContext)
     const showSmartGoal = educationProgress > 7 ? true : false;
     const showJournals = educationProgress > 4 ? true : false;
