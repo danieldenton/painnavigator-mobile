@@ -20,6 +20,23 @@ export const Body = styled.Text`
     margin-top: 28px;
 `;
 
+export const PainScoreHeader = styled.Text`
+    font-family: Poppins_500Medium;
+    font-size: 25px;
+    width: 85%;
+    text-align: center;
+`;
+
+export const PainScoreBody = styled.Text`
+    font-family: Inter_400Regular;
+    font-size: 16px;
+    line-height: 28px;
+    width: 95%;
+    margin-top: 28px;
+    text-align: center;
+`;
+
+
 export const Bolded = styled.Text`
     font-family: Inter_700Bold;
     font-size: 16px;

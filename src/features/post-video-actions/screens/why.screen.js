@@ -5,6 +5,7 @@ import { SmartGoal } from "../components/smart-goal.component";
 import { PainJournal } from "../components/pain-journal.component";
 import { MoodJournal } from "../components/mood-journal.component";
 import { FoodJournal } from "../components/food-journal.component";
+import { DailyPainScores } from "../components/daily-pain.component";
 import { FavoriteActivities } from "../components/favorite-activities.component";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
@@ -20,6 +21,8 @@ export const Why = ({ navigation, route }) => {
 
     const videoDestinationNavigation = () => {
         switch (post_video_destination) {
+          case "DailyPainScore":
+            return <DailyPainScores />;
           case "SmartGoal":
             return <SmartGoal />;
           case "PainJournal":
