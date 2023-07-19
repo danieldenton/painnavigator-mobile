@@ -11,7 +11,7 @@ import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
-import { track } from '@amplitude/analytics-react-native'
+import { handleTrackEvent } from "../../../utils";
 import { SMART_GOAL_EVENTS, PAIN_JOURNAL_EVENTS, MOOD_JOURNAL_EVENTS, FOOD_JOURNAL_EVENTS, MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const Why = ({ navigation, route }) => {
@@ -68,7 +68,7 @@ export const Why = ({ navigation, route }) => {
             </Scroll>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => (track(trackPostVideoEvent), navigation.navigate(post_video_destination))}
+                    onPress={() => (handleTrackEvent(trackPostVideoEvent), navigation.navigate(post_video_destination))}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>
