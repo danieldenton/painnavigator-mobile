@@ -7,7 +7,7 @@ import { handleTrackEvent } from "../utils";
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
-    padding: 16px;
+    padding: 12px;
     background-color: #edf1f5
 `;
 
