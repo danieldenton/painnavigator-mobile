@@ -19,8 +19,18 @@ export const Body = styled.Text`
     width: 95%;
     margin-top: 28px;
 `;
+export const PainScoreWrapper = styled.View`
+    margin-top: 32px;
+`;
+export const PainGraphWrapper = styled.View`
+    margin-top: 32px;
+    margin-bottom: 32px;
+    align-items: center;
+`;
 
 export const PainScoreHeader = styled.Text`
+    margin-left: 22px;
+    margin-bottom: 16px;
     font-family: Poppins_500Medium;
     font-size: 25px;
     width: 85%;
