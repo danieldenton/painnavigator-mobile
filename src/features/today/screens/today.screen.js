@@ -115,7 +115,7 @@ export const TodayScreen = ({ navigation }) => {
 
     function renderDailyPainScore() {
         if(dailyPainScore.id) {
-            return <DailyGoalCompleted type={"Daily Pain Score Logged"} />
+            return <DailyGoalCompleted type={"Daily Pain Score"} />
         } else {
             return <DailyPainScore navigation={navigation} />
         }
