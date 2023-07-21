@@ -6,9 +6,9 @@ import { View } from "react-native";
 import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon, PainJournalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
-    const { currentModule } = useContext(EducationContext);
-    const { completedProgram } = useContext(AuthenticationContext)
-    const showSmartGoal = currentModule.id > 7 ? true : false;
+    const { currentModule, additionalJournals, shorterProgram, educationProgress } = useContext(EducationContext);
+    const { completedProgram, educationProgram } = useContext(AuthenticationContext)
+    const showSmartGoal = educationProgram === 2 ? educationProgress > 5 : educationProgress > 7
     const showJournals = currentModule.id > 4 ? true : false;
     const journalDestination = currentModule.id > 24 ? "JournalsNavigator" : "PainJournals";
     const journalLabel = currentModule.id > 24 ? "Journals" : "Pain Journals";
