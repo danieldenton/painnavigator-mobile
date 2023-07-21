@@ -7,10 +7,9 @@ import { EducationContext } from "../../../services/education/education.context"
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const Journals = ({ navigation }) => {
-    const { educationProgress } = useContext(EducationContext)
+    const { educationProgress, shorterProgram, additionalJournals } = useContext(EducationContext)
     const { educationProgram } = useContext(AuthenticationContext)
-    const shorterProgram = educationProgram > 2 && educationProgram < 7
-    const additionalJournals = educationProgram === 2 ? educationProgress > 2 : shorterProgram ? educationProgress > 21 : 24
+   
     return (
         <SmallDailyActivitiesTile
             navigation={navigation} 

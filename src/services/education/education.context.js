@@ -15,6 +15,9 @@ export const EducationContextProvider = ({ children }) => {
     const [lastCompletedModule, setLastCompletedModule] = useState(null);
     const { user, educationProgram } = useContext(AuthenticationContext);
 
+    const shorterProgram = educationProgram > 2 && educationProgram < 7
+    const additionalJournals = educationProgram === 2 ? educationProgress > 2 : shorterProgram ? educationProgress > 21 : 24
+
     useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
         setCurrentModule(module);
@@ -161,7 +164,9 @@ export const EducationContextProvider = ({ children }) => {
                 setEducationProgress,
                 setLastCompletedModule,
                 skipModule,
-                skippedEducationModules
+                skippedEducationModules, 
+                shorterProgram, 
+                additionalJournals
             }}
         >
             {children}
