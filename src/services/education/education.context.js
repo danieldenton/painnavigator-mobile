@@ -16,8 +16,8 @@ export const EducationContextProvider = ({ children }) => {
     const { user, educationProgram } = useContext(AuthenticationContext);
 
     const shorterProgram = educationProgram > 2 && educationProgram < 7
-    const additionalJournals = educationProgram === 2 ? educationProgress > 15 : shorterProgram ? educationProgress > 21 : 24
-    const moodJournalReady = educationProgram === 2 ? educationProgress > 17 : shorterProgram ? educationProgress > 23 : 26
+    const additionalJournals = educationProgram === 2 ? educationProgress > 15 : shorterProgram ? educationProgress > 21 : educationProgress > 24
+    const moodJournalReady = educationProgram === 2 ? educationProgress > 17 : shorterProgram ? educationProgress > 23 : educationProgress > 26
 
     useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
