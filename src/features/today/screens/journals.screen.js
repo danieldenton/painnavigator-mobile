@@ -6,8 +6,7 @@ import { PainJournalIcon, MoodJournalIcon, FoodJournalIcon } from "../../../icon
 import { EducationContext } from "../../../services/education/education.context";
 
 export const JournalScreen = ({ navigation }) => {
-    const { additionalJournals } = useContext(EducationContext);
-    const USER_COMPLETED_MOOD_UNIT = currentModule.id > 26;
+    const { moodJournalReady } = useContext(EducationContext);
 
     const journals = [
         {
@@ -23,7 +22,7 @@ export const JournalScreen = ({ navigation }) => {
         {
             "destination": "MoodJournal",
             "icon": <MoodJournalIcon />,
-            "show": USER_COMPLETED_MOOD_UNIT
+            "show": moodJournalReady
         }
     ];
 
