@@ -4,11 +4,9 @@ import { JournalEntryIcon, WellnessCoachIcon, SmartGoalDailyActivity, Profile } 
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 import { MESSAGE_EVENTS } from "../../../amplitude-events";
 import { EducationContext } from "../../../services/education/education.context";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const Journals = ({ navigation }) => {
-    const { educationProgress, shorterProgram, additionalJournals } = useContext(EducationContext)
-    const { educationProgram } = useContext(AuthenticationContext)
+    const { additionalJournals } = useContext(EducationContext)
    
     return (
         <SmallDailyActivitiesTile
