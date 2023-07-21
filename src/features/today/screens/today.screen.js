@@ -113,6 +113,10 @@ export const TodayScreen = ({ navigation }) => {
         Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
     }, []);
 
+    useEffect(() => {
+
+    }, [currentModule])
+
     function renderDailyPainScore() {
         if(dailyPainScore.id) {
             return <DailyGoalCompleted type={"Daily Pain Score"} />
@@ -122,7 +126,12 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderJournalDailyActivity() {
-        const userCompletedPainJournallUnit = currentModule.id > 4;
+        let userCompletedPainJournallUnit
+        if (educationProgram === 2) {
+            userCompletedPainJournallUnit = educationProgress > 2
+        } else {
+            userCompletedPainJournallUnit = educationProgress > 4
+        }
         if(userCompletedPainJournallUnit && lastFoodJournal !== timeZonedTodaysDate && lastMoodJournal !== timeZonedTodaysDate && lastPainJournal !== timeZonedTodaysDate) {
             return <Journals navigation={navigation} /> 
         };
@@ -170,7 +179,7 @@ export const TodayScreen = ({ navigation }) => {
                     {renderWellnessCoachMessageActivity()}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
-                    {renderSmartGoalDailyActivity()}
+                    {/* {renderSmartGoalDailyActivity()} */}
                     {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
                     {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
                     {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
