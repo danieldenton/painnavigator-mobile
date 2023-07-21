@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { Add, FoodJournalIcon, Locked } from "../icons";
 import { handleTrackEvent } from "../utils";
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
-    padding: 21px;
+    padding: 12px;
 `;
 
 const ModuleCardContent = styled(Card.Content)`
@@ -33,7 +32,7 @@ const CardIconSection = styled.View`
 `;
 
 
-export const DailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
+export const SmallDailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
 
     return (
         <TouchableOpacity
@@ -48,8 +47,6 @@ export const DailyActivitiesTile = ({ destination, title, navigation, icon, scre
                         <CardHeader>{title}</CardHeader>
                     </CardTextSection>
                     <CardIconSection>
-                        {title === "Add New Entry" && <Add />}
-                        {title === "Today's Food Journal" && <FoodJournalIcon />}
                         {icon}
                     </CardIconSection>
                 </ModuleCardContent>

@@ -1,74 +1,69 @@
-import React from "react";
-import { Card } from "react-native-paper";
-import styled from "styled-components/native";
-import { Selected } from "../../../icons";
-import { educationModules } from "../../education/data/education-module-data.json";
+import React, { useContext} from "react";
+import { SmallDailyActivitiesTile } from "../../../components/small-daily-activities-tile";
+import { JournalEntryIcon, WellnessCoachIcon, SmartGoalDailyActivity, Profile } from "../../../icons";
+import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
+import { MESSAGE_EVENTS } from "../../../amplitude-events";
+import { EducationContext } from "../../../services/education/education.context";
 
-const DailyGoalCard = styled(Card)`
-    margin-top: 16px;
-    border-radius: 15px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 21px;
-    padding-right: 22px;
-    background-color: #CDEBE6;
-`;
-
-const DailyGoalCardContent = styled(Card.Content)`
-    flex-direction: row;
-    padding: 0px;
-    align-items: center;
-`;
-
-const CardTextSection = styled.View`
-    flex: .8;
-`;
-
-const CardHeader = styled.Text`
-    font-family: Inter_500Medium;
-    font-size: 18px;
-`;
-
-const CardIconSection = styled.View`
-    flex: .2;
-    align-items: flex-end;
-    justify-content: center;
-`;
-
-const DailyGoalMessageSection = styled.View`
-    align-items: center;
-    margin-top: 16px;
-`;
-
-const DailyGoalMessage = styled.Text`
-    color: #606C81;
-    font-size: 14px;
-    font-family: Inter_400Regular;
-`
-
-export const SmallDailyActivities = ({ type, moduleId }) => {
-    const module = moduleId ? educationModules.find(module => module.id === moduleId) : { "name": "" };
-
+export const Journals = ({ navigation }) => {
+    const { currentModule } = useContext(EducationContext)
+    const additionalJournals = currentModule.id > 24
     return (
-        <>
-            <DailyGoalCard>
-                <DailyGoalCardContent>
-                    <CardTextSection>
-                        <CardHeader>
-                            {type === "module" ? module.name : `${type} Logged`}
-                        </CardHeader>
-                    </CardTextSection>
-                    <CardIconSection>
-                        <Selected />
-                    </CardIconSection>
-                </DailyGoalCardContent>
-            </DailyGoalCard>
+        <SmallDailyActivitiesTile
+            navigation={navigation} 
+            destination={additionalJournals ? "JournalsNavigator" : "PainJournals"} 
+            title={additionalJournals ? "Create a Journal Entry" : "Create a Pain Journal Entry"}
+            icon={<JournalEntryIcon />}
+        />
+    );
+};
 
-            {type === "module" && <DailyGoalMessageSection>
-                <DailyGoalMessage>
-                    Daily goal reached! Keep going?
-                </DailyGoalMessage>
-            </DailyGoalMessageSection>}
-        </>
+export const WellnessCoach = ({ navigation }) => {
+    return (
+        <SmallDailyActivitiesTile 
+            navigation={navigation} 
+            destination={"WellnessCoach"} 
+            title={"Check in with your Coach"}
+            icon={<WellnessCoachIcon />}
+            trackEvent={MESSAGE_EVENTS.VIEW_MESSAGE_FROM_WELLNESS_COACH}
+        />
+    );
+};
+
+export const NewSmartGoal = ({ navigation }) => {
+    return (
+        <SmallDailyActivitiesTile 
+            navigation={navigation} 
+            destination={"SmartGoals"} 
+            screen={"NewSmartGoal"}
+            screenParams={"DailyActivity"}
+            title={"Create a Smart Goal"}
+            icon={<SmartGoalDailyActivity />}
+            trackEvent={SMART_GOAL_EVENTS.START_NEW_SMART_GOAL}
+        />
+    );
+};
+
+export const ProfileSetup = ({ navigation }) => {
+    return (
+        <SmallDailyActivitiesTile 
+            navigation={navigation}
+            destination={"Profile"}
+            title={"Finish Setting Up Profile"}
+            icon={<Profile />}
+        />
+    );
+};
+
+export const SmartGoalUpdate = ({ navigation }) => {
+    return (
+        <SmallDailyActivitiesTile 
+            navigation={navigation} 
+            destination={"SmartGoals"} 
+            screen={"NewSmartGoalUpdate"}
+            screenParams={"DailyActivity"}
+            title={"Update Smart Goal"}
+            icon={<SmartGoalDailyActivity />}
+        />
     );
 };

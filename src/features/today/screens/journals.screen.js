@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { DailyActivitiesTile, LockedActivity, LockedActivityText } from "../../../components/daily-activities-tile.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalIcon, MoodJournalIcon, FoodJournalIcon } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
 
 export const JournalScreen = ({ navigation }) => {
-    const { educationProgress } = useContext(EducationContext);
-    const USER_COMPLETED_FOOD_UNIT = educationProgress > 23;
-    const USER_COMPLETED_MOOD_UNIT = educationProgress > 26;
+    const { currentModule } = useContext(EducationContext);
+    const USER_COMPLETED_FOOD_UNIT = currentModule.id > 24;
+    const USER_COMPLETED_MOOD_UNIT = currentModule.id > 26;
 
     const journals = [
         {
@@ -42,7 +42,7 @@ export const JournalScreen = ({ navigation }) => {
                     key={title}
                 />
             :
-                <LockedActivity title={title} key={title} />
+                null
         );
     });
 
@@ -54,7 +54,6 @@ export const JournalScreen = ({ navigation }) => {
                 screen={"Journals"} 
             />
             {journalTiles}
-            {!USER_COMPLETED_MOOD_UNIT && <LockedActivityText />}
         </SafeView>
     );
 };

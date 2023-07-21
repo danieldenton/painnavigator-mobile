@@ -5,12 +5,13 @@ import { SmartGoal } from "../components/smart-goal.component";
 import { PainJournal } from "../components/pain-journal.component";
 import { MoodJournal } from "../components/mood-journal.component";
 import { FoodJournal } from "../components/food-journal.component";
+import { DailyPainScores } from "../components/daily-pain.component";
 import { FavoriteActivities } from "../components/favorite-activities.component";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { ModuleButton } from "../../../components/button.component";
-import { track } from '@amplitude/analytics-react-native'
+import { handleTrackEvent } from "../../../utils";
 import { SMART_GOAL_EVENTS, PAIN_JOURNAL_EVENTS, MOOD_JOURNAL_EVENTS, FOOD_JOURNAL_EVENTS, MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
 export const Why = ({ navigation, route }) => {
@@ -20,6 +21,8 @@ export const Why = ({ navigation, route }) => {
 
     const videoDestinationNavigation = () => {
         switch (post_video_destination) {
+          case "DailyPainScore":
+            return <DailyPainScores />;
           case "SmartGoal":
             return <SmartGoal />;
           case "PainJournal":
@@ -65,7 +68,7 @@ export const Why = ({ navigation, route }) => {
             </Scroll>
             <ButtonSection>
                 <ModuleButton
-                    onPress={() => (track(trackPostVideoEvent), navigation.navigate(post_video_destination))}
+                    onPress={() => (handleTrackEvent(trackPostVideoEvent), navigation.navigate(post_video_destination))}
                     title={"Let's get started!"} 
                 />
             </ButtonSection>

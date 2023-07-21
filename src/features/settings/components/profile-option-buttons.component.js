@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { ReviewOptionButton } from "../../../components/review-journal-question.component";
 import { MY_ACTIVITIES_EVENTS } from "../../../amplitude-events";
 
-export const ProfileOptionsButtons = ({ navigation, profileComplete, educationProgress }) => {
+export const ProfileOptionsButtons = ({ navigation, profileComplete, currentModule }) => {
 
     const profileButtonOptions = [
         {
@@ -16,7 +16,7 @@ export const ProfileOptionsButtons = ({ navigation, profileComplete, educationPr
             id: 2,
             option: "My Activities",
             destination: "FavoriteActivities",
-            show: educationProgress > 38 ? true : false,
+            show: currentModule.id > 38 ? true : false,
             trackEvent: MY_ACTIVITIES_EVENTS.VIEW_MY_ACTIVITIES
         },
         {

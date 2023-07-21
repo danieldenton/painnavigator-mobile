@@ -4,6 +4,7 @@ import { JournalTile } from "../../../components/journal-tile.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { PainGraph } from "../components/pain-graph.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { EducationContext } from "../../../services/education/education.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component"
@@ -24,7 +25,9 @@ const HelpText = styled.Text`
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
   const { painJournals } = useContext(PainJournalContext);
-  const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : "Journals";
+  const { currentModule } = useContext(EducationContext)
+  const additionalJournals = currentModule.id > 24 
+  const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction ? "Today" : additionalJournals ? "Journals" : "Today";
 
   painJournals.sort((a, b) => new Date(a.created_at) - new Date(b.created_at)).reverse()
 

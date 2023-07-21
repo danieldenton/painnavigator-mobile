@@ -23,7 +23,8 @@ import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
-import { Journals, NewSmartGoal, ProfileSetup, SmartGoalUpdate, WellnessCoach, DailyPainScore } from "../components/daily-activities.component";
+import {  DailyPainScore } from "../components/daily-activities.component";
+import { Journals, WellnessCoach, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/small-daily-activities";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
 import { getUser, patchLastDateOnApp } from "../../../services/authentication/authentication.service";
@@ -40,7 +41,7 @@ export const TodayScreen = ({ navigation }) => {
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
-    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
@@ -114,15 +115,16 @@ export const TodayScreen = ({ navigation }) => {
 
     function renderDailyPainScore() {
         if(dailyPainScore.id) {
-            return <DailyGoalCompleted type={"Daily Pain Score Logged"} />
+            return <DailyGoalCompleted type={"Daily Pain Score"} />
         } else {
             return <DailyPainScore navigation={navigation} />
         }
     }
 
     function renderJournalDailyActivity() {
-        if(lastFoodJournal !== timeZonedTodaysDate & lastMoodJournal !== timeZonedTodaysDate & lastPainJournal !== timeZonedTodaysDate) {
-            return <Journals navigation={navigation} />
+        const userCompletedPainJournallUnit = currentModule.id > 4;
+        if(userCompletedPainJournallUnit && lastFoodJournal !== timeZonedTodaysDate && lastMoodJournal !== timeZonedTodaysDate && lastPainJournal !== timeZonedTodaysDate) {
+            return <Journals navigation={navigation} /> 
         };
     };
 
@@ -133,7 +135,7 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderSmartGoalDailyActivity() { 
-        const userCompletedSmartGoalUnit = educationProgress > 7;
+        const userCompletedSmartGoalUnit = currentModule.id > 7;
         if(userCompletedSmartGoalUnit && activeGoal) {
             if(lastSmartGoalUpdate === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />

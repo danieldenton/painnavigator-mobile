@@ -285,7 +285,7 @@ export const NeutralFaceSelected = () => {
 
 export const JournalEntryIcon = () => {
     return (
-        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Svg width="46" height="46" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#45D2BC"/>
             <Path d="M36.8442 13.4816L16.0566 31.7311L13.0001 41.1302L22.5768 39.3412L43.3641 21.0919C44.1662 16.4623 40.8682 13.2418 36.8442 13.4816Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             <Path d="M15 37L17.6593 40.0429" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -334,7 +334,7 @@ export const Play = () => {
 
 export const Profile = () => {
     return (
-        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Svg width="46" height="46" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#FFD60A"/>
             <Circle cx="28" cy="20" r="7.25" fill="white" stroke="black" strokeWidth="1.5"/>
             <Path d="M27.76 30C15.2906 30.0001 14.0999 37.1502 14.0071 43.0009C13.9983 43.5531 14.4477 44 15 44H41C41.5523 44 42.0017 43.5527 41.991 43.0005C41.8703 36.7557 40.3638 29.9999 27.76 30Z" fill="white" stroke="black" strokeWidth="1.5"/>
@@ -476,7 +476,7 @@ export const SkippedUnit = () => {
 
 export const SmartGoalDailyActivity = () => {
     return (
-        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Svg width="46" height="46" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#6A7AEF"/>
             <Path d="M11 33.25V40H41V13H33.5V19.75H26V26.5H18.5V33.25H11Z" fill="white" stroke="black" strokeWidth="1.5" strokeLinejoin="round"/>
         </Svg>
@@ -514,7 +514,7 @@ export const UnreadMessageIcon = () => {
 
 export const WellnessCoachIcon = () => {
     return (
-        <Svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Svg width="46" height="46" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Circle cx="28" cy="28" r="28" fill="#45D2BC"/>
             <Path d="M20.8484 40.9195L20.7429 31.6805L27.4086 34.413L20.8484 40.9195Z" fill="white"/>
             <Rect x="16" y="18" width="24" height="17" fill="white"/>

@@ -15,7 +15,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 export const SettingsScreen = ({ navigation }) => {
     const { cancelEdits, changes, saveEdits, userInfo, profileComplete } = useContext(ProfileContext);
-    const { educationProgress } = useContext(EducationContext);
+    const { currentModule } = useContext(EducationContext);
     const [editing, setEditing] = useState(false);
     const [showExitModal, setShowExitModal] = useState(false);
     const settingsOptions = useRef(null);
@@ -53,7 +53,7 @@ export const SettingsScreen = ({ navigation }) => {
                             <ProfileOptionsButtons 
                                 navigation={navigation} 
                                 profileComplete={profileComplete} 
-                                educationProgress={educationProgress}
+                                currentModule={currentModule}
                             />
                             <DeleteProfile />
                      </>
