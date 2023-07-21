@@ -6,9 +6,7 @@ import { PainJournalIcon, MoodJournalIcon, FoodJournalIcon } from "../../../icon
 import { EducationContext } from "../../../services/education/education.context";
 
 export const JournalScreen = ({ navigation }) => {
-    const { currentModule } = useContext(EducationContext);
-    const USER_COMPLETED_FOOD_UNIT = currentModule.id > 24;
-    const USER_COMPLETED_MOOD_UNIT = currentModule.id > 26;
+    const { moodJournalReady } = useContext(EducationContext);
 
     const journals = [
         {
@@ -19,12 +17,12 @@ export const JournalScreen = ({ navigation }) => {
         {
             "destination": "FoodJournal",
             "icon": <FoodJournalIcon />,
-            "show": USER_COMPLETED_FOOD_UNIT
+            "show": true
         },
         {
             "destination": "MoodJournal",
             "icon": <MoodJournalIcon />,
-            "show": USER_COMPLETED_MOOD_UNIT
+            "show": moodJournalReady
         }
     ];
 

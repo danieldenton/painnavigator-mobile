@@ -126,12 +126,7 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderJournalDailyActivity() {
-        let userCompletedPainJournallUnit
-        if (educationProgram === 2) {
-            userCompletedPainJournallUnit = educationProgress > 2
-        } else {
-            userCompletedPainJournallUnit = educationProgress > 4
-        }
+        const userCompletedPainJournallUnit = educationProgram === 2 ? educationProgress > 2 : educationProgress > 4
         if(userCompletedPainJournallUnit && lastFoodJournal !== timeZonedTodaysDate && lastMoodJournal !== timeZonedTodaysDate && lastPainJournal !== timeZonedTodaysDate) {
             return <Journals navigation={navigation} /> 
         };
@@ -144,7 +139,7 @@ export const TodayScreen = ({ navigation }) => {
     }
 
     function renderSmartGoalDailyActivity() { 
-        const userCompletedSmartGoalUnit = currentModule.id > 7;
+        const userCompletedSmartGoalUnit = educationProgram === 2 ? educationProgress > 5 : educationProgress > 7
         if(userCompletedSmartGoalUnit && activeGoal) {
             if(lastSmartGoalUpdate === timeZonedTodaysDate) {
                 return <DailyGoalCompleted type={"Smart Goal Update"} />
@@ -179,7 +174,7 @@ export const TodayScreen = ({ navigation }) => {
                     {renderWellnessCoachMessageActivity()}
                     {!profileComplete && <ProfileSetup navigation={navigation} />}
                     {renderJournalDailyActivity()}
-                    {/* {renderSmartGoalDailyActivity()} */}
+                    {renderSmartGoalDailyActivity()}
                     {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
                     {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
                     {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}

@@ -6,12 +6,12 @@ import { View } from "react-native";
 import { JournalMenuIcon, Settings, Units, ProgressMenuIcon, SmartGoalMenuIcon, PainJournalMenuIcon } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
-    const { currentModule } = useContext(EducationContext);
-    const { completedProgram } = useContext(AuthenticationContext)
-    const showSmartGoal = currentModule.id > 7 ? true : false;
-    const showJournals = currentModule.id > 4 ? true : false;
-    const journalDestination = currentModule.id > 24 ? "JournalsNavigator" : "PainJournals";
-    const journalLabel = currentModule.id > 24 ? "Journals" : "Pain Journals";
+    const { additionalJournals, educationProgress } = useContext(EducationContext);
+    const { completedProgram, educationProgram } = useContext(AuthenticationContext)
+    const showSmartGoal = educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
+    const showJournals = educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
+    const journalDestination = additionalJournals ? "JournalsNavigator" : "PainJournals";
+    const journalLabel = additionalJournals ? "Journals" : "Pain Journals";
 
     const menuOptions = [
         {
