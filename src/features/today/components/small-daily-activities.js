@@ -8,7 +8,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 export const Journals = ({ navigation }) => {
     const { educationProgress } = useContext(EducationContext)
-    const { educationProgram } = useContext()
+    const { educationProgram } = useContext(AuthenticationContext)
     const shorterProgram = educationProgram > 2 && educationProgram < 7
     const additionalJournals = educationProgram === 2 ? educationProgress > 2 : shorterProgram ? educationProgress > 21 : 24
     return (
