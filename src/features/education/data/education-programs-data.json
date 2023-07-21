@@ -4,73 +4,82 @@
             "id": 1,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67],
             "questionAnswers": "all modules",
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 24
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 24,
+            "moodJournals": 26
         },
         {
             "id": 2,
             "educationModulesId": [1, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 19, 20, 21, 24, 25, 26, 45, 46, 48, 56, 57, 66, 67],
             "questionAnswers": "condensed_program",
-            "painJournalIndex": 2,
-            "smartGoalIndex": 5,
-            "additionalJournalIndex": 15
+            "painJournal": 2,
+            "smartGoal": 5,
+            "foodJournals": 15,
+            "moodJournals": 17
         },
         {
             "id": 3,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 43, 45, 46, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67],
             "questionAnswers": "hopesToAchieve: Strength & Prevention ONLY",
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 21
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 21,
+            "moodJournals": 23
         },
         {
             "id": 4,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 43, 45, 46, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 63, 64, 65, 66, 67],
             "questionAnswers": ["hopesToAchieve: Strength & Prevention ONLY", "painInjections: Yes"],
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 21
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 21,
+            "moodJournals": 23
         },
         {
             "id": 5,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 43, 45, 46, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 65, 66, 67],
             "questionAnswers": ["hopesToAchieve: Strength & Prevention ONLY", "painInjections: Yes", "spineSurgery: Yes"],
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 21
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 21,
+            "moodJournals": 23
         },
         {
             "id": 6,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 20, 21, 22, 23, 24, 25, 26, 31, 32, 33, 34, 43, 45, 46, 48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 65, 66, 67],
             "questionAnswers": ["hopesToAchieve: Strength & Prevention ONLY", "spineSurgery: Yes"],
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 21
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 21,
+            "moodJournals": 23
         },
         {
             "id": 7,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 63, 64, 65, 66, 67],
             "questionAnswers": "painInjections: Yes",
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 24
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 24,
+            "moodJournals": 26
         },
         {
             "id": 8,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 65, 66, 67],
             "questionAnswers": ["painInjections: Yes", "spineSurgery: Yes"],
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 24
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 24,
+            "moodJournals": 26
         },
         {
             "id": 9,
             "educationModulesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 65, 66, 67],
             "questionAnswers": "spineSurgery: Yes",
-            "painJournalIndex": 4,
-            "smartGoalIndex": 7,
-            "additionalJournalIndex": 24
+            "painJournal": 4,
+            "smartGoal": 7,
+            "foodJournals": 24,
+            "moodJournals": 26
         }
     ]
 }
