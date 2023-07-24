@@ -29,8 +29,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
         return  <VictoryBar data={[{ x: bar.date, y: bar.score }]} barWidth={10} />
     })
 
-    const graphWidth = score.length 
-    const yTickValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const graphWidth = score.length
     
     return (
         <GraphWrapper>
@@ -50,7 +49,7 @@ export const PainGraph = ({ graphData, graphDataAfter }) => {
                       height={300}
                       maxDomain={{y: 11}}
                       minDomain={{y: 0}}
-                      domainPadding={40}
+                      domainPadding={13}
                       theme={VictoryTheme.material}
                 >
                     <VictoryGroup colorScale={"qualitative"} offset={12}>

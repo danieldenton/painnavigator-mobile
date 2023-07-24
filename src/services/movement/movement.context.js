@@ -12,6 +12,7 @@ export const MovementContext = createContext();
 export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(1);
     const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
+    // const [currentModule, setCurrentModule] = useState(null)
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentVideo, setCurrentVideo] = useState();
     const [completedVideos, setCompletedVideos] = useState(0);
@@ -19,6 +20,10 @@ export const MovementContextProvider = ({ children }) => {
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
     const [lastMovement, setLastMovement] = useState(null);
     const { user } = useContext(AuthenticationContext);
+
+    useEffect(() => {
+        setCurrentModule(movementModules.find(module => module.id === movementProgress))
+    }, [movementProgress])
 
     useEffect(() => {
         const allVideosCompleted = Object.values(currentModule.videos).every(
@@ -142,24 +147,24 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
-    const loadCurrentModule = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@current_movement_module");
-            if (value !== null) {
-                setCurrentModule(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading current_movement_module", e);
-        }
-    };
+    // const loadCurrentModule = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@current_movement_module");
+    //         if (value !== null) {
+    //             setCurrentModule(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading current_movement_module", e);
+    //     }
+    // };
 
-    useEffect(() => {
-        loadCurrentModule();
-    }, []);
+    // useEffect(() => {
+    //     loadCurrentModule();
+    // }, []);
 
-    useEffect(() => {
-        saveCurrentModule(currentModule);
-    }, [currentModule]);
+    // useEffect(() => {
+    //     saveCurrentModule(currentModule);
+    // }, [currentModule]);
 
     const saveCompletedMovementModules = async (value) => {
         try {
