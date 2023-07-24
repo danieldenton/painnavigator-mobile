@@ -147,25 +147,6 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
-    // const loadCurrentModule = async () => {
-    //     try {
-    //         const value = await AsyncStorage.getItem("@current_movement_module");
-    //         if (value !== null) {
-    //             setCurrentModule(JSON.parse(value));
-    //         }
-    //     } catch (e) {
-    //         console.log("error loading current_movement_module", e);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     loadCurrentModule();
-    // }, []);
-
-    // useEffect(() => {
-    //     saveCurrentModule(currentModule);
-    // }, [currentModule]);
-
     const saveCompletedMovementModules = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
