@@ -10,7 +10,7 @@ const GraphWrapper = styled.View`
 `;
 
 export const PainGraph = ({ graphData }) => {
-    const graphWidth = graphData.length
+    const graphWidth = graphData.length * 50
     
     return (
         <GraphWrapper>
