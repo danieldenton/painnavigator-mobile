@@ -25,6 +25,7 @@ import { TodayNavBar } from "../../../components/journals/navigation-bar.compone
 import { View } from "react-native";
 import { DailyPainScore } from "../components/daily-activities.component";
 import { DashboardTour } from "../components/dashboard-tour";
+import { Provider } from "react-native-paper";
 import { Journals, WellnessCoach, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/small-daily-activities";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
@@ -155,33 +156,35 @@ export const TodayScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeView>
-            <DashboardTour />
-            <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
-            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-                <Greeting greeting={greeting} name={userInfo.first_name} />
-                <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-                {renderDailyPainScore()}
-                {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
-                {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
-                {!completedAllMovementModules && 
-                    <>
-                        <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                        <MovementUnitCard navigation={navigation} isFocused={isFocused} />
-                    </>
-                }
-                <SubHeader title={"DAILY ACTIVITIES"} size={14} />
-                <View style={{ marginBottom: 16 }}>
-                    {renderWellnessCoachMessageActivity()}
-                    {!profileComplete && <ProfileSetup navigation={navigation} />}
-                    {renderJournalDailyActivity()}
-                    {renderSmartGoalDailyActivity()}
-                    {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
-                </View>
-            </Scroll>
-        </SafeView>
+        <Provider>
+            <SafeView>
+                <DashboardTour />
+                <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
+                <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+                    <Greeting greeting={greeting} name={userInfo.first_name} />
+                    <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
+                    {renderDailyPainScore()}
+                    {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
+                    {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
+                    {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
+                    {!completedAllMovementModules && 
+                        <>
+                            <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
+                            <MovementUnitCard navigation={navigation} isFocused={isFocused} />
+                        </>
+                    }
+                    <SubHeader title={"DAILY ACTIVITIES"} size={14} />
+                    <View style={{ marginBottom: 16 }}>
+                        {renderWellnessCoachMessageActivity()}
+                        {!profileComplete && <ProfileSetup navigation={navigation} />}
+                        {renderJournalDailyActivity()}
+                        {renderSmartGoalDailyActivity()}
+                        {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
+                        {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
+                        {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
+                    </View>
+                </Scroll>
+            </SafeView>
+        </Provider>
     );
 };
