@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../button.component";
 
@@ -25,7 +25,8 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const DashboardTour = ({ tour, setTour }) => {
+export const DashboardTour = () => {
+    const { tour, setTour } = useContext(AuthenticationContext)
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
 
     const tourText = [

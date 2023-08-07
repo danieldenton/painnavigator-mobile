@@ -156,6 +156,7 @@ export const TodayScreen = ({ navigation }) => {
 
     return (
         <SafeView>
+            <DashboardTour />
             <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
             <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                 <Greeting greeting={greeting} name={userInfo.first_name} />
