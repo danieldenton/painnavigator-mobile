@@ -30,14 +30,14 @@ export const DashboardTour = ({ tour, setTour }) => {
 
     return(
         <Portal>
-            <Modal visible={visible} onDismiss={() => setVisible(false)} contentContainerStyle={containerStyle}>
+            <Modal visible={tour} onDismiss={() => setTour(null)} contentContainerStyle={containerStyle}>
                 <DashboardTourTextContainer>
                     <DashboardTourText>hey bud</DashboardTourText>
                 </DashboardTourTextContainer>
                 <ButtonContainer>
                     <JournalButtonOutline 
                         onPress={() => {tour >= 6 ? setTour(null) : setTour(tour + 1)}}
-                        title={"Next"}
+                        title={tour < 6 ? "Next" : "Finish"}
                         fontSize={16}
                     />
                     {tour > 0 &&
