@@ -23,7 +23,8 @@ import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
-import {  DailyPainScore } from "../components/daily-activities.component";
+import { DailyPainScore } from "../components/daily-activities.component";
+import { DashboardTour } from "../components/dashboard-tour";
 import { Journals, WellnessCoach, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/small-daily-activities";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
@@ -161,7 +162,7 @@ export const TodayScreen = ({ navigation }) => {
                 <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
                 {renderDailyPainScore()}
                 {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                { lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
+                {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
                 {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
                 {!completedAllMovementModules && 
                     <>
