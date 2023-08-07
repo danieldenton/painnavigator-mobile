@@ -43,7 +43,7 @@ export const TodayScreen = ({ navigation }) => {
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
-    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
 
@@ -64,7 +64,8 @@ export const TodayScreen = ({ navigation }) => {
             user.user.uid,
             setUserInfo,  
             setEducationProgram,
-            setEducationProgress, 
+            setEducationProgress,
+            setLastCompletedModule, 
             setMovementProgress,
             setProfileComplete, 
             setCompletedProgram,
