@@ -28,11 +28,21 @@ const ButtonContainer = styled.View`
 export const DashboardTour = ({ tour, setTour }) => {
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
 
+    const tourText = [
+        "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 
+        "To get the most out of the program, we recommend you log your pain score daily here.",
+        "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
+        "Move daily or as often as you can! Daily recommended exercises are here.",
+        "You can chat with your wellness coach here! This is a great place to ask any questions.",
+        "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
+        "You can explore other features, update settings, and view your course progress in the menu."
+    ]
+
     return(
         <Portal>
             <Modal visible={tour} onDismiss={() => setTour(null)} contentContainerStyle={containerStyle}>
                 <DashboardTourTextContainer>
-                    <DashboardTourText>hey bud</DashboardTourText>
+                    <DashboardTourText>{tourText[tour]}</DashboardTourText>
                 </DashboardTourTextContainer>
                 <ButtonContainer>
                     <JournalButtonOutline 
