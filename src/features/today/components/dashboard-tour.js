@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
-import { JournalButton, JournalButtonOutline } from "../button.component";
+import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
 const Modal = styled(PaperModal)`
     border-radius: 15px;
