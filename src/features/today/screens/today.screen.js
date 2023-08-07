@@ -56,7 +56,7 @@ export const TodayScreen = ({ navigation }) => {
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
     const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
-    const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const lastEducationModule = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const lastEducationModuleId = educationProgress - 1;
 
     useEffect(() => {
@@ -154,11 +154,12 @@ export const TodayScreen = ({ navigation }) => {
             return null
         };
     };
+    console.log(lastCompletedModule)
 
     return (
-        <Provider>
+        // <Provider>
             <SafeView>
-                <DashboardTour />
+                {/* <DashboardTour /> */}
                 <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
                 <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                     <Greeting greeting={greeting} name={userInfo.first_name} />
@@ -185,6 +186,6 @@ export const TodayScreen = ({ navigation }) => {
                     </View>
                 </Scroll>
             </SafeView>
-        </Provider>
+        // </Provider>
     );
 };

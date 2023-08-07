@@ -134,6 +134,7 @@ export default function App() {
 
   return (
     <>
+    
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider expoPushToken={expoPushToken}>
           <DailyPainContextProvider>
