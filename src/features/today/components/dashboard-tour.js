@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
+import { View, StyleSheet, Modal } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { Modal as PaperModal, Portal } from 'react-native-paper';
+// import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
-const Modal = styled(PaperModal)`
-    border-radius: 15px;
-    margin: ${(props) => props.theme.space[3]};
-    height: 20px
-`;
+// const maybeModal = styled(Modal)`
+//     border-radius: 15px;
+//     margin: ${(props) => props.theme.space[3]};
+// `;
 
 const DashboardTourTextContainer = styled.View`
     align-items: center;
@@ -25,6 +25,18 @@ const DashboardTourText = styled.Text`
 const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    overlay: {
+      position: 'absolute',
+      backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent overlay color
+    },
+  });
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
@@ -49,9 +61,11 @@ export const DashboardTour = ({ visible, setVisible }) => {
     ]
 
     return(
-        <Portal>
-            <Modal style={{ marginTop: 100}} visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-                <DashboardTourTextContainer>
+        // <Portal>
+        <View>
+            
+            <Modal>
+                <DashboardTourTextContainer style={{ minWidth: 200, elevation: 5, padding: 20}}>
                     <DashboardTourText>{tourText[tour]}</DashboardTourText>
                 </DashboardTourTextContainer>
                 <ButtonContainer>
@@ -68,6 +82,6 @@ export const DashboardTour = ({ visible, setVisible }) => {
                     />}
                 </ButtonContainer>
             </Modal>
-        </Portal>
+            </View>
     );
 };
