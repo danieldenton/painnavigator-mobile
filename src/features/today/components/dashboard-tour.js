@@ -32,6 +32,11 @@ export const DashboardTour = ({ visible, setVisible }) => {
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
 
+    const handleFinish = () => {
+        setTour(null)
+        hideModal()
+    }
+
     const tourText = [
         "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 
         "To get the most out of the program, we recommend you log your pain score daily here.",
@@ -50,7 +55,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 </DashboardTourTextContainer>
                 <ButtonContainer>
                     <JournalButtonOutline 
-                        onPress={() => {tour >= 6 ? setTour(null) : setTour(tour + 1)}}
+                        onPress={() => {tour >= 6 ? handleFinish() : setTour(tour + 1)}}
                         title={tour < 6 ? "Next" : "Finish"}
                         fontSize={16}
                     />
