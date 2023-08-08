@@ -7,6 +7,7 @@ import { JournalButton, JournalButtonOutline } from "../../../components/button.
 const Modal = styled(PaperModal)`
     border-radius: 15px;
     margin: ${(props) => props.theme.space[3]};
+    height: 20px
 `;
 
 const DashboardTourTextContainer = styled.View`
@@ -49,7 +50,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
     return(
         <Portal>
-            <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+            <Modal style={{ marginTop: 100}} visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
                 <DashboardTourTextContainer>
                     <DashboardTourText>{tourText[tour]}</DashboardTourText>
                 </DashboardTourTextContainer>
