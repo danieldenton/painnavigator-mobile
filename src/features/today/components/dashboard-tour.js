@@ -5,10 +5,10 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 // import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
-// const maybeModal = styled(Modal)`
-//     border-radius: 15px;
-//     margin: ${(props) => props.theme.space[3]};
-// `;
+const maybeModal = styled(Modal)`
+    border-radius: 15px;
+    margin: ${(props) => props.theme.space[3]};
+`;
 
 const DashboardTourTextContainer = styled.View`
     align-items: center;
@@ -25,18 +25,6 @@ const DashboardTourText = styled.Text`
 const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    overlay: {
-      position: 'absolute',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)', // Semi-transparent overlay color
-    },
-  });
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
@@ -62,12 +50,29 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
     return(
         // <Portal>
-        <View>
-            
-            <Modal>
-                <DashboardTourTextContainer style={{ minWidth: 200, elevation: 5, padding: 20}}>
+        <View style={styles.container}>
+            <Modal visible={visible} style={styles.modalContainer}>
+                <View style={[styles.modalContent, styles.modalContainer1]}>
                     <DashboardTourText>{tourText[tour]}</DashboardTourText>
-                </DashboardTourTextContainer>
+                </View>
+                <ButtonContainer>
+                    <JournalButtonOutline 
+                        onPress={() => {tour >= 6 ? handleFinish() : setTour(tour + 1)}}
+                        title={tour < 6 ? "Next" : "Finish"}
+                        fontSize={16}
+                    />
+                    {tour > 0 &&
+                    <JournalButton 
+                        title={"Previous"} 
+                        onPress={() => setTour(tour - 1)} 
+                        fontSize={16} 
+                    />}
+                </ButtonContainer>
+            </Modal>
+            <Modal visible={visible} style={styles.modalContainer}>
+                <View style={[styles.modalContent, styles.modalContainer2]}>
+                    <DashboardTourText>{tourText[tour]}</DashboardTourText>
+                </View>
                 <ButtonContainer>
                     <JournalButtonOutline 
                         onPress={() => {tour >= 6 ? handleFinish() : setTour(tour + 1)}}
@@ -85,3 +90,31 @@ export const DashboardTour = ({ visible, setVisible }) => {
             </View>
     );
 };
+
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent overlay color
+      },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 20,
+        borderRadius: 10,
+        elevation: 5,
+        minWidth: 300,
+    },
+    modalContainer1: {
+        marginTop: '40%', // Adjust the marginTop to vertically position the modal
+    },
+    modalContainer2: {
+    marginTop: '70%', // Adjust the marginTop to vertically position the modal
+    },
+  });
