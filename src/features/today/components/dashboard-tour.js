@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Modal as PaperModal, Portal } from 'react-native-paper';
@@ -25,19 +25,12 @@ const ButtonContainer = styled.View`
     margin-bottom: 45px;
 `;
 
-export const DashboardTour = () => {
+export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
-    const [visible, setVisible] = useState(false)
     const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
 
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-
-    useEffect(() => {
-        if (tour !== null) {
-            setVisible(true)
-        }
-    }, [tour])
 
     const tourText = [
         "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 

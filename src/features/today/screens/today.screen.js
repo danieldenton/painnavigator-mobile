@@ -46,6 +46,7 @@ export const TodayScreen = ({ navigation }) => {
     const { currentModule, educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
+    const [tourVisible, setTourVisible] = useState(false)
 
     const isFocused = useIsFocused();
     const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
@@ -117,8 +118,10 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     useEffect(() => {
-
-    }, [currentModule])
+        if (tour !== null) {
+            setTourVisible(true)
+        }
+    }, [tour])
 
     function renderDailyPainScore() {
         if(dailyPainScore.id) {
@@ -155,12 +158,11 @@ export const TodayScreen = ({ navigation }) => {
             return null
         };
     };
-    console.log(lastCompletedModule)
 
     return (
-        // <Provider>
+        <Provider>
             <SafeView>
-                {/* <DashboardTour /> */}
+                <DashboardTour visible={tourVisible} setVisiible={setTourVisible}/>
                 <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
                 <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                     <Greeting greeting={greeting} name={userInfo.first_name} />
@@ -187,6 +189,6 @@ export const TodayScreen = ({ navigation }) => {
                     </View>
                 </Scroll>
             </SafeView>
-        // </Provider>
+        </Provider>
     );
 };
