@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { Add, FoodJournalIcon, Locked } from "../icons";
+import { Add, FoodJournalIcon } from "../icons";
 import { handleTrackEvent } from "../utils";
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
     border-radius: 15px;
     padding: 21px;
-    backgound-color: white;
+    background-color: white;
 `;
 
 const ModuleCardContent = styled(Card.Content)`
