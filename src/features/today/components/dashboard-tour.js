@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -6,6 +6,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
+    const [modalVisible, setModalVisible] = useState(false);
 
     const handleFinish = () => {
         setTour(null)
@@ -50,33 +51,64 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 animationType="slide"
                 transparent={true}
                 visible={visible}
-               >
+               >  
+               <View style={styles.modalBackground}>
                 <View style={[styles.modalContainer, tourObj[tour]?.style]}>
-                    <Text>{tourObj[tour]?.text}</Text>
-                    <View>
+                    <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
+                    <View style={styles.buttonContanier}>
                         {tour === 0 ? null :
                         <Pressable
                             onPress={() => setTour(tour - 1)}>
-                            <Text style={styles.modalContent}>Previous</Text>
+                            <Text style={styles.buttons}>Previous</Text>
                         </Pressable>}
                         {tour < 6 ?  
                         <Pressable
+                        style={styles.buttons}
                         onPress={() => setTour(tour + 1)}>
-                        <Text style={styles.modalContent}>Next</Text>   
+                        <Text style={styles.buttons}>Next</Text>   
                         </Pressable> : 
                         <Pressable
+                        style={styles.buttons}
                             onPress={() => handleFinish()}>
-                            <Text style={styles.modalContent}>Finish</Text>
+                            <Text style={styles.buttons}>Finish</Text>
                         </Pressable>}
                     </View>
                 </View>
-                
+                </View>
+            </Modal>
+            <Modal 
+                animationType="slide"
+                transparent={true}
+                visible={visible}
+               >  
+               <View style={styles.modalBackground}>
+                <View style={[styles.modalContainer, tourObj[tour]?.style]}>
+                    <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
+                    <View style={styles.buttonContanier}>
+                        {tour === 0 ? null :
+                        <Pressable
+                            onPress={() => setTour(tour - 1)}>
+                            <Text style={styles.buttons}>Previous</Text>
+                        </Pressable>}
+                        {tour < 6 ?  
+                        <Pressable
+                        style={styles.buttons}
+                        onPress={() => setTour(tour + 1)}>
+                        <Text style={styles.buttons}>Next</Text>   
+                        </Pressable> : 
+                        <Pressable
+                        style={styles.buttons}
+                            onPress={() => handleFinish()}>
+                            <Text style={styles.buttons}>Finish</Text>
+                        </Pressable>}
+                    </View>
+                </View>
+                </View>
             </Modal>
             </View>
         </>
     );
-};
-
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -84,18 +116,37 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+      },
+    buttonContanier: {
+        justifyContent: 'center',
+        flexDirection: 'row', 
+        width: 200,
+    },
+    buttons: {
+        fontSize: 16,
+        textAlign: 'center',
+        width: 100,
+        color: '#16a28b',
+    },
     modalContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding: 35,
+        padding: 20,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
           height: 2,
         },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.5,
         shadowRadius: 4,
         elevation: 5,
       },
@@ -120,11 +171,28 @@ const styles = StyleSheet.create({
     modalPlacement7: {
         marginTop: 140
     },
+    point: {
+        position: 'absolute',
+        top: -20, // Adjust the value to position the point correctly
+        left: '50%',
+        marginLeft: -10, // Adjust the value to center the point
+        width: 0,
+        height: 0,
+        borderTopWidth: 20,
+        borderTopColor: 'transparent',
+        borderRightWidth: 10,
+        borderRightColor: 'transparent',
+        borderBottomWidth: 20,
+        borderBottomColor: 'white',
+        borderLeftWidth: 10,
+        borderLeftColor: 'transparent',
+      },
     modalContent: {
+        textAlign: 'center',
+        fontSize: 16,
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 10,
         elevation: 5,
-        minWidth: 300,
     }
   });
