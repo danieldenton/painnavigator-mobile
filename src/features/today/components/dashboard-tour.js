@@ -8,9 +8,7 @@ import { JournalButton, JournalButtonOutline } from "../../../components/button.
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
-    const containerStyle = {backgroundColor: 'white', padding: 20, borderRadius: 15};
 
-    const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
 
     const handleFinish = () => {
@@ -57,11 +55,10 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 transparent={true}
                 visible={visible}
                 onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
                 setVisible(!visible);
             }}>
-                <View style={[styles.modalContainer, tourObj[tour].style]}>
-                    <Text>{tourObj[tour].text}</Text>
+                <View style={[styles.modalContainer, tourObj[tour]?.style]}>
+                    <Text>{tourObj[tour]?.text}</Text>
                     <View>
                         {tour === 0 ? null :
                         <Pressable
@@ -71,10 +68,10 @@ export const DashboardTour = ({ visible, setVisible }) => {
                         {tour < 6 ?  
                         <Pressable
                         onPress={() => setTour(tour + 1)}>
-                        <Text style={styles.modalContent}>Next</Text>
+                        <Text style={styles.modalContent}>Next</Text>   
                         </Pressable> : 
                         <Pressable
-                            onPress={() => setTour(tour + 1)}>
+                            onPress={() => handleFinish()}>
                             <Text style={styles.modalContent}>Finish</Text>
                         </Pressable>}
                     </View>
@@ -109,25 +106,25 @@ const styles = StyleSheet.create({
         elevation: 5,
       },
     modalPlacement1: {
-        marginTop: 10
-    },
-    modalPlacement2: {
         marginTop: 20
     },
-    modalPlacement3: {
-        marginTop: 30
-    },
-    modalPlacement4: {
+    modalPlacement2: {
         marginTop: 40
     },
-    modalPlacement5: {
-        marginTop: 50
-    },
-    modalPlacement6: {
+    modalPlacement3: {
         marginTop: 60
     },
+    modalPlacement4: {
+        marginTop: 80
+    },
+    modalPlacement5: {
+        marginTop: 100
+    },
+    modalPlacement6: {
+        marginTop: 120
+    },
     modalPlacement7: {
-        marginTop: 0
+        marginTop: 140
     },
     modalContent: {
         backgroundColor: 'white',
@@ -135,11 +132,5 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 5,
         minWidth: 300,
-    },
-    modalContainer1: {
-        marginTop: '40%', // Adjust the marginTop to vertically position the modal
-    },
-    modalContainer2: {
-    marginTop: '70%', // Adjust the marginTop to vertically position the modal
-    },
+    }
   });
