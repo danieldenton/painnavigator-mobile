@@ -162,7 +162,7 @@ export const TodayScreen = ({ navigation }) => {
     return (
         <Provider>
             <SafeView>
-                <DashboardTour visible={tourVisible} setVisiible={setTourVisible}/>
+                <DashboardTour visible={tourVisible} setVisible={setTourVisible}/>
                 <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
                 <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                     <Greeting greeting={greeting} name={userInfo.first_name} />

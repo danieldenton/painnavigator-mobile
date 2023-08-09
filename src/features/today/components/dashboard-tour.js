@@ -2,18 +2,14 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-// import { Modal as PaperModal, Portal } from 'react-native-paper';
-import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
 
-    const hideModal = () => setVisible(false);
-
     const handleFinish = () => {
         setTour(null)
-        hideModal()
+        setVisible(false)
     }
 
     const tourObj = [
@@ -54,9 +50,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 animationType="slide"
                 transparent={true}
                 visible={visible}
-                onRequestClose={() => {
-                setVisible(!visible);
-            }}>
+               >
                 <View style={[styles.modalContainer, tourObj[tour]?.style]}>
                     <Text>{tourObj[tour]?.text}</Text>
                     <View>
