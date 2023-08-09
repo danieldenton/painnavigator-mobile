@@ -1,30 +1,30 @@
 import React, { useContext } from "react";
-import { View, StyleSheet, Modal } from 'react-native'
+import { View, Text, StyleSheet, Modal } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 // import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
-const maybeModal = styled(Modal)`
-    border-radius: 15px;
-    margin: ${(props) => props.theme.space[3]};
-`;
+// const maybeModal = styled(Modal)`
+//     border-radius: 15px;
+//     margin: ${(props) => props.theme.space[3]};
+// `;
 
-const DashboardTourTextContainer = styled.View`
-    align-items: center;
-    margin-top: 24px;
-    margin-bottom: 24px;
-`;
+// const DashboardTourTextContainer = styled.View`
+//     align-items: center;
+//     margin-top: 24px;
+//     margin-bottom: 24px;
+// `;
 
-const DashboardTourText = styled.Text`
-    font-family: Inter_500Medium;
-    font-size: 18px;
-    line-height: 26px;
-`;
+// const DashboardTourText = styled.Text`
+//     font-family: Inter_500Medium;
+//     font-size: 18px;
+//     line-height: 26px;
+// `;
 
-const ButtonContainer = styled.View`
-    margin-bottom: 45px;
-`;
+// const ButtonContainer = styled.View`
+//     margin-bottom: 45px;
+// `;
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
@@ -51,8 +51,33 @@ export const DashboardTour = ({ visible, setVisible }) => {
     return(
         // <Portal>
         <View style={styles.container}>
-            <Modal visible={visible} style={styles.modalContainer}>
-                <View style={[styles.modalContent, styles.modalContainer1]}>
+            <Modal 
+            animationType="slide"
+            transparent={true}
+            visible={visible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setVisible(!visible);
+            }}>
+                <View>
+                    <Text>{tourText[tour]}</Text>
+                </View>
+                {/* <ButtonContainer>
+                    <JournalButtonOutline 
+                        onPress={() => {tour >= 6 ? handleFinish() : setTour(tour + 1)}}
+                        title={tour < 6 ? "Next" : "Finish"}
+                        fontSize={16}
+                    />
+                    {tour > 0 &&
+                    <JournalButton 
+                        title={"Previous"} 
+                        onPress={() => setTour(tour - 1)} 
+                        fontSize={16} 
+                    />}
+                </ButtonContainer> */}
+            </Modal>
+            {/* <Modal visible={visible} style={styles.modalContainer}> */}
+                {/* <View style={[styles.modalContent, styles.modalContainer2]}>
                     <DashboardTourText>{tourText[tour]}</DashboardTourText>
                 </View>
                 <ButtonContainer>
@@ -68,25 +93,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                         fontSize={16} 
                     />}
                 </ButtonContainer>
-            </Modal>
-            <Modal visible={visible} style={styles.modalContainer}>
-                <View style={[styles.modalContent, styles.modalContainer2]}>
-                    <DashboardTourText>{tourText[tour]}</DashboardTourText>
-                </View>
-                <ButtonContainer>
-                    <JournalButtonOutline 
-                        onPress={() => {tour >= 6 ? handleFinish() : setTour(tour + 1)}}
-                        title={tour < 6 ? "Next" : "Finish"}
-                        fontSize={16}
-                    />
-                    {tour > 0 &&
-                    <JournalButton 
-                        title={"Previous"} 
-                        onPress={() => setTour(tour - 1)} 
-                        fontSize={16} 
-                    />}
-                </ButtonContainer>
-            </Modal>
+            </Modal> */}
             </View>
     );
 };
@@ -97,6 +104,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      marginTop: 22
     },
     modalContainer: {
         flex: 1,
