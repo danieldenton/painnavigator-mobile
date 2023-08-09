@@ -1,30 +1,10 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet, Modal } from 'react-native'
+import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 // import { Modal as PaperModal, Portal } from 'react-native-paper';
 import { JournalButton, JournalButtonOutline } from "../../../components/button.component";
 
-// const maybeModal = styled(Modal)`
-//     border-radius: 15px;
-//     margin: ${(props) => props.theme.space[3]};
-// `;
-
-// const DashboardTourTextContainer = styled.View`
-//     align-items: center;
-//     margin-top: 24px;
-//     margin-bottom: 24px;
-// `;
-
-// const DashboardTourText = styled.Text`
-//     font-family: Inter_500Medium;
-//     font-size: 18px;
-//     line-height: 26px;
-// `;
-
-// const ButtonContainer = styled.View`
-//     margin-bottom: 45px;
-// `;
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
@@ -41,39 +21,37 @@ export const DashboardTour = ({ visible, setVisible }) => {
     const tourObj = [
         { 
             text: "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 
-            style: styles.container1
+            style: styles.modalPlacement1
         }, 
         { 
             text: "To get the most out of the program, we recommend you log your pain score daily here.",
-            style: styles.container2
+            style: styles.modalPlacement2
         },
         { 
             text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-            style: styles.container3
+            style: styles.modalPlacement3
         },
         { 
             text: "Move daily or as often as you can! Daily recommended exercises are here.",
-            style: styles.container4 
+            style: styles.modalPlacement4 
         },
         { 
             text: "You can chat with your wellness coach here! This is a great place to ask any questions.",
-            style: styles.container5
+            style: styles.modalPlacement5
          },
         { 
             text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-            style: styles.container6
+            style: styles.modalPlacement6
         },
         { 
             text: "You can explore other features, update settings, and view your course progress in the menu.",
-            style: styles.container7
+            style: styles.modalPlacement7
         }
     ]
 
-    console.log(tourObj[tour].text)
-
     return(
         <>
-        <View style={tourObj[tour].style}>
+        <View style={styles.container}>
             <Modal 
                 animationType="slide"
                 transparent={true}
@@ -82,9 +60,26 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 Alert.alert('Modal has been closed.');
                 setVisible(!visible);
             }}>
-                <View style={styles.modalContainer}>
+                <View style={[styles.modalContainer, tourObj[tour].style]}>
                     <Text>{tourObj[tour].text}</Text>
+                    <View>
+                        {tour === 0 ? null :
+                        <Pressable
+                            onPress={() => setTour(tour - 1)}>
+                            <Text style={styles.modalContent}>Previous</Text>
+                        </Pressable>}
+                        {tour < 6 ?  
+                        <Pressable
+                        onPress={() => setTour(tour + 1)}>
+                        <Text style={styles.modalContent}>Next</Text>
+                        </Pressable> : 
+                        <Pressable
+                            onPress={() => setTour(tour + 1)}>
+                            <Text style={styles.modalContent}>Finish</Text>
+                        </Pressable>}
+                    </View>
                 </View>
+                
             </Modal>
             </View>
         </>
@@ -93,47 +88,10 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
 
 const styles = StyleSheet.create({
-    container1: {
+    container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 22
-    },
-    container2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 62
-    },
-    container3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22
-    },
-    container4: {
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 62
-    },
-    container5: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 22
-    },
-    container6: {
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 62
-    },
-    container7: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 22
     },
     modalContainer: {
         margin: 20,
@@ -150,21 +108,27 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
       },
-      modalContainer2: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 35,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-      },
+    modalPlacement1: {
+        marginTop: 10
+    },
+    modalPlacement2: {
+        marginTop: 20
+    },
+    modalPlacement3: {
+        marginTop: 30
+    },
+    modalPlacement4: {
+        marginTop: 40
+    },
+    modalPlacement5: {
+        marginTop: 50
+    },
+    modalPlacement6: {
+        marginTop: 60
+    },
+    modalPlacement7: {
+        marginTop: 0
+    },
     modalContent: {
         backgroundColor: 'white',
         padding: 20,
