@@ -51,58 +51,31 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 animationType="slide"
                 transparent={true}
                 visible={visible}
-               >  
+            >  
                <View style={styles.modalBackground}>
-                <View style={[styles.modalContainer, tourObj[tour]?.style]}>
-                    <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
-                    <View style={styles.buttonContanier}>
-                        {tour === 0 ? null :
-                        <Pressable
-                            onPress={() => setTour(tour - 1)}>
-                            <Text style={styles.buttons}>Previous</Text>
-                        </Pressable>}
-                        {tour < 6 ?  
-                        <Pressable
-                        style={styles.buttons}
-                        onPress={() => setTour(tour + 1)}>
-                        <Text style={styles.buttons}>Next</Text>   
-                        </Pressable> : 
-                        <Pressable
-                        style={styles.buttons}
-                            onPress={() => handleFinish()}>
-                            <Text style={styles.buttons}>Finish</Text>
-                        </Pressable>}
+                    <View style={[styles.modalContainer, tourObj[tour]?.style]}>
+                        {/* <View style={styles.triangle}> */}
+                            <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
+                            <View style={styles.buttonContanier}>
+                                {tour === 0 ? null :
+                                <Pressable
+                                    onPress={() => setTour(tour - 1)}>
+                                    <Text style={styles.buttons}>Previous</Text>
+                                </Pressable>}
+                                {tour < 6 ?  
+                                <Pressable
+                                style={styles.buttons}
+                                onPress={() => setTour(tour + 1)}>
+                                <Text style={styles.buttons}>Next</Text>   
+                                </Pressable> : 
+                                <Pressable
+                                style={styles.buttons}
+                                    onPress={() => handleFinish()}>
+                                    <Text style={styles.buttons}>Finish</Text>
+                                </Pressable>}
+                            </View>
+                        {/* </View> */}
                     </View>
-                </View>
-                </View>
-            </Modal>
-            <Modal 
-                animationType="slide"
-                transparent={true}
-                visible={visible}
-               >  
-               <View style={styles.modalBackground}>
-                <View style={[styles.modalContainer, tourObj[tour]?.style]}>
-                    <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
-                    <View style={styles.buttonContanier}>
-                        {tour === 0 ? null :
-                        <Pressable
-                            onPress={() => setTour(tour - 1)}>
-                            <Text style={styles.buttons}>Previous</Text>
-                        </Pressable>}
-                        {tour < 6 ?  
-                        <Pressable
-                        style={styles.buttons}
-                        onPress={() => setTour(tour + 1)}>
-                        <Text style={styles.buttons}>Next</Text>   
-                        </Pressable> : 
-                        <Pressable
-                        style={styles.buttons}
-                            onPress={() => handleFinish()}>
-                            <Text style={styles.buttons}>Finish</Text>
-                        </Pressable>}
-                    </View>
-                </View>
                 </View>
             </Modal>
             </View>
@@ -118,22 +91,10 @@ const styles = StyleSheet.create({
     },
     modalBackground: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.25)',
       },
-    buttonContanier: {
-        justifyContent: 'center',
-        flexDirection: 'row', 
-        width: 200,
-    },
-    buttons: {
-        fontSize: 16,
-        textAlign: 'center',
-        width: 100,
-        color: '#16a28b',
-    },
     modalContainer: {
+        position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
         margin: 20,
@@ -150,6 +111,18 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
       },
+    triangle: {
+        position: 'absolute',
+        bottom: -20,
+        left: 20,
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
+        borderRightWidth: 20,
+        borderTopWidth: 20,
+        borderRightColor: 'transparent',
+        borderTopColor: 'white',
+    },
     modalPlacement1: {
         marginTop: 20
     },
@@ -171,22 +144,17 @@ const styles = StyleSheet.create({
     modalPlacement7: {
         marginTop: 140
     },
-    point: {
-        position: 'absolute',
-        top: -20, // Adjust the value to position the point correctly
-        left: '50%',
-        marginLeft: -10, // Adjust the value to center the point
-        width: 0,
-        height: 0,
-        borderTopWidth: 20,
-        borderTopColor: 'transparent',
-        borderRightWidth: 10,
-        borderRightColor: 'transparent',
-        borderBottomWidth: 20,
-        borderBottomColor: 'white',
-        borderLeftWidth: 10,
-        borderLeftColor: 'transparent',
-      },
+    buttonContanier: {
+        justifyContent: 'center',
+        flexDirection: 'row', 
+        width: 200,
+    },
+    buttons: {
+        fontSize: 16,
+        textAlign: 'center',
+        width: 100,
+        color: '#16a28b',
+    },
     modalContent: {
         textAlign: 'center',
         fontSize: 16,
