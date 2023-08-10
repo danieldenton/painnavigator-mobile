@@ -45,7 +45,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
     ]
 
     const tourPlacement = [250, 20]
-    const bubblePlacement = [null, 250, 350]
+    const bubblePlacement = [null, 230, 350]
 
     return(
         <>
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         marginTop: 250, 
         marginLeft: 16,
+        marginRight: 16
       },
     buttonContanier: {
         justifyContent: 'center',
