@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -6,7 +6,6 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 export const DashboardTour = ({ visible, setVisible }) => {
     const { tour, setTour } = useContext(AuthenticationContext)
-    const [modalVisible, setModalVisible] = useState(false);
 
     const handleFinish = () => {
         setTour(null)
