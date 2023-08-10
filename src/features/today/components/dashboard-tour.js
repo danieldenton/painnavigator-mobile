@@ -42,15 +42,21 @@ export const DashboardTour = ({ visible, setVisible }) => {
         },
         { 
             text: "You can chat with your wellness coach here! This is a great place to ask any questions.",
-            style: styles.modalPlacement5
+            tourTextBubble: 20,
+            tourComponentPlacement: 0,
+            component: <MovementUnitCard /> 
          },
         { 
             text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-            style: styles.modalPlacement6
+            tourTextBubble: 20,
+            tourComponentPlacement: 0,
+            component: <MovementUnitCard /> 
         },
         { 
             text: "You can explore other features, update settings, and view your course progress in the menu.",
-            style: styles.modalPlacement7
+            tourTextBubble: 20,
+            tourComponentPlacement: 0,
+            component: <MovementUnitCard /> 
         }
     ]
 
