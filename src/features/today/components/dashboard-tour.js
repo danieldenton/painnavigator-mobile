@@ -53,8 +53,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 visible={visible}
             >  
                <View style={styles.modalBackground}>
-                    <View style={[styles.modalContainer, tourObj[tour]?.style]}>
-                        {/* <View style={styles.triangle}> */}
+                    <View style={styles.modalContainer}>
+                        
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
                             <View style={styles.buttonContanier}>
                                 {tour === 0 ? null :
@@ -74,7 +74,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                     <Text style={styles.buttons}>FINISH</Text>
                                 </Pressable>}
                             </View>
-                        {/* </View> */}
+                            <View style={styles.triangle}>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -97,9 +98,12 @@ const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
+        height: 200,
         margin: 20,
         backgroundColor: 'white',
-        borderRadius: 20,
+        // borderRadius: 20,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
         padding: 20,
         alignItems: 'center',
         shadowColor: '#000',
@@ -160,7 +164,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         backgroundColor: 'white',
         padding: 20,
-        borderRadius: 10,
         elevation: 5,
+        borderColor: 'blue',
+        borderWidth: 3,
+        borderStyle: 'solid'
     }
   });
