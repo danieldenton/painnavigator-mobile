@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { DailyPainScore } from "../components/daily-activities.component";
 
 
 export const DashboardTour = ({ visible, setVisible }) => {
@@ -43,6 +44,9 @@ export const DashboardTour = ({ visible, setVisible }) => {
         }
     ]
 
+    const tourPlacement = [250, 20]
+    const bubblePlacement = [null, 250, 350]
+
     return(
         <>
         <View style={styles.container}>
@@ -52,8 +56,12 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 visible={visible}
             >  
                <View style={styles.modalBackground}>
-                    <View style={styles.modalContainer}>
-                    <View style={styles.triangle}/>
+               {tour > 0  ? 
+               <View style={[styles.bubble, {marginTop: bubblePlacement[tour]}]}>
+                <DailyPainScore />
+               </View> : null}
+                    <View style={[styles.modalContainer, {marginTop: tourPlacement[tour]}]}>
+                    {tour > 0  ? <View style={styles.triangle}/> : null}
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
                             <View style={styles.buttonContanier}>
                                 {tour === 0 ? null :
@@ -95,12 +103,12 @@ const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 200,
-        margin: 20,
+        height: 150,
+        marginLeft: 30,
+        marginRight: 30,
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 20,
-        alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
@@ -117,32 +125,16 @@ const styles = StyleSheet.create({
         width: 0,
         height: 0,
         borderStyle: 'solid',
-        borderRightWidth: 40,
+        borderRightWidth: 30,
         borderBottomWidth: 20,
         borderRightColor: 'transparent',
         borderBottomColor: 'white',
     },
-    modalPlacement1: {
-        marginTop: 300
-    },
-    modalPlacement2: {
-        marginTop: 40
-    },
-    modalPlacement3: {
-        marginTop: 60
-    },
-    modalPlacement4: {
-        marginTop: 80
-    },
-    modalPlacement5: {
-        marginTop: 100
-    },
-    modalPlacement6: {
-        marginTop: 120
-    },
-    modalPlacement7: {
-        marginTop: 140
-    },
+    bubble: {
+        position: 'relative',
+        marginTop: 250, 
+        marginLeft: 16,
+      },
     buttonContanier: {
         justifyContent: 'center',
         flexDirection: 'row', 
