@@ -74,7 +74,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
             >  
                <View style={styles.modalBackground}>
                {tour > 0  ? 
-               <View style={[styles.bubble, {marginTop: bubblePlacement[tour]}]}>
+               <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
                 {tourComponents[tour]}
                </View> : null}
                     <View style={[styles.modalContainer, {marginTop: tourPlacement[tour]}]}>
