@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     triangle: {
         position: 'absolute',
         bottom: -20,
-        left: 20,
+        left: 30,
         width: 0,
         height: 0,
         borderStyle: 'solid',
@@ -162,9 +162,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         backgroundColor: 'white',
         padding: 20,
-        elevation: 5,
-        borderColor: 'blue',
-        borderWidth: 3,
-        borderStyle: 'solid'
+        elevation: 5
     }
   });
