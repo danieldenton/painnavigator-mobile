@@ -18,19 +18,27 @@ export const DashboardTour = ({ visible, setVisible }) => {
     const tourObj = [
         { 
             text: "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 
-            style: styles.modalPlacement1
+            tourTextBubble: 250,
+            tourComponentPlacement: null,
+            component: null
         }, 
         { 
             text: "To get the most out of the program, we recommend you log your pain score daily here.",
-            style: styles.modalPlacement2
+            tourTextBubble: 20,
+            tourComponentPlacement: 230,
+            component: <DailyPainScore />
         },
         { 
             text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-            style: styles.modalPlacement3
+            tourTextBubble: 20,
+            tourComponentPlacement: 377, 
+            component: <EducationUnitCard />
         },
         { 
             text: "Move daily or as often as you can! Daily recommended exercises are here.",
-            style: styles.modalPlacement4 
+            tourTextBubble: 20,
+            tourComponentPlacement: 0,
+            component: <MovementUnitCard /> 
         },
         { 
             text: "You can chat with your wellness coach here! This is a great place to ask any questions.",
@@ -47,7 +55,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
     ]
 
     const tourPlacement = [250, 20, 20]
-    const bubblePlacement = [null, 230, 380]
+    const bubblePlacement = [null, 230, 377]
     const tourComponents = [null, <DailyPainScore />, <EducationUnitCard />, <MovementUnitCard />]
 
     return(
