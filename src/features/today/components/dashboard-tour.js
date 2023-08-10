@@ -60,18 +60,18 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 {tour === 0 ? null :
                                 <Pressable
                                     onPress={() => setTour(tour - 1)}>
-                                    <Text style={styles.buttons}>Previous</Text>
+                                    <Text style={styles.buttons}>PREVIOUS</Text>
                                 </Pressable>}
                                 {tour < 6 ?  
                                 <Pressable
                                 style={styles.buttons}
                                 onPress={() => setTour(tour + 1)}>
-                                <Text style={styles.buttons}>Next</Text>   
+                                <Text style={styles.buttons}>NEXT</Text>   
                                 </Pressable> : 
                                 <Pressable
                                 style={styles.buttons}
                                     onPress={() => handleFinish()}>
-                                    <Text style={styles.buttons}>Finish</Text>
+                                    <Text style={styles.buttons}>FINISH</Text>
                                 </Pressable>}
                             </View>
                         {/* </View> */}
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         borderTopColor: 'white',
     },
     modalPlacement1: {
-        marginTop: 20
+        marginTop: 300
     },
     modalPlacement2: {
         marginTop: 40
