@@ -54,7 +54,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
             >  
                <View style={styles.modalBackground}>
                     <View style={styles.modalContainer}>
-                        
+                    <View style={styles.triangle}/>
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
                             <View style={styles.buttonContanier}>
                                 {tour === 0 ? null :
@@ -74,8 +74,6 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                     <Text style={styles.buttons}>FINISH</Text>
                                 </Pressable>}
                             </View>
-                            <View style={styles.triangle}>
-                        </View>
                     </View>
                 </View>
             </Modal>
@@ -115,15 +113,15 @@ const styles = StyleSheet.create({
       },
     triangle: {
         position: 'absolute',
-        bottom: -20,
+        top: -20,
         left: 30,
         width: 0,
         height: 0,
         borderStyle: 'solid',
-        borderRightWidth: 20,
-        borderTopWidth: 20,
+        borderRightWidth: 40,
+        borderBottomWidth: 20,
         borderRightColor: 'transparent',
-        borderTopColor: 'white',
+        borderBottomColor: 'white',
     },
     modalPlacement1: {
         marginTop: 300
