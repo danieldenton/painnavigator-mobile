@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
 import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainScore } from "../components/daily-activities.component";
+import { EducationUnitCard } from "../../education/components/education-unit-card.component";
+import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 
 
 export const DashboardTour = ({ visible, setVisible }) => {
@@ -44,8 +46,9 @@ export const DashboardTour = ({ visible, setVisible }) => {
         }
     ]
 
-    const tourPlacement = [250, 20]
-    const bubblePlacement = [null, 230, 350]
+    const tourPlacement = [250, 20, 20]
+    const bubblePlacement = [null, 230, 380]
+    const tourComponents = [null, <DailyPainScore />, <EducationUnitCard />, <MovementUnitCard />]
 
     return(
         <>
@@ -58,7 +61,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                <View style={styles.modalBackground}>
                {tour > 0  ? 
                <View style={[styles.bubble, {marginTop: bubblePlacement[tour]}]}>
-                <DailyPainScore />
+                {tourComponents[tour]}
                </View> : null}
                     <View style={[styles.modalContainer, {marginTop: tourPlacement[tour]}]}>
                     {tour > 0  ? <View style={styles.triangle}/> : null}
