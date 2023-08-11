@@ -94,10 +94,10 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 </Pressable>}
                             </View>
                         </View>
-                        {/* {tour === 3  ?  */}
+                        {tour === 3 || tour === 5 ? 
                     <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
                         {tourObj[tour].component}
-                    </View> 
+                    </View> : null}
                 </View>
             </Modal>
         </View>
