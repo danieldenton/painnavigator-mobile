@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
       },
     triangle: {
         position: 'absolute',
-        left: 30,
+        left: 25,
         width: 0,
         height: 0,
         borderStyle: 'solid',
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create({
     triangleRightTop: {
         position: 'absolute',
         top: -20,
-        left: 260,
+        left: 270,
         width: 0,
         height: 0,
         borderStyle: 'solid',
