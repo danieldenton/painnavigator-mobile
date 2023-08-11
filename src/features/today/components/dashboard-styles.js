@@ -75,13 +75,19 @@ export const styles = StyleSheet.create({
     },
     buttons: {
         fontSize: 16,
+        fontFamily: "Inter_500Medium",
         textAlign: 'center',
         width: 100,
-        color: '#16a28b',
+        margin: 2,
+        padding: 3,
+        backgroundColor: '#16a28b',
+        color: 'white',
+        borderRadius: 10
     },
     modalContent: {
         textAlign: 'center',
         fontSize: 16,
+        fontFamily: "Inter_500Medium",
         backgroundColor: 'white',
         padding: 20,
         elevation: 5

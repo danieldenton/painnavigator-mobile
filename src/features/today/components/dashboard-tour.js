@@ -34,6 +34,14 @@ export const DashboardTour = ({ visible, setVisible }) => {
             </View>
         )
     }
+
+    const componentOnBottom = () => {
+        return (
+            <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
+                {tourObj[tour].component}
+            </View> 
+        )
+    }
     
     return(
         <>
@@ -44,8 +52,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 visible={visible}
             >  
                 <View style={styles.modalBackground}>
-                    {tour !== 0 && tour !== 3 && tour !== 5  ? 
-                    componentOnTop() : null}
+                    {tour !== 0 && tour !== 3 && tour !== 5  ? componentOnTop() : null}
                         <View style={[styles.modalContainer, {marginTop: tourObj[tour]?.tourTextBubble}]}>
                             {tour > 0  ? 
                             <View style={[
@@ -72,10 +79,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 </Pressable>}
                             </View>
                         </View>
-                    {tour === 3 || tour === 5 ? 
-                    <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                        {tourObj[tour].component}
-                    </View> : null}
+                    {tour === 3 || tour === 5 ? componentOnBottom() : null}
                 </View>
             </Modal>
         </View>
