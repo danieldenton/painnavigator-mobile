@@ -86,11 +86,21 @@ export const styles = StyleSheet.create({
         padding: 20,
         elevation: 5
     },
-    topCompContainer: {
+    messageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 50,
-        left: 310,        
+        left: 315,        
+        height: 60,
+        width: 60,
+        backgroundColor: 'white',
+        borderRadius: 20
+    },
+    menuContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 50,
+        left: 5,        
         height: 60,
         width: 60,
         backgroundColor: 'white',

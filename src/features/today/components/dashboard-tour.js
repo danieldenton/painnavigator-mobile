@@ -15,12 +15,19 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
     const componentOnTop = () => {
         return (
-            tour < 4 || tour > 5 ?
+            tour < 4 || tour === 5 ?
             <View style={[styles.bubble, {marginTop: tourObj[tour]?.tourComponentPlacement}]}>
                 {tourObj[tour]?.component}
             </View> 
             :
-            <View style={styles.topCompContainer}>
+            tour === 4 ?
+            <View style={styles.messageContainer}>
+                <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
+                    {tourObj[tour].component}
+                </View> 
+            </View>
+            :
+            <View style={styles.menuContainer}>
                 <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
                     {tourObj[tour].component}
                 </View> 
