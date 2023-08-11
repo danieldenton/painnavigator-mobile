@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, Modal, Pressable } from 'react-native'
-import styled from "styled-components/native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainScore } from "../components/daily-activities.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
@@ -36,8 +35,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
         },
         { 
             text: "Move daily or as often as you can! Daily recommended exercises are here.",
-            tourTextBubble: 20,
-            tourComponentPlacement: 0,
+            tourTextBubble: 370,
+            tourComponentPlacement: 20,
             component: <MovementUnitCard /> 
         },
         { 
@@ -61,9 +60,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
     ]
 
     const tourPlacement = [250, 20, 20]
-    const bubblePlacement = [null, 230, 377]
-    const tourComponents = [null, <DailyPainScore />, <EducationUnitCard />, <MovementUnitCard />]
-
+    
     return(
         <>
         <View style={styles.container}>
@@ -72,13 +69,13 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 transparent={true}
                 visible={visible}
             >  
-               <View style={styles.modalBackground}>
-               {tour !== 0 || tour !== 3 || tour !== 5  ? 
-               <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                {tourObj[tour].component}
-               </View> : null}
-                    <View style={[styles.modalContainer, {marginTop: tourPlacement[tour]}]}>
-                    {tour > 0  ? <View style={styles.triangle}/> : null}
+                <View style={styles.modalBackground}>
+                    {tour !== 0 && tour !== 3 && tour !== 5  ? 
+                    <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
+                        {tourObj[tour].component}
+                    </View> : null}
+                        <View style={[styles.modalContainer, {marginTop: tourObj[tour].tourTextBubble}]}>
+                            {tour > 0  ? <View style={[styles.triangle, tour !== 3 && tour !==5 ? styles.top : styles.bottom]}/> : null}
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
                             <View style={styles.buttonContanier}>
                                 {tour === 0 ? null :
@@ -98,10 +95,14 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                     <Text style={styles.buttons}>FINISH</Text>
                                 </Pressable>}
                             </View>
-                    </View>
+                        </View>
+                        {/* {tour === 3  ?  */}
+                    <View style={[styles.bubble, {marginBottom: tourObj[tour].tourComponentPlacement}]}>
+                        {tourObj[tour].component}
+                    </View> 
                 </View>
             </Modal>
-            </View>
+        </View>
         </>
     );
 }
@@ -137,15 +138,23 @@ const styles = StyleSheet.create({
       },
     triangle: {
         position: 'absolute',
-        top: -20,
         left: 30,
         width: 0,
         height: 0,
         borderStyle: 'solid',
         borderRightWidth: 30,
+        borderRightColor: 'transparent'
+    },
+    top: {
+        top: -20,
         borderBottomWidth: 20,
-        borderRightColor: 'transparent',
         borderBottomColor: 'white',
+        borderRightColor: 'transparent'
+    },
+    bottom: {
+        bottom: -20,
+        borderTopWidth: 20,
+        borderTopColor: 'white'
     },
     bubble: {
         position: 'relative',
