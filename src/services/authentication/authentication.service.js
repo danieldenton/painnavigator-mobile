@@ -45,7 +45,6 @@ export async function getUser(
   setUserInfo, 
   setEducationProgram, 
   setEducationProgress,
-  setLastCompletedModule, 
   setMovementProgress,
   setProfileComplete, 
   setCompletedProgram,
@@ -59,7 +58,6 @@ export async function getUser(
     setUserInfo(data.profile)
     setEducationProgram(data.education_program)
     setEducationProgress(eProgress)
-    setLastCompletedModule(eDate)
     setMovementProgress(data.movement_progress.progress)
     setProfileComplete(data.profile.profile_status === 1)
     setCompletedProgram(data.outcome.completed_program === true)
