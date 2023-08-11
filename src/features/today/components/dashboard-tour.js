@@ -16,8 +16,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
     const componentOnTop = () => {
         return (
             tour < 4 || tour > 5 ?
-            <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                {tourObj[tour].component}
+            <View style={[styles.bubble, {marginTop: tourObj[tour]?.tourComponentPlacement}]}>
+                {tourObj[tour]?.component}
             </View> 
             :
             <View style={styles.topCompContainer}>
@@ -39,8 +39,12 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 <View style={styles.modalBackground}>
                     {tour !== 0 && tour !== 3 && tour !== 5  ? 
                     componentOnTop() : null}
-                        <View style={[styles.modalContainer, {marginTop: tourObj[tour].tourTextBubble}]}>
-                            {tour > 0  ? <View style={[styles.triangle, tour !== 3 && tour !==5 ? styles.topLeft : styles.bottom]}/> : null}
+                        <View style={[styles.modalContainer, {marginTop: tourObj[tour]?.tourTextBubble}]}>
+                            {tour > 0  ? 
+                            <View style={[
+                                tour === 4 ? styles.triangleRightTop : 
+                                styles.triangle, tour !== 3 && tour !==5 ? styles.topLeft : styles.bottom]}/> 
+                            : null}
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
                             <View style={styles.buttonContanier}>
                                 {tour === 0 ? null :

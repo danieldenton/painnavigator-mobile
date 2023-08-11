@@ -44,11 +44,18 @@ export const styles = StyleSheet.create({
         borderBottomColor: 'white',
         borderRightColor: 'transparent'
     },
-    topRight: {
+    triangleRightTop: {
+        position: 'absolute',
         top: -20,
+        left: 260,
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
+        borderLeftWidth: 30,
+        borderLeftColor: 'transparent',
         borderBottomWidth: 20,
         borderBottomColor: 'white',
-        borderRightColor: 'transparent'
+        borderRightColor: 'transparent',
     },
     bottom: {
         bottom: -20,
@@ -83,7 +90,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 50,
-        left: 310,        height: 60,
+        left: 310,        
+        height: 60,
         width: 60,
         backgroundColor: 'white',
         borderRadius: 20

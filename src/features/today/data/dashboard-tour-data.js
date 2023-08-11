@@ -2,6 +2,16 @@ import { DailyPainScore } from "../components/daily-activities.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
+import { WellnessCoach, ProfileSetup } from "../components/small-daily-activities";
+
+const DailyActivities = () => {
+    return (
+        <>
+            <WellnessCoach />
+            <ProfileSetup />
+        </>
+    )
+}
 
 export const tourObj = [
     { 
@@ -36,9 +46,9 @@ export const tourObj = [
      },
     { 
         text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-        tourTextBubble: 20,
+        tourTextBubble: 520,
         tourComponentPlacement: 0,
-        component: <MovementUnitCard /> 
+        component: <DailyActivities />
     },
     { 
         text: "You can explore other features, update settings, and view your course progress in the menu.",
