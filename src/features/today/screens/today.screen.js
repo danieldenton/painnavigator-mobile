@@ -23,7 +23,9 @@ import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component"; 
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { View } from "react-native";
-import {  DailyPainScore } from "../components/daily-activities.component";
+import { DailyPainScore } from "../components/daily-activities.component";
+import { DashboardTour } from "../components/dashboard-tour";
+import { Provider } from "react-native-paper";
 import { Journals, WellnessCoach, NewSmartGoal, ProfileSetup, SmartGoalUpdate } from "../components/small-daily-activities";
 import { Audio } from 'expo-av';
 import { useIsFocused } from '@react-navigation/native';
@@ -33,7 +35,7 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp, lastDateOnApp } = useContext(AuthenticationContext);
+    const {  user, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp, lastDateOnApp, tour } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
@@ -41,9 +43,10 @@ export const TodayScreen = ({ navigation }) => {
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
-    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
+    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
+    const [tourVisible, setTourVisible] = useState(false)
 
     const isFocused = useIsFocused();
     const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
@@ -54,7 +57,7 @@ export const TodayScreen = ({ navigation }) => {
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
     const lastSmartGoalUpdate = formatDate(activeGoal?.goal_updates[0]?.date_time_value);
-    const lastEducationModule= lastCompletedModule !== null && formatDate(lastCompletedModule);
+    const lastEducationModule = lastCompletedModule !== null && formatDate(lastCompletedModule);
     const lastEducationModuleId = educationProgress - 1;
 
     useEffect(() => {
@@ -62,7 +65,8 @@ export const TodayScreen = ({ navigation }) => {
             user.user.uid,
             setUserInfo,  
             setEducationProgram,
-            setEducationProgress, 
+            setEducationProgress,
+            setLastCompletedModule, 
             setMovementProgress,
             setProfileComplete, 
             setCompletedProgram,
@@ -114,8 +118,10 @@ export const TodayScreen = ({ navigation }) => {
     }, []);
 
     useEffect(() => {
-
-    }, [currentModule])
+        if (tour !== null) {
+            setTourVisible(true)
+        }
+    }, [tour])
 
     function renderDailyPainScore() {
         if(dailyPainScore.id) {
@@ -154,32 +160,35 @@ export const TodayScreen = ({ navigation }) => {
     };
 
     return (
-        <SafeView>
-            <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
-            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-                <Greeting greeting={greeting} name={userInfo.first_name} />
-                <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-                {renderDailyPainScore()}
-                {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
-                { lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
-                {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
-                {!completedAllMovementModules && 
-                    <>
-                        <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                        <MovementUnitCard navigation={navigation} isFocused={isFocused} />
-                    </>
-                }
-                <SubHeader title={"DAILY ACTIVITIES"} size={14} />
-                <View style={{ marginBottom: 16 }}>
-                    {renderWellnessCoachMessageActivity()}
-                    {!profileComplete && <ProfileSetup navigation={navigation} />}
-                    {renderJournalDailyActivity()}
-                    {renderSmartGoalDailyActivity()}
-                    {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
-                    {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
-                    {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
-                </View>
-            </Scroll>
-        </SafeView>
+        <Provider>
+            <SafeView>
+                <DashboardTour visible={tourVisible} setVisible={setTourVisible}/>
+                <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
+                <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+                    <Greeting greeting={greeting} name={userInfo.first_name} />
+                    <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
+                    {renderDailyPainScore()}
+                    {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
+                    {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
+                    {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
+                    {!completedAllMovementModules && 
+                        <>
+                            <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
+                            <MovementUnitCard navigation={navigation} isFocused={isFocused} />
+                        </>
+                    }
+                    <SubHeader title={"DAILY ACTIVITIES"} size={14} />
+                    <View style={{ marginBottom: 16 }}>
+                        {renderWellnessCoachMessageActivity()}
+                        {!profileComplete && <ProfileSetup navigation={navigation} />}
+                        {renderJournalDailyActivity()}
+                        {renderSmartGoalDailyActivity()}
+                        {lastPainJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Pain Journal"} />}
+                        {lastMoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Mood Journal"} />}
+                        {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
+                    </View>
+                </Scroll>
+            </SafeView>
+        </Provider>
     );
 };

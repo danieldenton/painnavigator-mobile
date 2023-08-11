@@ -43,6 +43,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     })
     const [educationProgram, setEducationProgram] = useState(1)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
+    const [tour, setTour] = useState(null) 
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({
@@ -123,6 +124,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
                 setStep(0)
+                setTour(0)
             })
             .catch((e) => {
                 setError(e.toString());
@@ -222,7 +224,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 setEducationProgram,
                 lastDateOnApp,
                 setLastDateOnApp,
-                resetPassword
+                resetPassword,
+                tour,
+                setTour
             }}
         >
             {children}
