@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { handleTrackEvent } from "../utils";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 
 const DailyActivitiesCard = styled(Card)`
     margin-top: 16px;
@@ -34,14 +35,15 @@ const CardIconSection = styled.View`
 
 
 export const SmallDailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
+    const { tour } =  useContext(AuthenticationContext)
 
     return (
         <TouchableOpacity
-            onPress={() => (handleTrackEvent(trackEvent), navigation.navigate(destination, {
+            onPress={() => !tour ? (handleTrackEvent(trackEvent), navigation.navigate(destination, {
                 screen: screen,
                 params: { type: screenParams }
             }
-            ))}>
+            )) : null}>
             <DailyActivitiesCard>
                 <ModuleCardContent>
                     <CardTextSection>

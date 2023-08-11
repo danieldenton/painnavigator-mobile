@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { EducationModuleIcon } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { track } from "@amplitude/analytics-react-native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
@@ -43,13 +44,14 @@ const CardIconSection = styled.View`
 
 export const EducationUnitCard = ({ navigation }) => {
     const { currentModule } = useContext(EducationContext);
+    const { tour } = useContext(AuthenticationContext)
 
     return ( 
         <TouchableOpacity
-          onPress={() => (
+          onPress={() => !tour ? (
           navigation.navigate("Education", { navigation }),
           track(EDUCATION_UNIT_EVENTS.START_EDUCATION_UNIT)
-        )}
+        ) : null}
         > 
             <ModuleCard>
                 <ModuleCardContent>
