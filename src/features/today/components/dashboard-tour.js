@@ -60,22 +60,28 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 styles.triangle, tour !== 3 && tour !==5 ? styles.topLeft : styles.bottom]}/> 
                             : null}
                             <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
-                            <View style={styles.buttonContanier}>
+                            <View style={styles.buttonsContanier}>
                                 {tour === 0 ? null :
                                 <Pressable
                                     onPress={() => setTour(tour - 1)}>
-                                    <Text style={styles.buttons}>PREVIOUS</Text>
+                                        <View style={styles.previousButtonContainer}>
+                                             <Text style={styles.previousButtons}>PREVIOUS</Text>
+                                        </View>
                                 </Pressable>}
                                 {tour < 6 ?  
                                 <Pressable
-                                style={styles.buttons}
-                                onPress={() => setTour(tour + 1)}>
-                                <Text style={styles.buttons}>NEXT</Text>   
+                                    style={styles.buttons}
+                                    onPress={() => setTour(tour + 1)}>
+                                        <View style={styles.buttonContainer}>
+                                            <Text style={styles.buttons}>NEXT</Text>
+                                        </View>
                                 </Pressable> : 
                                 <Pressable
-                                style={styles.buttons}
+                                    style={styles.buttons}
                                     onPress={() => handleFinish()}>
-                                    <Text style={styles.buttons}>FINISH</Text>
+                                        <View style={styles.buttonContainer}>
+                                             <Text style={styles.buttons}>FINISH</Text>
+                                        </View>
                                 </Pressable>}
                             </View>
                         </View>

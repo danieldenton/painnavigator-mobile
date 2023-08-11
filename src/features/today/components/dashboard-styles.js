@@ -14,20 +14,13 @@ export const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 150,
+        height: 170,
         marginLeft: 30,
         marginRight: 30,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding: 20,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 4,
-        elevation: 5,
+        padding:10,
+        
       },
     triangle: {
         position: 'absolute',
@@ -68,28 +61,50 @@ export const styles = StyleSheet.create({
         marginLeft: 16,
         marginRight: 16
       },
-    buttonContanier: {
+    buttonsContanier: {
         justifyContent: 'center',
         flexDirection: 'row', 
         width: 200,
     },
+    buttonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 130,
+      margin: 4,
+      padding: 11,
+      borderRadius: 10,
+      backgroundColor: '#16a28b',
+    },
     buttons: {
         fontSize: 16,
-        fontFamily: "Inter_500Medium",
-        textAlign: 'center',
-        width: 100,
-        margin: 2,
-        padding: 3,
-        backgroundColor: '#16a28b',
+        fontFamily: "Poppins_600SemiBold",
+        textAlign: 'center', 
         color: 'white',
-        borderRadius: 10
+    },
+    previousButtonContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 130,
+      margin: 4,
+      padding: 8,
+      borderRadius: 10,
+      borderWidth: 3,
+      borderStyle: 'solid',
+      borderColor: '#16a28b',
+      backgroundColor: 'white',
+    },
+    previousButtons: {
+        fontSize: 16,
+        fontFamily: "Poppins_600SemiBold",
+        textAlign: 'center', 
+        color: '#16a28b',
     },
     modalContent: {
         textAlign: 'center',
         fontSize: 16,
         fontFamily: "Inter_500Medium",
         backgroundColor: 'white',
-        padding: 20,
+        padding: 10,
         elevation: 5
     },
     messageContainer: {
