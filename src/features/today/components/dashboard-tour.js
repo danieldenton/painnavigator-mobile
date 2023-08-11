@@ -36,7 +36,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
         { 
             text: "Move daily or as often as you can! Daily recommended exercises are here.",
             tourTextBubble: 370,
-            tourComponentPlacement: 20,
+            tourComponentPlacement: 6,
             component: <MovementUnitCard /> 
         },
         { 
@@ -58,8 +58,6 @@ export const DashboardTour = ({ visible, setVisible }) => {
             component: <MovementUnitCard /> 
         }
     ]
-
-    const tourPlacement = [250, 20, 20]
     
     return(
         <>
@@ -97,7 +95,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                             </View>
                         </View>
                         {/* {tour === 3  ?  */}
-                    <View style={[styles.bubble, {marginBottom: tourObj[tour].tourComponentPlacement}]}>
+                    <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
                         {tourObj[tour].component}
                     </View> 
                 </View>
