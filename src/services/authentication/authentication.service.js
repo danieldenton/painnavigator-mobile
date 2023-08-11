@@ -54,7 +54,7 @@ export async function getUser(
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
     const data = response.data.data.attributes
     const eProgress = data.education_progress.education_progress ? data.education_progress.education_progress : data.education_progress.progress
-    const eDate = data.education_progress.education_progress ? data.education_progress.last_completed_date : null
+    // const eDate = data.education_progress.education_progress ? data.education_progress.last_completed_date : null
     setUserInfo(data.profile)
     setEducationProgram(data.education_program)
     setEducationProgress(eProgress)
