@@ -4,6 +4,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { DailyPainScore } from "../components/daily-activities.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
+import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 
 
 export const DashboardTour = ({ visible, setVisible }) => {
@@ -43,7 +44,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
             text: "You can chat with your wellness coach here! This is a great place to ask any questions.",
             tourTextBubble: 20,
             tourComponentPlacement: 0,
-            component: <MovementUnitCard /> 
+            component: <UnreadMessageIcon /> 
          },
         { 
             text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
@@ -55,7 +56,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
             text: "You can explore other features, update settings, and view your course progress in the menu.",
             tourTextBubble: 20,
             tourComponentPlacement: 0,
-            component: <MovementUnitCard /> 
+            component: <MenuIcon /> 
         }
     ]
     
@@ -94,7 +95,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 </Pressable>}
                             </View>
                         </View>
-                        {tour === 3 || tour === 5 ? 
+                    {tour === 3 || tour === 5 ? 
                     <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
                         {tourObj[tour].component}
                     </View> : null}
