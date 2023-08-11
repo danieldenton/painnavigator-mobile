@@ -105,7 +105,6 @@ export const styles = StyleSheet.create({
         fontFamily: "Inter_500Medium",
         backgroundColor: 'white',
         padding: 10,
-        elevation: 5
     },
     messageContainer: {
         alignItems: 'center',

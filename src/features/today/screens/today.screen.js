@@ -161,7 +161,6 @@ export const TodayScreen = ({ navigation }) => {
     return (
         <Provider>
             <SafeView>
-                <DashboardTour visible={tourVisible} setVisible={setTourVisible}/>
                 <TodayNavBar navigation={navigation} hasUnreadMessages={hasUnreadMessages} />
                 <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                     <Greeting greeting={greeting} name={userInfo.first_name} />
@@ -187,6 +186,8 @@ export const TodayScreen = ({ navigation }) => {
                         {lastFoodJournal === timeZonedTodaysDate && <DailyGoalCompleted type={"Food Journal"} />}
                     </View>
                 </Scroll>
+            <DashboardTour visible={tourVisible} setVisible={setTourVisible}/>
+
             </SafeView>
         </Provider>
     );
