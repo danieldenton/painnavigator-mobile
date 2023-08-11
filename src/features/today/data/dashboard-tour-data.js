@@ -46,7 +46,7 @@ export const tourObj = [
      },
     { 
         text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-        tourTextBubble: 520,
+        tourTextBubble: 500,
         tourComponentPlacement: 0,
         component: <DailyActivities />
     },
