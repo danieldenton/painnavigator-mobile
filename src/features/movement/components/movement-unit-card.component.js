@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { isAndroid } from "../../../utils";
 
@@ -54,6 +55,7 @@ const Icon = styled.View`
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
     const { currentModule, getPlaylistLength } = useContext(MovementContext);
+    const { tour } = useContext(AuthenticationContext)
     const { name, videos } = currentModule;
     const numVideosCompleted = videos.filter(video => video.completed).length;
     const totalVideos = videos.length;
@@ -71,7 +73,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     }, [isFocused, isAndroid]);
 
     return ( 
-        <TouchableOpacity onPress={() => navigation.navigate("Movement")}> 
+        <TouchableOpacity onPress={() => !tour ? navigation.navigate("Movement") : null}> 
             <ModuleCard>
                 <ModuleCardContent>
                     <CardTextSection>
