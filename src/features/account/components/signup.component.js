@@ -15,7 +15,7 @@ import { ONBOARD_EVENTS } from "../../../amplitude-events";
 export const Signup = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
-    const { onboardingData, changeOnboardEntry, onRegister, error, userLoading } = useContext(AuthenticationContext);
+    const { onboardingData, changeOnboardEntry, onRegister, error, userLoading, setTour } = useContext(AuthenticationContext);
     const { first_name, last_name, email } = onboardingData;
     const [showButton, setShowButton] = useState(true);
 
@@ -87,7 +87,8 @@ export const Signup = ({ navigation }) => {
                     accessibilityLabel={"create-account-button"}
                     title={"Create Account"} 
                     onPress={() => {track(ONBOARD_EVENTS.COMPLETE_CREATE_ACCOUNT); 
-                        onRegister(password, repeatedPassword)}} 
+                        onRegister(password, repeatedPassword)
+                        setTour(0)}} 
                 />
                 <TermsAndConditions navigation={navigation} />
             </ButtonSection>}
