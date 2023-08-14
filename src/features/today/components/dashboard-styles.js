@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { StatusBar } from "react-native";
 import { isAndroid } from "../../../utils";
 
 export const styles = StyleSheet.create({
