@@ -3,6 +3,7 @@ import { EducationUnitCard } from "../../education/components/education-unit-car
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import { WellnessCoach, ProfileSetup } from "../components/small-daily-activities";
+import { isAndroid } from "../../../utils";
 
 const DailyActivities = () => {
     return (
@@ -23,7 +24,7 @@ export const tourObj = [
     { 
         text: "To get the most out of the program, we recommend you log your pain score daily here.",
         tourTextBubble: 20,
-        tourComponentPlacement: 230,
+        tourComponentPlacement: isAndroid ? 214 : 230,
         component: <DailyPainScore />
     },
     { 
