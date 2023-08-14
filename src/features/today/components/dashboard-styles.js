@@ -60,12 +60,12 @@ export const styles = StyleSheet.create({
         position: 'relative',
         marginTop: 250, 
         marginLeft: 16,
-        marginRight: 16
+        marginRight: 16,
       },
     buttonsContanier: {
         justifyContent: 'center',
         flexDirection: 'row', 
-        width: 200,
+        width: 200
     },
     buttonContainer: {
       justifyContent: 'center',
@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
     messageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: isAndroid ? 3 : 50,
         left: isAndroid ? 298 : 315,        
         height: 60,
         width: 60,
@@ -120,7 +120,7 @@ export const styles = StyleSheet.create({
     menuContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: isAndroid ? 3 : 50,
         left: 5,        
         height: 60,
         width: 60,
