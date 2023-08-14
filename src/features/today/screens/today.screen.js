@@ -43,7 +43,7 @@ export const TodayScreen = ({ navigation }) => {
     const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
     const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
     const { movementProgress, setMovementProgress } = useContext(MovementContext);
-    const { currentModule, educationProgress, lastCompletedModule, setEducationProgress, setLastCompletedModule } = useContext(EducationContext);
+    const { educationProgress, lastCompletedModule, setEducationProgress } = useContext(EducationContext);
     const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
     const [greeting, setGreeting] = useState("");
     const [tourVisible, setTourVisible] = useState(false)
