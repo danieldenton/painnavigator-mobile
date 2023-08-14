@@ -1,25 +1,26 @@
 import { StyleSheet } from "react-native";
+import { isAndroid } from "../../../utils";
 
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     modalBackground: {
         flex: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        backgroundColor: 'rgba(0, 0, 0, 0.25)'
       },
     modalContainer: {
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 170,
-        marginLeft: 30,
-        marginRight: 30,
+        height: isAndroid ? 200 : 170,
+        marginLeft: isAndroid ? 20 : 30,
+        marginRight: isAndroid ? 20 : 30,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding:10,
+        padding: isAndroid ? 20 : 10,
         
       },
     triangle: {
@@ -59,12 +60,12 @@ export const styles = StyleSheet.create({
         position: 'relative',
         marginTop: 250, 
         marginLeft: 16,
-        marginRight: 16
+        marginRight: 16,
       },
     buttonsContanier: {
         justifyContent: 'center',
         flexDirection: 'row', 
-        width: 200,
+        width: 200
     },
     buttonContainer: {
       justifyContent: 'center',
@@ -109,8 +110,8 @@ export const styles = StyleSheet.create({
     messageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
-        left: 315,        
+        marginTop: isAndroid ? 3 : 50,
+        left: isAndroid ? 298 : 315,        
         height: 60,
         width: 60,
         backgroundColor: 'white',
@@ -119,7 +120,7 @@ export const styles = StyleSheet.create({
     menuContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 50,
+        marginTop: isAndroid ? 3 : 50,
         left: 5,        
         height: 60,
         width: 60,
