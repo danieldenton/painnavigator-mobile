@@ -29,8 +29,8 @@ export const tourObj = [
     },
     { 
         text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-        tourTextBubble: 200,
-        tourComponentPlacement: isAndroid ? 10 : 6, 
+        tourTextBubble: isAndroid ? 159 : 200,
+        tourComponentPlacement: 6, 
         component: <EducationUnitCard />
     },
     { 

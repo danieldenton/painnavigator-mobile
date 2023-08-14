@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { isAndroid } from "../../../utils";
 
 export const styles = StyleSheet.create({
     container: {
@@ -14,12 +15,12 @@ export const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 170,
+        height: isAndroid ? 200 : 170,
         marginLeft: 30,
         marginRight: 30,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding:10,
+        padding: isAndroid ? 20 : 10,
         
       },
     triangle: {
