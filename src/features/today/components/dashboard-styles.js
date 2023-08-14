@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     modalBackground: {
         flex: 1,
@@ -16,8 +16,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: isAndroid ? 200 : 170,
-        marginLeft: 30,
-        marginRight: 30,
+        marginLeft: isAndroid ? 20 : 30,
+        marginRight: isAndroid ? 20 : 30,
         backgroundColor: 'white',
         borderRadius: 20,
         padding: isAndroid ? 20 : 10,
