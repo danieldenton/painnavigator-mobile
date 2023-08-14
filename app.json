@@ -32,7 +32,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "34",
+      "buildNumber": "36",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
