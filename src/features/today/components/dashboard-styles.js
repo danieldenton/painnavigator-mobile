@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { StatusBar } from "react-native";
 import { isAndroid } from "../../../utils";
 
 export const styles = StyleSheet.create({
@@ -111,7 +112,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 50,
-        left: 315,        
+        left: isAndroid ? 298 : 315,        
         height: 60,
         width: 60,
         backgroundColor: 'white',
