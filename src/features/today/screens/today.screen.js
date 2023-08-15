@@ -80,7 +80,7 @@ export const TodayScreen = ({ navigation }) => {
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)
         console.log("hit")
-    }), [!tour]
+    }), [tour === null]
 
     useEffect(() => {
         if (lastDateOnApp !== timeZonedTodaysDate) {
