@@ -70,17 +70,17 @@ export const TodayScreen = ({ navigation }) => {
             setProfileComplete, 
             setCompletedProgram,
             setLastDateOnApp
-        );     
-    }, []);
-
-    useEffect(() => {
+        );  
         getDailyPainScores(user.user.uid, setDailyPainScores)
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
-        getFoodJournals(user.user.uid, setFoodJournals)
-        console.log("hit")
-    }), [tour === null]
+        getFoodJournals(user.user.uid, setFoodJournals)   
+    }, []);
+
+    // useEffect(() => {
+        
+    // }), [tour === null]
 
     useEffect(() => {
         if (lastDateOnApp !== timeZonedTodaysDate) {
