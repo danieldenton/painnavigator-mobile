@@ -12,8 +12,18 @@ import { styles } from "../styles/account.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, setError, setProviderId, setEducationProgram } = useContext(AuthenticationContext);
+  const { changeOnboardEntry, error, setError, setProviderId, providerId, setEducationProgram } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
+
+  const handleProviderCode = () => {
+    setProviderId(checkReferralCode(referralCode))
+    if (providerId) {
+      setError(null)
+      navigation.navigate("Explanation")
+    } else {
+      setError("Please enter a valid code");
+    }
+  }
   
   return (
     <SafeView style={{ flex: 1 }}>
@@ -60,8 +70,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              checkReferralCode(referralCode, setProviderId, setError)
-              navigation.navigate("Explanation")
+              handleProviderCode()
               if (referralCode === "ISCS23") {
                 setEducationProgram(2)
               }

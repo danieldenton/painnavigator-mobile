@@ -14,8 +14,8 @@ export async function checkReferralCode(referralCode, setProviderId, setError) {
     const response = await axios.get(
       `${API_URL}/api/v1/providers/${referralCode}`
     );
-    const data = response.data.data.attributes;
-    const provider_id = data.id;
+    const provider_id= response.data.data.attributes.id
+    return provider_id
     setProviderId(provider_id);
     setError(null);
     track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE);
