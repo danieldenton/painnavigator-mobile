@@ -10,6 +10,8 @@ import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from '../../amplitude-events';
 
 export const ProviderCodeScreen = ({ navigation }) => {
   const { changeOnboardEntry, error, setError, setProviderId, providerId, setEducationProgram } = useContext(AuthenticationContext);
@@ -19,6 +21,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
     setProviderId(checkReferralCode(referralCode))
     if (providerId) {
       setError(null)
+      track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE);
       navigation.navigate("Explanation")
     } else {
       setError("Please enter a valid code");
