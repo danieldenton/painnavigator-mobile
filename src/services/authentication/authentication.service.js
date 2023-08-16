@@ -29,7 +29,6 @@ export async function postUser(uid, onboardingData) {
     uid: uid,
     ...onboardingData
   };
-  console.log(userData)
   await axios.post(`${API_URL}/api/v2/users`, { user: userData });
 };
 
