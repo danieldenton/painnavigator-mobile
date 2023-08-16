@@ -2,8 +2,10 @@ import React, { useState, createContext, useEffect, useContext } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
+import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram, checkReferralCode } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/onboard-data.json'
+import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 
 export const AuthenticationContext = createContext();
@@ -44,6 +46,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [educationProgram, setEducationProgram] = useState(1)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
     const [tour, setTour] = useState(null) 
+    
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({

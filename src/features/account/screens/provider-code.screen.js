@@ -10,23 +10,25 @@ import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 import { checkReferralCode } from "../../../services/authentication/authentication.service";
+import { ONBOARD_EVENTS } from "../../../amplitude-events";
 import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from '../../amplitude-events';
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, setError, setProviderId, providerId, setEducationProgram } = useContext(AuthenticationContext);
+  const { changeOnboardEntry, error, setError, setEducationProgram, setProviderId } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
 
-  const handleProviderCode = () => {
-    setProviderId(checkReferralCode(referralCode))
-    if (providerId) {
-      setError(null)
-      track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE);
-      navigation.navigate("Explanation")
-    } else {
-      setError("Please enter a valid code");
+    const handleProviderCode = async () => {
+        try {
+          const response = await checkReferralCode(referralCode);
+          response ? 
+          (setProviderId(response), setError(null), track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE), navigation.navigate("Explanation"))
+        :
+          setError("Please enter a valid code")
+        } catch (err) {
+          setError("Please enter a valid code");
+          console.error(err); 
+      };
     }
-  }
   
   return (
     <SafeView style={{ flex: 1 }}>
@@ -74,9 +76,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
             title={"Submit"}
             onPress={() => {
               handleProviderCode()
-              if (referralCode === "ISCS23") {
-                setEducationProgram(2)
-              }
+              referralCode === "ISCS23" ? setEducationProgram(2) : null
             }}
           />
         </View>
