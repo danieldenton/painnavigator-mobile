@@ -19,7 +19,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram, setTour } = useContext(AuthenticationContext);
+    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
 
     pages = [
         { component: <AvgPainPreStart />, disabled: false },
@@ -36,7 +36,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
     ] 
 
     const handleEducationProgram = () => {
-        setTour(0)
         if (educationProgram !== 2) {
             if (onboardingData.hopesToAchieve.length === 1 && onboardingData.hopesToAchieve[0] === 4) {
                 if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {

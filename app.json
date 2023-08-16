@@ -32,7 +32,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "38",
+      "buildNumber": "39",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -50,7 +50,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 35
+      "versionCode": 36
     },
     "web": {
       "favicon": "./assets/favicon.png"

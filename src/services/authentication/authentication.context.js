@@ -123,6 +123,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 }
                 postUser(u.user.uid, strippedOnboardingData);
                 setUser(u); 
+                setTour(0)
                 setStep(0)
             })
             .catch((e) => {
