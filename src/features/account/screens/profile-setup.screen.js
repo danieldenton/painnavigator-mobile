@@ -65,6 +65,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
         }
     }
 
+    const handleOtherPainType = () => {
+        if (onboardingData.typeOfPain !== "Low back pain") {
+            setEducationProgram(10)
+            navigation.navigate("Register")
+        }
+    }
+
     return(
         <SafeView>
             <NavigationBarLeft 
