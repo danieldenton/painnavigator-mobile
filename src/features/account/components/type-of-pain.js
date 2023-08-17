@@ -2,14 +2,14 @@ import React from 'react'
 import { JournalQuestion } from '../../../components/journal-question.component'
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from 'react-native';
-import { injectionsAndSurgery } from "./../data/onboard-data.json"
+import { typeOfPain } from "./../data/onboard-data.json"
 
-export const PainInjections = ({ onValueChange, data }) => {
+export const TypeOfPain = ({ onValueChange, data }) => {
     const add = (optionId) => {
         onValueChange(optionId, "painInjections")
     };
     
-    const options = injectionsAndSurgery.map((option) => {
+    const options = typeOfPain.map((option) => {
         return (
             <SingleSelectCheckBox 
                 add={add}
