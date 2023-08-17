@@ -6,14 +6,14 @@ import { typeOfPain } from "./../data/onboard-data.json"
 
 export const TypeOfPain = ({ onValueChange, data }) => {
     const add = (optionId) => {
-        onValueChange(optionId, "painInjections")
+        onValueChange(optionId, "typeOfPain")
     };
     
     const options = typeOfPain.map((option) => {
         return (
             <SingleSelectCheckBox 
                 add={add}
-                key={option.id}
+                key={option.option}
                 optionData={option} 
                 selectedOption={data.painInjections}
             />            
