@@ -71,7 +71,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         if (onboardingData.typeOfPain !== "Low back pain") {
             setEducationProgram(10)
             if (onboardingData.typeOfPain === "Other") {
-                
+                setStep(12)
             } else {
                 navigation.navigate("Register")
             }
