@@ -162,7 +162,11 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       };
 
     const previousStep = () => {
+        if (step === 12) {
+            setStep(9)
+        } else {
         setStep((prevPage) => { return ( prevPage - 1 ) });
+        }
     };
     
     const loadUser = async () => {
