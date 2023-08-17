@@ -4,7 +4,7 @@ import { JournalQuestion } from '../../../components/journal-question.component'
 import { AuthTextInput } from '../../../components/text-input.component';
 
 export const Other = ({ onValueChange, data }) => {
-    const { changeOnboardEntry } = useContext(AuthenticationContext)
+    // const { changeOnboardEntry } = useContext(AuthenticationContext)
     // const add = (optionId) => {
     //     onValueChange(optionId, "typeOfPain")
     // };
@@ -23,12 +23,12 @@ export const Other = ({ onValueChange, data }) => {
     return (
         <>
             <JournalQuestion 
-                question={"Where is the location of your worst pain?"} 
+                question={'On the last page you selected "other". Where is the location of your worst pain?'} 
             />
             <AuthTextInput
                 accessibilityLabel={"referral-code-input"}
                 value={data.typeOfPain}
-                onChangeText={(typeOfPain) => changeOnboardEntry(typeOfPain, "type_of_pain")}
+                onChangeText={(typeOfPain) => onValueChange(data.typeOfPain, "type_of_pain")}
             />
                 
         </>

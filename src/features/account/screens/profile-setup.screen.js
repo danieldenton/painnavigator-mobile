@@ -75,7 +75,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
             navigation.navigate("Register")
         }   
     }
-
+console.log(onboardingData.typeOfPain)
     return(
         <SafeView>
             <NavigationBarLeft 
