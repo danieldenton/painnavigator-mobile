@@ -21,7 +21,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
+    const { step, setStep, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
 
     pages = [
         { component: <AvgPainPreStart />, disabled: false },
@@ -70,7 +70,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
     const handleOtherPainType = () => {
         if (onboardingData.typeOfPain !== "Low back pain") {
             setEducationProgram(10)
-            navigation.navigate("Register")
+            if (onboardingData.typeOfPain === "Other") {
+                
+            } else {
+                navigation.navigate("Register")
+            }
         }
     }
 
@@ -80,7 +84,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 destination={"Onboard"} 
                 navigation={navigation} 
                 screen={"Sign Up"} 
-                previousPage={step >  0 ? previousStep : null} 
+                previousPage={step > 0 ? previousStep : null} 
             />
             {pages[step].component}
             <ButtonSection>
@@ -88,7 +92,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step === 11 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
+                        step >= 11 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
                     }} 
                 />
                 <ProgressDots progress={step +1} total={12} />

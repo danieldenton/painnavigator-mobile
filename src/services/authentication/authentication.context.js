@@ -207,6 +207,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 nextStep,
                 nextQuestion,
                 step,
+                setStep,
                 onLogin,
                 onRegister,
                 setOnboardingData,
