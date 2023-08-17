@@ -42,12 +42,12 @@
 
     "typeOfPain": [
         {
-            "id": 1,
+            "id": "Low Back Pain",
             "option": "Low Back Pain",
             "helpText": null
         },
         {
-            "id": 2,
+            "id": "Mid Back Pain",
             "option": "Mid Back Pain",
             "helpText": null
         },
@@ -57,27 +57,27 @@
             "helpText": null
         },
         {
-            "id": 4,
+            "id": "Shoulder Pain",
             "option": "Shoulder Pain",
             "helpText": null
         },
         {
-            "id": 5,
+            "id": "Hip Pain",
             "option": "Hip Pain",
             "helpText": null
         },
         {
-            "id": 6,
+            "id": "Knee Pain",
             "option": "Knee Pain",
             "helpText": null
         },
         {
-            "id": 7,
+            "id": "Foot Pain",
             "option": "Foot Pain",
             "helpText": null
         },
         {
-            "id": 8,
+            "id": "Other",
             "option": "Other",
             "helpText": null
         }

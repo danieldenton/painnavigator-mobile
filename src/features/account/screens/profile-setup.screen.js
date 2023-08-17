@@ -68,14 +68,12 @@ export const ProfileSetupScreen = ({ navigation }) => {
     }
 
     const handleOtherPainType = () => {
-        if (onboardingData.typeOfPain !== "Low back pain") {
-            setEducationProgram(10)
-            if (onboardingData.typeOfPain === "Other") {
-                setStep(12)
-            } else {
-                navigation.navigate("Register")
-            }
-        }
+        setEducationProgram(10)
+        if (onboardingData.typeOfPain === "Other") {
+            setStep(12)
+        } else {
+            navigation.navigate("Register")
+        }   
     }
 
     return(
@@ -92,10 +90,15 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step >= 11 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
+                        step >= 11 ? (handleEducationProgram(), navigation.navigate("Register")) 
+                        : 
+                        step === 9 && onboardingData.typeOfPain !== "Low Back Pain" ? 
+                        handleOtherPainType() 
+                        : 
+                        nextStep()          
                     }} 
                 />
-                <ProgressDots progress={step +1} total={12} />
+                {step === 12 ?<ProgressDots progress={10} total={10} /> : <ProgressDots progress={step + 1} total={12} />}
             </ButtonSection>
         </SafeView>
     );
