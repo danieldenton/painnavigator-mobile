@@ -5,8 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/onboard-data.json'
 
-
-
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {

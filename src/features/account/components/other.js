@@ -4,21 +4,7 @@ import { JournalQuestion } from '../../../components/journal-question.component'
 import { AuthTextInput } from '../../../components/text-input.component';
 
 export const Other = ({ onValueChange, data }) => {
-    const { typeOfPain } = data 
-    // const add = (optionId) => {
-    //     onValueChange(optionId, "typeOfPain")
-    // };
-    
-    // const options = typeOfPain.map((option) => {
-    //     return (
-    //         <SingleSelectCheckBox 
-    //             add={add}
-    //             key={option.option}
-    //             optionData={option} 
-    //             selectedOption={data.typeOfPain}
-    //         />            
-    //     );
-    // });
+    const { typeOfPain } = data
 
     return (
         <>
@@ -28,7 +14,7 @@ export const Other = ({ onValueChange, data }) => {
             <AuthTextInput
                 accessibilityLabel={"type-of-pain-input"}
                 value={data.typeOfPain}
-                onChangeText={(typeOfPain) => onValueChange(typeOfPain, "type_of_pain")}
+                onChangeText={(typeOfPain) => onValueChange(typeOfPain, "typeOfPain")}
             />
                 
         </>
