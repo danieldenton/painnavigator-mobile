@@ -82,7 +82,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                         step === 11 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
                     }} 
                 />
-                <ProgressDots progress={step +1} total={11} />
+                <ProgressDots progress={step +1} total={12} />
             </ButtonSection>
         </SafeView>
     );
