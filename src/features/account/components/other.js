@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 import { JournalQuestion } from '../../../components/journal-question.component'
-import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
-import { View } from 'react-native';
-import { typeOfPain } from "./../data/onboard-data.json"
-import { isAndroid } from '../../../utils';
+import { AuthTextInput } from '../../../components/text-input.component';
 
-export const TypeOfPain = ({ onValueChange, data }) => {
-    const add = (optionId) => {
-        onValueChange(optionId, "typeOfPain")
-    };
+export const Other = ({ onValueChange, data }) => {
+    const { changeOnboardEntry } = useContext(AuthenticationContext)
+    // const add = (optionId) => {
+    //     onValueChange(optionId, "typeOfPain")
+    // };
     
     // const options = typeOfPain.map((option) => {
     //     return (
@@ -25,6 +24,11 @@ export const TypeOfPain = ({ onValueChange, data }) => {
         <>
             <JournalQuestion 
                 question={"Where is the location of your worst pain?"} 
+            />
+            <AuthTextInput
+                accessibilityLabel={"referral-code-input"}
+                value={data.typeOfPain}
+                onChangeText={(typeOfPain) => changeOnboardEntry(typeOfPain, "type_of_pain")}
             />
                 
         </>
