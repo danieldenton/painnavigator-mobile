@@ -90,7 +90,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step >= 11 ? (handleEducationProgram(), navigation.navigate("Register")) 
+                        step >= 11 ? 
+                        (handleEducationProgram(), navigation.navigate("Register")) 
                         : 
                         step === 9 && onboardingData.typeOfPain !== "Low Back Pain" ? 
                         handleOtherPainType() 
@@ -98,7 +99,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                         nextStep()          
                     }} 
                 />
-                {step === 12 ?<ProgressDots progress={10} total={10} /> : <ProgressDots progress={step + 1} total={12} />}
+                {step === 12 ? <ProgressDots progress={10} total={10} /> : <ProgressDots progress={step + 1} total={12} />}
             </ButtonSection>
         </SafeView>
     );
