@@ -38,7 +38,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     ] 
 
     const handleEducationProgram = () => {
-        if (educationProgram !== 2) {
+        if (educationProgram !== 2 || educationProgram === 10) {
             if (onboardingData.hopesToAchieve.length === 1 && onboardingData.hopesToAchieve[0] === 4) {
                 if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {
                     setEducationProgram(5)
