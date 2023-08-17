@@ -28,6 +28,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         unableToStopWorrying: "",
         littleInterestOrPleasure: "",
         depressed: "",
+        typeOfPain: "",
         painInjections: "",
         spineSurgery: ""
     });
@@ -119,6 +120,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     unable_to_stop_worrying: onboardingData.unableToStopWorrying,
                     little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
                     depressed: onboardingData.depressed,
+                    type_of_pain: onboardingData.typeOfPain,
                     pain_injections: onboardingData.painInjections,
                     spine_surgery: onboardingData.spineSurgery,
                     education_program: educationProgram
