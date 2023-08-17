@@ -15,7 +15,7 @@ export const TypeOfPain = ({ onValueChange, data }) => {
                 add={add}
                 key={option.option}
                 optionData={option} 
-                selectedOption={data.painInjections}
+                selectedOption={data.typeOfPain}
             />            
         );
     });
@@ -23,7 +23,7 @@ export const TypeOfPain = ({ onValueChange, data }) => {
     return (
         <>
             <JournalQuestion 
-                question={"Are you currently undergoing pain injections as part of your treatment plan?"} 
+                question={"Where is the location of your worst pain?"} 
             />
                 <View style={{ marginTop: 20, marginBottom: 140 }}>
                     {options}
