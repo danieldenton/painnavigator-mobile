@@ -23,7 +23,7 @@ export const Other = ({ onValueChange, data }) => {
     return (
         <>
             <JournalQuestion 
-                question={'On the last page you selected "other". Where is the location of your worst pain?'} 
+                question={'Enter the location of your worst pain?'} 
             />
             <AuthTextInput
                 accessibilityLabel={"referral-code-input"}
