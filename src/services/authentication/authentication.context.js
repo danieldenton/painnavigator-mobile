@@ -1,12 +1,9 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram, checkReferralCode } from "./authentication.service";
+import { loginRequest, patchExpoPushToken, postUser, patchCompletedProgram } from "./authentication.service";
 import { hopesOptions } from '../../features/account/data/onboard-data.json'
-import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../amplitude-events";
-
 
 export const AuthenticationContext = createContext();
 
@@ -29,6 +26,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         unableToStopWorrying: "",
         littleInterestOrPleasure: "",
         depressed: "",
+        typeOfPain: "",
         painInjections: "",
         spineSurgery: ""
     });
@@ -120,6 +118,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                     unable_to_stop_worrying: onboardingData.unableToStopWorrying,
                     little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
                     depressed: onboardingData.depressed,
+                    type_of_pain: onboardingData.typeOfPain,
                     pain_injections: onboardingData.painInjections,
                     spine_surgery: onboardingData.spineSurgery,
                     education_program: educationProgram
@@ -161,7 +160,11 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       };
 
     const previousStep = () => {
+        if (step === 12) {
+            setStep(8)
+        } else {
         setStep((prevPage) => { return ( prevPage - 1 ) });
+        }
     };
     
     const loadUser = async () => {
@@ -206,6 +209,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 nextStep,
                 nextQuestion,
                 step,
+                setStep,
                 onLogin,
                 onRegister,
                 setOnboardingData,

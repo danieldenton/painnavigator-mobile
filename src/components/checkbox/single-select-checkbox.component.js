@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styled from "styled-components/native";
+import React from "react";
 import { Selected } from "../../icons";
 import { 
     CheckBoxPressableArea, 
@@ -7,9 +6,10 @@ import {
     UncheckedCheckCircle, 
     CheckBoxTextContentArea, 
     Option,
-    HelpText
+    HelpText,
 } from "./styles";
 import * as Haptics from 'expo-haptics';
+import { isAndroid } from "../../utils";
 
 export const SingleSelectCheckBox = ({ add, optionData, selectedOption }) => {
     const { id, helpText, option } = optionData;
@@ -23,6 +23,7 @@ export const SingleSelectCheckBox = ({ add, optionData, selectedOption }) => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
             }}
             role={"checkbox"}
+            style={{ marginBottom: isAndroid ? 12 : 20 }}
         >
             <CheckCircleArea>
                 {selectedOption === id ? 

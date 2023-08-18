@@ -49,7 +49,7 @@ export const TodayScreen = ({ navigation }) => {
     const [tourVisible, setTourVisible] = useState(false)
 
     const isFocused = useIsFocused();
-    const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
+    const educationProgramLength = educationProgram < 10 ? educationPrograms[educationProgram - 1].educationModulesId.length : null
     const completedAllEducationModules = educationProgress > educationProgramLength
     const completedAllMovementModules = movementProgress > 36;
     const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
@@ -77,7 +77,7 @@ export const TodayScreen = ({ navigation }) => {
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)   
     }, []);
-
+    
     useEffect(() => {
         if (lastDateOnApp !== timeZonedTodaysDate) {
             patchLastDateOnApp(user.user.uid, timeZonedTodaysDate)
@@ -169,7 +169,7 @@ export const TodayScreen = ({ navigation }) => {
                     {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
                     {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
                     {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
-                    {!completedAllMovementModules && 
+                    {!completedAllMovementModules && educationProgram !== 10 &&
                         <>
                             <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
                             <MovementUnitCard navigation={navigation} isFocused={isFocused} />

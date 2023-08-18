@@ -38,6 +38,50 @@
             "option": "No",
             "helpText": null
         }
+    ],
+
+    "typeOfPain": [
+        {
+            "id": "Low Back Pain",
+            "option": "Low Back Pain",
+            "helpText": null
+        },
+        {
+            "id": "Mid Back Pain",
+            "option": "Mid Back Pain",
+            "helpText": null
+        },
+        {
+            "id": 3,
+            "option": "Neck Pain",
+            "helpText": null
+        },
+        {
+            "id": "Shoulder Pain",
+            "option": "Shoulder Pain",
+            "helpText": null
+        },
+        {
+            "id": "Hip Pain",
+            "option": "Hip Pain",
+            "helpText": null
+        },
+        {
+            "id": "Knee Pain",
+            "option": "Knee Pain",
+            "helpText": null
+        },
+        {
+            "id": "Foot Pain",
+            "option": "Foot Pain",
+            "helpText": null
+        },
+        {
+            "id": "Other",
+            "option": "Other",
+            "helpText": null
+        }
+
     ]
 }
 

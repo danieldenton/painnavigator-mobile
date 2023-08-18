@@ -1,13 +1,13 @@
-import React from "react";
 import styled from "styled-components/native";
 import { colors } from "../../infrastructure/theme/colors";
 
 export const CheckBoxPressableArea = styled.Pressable`
     align-items: center;
     flex-direction: row;
-    margin-bottom:  22px;
     margin-left:  2px;
 `;
+
+expo
 
 export const CheckCircleArea = styled.View`
     margin-right: 18px;

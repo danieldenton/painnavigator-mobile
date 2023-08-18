@@ -8,6 +8,8 @@ import { Anxious } from "../../../components/onboard-coutcome/anxious"
 import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worrying"
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure"
 import { Depressed } from "../../../components/onboard-coutcome/depressed"
+import { TypeOfPain } from "../components/type-of-pain";
+import { Other } from "../components/other";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
@@ -19,7 +21,7 @@ import { SafeView } from "../../../components/safe-area.component";
 
 
 export const ProfileSetupScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
+    const { step, setStep, previousStep, nextStep, onboardingData, changeOnboardEntry, educationProgram, setEducationProgram } = useContext(AuthenticationContext);
 
     pages = [
         { component: <AvgPainPreStart />, disabled: false },
@@ -30,13 +32,15 @@ export const ProfileSetupScreen = ({ navigation }) => {
         { component: <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.littleInterestOrPleasure ? false : true },
         { component: <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.depressed ? false : true },
         { component: <AlmostThere />, disabled: false },
+        { component: <TypeOfPain onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.typeOfPain ? false : true },
         { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
         { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
-        { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true }
+        { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true },
+        { component: <Other onValueChange={changeOnboardEntry} data={onboardingData}/>, disabled: onboardingData.typeOfPain ? false : true }
     ] 
 
     const handleEducationProgram = () => {
-        if (educationProgram !== 2) {
+        if (educationProgram !== 2 && educationProgram !== 10) {
             if (onboardingData.hopesToAchieve.length === 1 && onboardingData.hopesToAchieve[0] === 4) {
                 if (onboardingData.spineSurgery !== "No" && onboardingData.painInjections !== "No") {
                     setEducationProgram(5)
@@ -63,13 +67,23 @@ export const ProfileSetupScreen = ({ navigation }) => {
         }
     }
 
+    const handleOtherPainType = () => {
+        setEducationProgram(10)
+        if (onboardingData.typeOfPain === "Other") {
+            setStep(12)
+            onboardingData.typeOfPain = ""
+        } else {
+            navigation.navigate("Register")
+        }   
+    }
+
     return(
         <SafeView>
             <NavigationBarLeft 
                 destination={"Onboard"} 
                 navigation={navigation} 
                 screen={"Sign Up"} 
-                previousPage={step >  0 ? previousStep : null} 
+                previousPage={step > 0 ? previousStep : null} 
             />
             {pages[step].component}
             <ButtonSection>
@@ -77,10 +91,16 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        step === 10 ? (handleEducationProgram(), navigation.navigate("Register")) : nextStep()
+                        step >= 11 ? 
+                        (handleEducationProgram(), navigation.navigate("Register")) 
+                        : 
+                        step === 8 && onboardingData.typeOfPain !== "Low Back Pain" ? 
+                        handleOtherPainType()
+                        : 
+                        nextStep()          
                     }} 
                 />
-                <ProgressDots progress={step +1} total={11} />
+                {step === 12 ? <ProgressDots progress={10} total={10} /> : <ProgressDots progress={step + 1} total={12} />}
             </ButtonSection>
         </SafeView>
     );
