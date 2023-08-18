@@ -30,8 +30,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
             </View>
             :
             <View style={styles.menuContainer}>
-                <View style={[styles.bubble, {marginTop: tourObj[customTour].tourComponentPlacement}]}>
-                    {tourObj[customTour].component}
+                <View style={[styles.bubble, {marginTop: tourObj[customTour]?.tourComponentPlacement}]}>
+                    {tourObj[customTour]?.component}
                 </View> 
             </View>
         )
@@ -61,7 +61,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 customTour === 4 ? styles.triangleRightTop : 
                                 styles.triangle, customTour !== 2 && customTour !== 3 && customTour !==5 ? styles.topLeft : styles.bottom]}/> 
                             : null}
-                            <Text style={styles.modalContent}>{tourObj[customTour]?.text}</Text>
+                            <Text style={styles.modalContent}>{customTour !==6 ? tourObj[customTour]?.text : "You can explore other features and update settings in the menu."}</Text>
                             <View style={styles.buttonsContanier}>
                                 {tour === 0 ? null :
                                 <Pressable

@@ -5,6 +5,7 @@ import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import { WellnessCoach, ProfileSetup } from "../components/small-daily-activities";
 import { isAndroid } from "../../../utils";
 
+
 const DailyActivities = () => {
     return (
         <>
