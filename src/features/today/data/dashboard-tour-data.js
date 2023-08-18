@@ -14,6 +14,8 @@ const DailyActivities = () => {
     )
 }
 
+export const shortTour = [0, 1, 4, 6]
+
 export const tourObj = [
     { 
         text: "Welcome to PainNavigator! Here's a quick tutorial to get you started.", 

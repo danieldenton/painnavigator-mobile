@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { View, Text, Modal, Pressable } from 'react-native'
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { tourObj } from "../data/dashboard-tour-data";
+import { tourObj, shortTour } from "../data/dashboard-tour-data";
 import { styles } from "./dashboard-styles";
 
 
 export const DashboardTour = ({ visible, setVisible }) => {
-    const { tour, setTour } = useContext(AuthenticationContext)
+    const { tour, setTour, educationProgram } = useContext(AuthenticationContext)
+
+    const customTour = educationProgram !== 10 ? tour : shortTour[tour]
 
     const handleFinish = () => {
         setTour(null)
