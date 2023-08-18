@@ -17,21 +17,21 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
     const componentOnTop = () => {
         return (
-            tour < 4 || tour === 5 ?
-            <View style={[styles.bubble, {marginTop: tourObj[tour]?.tourComponentPlacement}]}>
-                {tourObj[tour]?.component}
+            customTour < 4 || tour === 5 ?
+            <View style={[styles.bubble, {marginTop: tourObj[customTour]?.tourComponentPlacement}]}>
+                {tourObj[customTour]?.component}
             </View> 
             :
-            tour === 4 ?
+            customTour === 4 ?
             <View style={styles.messageContainer}>
-                <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                    {tourObj[tour].component}
+                <View style={[styles.bubble, {marginTop: tourObj[customTour].tourComponentPlacement}]}>
+                    {tourObj[customTour].component}
                 </View> 
             </View>
             :
             <View style={styles.menuContainer}>
-                <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                    {tourObj[tour].component}
+                <View style={[styles.bubble, {marginTop: tourObj[customTour].tourComponentPlacement}]}>
+                    {tourObj[customTour].component}
                 </View> 
             </View>
         )
@@ -39,8 +39,8 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
     const componentOnBottom = () => {
         return (
-            <View style={[styles.bubble, {marginTop: tourObj[tour].tourComponentPlacement}]}>
-                {tourObj[tour].component}
+            <View style={[styles.bubble, {marginTop: tourObj[customTour].tourComponentPlacement}]}>
+                {tourObj[customTour].component}
             </View> 
         )
     }
@@ -54,14 +54,14 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 visible={visible}
             >  
                 <View style={styles.modalBackground}>
-                    {tour !== 0 && tour !== 2 && tour !== 3 && tour !== 5  ? componentOnTop() : null}
-                        <View style={[styles.modalContainer, {marginTop: tourObj[tour]?.tourTextBubble}]}>
-                            {tour > 0  ? 
+                    {customTour !== 0 && customTour !== 2 && customTour !== 3 && customTour !== 5  ? componentOnTop() : null}
+                        <View style={[styles.modalContainer, {marginTop: tourObj[customTour]?.tourTextBubble}]}>
+                            {customTour > 0  ? 
                             <View style={[
-                                tour === 4 ? styles.triangleRightTop : 
-                                styles.triangle, tour !== 2 && tour !== 3 && tour !==5 ? styles.topLeft : styles.bottom]}/> 
+                                customTour === 4 ? styles.triangleRightTop : 
+                                styles.triangle, customTour !== 2 && customTour !== 3 && customTour !==5 ? styles.topLeft : styles.bottom]}/> 
                             : null}
-                            <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
+                            <Text style={styles.modalContent}>{tourObj[customTour]?.text}</Text>
                             <View style={styles.buttonsContanier}>
                                 {tour === 0 ? null :
                                 <Pressable
@@ -70,7 +70,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                              <Text style={styles.previousButtons}>PREVIOUS</Text>
                                         </View>
                                 </Pressable>}
-                                {tour < 6 ?  
+                                {customTour < 6 ?  
                                 <Pressable
                                     style={styles.buttons}
                                     onPress={() => setTour(tour + 1)}>
@@ -87,7 +87,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                                 </Pressable>}
                             </View>
                         </View>
-                    {tour === 2 || tour === 3 || tour === 5 ? componentOnBottom() : null}
+                    {customTour === 2 || customTour === 3 || customTour === 5 ? componentOnBottom() : null}
                 </View>
             </Modal>
         </View>
