@@ -32,8 +32,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
         { component: <LittleInterestOrPleasure onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.littleInterestOrPleasure ? false : true },
         { component: <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.depressed ? false : true },
         { component: <AlmostThere />, disabled: false },
-        { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
         { component: <TypeOfPain onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.typeOfPain ? false : true },
+        { component: <HopeToAchieve />, disabled: onboardingData.hopesToAchieve.length > 0 ? false : true },
         { component: <PainInjections onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.painInjections ? false : true },
         { component: <SpineSurgery onValueChange={changeOnboardEntry} data={onboardingData} />, disabled: onboardingData.spineSurgery ? false : true },
         { component: <Other onValueChange={changeOnboardEntry} data={onboardingData}/>, disabled: onboardingData.typeOfPain ? false : true }
