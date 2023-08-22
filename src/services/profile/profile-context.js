@@ -32,6 +32,9 @@ export const ProfileContextProvider = ({ children }) => {
         const profile = {
             ...profileData,
             profile_status: 1,
+            phone: phoneFormat(profileData.phone),
+            dob: dobFormat(profileData.dob)
+
         };
         track(PROFILE_EVENTS.COMPLETE_PROFILE_SET_UP);
         updateProfile(user.user.uid, profile);
