@@ -83,7 +83,7 @@
         },
         {
             "id": 10,
-            "educationModulesId": null,
+            "educationModulesId": [1],
             "questionAnswers": "Any pain other than low back pain",
             "painJournal": null,
             "smartGoal": null,
