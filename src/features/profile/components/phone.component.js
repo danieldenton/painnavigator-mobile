@@ -5,14 +5,14 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const Phone = () => {
-    const { changeProfileEntry, profileData } = useContext(ProfileContext);
+    const { changeProfileEntry, profileData, phoneFormat } = useContext(ProfileContext);
 
     return (
         <>
             <JournalQuestion question={"What is your phone number?"} />
             <TextInput 
                 accessibilityLabel={"phone-number-input"}
-                value={profileData.phone}
+                value={phoneFormat(profileData.phone)}
                 onChangeText={(change) => changeProfileEntry(change, "phone")}
                 keyboardType={"phone-pad"}
                 returnKeyType={"done"}

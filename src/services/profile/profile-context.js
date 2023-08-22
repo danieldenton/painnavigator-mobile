@@ -39,17 +39,9 @@ export const ProfileContextProvider = ({ children }) => {
     };  
 
     const phoneFormat = (p) => {
-        if (p.length === 3) {
-            return p = "(" + p + ")"
-        } else if (p.length > 3 && p.length < 6) {
-            for (let i = 0; i < p.length; i++) {
-                return p = "(" + p[i < 3] + ")" + p[i < 2]
-            }
-        } else if (p.length > 3 && p.length > 6) {
-            for (let i = 0; i < p.length; i++) {
-                return p = "(" + p[i < 3] + ")" + p[i < 2 && i < 6] + "-" + p[i > 6]
-            }
-        }
+        if (p.length === 10) {
+            return `(${p.slice(0, 3)}) ${p.slice(3, 6)}-${p.slice(6)}`;
+        } 
     }
 
     const changeProfileEntry = (change, state) => {
