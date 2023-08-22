@@ -44,6 +44,12 @@ export const ProfileContextProvider = ({ children }) => {
         } 
     }
 
+    const dobFormat = (d) => {
+        if (d.length === 8) {
+            return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`;
+        } 
+    }
+
     const changeProfileEntry = (change, state) => {
         setProfileData(journal => ({
             ...journal,
@@ -165,7 +171,8 @@ export const ProfileContextProvider = ({ children }) => {
                 setProfileComplete,
                 updateProfile,
                 userInfo,
-                phoneFormat
+                phoneFormat,
+                dobFormat
             }}
         >
             {children}

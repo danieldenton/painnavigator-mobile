@@ -9,7 +9,10 @@ export const Phone = () => {
 
     return (
         <>
-            <JournalQuestion question={"What is your phone number?"} />
+            <JournalQuestion 
+                question={"What is your phone number?"} 
+                helpText={"(XXX)XXX-XXXX"}
+            />
             <TextInput 
                 accessibilityLabel={"phone-number-input"}
                 value={phoneFormat(profileData.phone)}
