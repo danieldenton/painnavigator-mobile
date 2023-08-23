@@ -32,7 +32,7 @@ export const ProfileContextProvider = ({ children }) => {
         const profile = {
             ...profileData,
             profile_status: 1,
-            phone: phoneFormat(profileData.phone),
+            phone: postPhoneFormat(profileData.phone),
             dob: dobFormat(profileData.dob)
 
         };
@@ -44,6 +44,12 @@ export const ProfileContextProvider = ({ children }) => {
     const phoneFormat = (p) => {
         if (p.length === 10) {
             return `(${p.slice(0, 3)})${p.slice(3, 6)}-${p.slice(6)}`;
+        } 
+    }
+
+    const postPhoneFormat = (p) => {
+        if (p.length === 10) {
+            return `${p.slice(0, 3)}-${p.slice(3, 6)}-${p.slice(6)}`;
         } 
     }
 
