@@ -49,7 +49,7 @@ export const ProfileContextProvider = ({ children }) => {
 
     const postPhoneFormat = (p) => {
         if (p.length === 10) {
-            return `${p.slice(0, 3)}-${p.slice(3, 6)}-${p.slice(6)}`;
+            return '+1' + p
         } 
     }
 
