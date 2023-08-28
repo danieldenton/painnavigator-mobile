@@ -16,13 +16,13 @@ export const ProfileOptionsButtons = ({ navigation, profileComplete, currentModu
             id: 2,
             option: "My Activities",
             destination: "FavoriteActivities",
-            show: currentModule.id > 38 ? true : false,
+            show: currentModule?.id > 38 ? true : false,
             trackEvent: MY_ACTIVITIES_EVENTS.VIEW_MY_ACTIVITIES
         },
         {
             id: 3,
             option: "Sign Out",
-            destination: "FavoriteActivities",
+            destination: "Onboard",
             show: false
         }
     ];
