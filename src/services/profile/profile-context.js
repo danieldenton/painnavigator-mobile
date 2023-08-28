@@ -184,6 +184,7 @@ export const ProfileContextProvider = ({ children }) => {
                 updateProfile,
                 userInfo,
                 phoneFormat,
+                postPhoneFormat,
                 dobFormat
             }}
         >
