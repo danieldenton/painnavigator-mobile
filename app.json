@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.5.15",
+    "version": "1.5.16",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -16,6 +16,9 @@
           }
         }
       ]
+    },
+    "expo": {
+      "scheme": "painnavigator"
     },
     "splash": {
       "image": "./assets/splash.png",
@@ -32,7 +35,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "40",
+      "buildNumber": "41",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -50,7 +53,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 37
+      "versionCode": 38
     },
     "web": {
       "favicon": "./assets/favicon.png"

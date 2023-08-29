@@ -4,7 +4,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { View } from "react-native";
 
 export const ProfileData = ({ editing }) => {
-    const { editProfile, reviewProfile, userInfo, profileComplete, setReviewProfile } = useContext(ProfileContext);
+    const { editProfile, reviewProfile, userInfo, profileComplete, setReviewProfile, phoneFormat, postPhoneFormat } = useContext(ProfileContext);
     const { first_name, email, phone, dob, gender, starting_pain_duration, activity_level } = userInfo;
     const { 
         first_name: editFirstName, 

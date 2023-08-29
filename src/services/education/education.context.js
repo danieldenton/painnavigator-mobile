@@ -19,9 +19,9 @@ export const EducationContextProvider = ({ children }) => {
     const additionalJournals = educationProgram === 2 ? educationProgress > 15 : shorterProgram ? educationProgress > 21 : educationProgress > 24
     const moodJournalReady = educationProgram === 2 ? educationProgress > 17 : shorterProgram ? educationProgress > 23 : educationProgress > 26
 
-    useEffect(() => {
+   useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
-        setCurrentModule(module);
+        setCurrentModule(module)
     }, [educationProgress])
 
     // const advanceProgress = () => {

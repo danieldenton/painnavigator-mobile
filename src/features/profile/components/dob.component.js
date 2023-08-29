@@ -4,7 +4,7 @@ import { TextInput } from "../../../components/text-input.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 
 export const Dob = () => {
-    const { changeProfileEntry, profileData } = useContext(ProfileContext);
+    const { changeProfileEntry, profileData, dobFormat } = useContext(ProfileContext);
 
     return (
         <>
@@ -14,7 +14,7 @@ export const Dob = () => {
             />
             <TextInput 
                 accessibilityLabel={"phone-number-input"}
-                value={profileData.dob}
+                value={dobFormat(profileData.dob)}
                 onChangeText={(change) => changeProfileEntry(change, "dob")}
             />
         </>

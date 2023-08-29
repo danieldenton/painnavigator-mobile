@@ -32,11 +32,35 @@ export const ProfileContextProvider = ({ children }) => {
         const profile = {
             ...profileData,
             profile_status: 1,
+            phone: postPhoneFormat(profileData.phone),
+            dob: dobFormat(profileData.dob)
+
         };
         track(PROFILE_EVENTS.COMPLETE_PROFILE_SET_UP);
         updateProfile(user.user.uid, profile);
         //setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
+
+    const phoneFormat = (p) => {
+        if (p.length === 10) {
+            return `(${p.slice(0, 3)})${p.slice(3, 6)}-${p.slice(6)}`;
+        } 
+    }
+
+    const postPhoneFormat = (p) => {
+        if (p.startsWith('+1')) {
+            return `${p.slice(0, 2)}(${p.slice(2, 5)})${p.slice(5, 8)}-${p.slice(8)}`
+        }
+        else if (p.length === 10) {
+            return '+1' + p
+        } 
+    }
+
+    const dobFormat = (d) => {
+        if (d.length === 8) {
+            return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`;
+        } 
+    }
 
     const changeProfileEntry = (change, state) => {
         setProfileData(journal => ({
@@ -158,7 +182,10 @@ export const ProfileContextProvider = ({ children }) => {
                 setUserInfo,
                 setProfileComplete,
                 updateProfile,
-                userInfo
+                userInfo,
+                phoneFormat,
+                postPhoneFormat,
+                dobFormat
             }}
         >
             {children}
