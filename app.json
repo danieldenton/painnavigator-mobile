@@ -17,6 +17,9 @@
         }
       ]
     },
+    "expo": {
+      "scheme": "painnavigator"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
