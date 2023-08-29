@@ -9,7 +9,7 @@ import * as Notifications from 'expo-notifications';
 import * as TaskManager from 'expo-task-manager';
 import * as Linking from 'expo-linking';
 
-const prefix = Linking.createURL('/painnavigator');
+const prefix = Linking.createURL('/');
 
 
 const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK"
