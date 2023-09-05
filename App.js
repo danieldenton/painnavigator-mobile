@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { LogBox } from 'react-native';
+import { LogBox, Text } from 'react-native';
 import * as Sentry from 'sentry-expo';
 import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"

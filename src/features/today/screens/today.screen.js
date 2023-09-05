@@ -36,7 +36,7 @@ import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../
 
 export const TodayScreen = ({ navigation }) => {
     const {  user, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp, lastDateOnApp, tour } = useContext(AuthenticationContext);
-    const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
+    const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep, painToday } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
     const { painJournals, setPainJournals } = useContext(PainJournalContext);
@@ -52,7 +52,7 @@ export const TodayScreen = ({ navigation }) => {
     const educationProgramLength = educationProgram < 10 ? educationPrograms[educationProgram - 1].educationModulesId.length : null
     const completedAllEducationModules = educationProgress > educationProgramLength
     const completedAllMovementModules = movementProgress > 36;
-    const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
+    
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
     const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
@@ -99,16 +99,16 @@ export const TodayScreen = ({ navigation }) => {
     }, [isFocused]);
 
     useEffect(() => {
-        if (dailyPain === timeZonedTodaysDate) {
+        if (painToday === timeZonedTodaysDate) {
             setDailyPainScore(dailyPainScores[dailyPainScores.length -1])
-            setDailyPainStep(1)
+            // setDailyPainStep(1)
         } else {
             setDailyPainScore({
                 id: null,
                 score: 5,
                 date_time_value: null
             })
-            setDailyPainStep(0)
+            // setDailyPainStep(0)
         }
     }, [dailyPainScores])
 

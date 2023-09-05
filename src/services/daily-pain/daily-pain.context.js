@@ -12,6 +12,7 @@ export const DailyPainContextProvider = ({ children }) => {
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
     const [dailyPainStep, setDailyPainStep] = useState(0)
+    const painToday = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
 
     const dailyPain = (change, state) => {
         setDailyPainScore(score => ({
@@ -29,7 +30,8 @@ export const DailyPainContextProvider = ({ children }) => {
                 setDailyPainScores,
                 dailyPain,
                 dailyPainStep,
-                setDailyPainStep
+                setDailyPainStep,
+                painToday
             }}
         >
             {children}
