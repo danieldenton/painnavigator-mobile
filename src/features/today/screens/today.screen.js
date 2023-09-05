@@ -101,14 +101,12 @@ export const TodayScreen = ({ navigation }) => {
     useEffect(() => {
         if (painToday === timeZonedTodaysDate) {
             setDailyPainScore(dailyPainScores[dailyPainScores.length -1])
-            // setDailyPainStep(1)
         } else {
             setDailyPainScore({
                 id: null,
                 score: 5,
                 date_time_value: null
             })
-            // setDailyPainStep(0)
         }
     }, [dailyPainScores])
 
