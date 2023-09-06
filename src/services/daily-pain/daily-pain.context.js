@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { formatDate } from "../../utils";
 
 export const DailyPainContext = createContext();
 
@@ -13,7 +12,6 @@ export const DailyPainContextProvider = ({ children }) => {
     })
     const [dailyPainScores, setDailyPainScores] = useState([])
     const [dailyPainStep, setDailyPainStep] = useState(0)
-    const painToday = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
 
     const dailyPain = (change, state) => {
         setDailyPainScore(score => ({
@@ -31,8 +29,7 @@ export const DailyPainContextProvider = ({ children }) => {
                 setDailyPainScores,
                 dailyPain,
                 dailyPainStep,
-                setDailyPainStep,
-                painToday
+                setDailyPainStep
             }}
         >
             {children}

@@ -7,11 +7,12 @@ import { PainTrackerComponent } from "../components/pain-tracker.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { isAndroid, timeZonedTodaysDate } from "../../../utils";
+import { isAndroid } from "../../../utils";
+// import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { user } = useContext(AuthenticationContext);
-    const { setDailyPainStep, setDailyPainScores, painToday } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep, setDailyPainScores } = useContext(DailyPainContext)
 
     useEffect(() => {
         getDailyPainScores(user.user.uid, setDailyPainScores)
@@ -23,6 +24,8 @@ export const DailyPainScoreScreen = ({ navigation }) => {
 
     const screenName = isAndroid ? "DAILY SCORES" : "DAILY PAIN SCORES"
 
+    const pages = [<DailyPainScoreComponent />, <PainTrackerComponent navigation={navigation}/>]
+
     return(
         <Provider>
             <SafeView>
@@ -30,9 +33,9 @@ export const DailyPainScoreScreen = ({ navigation }) => {
                     navigation={navigation}
                     destination={"Today"}
                     screen={screenName} 
-                    previousPage={painToday === timeZonedTodaysDate ? previousPage : null}
+                    previousPage={dailyPainStep === 1 ? previousPage : null}
                 />
-                {painToday === timeZonedTodaysDate ? <PainTrackerComponent navigation={navigation}/> : <DailyPainScoreComponent />}
+                {pages[dailyPainStep]}
             </SafeView>
         </Provider>
     );
