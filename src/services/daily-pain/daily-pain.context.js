@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { formatDate } from "../../utils";
 
 export const DailyPainContext = createContext();
 
