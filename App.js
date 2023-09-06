@@ -7,10 +7,6 @@ import { init } from '@amplitude/analytics-react-native'
 import { AMPLITUDE_API_KEY } from "@env"
 import * as Notifications from 'expo-notifications';
 import * as TaskManager from 'expo-task-manager';
-import * as Linking from 'expo-linking';
-
-const prefix = Linking.createURL('/');
-
 
 const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK"
 
@@ -118,10 +114,6 @@ export default function App() {
 
   const lastNotificationResponse = Notifications.useLastNotificationResponse()
 
-  const linking = {
-    prefixes: [prefix],
-  };
-
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
     Poppins_500Medium
@@ -154,7 +146,7 @@ export default function App() {
                           <MoodJournalContextProvider>
                             <WellnessCoachContextProvider>
                               <FavoriteActivitiesContextProvider>
-                                <Navigation linking={linking}/>
+                                <Navigation />
                               </FavoriteActivitiesContextProvider>
                             </WellnessCoachContextProvider>
                           </MoodJournalContextProvider>
