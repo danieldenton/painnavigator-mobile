@@ -51,7 +51,7 @@ export const TodayScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const educationProgramLength = educationProgram < 10 ? educationPrograms[educationProgram - 1].educationModulesId.length : null
     const completedAllEducationModules = educationProgress > educationProgramLength
-    const completedAllMovementModules = movementProgress > 36;
+    const completedAllMovementModules = movementProgress > 37;
     const dailyPain = formatDate(dailyPainScores[dailyPainScores.length - 1]?.date_time_value)
     const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
     const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
