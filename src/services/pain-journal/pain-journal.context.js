@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
-import { destroyPainJournal, getPainJournals, patchPainJournal, postPainJournal } from "./pain-journal.service";
+import { destroyPainJournal, patchPainJournal, postPainJournal } from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
 

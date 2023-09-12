@@ -71,11 +71,11 @@ export const TodayScreen = ({ navigation }) => {
             setCompletedProgram,
             setLastDateOnApp
         );  
-        setDailyPainScores(getDailyPainScores(user.user.uid))
+        getDailyPainScores(user.user.uid, setDailyPainScores)
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
-        setPainJournals(getPainJournals(user.user.uid))
-        setMoodJournals(getMoodJournals(user.user.uid))
-        setFoodJournals(getFoodJournals(user.user.uid))   
+        getPainJournals(user.user.uid, setPainJournals)
+        getMoodJournals(user.user.uid, setMoodJournals)
+        getFoodJournals(user.user.uid, setFoodJournals)   
     }, []);
     
     useEffect(() => {
