@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { API_URL } from "@env"
 
-export const getMoodJournals = async (userUid, setMoodJournals) => {
+export const getMoodJournals = async (userUid) => {
     try {
         const response = await axios.get(`${API_URL}/api/v2/mood_journals`, { params: { uid: userUid } })
-        setMoodJournals(response.data)
+        return response.data
     } catch (error) {
         console.error(error);
     }

@@ -7,10 +7,10 @@ export const destroyPainJournal = (journalId) => {
     });
 };
 
-export const getPainJournals = async (userUid, setPainJournals) => {
+export const getPainJournals = async (userUid) => {
     try {
         const response = await axios.get(`${API_URL}/api/v2/pain_journals`, { params: { uid: userUid } })
-        setPainJournals(response.data)
+        return response.data
     } catch (error) {
         console.error(error);
     }

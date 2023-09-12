@@ -4,7 +4,7 @@ import { API_URL } from "@env"
 export const getFoodJournals = async (userUid, setFoodJournals) => {
     try {
         const response = await axios.get(`${API_URL}/api/v2/food_journals`, { params: { uid: userUid } })
-        setFoodJournals(response.data)
+        return response.data
     } catch (error) {
         console.error(error);
     }
