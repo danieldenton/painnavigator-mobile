@@ -15,7 +15,7 @@ export async function getDailyPainScores(userUid) {
     }
   }
 
-export async function postDailyPainScore(userUid, dailyPainScore, setDailyPainScore) {
+export async function postDailyPainScore(userUid, dailyPainScore) {
     try {
         const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, 
         { 
@@ -24,19 +24,20 @@ export async function postDailyPainScore(userUid, dailyPainScore, setDailyPainSc
             date_time_value: Date.now()
         })
         const data = response.data
-        setDailyPainScore(data)
+        return data
     } catch (error) {
         console.error(error);
     }
 };
 
-export async function  patchDailyPainScore(dailyPainScore, setDailyPainScore) {
+export async function  patchDailyPainScore(dailyPainScore) {
     try {
         const response = await axios.patch(`${API_URL}/api/v2/daily_pain_scores/${dailyPainScore.id}`, { 
             score: dailyPainScore.score,
             date_time_value: Date.now() 
         })
-        setDailyPainScore(response.data)
+        const data = response.data
+        return data
     } catch (error) {
         console.error(error)
     }
