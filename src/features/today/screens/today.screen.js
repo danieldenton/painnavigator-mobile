@@ -71,7 +71,7 @@ export const TodayScreen = ({ navigation }) => {
             setCompletedProgram,
             setLastDateOnApp
         );  
-        getDailyPainScores(user.user.uid, setDailyPainScores)
+        setDailyPainScores(getDailyPainScores(user.user.uid))
         getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
         getPainJournals(user.user.uid, setPainJournals)
         getMoodJournals(user.user.uid, setMoodJournals)
