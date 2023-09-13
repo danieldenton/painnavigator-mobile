@@ -2,6 +2,15 @@ import axios from 'axios';
 import { API_URL } from "@env"
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 
+export async function getCompletedMovement(uid) {
+    // const 
+    try {
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export async function post(module, uid, setMovementProgress, setCurrentModule) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/movement_module_completions`, { movement_module: module, uid: uid })
