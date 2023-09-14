@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { post } from "./movement.service";
+import { patchCompletedMovementUnits, patchSkippedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from '@amplitude/analytics-react-native'
@@ -172,10 +172,13 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         loadCompletedMovementModules();
+        // TODO remove this patch function after it's been up for a few updates
+        patchCompletedMovementUnits(completedMovementModules)
     }, []);
 
     useEffect(() => {
         saveCompletedMovementModules(completedMovementModules);
+        
     }, [completedMovementModules]);
 
     const saveSkippedMovementModules = async (value) => {
@@ -200,6 +203,8 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         loadSkippedMovementModules();
+        // TODO remove this patch function after it's been up for a few update
+        patchSkippedMovementUnits(skippedMovementModules)
     }, []);
 
     useEffect(() => {
