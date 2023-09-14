@@ -159,28 +159,6 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
-    const loadCompletedMovementModules = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@completed_movement_modules");
-            if (value !== null) {
-                setCompletedMovementModules(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading completed_movement_modules", e);
-        }
-    };
-
-    useEffect(() => {
-        loadCompletedMovementModules();
-        // TODO remove this patch function after it's been up for a few updates
-        patchCompletedMovementUnits(completedMovementModules)
-    }, []);
-
-    useEffect(() => {
-        saveCompletedMovementModules(completedMovementModules);
-        
-    }, [completedMovementModules]);
-
     const saveSkippedMovementModules = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
@@ -190,11 +168,26 @@ export const MovementContextProvider = ({ children }) => {
         }
     };
 
+    const loadCompletedMovementModules = async () => {
+        try {
+            const value = await AsyncStorage.getItem("@completed_movement_modules");
+            if (value !== null) {
+                setCompletedMovementModules(JSON.parse(value));
+                // TODO remove thes patch function after it's been up for a few updates
+                patchCompletedMovementUnits(completedMovementModules)
+            }
+        } catch (e) {
+            console.log("error loading completed_movement_modules", e);
+        }
+    };
+
     const loadSkippedMovementModules = async () => {
         try {
             const value = await AsyncStorage.getItem("@skipped_movement_modules");
             if (value !== null) {
                 setSkippedMovementModules(JSON.parse(value));
+                // TODO remove thes patch function after it's been up for a few updates
+                patchSkippedMovementUnits(JSON.parse(value))
             }
         } catch (e) {
             console.log("error loading skipped_movement_modules", e);
@@ -202,10 +195,13 @@ export const MovementContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        loadCompletedMovementModules();
         loadSkippedMovementModules();
-        // TODO remove this patch function after it's been up for a few update
-        patchSkippedMovementUnits(skippedMovementModules)
     }, []);
+
+    useEffect(() => {
+        saveCompletedMovementModules(completedMovementModules);
+    }, [completedMovementModules]);
 
     useEffect(() => {
         saveSkippedMovementModules(skippedMovementModules);
