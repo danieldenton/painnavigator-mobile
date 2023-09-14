@@ -173,7 +173,7 @@ export const MovementContextProvider = ({ children }) => {
             const value = await AsyncStorage.getItem("@completed_movement_modules");
             if (value !== null) {
                 setCompletedMovementModules(JSON.parse(value));
-                // TODO remove thes patch function after it's been up for a few updates
+                // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
                 patchCompletedMovementUnits(completedMovementModules)
             }
         } catch (e) {
@@ -186,7 +186,7 @@ export const MovementContextProvider = ({ children }) => {
             const value = await AsyncStorage.getItem("@skipped_movement_modules");
             if (value !== null) {
                 setSkippedMovementModules(JSON.parse(value));
-                // TODO remove thes patch function after it's been up for a few updates
+                // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
                 patchSkippedMovementUnits(JSON.parse(value))
             }
         } catch (e) {
