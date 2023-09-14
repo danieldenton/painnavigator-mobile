@@ -173,8 +173,6 @@ export const MovementContextProvider = ({ children }) => {
             const value = await AsyncStorage.getItem("@completed_movement_modules");
             if (value !== null) {
                 setCompletedMovementModules(JSON.parse(value));
-                // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
-                patchCompletedMovementUnits(completedMovementModules)
             }
         } catch (e) {
             console.log("error loading completed_movement_modules", e);
@@ -186,8 +184,6 @@ export const MovementContextProvider = ({ children }) => {
             const value = await AsyncStorage.getItem("@skipped_movement_modules");
             if (value !== null) {
                 setSkippedMovementModules(JSON.parse(value));
-                // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
-                patchSkippedMovementUnits(JSON.parse(value))
             }
         } catch (e) {
             console.log("error loading skipped_movement_modules", e);
@@ -201,10 +197,14 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         saveCompletedMovementModules(completedMovementModules);
+        // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
+        patchCompletedMovementUnits(completedMovementModules)
     }, [completedMovementModules]);
 
     useEffect(() => {
         saveSkippedMovementModules(skippedMovementModules);
+        // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
+        patchSkippedMovementUnits(skippedMovementModules)
     }, [skippedMovementModules]);
 
     return (
