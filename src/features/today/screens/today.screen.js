@@ -77,7 +77,7 @@ export const TodayScreen = ({ navigation }) => {
         getMoodJournals(user.user.uid, setMoodJournals)
         getFoodJournals(user.user.uid, setFoodJournals)   
     }, []);
-    
+   
     useEffect(() => {
         if (lastDateOnApp !== timeZonedTodaysDate) {
             patchLastDateOnApp(user.user.uid, timeZonedTodaysDate)
