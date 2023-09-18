@@ -2,36 +2,6 @@ import axios from 'axios';
 import { API_URL } from "@env"
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 
-export async function postSavedMovementUnits(uid, savedMovementUnits) {
-    try {
-        await axios.post(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: savedMovementUnits,
-        })
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-export async function postSkippedMovementUnits(uid, skippedMovementUnits) {
-    try {
-        await axios.post(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: skippedMovementUnits,
-        })
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-export async function postCompletedMovementUnits(uid, completedMovementUnits) {
-    try {
-        await axios.post(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: completedMovementUnits,
-        })
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 export async function patchSavedMovementUnits(uid, savedMovementUnits) {
     try {
         await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
