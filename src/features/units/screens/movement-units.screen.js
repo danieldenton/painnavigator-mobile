@@ -7,6 +7,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
+import { patchSavedMovementUnits } from "../../../services/movement/movement.service";
 
 export const MovementUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
