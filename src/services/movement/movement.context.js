@@ -168,14 +168,10 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         saveCompletedMovementModules(completedMovementModules);
-        // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
-        patchCompletedMovementUnits(completedMovementModules)
     }, [completedMovementModules]);
 
     useEffect(() => {
         saveSkippedMovementModules(skippedMovementModules);
-        // TODO remove thes patch function after it's been up for a few updates. This version is 1.5.18.
-        patchSkippedMovementUnits(skippedMovementModules)
     }, [skippedMovementModules]);
 
     return (
