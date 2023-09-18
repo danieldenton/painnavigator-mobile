@@ -172,6 +172,12 @@ export const MovementContextProvider = ({ children }) => {
         saveSkippedMovementModules(skippedMovementModules);
     }, [skippedMovementModules]);
 
+    useEffect(() => {
+        if (user) {
+            // patchSkippedMovementUnits(user.user.uid, skippedMovementModules)
+            patchCompletedMovementUnits(user.user.uid, completedMovementModules)
+        }
+    }, [user])
     return (
         <MovementContext.Provider
             value={{
