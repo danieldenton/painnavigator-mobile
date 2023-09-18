@@ -121,35 +121,6 @@ export const MovementContextProvider = ({ children }) => {
         setCurrentVideo(newVideoData);
     };
 
-    const saveMovementProgress = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@movement_progress", jsonValue);
-          } catch (e) {
-            console.log("error storing movement_progress", e);
-          }
-    };
-
-    const loadMovementProgress = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@movement_progress");
-            if (value !== null) {
-                setMovementProgress(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading movement_progress", e);
-        }
-    };
-
-    const saveCurrentModule = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@current_movement_module", jsonValue);
-        } catch (e) {
-            console.log("error storing current_movement_module", e);
-        }
-    };
-
     const saveCompletedMovementModules = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
