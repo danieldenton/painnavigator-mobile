@@ -6,7 +6,6 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from '@amplitude/analytics-react-native'
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
-import { BookmarksContext } from "../bookmarks/bookmarks.context";
 
 export const MovementContext = createContext();
 
@@ -22,7 +21,6 @@ export const MovementContextProvider = ({ children }) => {
     const [savedMovementUnits, setSavedMovementUnits] = useState([])
     const [lastMovement, setLastMovement] = useState(null);
     const { user } = useContext(AuthenticationContext);
-    const { bookmarks } = useContext(BookmarksContext)
 
     useEffect(() => {
         setCurrentModule(movementModules.find(module => module.id === movementProgress))
