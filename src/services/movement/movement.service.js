@@ -16,7 +16,7 @@ export async function patchSavedMovementUnits(uid, savedMovementUnits) {
 export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
     try {
         await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: skippedMovementUnits,
+            skipped_movement_units: skippedMovementUnits,
         })
     } catch (error) {
         console.log("skipped")
@@ -27,7 +27,7 @@ export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
 export async function patchCompletedMovementUnits(uid, completedMovementUnits) {
     try {
         await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: completedMovementUnits,
+            completed_movement_units: completedMovementUnits,
         })
     } catch (error) {
         console.log("completed")
