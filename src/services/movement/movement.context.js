@@ -51,7 +51,7 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        post(module, user.user.uid, setMovementProgress, setCurrentModule);
+        post(module, uid, setMovementProgress, setCurrentModule);
     };
     
     const completeVideo = () => {
@@ -169,11 +169,23 @@ export const MovementContextProvider = ({ children }) => {
 
     useEffect(() => {
         saveCompletedMovementModules(completedMovementModules);
+        if (uid) {
+            patchCompletedMovementUnits(completedMovementModules)
+        }
     }, [completedMovementModules]);
 
     useEffect(() => {
         saveSkippedMovementModules(skippedMovementModules);
+        if (uid) {
+            patchSkippedMovementUnits(skippedMovementModules)
+        }
     }, [skippedMovementModules]);
+
+    useEffect(() => {
+        if (uid) {
+            patchSavedMovementUnits(movementBookmarks)
+        }
+    }, [movementBookmarks])
 
     useEffect(() => {
         patchSkippedMovementUnits(uid, skippedMovementModules)

@@ -7,13 +7,11 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
-import { patchCompletedMovementUnits, patchSavedMovementUnits, patchSkippedMovementUnits } from "../../../services/movement/movement.service";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
     const { completedMovementModules, completeSkippedUnit, skippedMovementModules } = useContext(MovementContext);
-    const { uid } =  useContext(AuthenticationContext)
+  
     const [bookmarkedMovementModuleData, setBookmarkedMovementModuleData] = useState([]);
     const [completedMovementModuleData, setCompletedMovementModuleData] = useState([]);
     const [skippedMovementModuleData, setSkippedMovementModuleData] = useState([]);
@@ -22,19 +20,16 @@ export const MovementUnitsScreen = ({ navigation }) => {
         const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
         const data = movementBookmarks.map(bookmark => movementVideos.find(item => item.id === bookmark));
         setBookmarkedMovementModuleData(data);
-        patchSavedMovementUnits(uid, movementBookmarks)
     }, [bookmarks]);
 
     useEffect(() => {
         const data = completedMovementModules?.map(module => movementVideos.find(item => item.id === module));
         setCompletedMovementModuleData(data);
-        patchCompletedMovementUnits(completedMovementModules)
     }, [completedMovementModules]);
 
     useEffect(() => {
         const data = skippedMovementModules?.map(module => movementVideos.find(item => item.id === module));
         setSkippedMovementModuleData(data);
-        patchSkippedMovementUnits(skippedMovementModules)
     }, [skippedMovementModules]);
 
     return (
