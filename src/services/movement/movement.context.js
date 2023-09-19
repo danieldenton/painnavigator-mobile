@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { patchCompletedMovementUnits, patchSkippedMovementUnits, post } from "./movement.service";
+import { patchCompletedMovementUnits, patchSavedMovementUnits, patchSkippedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from '@amplitude/analytics-react-native'
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
+import { BookmarksContext } from "../bookmarks/bookmarks.context";
 
 export const MovementContext = createContext();
 
@@ -20,7 +21,9 @@ export const MovementContextProvider = ({ children }) => {
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
     const [savedMovementUnits, setSavedMovementUnits] = useState([])
     const [lastMovement, setLastMovement] = useState(null);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
+    const { bookmarks } = useContext(BookmarksContext)
+    const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
 
     useEffect(() => {
         setCurrentModule(movementModules.find(module => module.id === movementProgress))
@@ -173,11 +176,10 @@ export const MovementContextProvider = ({ children }) => {
     }, [skippedMovementModules]);
 
     useEffect(() => {
-        if (user) {
-            // patchSkippedMovementUnits(user.user.uid, skippedMovementModules)
-            patchCompletedMovementUnits(user.user.uid, completedMovementModules)
-        }
-    }, [user])
+        patchSkippedMovementUnits(uid, skippedMovementModules)
+        patchCompletedMovementUnits(uid, completedMovementModules)
+        patchSavedMovementUnits(uid, movementBookmarks)
+    }, [uid])
     return (
         <MovementContext.Provider
             value={{

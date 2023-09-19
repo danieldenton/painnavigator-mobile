@@ -4,9 +4,11 @@ import { movementModules } from "../../features/movement/data/movement-modules-d
 
 export async function patchSavedMovementUnits(uid, savedMovementUnits) {
     try {
-        await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-            saved_movement_units: savedMovementUnits,
-        })
+        if (uid && savedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                saved_movement_units: savedMovementUnits,
+            })
+        }
     } catch (error) {
         console.log("saved")
         console.error(error)
@@ -15,9 +17,11 @@ export async function patchSavedMovementUnits(uid, savedMovementUnits) {
 
 export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
     try {
-        await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-            skipped_movement_units: skippedMovementUnits,
-        })
+        if (uid && skippedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                skipped_movement_units: skippedMovementUnits,
+            })
+        }
     } catch (error) {
         console.log("skipped")
         console.error(error)
@@ -26,9 +30,11 @@ export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
 
 export async function patchCompletedMovementUnits(uid, completedMovementUnits) {
     try {
-        await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-            completed_movement_units: completedMovementUnits,
-        })
+        if (uid && completedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                completed_movement_units: completedMovementUnits,
+            })
+        }
     } catch (error) {
         console.log("completed")
         console.error(error)
