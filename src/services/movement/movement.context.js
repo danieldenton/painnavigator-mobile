@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { post } from "./movement.service";
+import { patchCompletedMovementUnits, patchSavedMovementUnits, patchSkippedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from '@amplitude/analytics-react-native'
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
+import { BookmarksContext } from "../bookmarks/bookmarks.context";
 
 export const MovementContext = createContext();
 
@@ -18,8 +19,11 @@ export const MovementContextProvider = ({ children }) => {
     const [completedVideos, setCompletedVideos] = useState(0);
     const [completedMovementModules, setCompletedMovementModules] = useState([]);
     const [skippedMovementModules, setSkippedMovementModules] = useState([]);
+    const [savedMovementUnits, setSavedMovementUnits] = useState([])
     const [lastMovement, setLastMovement] = useState(null);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
+    const { bookmarks } = useContext(BookmarksContext)
+    const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
 
     useEffect(() => {
         setCurrentModule(movementModules.find(module => module.id === movementProgress))
@@ -47,7 +51,7 @@ export const MovementContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: STATUS_NOT_STARTED        
         };
-        post(module, user.user.uid, setMovementProgress, setCurrentModule);
+        post(module, uid, setMovementProgress, setCurrentModule);
     };
     
     const completeVideo = () => {
@@ -118,41 +122,21 @@ export const MovementContextProvider = ({ children }) => {
         setCurrentVideo(newVideoData);
     };
 
-    const saveMovementProgress = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@movement_progress", jsonValue);
-          } catch (e) {
-            console.log("error storing movement_progress", e);
-          }
-    };
-
-    const loadMovementProgress = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@movement_progress");
-            if (value !== null) {
-                setMovementProgress(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading movement_progress", e);
-        }
-    };
-
-    const saveCurrentModule = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@current_movement_module", jsonValue);
-        } catch (e) {
-            console.log("error storing current_movement_module", e);
-        }
-    };
-
     const saveCompletedMovementModules = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem("@completed_movement_modules", jsonValue);
         } catch (e) {
             console.log("error storing completed_movement_modules", e);
+        }
+    };
+
+    const saveSkippedMovementModules = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value);
+            await AsyncStorage.setItem("@skipped_movement_modules", jsonValue);
+        } catch (e) {
+            console.log("error storing skipped_movement_modules", e);
         }
     };
 
@@ -164,23 +148,6 @@ export const MovementContextProvider = ({ children }) => {
             }
         } catch (e) {
             console.log("error loading completed_movement_modules", e);
-        }
-    };
-
-    useEffect(() => {
-        loadCompletedMovementModules();
-    }, []);
-
-    useEffect(() => {
-        saveCompletedMovementModules(completedMovementModules);
-    }, [completedMovementModules]);
-
-    const saveSkippedMovementModules = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@skipped_movement_modules", jsonValue);
-        } catch (e) {
-            console.log("error storing skipped_movement_modules", e);
         }
     };
 
@@ -196,13 +163,35 @@ export const MovementContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        loadCompletedMovementModules();
         loadSkippedMovementModules();
     }, []);
 
     useEffect(() => {
+        saveCompletedMovementModules(completedMovementModules);
+        if (uid) {
+            patchCompletedMovementUnits(completedMovementModules)
+        }
+    }, [completedMovementModules]);
+
+    useEffect(() => {
         saveSkippedMovementModules(skippedMovementModules);
+        if (uid) {
+            patchSkippedMovementUnits(skippedMovementModules)
+        }
     }, [skippedMovementModules]);
 
+    useEffect(() => {
+        if (uid) {
+            patchSavedMovementUnits(movementBookmarks)
+        }
+    }, [movementBookmarks])
+
+    useEffect(() => {
+        patchSkippedMovementUnits(uid, skippedMovementModules)
+        patchCompletedMovementUnits(uid, completedMovementModules)
+        patchSavedMovementUnits(uid, movementBookmarks)
+    }, [uid])
     return (
         <MovementContext.Provider
             value={{

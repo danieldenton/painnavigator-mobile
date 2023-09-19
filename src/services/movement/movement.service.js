@@ -2,6 +2,45 @@ import axios from 'axios';
 import { API_URL } from "@env"
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 
+export async function patchSavedMovementUnits(uid, savedMovementUnits) {
+    try {
+        if (uid && savedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                saved_movement_units: savedMovementUnits,
+            })
+        }
+    } catch (error) {
+        console.log("saved")
+        console.error(error)
+    }
+}
+
+export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
+    try {
+        if (uid && skippedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                skipped_movement_units: skippedMovementUnits,
+            })
+        }
+    } catch (error) {
+        console.log("skipped")
+        console.error(error)
+    }
+}
+
+export async function patchCompletedMovementUnits(uid, completedMovementUnits) {
+    try {
+        if (uid && completedMovementUnits) {
+            await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+                completed_movement_units: completedMovementUnits,
+            })
+        }
+    } catch (error) {
+        console.log("completed")
+        console.error(error)
+    }
+}
+
 export async function post(module, uid, setMovementProgress, setCurrentModule) {
     try {
         const response = await axios.post(`${API_URL}/api/v1/movement_module_completions`, { movement_module: module, uid: uid })

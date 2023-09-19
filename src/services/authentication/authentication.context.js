@@ -44,6 +44,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [educationProgram, setEducationProgram] = useState(1)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
     const [tour, setTour] = useState(null) 
+    const uid = user?.user.uid
     
 
     const changeOnboardEntry = (change, state) => {
@@ -233,7 +234,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 setLastDateOnApp,
                 resetPassword,
                 tour,
-                setTour
+                setTour,
+                uid
             }}
         >
             {children}

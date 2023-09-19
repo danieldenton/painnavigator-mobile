@@ -27,8 +27,9 @@ export const FoodJournalContextProvider = ({ children }) => {
           }
       
           const lastIndex = foodJournals.length - 1;
-          const lastJournalDate = foodJournals[lastIndex].date;
-          setJournaledToday(Boolean(lastJournalDate));
+          const lastJournalDate = foodJournals[lastIndex]
+          console.log(lastJournalDate)
+        //   setJournaledToday(Boolean(lastJournalDate));
     }, [foodJournals]);
 
     const updateFoodJournal = (journalId) => {

@@ -11,6 +11,7 @@ import { View } from "react-native";
 export const MovementUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
     const { completedMovementModules, completeSkippedUnit, skippedMovementModules } = useContext(MovementContext);
+  
     const [bookmarkedMovementModuleData, setBookmarkedMovementModuleData] = useState([]);
     const [completedMovementModuleData, setCompletedMovementModuleData] = useState([]);
     const [skippedMovementModuleData, setSkippedMovementModuleData] = useState([]);
