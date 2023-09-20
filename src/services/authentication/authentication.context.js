@@ -42,10 +42,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         depressed: "" 
     })
     const [educationProgram, setEducationProgram] = useState(1)
+    const [programSafety, setProgramSafety] = useState(false)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
     const [tour, setTour] = useState(null) 
     const uid = user?.user.uid
-    
 
     const changeOnboardEntry = (change, state) => {
         setOnboardingData(entry => ({
@@ -230,6 +230,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 completeProgram,
                 educationProgram,
                 setEducationProgram,
+                programSafety,
+                setProgramSafety,
                 lastDateOnApp,
                 setLastDateOnApp,
                 resetPassword,
