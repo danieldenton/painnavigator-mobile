@@ -30,7 +30,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
       };
     }
     const handleProgram = () => {
-      referralCode === "ASC112" || referralCode === "EXPL22" || referralCode === "CORE55" ? setProgramSafety(true) : null
+      referralCode === "ASC112" || referralCode === "EXPL22" || referralCode === "CORE55" || referralCode === "TEST12" ? setProgramSafety(true) : null
       referralCode === "ISCS23" ? (setEducationProgram(2), setProgramSafety(true)) : null
     }
   
