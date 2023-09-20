@@ -42,6 +42,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         depressed: "" 
     })
     const [educationProgram, setEducationProgram] = useState(1)
+    const [programSafety, setProgramSafety] = useState(false)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
     const [tour, setTour] = useState(null) 
     const uid = user?.user.uid
@@ -220,7 +221,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 setCurrentQuestion,
                 signOut,
                 setProviderId,
-                providerId,
                 expoPushToken,
                 setError,
                 setCompletedProgram,
