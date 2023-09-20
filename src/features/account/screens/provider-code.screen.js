@@ -14,7 +14,7 @@ import { ONBOARD_EVENTS } from "../../../amplitude-events";
 import { track } from "@amplitude/analytics-react-native";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, setError, setEducationProgram, setProviderId } = useContext(AuthenticationContext);
+  const { changeOnboardEntry, error, setError, setEducationProgram, setProviderId, setProgramSafety } = useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
 
     const handleProviderCode = async () => {
@@ -28,6 +28,10 @@ export const ProviderCodeScreen = ({ navigation }) => {
           setError("Please enter a valid code");
           console.error(err); 
       };
+    }
+    const handleProgram = () => {
+      referralCode === "ASC112" || referralCode === "EXPL22" || referralCode === "CORE55" ? setProgramSafety(true) : null
+      referralCode === "ISCS23" ? (setEducationProgram(2), setProgramSafety(true)) : null
     }
   
   return (
@@ -76,7 +80,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
             title={"Submit"}
             onPress={() => {
               handleProviderCode()
-              referralCode === "ISCS23" ? setEducationProgram(2) : null
+              handleProgram()
             }}
           />
         </View>
