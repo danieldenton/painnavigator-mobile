@@ -91,7 +91,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        console.log(educationProgram, programSafety)
                         step >= 11 ? 
                         (handleEducationProgram(), navigation.navigate("Register")) 
                         : 
