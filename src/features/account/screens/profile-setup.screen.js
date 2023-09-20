@@ -91,11 +91,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
-                        console.log(educationProgram)
+                        console.log(educationProgram, programSafety)
                         step >= 11 ? 
                         (handleEducationProgram(), navigation.navigate("Register")) 
                         : 
-                        step === 8 && programSafety && onboardingData.typeOfPain !== "Low Back Pain"  ? 
+                        step === 8 && !programSafety && onboardingData.typeOfPain !== "Low Back Pain"  ? 
                         handleOtherPainType()
                         : 
                         nextStep()          
