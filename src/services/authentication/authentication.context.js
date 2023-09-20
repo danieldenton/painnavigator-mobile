@@ -230,6 +230,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 completeProgram,
                 educationProgram,
                 setEducationProgram,
+                programSafety,
+                setProgramSafety,
                 lastDateOnApp,
                 setLastDateOnApp,
                 resetPassword,
