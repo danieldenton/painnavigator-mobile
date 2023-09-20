@@ -1,6 +1,6 @@
 {
   "name": "painnavigator",
-  "version": "1.5.18",
+  "version": "1.5.19",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
