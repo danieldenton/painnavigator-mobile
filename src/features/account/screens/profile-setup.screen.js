@@ -68,9 +68,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     }
 
     const handleOtherPainType = () => {
-        if (!programSafety) {
             setEducationProgram(10)
-        }
         if (onboardingData.typeOfPain === "Other") {
             setStep(12)
             onboardingData.typeOfPain = ""
@@ -93,10 +91,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
                     disabled={pages[step].disabled}
                     title={"Next"} 
                     onPress={() => {
+                        console.log(educationProgram)
                         step >= 11 ? 
                         (handleEducationProgram(), navigation.navigate("Register")) 
                         : 
-                        step === 8 && onboardingData.typeOfPain !== "Low Back Pain" ? 
+                        step === 8 && programSafety && onboardingData.typeOfPain !== "Low Back Pain"  ? 
                         handleOtherPainType()
                         : 
                         nextStep()          
