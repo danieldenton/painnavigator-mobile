@@ -10,8 +10,8 @@ const GraphWrapper = styled.View`
 `;
 
 export const PainGraph = ({ graphData }) => {
-    const graphWidth = graphData.length * 40
-    
+    const graphWidth = graphData.length * 38
+
     return (
         <GraphWrapper>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
