@@ -17,7 +17,7 @@ export const FoodJournalContextProvider = ({ children }) => {
     const [journaledToday, setJournaledToday] = useState(false);
     const [trackLogMealEvent, setTrackLogMealEvent] = useState("")
     const [trackExitEvent, setTrackExitEvent] = useState("")
-    const { user } = useContext(AuthenticationContext);
+    const {uid } = useContext(AuthenticationContext);
 
     useEffect(() => {
         if (!foodJournals || foodJournals.length < 1) {
@@ -52,7 +52,7 @@ export const FoodJournalContextProvider = ({ children }) => {
             [meal.toLowerCase()]: JSON.stringify(foodJournal),
             date_time_value: Date.now(),
         };
-        postFoodJournal(user.user.uid, mealEntry, setFoodJournals);
+        postFoodJournal(uid, mealEntry, setFoodJournals);
         setTimeout(() => {resetFoodJournal(false)}, 1000);
     };
 
