@@ -34,11 +34,11 @@ export const DescriptionHelpMessage = styled.Text`
 
 export const PainTrackerComponent = ({ navigation }) => {
     const { dailyPainScores, setDailyPainScores } = useContext(DailyPainContext)
-    const { user } = useContext(AuthenticationContext)
+    const { uid } = useContext(AuthenticationContext)
    
 
     useEffect(() => {
-        getDailyPainScores(user.user.uid, setDailyPainScores)
+        getDailyPainScores(uid, setDailyPainScores)
     }, [])
     
     const startDate = formatDate(dailyPainScores[0]?.date_time_value)
