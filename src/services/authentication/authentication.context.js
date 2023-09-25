@@ -180,7 +180,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     };
 
     const completeProgram = () => {
-        patchCompletedProgram(user.user.uid, outcomeData)
+        patchCompletedProgram(uid, outcomeData)
         setCompletedProgram(true)
         setStep(0)
     }
@@ -195,7 +195,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
 
     useEffect(() => {
         if (user && expoPushToken) {
-            patchExpoPushToken(user.user.uid, expoPushToken)
+            patchExpoPushToken(uid, expoPushToken)
         }
     }, [user, expoPushToken])
     

@@ -21,7 +21,7 @@ export const ProfileContextProvider = ({ children }) => {
     })
     const [profileStep, setProfileStep] = useState(0);
     const [profileComplete, setProfileComplete] = useState(false);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
 
     const cancelEdits = () => {
         setReviewProfile(userInfo);
@@ -37,7 +37,7 @@ export const ProfileContextProvider = ({ children }) => {
 
         };
         track(PROFILE_EVENTS.COMPLETE_PROFILE_SET_UP);
-        updateProfile(user.user.uid, profile);
+        updateProfile(uid, profile);
         //setTimeout(() => {resetProfileStep(false)}, 1000);
     };  
 
@@ -98,7 +98,7 @@ export const ProfileContextProvider = ({ children }) => {
     };
 
     const saveEdits = () => {
-        updateProfile(user.user.uid, reviewProfile);
+        updateProfile(uid, reviewProfile);
         setChanges("");
     }
 

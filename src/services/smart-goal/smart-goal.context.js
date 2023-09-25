@@ -17,7 +17,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     });
     const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
     const [currentPage, setCurrentPage] = useState(0);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
 
     useEffect(() => {
         setReviewGoal(activeGoal);
@@ -40,7 +40,7 @@ export const SmartGoalContextProvider = ({ children }) => {
     };
 
     const createSmartGoal = () => {
-        postSmartGoal(user.user.uid, smartGoal, setActiveGoal);
+        postSmartGoal(uid, smartGoal, setActiveGoal);
     };
 
     const createSmartGoalUpdate = () => {

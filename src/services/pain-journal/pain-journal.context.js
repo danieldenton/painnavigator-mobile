@@ -22,7 +22,7 @@ export const PainJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
 
     useEffect(() => {
         if (!painJournals || painJournals.length < 1) {
@@ -61,7 +61,7 @@ export const PainJournalContextProvider = ({ children }) => {
             intensity_after: painJournal.intensityAfter,
             date_time_value: Date.now(),
         }
-        postPainJournal(user.user.uid, newPainJournal, setPainJournals);
+        postPainJournal(uid, newPainJournal, setPainJournals);
         setTimeout(() => {resetPainJournal(false)}, 1000);
     };
 
