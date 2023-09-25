@@ -1,10 +1,8 @@
 import React, { createContext, useState, useContext } from "react";
-import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const DailyPainContext = createContext();
 
 export const DailyPainContextProvider = ({ children }) => {
-    const { user } = useContext(AuthenticationContext)
     const [dailyPainScore, setDailyPainScore] = useState({
         id: null,
         score: 5,
