@@ -35,7 +35,7 @@ import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.serv
 import { formatDate, todaysDate, timeZone, timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-    const {  user, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp, lastDateOnApp, tour } = useContext(AuthenticationContext);
+    const { uid, setCompletedProgram, setEducationProgram, educationProgram, setLastDateOnApp, lastDateOnApp, tour } = useContext(AuthenticationContext);
     const { setDailyPainScores, dailyPainScores, dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { userInfo, profileComplete, setUserInfo, setProfileComplete } = useContext(ProfileContext);
     const { activeGoal, setActiveGoal, setFinishedGoals } = useContext(SmartGoalContext);
@@ -62,7 +62,7 @@ export const TodayScreen = ({ navigation }) => {
 
     useEffect(() => {
         getUser(
-            user.user.uid,
+            uid,
             setUserInfo,  
             setEducationProgram,
             setEducationProgress, 
@@ -71,21 +71,21 @@ export const TodayScreen = ({ navigation }) => {
             setCompletedProgram,
             setLastDateOnApp
         );  
-        getDailyPainScores(user.user.uid, setDailyPainScores)
-        getSmartGoals(user.user.uid, setActiveGoal, setFinishedGoals)
-        getPainJournals(user.user.uid, setPainJournals)
-        getMoodJournals(user.user.uid, setMoodJournals)
-        getFoodJournals(user.user.uid, setFoodJournals)   
+        getDailyPainScores(uid, setDailyPainScores)
+        getSmartGoals(uid, setActiveGoal, setFinishedGoals)
+        getPainJournals(uid, setPainJournals)
+        getMoodJournals(uid, setMoodJournals)
+        getFoodJournals(uid, setFoodJournals)   
     }, []);
-   
+   console.log(dailyPainScores)
     useEffect(() => {
         if (lastDateOnApp !== timeZonedTodaysDate) {
-            patchLastDateOnApp(user.user.uid, timeZonedTodaysDate)
+            patchLastDateOnApp(uid, timeZonedTodaysDate)
         }
     }, [lastDateOnApp])
 
     useEffect(() => {
-        getMessages(user.user.uid, setMessages)
+        getMessages(uid, setMessages)
         let options = {hour: 'numeric', hour12: false, timeZone: timeZone }
         const timeZoneDateNumber = new Intl.DateTimeFormat('en-US', options).format(todaysDate)
         const timeNumber = Number(timeZoneDateNumber);

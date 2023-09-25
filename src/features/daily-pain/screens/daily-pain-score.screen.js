@@ -11,11 +11,11 @@ import { isAndroid } from "../../../utils";
 // import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
     const { dailyPainStep, setDailyPainStep, setDailyPainScores } = useContext(DailyPainContext)
 
     useEffect(() => {
-        getDailyPainScores(user.user.uid, setDailyPainScores)
+        getDailyPainScores(uid, setDailyPainScores)
     }, [])
 
     const previousPage = () => {

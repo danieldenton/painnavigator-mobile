@@ -17,7 +17,7 @@ import { View } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {
-    const { user, completeProgram, completedProgram } = useContext(AuthenticationContext)
+    const { uid, completeProgram, completedProgram } = useContext(AuthenticationContext)
 
     return (
         <SafeView>
@@ -45,10 +45,10 @@ export const SmartGoalCompletedScreen = ({ navigation }) => {
             </Scroll>
             {completedProgram ? 
             <ButtonSection>
-                <JournalButton onPress={() => {navigation.navigate("Today"), completeProgram(user.user.uid)}} title={"Back To Home"} /> 
+                <JournalButton onPress={() => {navigation.navigate("Today"), completeProgram(uid)}} title={"Back To Home"} /> 
                 </ButtonSection> :
             <ButtonSection>
-                <JournalButton onPress={() => {navigation.navigate("Completion"), completeProgram(user.user.uid)}} title={"Move into Maintenance"} />
+                <JournalButton onPress={() => {navigation.navigate("Completion"), completeProgram(uid)}} title={"Move into Maintenance"} />
                 <SkipQuestionButton
                     onPress={() => {navigation.navigate("Today")}} >
                     <SkipQuestionText>

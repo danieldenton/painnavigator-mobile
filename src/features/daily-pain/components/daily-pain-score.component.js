@@ -11,8 +11,7 @@ import { DAILY_PAIN_EVENTS } from '../../../amplitude-events';
 
 export const DailyPainScoreComponent = () => {
     const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
-    const { user } = useContext(AuthenticationContext)
-    const uid = user.user.uid
+    const { uid } = useContext(AuthenticationContext)
 
     const handleDailyPainScore = () => {
         if (dailyPainScore.id) {
