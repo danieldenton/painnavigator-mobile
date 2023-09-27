@@ -21,7 +21,7 @@ export const MoodJournalContextProvider = ({ children }) => {
     });
     const [reviewJournal, setReviewJournal] = useState({});
     const [journaledToday, setJournaledToday] = useState(false);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
 
     useEffect(() => {
         const lastIndex = moodJournals?.length - 1;
@@ -53,7 +53,7 @@ export const MoodJournalContextProvider = ({ children }) => {
             cognitive_distortions: cognitiveDistortions,
             date_time_value: Date.now(),
         };
-        postMoodJournal(user.user.uid, newMoodJournal, setMoodJournals);
+        postMoodJournal(uid, newMoodJournal, setMoodJournals);
         setTimeout(() => {resetMoodJournal(false)}, 1000);
     };
 

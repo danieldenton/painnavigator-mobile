@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
     const [message, setMessage] = useState({
         recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
         body: "",
@@ -36,7 +36,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
         );
 
         setMessages(newMessages);
-        patchMessage(user.user.uid);
+        patchMessage(uid);
     };
 
     const resetMessage = () => {
@@ -50,7 +50,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     const sendMessage = () => {
         const newMessage = {
             ...message,
-            sender_id: user.user.uid
+            sender_id: uid
         };
         postMessage(newMessage, setMessages);
         setTimeout(() => {resetMessage()}, 1000);

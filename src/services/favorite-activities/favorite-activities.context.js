@@ -38,7 +38,7 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
     ]);
     const [reviewActivities, setReviewActivities] = useState([]);
     const [inputsShown, setInputsShown] = useState(1);
-    const { user } = useContext(AuthenticationContext);
+    const { uid } = useContext(AuthenticationContext);
 
     useEffect(() => {
         setReviewActivities(selectedActivities);
@@ -63,7 +63,7 @@ export const FavoriteActivitiesContextProvider = ({ children }) => {
     const completeActivities = () => {
         setFavoriteActivities(reviewActivities);
         setTimeout(() => {resetActivities(false)}, 1000);
-        post(user.user.uid, {activities: JSON.stringify(reviewActivities)});
+        post(uid, {activities: JSON.stringify(reviewActivities)});
     };
 
     const addActivity = (activityId) => {

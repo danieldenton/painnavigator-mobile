@@ -13,7 +13,7 @@ export const EducationContextProvider = ({ children }) => {
     const [completedEducationModules, setCompletedEducationModules] = useState([]);
     const [skippedEducationModules, setSkippedEducationModules] = useState([]);
     const [lastCompletedModule, setLastCompletedModule] = useState(null);
-    const { user, educationProgram } = useContext(AuthenticationContext);
+    const { uid, educationProgram } = useContext(AuthenticationContext);
 
     const shorterProgram = educationProgram > 2 && educationProgram < 7
     const additionalJournals = educationProgram === 2 ? educationProgress > 15 : shorterProgram ? educationProgress > 21 : educationProgress > 24
@@ -36,7 +36,7 @@ export const EducationContextProvider = ({ children }) => {
             education_progress: educationProgress   
         };
         setEducationProgress(educationProgress + 1)
-        postEducationModule(module, user.user.uid);
+        postEducationModule(module, uid);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
     };
 
@@ -63,7 +63,7 @@ export const EducationContextProvider = ({ children }) => {
             module_id: currentModule.id,
             status: 1       
         };
-        postEducationModule(module, setEducationProgress, user.user.uid);
+        postEducationModule(module, setEducationProgress, uid);
         if(!skippedEducationModules.includes(currentModule.id)){
             setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
         };

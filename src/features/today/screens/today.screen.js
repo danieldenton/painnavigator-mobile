@@ -110,7 +110,7 @@ export const TodayScreen = ({ navigation }) => {
             })
             setDailyPainStep(0)
         }
-    }, [dailyPainScores])
+    }, [isFocused])
 
     useEffect(() => { 
         Audio.setAudioModeAsync({ playsInSilentModeIOS: true }); 
