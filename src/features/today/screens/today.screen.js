@@ -108,7 +108,6 @@ export const TodayScreen = ({ navigation }) => {
                 score: 5,
                 date_time_value: null
             })
-            setDailyPainStep(0)
         }
     }, [dailyPainScores])
 
@@ -187,7 +186,6 @@ export const TodayScreen = ({ navigation }) => {
                     </View>
                 </Scroll>
             <DashboardTour visible={tourVisible} setVisible={setTourVisible}/>
-
             </SafeView>
         </Provider>
     );
