@@ -122,7 +122,7 @@ export const TodayScreen = ({ navigation }) => {
     }, [tour])
 
     function renderDailyPainScore() {
-        if(dailyPainScore.id) {
+        if(dailyPain === timeZonedTodaysDate) {
             return <DailyGoalCompleted type={"Daily Pain Score"} />
         } else {
             return <DailyPainScore navigation={navigation} />
@@ -164,7 +164,7 @@ export const TodayScreen = ({ navigation }) => {
                 <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
                     <Greeting greeting={greeting} name={userInfo.first_name} />
                     <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-                    {renderDailyPainScore()}
+                    {dailyPainScore.id ? <DailyGoalCompleted type={"Daily Pain Score"} /> : <DailyPainScore navigation={navigation} />}
                     {!completedAllEducationModules && <SubHeader title={"TODAY'S EDUCATION"} size={14} />}
                     {lastEducationModule === timeZonedTodaysDate && <DailyGoalCompleted type={"module"} moduleId={lastEducationModuleId} />}
                     {!completedAllEducationModules && <EducationUnitCard navigation={navigation} />}
