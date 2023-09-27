@@ -7,7 +7,7 @@ import { PainTrackerComponent } from "../components/pain-tracker.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { isAndroid } from "../../../utils";
+import { isAndroid, timeZonedTodaysDate } from "../../../utils";
 // import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
