@@ -21,6 +21,7 @@ export const DailyPainScoreComponent = () => {
             setDailyPainScore(postDailyPainScore(uid, dailyPainScore))
             track(DAILY_PAIN_EVENTS.LOG_DAILY_PAIN_SCORE)
         }  
+        setDailyPainStep(1)
     }
 
     return (
@@ -30,7 +31,7 @@ export const DailyPainScoreComponent = () => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Pain Score"} 
-                    onPress={() => {setDailyPainStep(1), handleDailyPainScore()}}
+                    onPress={() => handleDailyPainScore()}
                 /> 
             </ButtonSection>  
         </>
