@@ -12,11 +12,7 @@ import { isAndroid, timeZonedTodaysDate } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { uid } = useContext(AuthenticationContext);
-    const { dailyPainStep, setDailyPainStep, setDailyPainScores } = useContext(DailyPainContext)
-
-    useEffect(() => {
-        getDailyPainScores(uid, setDailyPainScores)
-    }, [])
+    const { dailyPainStep, setDailyPainStep, setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
 
     const previousPage = () => {
         setDailyPainStep(0)
