@@ -43,8 +43,7 @@ export const PainTrackerComponent = ({ navigation }) => {
     
     const startDate = formatDate(dailyPainScores[0]?.date_time_value)
 
-    const graphData = dailyPainScores.map((score, idx) => {
-        console.log(idx)
+    const graphData = dailyPainScores.map((score) => {
         return { score: score.score, date: formatDateNoYear(score.date_time_value) }
     }).reverse()
 
