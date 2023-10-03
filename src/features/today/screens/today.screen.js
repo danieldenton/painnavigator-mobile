@@ -73,8 +73,7 @@ export const TodayScreen = ({ navigation }) => {
         );  
         getDailyPainScores(uid, setDailyPainScores)
         getSmartGoals(uid, setActiveGoal, setFinishedGoals)
-        // getPainJournals(uid, setPainJournals)
-        setPainJournals(getPainJournals(uid))
+        getPainJournals(uid, setPainJournals)
         getMoodJournals(uid, setMoodJournals)
         getFoodJournals(uid, setFoodJournals)   
     }, []);
