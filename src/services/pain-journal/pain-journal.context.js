@@ -122,7 +122,6 @@ export const PainJournalContextProvider = ({ children }) => {
                 currentPageData,
                 deletePainJournal,
                 editJournal,
-                journaledToday,
                 nextPage,
                 painJournals, 
                 painJournal,
