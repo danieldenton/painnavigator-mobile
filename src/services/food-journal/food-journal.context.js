@@ -14,23 +14,9 @@ export const FoodJournalContextProvider = ({ children }) => {
         feelingBefore: "", 
         feelingAfter: "" 
     });
-    const [journaledToday, setJournaledToday] = useState(false);
     const [trackLogMealEvent, setTrackLogMealEvent] = useState("")
     const [trackExitEvent, setTrackExitEvent] = useState("")
     const {uid } = useContext(AuthenticationContext);
-
-    useEffect(() => {
-        if (!foodJournals || foodJournals.length < 1) {
-            // Set to false by default if desired:
-            setJournaledToday(false);
-            return;
-          }
-      
-          const lastIndex = foodJournals.length - 1;
-          const lastJournalDate = foodJournals[lastIndex]
-          console.log(lastJournalDate)
-        //   setJournaledToday(Boolean(lastJournalDate));
-    }, [foodJournals]);
 
     const updateFoodJournal = (journalId) => {
         const mealEntry = {
@@ -113,7 +99,6 @@ export const FoodJournalContextProvider = ({ children }) => {
                 completeFoodJournal,
                 foodJournal,
                 foodJournals,
-                journaledToday,
                 loadFoodJournals,
                 meal,
                 trackLogMealEvent,

@@ -20,14 +20,7 @@ export const MoodJournalContextProvider = ({ children }) => {
         cognitiveDistortions: new Array()
     });
     const [reviewJournal, setReviewJournal] = useState({});
-    const [journaledToday, setJournaledToday] = useState(false);
     const { uid } = useContext(AuthenticationContext);
-
-    useEffect(() => {
-        const lastIndex = moodJournals?.length - 1;
-        const lastJournalDate = moodJournals[lastIndex]?.date;
-        setJournaledToday(lastJournalDate);
-    }, []);
 
     const cancelEdits = () => {
         setReviewJournal({});
@@ -164,7 +157,6 @@ export const MoodJournalContextProvider = ({ children }) => {
                 currentPageData,
                 deleteMoodJournal,
                 editJournal,
-                journaledToday,
                 loadMoodJournals,
                 moodJournals, 
                 moodJournal,

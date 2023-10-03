@@ -21,20 +21,7 @@ export const PainJournalContextProvider = ({ children }) => {
         intensityAfter: 5
     });
     const [reviewJournal, setReviewJournal] = useState({});
-    const [journaledToday, setJournaledToday] = useState(false);
     const { uid } = useContext(AuthenticationContext);
-
-    useEffect(() => {
-        if (!painJournals || painJournals.length < 1) {
-            // Set to false by default if desired:
-            setJournaledToday(false);
-            return;
-          }
-      
-          const lastIndex = painJournals.length - 1;
-          const lastJournalDate = painJournals[lastIndex].date;
-          setJournaledToday(Boolean(lastJournalDate));
-    }, [painJournals]);  
 
     const cancelEdits = () => {
         setReviewJournal({});
@@ -135,7 +122,6 @@ export const PainJournalContextProvider = ({ children }) => {
                 currentPageData,
                 deletePainJournal,
                 editJournal,
-                journaledToday,
                 nextPage,
                 painJournals, 
                 painJournal,
