@@ -42,6 +42,9 @@
     "android": {
       "package": "com.PainNavigator",
       "googleServicesFile": "./google-services.json",
+      "config": {
+        "targetSdkVersion": 33
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#5CCBB8"
