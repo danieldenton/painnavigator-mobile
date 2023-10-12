@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.5.21",
+    "version": "1.5.22",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -11,8 +11,7 @@
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
             "organization": "painnavigator",
-            "project": "painnavigator",
-            "authToken": "process.env.SENTRY_AUTH_TOKEN"
+            "project": "painnavigator"
           }
         }
       ]
@@ -53,13 +52,14 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 47
+      "versionCode": 51
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "sentry-expo"
+      "sentry-expo",
+      "expo-localization"
     ],
     "extra": {
       "eas": {
