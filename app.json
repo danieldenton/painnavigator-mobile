@@ -52,7 +52,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 51
+      "versionCode": 52
     },
     "web": {
       "favicon": "./assets/favicon.png"
