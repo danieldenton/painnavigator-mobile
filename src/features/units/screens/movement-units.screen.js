@@ -2,24 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ExpandableCard } from "../components/expandable-card.component";
-import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 
 export const MovementUnitsScreen = ({ navigation }) => {
-    // const { bookmarks } = useContext(BookmarksContext);
     const { completedMovementModules, completeSkippedUnit, skippedMovementModules, savedMovementUnits } = useContext(MovementContext);
-  
-    const [bookmarkedMovementModuleData, setBookmarkedMovementModuleData] = useState([]);
+    const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
     const [completedMovementModuleData, setCompletedMovementModuleData] = useState([]);
     const [skippedMovementModuleData, setSkippedMovementModuleData] = useState([]);
 
     useEffect(() => {
-        const movementBookmarks = savedMovementUnits?.filter(unit => unit > 62);
-        const data = movementBookmarks.map(bookmark => movementVideos.find(item => item.id === bookmark));
-        setBookmarkedMovementModuleData(data);
+        const data = savedMovementUnits?.map(module => movementVideos.find(item => item.id === module));
+        setSavedMovementModuleData(data);
     }, [savedMovementUnits]);
 
     useEffect(() => {
@@ -44,7 +40,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
                     moduleType={"Movement"}
                     navigation={navigation}
                     title={"Saved"}
-                    units={bookmarkedMovementModuleData} 
+                    units={savedMovementModuleData} 
                 />
                 <ExpandableCard 
                     completeSkippedUnit={completeSkippedUnit}
