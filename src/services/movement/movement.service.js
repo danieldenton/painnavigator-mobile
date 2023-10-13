@@ -10,7 +10,6 @@ export async function patchSavedMovementUnits(uid, savedMovementUnits) {
             })
         }
     } catch (error) {
-        console.log("saved")
         console.error(error)
     }
 }
@@ -23,7 +22,6 @@ export async function patchSkippedMovementUnits(uid, skippedMovementUnits) {
             })
         }
     } catch (error) {
-        console.log("skipped")
         console.error(error)
     }
 }
@@ -36,7 +34,6 @@ export async function patchCompletedMovementUnits(uid, completedMovementUnits) {
             })
         }
     } catch (error) {
-        console.log("completed")
         console.error(error)
     }
 }
