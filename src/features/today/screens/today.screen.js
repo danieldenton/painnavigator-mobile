@@ -72,7 +72,7 @@ export const TodayScreen = ({ navigation }) => {
   const { painJournals, setPainJournals } = useContext(PainJournalContext); 
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
-  const { movementProgress, setMovementProgress, setCompletedMovementModules, setSkippedMovementModules, setSavedMovementUnits, completedMovementModules, skippedMovementModules, savedMovementUnits  } = useContext(MovementContext);
+  const { movementProgress, setMovementProgress, setCompletedMovementModules, setSkippedMovementModules, setSavedMovementUnits  } = useContext(MovementContext);
   const { educationProgress, lastCompletedModule, setEducationProgress } =
     useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
