@@ -69,7 +69,7 @@ export const TodayScreen = ({ navigation }) => {
     useContext(ProfileContext);
   const { activeGoal, setActiveGoal, setFinishedGoals } =
     useContext(SmartGoalContext);
-  const { painJournals, setPainJournals } = useContext(PainJournalContext);
+  const { painJournals, setPainJournals } = useContext(PainJournalContext); 
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress, setCompletedMovementModules, setSkippedMovementModules, setSavedMovementUnits } = useContext(MovementContext);
@@ -109,7 +109,10 @@ export const TodayScreen = ({ navigation }) => {
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
-      setLastDateOnApp
+      setLastDateOnApp,
+      setCompletedMovementModules,
+      setSkippedMovementModules,
+      setSavedMovementUnits
     );
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);

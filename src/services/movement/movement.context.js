@@ -197,7 +197,6 @@ export const MovementContextProvider = ({ children }) => {
             value={{
                 completeVideo,
                 completedVideos,
-                completedMovementModules,
                 completeSkippedUnit,
                 currentModule,
                 currentVideo,
@@ -208,9 +207,14 @@ export const MovementContextProvider = ({ children }) => {
                 resetModule,
                 setMovementProgress,
                 setLastMovement,
-                skippedMovementModules,
                 skipVideo,
-                switchVideo
+                switchVideo,
+                setCompletedMovementModules,
+                completedMovementModules,
+                setSkippedMovementModules,
+                skippedMovementModules,
+                setSavedMovementUnits,
+                savedMovementUnits
             }}
         >
             {children}
