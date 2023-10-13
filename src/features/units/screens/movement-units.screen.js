@@ -9,18 +9,18 @@ import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 
 export const MovementUnitsScreen = ({ navigation }) => {
-    const { bookmarks } = useContext(BookmarksContext);
-    const { completedMovementModules, completeSkippedUnit, skippedMovementModules } = useContext(MovementContext);
+    // const { bookmarks } = useContext(BookmarksContext);
+    const { completedMovementModules, completeSkippedUnit, skippedMovementModules, savedMovementUnits } = useContext(MovementContext);
   
     const [bookmarkedMovementModuleData, setBookmarkedMovementModuleData] = useState([]);
     const [completedMovementModuleData, setCompletedMovementModuleData] = useState([]);
     const [skippedMovementModuleData, setSkippedMovementModuleData] = useState([]);
 
     useEffect(() => {
-        const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
+        const movementBookmarks = savedMovementUnits?.filter(unit => unit > 62);
         const data = movementBookmarks.map(bookmark => movementVideos.find(item => item.id === bookmark));
         setBookmarkedMovementModuleData(data);
-    }, [bookmarks]);
+    }, [savedMovementUnits]);
 
     useEffect(() => {
         const data = completedMovementModules?.map(module => movementVideos.find(item => item.id === module));
