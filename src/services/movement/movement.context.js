@@ -122,76 +122,76 @@ export const MovementContextProvider = ({ children }) => {
         setCurrentVideo(newVideoData);
     };
 
-    const saveCompletedMovementModules = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@completed_movement_modules", jsonValue);
-        } catch (e) {
-            console.log("error storing completed_movement_modules", e);
-        }
-    };
+    // const saveCompletedMovementModules = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //         await AsyncStorage.setItem("@completed_movement_modules", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing completed_movement_modules", e);
+    //     }
+    // };
 
-    const saveSkippedMovementModules = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem("@skipped_movement_modules", jsonValue);
-        } catch (e) {
-            console.log("error storing skipped_movement_modules", e);
-        }
-    };
+    // const saveSkippedMovementModules = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //         await AsyncStorage.setItem("@skipped_movement_modules", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing skipped_movement_modules", e);
+    //     }
+    // };
 
-    const loadCompletedMovementModules = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@completed_movement_modules");
-            if (value !== null) {
-                setCompletedMovementModules(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading completed_movement_modules", e);
-        }
-    };
+    // const loadCompletedMovementModules = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@completed_movement_modules");
+    //         if (value !== null) {
+    //             setCompletedMovementModules(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading completed_movement_modules", e);
+    //     }
+    // };
 
-    const loadSkippedMovementModules = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@skipped_movement_modules");
-            if (value !== null) {
-                setSkippedMovementModules(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading skipped_movement_modules", e);
-        }
-    };
+    // const loadSkippedMovementModules = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@skipped_movement_modules");
+    //         if (value !== null) {
+    //             setSkippedMovementModules(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading skipped_movement_modules", e);
+    //     }
+    // };
 
-    useEffect(() => {
-        loadCompletedMovementModules();
-        loadSkippedMovementModules();
-    }, []);
+    // useEffect(() => {
+    //     loadCompletedMovementModules();
+    //     loadSkippedMovementModules();
+    // }, []);
 
-    useEffect(() => {
-        saveCompletedMovementModules(completedMovementModules);
-        if (uid) {
-            patchCompletedMovementUnits(completedMovementModules)
-        }
-    }, [completedMovementModules]);
+    // useEffect(() => {
+    //     saveCompletedMovementModules(completedMovementModules);
+    //     if (uid) {
+    //         patchCompletedMovementUnits(completedMovementModules)
+    //     }
+    // }, [completedMovementModules]);
 
-    useEffect(() => {
-        saveSkippedMovementModules(skippedMovementModules);
-        if (uid) {
-            patchSkippedMovementUnits(skippedMovementModules)
-        }
-    }, [skippedMovementModules]);
+    // useEffect(() => {
+    //     saveSkippedMovementModules(skippedMovementModules);
+    //     if (uid) {
+    //         patchSkippedMovementUnits(skippedMovementModules)
+    //     }
+    // }, [skippedMovementModules]);
 
-    useEffect(() => {
-        if (uid) {
-            patchSavedMovementUnits(movementBookmarks)
-        }
-    }, [movementBookmarks])
+    // useEffect(() => {
+    //     if (uid) {
+    //         patchSavedMovementUnits(movementBookmarks)
+    //     }
+    // }, [movementBookmarks])
 
-    useEffect(() => {
-        patchSkippedMovementUnits(uid, skippedMovementModules)
-        patchCompletedMovementUnits(uid, completedMovementModules)
-        patchSavedMovementUnits(uid, movementBookmarks)
-    }, [uid])
+    // useEffect(() => {
+    //     patchSkippedMovementUnits(uid, skippedMovementModules)
+    //     patchCompletedMovementUnits(uid, completedMovementModules)
+    //     patchSavedMovementUnits(uid, movementBookmarks)
+    // }, [uid])
     return (
         <MovementContext.Provider
             value={{

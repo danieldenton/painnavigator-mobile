@@ -56,7 +56,7 @@ export async function getUser(
     setProfileComplete(data.profile.profile_status === 1)
     setCompletedProgram(data.outcome.completed_program === true)
     setLastDateOnApp(data.last_date_on_app)
-    // console.log(data)
+    return data
   } catch (error) {
     console.error(error);
   }
