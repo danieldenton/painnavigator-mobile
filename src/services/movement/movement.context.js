@@ -181,11 +181,11 @@ export const MovementContextProvider = ({ children }) => {
     //     }
     // }, [skippedMovementModules]);
 
-    // useEffect(() => {
-    //     if (uid) {
-    //         patchSavedMovementUnits(movementBookmarks)
-    //     }
-    // }, [movementBookmarks])
+    useEffect(() => {
+        if (uid) {
+            patchSavedMovementUnits(movementBookmarks)
+        }
+    }, [movementBookmarks])
 
     // useEffect(() => {
     //     patchSkippedMovementUnits(uid, skippedMovementModules)

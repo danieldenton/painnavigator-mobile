@@ -65,8 +65,7 @@ export async function getUser(
     setCompletedMovementModules(data.movement_units.completed_movement_units)
     setSkippedMovementModules(data.movement_units.skipped_movement_units)
     setSavedMovementUnits(data.movement_units.saved_movement_units)
-    console.log(data.movement_units.saved_movement_units, data.movement_units.skipped_movement_units, data.movement_units.completed_movement_units)
-  } catch (error) {
+r  } catch (error) {
     console.error(error);
   }
 }
