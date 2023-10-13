@@ -27,7 +27,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
         const data = skippedMovementModules?.map(module => movementVideos.find(item => item.id === module));
         setSkippedMovementModuleData(data);
     }, [skippedMovementModules]);
-
+    console.log(savedMovementUnits, completedMovementModules, skippedMovementModules)
     return (
         <SafeView>
             <NavigationBarLeft 

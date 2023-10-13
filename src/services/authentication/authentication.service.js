@@ -62,10 +62,10 @@ export async function getUser(
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.outcome.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
-    setCompletedMovementModules(data.completed_movement_units)
-    setSkippedMovementModules(data.skipped_movement_units)
-    setSavedMovementUnits(data.saved_movement_units)
-    return data;
+    setCompletedMovementModules(data.movement_units.completed_movement_units)
+    setSkippedMovementModules(data.movement_units.skipped_movement_units)
+    setSavedMovementUnits(data.movement_units.saved_movement_units)
+    console.log(data.movement_units.saved_movement_units, data.movement_units.skipped_movement_units, data.movement_units.completed_movement_units)
   } catch (error) {
     console.error(error);
   }
