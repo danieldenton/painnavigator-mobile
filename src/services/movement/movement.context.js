@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { patchCompletedMovementUnits, patchSavedMovementUnits, patchSkippedMovementUnits, post } from "./movement.service";
+import { patchSavedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from '@amplitude/analytics-react-native'
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
 import { BookmarksContext } from "../bookmarks/bookmarks.context";
@@ -22,8 +21,6 @@ export const MovementContextProvider = ({ children }) => {
     const [savedMovementUnits, setSavedMovementUnits] = useState([])
     const [lastMovement, setLastMovement] = useState(null);
     const { uid } = useContext(AuthenticationContext);
-    const { bookmarks } = useContext(BookmarksContext)
-    const movementBookmarks = bookmarks?.filter(bookmark => bookmark > 62);
 
     useEffect(() => {
         setCurrentModule(movementModules.find(module => module.id === movementProgress))
@@ -117,6 +114,15 @@ export const MovementContextProvider = ({ children }) => {
         setCurrentModule({...currentModule, videos: newVideos})
     };
 
+    const saveMovementModule = () => {
+        if (!savedMovementUnits.includes(currentVideo.id)) {
+            setSavedMovementUnits(prevSaved => [...prevSaved, currentVideo.id])
+        } else {
+            setSavedMovementUnits(savedMovementUnits.filter(prevSaved => prevSaved !== currentVideo.id))
+        }
+        patchSavedMovementUnits(uid, savedMovementUnits)
+    }
+
     const switchVideo = (videoId) => {
         const newVideoData = movementVideos.find(video => video.id === videoId);
         setCurrentVideo(newVideoData);
@@ -181,11 +187,11 @@ export const MovementContextProvider = ({ children }) => {
     //     }
     // }, [skippedMovementModules]);
 
-    useEffect(() => {
-        if (uid) {
-            patchSavedMovementUnits(movementBookmarks)
-        }
-    }, [movementBookmarks])
+    // useEffect(() => {
+    //     if (uid) {
+    //         patchSavedMovementUnits(movementBookmarks)
+    //     }
+    // }, [movementBookmarks])
 
     // useEffect(() => {
     //     patchSkippedMovementUnits(uid, skippedMovementModules)
@@ -214,7 +220,8 @@ export const MovementContextProvider = ({ children }) => {
                 setSkippedMovementModules,
                 skippedMovementModules,
                 setSavedMovementUnits,
-                savedMovementUnits
+                savedMovementUnits,
+                saveMovementModule
             }}
         >
             {children}
