@@ -183,3 +183,4 @@ export const MovementContextProvider = ({ children }) => {
       {children}
     </MovementContext.Provider>
   );
+};
