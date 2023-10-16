@@ -114,6 +114,7 @@ export const MovementContextProvider = ({ children }) => {
       setCompletedVideos(0);
     }, 1000);
   };
+}
 
   const skipVideo = () => {
     setCompletedVideos((prevCompleted) => prevCompleted + 1);
