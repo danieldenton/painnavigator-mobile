@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TouchableOpacity } from "react-native";
 import { BookmarkIcon, BookmarkedIcon } from "../icons";
 import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
@@ -9,15 +9,25 @@ import { MovementContext } from "../services/movement/movement.context";
 export const Bookmark = ({ id, trackEvent }) => {
   const { bookmarks, addToBookmarks, removeFromBookmarks, isMovement } =
     useContext(BookmarksContext);
-  const { saveMovementModule, savedMovementUnits } = useContext(MovementContext);
+  const { saveMovementModule, unsaveMovementModule, savedMovementUnits } =
+    useContext(MovementContext);
   const isBookmarked = bookmarks.find((b) => b === id);
-  const isSavedMovement = savedMovementUnits.find((m) => m === id)
+  let isSavedMovement = savedMovementUnits.includes(id);
+
+  // useEffect(() => {
+  //   isSavedMovement = savedMovementUnits.includes(id);
+  // }, [savedMovementUnits])
+
+
 
   return (
     <TouchableOpacity
       onPress={() => {
+        console.log(isSavedMovement)
         isMovement
-          ? saveMovementModule()
+          ? isSavedMovement
+            ? unsaveMovementModule()
+            : saveMovementModule()
           : !isBookmarked
           ? (addToBookmarks(id), track(trackEvent))
           : removeFromBookmarks(id);
@@ -25,7 +35,7 @@ export const Bookmark = ({ id, trackEvent }) => {
       }}
       testID={"bookmark"}
     >
-      {isBookmarked || isSavedMovement ? <BookmarkedIcon /> : <BookmarkIcon />}
+      {isSavedMovement || isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />}
     </TouchableOpacity>
   );
 };
