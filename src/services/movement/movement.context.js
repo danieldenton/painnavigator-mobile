@@ -136,10 +136,8 @@ export const MovementContextProvider = ({ children }) => {
   };
 
   const saveMovementModule = () => {
-    // if (!savedMovementUnits.includes(currentVideo.id)) {
     setSavedMovementUnits((prevSaved) => [...prevSaved, currentVideo.id]);
     patchSavedMovementUnits(uid, savedMovementUnits);
-    console.log(savedMovementUnits, "hello");
   };
 
   const unsaveMovementModule = () => {
@@ -147,7 +145,6 @@ export const MovementContextProvider = ({ children }) => {
       savedMovementUnits.filter((prevSaved) => prevSaved !== currentVideo.id)
     );
     patchSavedMovementUnits(uid, savedMovementUnits);
-    console.log(savedMovementUnits);
   };
 
   const switchVideo = (videoId) => {
