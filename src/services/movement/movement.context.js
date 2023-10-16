@@ -5,14 +5,12 @@ import { patchSavedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { track } from '@amplitude/analytics-react-native'
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
-import { BookmarksContext } from "../bookmarks/bookmarks.context";
 
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
     const [movementProgress, setMovementProgress] = useState(1);
     const [currentModule, setCurrentModule] = useState(movementModules.find(module => module.id === movementProgress));
-    // const [currentModule, setCurrentModule] = useState(null)
     const [moduleComplete, setModuleComplete] = useState(false);
     const [currentVideo, setCurrentVideo] = useState();
     const [completedVideos, setCompletedVideos] = useState(0);
