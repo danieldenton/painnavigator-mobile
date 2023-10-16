@@ -19,6 +19,8 @@ export const MovementUnitsScreen = ({ navigation }) => {
         setIsMovement(true)
     }, [])
 
+    console.log(savedMovementUnits)
+
     useEffect(() => {
         const data = savedMovementUnits?.map(module => movementVideos.find(item => item.id === module));
         setSavedMovementModuleData(data);

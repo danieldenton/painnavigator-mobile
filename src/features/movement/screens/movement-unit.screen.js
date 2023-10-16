@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MovementUnit } from "../components/movement-unit.component";
 import { CompletionScreen } from "../components/completion-screen.component";
 import { MovementContext } from "../../../services/movement/movement.context";
