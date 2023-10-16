@@ -11,9 +11,14 @@ import { View } from "react-native";
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
     const { completedEducationModules, completeSkippedUnit, skippedEducationModules } = useContext(EducationContext);
+    const { setIsMovement } = useContext(BookmarksContext)
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
     const [skippedEducationModuleData, setSkippedEducationModuleData] = useState([]);
+
+    useEffect(() => {
+        setIsMovement(false)
+    }, [])
     
     useEffect(() => {
         // the last education unit id is 62

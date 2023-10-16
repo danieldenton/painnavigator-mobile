@@ -11,13 +11,19 @@ import { SkipQuestion } from "../../../components/skip-question.component";
 import { StackActions } from '@react-navigation/native'
 import { track } from "@amplitude/analytics-react-native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
+import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
 
 export const EducationUnitScreen = ({ navigation }) => {
     const { completeModule, currentModule, skipModule } = useContext(EducationContext);
+    const { setIsMovement } = useContext(BookmarksContext)
     const { post_video_destination, type, skippable, id } = currentModule;
 
     const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
     const trackNavBarEvent = EDUCATION_UNIT_EVENTS.BACK_TO_DASHBOARD;
+
+    useEffect(() => {
+        setIsMovement(false)
+    }, [])
 
     const postVideoAction = () => {
         const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";

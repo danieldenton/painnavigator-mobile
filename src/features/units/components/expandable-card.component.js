@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, View, Text } from "react-native";
+import { View } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { space } from "../../../infrastructure/theme/spacing";
