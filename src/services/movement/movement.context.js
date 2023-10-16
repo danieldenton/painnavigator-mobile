@@ -119,6 +119,7 @@ export const MovementContextProvider = ({ children }) => {
             setSavedMovementUnits(savedMovementUnits.filter(prevSaved => prevSaved !== currentVideo.id))
         }
         patchSavedMovementUnits(uid, savedMovementUnits)
+        console.log(savedMovementUnits, "hello")
     }
 
     const switchVideo = (videoId) => {

@@ -9,25 +9,23 @@ import { MovementContext } from "../services/movement/movement.context";
 export const Bookmark = ({ id, trackEvent }) => {
   const { bookmarks, addToBookmarks, removeFromBookmarks, isMovement } =
     useContext(BookmarksContext);
-  const { saveMovementModule } = useContext(MovementContext);
+  const { saveMovementModule, savedMovementUnits } = useContext(MovementContext);
   const isBookmarked = bookmarks.find((b) => b === id);
-
-  console.log(isMovement)
+  const isSavedMovement = savedMovementUnits.find((m) => m === id)
 
   return (
     <TouchableOpacity
       onPress={() => {
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
         isMovement
           ? saveMovementModule()
           : !isBookmarked
           ? (addToBookmarks(id), track(trackEvent))
           : removeFromBookmarks(id);
-          
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }}
       testID={"bookmark"}
     >
-      {isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />}
+      {isBookmarked || isSavedMovement ? <BookmarkedIcon /> : <BookmarkIcon />}
     </TouchableOpacity>
   );
 };
