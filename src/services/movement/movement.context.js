@@ -135,15 +135,15 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentModule({ ...currentModule, videos: newVideos });
   };
 
-  const saveMovementModule = () => {
-    setSavedMovementUnits((prevSaved) => [...prevSaved, currentVideo.id]);
+  const saveMovementModule = (id) => {
+    setSavedMovementUnits((prevSaved) => [...prevSaved, id]);
+    console.log(savedMovementUnits, "save")
     patchSavedMovementUnits(uid, savedMovementUnits);
   };
 
-  const unsaveMovementModule = () => {
-    setSavedMovementUnits(
-      savedMovementUnits.filter((prevSaved) => prevSaved !== currentVideo.id)
-    );
+  const unsaveMovementModule = (id) => {
+    setSavedMovementUnits(prevSaved => prevSaved.filter(video => video !== id));
+    console.log(savedMovementUnits, "called", id)
     patchSavedMovementUnits(uid, savedMovementUnits);
   };
 
