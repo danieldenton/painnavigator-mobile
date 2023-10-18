@@ -149,15 +149,13 @@ export const MovementContextProvider = ({ children }) => {
     setSavedMovementUnits(prevSaved => prevSaved.filter(video => video !== id));
   };
 
-  
+  useEffect(() => {
+    patchSkippedMovementUnits(uid, skippedMovementModules);
+  }, [skippedMovementModules])
 
-//   useEffect(() => {
-//     patchSkippedMovementUnits(uid, skippedMovementModules);
-//   }, [skippedMovementModules])
-
-//   useEffect(() => {
-//     patchCompletedMovementUnits(uid, completedMovementModules);
-//   }, [completedMovementModules])
+  useEffect(() => {
+    patchCompletedMovementUnits(uid, completedMovementModules);
+  }, [completedMovementModules])
 
   return (
     <MovementContext.Provider

@@ -6,6 +6,11 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
+import {
+  patchCompletedMovementUnits,
+  patchSkippedMovementUnits,
+} from "../../../services/movement/movement.service";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
@@ -15,6 +20,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
     savedMovementUnits,
     setIsMovement,
   } = useContext(MovementContext);
+  const { uid } = useContext(AuthenticationContext);
   const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
   const [completedMovementModuleData, setCompletedMovementModuleData] =
     useState([]);
@@ -38,6 +44,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
       movementVideos.find((item) => item.id === module)
     );
     setCompletedMovementModuleData(data);
+    
   }, [completedMovementModules]);
 
   useEffect(() => {
@@ -45,6 +52,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
       movementVideos.find((item) => item.id === module)
     );
     setSkippedMovementModuleData(data);
+    patchSkippedMovementUnits(uid, skippedMovementModules)
   }, [skippedMovementModules]);
 
   return (
