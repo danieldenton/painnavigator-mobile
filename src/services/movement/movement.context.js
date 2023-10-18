@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { patchSavedMovementUnits, post } from "./movement.service";
+import { patchSavedMovementUnits, patchSkippedMovementUnits, patchCompletedMovementUnits, post } from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { track } from "@amplitude/analytics-react-native";
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
@@ -20,6 +20,7 @@ export const MovementContextProvider = ({ children }) => {
   const [skippedMovementModules, setSkippedMovementModules] = useState([]);
   const [savedMovementUnits, setSavedMovementUnits] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
+  const [isMovement, setIsMovement] = useState(false)
   const { uid } = useContext(AuthenticationContext);
 
   useEffect(() => {
@@ -135,22 +136,28 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentModule({ ...currentModule, videos: newVideos });
   };
 
-  const saveMovementModule = (id) => {
-    setSavedMovementUnits((prevSaved) => [...prevSaved, id]);
-    console.log(savedMovementUnits, "save")
-    patchSavedMovementUnits(uid, savedMovementUnits);
-  };
-
-  const unsaveMovementModule = (id) => {
-    setSavedMovementUnits(prevSaved => prevSaved.filter(video => video !== id));
-    console.log(savedMovementUnits, "called", id)
-    patchSavedMovementUnits(uid, savedMovementUnits);
-  };
-
   const switchVideo = (videoId) => {
     const newVideoData = movementVideos.find((video) => video.id === videoId);
     setCurrentVideo(newVideoData);
   };
+
+  const saveMovementModule = (id) => {
+    setSavedMovementUnits((prevSaved) => [...prevSaved, id]);
+  };
+
+  const unsaveMovementModule = (id) => {
+    setSavedMovementUnits(prevSaved => prevSaved.filter(video => video !== id));
+  };
+
+  
+
+//   useEffect(() => {
+//     patchSkippedMovementUnits(uid, skippedMovementModules);
+//   }, [skippedMovementModules])
+
+//   useEffect(() => {
+//     patchCompletedMovementUnits(uid, completedMovementModules);
+//   }, [completedMovementModules])
 
   return (
     <MovementContext.Provider
@@ -177,6 +184,8 @@ export const MovementContextProvider = ({ children }) => {
         savedMovementUnits,
         saveMovementModule,
         unsaveMovementModule,
+        isMovement,
+        setIsMovement,
       }}
     >
       {children}

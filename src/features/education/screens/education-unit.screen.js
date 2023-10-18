@@ -11,11 +11,11 @@ import { SkipQuestion } from "../../../components/skip-question.component";
 import { StackActions } from '@react-navigation/native'
 import { track } from "@amplitude/analytics-react-native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
-import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
+import { MovementContext } from "../../../services/movement/movement.context";
 
 export const EducationUnitScreen = ({ navigation }) => {
     const { completeModule, currentModule, skipModule } = useContext(EducationContext);
-    const { setIsMovement } = useContext(BookmarksContext)
+    const { setIsMovement } = useContext(MovementContext)
     const { post_video_destination, type, skippable, id } = currentModule;
 
     const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;

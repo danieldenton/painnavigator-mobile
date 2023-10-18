@@ -6,7 +6,6 @@ export const BookmarksContext = createContext();
 
 export const BookmarksContextProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useState([]);
-  const [isMovement, setIsMovement] = useState(false)
 
   const saveBookmarks = async (value) => {
     try {
@@ -33,9 +32,7 @@ export const BookmarksContextProvider = ({ children }) => {
   };
 
   const remove = (moduleId) => {
-    const newBookmarks = bookmarks.filter(
-      (x) => x !== moduleId
-    );
+    const newBookmarks = bookmarks.filter((x) => x !== moduleId);
     setBookmarks(newBookmarks);
   };
 
@@ -51,8 +48,6 @@ export const BookmarksContextProvider = ({ children }) => {
     <BookmarksContext.Provider
       value={{
         bookmarks,
-        isMovement,
-        setIsMovement,
         addToBookmarks: add,
         removeFromBookmarks: remove,
       }}

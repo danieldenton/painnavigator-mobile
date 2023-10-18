@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ExpandableCard } from "../components/expandable-card.component";
-import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
+import { MovementContext } from "../../../services/movement/movement.context";
 import { EducationContext } from "../../../services/education/education.context";
 import { educationModules } from "../../education/data/education-module-data.json";
 import { Scroll } from "../../../components/scroll.component";
@@ -11,7 +11,7 @@ import { View } from "react-native";
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
     const { completedEducationModules, completeSkippedUnit, skippedEducationModules } = useContext(EducationContext);
-    const { setIsMovement } = useContext(BookmarksContext)
+    const { setIsMovement } = useContext(MovementContext)
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
     const [skippedEducationModuleData, setSkippedEducationModuleData] = useState([]);
