@@ -11,14 +11,13 @@ export const Bookmark = ({ id, trackEvent }) => {
     useContext(BookmarksContext);
   const { saveMovementModule, unsaveMovementModule, savedMovementUnits } =
     useContext(MovementContext);
-  const isBookmarked = bookmarks.find((b) => b === id);
+  const isBookmarked = bookmarks.includes(id);
   const isSavedMovement = savedMovementUnits.includes(id);
-
+  console.log(savedMovementUnits, id, isSavedMovement, isBookmarked);
 
   return (
     <TouchableOpacity
       onPress={() => {
-        console.log(isSavedMovement, savedMovementUnits)
         isMovement
           ? isSavedMovement
             ? unsaveMovementModule(id)
