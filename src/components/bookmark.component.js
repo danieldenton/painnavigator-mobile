@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import { BookmarkIcon, BookmarkedIcon } from "../icons";
 import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
