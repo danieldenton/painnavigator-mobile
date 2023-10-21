@@ -157,6 +157,10 @@ export const MovementContextProvider = ({ children }) => {
     patchCompletedMovementUnits(uid, completedMovementModules);
   }, [completedMovementModules])
 
+  useEffect(() => {
+    patchSavedMovementUnits(uid, savedMovementUnits);
+  }, [savedMovementUnits])
+
   return (
     <MovementContext.Provider
       value={{
