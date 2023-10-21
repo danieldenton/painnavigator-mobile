@@ -24,7 +24,7 @@ export const MovementContextProvider = ({ children }) => {
   const [completedMovementModules, setCompletedMovementModules] =
     useState(null);
   const [skippedMovementModules, setSkippedMovementModules] = useState(null);
-  const [savedMovementUnits, setSavedMovementUnits] = useState(null);
+  const [savedMovementUnits, setSavedMovementUnits] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
   const [isMovement, setIsMovement] = useState(false);
   const { uid } = useContext(AuthenticationContext);
@@ -168,12 +168,6 @@ export const MovementContextProvider = ({ children }) => {
       patchCompletedMovementUnits(uid, completedMovementModules);
     }
   }, [completedMovementModules]);
-
-  useEffect(() => {
-    if (savedMovementUnits) {
-      patchSavedMovementUnits(uid, savedMovementUnits);
-    }
-  }, [savedMovementUnits]);
 
   return (
     <MovementContext.Provider

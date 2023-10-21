@@ -72,7 +72,7 @@ const NextRotated = styled.View`
 
 export const ExpandableCard = ({ completeSkippedUnit, moduleType, navigation, title, units }) => {
     const [expanded, setExpanded] = useState(false);
-    const unitsPresent = units.length;
+    const unitsPresent = units?.length;
 
     const unitButtons = units?.map((unit) => {
         return (
