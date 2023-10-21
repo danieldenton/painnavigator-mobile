@@ -9,8 +9,6 @@ import { SkipButton } from "./skip-button.component";
 import { View } from "react-native";
 import { track } from "@amplitude/analytics-react-native";
 import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
-import { patchCompletedMovementUnits } from "../../../services/movement/movement.service";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const MovementUnit = () => {
   const {
@@ -20,9 +18,7 @@ export const MovementUnit = () => {
     currentVideo,
     switchVideo,
     skipVideo,
-    completedMovementModules,
   } = useContext(MovementContext);
-  const { uid } = useContext(AuthenticationContext);
   const { source } = currentVideo;
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
@@ -34,10 +30,6 @@ export const MovementUnit = () => {
     (video) => video.id !== currentVideo.id
   );
   const trackEvent = MOVEMENT_UNIT_EVENTS.SWITCH_MOVEMENT_VIDEO_IN_LIST;
-
-  useEffect(() => {
-    patchCompletedMovementUnits(uid, completedMovementModules);
-  }, completedMovementModules);
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
