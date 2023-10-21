@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { patchSavedMovementUnits, patchSkippedMovementUnits, patchCompletedMovementUnits, post } from "./movement.service";
+import {
+  patchSavedMovementUnits,
+  patchSkippedMovementUnits,
+  patchCompletedMovementUnits,
+  post,
+} from "./movement.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { track } from "@amplitude/analytics-react-native";
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
@@ -16,11 +21,12 @@ export const MovementContextProvider = ({ children }) => {
   const [moduleComplete, setModuleComplete] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();
   const [completedVideos, setCompletedVideos] = useState(0);
-  const [completedMovementModules, setCompletedMovementModules] = useState([]);
-  const [skippedMovementModules, setSkippedMovementModules] = useState([]);
+  const [completedMovementModules, setCompletedMovementModules] =
+    useState(null);
+  const [skippedMovementModules, setSkippedMovementModules] = useState(null);
   const [savedMovementUnits, setSavedMovementUnits] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
-  const [isMovement, setIsMovement] = useState(false)
+  const [isMovement, setIsMovement] = useState(false);
   const { uid } = useContext(AuthenticationContext);
 
   useEffect(() => {
@@ -146,16 +152,22 @@ export const MovementContextProvider = ({ children }) => {
   };
 
   const unsaveMovementModule = (id) => {
-    setSavedMovementUnits(prevSaved => prevSaved.filter(video => video !== id));
+    setSavedMovementUnits((prevSaved) =>
+      prevSaved.filter((video) => video !== id)
+    );
   };
 
   useEffect(() => {
-    patchSkippedMovementUnits(uid, skippedMovementModules);
-  }, [skippedMovementModules])
+    if (skippedMovementModules) {
+      patchSkippedMovementUnits(uid, skippedMovementModules);
+    }
+  }, [skippedMovementModules]);
 
   useEffect(() => {
-    patchCompletedMovementUnits(uid, completedMovementModules);
-  }, [completedMovementModules])
+    if (completedMovementModules) {
+      patchCompletedMovementUnits(uid, completedMovementModules);
+    }
+  }, [completedMovementModules]);
 
   return (
     <MovementContext.Provider

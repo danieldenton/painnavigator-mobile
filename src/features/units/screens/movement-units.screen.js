@@ -6,10 +6,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
-import {
-  patchCompletedMovementUnits,
-  patchSkippedMovementUnits,
-} from "../../../services/movement/movement.service";
+import { getMovementUnits } from "../../../services/movement/movement.service";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
@@ -19,6 +16,9 @@ export const MovementUnitsScreen = ({ navigation }) => {
     skippedMovementModules,
     savedMovementUnits,
     setIsMovement,
+    setCompletedMovementModules,
+    setSkippedMovementModules,
+    setSavedMovementUnits
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
@@ -30,6 +30,12 @@ export const MovementUnitsScreen = ({ navigation }) => {
 
   useEffect(() => {
     setIsMovement(true);
+    getMovementUnits(
+      uid,
+      setCompletedMovementModules,
+      setSkippedMovementModules,
+      setSavedMovementUnits
+    );
   }, []);
 
   useEffect(() => {
@@ -44,7 +50,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
       movementVideos.find((item) => item.id === module)
     );
     setCompletedMovementModuleData(data);
-    
   }, [completedMovementModules]);
 
   useEffect(() => {
@@ -52,7 +57,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
       movementVideos.find((item) => item.id === module)
     );
     setSkippedMovementModuleData(data);
-    patchSkippedMovementUnits(uid, skippedMovementModules)
   }, [skippedMovementModules]);
 
   return (

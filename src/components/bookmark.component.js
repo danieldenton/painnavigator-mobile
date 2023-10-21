@@ -11,15 +11,21 @@ import { patchSavedMovementUnits } from "../services/movement/movement.service";
 export const Bookmark = ({ id, trackEvent }) => {
   const { bookmarks, addToBookmarks, removeFromBookmarks } =
     useContext(BookmarksContext);
-  const { saveMovementModule, unsaveMovementModule, savedMovementUnits, isMovement } =
-    useContext(MovementContext);
-    const { uid } = useContext(AuthenticationContext)
-  const isBookmarked = bookmarks.includes(id);
-  const isSavedMovement = savedMovementUnits.includes(id);
+  const {
+    saveMovementModule,
+    unsaveMovementModule,
+    savedMovementUnits,
+    isMovement,
+  } = useContext(MovementContext);
+  const { uid } = useContext(AuthenticationContext)
+  const isBookmarked = bookmarks?.includes(id);
+  const isSavedMovement = savedMovementUnits?.includes(id);
 
   useEffect(() => {
     patchSavedMovementUnits(uid, savedMovementUnits);
-  }, [savedMovementUnits])
+  }, [savedMovementUnits]);
+
+  console.log(isBookmarked)
 
   return (
     <TouchableOpacity
@@ -35,7 +41,7 @@ export const Bookmark = ({ id, trackEvent }) => {
       }}
       testID={"bookmark"}
     >
-      {isSavedMovement || isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />}
+      {isMovement ? isSavedMovement ?  <BookmarkedIcon /> : <BookmarkIcon /> : isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />}
     </TouchableOpacity>
   );
 };
