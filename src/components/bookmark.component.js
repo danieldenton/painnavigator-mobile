@@ -17,15 +17,13 @@ export const Bookmark = ({ id, trackEvent }) => {
     savedMovementUnits,
     isMovement,
   } = useContext(MovementContext);
-  const { uid } = useContext(AuthenticationContext)
+  const { uid } = useContext(AuthenticationContext);
   const isBookmarked = bookmarks?.includes(id);
   const isSavedMovement = savedMovementUnits?.includes(id);
 
   useEffect(() => {
     patchSavedMovementUnits(uid, savedMovementUnits);
   }, [savedMovementUnits]);
-
-  console.log(isBookmarked)
 
   return (
     <TouchableOpacity
@@ -41,7 +39,17 @@ export const Bookmark = ({ id, trackEvent }) => {
       }}
       testID={"bookmark"}
     >
-      {isMovement ? isSavedMovement ?  <BookmarkedIcon /> : <BookmarkIcon /> : isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />}
+      {isMovement ? (
+        isSavedMovement ? (
+          <BookmarkedIcon />
+        ) : (
+          <BookmarkIcon />
+        )
+      ) : isBookmarked ? (
+        <BookmarkedIcon />
+      ) : (
+        <BookmarkIcon />
+      )}
     </TouchableOpacity>
   );
 };
