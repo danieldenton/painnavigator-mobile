@@ -10,7 +10,7 @@ export async function getMovementUnits(
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
-    const data = resp.data.data.attributes;
+    const data = response.data.data.attributes;
     setCompletedMovementModules(data.movement_units.completed_movement_units);
     setSkippedMovementModules(data.movement_units.skipped_movement_units);
     setSavedMovementUnits(data.movement_units.saved_movement_units);
