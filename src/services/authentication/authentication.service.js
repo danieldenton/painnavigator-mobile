@@ -45,9 +45,6 @@ export async function getUser(
   setProfileComplete,
   setCompletedProgram,
   setLastDateOnApp,
-  setCompletedMovementModules,
-  setSkippedMovementModules,
-  setSavedMovementUnits
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
@@ -62,9 +59,7 @@ export async function getUser(
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.outcome.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
-    setCompletedMovementModules(data.movement_units.completed_movement_units)
-    setSkippedMovementModules(data.movement_units.skipped_movement_units)
-    setSavedMovementUnits(data.movement_units.saved_movement_units)
+    
   } catch (error) {
     console.error(error);
   }

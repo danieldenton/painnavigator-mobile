@@ -2,6 +2,23 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 
+export async function getMovementUnits(
+  uid,
+  setCompletedMovementModules,
+  setSkippedMovementModules,
+  setSavedMovementUnits
+) {
+  try {
+    const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
+    const data = resp.data.data.attributes;
+    setCompletedMovementModules(data.movement_units.completed_movement_units);
+    setSkippedMovementModules(data.movement_units.skipped_movement_units);
+    setSavedMovementUnits(data.movement_units.saved_movement_units);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function patchSavedMovementUnits(uid, savedMovementUnits) {
   try {
     await axios.patch(`${API_URL}/api/v2/users/${uid}`, {

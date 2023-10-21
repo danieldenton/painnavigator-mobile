@@ -109,10 +109,7 @@ export const TodayScreen = ({ navigation }) => {
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
-      setLastDateOnApp,
-      setCompletedMovementModules,
-      setSkippedMovementModules,
-      setSavedMovementUnits
+      setLastDateOnApp
     );
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);
