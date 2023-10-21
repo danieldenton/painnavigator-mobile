@@ -22,6 +22,7 @@ export const CompletedUnitsScreen = ({ navigation }) => {
   return (
     <SafeView>
       <NavigationBarLeft
+    //   TODO fix this navigation.
         screen={"Education"}
         destination={"Today"}
         navigation={navigation}
