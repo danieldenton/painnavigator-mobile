@@ -57,6 +57,7 @@ export const TodayScreen = ({ navigation }) => {
     setLastDateOnApp,
     lastDateOnApp,
     tour,
+    accessToWellnessCoach
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -185,7 +186,7 @@ export const TodayScreen = ({ navigation }) => {
   }
 
   function renderWellnessCoachMessageActivity() {
-    if (hasUnreadMessages) {
+    if (hasUnreadMessages && accessToWellnessCoach) {
       return <WellnessCoach navigation={navigation} />;
     }
   }
@@ -241,7 +242,7 @@ export const TodayScreen = ({ navigation }) => {
           )}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
-            {renderWellnessCoachMessageActivity()}
+            {hasUnreadMessages && accessToWellnessCoach ? <WellnessCoach navigation={navigation} /> : null}
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}
