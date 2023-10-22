@@ -44,6 +44,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     const [educationProgram, setEducationProgram] = useState(1)
     const [programSafety, setProgramSafety] = useState(false)
     const [lastDateOnApp, setLastDateOnApp] = useState("")
+    const [accessToWellnessCoach, setAccessToWellnessCoach] = useState(true)
     const [tour, setTour] = useState(null) 
     const uid = user?.user.uid
 
@@ -105,9 +106,13 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
             .auth()
             .createUserWithEmailAndPassword(email, password)
             .then((u) => {
+                if (providerId.endsWith("N")) {
+                    setAccessToWellnessCoach(false)
+                }
                 const hopes_to_achieve = findHopesToAchieve()
                 const strippedOnboardingData = {
                     provider_id: providerId,
+                    access_to_wellness_coach: accessToWellnessCoach,
                     first_name: onboardingData.first_name.trim(),
                     last_name: onboardingData.last_name.trim(),
                     email: onboardingData.email.trim(),
@@ -237,7 +242,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
                 resetPassword,
                 tour,
                 setTour,
-                uid
+                uid,
+                accessToWellnessCoach,
+                setAccessToWellnessCoach
             }}
         >
             {children}
