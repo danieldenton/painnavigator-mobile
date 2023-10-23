@@ -185,12 +185,6 @@ export const TodayScreen = ({ navigation }) => {
     }
   }
 
-  function renderWellnessCoachMessageActivity() {
-    if (hasUnreadMessages && accessToWellnessCoach) {
-      return <WellnessCoach navigation={navigation} />;
-    }
-  }
-
   function renderSmartGoalDailyActivity() {
     const userCompletedSmartGoalUnit =
       educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
