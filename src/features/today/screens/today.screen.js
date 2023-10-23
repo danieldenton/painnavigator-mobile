@@ -57,7 +57,8 @@ export const TodayScreen = ({ navigation }) => {
     setLastDateOnApp,
     lastDateOnApp,
     tour,
-    accessToWellnessCoach
+    accessToWellnessCoach,
+    setAccessToWellnessCoach
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -110,7 +111,8 @@ export const TodayScreen = ({ navigation }) => {
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
-      setLastDateOnApp
+      setLastDateOnApp,
+      setAccessToWellnessCoach
     );
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);

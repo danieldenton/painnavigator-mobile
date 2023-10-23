@@ -7,13 +7,15 @@ import {
   noWCoach,
   noWCShortTour,
 } from "../data/dashboard-tour-data";
+import  { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top"
+import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = ({ visible, setVisible }) => {
   const { tour, setTour, educationProgram, accessToWellnessCoach } = useContext(
     AuthenticationContext
   );
-
+  
   const customTour =
     educationProgram !== 10
       ? accessToWellnessCoach
@@ -23,59 +25,13 @@ export const DashboardTour = ({ visible, setVisible }) => {
       ? shortTour[tour]
       : noWCShortTour[tour];
 
+      console.log(customTour, accessToWellnessCoach)
+
   const handleFinish = () => {
     setTour(null);
     setVisible(false);
   };
-
-  const componentOnTop = () => {
-    return customTour < 4 || tour === 5 ? (
-      <View
-        style={[
-          styles.bubble,
-          { marginTop: tourObj[customTour]?.tourComponentPlacement },
-        ]}
-      >
-        {tourObj[customTour]?.component}
-      </View>
-    ) : customTour === 4 ? (
-      <View style={styles.messageContainer}>
-        <View
-          style={[
-            styles.bubble,
-            { marginTop: tourObj[customTour].tourComponentPlacement },
-          ]}
-        >
-          {tourObj[customTour].component}
-        </View>
-      </View>
-    ) : (
-      <View style={styles.menuContainer}>
-        <View
-          style={[
-            styles.bubble,
-            { marginTop: tourObj[customTour]?.tourComponentPlacement },
-          ]}
-        >
-          {tourObj[customTour]?.component}
-        </View>
-      </View>
-    );
-  };
-
-  const componentOnBottom = () => {
-    return (
-      <View
-        style={[
-          styles.bubble,
-          { marginTop: tourObj[customTour].tourComponentPlacement },
-        ]}
-      >
-        {tourObj[customTour].component}
-      </View>
-    );
-  };
-
+  
   return (
     <>
       <View style={styles.container}>
@@ -85,7 +41,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
             customTour !== 2 &&
             customTour !== 3 &&
             customTour !== 5
-              ? componentOnTop()
+              ? <DashboardTourComponentOnTop customTour={customTour} tour={tour} />
               : null}
             <View
               style={[
@@ -140,7 +96,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
               </View>
             </View>
             {customTour === 2 || customTour === 3 || customTour === 5
-              ? componentOnBottom()
+              ? <DashboardTourComponentOnBottom customTour={customTour} />
               : null}
           </View>
         </Modal>
