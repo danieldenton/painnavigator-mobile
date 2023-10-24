@@ -3,33 +3,24 @@ import { View, Text, Modal, Pressable } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import {
   tourObj,
-  shortTour,
-  noWCoach,
-  noWCShortTour,
+  shortTour
 } from "../data/dashboard-tour-data";
-import  { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top"
-import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
+import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
+import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = ({ visible, setVisible }) => {
   const { tour, setTour, educationProgram, accessToWellnessCoach } = useContext(
     AuthenticationContext
   );
-  
-  const customTour =
-    educationProgram !== 10
-      ? accessToWellnessCoach
-        ? tour
-        : noWCoach[tour]
-      : accessToWellnessCoach
-      ? shortTour[tour]
-      : noWCShortTour[tour];
+
+  const customTour = educationProgram !== 10 ? tour : shortTour[tour];
 
   const handleFinish = () => {
     setTour(null);
     setVisible(false);
   };
-  
+
   return (
     <>
       <View style={styles.container}>
@@ -38,9 +29,12 @@ export const DashboardTour = ({ visible, setVisible }) => {
             {customTour !== 0 &&
             customTour !== 2 &&
             customTour !== 3 &&
-            customTour !== 5
-              ? <DashboardTourComponentOnTop customTour={customTour} tour={tour} />
-              : null}
+            customTour !== 5 ? (
+              <DashboardTourComponentOnTop
+                customTour={customTour}
+                tour={tour}
+              />
+            ) : null}
             <View
               style={[
                 styles.modalContainer,
@@ -66,7 +60,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
               </Text>
               <View style={styles.buttonsContanier}>
                 {tour === 0 ? null : (
-                  <Pressable onPress={() => setTour(tour - 1)}>
+                  <Pressable onPress={() => setTour(tour === 5 && !accessToWellnessCoach ? tour - 2 : tour - 1)}>
                     <View style={styles.previousButtonContainer}>
                       <Text style={styles.previousButtons}>PREVIOUS</Text>
                     </View>
@@ -75,7 +69,7 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 {customTour < 6 ? (
                   <Pressable
                     style={styles.buttons}
-                    onPress={() => setTour(tour + 1)}
+                    onPress={() => setTour(tour === 3 && !accessToWellnessCoach ? tour + 2 : tour + 1)}
                   >
                     <View style={styles.buttonContainer}>
                       <Text style={styles.buttons}>NEXT</Text>
@@ -93,9 +87,9 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 )}
               </View>
             </View>
-            {customTour === 2 || customTour === 3 || customTour === 5
-              ? <DashboardTourComponentOnBottom customTour={customTour} />
-              : null}
+            {customTour === 2 || customTour === 3 || customTour === 5 ? (
+              <DashboardTourComponentOnBottom customTour={customTour} />
+            ) : null}
           </View>
         </Modal>
       </View>

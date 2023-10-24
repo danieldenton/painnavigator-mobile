@@ -3,6 +3,7 @@ import { styles } from "./dashboard-styles";
 import { tourObj } from "../data/dashboard-tour-data";
 
 export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
+   
   return customTour < 4 || tour === 5 ? (
     <View
       style={[
@@ -23,16 +24,15 @@ export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
         {tourObj[customTour].component}
       </View>
     </View>
-  ) : (
+  ) :
     <View style={styles.menuContainer}>
       <View
         style={[
           styles.bubble,
-          { marginTop: tourObj[customTour]?.tourComponentPlacement },
+          { marginTop: tourObj[customTour].tourComponentPlacement },
         ]}
       >
         {tourObj[customTour]?.component}
       </View>
     </View>
-  );
 };
