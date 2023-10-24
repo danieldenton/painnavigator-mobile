@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, Modal, Pressable } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import {
-  tourObj,
-  shortTour
-} from "../data/dashboard-tour-data";
+import { tourObj, shortTour, noWCShortTour } from "../data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
 import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
 import { styles } from "./dashboard-styles";
@@ -14,7 +11,12 @@ export const DashboardTour = ({ visible, setVisible }) => {
     AuthenticationContext
   );
 
-  const customTour = educationProgram !== 10 ? tour : shortTour[tour];
+  const customTour =
+    educationProgram !== 10
+      ? tour
+      : accessToWellnessCoach
+      ? shortTour[tour]
+      : noWCShortTour[tour];
 
   const handleFinish = () => {
     setTour(null);
@@ -60,7 +62,15 @@ export const DashboardTour = ({ visible, setVisible }) => {
               </Text>
               <View style={styles.buttonsContanier}>
                 {tour === 0 ? null : (
-                  <Pressable onPress={() => setTour(tour === 5 && !accessToWellnessCoach ? tour - 2 : tour - 1)}>
+                  <Pressable
+                    onPress={() =>
+                      setTour(
+                        tour === 5 && !accessToWellnessCoach
+                          ? tour - 2
+                          : tour - 1
+                      )
+                    }
+                  >
                     <View style={styles.previousButtonContainer}>
                       <Text style={styles.previousButtons}>PREVIOUS</Text>
                     </View>
@@ -69,7 +79,13 @@ export const DashboardTour = ({ visible, setVisible }) => {
                 {customTour < 6 ? (
                   <Pressable
                     style={styles.buttons}
-                    onPress={() => setTour(tour === 3 && !accessToWellnessCoach ? tour + 2 : tour + 1)}
+                    onPress={() =>
+                      setTour(
+                        tour === 3 && !accessToWellnessCoach
+                          ? tour + 2
+                          : tour + 1
+                      )
+                    }
                   >
                     <View style={styles.buttonContainer}>
                       <Text style={styles.buttons}>NEXT</Text>

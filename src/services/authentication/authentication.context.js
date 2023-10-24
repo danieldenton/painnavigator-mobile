@@ -53,7 +53,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [educationProgram, setEducationProgram] = useState(1);
   const [programSafety, setProgramSafety] = useState(false);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
-  const [tour, setTour] = useState(0);
+  const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
 
   const handleProviderCode = async (referralCode) => {

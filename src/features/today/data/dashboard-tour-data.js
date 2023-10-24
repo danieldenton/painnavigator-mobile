@@ -21,8 +21,6 @@ const DailyActivities = () => {
 
 export const shortTour = [0, 1, 4, 6]
 
-export const noWCoach = [0, 1, 2, 3, 5, 6]
-
 export const noWCShortTour = [0, 1, 6]
 
 export const tourObj = [

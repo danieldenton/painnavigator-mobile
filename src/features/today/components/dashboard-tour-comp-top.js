@@ -28,7 +28,7 @@ export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
       <View
         style={[
           styles.bubble,
-          { marginTop: tourObj[customTour].tourComponentPlacement },
+          { marginTop: tourObj[customTour]?.tourComponentPlacement },
         ]}
       >
         {tourObj[customTour]?.component}
