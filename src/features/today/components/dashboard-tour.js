@@ -25,8 +25,6 @@ export const DashboardTour = ({ visible, setVisible }) => {
       ? shortTour[tour]
       : noWCShortTour[tour];
 
-      console.log(customTour, accessToWellnessCoach)
-
   const handleFinish = () => {
     setTour(null);
     setVisible(false);

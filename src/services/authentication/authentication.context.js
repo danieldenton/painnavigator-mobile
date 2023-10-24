@@ -9,9 +9,9 @@ import {
   patchCompletedProgram,
 } from "./authentication.service";
 import { hopesOptions } from "../../features/account/data/onboard-data.json";
-import { checkReferralCode } from "../../../services/authentication/authentication.service";
-import { ONBOARD_EVENTS } from "../../../amplitude-events";
+import { checkReferralCode } from "./authentication.service";
 import { track } from "@amplitude/analytics-react-native";
+import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 export const AuthenticationContext = createContext();
 
@@ -61,10 +61,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       const response = await checkReferralCode(referralCode);
       response
         ? (setProviderId(response),
-          referralCode.endsWith("N") ? setAccessToWellnessCoach(false) : null,
+          referralCode.endsWith("N") ? setAccessToWellnessCoach(false) : setAccessToWellnessCoach(true),
           setError(null),
-          track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE),
-          navigation.navigate("Explanation"))
+          track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE))
         : setError("Please enter a valid code");
     } catch (err) {
       setError("Please enter a valid code");
@@ -285,6 +284,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setTour,
         uid,
         accessToWellnessCoach,
+        setAccessToWellnessCoach,
         handleProviderCode,
         handleProgram,
       }}

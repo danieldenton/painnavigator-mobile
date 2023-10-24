@@ -60,8 +60,7 @@ export async function getUser(
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.outcome.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
-    setAccessToWellnessCoach(data.access_to_wellness_coach)
-    
+    setAccessToWellnessCoach(data.access_to_wellness_coach);
   } catch (error) {
     console.error(error);
   }

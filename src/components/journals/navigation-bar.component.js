@@ -106,8 +106,7 @@ const UnreadIconContainer = styled.View`
   margin-right: -4px;
 `;
 
-export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
-  const { acccessToWellnessCoach } = useContext(AuthenticationContext);
+export const TodayNavBar = ({ navigation, hasUnreadMessages, accessToWellnessCoach }) => {
 
   return (
     <NavContainer>
@@ -120,7 +119,7 @@ export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
       </LeftPressableArea>
       <HeaderSection></HeaderSection>
       <RightSection>
-        {acccessToWellnessCoach ? (
+        {accessToWellnessCoach ? (
           <RightPressableArea
             accessibilityLabel={"messages"}
             testID={"messages"}
