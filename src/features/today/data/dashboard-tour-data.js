@@ -4,18 +4,24 @@ import { MovementUnitCard } from "../../movement/components/movement-unit-card.c
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import { WellnessCoach, ProfileSetup } from "../components/small-daily-activities";
 import { isAndroid } from "../../../utils";
+import { useContext } from "react";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+
 
 
 const DailyActivities = () => {
+    const { accessToWellnessCoach } = useContext(AuthenticationContext)
     return (
         <>
-            <WellnessCoach />
+            {accessToWellnessCoach ? <WellnessCoach /> : null}
             <ProfileSetup />
         </>
     )
 }
 
 export const shortTour = [0, 1, 4, 6]
+
+export const noWCShortTour = [0, 1, 6]
 
 export const tourObj = [
     { 
@@ -32,13 +38,13 @@ export const tourObj = [
     },
     { 
         text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-        tourTextBubble: isAndroid ? 159 : 200,
+        tourTextBubble: isAndroid ? 159 : 202,
         tourComponentPlacement: 6, 
         component: <EducationUnitCard />
     },
     { 
         text: "Move daily or as often as you can! Daily recommended exercises are here.",
-        tourTextBubble: isAndroid ? 338 : 348,
+        tourTextBubble: isAndroid ? 338 : 350,
         tourComponentPlacement: 6,
         component: <MovementUnitCard /> 
     },
@@ -50,7 +56,7 @@ export const tourObj = [
      },
     { 
         text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-        tourTextBubble: isAndroid ? 455 : 495,
+        tourTextBubble: isAndroid ? 455 : 482,
         tourComponentPlacement: 6,
         component: <DailyActivities />
     },

@@ -57,6 +57,8 @@ export const TodayScreen = ({ navigation }) => {
     setLastDateOnApp,
     lastDateOnApp,
     tour,
+    accessToWellnessCoach,
+    setAccessToWellnessCoach
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -109,7 +111,8 @@ export const TodayScreen = ({ navigation }) => {
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
-      setLastDateOnApp
+      setLastDateOnApp,
+      setAccessToWellnessCoach
     );
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);
@@ -163,14 +166,6 @@ export const TodayScreen = ({ navigation }) => {
     }
   }, [tour]);
 
-  function renderDailyPainScore() {
-    if (dailyPain === timeZonedTodaysDate) {
-      return <DailyGoalCompleted type={"Daily Pain Score"} />;
-    } else {
-      return <DailyPainScore navigation={navigation} />;
-    }
-  }
-
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
       educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
@@ -181,12 +176,6 @@ export const TodayScreen = ({ navigation }) => {
       lastPainJournal !== timeZonedTodaysDate
     ) {
       return <Journals navigation={navigation} />;
-    }
-  }
-
-  function renderWellnessCoachMessageActivity() {
-    if (hasUnreadMessages) {
-      return <WellnessCoach navigation={navigation} />;
     }
   }
 
@@ -212,6 +201,7 @@ export const TodayScreen = ({ navigation }) => {
         <TodayNavBar
           navigation={navigation}
           hasUnreadMessages={hasUnreadMessages}
+          accessToWellnessCoach={accessToWellnessCoach}
         />
         <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
           <Greeting greeting={greeting} name={userInfo.first_name} />
@@ -241,7 +231,7 @@ export const TodayScreen = ({ navigation }) => {
           )}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
-            {renderWellnessCoachMessageActivity()}
+            {hasUnreadMessages && accessToWellnessCoach ? <WellnessCoach navigation={navigation} /> : null}
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}

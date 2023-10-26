@@ -1,4 +1,4 @@
-import { useState, useContext }from "react";
+import { useState, useContext } from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -9,31 +9,12 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
-import { checkReferralCode } from "../../../services/authentication/authentication.service";
-import { ONBOARD_EVENTS } from "../../../amplitude-events";
-import { track } from "@amplitude/analytics-react-native";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, setError, setEducationProgram, setProviderId, setProgramSafety } = useContext(AuthenticationContext);
+  const { changeOnboardEntry, error, handleProgram, handleProviderCode } =
+    useContext(AuthenticationContext);
   const [referralCode, setReferralCode] = useState("");
 
-    const handleProviderCode = async () => {
-        try {
-          const response = await checkReferralCode(referralCode);
-          response ? 
-          (setProviderId(response), setError(null), track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE), navigation.navigate("Explanation"))
-        :
-          setError("Please enter a valid code")
-        } catch (err) {
-          setError("Please enter a valid code");
-          console.error(err); 
-      };
-    }
-    const handleProgram = () => {
-      referralCode === "ASC112" || referralCode === "EXPL22" || referralCode === "CORE55" ? setProgramSafety(true) : null
-      referralCode === "ISCS23" ? (setProgramSafety(true), setEducationProgram(2)) : null
-    }
-  
   return (
     <SafeView style={{ flex: 1 }}>
       <NavigationBarLeft
@@ -79,8 +60,9 @@ export const ProviderCodeScreen = ({ navigation }) => {
             disabled={referralCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              handleProviderCode()
-              handleProgram()
+              handleProviderCode(referralCode);
+              handleProgram(referralCode);
+              navigation.navigate("Explanation")
             }}
           />
         </View>
