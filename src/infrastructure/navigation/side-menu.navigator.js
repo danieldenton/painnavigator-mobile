@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TodayNavigator } from "../navigation/today.navigator";
 import { SideMenu } from '../../components/side-menu/side-menu.component';
-
 const SideMenuDrawer = createDrawerNavigator();
 
 export const SideMenuNavigator = () => {
