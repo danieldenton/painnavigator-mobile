@@ -58,7 +58,7 @@ export const TodayScreen = ({ navigation }) => {
     lastDateOnApp,
     tour,
     accessToWellnessCoach,
-    setAccessToWellnessCoach
+    setAccessToWellnessCoach,
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -71,10 +71,10 @@ export const TodayScreen = ({ navigation }) => {
     useContext(ProfileContext);
   const { activeGoal, setActiveGoal, setFinishedGoals } =
     useContext(SmartGoalContext);
-  const { painJournals, setPainJournals } = useContext(PainJournalContext); 
+  const { painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
-  const { movementProgress, setMovementProgress  } = useContext(MovementContext);
+  const { movementProgress, setMovementProgress } = useContext(MovementContext);
   const { educationProgress, lastCompletedModule, setEducationProgress } =
     useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
@@ -120,7 +120,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
   }, []);
-
+  
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
       patchLastDateOnApp(uid, timeZonedTodaysDate);
@@ -231,7 +231,9 @@ export const TodayScreen = ({ navigation }) => {
           )}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
-            {hasUnreadMessages && accessToWellnessCoach ? <WellnessCoach navigation={navigation} /> : null}
+            {hasUnreadMessages && accessToWellnessCoach ? (
+              <WellnessCoach navigation={navigation} />
+            ) : null}
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}

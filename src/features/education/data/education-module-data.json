@@ -811,7 +811,7 @@
             "name": "My PainNavigator Summary",
             "source": "",
             "length": 1,
-            "post_video_destination": null,
+            "post_video_destination": "CompletedUnits",
             "skippable": false,
             "condensed_program": true,
             "summary": "We are so proud of you for making it through the PainNavigator program! Celebrate this win and all future little or big wins! Here’s what we recommend after completing PainNavigator:",

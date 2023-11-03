@@ -21,13 +21,11 @@ export const EducationContextProvider = ({ children }) => {
 
    useEffect(() => {
         const module = educationModules.find(unit => unit.id === educationPrograms[educationProgram - 1].educationModulesId[educationProgress - 1]);
-        setCurrentModule(module)
+        if (module) {
+            setCurrentModule(module)
+        }
+        console.log(currentModule)
     }, [educationProgress])
-
-    // const advanceProgress = () => {
-    //     const NEXT_MODULE_ID = educationProgress + 1;
-    //     setEducationProgress(NEXT_MODULE_ID);
-    // };
 
     const completeModule = () => {
         const module = {
@@ -47,23 +45,13 @@ export const EducationContextProvider = ({ children }) => {
         setSkippedEducationModules(prevSkipped => prevSkipped.filter(unit => unit !== unitId));
     };
 
-    //const setOrientation = () => {
-        //if (Dimensions.get('window').height > Dimensions.get('window').width) {
-            //Device is in portrait mode, rotate to landscape mode.
-            //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT);
-        //}
-        //else {
-            //Device is in landscape mode, rotate to portrait mode.
-            //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-        //}
-    //};
-
     const skipModule = () => {
         const module = {
             module_id: currentModule.id,
-            status: 1       
+            status: 1,
+            education_progress: educationProgress        
         };
-        postEducationModule(module, setEducationProgress, uid);
+        postEducationModule(module, uid);
         if(!skippedEducationModules.includes(currentModule.id)){
             setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
         };

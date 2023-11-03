@@ -4,6 +4,7 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { ExpandableCard } from "../components/expandable-card.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { EducationContext } from "../../../services/education/education.context";
+import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
 import { educationModules } from "../../education/data/education-module-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
