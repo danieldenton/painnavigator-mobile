@@ -48,7 +48,6 @@ export const EducationContextProvider = ({ children }) => {
             status: 1,
             education_progress: educationProgress        
         };
-        console.log(module)
         postEducationModule(module, uid);
         if(!skippedEducationModules.includes(currentModule.id)){
             setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
