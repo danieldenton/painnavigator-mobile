@@ -24,11 +24,6 @@ export const EducationContextProvider = ({ children }) => {
         setCurrentModule(module)
     }, [educationProgress])
 
-    // const advanceProgress = () => {
-    //     const NEXT_MODULE_ID = educationProgress + 1;
-    //     setEducationProgress(NEXT_MODULE_ID);
-    // };
-
     const completeModule = () => {
         const module = {
             module_id: currentModule.id,
