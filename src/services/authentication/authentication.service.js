@@ -40,7 +40,7 @@ export async function getUser(
   uid,
   setUserInfo,
   setEducationProgram,
-  // setEducationProgress,
+  setEducationProgress,
   setMovementProgress,
   setProfileComplete,
   setCompletedProgram,
@@ -55,7 +55,7 @@ export async function getUser(
       : data.education_progress.progress;
     setUserInfo(data.profile);
     setEducationProgram(data.education_program);
-    // setEducationProgress(eProgress);
+    setEducationProgress(eProgress);
     setMovementProgress(data.movement_progress.progress);
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.outcome.completed_program === true);

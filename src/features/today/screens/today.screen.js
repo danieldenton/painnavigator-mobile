@@ -107,7 +107,7 @@ export const TodayScreen = ({ navigation }) => {
       uid,
       setUserInfo,
       setEducationProgram,
-      // setEducationProgress,
+      setEducationProgress,
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
@@ -120,7 +120,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
   }, []);
-console.log(educationProgress, educationProgramLength)
+  
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
       patchLastDateOnApp(uid, timeZonedTodaysDate);

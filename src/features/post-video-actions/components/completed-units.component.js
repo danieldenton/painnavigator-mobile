@@ -18,12 +18,13 @@ export const CompletedUnits = () => {
           </GraphicWrapper>
           <CongratulationsHeaderWrapper>
             <CongratulationsHeader>
-              Congratulations! You've completed all of the{" "}
-              {isMovement ? "movement" : "education"} units in your program!
+              Congratulations! 
             </CongratulationsHeader>
           </CongratulationsHeaderWrapper>
           <CongratulationsMessageWrapper>
             <CongratulationsMessage>
+            You've completed all of the{" "}
+              {isMovement ? "movement" : "education"} units in your program!
               You can revisit any of these videos at anytime. They can be found
               in the "Units" section in the side menu.
             </CongratulationsMessage>

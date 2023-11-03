@@ -16,9 +16,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 export const EducationUnitScreen = ({ navigation }) => {
     const { completeModule, currentModule, skipModule } = useContext(EducationContext);
     const { setIsMovement } = useContext(MovementContext)
-    console.log(currentModule)
     const { post_video_destination, type, skippable, id } = currentModule;
-    // console.log(post_video_destination)
 
     const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
     const trackNavBarEvent = EDUCATION_UNIT_EVENTS.BACK_TO_DASHBOARD;
