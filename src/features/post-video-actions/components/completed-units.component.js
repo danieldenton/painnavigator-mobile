@@ -1,11 +1,5 @@
 import React, { useContext } from "react";
-import {
-  ButtonSection,
-  GraphicWrapper,
-} from "../../../components/journals/journal.styles";
-import { ModuleButton } from "../../../components/button.component";
-import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { SafeView } from "../../../components/safe-area.component";
+import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import {
   CongratulationsHeaderWrapper,
   CongratulationsHeader,
@@ -13,21 +7,12 @@ import {
   CongratulationsMessage,
 } from "../../../components/completion/components/completion.styles";
 import { ThumbsUpGraphic } from "../../../graphics";
-import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 
-export const CompletedUnitsScreen = ({ navigation }) => {
+export const CompletedUnits = () => {
   const { isMovement } = useContext(MovementContext);
   return (
-    <SafeView>
-      <NavigationBarLeft
-    //   TODO fix this navigation.
-        screen={"Education"}
-        destination={"Today"}
-        navigation={navigation}
-      />
-      <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
         <View style={{ marginBottom: 16 }}>
           <GraphicWrapper>
             <ThumbsUpGraphic />
@@ -45,13 +30,5 @@ export const CompletedUnitsScreen = ({ navigation }) => {
             </CongratulationsMessage>
           </CongratulationsMessageWrapper>
         </View>
-      </Scroll>
-      <ButtonSection>
-        <ModuleButton
-          onPress={() => navigation.navigate("Today")}
-          title={"Back to Dashboard"}
-        />
-      </ButtonSection>
-    </SafeView>
   );
 };
