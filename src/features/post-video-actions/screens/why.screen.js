@@ -80,7 +80,7 @@ export const Why = ({ navigation, route }) => {
             handleTrackEvent(trackPostVideoEvent),
             navigation.navigate(post_video_destination)
           )}
-          title={"Let's get started!"}
+          title={post_video_destination === "CompletedUnits" ? "Back to home" : "Let's get started!"}
         />
       </ButtonSection>
     </SafeView>
