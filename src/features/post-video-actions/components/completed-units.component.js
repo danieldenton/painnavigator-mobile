@@ -7,13 +7,12 @@ import {
   CongratulationsMessage,
 } from "../../../components/completion/components/completion.styles";
 import { ThumbsUpGraphic } from "../../../graphics";
-import { View } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 
 export const CompletedUnits = () => {
   const { isMovement } = useContext(MovementContext);
   return (
-        <View style={{ marginBottom: 16 }}>
+        <>
           <GraphicWrapper>
             <ThumbsUpGraphic />
           </GraphicWrapper>
@@ -29,6 +28,6 @@ export const CompletedUnits = () => {
               in the "Units" section in the side menu.
             </CongratulationsMessage>
           </CongratulationsMessageWrapper>
-        </View>
+        </>
   );
 };
