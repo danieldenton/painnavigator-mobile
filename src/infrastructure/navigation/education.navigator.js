@@ -16,6 +16,7 @@ import { FavoriteActivitiesHomeScreen } from "../../features/favorite-activities
 import { FoodJournalHomeScreen } from "../../features/food-journal/screens/food-journal-home.screen";
 import { FoodJournalEntryScreen } from "../../features/food-journal/screens/food-journal-entry.screen";
 import { ReviewFoodJournalScreen } from "../../features/food-journal/screens/review-food-journal.screen";
+import { TodayScreen } from "../../features/today/screens/today.screen";
 
 const EducationStack = createStackNavigator();
 
@@ -97,6 +98,10 @@ export const EducationNavigator = () => {
         {
             "name": "ReviewFoodJournal",
             "component": ReviewFoodJournalScreen
+        },
+        {
+            "name": "CompletedUnits",
+            "component": TodayScreen
         }
     ];
 
