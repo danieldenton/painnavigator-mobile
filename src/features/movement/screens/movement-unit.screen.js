@@ -22,7 +22,7 @@ export const MovementUnitScreen = ({ navigation }) => {
       setSavedMovementUnits
     );
     if (movementProgress > 35) {
-      setCompletionMessage("You've completed all of the education units in your program! You can revisit any of these videos at anytime. They can be found in the 'Units' section in the side menu.")
+      setCompletionMessage("You've completed all of the movement units in your program! You can revisit any of these videos at anytime. They can be found in the 'Units' section in the side menu.")
     }
   }, []);
 
