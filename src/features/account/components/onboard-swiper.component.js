@@ -5,7 +5,7 @@ import {
     CongratulationsHeader, 
     CongratulationsMessageWrapper,
     CongratulationsMessage 
-} from "../../../components/completion/components/completion.styles";
+} from "../../../components/completion/completion.styles";
 import { WelcomeGraphic, MovementGraphic, ShoesGraphic, GraphGraphic } from "../../../graphics";
 import { OnboardGraphicWrapper } from "../styles/account.styles"
 import styled from "styled-components/native";

@@ -6,7 +6,7 @@ import { GoalTextSection } from "../components/goal-text-section.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
-import { CongratulationsHeaderWrapper, CongratulationsHeader } from "../../../components/completion/components/completion.styles";
+import { CongratulationsHeaderWrapper, CongratulationsHeader } from "../../../components/completion/completion.styles";
 
 export const SmartGoalCreatedScreen = ({ navigation }) => {
     const { smartGoal, resetSmartGoal } = useContext(SmartGoalContext);

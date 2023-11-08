@@ -9,7 +9,7 @@ import {
     CongratulationsHeader,
     CongratulationsMessageWrapper,
     CongratulationsMessage
-} from "../../../components/completion/components/completion.styles";
+} from "../../../components/completion/completion.styles";
 
 export const MessageSentScreen = ({ navigation }) => {
     return (
