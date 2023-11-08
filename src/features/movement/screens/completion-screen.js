@@ -28,7 +28,7 @@ const CongratulationsMessage = styled.Text`
 `;
 
 export const CompletionScreen = ({ navigation }) => {
-    const { resetModule } = useContext(MovementContext);
+    const { resetModule, movementProgress } = useContext(MovementContext);
 
     return (
         <SafeView>
@@ -39,10 +39,9 @@ export const CompletionScreen = ({ navigation }) => {
             <CongratulationsSection>
                 <CongratulationsHeader>Congratulations!</CongratulationsHeader>
                 <CongratulationsMessage>
-                    You completed a movement unit! 
-                    You’re on your way to mastering 
-                    new skills and redefining your 
-                    relationship with pain. 
+                    {movementProgress === 36 ? 
+                    "You've completed all of the education units in your program! You can revisit any of these videos at anytime. They can be found in the 'Units' section in the side menu."
+                    : "You completed a movement unit! You’re on your way to mastering new skills and redefining your relationship with pain."}
                 </CongratulationsMessage>
             </CongratulationsSection>
             <ButtonSection>
