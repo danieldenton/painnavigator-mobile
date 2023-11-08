@@ -5,12 +5,12 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { CompletionComponent } from "./completion.component";
 
-export const CompletionScreen = ({ navigation }) => {
+export const CompletionScreen = ({ navigation, completionMessage }) => {
   const { resetModule } = useContext(MovementContext);
 
   return (
     <SafeView>
-      <CompletionComponent />
+      <CompletionComponent completionMessage={completionMessage} />
       <ButtonSection>
         <ModuleButton
           title={"Back to Dashboard"}
