@@ -24,7 +24,6 @@ export const EducationContextProvider = ({ children }) => {
         if (module) {
             setCurrentModule(module)
         }
-        console.log(currentModule)
     }, [educationProgress])
 
     const completeModule = () => {

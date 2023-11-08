@@ -24,6 +24,7 @@ const CongratulationsMessage = styled.Text`
     font-size: 18px;
     margin-bottom: 4px;
     line-height: 26px;
+    text-align: center;
 `;
 
 export const CompletionScreen = ({ navigation }) => {
