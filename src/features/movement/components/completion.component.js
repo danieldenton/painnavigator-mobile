@@ -1,14 +1,14 @@
 import React from "react";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
+import { ThumbsUpGraphic } from "../../../graphics";
 import {
   CongratulationsHeaderWrapper,
   CongratulationsHeader,
   CongratulationsMessageWrapper,
   CongratulationsMessage,
 } from "../../../components/completion/completion.styles";
-import { ThumbsUpGraphic } from "../../../graphics";
 
-export const CompletedUnits = () => {
+export const CompletionComponent = ({ completionMessage }) => {
   return (
     <>
       <GraphicWrapper>
@@ -18,11 +18,7 @@ export const CompletedUnits = () => {
         <CongratulationsHeader>Congratulations!</CongratulationsHeader>
       </CongratulationsHeaderWrapper>
       <CongratulationsMessageWrapper>
-        <CongratulationsMessage>
-          You've completed ALL of the education units in your program! You can
-          revisit any of these videos at anytime. They can be found in the
-          "Units" section in the side menu.
-        </CongratulationsMessage>
+        <CongratulationsMessage>{completionMessage}</CongratulationsMessage>
       </CongratulationsMessageWrapper>
     </>
   );

@@ -8,7 +8,7 @@ import {
     CongratulationsHeader,
     CongratulationsMessageWrapper,
     CongratulationsMessage
-} from "../../../components/completion/components/completion.styles";
+} from "../../../components/completion/completion.styles";
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";

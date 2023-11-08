@@ -4,7 +4,7 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ThumbsUpGraphic } from "../../../graphics";
-import { CongratulationsHeaderWrapper, CongratulationsHeader, CongratulationsMessage, CongratulationsMessageWrapper } from "../../../components/completion/components/completion.styles";
+import { CongratulationsHeaderWrapper, CongratulationsHeader, CongratulationsMessage, CongratulationsMessageWrapper } from "../../../components/completion/completion.styles";
 
 export const SmartGoalUpdateCreatedScreen = ({ navigation }) => {
     return (

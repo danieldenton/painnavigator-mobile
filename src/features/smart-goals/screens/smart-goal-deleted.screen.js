@@ -7,7 +7,7 @@ import { JournalButton } from "../../../components/button.component";
 import { 
     CongratulationsHeaderWrapper, 
     CongratulationsHeader 
-} from "../../../components/completion/components/completion.styles";
+} from "../../../components/completion/completion.styles";
 import { ThumbsUpGraphic } from "../../../graphics";
 
 export const SmartGoalDeletedScreen = ({ navigation }) => {
