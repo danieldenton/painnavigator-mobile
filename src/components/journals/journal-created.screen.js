@@ -9,7 +9,7 @@ import {
     CongratulationsHeader,
     CongratulationsMessageWrapper,
     CongratulationsMessage
-} from "../completion/components/completion.styles";
+} from "../completion/completion.styles";
 
 export const JournalCreatedScreen = ({ navigation, route }) => {
     const { type } = route.params;

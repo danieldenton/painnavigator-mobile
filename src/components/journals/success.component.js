@@ -9,7 +9,7 @@ import {
     CongratulationsHeader,
     CongratulationsMessageWrapper,
     CongratulationsMessage
-} from "../completion/components/completion.styles";
+} from "../completion/completion.styles";
 import { ThumbsUpGraphic } from "../../graphics";
 
 export const Success = ({ deleted, navigation, type }) => {
