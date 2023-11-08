@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
-import { MovementContext } from "../../../services/movement/movement.context";
 import { ThumbsUpGraphic } from "../../../graphics";
 import {
   CongratulationsHeaderWrapper,
@@ -10,7 +9,6 @@ import {
 } from "../../../components/completion/completion.styles";
 
 export const CompletionComponent = ({ completionMessage }) => {
-
   return (
     <>
       <GraphicWrapper>
