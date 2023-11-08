@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { MovementUnit } from "../components/movement-unit.component";
-import { CompletionScreen } from "./completion-screen";
+import { CompletionScreen } from "../components/completion-screen.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
