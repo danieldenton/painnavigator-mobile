@@ -3,7 +3,7 @@ import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { SafeView } from "../../../components/safe-area.component";
-import { CompletionComponent } from "./completion.component";
+import { CompletionComponent } from "../components/completion.component";
 
 export const CompletionScreen = ({ navigation, completionMessage }) => {
   const { resetModule } = useContext(MovementContext);
