@@ -19,7 +19,7 @@ export const CompletedUnits = () => {
       </CongratulationsHeaderWrapper>
       <CongratulationsMessageWrapper>
         <CongratulationsMessage>
-          You've completed all of the education units in your program! You can
+          You've completed ALL of the education units in your program! You can
           revisit any of these videos at anytime. They can be found in the
           "Units" section in the side menu.
         </CongratulationsMessage>
