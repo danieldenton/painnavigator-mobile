@@ -66,6 +66,7 @@ export const VideoControlBar = forwardRef((props, ref) => {
       };
     
       useEffect(() => {
+        ScreenOrientation.unlockAsync();
         checkOrientation();
         const subscription = ScreenOrientation.addOrientationChangeListener(
           handleOrientationChange

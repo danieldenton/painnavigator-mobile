@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "orientation": "default",
+    "orientation": "portrait",
     "version": "1.5.23",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -64,7 +64,7 @@
       [
         "expo-screen-orientation",
         {
-          "initialOrientation": "DEFAULT"
+          "initialOrientation": "PORTAIT"
         }
       ]
     ],

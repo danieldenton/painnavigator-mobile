@@ -15,6 +15,7 @@ import { StackActions } from "@react-navigation/native";
 import { track } from "@amplitude/analytics-react-native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 import { MovementContext } from "../../../services/movement/movement.context";
+import * as ScreenOrientation from "expo-screen-orientation"
 
 
 export const EducationUnitScreen = ({ navigation }) => {
@@ -29,6 +30,7 @@ export const EducationUnitScreen = ({ navigation }) => {
   useEffect(() => {
     setIsMovement(false);
   }, []);
+
 
   const postVideoAction = () => {
     const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
@@ -46,6 +48,7 @@ export const EducationUnitScreen = ({ navigation }) => {
           screen={"Education"}
           destination={"Today"}
           navigation={navigation}
+          orientation={true}
           trackNavBarEvent={trackNavBarEvent}
         />
       )}
@@ -82,6 +85,7 @@ export const EducationUnitScreen = ({ navigation }) => {
             }
             track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
             completeModule();
+            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
           }}
           title={"Mark Complete"}
         />
