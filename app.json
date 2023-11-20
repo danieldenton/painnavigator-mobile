@@ -3,7 +3,7 @@
     "name": "PainNavigator",
     "slug": "PainNavigator",
     "version": "1.5.23",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "hooks": {
       "postPublish": [
