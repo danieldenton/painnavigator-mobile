@@ -32,6 +32,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
       "buildNumber": "56",
+      "initialOrientation": "DEFAULT",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
