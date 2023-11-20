@@ -15,41 +15,20 @@ import { StackActions } from "@react-navigation/native";
 import { track } from "@amplitude/analytics-react-native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 import { MovementContext } from "../../../services/movement/movement.context";
-import * as ScreenOrientation from "expo-screen-orientation";
+
 
 export const EducationUnitScreen = ({ navigation }) => {
   const { completeModule, currentModule, skipModule } =
     useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
   const { post_video_destination, type, skippable, id } = currentModule;
-  const [orientation, setOrientation] = useState(null);
 
   const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
   const trackNavBarEvent = EDUCATION_UNIT_EVENTS.BACK_TO_DASHBOARD;
 
-  const checkOrientation = async () => {
-    const orientation = await ScreenOrientation.getOrientationAsync();
-    setOrientation(orientation);
-  };
-
-  const handleOrientationChange = (o) => {
-    setOrientation(o.orientationInfo.orientation);
-  };
-
   useEffect(() => {
     setIsMovement(false);
-    checkOrientation();
-    const subscription = ScreenOrientation.addOrientationChangeListener(
-      handleOrientationChange
-    );
-    return () => {
-      ScreenOrientation.removeOrientationChangeListeners(subscription);
-    };
   }, []);
-
-  useEffect(() => {
-    console.log(orientation);
-  }, [orientation]);
 
   const postVideoAction = () => {
     const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
@@ -70,7 +49,7 @@ export const EducationUnitScreen = ({ navigation }) => {
           trackNavBarEvent={trackNavBarEvent}
         />
       )}
-      {type === "video" && <VideoUnit orientaion={orientation} />}
+      {type === "video" && <VideoUnit />}
       {type === "audio" && (
         <TextModuleNavBar
           screen={"Education"}

@@ -4,7 +4,7 @@ import { EducationUnitInfo } from "./education-unit-info.component";
 import { useKeepAwake } from 'expo-keep-awake';
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 
-export const VideoUnit = ({ orientaion }) => {
+export const VideoUnit = () => {
     const { currentModule } = useContext(EducationContext);
     const { source, id, name, type, summary } = currentModule;
     const [status, setStatus] = useState({});

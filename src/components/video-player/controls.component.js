@@ -1,7 +1,8 @@
-import React,  { forwardRef } from "react"
+import React,  { forwardRef, useEffect, useState } from "react"
 import styled from "styled-components/native";
 import { Slider } from '@miblanchard/react-native-slider';
 import { Play, Pause, FullScreenButton } from "../../icons";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 const VideoControls = styled.View`
     flex-direction: row;
@@ -41,6 +42,7 @@ const TimeText = styled.Text`
 
 export const VideoControlBar = forwardRef((props, ref) => {
     const { status, type } = props;
+    const [orientation, setOrientation] = useState(null);
 
     function millisecondsToHuman(duration) {
         const seconds = Math.floor((duration / 1000) % 60);
@@ -53,6 +55,34 @@ export const VideoControlBar = forwardRef((props, ref) => {
     const showFullscreen = () => {
         ref.current.presentFullscreenPlayer();
     };
+
+    const checkOrientation = async () => {
+        const orientation = await ScreenOrientation.getOrientationAsync();
+        setOrientation(orientation);
+      };
+    
+      const handleOrientationChange = (o) => {
+        setOrientation(o.orientationInfo.orientation);
+      };
+    
+      useEffect(() => {
+        checkOrientation();
+        const subscription = ScreenOrientation.addOrientationChangeListener(
+          handleOrientationChange
+        );
+        return () => {
+          ScreenOrientation.removeOrientationChangeListeners(subscription);
+        };
+      }, []);
+    
+      useEffect(() => {
+        if (orientation === 3 || orientation === 4){
+            showFullscreen()
+        } else {
+            ref.current.dismissFullscreenPlayer();
+        }
+        console.log(orientation);
+      }, [orientation]);
 
     return (
         <VideoControls>
