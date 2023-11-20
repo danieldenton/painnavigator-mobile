@@ -2,8 +2,8 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.5.23",
     "orientation": "default",
+    "version": "1.5.23",
     "icon": "./assets/icon.png",
     "hooks": {
       "postPublish": [
@@ -30,9 +30,9 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "requireFullScreen": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
       "buildNumber": "56",
-      "initialOrientation": "DEFAULT",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
