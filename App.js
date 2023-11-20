@@ -38,7 +38,8 @@ Sentry.init({
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
-  'Unhandled promise rejection: Error: Seeking interrupted.'
+  'Unhandled promise rejection: Error: Seeking interrupted.',
+  "Background remote notifications have not been configured. To enable it, add `remote-notification` to `UIBackgroundModes` in the application's Info.plist file."
 ]);
 
 import {
