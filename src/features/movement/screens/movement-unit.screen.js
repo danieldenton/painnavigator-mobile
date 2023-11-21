@@ -6,6 +6,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { getMovementUnits } from "../../../services/movement/movement.service";
+import * as ScreenOrientation from "expo-screen-orientation"
 
 export const MovementUnitScreen = ({ navigation }) => {
   const { moduleComplete, resetModule, setIsMovement, setCompletedMovementModules, setSkippedMovementModules, setSavedMovementUnits, movementProgress } =
@@ -38,8 +39,10 @@ export const MovementUnitScreen = ({ navigation }) => {
         navigation={navigation}
         destination={"MovementPlaylist"}
         previousPage={moduleComplete ? finishModule : null}
+        orientation={true}
       />
       {moduleComplete ? (
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT),
         <CompletionScreen navigation={navigation} completionMessage={completionMessage} />
       ) : (
         <MovementUnit />

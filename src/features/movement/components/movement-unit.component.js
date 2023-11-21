@@ -26,6 +26,8 @@ export const MovementUnit = () => {
   const incompleteVideos = currentModule.videos.filter(
     (video) => !video.completed
   );
+  const allVideosCompleted =
+    completedVideos === currentModule.videos.length - 1;
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
@@ -43,8 +45,6 @@ export const MovementUnit = () => {
   ));
 
   function resetVideo() {
-    const allVideosCompleted =
-      completedVideos === currentModule.videos.length - 1;
     if (!allVideosCompleted) {
       track(MOVEMENT_UNIT_EVENTS.PLAY_NEXT_MOVEMENT_VIDEO);
       movementVideo.current.setStatusAsync({ positionMillis: 0 });
@@ -61,7 +61,9 @@ export const MovementUnit = () => {
     }
 
     if (fullscreenStatus === 1) {
-      movementVideo.current.dismissFullscreenPlayer();
+      if (allVideosCompleted) {
+        movementVideo.current.dismissFullscreenPlayer();
+      }
       setTimeout(() => {
         completeVideo();
       }, 1000);
