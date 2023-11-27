@@ -11,7 +11,6 @@ export const SideMenuNavigator = () => {
         drawerContent={(props) => <SideMenu {...props} />}
         initialRouteName="Today" 
         screenOptions={{ headerShown: false, swipeEdgeWidth: 0 }}
-        useLegacyImplementation
       >
         <SideMenuDrawer.Screen 
           name="Home" 
