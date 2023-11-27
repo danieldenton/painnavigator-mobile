@@ -3,7 +3,7 @@
     "name": "PainNavigator",
     "slug": "PainNavigator",
     "orientation": "portrait",
-    "version": "1.5.23",
+    "version": "1.5.24",
     "icon": "./assets/icon.png",
     "hooks": {
       "postPublish": [
@@ -54,7 +54,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 55
+      "versionCode": 56
     },
     "web": {
       "favicon": "./assets/favicon.png"
