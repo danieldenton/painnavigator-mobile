@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import {
@@ -10,9 +10,9 @@ import {
   UnreadMessageIcon,
 } from "../../icons";
 import { Bookmark } from "../bookmark.component";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { track } from "@amplitude/analytics-react-native";
 import { MESSAGE_EVENTS } from "../../amplitude-events";
+import * as ScreenOrientation from "expo-screen-orientation"
 
 const NavContainer = styled.View`
   flex-direction: row;
@@ -220,6 +220,7 @@ export const NavigationBarLeft = ({
   navigation,
   screen,
   previousPage,
+  orientation
 }) => {
   return (
     <NavContainer>
@@ -227,6 +228,7 @@ export const NavigationBarLeft = ({
         accessibilityLabel={`go-to-${destination}`}
         onPress={() => {
           previousPage ? previousPage() : navigation.navigate(destination);
+          orientation ? ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP) : null
         }}
       >
         <Back />

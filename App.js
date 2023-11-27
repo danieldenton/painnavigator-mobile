@@ -1,22 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { LogBox } from 'react-native';
-import * as Sentry from 'sentry-expo';
-import { init } from '@amplitude/analytics-react-native'
-import { AMPLITUDE_API_KEY } from "@env"
-import * as Notifications from 'expo-notifications';
-import * as TaskManager from 'expo-task-manager';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import { LogBox } from "react-native";
+import * as Sentry from "sentry-expo";
+import { init } from "@amplitude/analytics-react-native";
+import { AMPLITUDE_API_KEY } from "@env";
+import * as Notifications from "expo-notifications";
+import * as TaskManager from "expo-task-manager";
+import * as ScreenOrientation from "expo-screen-orientation";
 
-const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK"
+const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK";
 
 TaskManager.defineTask(BACKGROUND_NOTIFICATIONS, ({ data, error }) => {
   if (error) {
-    console.log('An error occurred while handling background push notification:', error);
+    console.log(
+      "An error occurred while handling background push notification:",
+      error
+    );
     return;
   }
   if (data) {
-    console.log('Received background push notification:', data);
+    console.log("Received background push notification:", data);
   }
 });
 
@@ -31,20 +35,21 @@ Notifications.setNotificationHandler({
 init(AMPLITUDE_API_KEY);
 
 Sentry.init({
-  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+  dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
   debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
 LogBox.ignoreLogs([
-  'Non-serializable values were found in the navigation state',
-  'Unhandled promise rejection: Error: Seeking interrupted.'
+  "Non-serializable values were found in the navigation state",
+  "Unhandled promise rejection: Error: Seeking interrupted.",
+  "Background remote notifications have not been configured. To enable it, add `remote-notification` to `UIBackgroundModes` in the application's Info.plist file.",
 ]);
 
 import {
   useFonts as usePoppins,
   Poppins_600SemiBold,
-  Poppins_500Medium
+  Poppins_500Medium,
 } from "@expo-google-fonts/poppins";
 
 import {
@@ -53,7 +58,7 @@ import {
   Inter_600SemiBold,
   Inter_500Medium,
   Inter_400Regular,
-  Inter_300Light
+  Inter_300Light,
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
@@ -80,10 +85,10 @@ const firebaseConfig = {
   storageBucket: "painnavigator-ccabd.appspot.com",
   messagingSenderId: "479858520400",
   appId: "1:479858520400:web:aabfba6f7058a798d0fc55",
-  measurementId: "G-5565KEDFC6"
+  measurementId: "G-5565KEDFC6",
 };
 
-if(!firebase.apps.length) {
+if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
@@ -93,30 +98,36 @@ export default function App() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
-  Notifications.registerTaskAsync(BACKGROUND_NOTIFICATIONS)
+  Notifications.registerTaskAsync(BACKGROUND_NOTIFICATIONS);
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token))
-  
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-  
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-  
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token)
+    );
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        setNotification(notification);
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
     return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
 
-  const lastNotificationResponse = Notifications.useLastNotificationResponse()
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
 
   const [poppinsLoaded] = usePoppins({
     Poppins_600SemiBold,
-    Poppins_500Medium
+    Poppins_500Medium,
   });
 
   const [interLoaded] = useInter({
@@ -124,7 +135,7 @@ export default function App() {
     Inter_600SemiBold,
     Inter_500Medium,
     Inter_400Regular,
-    Inter_300Light
+    Inter_300Light,
   });
 
   if (!poppinsLoaded || !interLoaded) {
@@ -162,4 +173,4 @@ export default function App() {
       </ThemeProvider>
     </>
   );
-};
+}

@@ -2,8 +2,8 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.5.23",
     "orientation": "portrait",
+    "version": "1.5.23",
     "icon": "./assets/icon.png",
     "hooks": {
       "postPublish": [
@@ -30,6 +30,8 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "requireFullScreen": true,
+      "initialOrientation": "DEFAULT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
       "buildNumber": "56",
       "infoPlist": {
@@ -59,7 +61,13 @@
     },
     "plugins": [
       "sentry-expo",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
+        }
+      ]
     ],
     "extra": {
       "eas": {
