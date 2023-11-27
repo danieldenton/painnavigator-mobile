@@ -228,7 +228,7 @@ export const NavigationBarLeft = ({
         accessibilityLabel={`go-to-${destination}`}
         onPress={() => {
           previousPage ? previousPage() : navigation.navigate(destination);
-          orientation ? ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT) : null
+          orientation ? ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP) : null
         }}
       >
         <Back />

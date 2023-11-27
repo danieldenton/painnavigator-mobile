@@ -85,7 +85,7 @@ export const EducationUnitScreen = ({ navigation }) => {
             }
             track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
             completeModule();
-            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
           }}
           title={"Mark Complete"}
         />
