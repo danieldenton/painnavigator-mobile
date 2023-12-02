@@ -20,7 +20,7 @@ export const MenuButtons = ({ navigation }) => {
             label: "My Progress",
             destination: "Progress",
             icon: <ProgressMenuIcon />,
-            show: educationProgram === 10 ? false : completedProgram
+            show: educationProgram === 10 || completedProgram ? false : true
         },
         {
             id: 2,

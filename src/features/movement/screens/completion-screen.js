@@ -10,7 +10,7 @@ export const CompletionScreen = ({ navigation, completionMessage }) => {
   const { resetModule } = useContext(MovementContext);
 
   useEffect(() => {
-    ScreenOrientation.ync(ScreenOrientation.OrientationLock.PORTRAIT)
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
   }, [])
 
   return (
