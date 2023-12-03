@@ -19,8 +19,9 @@
     "production": {
       "autoIncrement": true,
       "env": {
-        "API_URL": "process.env.API_URL",
-        "AMPLITUDE_API_KEY": "process.env.AMPLITUDE_API_KEY"
+        "API_URL": "https://pain-navigator-mobile-prod.herokuapp.com",
+        "AMPLITUDE_API_KEY": "process.env.AMPLITUDE_API_KEY",
+        "SENTRY_AUTH_TOKEN": "eda9fdc4ea6549e49c310313a96e8a62605f19c8e3364174a8b1d3a9571aea24"
       },
       "ios": {
         "resourceClass": "m-medium"
