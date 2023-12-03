@@ -33,7 +33,7 @@
       "requireFullScreen": true,
       "initialOrientation": "DEFAULT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "61",
+      "buildNumber": "62",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -54,7 +54,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 62
+      "versionCode": 63
     },
     "web": {
       "favicon": "./assets/favicon.png"
