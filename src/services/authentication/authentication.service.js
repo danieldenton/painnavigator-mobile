@@ -49,7 +49,6 @@ export async function getUser(
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
-    console.log(API_URL)
     const data = response.data.data.attributes;
     const eProgress = data.education_progress.education_progress
       ? data.education_progress.education_progress
