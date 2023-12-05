@@ -16,16 +16,20 @@ export const progressStyles = StyleSheet.create({
   },
   trackHeader: {
     fontFamily: "Inter_500Medium",
-    fontSize: 18,
+    fontSize: isAndroid ? 16 : 18,
     marginBottom: 16,
     marginLeft: -16,
     alignSelf: "center",
   },
-  incompletBridge: {
+  incompleteBridge: {
     position: "absolute",
-    top: -110,
-    left: 8,
+    top: isAndroid ? -40 : -60,
+    marginBottom: 6,
+    left: 7,
     height: 116,
+    // borderColor: 'red',
+    // borderWidth: 3,
+
   },
   educationLineSegmentCompleted: {
     position: "absolute",
@@ -38,7 +42,9 @@ export const progressStyles = StyleSheet.create({
   educationChapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 9,
+    marginBottom: isAndroid ? 35 : 60,
+    borderColor: 'red',
+    borderWidth: 3,
   },
   movementLineSegment: {
     position: "absolute",
@@ -48,23 +54,13 @@ export const progressStyles = StyleSheet.create({
   },
   movementLineSegmentCompleted: {
     position: "absolute",
-    top: -63,
+    top: isAndroid ? -50 : -63,
     left: 15.5,
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: 63,
+    height: isAndroid ? 50 : 63,
     width: 2.5,
-  },
-  moveOnQuestionWrapper: {
-    padding: 1,
-    flex: 0.08,
-    alignItems: "center",
-  },
-  moveOnQuestion: {
-    fontFamily: "Inter_500Medium",
-    color: "#4056f4",
-    fontSize: 15
   },
   movementProgressLine: {
     position: "absolute",
@@ -82,14 +78,24 @@ export const progressStyles = StyleSheet.create({
   chapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 63,
+    marginBottom: isAndroid ? 45 : 60,
   },
   chapterText: {
-    position: 'absolute',
-  left: 44,
-  fontFamily: 'Inter_500Medium',
-  fontSize: 16
-  }
+    position: "absolute",
+    left: 44,
+    fontFamily: "Inter_500Medium",
+    fontSize: isAndroid ? 14 : 16,
+  },
+  moveOnQuestionWrapper: {
+    padding: 1,
+    flex: 0.08,
+    alignItems: "center",
+  },
+  moveOnQuestion: {
+    fontFamily: "Inter_500Medium",
+    color: "#4056f4",
+    fontSize: 15,
+  },
 });
 
 const ChapterCircleWrapper = styled.View`
