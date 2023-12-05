@@ -5,8 +5,7 @@ import { Selected } from "../../../icons";
 import { 
     progressStyles, 
     CurrentChapterCircle,
-    ChapterCircle,
-    IncompleteBridge
+    ChapterCircle
 } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { View } from "react-native";
@@ -28,21 +27,21 @@ export const EducationProgress = () => {
                 <Text style={progressStyles.chapterText}>Introduction</Text>
             </View>
             <View>
-                {currentModule.id > 9 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <IncompleteBridge>{dots}</IncompleteBridge>}
+                {currentModule.id > 9 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <View style={progressStyles.incompleteBridge}>{dots}</View>}
             </View>
             <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 21 ? <Selected /> : currentModule.id > 9 ? <CurrentChapterCircle chapter={2} type={"education"} /> : <ChapterCircle chapter={2} />}
                 <Text style={progressStyles.chapterText}>Influences</Text>
             </View>
             <View>
-                {currentModule.id > 21 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <IncompleteBridge>{dots}</IncompleteBridge>}
+                {currentModule.id > 21 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <View style={progressStyles.incompleteBridge}>{dots}</View>}
             </View>
             <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 38 ? <Selected /> : currentModule.id > 21 ? <CurrentChapterCircle chapter={3} type={"education"}/> : <ChapterCircle chapter={3} />}
                 <Text style={progressStyles.chapterText}>Strategies</Text>
             </View>
             <View style={progressStyles.educationChapterSection}>
-                {currentModule.id > 38 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <IncompleteBridge>{dots}</IncompleteBridge>}
+                {currentModule.id > 38 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <View style={progressStyles.incompleteBridge}>{dots}</View>}
             </View>
             <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 61 ? <Selected /> : currentModule.id > 38 ? <CurrentChapterCircle chapter={4} type={"education"}/> : <ChapterCircle chapter={4} />}
