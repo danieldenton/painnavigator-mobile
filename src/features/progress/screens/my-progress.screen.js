@@ -6,11 +6,7 @@ import { EducationProgress } from "../components/education-progress.component";
 import { MovementProgress } from "../components/movement-progress.component";
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
-import {
-  progressStyles,
-  MoveOnQuestionWrapper,
-  MoveOnQuestion,
-} from "../components/progress.styles";
+import { progressStyles } from "../components/progress.styles";
 
 export const MyProgress = ({ navigation }) => {
   return (

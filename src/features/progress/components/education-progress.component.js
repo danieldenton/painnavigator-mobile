@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
+import { View, Text } from "react-native";
 import { EducationContext } from "../../../services/education/education.context";
 import { Selected } from "../../../icons";
 import { 
-    ProgressTrackWrapper, 
+    progressStyles, 
     ProgressTrackHeader, 
     CurrentChapterCircle,
     ChapterCircle,
@@ -24,8 +25,8 @@ export const EducationProgress = () => {
     });
 
     return (
-        <ProgressTrackWrapper>
-            <ProgressTrackHeader>Education</ProgressTrackHeader>
+        <View style={progressStyles.trackWrapper}>
+            <Text style={progressStyles.trackHeader}>Education</Text>
             <EducationChapterSection>
                 {currentModule.id > 9 ? <Selected /> : <CurrentChapterCircle chapter={1} type={"education"} />}
                 <ChapterText>Introduction</ChapterText>
@@ -51,6 +52,6 @@ export const EducationProgress = () => {
                 {currentModule.id > 61 ? <Selected /> : currentModule.id > 38 ? <CurrentChapterCircle chapter={4} type={"education"}/> : <ChapterCircle chapter={4} />}
                 <ChapterText>Behaviors</ChapterText>
             </EducationChapterSection>
-        </ProgressTrackWrapper>
+        </View>
     );
 };
