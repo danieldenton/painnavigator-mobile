@@ -27,6 +27,13 @@ export const progressStyles = StyleSheet.create({
     left: 8,
     height: 116,
   },
+  educationLineSegmentCompleted: {
+    position: 'absolute',
+    top: -115,
+    left: 15.5,
+    border: 2, '#16a28b',
+    height: 116
+  }
 });
 
 // export const ProgressScreenWrapper = styled.View`
@@ -49,12 +56,12 @@ export const progressStyles = StyleSheet.create({
 //   align-self: center;
 // `;
 
-export const IncompleteBridge = styled.View`
-  position: absolute;
-  top: -110px;
-  left: 8px;
-  height: 116px;
-`;
+// export const IncompleteBridge = styled.View`
+//   position: absolute;
+//   top: -110px;
+//   left: 8px;
+//   height: 116px;
+// `;
 
 export const EducationLineSegmentCompleted = styled.View`
   position: absolute;
