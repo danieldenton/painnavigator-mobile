@@ -2,13 +2,7 @@ import React, { useContext } from "react";
 import { View, Text } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { PurpleCheckMark } from "../../../icons";
-import {
-  CurrentChapterCircle,
-  ChapterCircle,
-  ChapterText,
-  MovementLineSegmentCompleted,
-  MovementLineSegment,
-} from "./progress.styles";
+import { CurrentChapterCircle, ChapterCircle } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { View } from "react-native";
 import { progressStyles } from "./progress.styles";
@@ -29,13 +23,13 @@ export const MovementProgress = () => {
         ) : (
           <CurrentChapterCircle chapter={1} type={"movement"} />
         )}
-        <ChapterText>Foundations</ChapterText>
+        <Text style={progressStyles.chapterText}>Foundations</Text>
       </View>
       <View>
         {movementProgress > 5 ? (
-          <MovementLineSegmentCompleted />
+          <View style={progressStyles.movementLineSegmentCompleted} />
         ) : (
-          <MovementLineSegment>{dots}</MovementLineSegment>
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.chapterSection}>
@@ -46,13 +40,13 @@ export const MovementProgress = () => {
         ) : (
           <ChapterCircle chapter={2} />
         )}
-        <ChapterText>Progressing</ChapterText>
+        <Text style={progressStyles.chapterText}>Progressing</Text>
       </View>
       <View>
         {movementProgress > 11 ? (
-          <MovementLineSegmentCompleted />
+          <View style={progressStyles.movementLineSegmentCompleted} />
         ) : (
-          <MovementLineSegment>{dots}</MovementLineSegment>
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.chapterSection}>
@@ -63,13 +57,13 @@ export const MovementProgress = () => {
         ) : (
           <ChapterCircle chapter={3} />
         )}
-        <ChapterText>Strength</ChapterText>
+        <Text style={progressStyles.chapterText}>Strength</Text>
       </View>
       <View>
         {movementProgress > 17 ? (
-          <MovementLineSegmentCompleted />
+          <View style={progressStyles.movementLineSegmentCompleted} />
         ) : (
-          <MovementLineSegment>{dots}</MovementLineSegment>
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.chapterSection}>
@@ -80,13 +74,13 @@ export const MovementProgress = () => {
         ) : (
           <ChapterCircle chapter={4} />
         )}
-        <ChapterText>Endurance</ChapterText>
+        <Text style={progressStyles.chapterText}>Endurance</Text>
       </View>
       <View>
         {movementProgress > 23 ? (
-          <MovementLineSegmentCompleted />
+          <View style={progressStyles.movementLineSegmentCompleted} />
         ) : (
-          <MovementLineSegment>{dots}</MovementLineSegment>
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.chapterSection}>
@@ -97,13 +91,13 @@ export const MovementProgress = () => {
         ) : (
           <ChapterCircle chapter={5} />
         )}
-        <ChapterText>Core</ChapterText>
+        <Text style={progressStyles.chapterText}>Core</Text>
       </View>
       <View>
         {movementProgress > 29 ? (
-          <MovementLineSegmentCompleted />
+          <View style={progressStyles.movementLineSegmentCompleted} />
         ) : (
-          <MovementLineSegment>{dots}</MovementLineSegment>
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.chapterSection}>
@@ -114,7 +108,7 @@ export const MovementProgress = () => {
         ) : (
           <ChapterCircle chapter={6} />
         )}
-        <ChapterText>Mastering</ChapterText>
+        <Text style={progressStyles.chapterText}>Mastering</Text>
       </View>
     </View>
   );
