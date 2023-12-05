@@ -4,10 +4,9 @@ import { EducationContext } from "../../../services/education/education.context"
 import { Selected } from "../../../icons";
 import { 
     progressStyles, 
-    ProgressTrackHeader, 
     CurrentChapterCircle,
     ChapterCircle,
-    EducationChapterSection, 
+    View, 
     ChapterText, 
     EducationLineSegmentCompleted,
     IncompleteBridge
@@ -27,31 +26,31 @@ export const EducationProgress = () => {
     return (
         <View style={progressStyles.trackWrapper}>
             <Text style={progressStyles.trackHeader}>Education</Text>
-            <EducationChapterSection>
+            <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 9 ? <Selected /> : <CurrentChapterCircle chapter={1} type={"education"} />}
                 <ChapterText>Introduction</ChapterText>
-            </EducationChapterSection>
+            </View>
             <View>
                 {currentModule.id > 9 ? <EducationLineSegmentCompleted /> : <IncompleteBridge>{dots}</IncompleteBridge>}
             </View>
-            <EducationChapterSection>
+            <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 21 ? <Selected /> : currentModule.id > 9 ? <CurrentChapterCircle chapter={2} type={"education"} /> : <ChapterCircle chapter={2} />}
                 <ChapterText>Influences</ChapterText>
-            </EducationChapterSection>
+            </View>
             <View>
                 {currentModule.id > 21 ? <EducationLineSegmentCompleted /> : <IncompleteBridge>{dots}</IncompleteBridge>}
             </View>
-            <EducationChapterSection>
+            <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 38 ? <Selected /> : currentModule.id > 21 ? <CurrentChapterCircle chapter={3} type={"education"}/> : <ChapterCircle chapter={3} />}
                 <ChapterText>Strategies</ChapterText>
-            </EducationChapterSection>
-            <View>
+            </View>
+            <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 38 ? <EducationLineSegmentCompleted /> : <IncompleteBridge>{dots}</IncompleteBridge>}
             </View>
-            <EducationChapterSection>
+            <View style={progressStyles.educationChapterSection}>
                 {currentModule.id > 61 ? <Selected /> : currentModule.id > 38 ? <CurrentChapterCircle chapter={4} type={"education"}/> : <ChapterCircle chapter={4} />}
                 <ChapterText>Behaviors</ChapterText>
-            </EducationChapterSection>
+            </View>
         </View>
     );
 };
