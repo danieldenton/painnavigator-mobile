@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         position: 'relative',
         justifyContent: 'center',
         alignItems: 'center',
-        height: isAndroid ? 200 : 170,
+        height: 200,
         marginLeft: isAndroid ? 20 : 30,
         marginRight: isAndroid ? 20 : 30,
         backgroundColor: 'white',

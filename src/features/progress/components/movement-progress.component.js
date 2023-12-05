@@ -4,7 +4,6 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { PurpleCheckMark } from "../../../icons";
 import { CurrentChapterCircle, ChapterCircle } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
-import { View } from "react-native";
 import { progressStyles } from "./progress.styles";
 
 export const MovementProgress = () => {

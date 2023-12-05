@@ -8,7 +8,6 @@ import {
     ChapterCircle
 } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
-import { View } from "react-native";
 
 export const EducationProgress = () => {
     const { currentModule } = useContext(EducationContext);
