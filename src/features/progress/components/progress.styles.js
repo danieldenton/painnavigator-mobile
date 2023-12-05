@@ -35,6 +35,11 @@ export const progressStyles = StyleSheet.create({
     borderColor: "#16a28b",
     height: 116,
   },
+  educationChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 9,
+  },
   movementLineSegment: {
     position: "absolute",
     top: -63,
@@ -59,7 +64,7 @@ export const progressStyles = StyleSheet.create({
   moveOnQuestion: {
     fontFamily: "Inter_500Medium",
     color: "#4056f4",
-    fontSize: 16,
+    fontSize: 15
   },
   movementProgressLine: {
     position: "absolute",
@@ -79,17 +84,12 @@ export const progressStyles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 63,
   },
-  educationChapterSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 111,
-  },
   chapterText: {
-    position: "absolute",
-    left: 44,
-    fontFamily: "Inter_500Medium",
-    fontSize: 16,
-  },
+    position: 'absolute',
+  left: 44,
+  fontFamily: 'Inter_500Medium',
+  fontSize: 16
+  }
 });
 
 const ChapterCircleWrapper = styled.View`
@@ -144,7 +144,6 @@ export const CurrentChapterCircle = ({ chapter, type }) => {
     </CurrentChapterCircleWrapper>
   );
 };
-
 
 // export const ProgressScreenWrapper = styled.View`
 //     flex: .8;
@@ -242,4 +241,3 @@ export const CurrentChapterCircle = ({ chapter, type }) => {
 //   font-family: Inter_500Medium;
 //   font-size: 16px;
 // `;
-
