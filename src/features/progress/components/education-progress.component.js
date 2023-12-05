@@ -5,7 +5,7 @@ import { Selected } from "../../../icons";
 import { 
     progressStyles, 
     CurrentChapterCircle,
-    ChapterCircle,
+    ChapterCircle
 } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 
@@ -32,7 +32,7 @@ export const EducationProgress = () => {
                 {currentModule.id > 21 ? <Selected /> : currentModule.id > 9 ? <CurrentChapterCircle chapter={2} type={"education"} /> : <ChapterCircle chapter={2} />}
                 <Text style={progressStyles.chapterText}>Influences</Text>
             </View>
-            <View style={progressStyles.educationChapterSection}>
+            <View>
                 {currentModule.id > 21 ? <View style={progressStyles.educationLineSegmentCompleted} /> : <View style={progressStyles.incompleteBridge}>{dots}</View>}
             </View>
             <View style={progressStyles.educationChapterSection}>
