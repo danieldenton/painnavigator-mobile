@@ -28,110 +28,69 @@ export const progressStyles = StyleSheet.create({
     height: 116,
   },
   educationLineSegmentCompleted: {
-    position: 'absolute',
+    position: "absolute",
     top: -115,
     left: 15.5,
-    border: 2, '#16a28b',
-    height: 116
-  }
+    borderWidth: 2,
+    borderColor: "#16a28b",
+    height: 116,
+  },
+  movementLineSegment: {
+    position: "absolute",
+    top: -63,
+    left: 8,
+    height: 63,
+  },
+  movementLineSegmentCompleted: {
+    position: "absolute",
+    top: -63,
+    left: 15.5,
+    borderColor: "#4056f4",
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    height: 63,
+    width: 2.5,
+  },
+  moveOnQuestionWrapper: {
+    padding: 1,
+    flex: 0.08,
+    alignItems: "center",
+  },
+  moveOnQuestion: {
+    fontFamily: "Inter_500Medium",
+    color: "#4056f4",
+    fontSize: 16,
+  },
+  movementProgressLine: {
+    position: "absolute",
+    top: -63,
+    left: 15,
+    borderColor: "#4056f4",
+    borderStyle: "solid",
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomLeftRadius: 2,
+    borderBottomRightRadius: 2,
+    width: 2.5,
+    zIndex: 1,
+  },
+  chapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 63,
+  },
+  educationChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 111,
+  },
+  chapterText: {
+    position: "absolute",
+    left: 44,
+    fontFamily: "Inter_500Medium",
+    fontSize: 16,
+  },
 });
-
-// export const ProgressScreenWrapper = styled.View`
-//     flex: .8;
-//     flex-direction: row;
-//     justify-content: center;
-// `;
-
-// export const ProgressTrackWrapper = styled.View`
-//   flex: 1;
-//   align-items: flex-start;
-//   margin-left: 16px;
-// `;
-
-// export const ProgressTrackHeader = styled.Text`
-//   font-family: Inter_500Medium;
-//   font-size: 18px;
-//   margin-bottom: 16px;
-//   margin-left: -16px;
-//   align-self: center;
-// `;
-
-// export const IncompleteBridge = styled.View`
-//   position: absolute;
-//   top: -110px;
-//   left: 8px;
-//   height: 116px;
-// `;
-
-export const EducationLineSegmentCompleted = styled.View`
-  position: absolute;
-  top: -115px;
-  left: 15.5px;
-  border: 2px #16a28b;
-  height: 116px;
-`;
-
-export const MovementLineSegment = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 8px;
-  height: 63px;
-`;
-
-export const MovementLineSegmentCompleted = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 15.5px;
-  border: #4056f4 solid;
-  border-left-width: 2px;
-  border-right-width: 2px;
-  height: 63px;
-  width: 2.5px;
-`;
-
-export const MoveOnQuestionWrapper = styled.View`
-  padding: 1px;
-  flex: 0.08;
-  align-items: center;
-`;
-
-export const MoveOnQuestion = styled.Text`
-  font-family: Inter_500Medium;
-  color: #4056f4;
-  font-size: 16px;
-`;
-
-export const MovementProgressLine = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 15px;
-  border: #4056f4 solid;
-  border-left-width: 2px;
-  border-right-width: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  width: 2.5px;
-  z-index: 1;
-`;
-
-export const ChapterSection = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 63px;
-`;
-
-export const EducationChapterSection = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 111px;
-`;
-
-export const ChapterText = styled.Text`
-  position: absolute;
-  left: 44px;
-  font-family: Inter_500Medium;
-  font-size: 16px;
-`;
 
 const ChapterCircleWrapper = styled.View`
   align-items: center;
@@ -185,3 +144,102 @@ export const CurrentChapterCircle = ({ chapter, type }) => {
     </CurrentChapterCircleWrapper>
   );
 };
+
+
+// export const ProgressScreenWrapper = styled.View`
+//     flex: .8;
+//     flex-direction: row;
+//     justify-content: center;
+// `;
+
+// export const ProgressTrackWrapper = styled.View`
+//   flex: 1;
+//   align-items: flex-start;
+//   margin-left: 16px;
+// `;
+
+// export const ProgressTrackHeader = styled.Text`
+//   font-family: Inter_500Medium;
+//   font-size: 18px;
+//   margin-bottom: 16px;
+//   margin-left: -16px;
+//   align-self: center;
+// `;
+
+// export const IncompleteBridge = styled.View`
+//   position: absolute;
+//   top: -110px;
+//   left: 8px;
+//   height: 116px;
+// `;
+
+// export const EducationLineSegmentCompleted = styled.View`
+//   position: absolute;
+//   top: -115px;
+//   left: 15.5px;
+//   border: 2px #16a28b;
+//   height: 116px;
+// `;
+
+// export const MovementLineSegment = styled.View`
+//   position: absolute;
+//   top: -63px;
+//   left: 8px;
+//   height: 63px;
+// `;
+
+// export const MovementLineSegmentCompleted = styled.View`
+//   position: absolute;
+//   top: -63px;
+//   left: 15.5px;
+//   border: #4056f4 solid;
+//   border-left-width: 2px;
+//   border-right-width: 2px;
+//   height: 63px;
+//   width: 2.5px;
+// `;
+
+// export const MoveOnQuestionWrapper = styled.View`
+//   padding: 1px;
+//   flex: 0.08;
+//   align-items: center;
+// `;
+
+// export const MoveOnQuestion = styled.Text`
+//   font-family: Inter_500Medium;
+//   color: #4056f4;
+//   font-size: 16px;
+// `;
+
+// export const MovementProgressLine = styled.View`
+//   position: absolute;
+//   top: -63px;
+//   left: 15px;
+//   border: #4056f4 solid;
+//   border-left-width: 2px;
+//   border-right-width: 2px;
+//   border-bottom-left-radius: 2px;
+//   border-bottom-right-radius: 2px;
+//   width: 2.5px;
+//   z-index: 1;
+// `;
+
+// export const ChapterSection = styled.View`
+//   flex-direction: row;
+//   align-items: center;
+//   margin-bottom: 63px;
+// `;
+
+// export const EducationChapterSection = styled.View`
+//   flex-direction: row;
+//   align-items: center;
+//   margin-bottom: 111px;
+// `;
+
+// export const ChapterText = styled.Text`
+//   position: absolute;
+//   left: 44px;
+//   font-family: Inter_500Medium;
+//   font-size: 16px;
+// `;
+
