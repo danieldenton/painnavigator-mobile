@@ -33,12 +33,12 @@ export const tourObj = [
     { 
         text: "To get the most out of the program, we recommend you log your pain score daily here.",
         tourTextBubble: 20,
-        tourComponentPlacement: isAndroid ? 214 : 230,
+        tourComponentPlacement: isAndroid ? 214 : 245,
         component: <DailyPainScore />
     },
     { 
         text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-        tourTextBubble: isAndroid ? 159 : 202,
+        tourTextBubble: isAndroid ? 159 : 190,
         tourComponentPlacement: 6, 
         component: <EducationUnitCard />
     },
@@ -56,7 +56,7 @@ export const tourObj = [
      },
     { 
         text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-        tourTextBubble: isAndroid ? 455 : 482,
+        tourTextBubble: isAndroid ? 455 : 495,
         tourComponentPlacement: 6,
         component: <DailyActivities />
     },
