@@ -5,13 +5,15 @@ import { PurpleCheckMark } from "../../../icons";
 import { CurrentChapterCircle, ChapterCircle } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { progressStyles } from "./progress.styles";
+import { isAndroid } from "../../../utils";
 
 export const MovementProgress = () => {
   const { movementProgress } = useContext(MovementContext);
 
-  const dots = [...Array(5)].map((element, index) => {
+  const dots = [...Array(isAndroid ? 4 : 5)].map((element, index) => {
     return <DottedLineSegement key={index} />;
   });
+
 
   return (
     <View style={progressStyles.trackWrapper}>

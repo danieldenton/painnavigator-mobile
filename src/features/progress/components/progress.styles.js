@@ -42,18 +42,18 @@ export const progressStyles = StyleSheet.create({
   },
   movementLineSegment: {
     position: "absolute",
-    top: isAndroid ? -55 : -63,
+    top: isAndroid ? -46 : -63,
     left: 8,
-    height: isAndroid ? 45 : 63,
+    height: isAndroid ? 25 : 63
   },
   movementLineSegmentCompleted: {
     position: "absolute",
-    top: isAndroid ? -55 : -63,
+    top: isAndroid ? -45 : -63,
     left: 15.5,
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: isAndroid ? 55 : 63,
+    height: isAndroid ? 45 : 63,
     width: 2.5,
   },
   movementProgressLine: {
@@ -70,6 +70,11 @@ export const progressStyles = StyleSheet.create({
     zIndex: 1,
   },
   chapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: isAndroid ? 45 : 63
+  },
+  chapterCompleteSection: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: isAndroid ? 55 : 63,
