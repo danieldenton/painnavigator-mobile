@@ -3,7 +3,7 @@
     "name": "PainNavigator",
     "slug": "PainNavigator",
     "orientation": "portrait",
-    "version": "1.5.25",
+    "version": "1.5.26",
     "icon": "./assets/icon.png",
     "hooks": {
       "postPublish": [
@@ -33,7 +33,7 @@
       "requireFullScreen": true,
       "initialOrientation": "DEFAULT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "63",
+      "buildNumber": "64",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -54,7 +54,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 64
+      "versionCode": 65
     },
     "web": {
       "favicon": "./assets/favicon.png"
