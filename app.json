@@ -68,10 +68,12 @@
           "initialOrientation": "DEFAULT"
         }
       ],
-      "expo-notifications",
+      [ 
+        "expo-notifications",
         {
           "icon": "./assets/icon.png"
         }
+      ]
     ],
     "extra": {
       "eas": {
