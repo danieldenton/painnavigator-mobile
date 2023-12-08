@@ -33,7 +33,7 @@
       "requireFullScreen": true,
       "initialOrientation": "DEFAULT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "64",
+      "buildNumber": "65",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -67,7 +67,11 @@
         {
           "initialOrientation": "DEFAULT"
         }
-      ]
+      ],
+      "expo-notifications",
+        {
+          "icon": "./assets/icon.png"
+        }
     ],
     "extra": {
       "eas": {
