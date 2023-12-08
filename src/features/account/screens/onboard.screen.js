@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { OnboardSwiper } from "../components/onboard-swiper.component";
@@ -7,10 +7,15 @@ import { JournalButton } from "../../../components/button.component";
 import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from "../../../amplitude-events";
+import * as ScreenOrientation from "expo-screen-orientation"
 
 export const OnboardScreen = ({ navigation }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const { setError } = useContext(AuthenticationContext)
+
+    useEffect(() => {
+        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    }, [])
 
     const onPageScroll = (event) => {
         const {position} = event.nativeEvent;
