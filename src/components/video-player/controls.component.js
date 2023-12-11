@@ -82,7 +82,6 @@ export const VideoControlBar = forwardRef((props, ref) => {
         } else {
             ref.current.dismissFullscreenPlayer();
         }
-        console.log(orientation);
       }, [orientation]);
 
     return (
