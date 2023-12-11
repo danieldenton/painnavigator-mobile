@@ -1,4 +1,4 @@
-// const { getDefaultConfig } = require("@expo/metro-config");
+const { getDefaultConfig } = require("@expo/metro-config");
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config')
 const {createSentryMetroSerializer} = require('@sentry/react-native/dist/js/tools/sentryMetroSerializer');
 
