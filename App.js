@@ -36,7 +36,7 @@ init(AMPLITUDE_API_KEY);
 Sentry.init({
   dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  debug: true
 });
 
 LogBox.ignoreLogs([
