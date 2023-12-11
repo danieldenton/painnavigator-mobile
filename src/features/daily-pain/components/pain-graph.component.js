@@ -41,10 +41,6 @@ export const PainGraph = ({ graphData }) => {
                     }}
                 />
                 <VictoryLine
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                      }}
                     style={{
                         data: { stroke: `${colors.brand.primary}` },
                         labels: { fontSize: 12, color: "#606C81", padding: 2 },
