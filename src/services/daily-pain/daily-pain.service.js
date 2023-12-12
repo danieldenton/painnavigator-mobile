@@ -28,13 +28,13 @@ export async function postDailyPainScore(userUid, dailyPainScore) {
     }
 };
 
-export async function  patchDailyPainScore(dailyPainScore, setDailyPainScore) {
+export async function  patchDailyPainScore(dailyPainScore) {
     try {
         const response = await axios.patch(`${API_URL}/api/v2/daily_pain_scores/${dailyPainScore.id}`, { 
             score: dailyPainScore.score,
             date_time_value: Date.now() 
         })
-        setDailyPainScore(response.data)
+        return response.data
     } catch (error) {
         console.error(error)
     }

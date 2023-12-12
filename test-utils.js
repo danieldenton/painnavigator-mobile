@@ -15,8 +15,6 @@ import { WellnessCoachContextProvider} from './src/services/wellness-coach/welln
 import { FavoriteActivitiesContextProvider } from './src/services/favorite-activities/favorite-activities.context';
 import { NavigationContainer } from '@react-navigation/native';
 
-
-
 const Providers = ({children}) => {
 
   

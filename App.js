@@ -36,7 +36,7 @@ init(AMPLITUDE_API_KEY);
 Sentry.init({
   dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  debug: true
 });
 
 LogBox.ignoreLogs([
@@ -76,11 +76,6 @@ import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
-import * as Sentry from '@sentry/react-native';
-
-Sentry.init({
-  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
-});
 
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
