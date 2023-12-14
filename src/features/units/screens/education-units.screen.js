@@ -39,6 +39,36 @@ export const EducationUnitsScreen = ({ navigation }) => {
         setSkippedEducationModuleData(data);
     }, [skippedEducationModules]);
 
+    const educationExpandableCardData = [
+        {
+            moduleType: "Education",
+            title: "Saved",
+            units: bookmarkedEducationModuleData
+        },
+        {
+            moduleType: "Education",
+            title: "Skipped",
+            units: skippedEducationModuleData
+        },
+        {
+            moduleType: "Education",
+            title: "Completed",
+            units: completedEducationModuleData
+        }
+    ]
+
+    const educationUnitCards = educationExpandableCardData.map((card, idx) => {
+        return (
+            <ExpandableCard
+                    moduleType={card.moduleType}
+                    navigation={navigation}
+                    title={card.title}
+                    units={card.units} 
+                    key={idx}
+                />
+        )
+    })
+
     return (
         <SafeView>
             <NavigationBarLeft 
@@ -47,25 +77,7 @@ export const EducationUnitsScreen = ({ navigation }) => {
                 navigation={navigation} 
             />
             <Scroll style={{ paddingLeft: 16, paddingRight: 16, paddingBottom: 40 }}>
-                <ExpandableCard
-                    moduleType={"Education"}
-                    navigation={navigation}
-                    title={"Saved"}
-                    units={bookmarkedEducationModuleData} 
-                />
-                <ExpandableCard 
-                    completeSkippedUnit={completeSkippedUnit}
-                    moduleType={"Education"}
-                    navigation={navigation} 
-                    title={"Skipped"} 
-                    units={skippedEducationModuleData} 
-                />
-                <ExpandableCard 
-                    moduleType={"Education"}
-                    navigation={navigation} 
-                    title={"Completed"} 
-                    units={completedEducationModuleData} 
-                />
+                {educationUnitCards}
                 <View style={{ marginBottom: 12 }}></View>
             </Scroll>
         </SafeView>

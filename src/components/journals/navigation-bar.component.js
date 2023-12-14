@@ -24,7 +24,6 @@ const LeftPressableArea = styled(TouchableOpacity)`
   align-items: flex-start;
 `;
 
-
 const HeaderSection = styled.View`
   flex: 0.5;
   align-items: center;

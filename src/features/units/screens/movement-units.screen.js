@@ -12,7 +12,6 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
     completedMovementModules,
-    completeSkippedUnit,
     skippedMovementModules,
     savedMovementUnits,
     setIsMovement,
@@ -59,6 +58,36 @@ export const MovementUnitsScreen = ({ navigation }) => {
     setSkippedMovementModuleData(data);
   }, [skippedMovementModules]);
 
+  const movementExpandableCardData = [
+    {
+        moduleType: "Movement",
+        title: "Saved",
+        units: savedMovementModuleData
+    },
+    {
+        moduleType: "Movement",
+        title: "Skipped",
+        units: skippedMovementModuleData
+    },
+    {
+        moduleType: "Movement",
+        title: "Completed",
+        units: completedMovementModuleData
+    }
+]
+
+const movementUnitCards = movementExpandableCardData.map((card, idx) => {
+    return (
+        <ExpandableCard
+                moduleType={card.moduleType}
+                navigation={navigation}
+                title={card.title}
+                units={card.units} 
+                key={idx}
+            />
+    )
+})
+
   return (
     <SafeView>
       <NavigationBarLeft
@@ -67,25 +96,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
         navigation={navigation}
       />
       <Scroll style={{ paddingLeft: 16, paddingRight: 16, paddingBottom: 40 }}>
-        <ExpandableCard
-          moduleType={"Movement"}
-          navigation={navigation}
-          title={"Saved"}
-          units={savedMovementModuleData}
-        />
-        <ExpandableCard
-          completeSkippedUnit={completeSkippedUnit}
-          moduleType={"Movement"}
-          navigation={navigation}
-          title={"Skipped"}
-          units={skippedMovementModuleData}
-        />
-        <ExpandableCard
-          moduleType={"Movement"}
-          navigation={navigation}
-          title={"Completed"}
-          units={completedMovementModuleData}
-        />
+        {movementUnitCards}
         <View style={{ marginBottom: 12 }}></View>
       </Scroll>
     </SafeView>

@@ -120,7 +120,6 @@ export const TodayScreen = ({ navigation }) => {
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, []);
                  
   useEffect(() => {
@@ -143,6 +142,7 @@ export const TodayScreen = ({ navigation }) => {
     } else {
       setGreeting("Good Evening");
     }
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, [isFocused]);
 
   useEffect(() => {
