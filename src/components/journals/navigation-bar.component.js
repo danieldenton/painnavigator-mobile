@@ -12,7 +12,7 @@ import {
 import { Bookmark } from "../bookmark.component";
 import { track } from "@amplitude/analytics-react-native";
 import { MESSAGE_EVENTS } from "../../amplitude-events";
-import * as ScreenOrientation from "expo-screen-orientation"
+
 
 const NavContainer = styled.View`
   flex-direction: row;
@@ -24,10 +24,6 @@ const LeftPressableArea = styled(TouchableOpacity)`
   align-items: flex-start;
 `;
 
-const LeftSection = styled.View`
-  flex: 0.25;
-  align-items: flex-start;
-`;
 
 const HeaderSection = styled.View`
   flex: 0.5;
@@ -220,7 +216,7 @@ export const NavigationBarLeft = ({
   navigation,
   screen,
   previousPage,
-  orientation
+  
 }) => {
   return (
     <NavContainer>
@@ -228,7 +224,6 @@ export const NavigationBarLeft = ({
         accessibilityLabel={`go-to-${destination}`}
         onPress={() => {
           previousPage ? previousPage() : navigation.navigate(destination);
-          orientation ? ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP) : null
         }}
       >
         <Back />
