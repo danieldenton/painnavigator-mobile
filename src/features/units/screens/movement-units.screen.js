@@ -12,6 +12,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
     completedMovementModules,
+    completeMovementSkippedUnit,
     skippedMovementModules,
     savedMovementUnits,
     setIsMovement,
@@ -83,6 +84,7 @@ const movementUnitCards = movementExpandableCardData.map((card, idx) => {
                 navigation={navigation}
                 title={card.title}
                 units={card.units} 
+                completeSkippedUnit={completeMovementSkippedUnit}
                 key={idx}
             />
     )

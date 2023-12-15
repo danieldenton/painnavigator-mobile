@@ -11,7 +11,7 @@ import { View } from "react-native";
 
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
-    const { completedEducationModules, completeSkippedUnit, skippedEducationModules } = useContext(EducationContext);
+    const { completedEducationModules, completeEducationSkippedUnit, skippedEducationModules } = useContext(EducationContext);
     const { setIsMovement } = useContext(MovementContext)
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
@@ -64,6 +64,7 @@ export const EducationUnitsScreen = ({ navigation }) => {
                     navigation={navigation}
                     title={card.title}
                     units={card.units} 
+                    completeSkippedUnit={completeEducationSkippedUnit}
                     key={idx}
                 />
         )

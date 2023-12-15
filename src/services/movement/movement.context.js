@@ -85,7 +85,7 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentModule({ ...currentModule, videos: newVideos });
   };
 
-  const completeSkippedUnit = (unitId) => {
+  const completeMovementSkippedUnit = (unitId) => {
     if (!completedMovementModules.includes(unitId)) {
       const newCompletedModules = [...completedMovementModules, unitId];
       const sortedData = newCompletedModules.sort(function (a, b) {
@@ -174,7 +174,7 @@ export const MovementContextProvider = ({ children }) => {
       value={{
         completeVideo,
         completedVideos,
-        completeSkippedUnit,
+        completeMovementSkippedUnit,
         currentModule,
         currentVideo,
         getPlaylistLength,
