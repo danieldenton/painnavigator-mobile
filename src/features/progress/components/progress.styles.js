@@ -48,12 +48,12 @@ export const progressStyles = StyleSheet.create({
   },
   movementLineSegmentCompleted: {
     position: "absolute",
-    top: -45,
+    top: -46,
     left: 15.5,
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: 45,
+    height: 46,
     width: 2.5,
   },
   movementProgressLine: {
