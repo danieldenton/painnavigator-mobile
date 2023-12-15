@@ -38,41 +38,28 @@ export const progressStyles = StyleSheet.create({
   educationChapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 111
+    marginBottom: 111,
   },
   movementLineSegment: {
     position: "absolute",
-    top: isAndroid ? -46 : -63,
+    top: -52,
     left: 8,
-    height: isAndroid ? 25 : 63
+    height: isAndroid ? 45 : 55,
   },
   movementLineSegmentCompleted: {
     position: "absolute",
-    top: -46,
+    top: -55,
     left: 15.5,
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: 46,
+    height: 55,
     width: 2.5,
   },
-  movementProgressLine: {
-    position: "absolute",
-    top: -63,
-    left: 15,
-    borderColor: "#4056f4",
-    borderStyle: "solid",
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomLeftRadius: 2,
-    borderBottomRightRadius: 2,
-    width: 2.5,
-    zIndex: 1,
-  },
-  chapterSection: {
+  movementChapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 46,
+    marginBottom: isAndroid ? 54 : 55
   },
   chapterCompleteSection: {
     flexDirection: "row",

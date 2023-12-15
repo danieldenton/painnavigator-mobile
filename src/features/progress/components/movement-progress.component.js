@@ -10,7 +10,7 @@ import { isAndroid } from "../../../utils";
 export const MovementProgress = () => {
   const { movementProgress } = useContext(MovementContext);
 
-  const dots = [...Array(isAndroid ? 4 : 5)].map((element, index) => {
+  const dots = [...Array(4)].map((element, index) => {
     return <DottedLineSegement key={index} />;
   });
 
@@ -18,7 +18,7 @@ export const MovementProgress = () => {
   return (
     <View style={progressStyles.trackWrapper}>
       <Text style={progressStyles.trackHeader}>Movement</Text>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 5 ? (
           <PurpleCheckMark />
         ) : (
@@ -33,7 +33,7 @@ export const MovementProgress = () => {
           <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 11 ? (
           <PurpleCheckMark />
         ) : movementProgress > 5 ? (
@@ -50,7 +50,7 @@ export const MovementProgress = () => {
           <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 17 ? (
           <PurpleCheckMark />
         ) : movementProgress > 11 ? (
@@ -67,7 +67,7 @@ export const MovementProgress = () => {
           <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 23 ? (
           <PurpleCheckMark />
         ) : movementProgress > 17 ? (
@@ -84,7 +84,7 @@ export const MovementProgress = () => {
           <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 29 ? (
           <PurpleCheckMark />
         ) : movementProgress > 23 ? (
@@ -101,7 +101,7 @@ export const MovementProgress = () => {
           <View style={progressStyles.movementLineSegment}>{dots}</View>
         )}
       </View>
-      <View style={progressStyles.chapterSection}>
+      <View style={progressStyles.movementChapterSection}>
         {movementProgress > 35 ? (
           <PurpleCheckMark />
         ) : movementProgress > 29 ? (
