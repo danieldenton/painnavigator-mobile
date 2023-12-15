@@ -16,55 +16,57 @@ export const MovementProgress = () => {
   const chapterData = [
     {
       chapter: 1, 
-      chapterComplete: movementProgress > 5,
-      previousChapterComplete: null
+      chapterTitle: "Foundations",
+      chapterComplete: 5
     },
     {
       chapter: 2,
-      chapterComplete: movementProgress > 11,
-      previousChapterComplete: null
+      chapterTitle: "Progressing",
+      chapterComplete: 11
     },
     {
       chapter: 3,
-      chapterComplete: movementProgress > 17,
-      previousChapterComplete: null
+      chapterTitle: "Strength",
+      chapterComplete: 17
     },
     {
       chapter: 4,
-      chapterComplete: movementProgress > 23,
-      previousChapterComplete: null
+      chapterTitle: "Endurance",
+      chapterComplete: 23
     },
     {
       chapter: 5,
-      chapterComplete: movementProgress > 29,
-      previousChapterComplete: null
+      chapterTitle: "Core",
+      chapterComplete: 29
     },
     {
       chapter: 6,
-      chapterComplete: movementProgress > 35,
-      previousChapterComplete: null
+      chapterTitle: "Mastering",
+      chapterComplete: 35
     }
   ]
 
 const chapters = chapterData.map((chapter) => {
   return (
     <>
+    {movementProgress > chapter.chapterComplete ?
+      <>
     <View style={progressStyles.movementChapterSection}>
-        {movementProgress > 5 ? (
           <PurpleCheckMark />
-        ) : (
-          <CurrentChapterCircle chapter={1} type={"movement"} />
-        )}
-        <Text style={progressStyles.chapterText}>Foundations</Text>
-      </View>
-      <View>
-        {movementProgress > 5 ? (
+          </View>
           <View style={progressStyles.movementLineSegmentCompleted} />
-        ) : (
+          </>
+          :
+          <>
+        <View style={progressStyles.movementChapterSection}>
+        <Text style={progressStyles.chapterText}>{chapter.chapterTitle}</Text>
+        </View>
+        <CurrentChapterCircle chapter={chapter.chapter} type={"movement"} />
           <View style={progressStyles.movementLineSegment}>{dots}</View>
-        )}
-      </View>
-      </>
+          </>
+    }
+    </>
+    
   )
 })
 
