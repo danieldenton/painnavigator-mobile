@@ -21,70 +21,51 @@ export const progressStyles = StyleSheet.create({
     marginLeft: -16,
     alignSelf: "center",
   },
-  incompleteBridge: {
+  educationChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: isAndroid ? 97 : 111,
+  },
+  educationLineSegment: {
     position: "absolute",
-    top: -110,
-    left: 8,
+    top: isAndroid ? 37 : 39,
+    left: 9,
     height: 116,
   },
   educationLineSegmentCompleted: {
     position: "absolute",
-    top: -115,
+    top: 35,
     left: 15.5,
     borderWidth: 2,
     borderColor: "#16a28b",
-    height: 116,
-  },
-  educationChapterSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 111
-  },
-  movementLineSegment: {
-    position: "absolute",
-    top: isAndroid ? -46 : -63,
-    left: 8,
-    height: isAndroid ? 25 : 63
-  },
-  movementLineSegmentCompleted: {
-    position: "absolute",
-    top: -45,
-    left: 15.5,
-    borderColor: "#4056f4",
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    height: 45,
-    width: 2.5,
-  },
-  movementProgressLine: {
-    position: "absolute",
-    top: -63,
-    left: 15,
-    borderColor: "#4056f4",
-    borderStyle: "solid",
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomLeftRadius: 2,
-    borderBottomRightRadius: 2,
-    width: 2.5,
-    zIndex: 1,
-  },
-  chapterSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 46,
-  },
-  chapterCompleteSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: isAndroid ? 55 : 63,
-    
+    height: isAndroid ? 99 : 115,
   },
   chapterText: {
     position: "absolute",
     left: 44,
     fontFamily: "Inter_500Medium",
     fontSize: isAndroid ? 14 : 16,
+  },
+  movementChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: isAndroid ? 44 : 52.3,
+  },
+  movementLineSegment: {
+    position: "absolute",
+    top: isAndroid ? 34 : 39,
+    left: 9,
+    height: isAndroid ? 45 : 55,
+  },
+  movementLineSegmentCompleted: {
+    position: "absolute",
+    top: 36,
+    left: 15.5,
+    borderColor: "#4056f4",
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    height: isAndroid ? 44 : 52.3,
+    width: 2.5,
   },
   moveOnQuestionWrapper: {
     padding: 1,
@@ -103,15 +84,15 @@ const ChapterCircleWrapper = styled.View`
   justify-content: center;
   border: 2px #cbd7eb;
   border-radius: 100px;
-  height: 24px;
-  width: 24px;
-  margin-left: 5px;
+  height: 36px;
+  width: 36px;
+  margin-left: 0.5px;
 `;
 
 const ChapterCircleText = styled.Text`
   color: #cbd7eb;
   font-family: Inter_700Bold;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const ChapterCircle = ({ chapter }) => {
@@ -127,8 +108,8 @@ const CurrentChapterCircleWrapper = styled.View`
   justify-content: center;
   border: 3px;
   border-radius: 100px;
-  height: 33px;
-  width: 33px;
+  height: 36px;
+  width: 36px;
   margin-left: 0.5px;
 `;
 
@@ -150,100 +131,3 @@ export const CurrentChapterCircle = ({ chapter, type }) => {
     </CurrentChapterCircleWrapper>
   );
 };
-
-export const ProgressScreenWrapper = styled.View`
-    flex: .8;
-    flex-direction: row;
-    justify-content: center;
-`;
-
-export const ProgressTrackWrapper = styled.View`
-  flex: 1;
-  align-items: flex-start;
-  margin-left: 16px;
-`;
-
-export const ProgressTrackHeader = styled.Text`
-  font-family: Inter_500Medium;
-  font-size: 18px;
-  margin-bottom: 16px;
-  margin-left: -16px;
-  align-self: center;
-`;
-
-export const IncompleteBridge = styled.View`
-  position: absolute;
-  top: -110px;
-  left: 8px;
-  height: 116px;
-`;
-
-export const EducationLineSegmentCompleted = styled.View`
-  position: absolute;
-  top: -115px;
-  left: 15.5px;
-  border: 2px #16a28b;
-  height: 116px;
-`;
-
-export const MovementLineSegment = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 8px;
-  height: 63px;
-`;
-
-export const MovementLineSegmentCompleted = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 15.5px;
-  border: #4056f4 solid;
-  border-left-width: 2px;
-  border-right-width: 2px;
-  height: 63px;
-  width: 2.5px;
-`;
-
-export const MoveOnQuestionWrapper = styled.View`
-  padding: 1px;
-  flex: 0.08;
-  align-items: center;
-`;
-
-export const MoveOnQuestion = styled.Text`
-  font-family: Inter_500Medium;
-  color: #4056f4;
-  font-size: 16px;
-`;
-
-export const MovementProgressLine = styled.View`
-  position: absolute;
-  top: -63px;
-  left: 15px;
-  border: #4056f4 solid;
-  border-left-width: 2px;
-  border-right-width: 2px;
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-  width: 2.5px;
-  z-index: 1;
-`;
-
-export const ChapterSection = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 63px;
-`;
-
-export const EducationChapterSection = styled.View`
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 111px;
-`;
-
-export const ChapterText = styled.Text`
-  position: absolute;
-  left: 44px;
-  font-family: Inter_500Medium;
-  font-size: 16px;
-`;

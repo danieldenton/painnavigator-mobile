@@ -9,12 +9,12 @@ import { AudioUnit } from "../components/audio-unit.component";
 import { StackActions } from '@react-navigation/native';
 
 export const ReplayUnitScreen = ({ route, navigation }) => {
-    const { completeSkippedUnit, moduleType, title, unit } = route.params;
+    const { completeSkippedUnit, moduleType, unit, title } = route.params;
     const { type, id } = unit;
 
     return (
         <SafeView>
-            {type === "video" && <NavigationBarLeft screen={moduleType} destination={`${moduleType}Units`} navigation={navigation} />}
+            {type === "video" && <NavigationBarLeft screen={moduleType} destination={`${moduleType}Units`} navigation={navigation} orientation={true} />}
             {type === "video" && <VideoUnit unit={unit} />}
             {type === "audio" && <TextModuleNavBar screen={"Education"} destination={"EducationUnits"} navigation={navigation} id={id} />}
             {type === "audio" && <AudioUnit unit={unit} />}

@@ -4,82 +4,64 @@ import { Selected } from "../../../icons";
 import {
   CurrentChapterCircle,
   ChapterCircle,
-  EducationLineSegmentCompleted,
-  IncompleteBridge,
   progressStyles,
 } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { View, Text } from "react-native";
+import { isAndroid } from "../../../utils";
+import { educationChapterData } from "../data/chapter-data";
 
 export const EducationProgress = () => {
   const { currentModule } = useContext(EducationContext);
 
-  const dots = [...Array(9)].map((element, index) => {
+  const dots = [...Array(isAndroid ? 8 : 9)].map((element, index) => {
     return <DottedLineSegement key={index} />;
+  });
+
+
+  const chapters = educationChapterData.map((chapter, idx) => {
+    return (
+      <>
+        {currentModule.id > chapter.chapterComplete ? (
+          <View>
+            <View style={progressStyles.educationChapterSection}>
+              <Selected />
+              <Text style={progressStyles.chapterText}>
+                {chapter.chapterTitle}
+              </Text>
+            </View>
+            {idx < 3 ? (
+              <View style={progressStyles.educationLineSegmentCompleted} />
+            ) : null}
+          </View>
+        ) : (
+          <View>
+            <View style={progressStyles.educationChapterSection}>
+              {idx === 0 || currentModule.id > educationChapterData[idx - 1].chapterComplete ? (
+                <CurrentChapterCircle
+                  chapter={chapter.chapter}
+                  type={"education"}
+                />
+              ) : (
+                <ChapterCircle chapter={chapter.chapter} />
+              )}
+              <Text style={progressStyles.chapterText}>
+                {chapter.chapterTitle}
+              </Text>
+            </View>
+            {idx < 3 ? (
+            <View style={progressStyles.educationLineSegment}>{dots}</View>
+            ) : null}
+          </View>
+        )}
+      </>
+    );
   });
 
   return (
     <View style={progressStyles.trackWrapper}>
       <Text style={progressStyles.trackHeader}>Education</Text>
-      <View style={progressStyles.educationChapterSection}>
-        {currentModule.id > 9 ? (
-          <Selected />
-        ) : (
-          <CurrentChapterCircle chapter={1} type={"education"} />
-        )}
-        <Text style={progressStyles.chapterText}>Introduction</Text>
-      </View>
-      <View>
-        {currentModule.id > 9 ? (
-          <EducationLineSegmentCompleted />
-        ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
-        )}
-      </View>
-      <View style={progressStyles.educationChapterSection}>
-        {currentModule.id > 21 ? (
-          <Selected />
-        ) : currentModule.id > 9 ? (
-          <CurrentChapterCircle chapter={2} type={"education"} />
-        ) : (
-          <ChapterCircle chapter={2} />
-        )}
-        <Text style={progressStyles.chapterText}>Influences</Text>
-      </View>
-      <View>
-        {currentModule.id > 21 ? (
-          <EducationLineSegmentCompleted />
-        ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
-        )}
-      </View>
-      <View style={progressStyles.educationChapterSection}>
-        {currentModule.id > 38 ? (
-          <Selected />
-        ) : currentModule.id > 21 ? (
-          <CurrentChapterCircle chapter={3} type={"education"} />
-        ) : (
-          <ChapterCircle chapter={3} />
-        )}
-        <Text style={progressStyles.chapterText}>Strategies</Text>
-      </View>
-      <View>
-        {currentModule.id > 38 ? (
-          <EducationLineSegmentCompleted />
-        ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
-        )}
-      </View>
-      <View style={progressStyles.educationChapterSection}>
-        {currentModule.id > 61 ? (
-          <Selected />
-        ) : currentModule.id > 38 ? (
-          <CurrentChapterCircle chapter={4} type={"education"} />
-        ) : (
-          <ChapterCircle chapter={4} />
-        )}
-        <Text style={progressStyles.chapterText}>Behaviors</Text>
-      </View>
+     {chapters}
     </View>
   );
 };

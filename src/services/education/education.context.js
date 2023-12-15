@@ -37,7 +37,7 @@ export const EducationContextProvider = ({ children }) => {
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
     };
 
-    const completeSkippedUnit = (unitId) => {
+    const completeEducationSkippedUnit = (unitId) => {
         const newCompletedModules = [...completedEducationModules, unitId];
         const sortedData = newCompletedModules.sort(function(a, b){return a-b});
         setCompletedEducationModules(sortedData);
@@ -146,7 +146,7 @@ export const EducationContextProvider = ({ children }) => {
                 currentModule, 
                 completeModule,
                 completedEducationModules,
-                completeSkippedUnit,
+                completeEducationSkippedUnit,
                 educationProgress,
                 lastCompletedModule,
                 setEducationProgress,

@@ -70,7 +70,7 @@ const NextRotated = styled.View`
     transform: rotate(90deg);
 `;
 
-export const ExpandableCard = ({ completeSkippedUnit, moduleType, navigation, title, units }) => {
+export const ExpandableCard = ({ moduleType, navigation, title, units, completeSkippedUnit }) => {
     const [expanded, setExpanded] = useState(false);
     const unitsPresent = units?.length;
 
