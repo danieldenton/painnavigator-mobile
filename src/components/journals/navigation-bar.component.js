@@ -225,7 +225,6 @@ export const NavigationBarLeft = ({
       ScreenOrientation.lockAsync(
         ScreenOrientation.OrientationLock.PORTRAIT_UP
       );
-      console.log("hey", orientation)
     }
   };
   return (
