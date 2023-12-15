@@ -4,8 +4,6 @@ import { Selected } from "../../../icons";
 import {
   CurrentChapterCircle,
   ChapterCircle,
-  EducationLineSegmentCompleted,
-  IncompleteBridge,
   progressStyles,
 } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
@@ -31,9 +29,9 @@ export const EducationProgress = () => {
       </View>
       <View>
         {currentModule.id > 9 ? (
-          <EducationLineSegmentCompleted />
+          <View style={progressStyles.educationLineSegmentCompleted} />
         ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
+          <View style={progressStyles.incompleteBridge}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.educationChapterSection}>
@@ -48,9 +46,9 @@ export const EducationProgress = () => {
       </View>
       <View>
         {currentModule.id > 21 ? (
-          <EducationLineSegmentCompleted />
+          <View style={progressStyles.educationLineSegmentCompleted} />
         ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
+          <View style={progressStyles.incompleteBridge}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.educationChapterSection}>
@@ -65,9 +63,9 @@ export const EducationProgress = () => {
       </View>
       <View>
         {currentModule.id > 38 ? (
-          <EducationLineSegmentCompleted />
+          <View style={progressStyles.educationLineSegmentCompleted} />
         ) : (
-          <IncompleteBridge>{dots}</IncompleteBridge>
+          <View style={progressStyles.incompleteBridge}>{dots}</View>
         )}
       </View>
       <View style={progressStyles.educationChapterSection}>
