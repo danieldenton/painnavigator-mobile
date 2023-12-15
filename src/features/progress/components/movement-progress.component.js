@@ -15,61 +15,61 @@ export const MovementProgress = () => {
 
   const chapterData = [
     {
-      chapter: 1, 
+      chapter: 1,
       chapterTitle: "Foundations",
-      chapterComplete: 5
+      chapterComplete: 5,
     },
     {
       chapter: 2,
       chapterTitle: "Progressing",
-      chapterComplete: 11
+      chapterComplete: 11,
     },
     {
       chapter: 3,
       chapterTitle: "Strength",
-      chapterComplete: 17
+      chapterComplete: 17,
     },
     {
       chapter: 4,
       chapterTitle: "Endurance",
-      chapterComplete: 23
+      chapterComplete: 23,
     },
     {
       chapter: 5,
       chapterTitle: "Core",
-      chapterComplete: 29
+      chapterComplete: 29,
     },
     {
       chapter: 6,
       chapterTitle: "Mastering",
-      chapterComplete: 35
-    }
-  ]
+      chapterComplete: 35,
+    },
+  ];
 
-const chapters = chapterData.map((chapter) => {
-  return (
-    <>
-    {movementProgress > chapter.chapterComplete ?
+  const chapters = chapterData.map((chapter) => {
+    return (
       <>
-    <View style={progressStyles.movementChapterSection}>
-          <PurpleCheckMark />
-          </View>
-          <View style={progressStyles.movementLineSegmentCompleted} />
-          </>
-          :
+        {movementProgress > chapter.chapterComplete ? (
           <>
-        <View style={progressStyles.movementChapterSection}>
-        <Text style={progressStyles.chapterText}>{chapter.chapterTitle}</Text>
-        </View>
-        <CurrentChapterCircle chapter={chapter.chapter} type={"movement"} />
-          <View style={progressStyles.movementLineSegment}>{dots}</View>
+            <View style={progressStyles.movementChapterSection}>
+              <PurpleCheckMark />
+            </View>
+            <View style={progressStyles.movementLineSegmentCompleted} />
           </>
-    }
-    </>
-    
-  )
-})
-
+        ) : (
+          <>
+            <View style={progressStyles.movementChapterSection}>
+              <Text style={progressStyles.chapterText}>
+                {chapter.chapterTitle}
+              </Text>
+            </View>
+            <CurrentChapterCircle chapter={chapter.chapter} type={"movement"} />
+            <View style={progressStyles.movementLineSegment}>{dots}</View>
+          </>
+        )}
+      </>
+    );
+  });
 
   return (
     <View style={progressStyles.trackWrapper}>
