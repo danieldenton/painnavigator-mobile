@@ -40,6 +40,11 @@ export const progressStyles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 111,
   },
+  movementChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: isAndroid ? 46 : 52.3,
+  },
   movementLineSegment: {
     position: "absolute",
     top: -52,
@@ -48,23 +53,13 @@ export const progressStyles = StyleSheet.create({
   },
   movementLineSegmentCompleted: {
     position: "absolute",
-    top: -55,
+    top: 36,
     left: 15.5,
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: 55,
+    height: isAndroid ? 46 : 53,
     width: 2.5,
-  },
-  movementChapterSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: isAndroid ? 54 : 55,
-  },
-  chapterCompleteSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: isAndroid ? 55 : 63,
   },
   chapterText: {
     position: "absolute",
@@ -89,15 +84,15 @@ const ChapterCircleWrapper = styled.View`
   justify-content: center;
   border: 2px #cbd7eb;
   border-radius: 100px;
-  height: 33px;
-  width: 33px;
+  height: 36px;
+  width: 36px;
   margin-left: 0.5px;
 `;
 
 const ChapterCircleText = styled.Text`
   color: #cbd7eb;
   font-family: Inter_700Bold;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const ChapterCircle = ({ chapter }) => {
@@ -113,8 +108,8 @@ const CurrentChapterCircleWrapper = styled.View`
   justify-content: center;
   border: 3px;
   border-radius: 100px;
-  height: 33px;
-  width: 33px;
+  height: 36px;
+  width: 36px;
   margin-left: 0.5px;
 `;
 
