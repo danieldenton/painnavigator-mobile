@@ -43,7 +43,7 @@ export const progressStyles = StyleSheet.create({
   movementChapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: isAndroid ? 46 : 52.3,
+    marginBottom: isAndroid ? 44 : 52.3,
   },
   movementLineSegment: {
     position: "absolute",
@@ -58,7 +58,7 @@ export const progressStyles = StyleSheet.create({
     borderColor: "#4056f4",
     borderLeftWidth: 2,
     borderRightWidth: 2,
-    height: isAndroid ? 46 : 53,
+    height: isAndroid ? 44 : 52.3,
     width: 2.5,
   },
   chapterText: {
