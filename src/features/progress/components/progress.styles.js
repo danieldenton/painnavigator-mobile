@@ -21,10 +21,15 @@ export const progressStyles = StyleSheet.create({
     marginLeft: -16,
     alignSelf: "center",
   },
-  incompleteBridge: {
+  educationChapterSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: isAndroid ? 97 : 111,
+  },
+  educationLineSegment: {
     position: "absolute",
-    top: -110,
-    left: 8,
+    top: isAndroid ? 37 : 39,
+    left: 9,
     height: 116,
   },
   educationLineSegmentCompleted: {
@@ -35,10 +40,11 @@ export const progressStyles = StyleSheet.create({
     borderColor: "#16a28b",
     height: 116,
   },
-  educationChapterSection: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 111,
+  chapterText: {
+    position: "absolute",
+    left: 44,
+    fontFamily: "Inter_500Medium",
+    fontSize: isAndroid ? 14 : 16,
   },
   movementChapterSection: {
     flexDirection: "row",
@@ -60,12 +66,6 @@ export const progressStyles = StyleSheet.create({
     borderRightWidth: 2,
     height: isAndroid ? 44 : 52.3,
     width: 2.5,
-  },
-  chapterText: {
-    position: "absolute",
-    left: 44,
-    fontFamily: "Inter_500Medium",
-    fontSize: isAndroid ? 14 : 16,
   },
   moveOnQuestionWrapper: {
     padding: 1,

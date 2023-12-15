@@ -5,6 +5,7 @@ import { PurpleCheckMark } from "../../../icons";
 import { CurrentChapterCircle, ChapterCircle } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { progressStyles } from "./progress.styles";
+import { movementChapterData } from "../data/chapter-data";
 
 export const MovementProgress = () => {
   const { movementProgress } = useContext(MovementContext);
@@ -13,44 +14,13 @@ export const MovementProgress = () => {
     return <DottedLineSegement key={index} />;
   });
 
-  const chapterData = [
-    {
-      chapter: 1,
-      chapterTitle: "Foundations",
-      chapterComplete: 5,
-    },
-    {
-      chapter: 2,
-      chapterTitle: "Progressing",
-      chapterComplete: 11,
-    },
-    {
-      chapter: 3,
-      chapterTitle: "Strength",
-      chapterComplete: 17,
-    },
-    {
-      chapter: 4,
-      chapterTitle: "Endurance",
-      chapterComplete: 23,
-    },
-    {
-      chapter: 5,
-      chapterTitle: "Core",
-      chapterComplete: 29,
-    },
-    {
-      chapter: 6,
-      chapterTitle: "Mastering",
-      chapterComplete: 35,
-    },
-  ];
+  
 
-  const chapters = chapterData.map((chapter, idx) => {
+  const chapters = movementChapterData.map((chapter, idx) => {
     return (
       <>
         {movementProgress > chapter.chapterComplete ? (
-          <View key={idx}>
+          <View>
             <View style={progressStyles.movementChapterSection}>
               <PurpleCheckMark />
               <Text style={progressStyles.chapterText}>
@@ -64,7 +34,7 @@ export const MovementProgress = () => {
         ) : (
           <View>
             <View style={progressStyles.movementChapterSection}>
-              {idx === 0 || movementProgress > chapterData[idx - 1].chapterComplete ? (
+              {idx === 0 || movementProgress > movementChapterData[idx - 1].chapterComplete ? (
                 <CurrentChapterCircle
                   chapter={chapter.chapter}
                   type={"movement"}
