@@ -8,8 +8,6 @@ import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { getMovementUnits } from "../../../services/movement/movement.service";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import * as ScreenOrientation from "expo-screen-orientation";
-import { isFocused } from "../../../utils";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
@@ -39,10 +37,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
       setSavedMovementUnits
     );
   }, []);
-
-  useEffect(() => {
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-  }, [isFocused])
 
   useEffect(() => {
     const data = savedMovementUnits?.map((module) =>

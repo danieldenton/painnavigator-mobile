@@ -1,9 +1,6 @@
 import { Platform } from "react-native";
 import * as Localization from 'expo-localization';
 import { track } from '@amplitude/analytics-react-native';
-import { useIsFocused } from "@react-navigation/native";
-
-export const isFocused = useIsFocused()
 
 export const isAndroid = Platform.OS === "android";
 

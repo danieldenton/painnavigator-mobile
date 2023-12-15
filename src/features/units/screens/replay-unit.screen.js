@@ -14,7 +14,7 @@ export const ReplayUnitScreen = ({ route, navigation }) => {
 
     return (
         <SafeView>
-            {type === "video" && <NavigationBarLeft screen={moduleType} destination={`${moduleType}Units`} navigation={navigation} />}
+            {type === "video" && <NavigationBarLeft screen={moduleType} destination={`${moduleType}Units`} navigation={navigation} orientation={true} />}
             {type === "video" && <VideoUnit unit={unit} />}
             {type === "audio" && <TextModuleNavBar screen={"Education"} destination={"EducationUnits"} navigation={navigation} id={id} />}
             {type === "audio" && <AudioUnit unit={unit} />}

@@ -35,7 +35,7 @@ import {
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
 import { Audio } from "expo-av";
-import { isFocused } from "../../../utils";
+import { useIsFocused } from "@react-navigation/native";
 import {
   getUser,
   patchLastDateOnApp,
@@ -82,6 +82,7 @@ export const TodayScreen = ({ navigation }) => {
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
 
+  const isFocused = useIsFocused();
   const educationProgramLength =
     educationProgram < 10
       ? educationPrograms[educationProgram - 1].educationModulesId.length

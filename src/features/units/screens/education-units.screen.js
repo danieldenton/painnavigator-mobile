@@ -8,8 +8,6 @@ import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context"
 import { educationModules } from "../../education/data/education-module-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
-import * as ScreenOrientation from "expo-screen-orientation"
-import { isFocused } from "../../../utils";
 
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
@@ -22,10 +20,6 @@ export const EducationUnitsScreen = ({ navigation }) => {
     useEffect(() => {
         setIsMovement(false)
     }, [])
-
-    useEffect(() => {
-        ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-      }, [isFocused])
     
     useEffect(() => {
         // the last education unit id is 62
