@@ -22,8 +22,8 @@ export const EducationProgress = () => {
   const chapters = educationChapterData.map((chapter, idx) => {
     return (
       <>
-        {currentModule > chapter.chapterComplete ? (
-          <View key={idx}>
+        {currentModule.id > chapter.chapterComplete ? (
+          <View>
             <View style={progressStyles.educationChapterSection}>
               <Selected />
               <Text style={progressStyles.chapterText}>
@@ -35,9 +35,9 @@ export const EducationProgress = () => {
             ) : null}
           </View>
         ) : (
-          <View key={idx}>
+          <View>
             <View style={progressStyles.educationChapterSection}>
-              {idx === 0 || currentModule > educationChapterData[idx - 1].chapterComplete ? (
+              {idx === 0 || currentModule.id > educationChapterData[idx - 1].chapterComplete ? (
                 <CurrentChapterCircle
                   chapter={chapter.chapter}
                   type={"education"}

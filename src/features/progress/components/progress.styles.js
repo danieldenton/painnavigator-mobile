@@ -34,11 +34,11 @@ export const progressStyles = StyleSheet.create({
   },
   educationLineSegmentCompleted: {
     position: "absolute",
-    top: -115,
+    top: 35,
     left: 15.5,
     borderWidth: 2,
     borderColor: "#16a28b",
-    height: 116,
+    height: isAndroid ? 99 : 115,
   },
   chapterText: {
     position: "absolute",
