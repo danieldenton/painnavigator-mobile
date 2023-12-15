@@ -8,6 +8,8 @@ import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { getMovementUnits } from "../../../services/movement/movement.service";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import * as ScreenOrientation from "expo-screen-orientation";
+import { isFocused } from "../../../utils";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
@@ -18,7 +20,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
     setIsMovement,
     setCompletedMovementModules,
     setSkippedMovementModules,
-    setSavedMovementUnits
+    setSavedMovementUnits,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
@@ -37,6 +39,10 @@ export const MovementUnitsScreen = ({ navigation }) => {
       setSavedMovementUnits
     );
   }, []);
+
+  useEffect(() => {
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+  }, [isFocused])
 
   useEffect(() => {
     const data = savedMovementUnits?.map((module) =>
@@ -61,34 +67,34 @@ export const MovementUnitsScreen = ({ navigation }) => {
 
   const movementExpandableCardData = [
     {
-        moduleType: "Movement",
-        title: "Saved",
-        units: savedMovementModuleData
+      moduleType: "Movement",
+      title: "Saved",
+      units: savedMovementModuleData,
     },
     {
-        moduleType: "Movement",
-        title: "Skipped",
-        units: skippedMovementModuleData
+      moduleType: "Movement",
+      title: "Skipped",
+      units: skippedMovementModuleData,
     },
     {
-        moduleType: "Movement",
-        title: "Completed",
-        units: completedMovementModuleData
-    }
-]
+      moduleType: "Movement",
+      title: "Completed",
+      units: completedMovementModuleData,
+    },
+  ];
 
-const movementUnitCards = movementExpandableCardData.map((card, idx) => {
+  const movementUnitCards = movementExpandableCardData.map((card, idx) => {
     return (
-        <ExpandableCard
-                moduleType={card.moduleType}
-                navigation={navigation}
-                title={card.title}
-                units={card.units} 
-                completeSkippedUnit={completeMovementSkippedUnit}
-                key={idx}
-            />
-    )
-})
+      <ExpandableCard
+        moduleType={card.moduleType}
+        navigation={navigation}
+        title={card.title}
+        units={card.units}
+        completeSkippedUnit={completeMovementSkippedUnit}
+        key={idx}
+      />
+    );
+  });
 
   return (
     <SafeView>

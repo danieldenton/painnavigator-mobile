@@ -12,7 +12,7 @@ import {
 import { Bookmark } from "../bookmark.component";
 import { track } from "@amplitude/analytics-react-native";
 import { MESSAGE_EVENTS } from "../../amplitude-events";
-
+import * as ScreenOrientation from "expo-screen-orientation";
 
 const NavContainer = styled.View`
   flex-direction: row;
@@ -20,11 +20,6 @@ const NavContainer = styled.View`
 `;
 
 const LeftPressableArea = styled(TouchableOpacity)`
-  flex: 0.25;
-  align-items: flex-start;
-`;
-
-const LeftSection = styled.View`
   flex: 0.25;
   align-items: flex-start;
 `;
@@ -44,12 +39,6 @@ const RightSection = styled.View`
   flex: 0.25;
   align-items: flex-end;
   justify-content: center;
-`;
-
-const LeftArea = styled.View`
-  border-radius: 100px;
-  margin-left: -16px;
-  padding: 16px;
 `;
 
 const RightArea = styled.View`
@@ -106,8 +95,11 @@ const UnreadIconContainer = styled.View`
   margin-right: -4px;
 `;
 
-export const TodayNavBar = ({ navigation, hasUnreadMessages, accessToWellnessCoach }) => {
-
+export const TodayNavBar = ({
+  navigation,
+  hasUnreadMessages,
+  accessToWellnessCoach,
+}) => {
   return (
     <NavContainer>
       <LeftPressableArea
@@ -220,15 +212,26 @@ export const NavigationBarLeft = ({
   navigation,
   screen,
   previousPage,
-  orientation
+  orientation,
 }) => {
+  const handleOnPress = () => {
+    if (previousPage) {
+      previousPage();
+    } else {
+      navigation.navigate(destination);
+    }
+
+    if (orientation) {
+      ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.PORTRAIT_UP
+      );
+    }
+  };
   return (
     <NavContainer>
       <LeftPressableArea
         accessibilityLabel={`go-to-${destination}`}
-        onPress={() => {
-          previousPage ? previousPage() : navigation.navigate(destination);
-        }}
+        onPress={() => handleOnPress()}
       >
         <Back />
       </LeftPressableArea>
