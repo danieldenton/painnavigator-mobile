@@ -24,6 +24,11 @@ const LeftPressableArea = styled(TouchableOpacity)`
   align-items: flex-start;
 `;
 
+const LeftSection = styled.View`
+  flex: 0.25;
+  align-items: flex-start;
+`;
+
 const HeaderSection = styled.View`
   flex: 0.5;
   align-items: center;
@@ -215,7 +220,7 @@ export const NavigationBarLeft = ({
   navigation,
   screen,
   previousPage,
-  
+  orientation
 }) => {
   return (
     <NavContainer>
