@@ -47,8 +47,8 @@ export const progressStyles = StyleSheet.create({
   },
   movementLineSegment: {
     position: "absolute",
-    top: -52,
-    left: 8,
+    top: isAndroid ? 34 : 39,
+    left: 9,
     height: isAndroid ? 45 : 55,
   },
   movementLineSegmentCompleted: {

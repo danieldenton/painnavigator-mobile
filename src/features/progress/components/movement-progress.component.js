@@ -62,10 +62,9 @@ export const MovementProgress = () => {
             ) : null}
           </View>
         ) : (
-          <>
+          <View>
             <View style={progressStyles.movementChapterSection}>
-              {idx > 0 &&
-              movementProgress > chapterData[idx - 1].chapterComplete ? (
+              {idx === 0 || movementProgress > chapterData[idx - 1].chapterComplete ? (
                 <CurrentChapterCircle
                   chapter={chapter.chapter}
                   type={"movement"}
@@ -77,8 +76,10 @@ export const MovementProgress = () => {
                 {chapter.chapterTitle}
               </Text>
             </View>
+            {idx < 5 ? (
             <View style={progressStyles.movementLineSegment}>{dots}</View>
-          </>
+            ) : null}
+          </View>
         )}
       </>
     );
