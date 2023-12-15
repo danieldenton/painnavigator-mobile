@@ -13,6 +13,61 @@ export const MovementProgress = () => {
     return <DottedLineSegement key={index} />;
   });
 
+  const chapterData = [
+    {
+      chapter: 1, 
+      chapterComplete: movementProgress > 5,
+      previousChapterComplete: null
+    },
+    {
+      chapter: 2,
+      chapterComplete: movementProgress > 11,
+      previousChapterComplete: null
+    },
+    {
+      chapter: 3,
+      chapterComplete: movementProgress > 17,
+      previousChapterComplete: null
+    },
+    {
+      chapter: 4,
+      chapterComplete: movementProgress > 23,
+      previousChapterComplete: null
+    },
+    {
+      chapter: 5,
+      chapterComplete: movementProgress > 29,
+      previousChapterComplete: null
+    },
+    {
+      chapter: 6,
+      chapterComplete: movementProgress > 35,
+      previousChapterComplete: null
+    }
+  ]
+
+const chapters = chapterData.map((chapter) => {
+  return (
+    <>
+    <View style={progressStyles.movementChapterSection}>
+        {movementProgress > 5 ? (
+          <PurpleCheckMark />
+        ) : (
+          <CurrentChapterCircle chapter={1} type={"movement"} />
+        )}
+        <Text style={progressStyles.chapterText}>Foundations</Text>
+      </View>
+      <View>
+        {movementProgress > 5 ? (
+          <View style={progressStyles.movementLineSegmentCompleted} />
+        ) : (
+          <View style={progressStyles.movementLineSegment}>{dots}</View>
+        )}
+      </View>
+      </>
+  )
+})
+
 
   return (
     <View style={progressStyles.trackWrapper}>
