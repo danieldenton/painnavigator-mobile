@@ -5,7 +5,6 @@ import { PurpleCheckMark } from "../../../icons";
 import { CurrentChapterCircle, ChapterCircle } from "./progress.styles";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
 import { progressStyles } from "./progress.styles";
-import { isAndroid } from "../../../utils";
 
 export const MovementProgress = () => {
   const { movementProgress } = useContext(MovementContext);

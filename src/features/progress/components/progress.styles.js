@@ -59,13 +59,12 @@ export const progressStyles = StyleSheet.create({
   movementChapterSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: isAndroid ? 54 : 55
+    marginBottom: isAndroid ? 54 : 55,
   },
   chapterCompleteSection: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: isAndroid ? 55 : 63,
-    
   },
   chapterText: {
     position: "absolute",
@@ -139,9 +138,9 @@ export const CurrentChapterCircle = ({ chapter, type }) => {
 };
 
 export const ProgressScreenWrapper = styled.View`
-    flex: .8;
-    flex-direction: row;
-    justify-content: center;
+  flex: 0.8;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export const ProgressTrackWrapper = styled.View`
