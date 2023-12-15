@@ -9,7 +9,7 @@ import { AudioUnit } from "../components/audio-unit.component";
 import { StackActions } from '@react-navigation/native';
 
 export const ReplayUnitScreen = ({ route, navigation }) => {
-    const { completeSkippedUnit, moduleType, title, unit } = route.params;
+    const { completeSkippedUnit, moduleType, unit, title } = route.params;
     const { type, id } = unit;
 
     return (
