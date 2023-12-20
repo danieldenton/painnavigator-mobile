@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import * as ScreenOrientation from "expo-screen-orientation"
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { educationPrograms } from "./../../education/data/education-programs-data.json";
@@ -142,7 +141,6 @@ export const TodayScreen = ({ navigation }) => {
     } else {
       setGreeting("Good Evening");
     }
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, [isFocused]);
 
   useEffect(() => {

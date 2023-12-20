@@ -78,6 +78,7 @@ export const EducationUnitScreen = ({ navigation }) => {
       <ButtonSection>
         <ModuleButton
           onPress={() => {
+            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
             {
               post_video_destination
                 ? postVideoAction()
@@ -85,7 +86,6 @@ export const EducationUnitScreen = ({ navigation }) => {
             }
             track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
             completeModule();
-            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
           }}
           title={"Mark Complete"}
         />

@@ -7,6 +7,7 @@ import { init } from "@amplitude/analytics-react-native";
 import { AMPLITUDE_API_KEY } from "@env";
 import * as Notifications from "expo-notifications";
 import * as TaskManager from "expo-task-manager";
+import * as ScreenOrientation from "expo-screen-orientation"
 
 const BACKGROUND_NOTIFICATIONS = "BACKGROUND-NOTIFICATION-TASK";
 
@@ -96,6 +97,8 @@ export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
 
   Notifications.registerTaskAsync(BACKGROUND_NOTIFICATIONS);
 
