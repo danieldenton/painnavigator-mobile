@@ -32,7 +32,7 @@
       "requireFullScreen": true,
       "initialOrientation": "PORTRAIT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "71",
+      "buildNumber": "73",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
