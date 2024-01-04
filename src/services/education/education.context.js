@@ -33,7 +33,7 @@ export const EducationContextProvider = ({ children }) => {
             education_progress: educationProgress   
         };
         setEducationProgress(educationProgress + 1)
-        postEducationModule(module, uid);
+        postEducationModule(uid, module);
         setCompletedEducationModules(prevCompleted => [...prevCompleted, currentModule.id]);
     };
 
@@ -50,7 +50,7 @@ export const EducationContextProvider = ({ children }) => {
             status: 1,
             education_progress: educationProgress        
         };
-        postEducationModule(module, uid);
+        postEducationModule(uid, module);
         if(!skippedEducationModules.includes(currentModule.id)){
             setSkippedEducationModules(prevSkipped => [...prevSkipped, currentModule.id]);
         };
