@@ -91,7 +91,6 @@ export const EducationContextProvider = ({ children }) => {
       );
       const data = response.data.data.attributes;
       setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
-
     } catch (error) {
       console.error(error);
     }
@@ -101,11 +100,9 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
-      education_progress: educationProgress,
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
-
     setLastCompletedEducationModuleDate(timeZonedTodaysDate);
   };
 
@@ -113,7 +110,6 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 1,
-      education_progress: educationProgress,
     };
     postEducationModule(uid, module);
     if (!skippedEducationModules.includes(currentModule.id)) {
@@ -130,7 +126,7 @@ export const EducationContextProvider = ({ children }) => {
         `${API_URL}/api/v2/education_module_completions`,
         {
           uid: uid,
-          education_module_completion: module,
+          education_module_completion: { status: 0 },
         }
       );
       return response;
