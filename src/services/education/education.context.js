@@ -52,9 +52,7 @@ export const EducationContextProvider = ({ children }) => {
     try {
       const response = await axios.get(
         `${API_URL}/api/v2/education_module_completions`,
-        {
-          uid: uid
-        }
+        { uid: uid }
       );
       const data = response.data.data;
       const completions = data.map((completion) => {
