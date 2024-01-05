@@ -73,7 +73,6 @@ export const EducationContextProvider = ({ children }) => {
         (completion) => completion.status === "skipped"
       );
       setSkippedEducationModules(skipped);
-
     } catch (error) {
       console.error(error);
     }
@@ -90,7 +89,9 @@ export const EducationContextProvider = ({ children }) => {
           education_module_completion: module,
         }
       );
-      return response;
+      const data = response.data.data.attributes;
+      setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
+
     } catch (error) {
       console.error(error);
     }
@@ -104,10 +105,7 @@ export const EducationContextProvider = ({ children }) => {
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
-    setCompletedEducationModules((prevCompleted) => [
-      ...prevCompleted,
-      currentModule.id,
-    ]);
+
     setLastCompletedEducationModuleDate(timeZonedTodaysDate);
   };
 
