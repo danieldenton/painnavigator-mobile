@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { formatDate } from "../../utils";
+import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -45,6 +45,11 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
+  useEffect(() => {
+    const date = formatBackendCreatedAtDate(completedEducationModules[0].created_at);
+    setLastCompletedModuleDate(date);
+  }, [completedEducationModules])
+
   const getEducationModuleCompletions = async (uid) => {
     try {
       const response = await axios.get(
@@ -61,9 +66,6 @@ export const EducationContextProvider = ({ children }) => {
       setSkippedEducationModules(
         completions.filter((completion) => completion.status === "skipped")
       );
-      const date = formatDate(completions[0].created_at);
-      console.log(date)
-      setLastCompletedModuleDate(date);
     } catch (error) {
       console.error(error);
     }
