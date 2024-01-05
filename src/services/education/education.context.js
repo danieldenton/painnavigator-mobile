@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { formatBackendCreatedAtDate } from "../../utils";
+import { formatBackendCreatedAtDate, timeZonedTodaysDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -58,16 +58,36 @@ export const EducationContextProvider = ({ children }) => {
       const completions = data.map((completion) => {
         return completion.attributes;
       });
-      setCompletedEducationModules(
-        completions.filter((completion) => completion.status === "completed")
+
+      const completed = completions.filter(
+        (completion) => completion.status === "completed"
       );
-      setSkippedEducationModules(
-        completions.filter((completion) => completion.status === "skipped")
+      const completedModules = completed.map((mod) => {
+        return mod.module_id;
+      });
+      const completedModulesDuplicatesRemoved = [...new Set(completedModules)];
+      setCompletedEducationModules(completedModulesDuplicatesRemoved);
+
+      const lastModuleDate = formatBackendCreatedAtDate(
+        completed[0].created_at
       );
-      const date = formatBackendCreatedAtDate(
-        completedEducationModules[0].created_at
+      setLastCompletedEducationModuleDate(lastModuleDate);
+
+      const skipped = completions.filter(
+        (completion) => completion.status === "skipped"
       );
-      setLastCompletedEducationModuleDate(date);
+      const skippedModules = skipped.map((mod) => {
+        return mod.module_id;
+      });
+      const skippedModulesDuplicatesRemoved = [...new Set(skippedModules)];
+      const skippedModulesCompletionsRemoved =
+        skippedModulesDuplicatesRemoved.map((mod_id) => {
+          if (!completedModules.includes(mod_id)) {
+            return mod_id;
+          }
+        });
+      setSkippedEducationModules(skippedModulesCompletionsRemoved);
+
     } catch (error) {
       console.error(error);
     }
@@ -102,6 +122,7 @@ export const EducationContextProvider = ({ children }) => {
       ...prevCompleted,
       currentModule.id,
     ]);
+    setLastCompletedEducationModuleDate(timeZonedTodaysDate);
   };
 
   const skipModule = () => {

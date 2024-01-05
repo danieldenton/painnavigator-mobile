@@ -22,7 +22,7 @@ export const EducationUnitsScreen = ({ navigation }) => {
     }, [])
     
     useEffect(() => {
-        // the last education unit id is 62
+        // the last education unit id is 62. Not anymore!!!!
         const firstMovementUnit = 63; 
         const educationBookmarks = bookmarks?.filter(bookmark => bookmark < firstMovementUnit);
         const data = educationBookmarks.map(bookmark => educationModules.find(item => item.id === bookmark));

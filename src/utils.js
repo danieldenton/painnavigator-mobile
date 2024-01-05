@@ -38,7 +38,6 @@ export function formatDate(date_time_value) {
 
 export function formatBackendCreatedAtDate(dateString) {
   const dateObject = new Date(dateString);
-  console.log(dateObject);
   const newDate = formatDate(dateObject);
   return newDate;
 }
