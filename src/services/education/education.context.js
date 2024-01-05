@@ -15,7 +15,7 @@ export const EducationContextProvider = ({ children }) => {
     []
   );
   const [skippedEducationModules, setSkippedEducationModules] = useState([]);
-  const [lastCompletedModuleDate, setLastCompletedModuleDate] = useState(null);
+  const [lastCompletedEducationModuleDate, setLastCompletedEducationModuleDate] = useState(null);
   const { uid, educationProgram } = useContext(AuthenticationContext);
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
@@ -47,7 +47,7 @@ export const EducationContextProvider = ({ children }) => {
 
   useEffect(() => {
     const date = formatBackendCreatedAtDate(completedEducationModules[0].created_at);
-    setLastCompletedModuleDate(date);
+    setLastCompletedEducationModuleDate(date);
   }, [completedEducationModules])
 
   const getEducationModuleCompletions = async (uid) => {
@@ -152,9 +152,9 @@ export const EducationContextProvider = ({ children }) => {
         completedEducationModules,
         completeEducationSkippedUnit,
         educationProgress,
-        lastCompletedModuleDate,
+        lastCompletedEducationModuleDate,
         setEducationProgress,
-        setLastCompletedModuleDate,
+        setLastCompletedEducationModuleDate,
         skipModule,
         skippedEducationModules,
         shorterProgram,

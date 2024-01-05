@@ -75,7 +75,7 @@ export const TodayScreen = ({ navigation }) => {
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
-  const { educationProgress, lastCompletedModuleDate, setEducationProgress, getEducationModuleCompletions } =
+  const { educationProgress, lastCompletedEducationModuleDate, setEducationProgress, getEducationModuleCompletions } =
     useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -98,8 +98,6 @@ export const TodayScreen = ({ navigation }) => {
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
   );
-  const lastEducationModule =
-    lastCompletedModuleDate !== null && formatDate(lastCompletedModuleDate);
   const lastEducationModuleId = educationProgress - 1;
 
 console.log(timeZonedTodaysDate)
@@ -216,7 +214,7 @@ console.log(timeZonedTodaysDate)
           {!completedAllEducationModules && (
             <SubHeader title={"TODAY'S EDUCATION"} size={14} />
           )}
-          {lastEducationModule === timeZonedTodaysDate && (
+          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
             <DailyGoalCompleted
               type={"module"}
               moduleId={lastEducationModuleId}
