@@ -75,7 +75,7 @@ export const TodayScreen = ({ navigation }) => {
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
-  const { educationProgress, lastCompletedModule, setEducationProgress } =
+  const { educationProgress, lastCompletedModule, setEducationProgress, getEducationModuleCompletions } =
     useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -119,9 +119,8 @@ export const TodayScreen = ({ navigation }) => {
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
+    getEducationModuleCompletions(uid)
   }, []);
-
-  console.log(uid)
                  
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {

@@ -48,9 +48,12 @@ export const EducationContextProvider = ({ children }) => {
   const getEducationModuleCompletions = async (uid) => {
     try {
         const response = await axios.get(`${API_URL}/api/v2/education_module_completions`, { uid: uid })
-        const data = response.data.attributes
-        setCompletedEducationModules()
-        setSkippedEducationModules()
+        const data = response.data.data
+        const completions = data.map((completion) => {
+            return completion.attributes
+        })
+        setCompletedEducationModules(completions.filter((completion) => completion.status === "completed"))
+        setSkippedEducationModules(completions.filter((completion) => completion.status === "skipped"))
     } catch (error) {
       console.error(error);
     }
@@ -217,6 +220,7 @@ export const EducationContextProvider = ({ children }) => {
   return (
     <EducationContext.Provider
       value={{
+        getEducationModuleCompletions,
         currentModule,
         completeModule,
         completedEducationModules,
