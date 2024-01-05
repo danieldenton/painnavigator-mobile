@@ -61,8 +61,9 @@ export const EducationContextProvider = ({ children }) => {
       setSkippedEducationModules(
         completions.filter((completion) => completion.status === "skipped")
       );
-
-      setLastCompletedModuleDate(completions[0].created_at)
+      const date = formatDate(completions[0].created_at);
+      console.log(date)
+      setLastCompletedModuleDate(date);
     } catch (error) {
       console.error(error);
     }
