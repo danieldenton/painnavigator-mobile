@@ -18,7 +18,6 @@ export const patchCompleteSkippedEducationModule = async (uid, module) => {
         const response = await axios.patch(`${API_URL}/api/v2/education_module_completions`, {
             uid: uid, 
             education_module_completion: module, 
-            status: "completed"
         })
         return response
     } catch (error) {
