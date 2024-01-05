@@ -15,7 +15,10 @@ export const EducationContextProvider = ({ children }) => {
     []
   );
   const [skippedEducationModules, setSkippedEducationModules] = useState([]);
-  const [lastCompletedEducationModuleDate, setLastCompletedEducationModuleDate] = useState(null);
+  const [
+    lastCompletedEducationModuleDate,
+    setLastCompletedEducationModuleDate,
+  ] = useState(null);
   const { uid, educationProgram } = useContext(AuthenticationContext);
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
@@ -45,11 +48,6 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
-  useEffect(() => {
-    const date = formatBackendCreatedAtDate(completedEducationModules[0].created_at);
-    setLastCompletedEducationModuleDate(date);
-  }, [completedEducationModules])
-
   const getEducationModuleCompletions = async (uid) => {
     try {
       const response = await axios.get(
@@ -66,6 +64,10 @@ export const EducationContextProvider = ({ children }) => {
       setSkippedEducationModules(
         completions.filter((completion) => completion.status === "skipped")
       );
+      const date = formatBackendCreatedAtDate(
+        completedEducationModules[0].created_at
+      );
+      setLastCompletedEducationModuleDate(date);
     } catch (error) {
       console.error(error);
     }

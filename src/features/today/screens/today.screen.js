@@ -75,8 +75,12 @@ export const TodayScreen = ({ navigation }) => {
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
-  const { educationProgress, lastCompletedEducationModuleDate, setEducationProgress, getEducationModuleCompletions } =
-    useContext(EducationContext);
+  const {
+    educationProgress,
+    lastCompletedEducationModuleDate,
+    setEducationProgress,
+    getEducationModuleCompletions,
+  } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
@@ -85,7 +89,7 @@ export const TodayScreen = ({ navigation }) => {
   const educationProgramLength =
     educationProgram < 10
       ? educationPrograms[educationProgram - 1].educationModulesId.length
-      : null;      
+      : null;
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
@@ -100,7 +104,6 @@ export const TodayScreen = ({ navigation }) => {
   );
   const lastEducationModuleId = educationProgress - 1;
 
-console.log(timeZonedTodaysDate)
   useEffect(() => {
     getUser(
       uid,
@@ -118,9 +121,9 @@ console.log(timeZonedTodaysDate)
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
-    getEducationModuleCompletions(uid)
+    getEducationModuleCompletions(uid);
   }, []);
-                 
+
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
       patchLastDateOnApp(uid, timeZonedTodaysDate);
