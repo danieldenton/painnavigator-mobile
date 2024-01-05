@@ -45,6 +45,17 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
+  const getEducationModuleCompletions = async (uid) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v2/education_module_completions`, { uid: uid })
+        const data = response.data.attributes
+        setCompletedEducationModules()
+        setSkippedEducationModules()
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // complete and skipped education module posting below
 
   const postEducationModule = async (uid, module) => {
@@ -60,7 +71,7 @@ export const EducationContextProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const completeModule = () => {
     const module = {
@@ -116,7 +127,6 @@ export const EducationContextProvider = ({ children }) => {
       prevSkipped.filter((unit) => unit !== unitId)
     );
   };
-
 
   const saveCompletedEducationModules = async (value) => {
     try {
