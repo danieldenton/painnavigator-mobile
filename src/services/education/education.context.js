@@ -91,6 +91,7 @@ export const EducationContextProvider = ({ children }) => {
       );
       const data = response.data.data.attributes;
       setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
+
     } catch (error) {
       console.error(error);
     }
@@ -100,6 +101,7 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
+      education_progress: educationProgress,
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
@@ -110,6 +112,7 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 1,
+      education_progress: educationProgress,
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
