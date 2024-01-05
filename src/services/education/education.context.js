@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { formatDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -15,7 +15,7 @@ export const EducationContextProvider = ({ children }) => {
     []
   );
   const [skippedEducationModules, setSkippedEducationModules] = useState([]);
-  const [lastCompletedModule, setLastCompletedModule] = useState(null);
+  const [lastCompletedModuleDate, setLastCompletedModuleDate] = useState(null);
   const { uid, educationProgram } = useContext(AuthenticationContext);
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
@@ -47,13 +47,22 @@ export const EducationContextProvider = ({ children }) => {
 
   const getEducationModuleCompletions = async (uid) => {
     try {
-        const response = await axios.get(`${API_URL}/api/v2/education_module_completions`, { uid: uid })
-        const data = response.data.data
-        const completions = data.map((completion) => {
-            return completion.attributes
-        })
-        setCompletedEducationModules(completions.filter((completion) => completion.status === "completed"))
-        setSkippedEducationModules(completions.filter((completion) => completion.status === "skipped"))
+      const response = await axios.get(
+        `${API_URL}/api/v2/education_module_completions`,
+        { uid: uid }
+      );
+      const data = response.data.data;
+      const completions = data.map((completion) => {
+        return completion.attributes;
+      });
+      setCompletedEducationModules(
+        completions.filter((completion) => completion.status === "completed")
+      );
+      setSkippedEducationModules(
+        completions.filter((completion) => completion.status === "skipped")
+      );
+
+      setLastCompletedModuleDate(completions[0].created_at)
     } catch (error) {
       console.error(error);
     }
@@ -131,92 +140,6 @@ export const EducationContextProvider = ({ children }) => {
     );
   };
 
-  const saveCompletedEducationModules = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@completed_education_modules", jsonValue);
-    } catch (e) {
-      console.log("error storing completed_education_modules", e);
-    }
-  };
-
-  const loadCompletedEducationModules = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@completed_education_modules");
-      if (value !== null) {
-        setCompletedEducationModules(JSON.parse(value));
-      }
-    } catch (e) {
-      console.log("error loading completed_education_modules", e);
-    }
-  };
-
-  useEffect(() => {
-    loadCompletedEducationModules();
-  }, []);
-
-  useEffect(() => {
-    saveCompletedEducationModules(completedEducationModules);
-  }, [completedEducationModules]);
-
-  const saveSkippedEducationModules = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@skipped_education_modules", jsonValue);
-    } catch (e) {
-      console.log("error storing skipped_education_modules", e);
-    }
-  };
-
-  const loadSkippedEdcuationModules = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@skipped_education_modules");
-      if (value !== null) {
-        setSkippedEducationModules(JSON.parse(value));
-      }
-    } catch (e) {
-      console.log("error loading skipped_education_modules", e);
-    }
-  };
-
-  useEffect(() => {
-    loadSkippedEdcuationModules();
-  }, []);
-
-  useEffect(() => {
-    saveSkippedEducationModules(skippedEducationModules);
-  }, [skippedEducationModules]);
-
-  const saveLastCompletedModule = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@last_completed_education_module", jsonValue);
-    } catch (e) {
-      console.log("error storing last_completed_education_module", e);
-    }
-  };
-
-  const loadLastCompletedModule = async () => {
-    try {
-      const value = await AsyncStorage.getItem(
-        "@last_completed_education_module"
-      );
-      if (value !== null) {
-        setLastCompletedModule(JSON.parse(value));
-      }
-    } catch (e) {
-      console.log("error loading last_completed_education_module", e);
-    }
-  };
-
-  useEffect(() => {
-    loadLastCompletedModule();
-  }, []);
-
-  useEffect(() => {
-    saveLastCompletedModule(lastCompletedModule);
-  }, [lastCompletedModule]);
-
   return (
     <EducationContext.Provider
       value={{
@@ -226,9 +149,9 @@ export const EducationContextProvider = ({ children }) => {
         completedEducationModules,
         completeEducationSkippedUnit,
         educationProgress,
-        lastCompletedModule,
+        lastCompletedModuleDate,
         setEducationProgress,
-        setLastCompletedModule,
+        setLastCompletedModuleDate,
         skipModule,
         skippedEducationModules,
         shorterProgram,

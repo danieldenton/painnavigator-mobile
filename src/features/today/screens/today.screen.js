@@ -75,7 +75,7 @@ export const TodayScreen = ({ navigation }) => {
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
-  const { educationProgress, lastCompletedModule, setEducationProgress, getEducationModuleCompletions } =
+  const { educationProgress, lastCompletedModuleDate, setEducationProgress, getEducationModuleCompletions } =
     useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -85,7 +85,7 @@ export const TodayScreen = ({ navigation }) => {
   const educationProgramLength =
     educationProgram < 10
       ? educationPrograms[educationProgram - 1].educationModulesId.length
-      : null;
+      : null;      
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
@@ -99,9 +99,10 @@ export const TodayScreen = ({ navigation }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
   const lastEducationModule =
-    lastCompletedModule !== null && formatDate(lastCompletedModule);
+    lastCompletedModuleDate !== null && formatDate(lastCompletedModuleDate);
   const lastEducationModuleId = educationProgress - 1;
 
+console.log(timeZonedTodaysDate)
   useEffect(() => {
     getUser(
       uid,
