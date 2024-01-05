@@ -86,10 +86,10 @@ export const ExpandableCard = ({ moduleType, navigation, title, units, completeS
                         title: title 
                     }
                 )}
-                // key={unit.id}
+                key={unit.id}
             > 
                 <OptionTextSection>
-                    {/* <OptionText>{unit.name}</OptionText> */}
+                    <OptionText>{unit.name}</OptionText>
                 </OptionTextSection>
                 <OptionIconSection>
                     <Next />

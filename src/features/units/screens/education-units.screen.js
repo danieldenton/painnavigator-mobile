@@ -30,12 +30,12 @@ export const EducationUnitsScreen = ({ navigation }) => {
     }, [bookmarks]);
 
     useEffect(() => {
-        const data = completedEducationModules?.map(module => educationModules.find(item => item.id === module));
+        const data = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
         setCompletedEducationModuleData(data);
     }, [completedEducationModules]);
 
     useEffect(() => {
-        const data = skippedEducationModules?.map(module => educationModules.find(item => item.id === module));
+        const data = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
         setSkippedEducationModuleData(data);
     }, [skippedEducationModules]);
 

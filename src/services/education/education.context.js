@@ -62,11 +62,7 @@ export const EducationContextProvider = ({ children }) => {
       const completed = completions.filter(
         (completion) => completion.status === "completed"
       );
-      const completedModules = completed.map((mod) => {
-        return mod.module_id;
-      });
-      const completedModulesDuplicatesRemoved = [...new Set(completedModules)];
-      setCompletedEducationModules(completedModulesDuplicatesRemoved);
+      setCompletedEducationModules(completed);
 
       const lastModuleDate = formatBackendCreatedAtDate(
         completed[0].created_at
@@ -76,17 +72,7 @@ export const EducationContextProvider = ({ children }) => {
       const skipped = completions.filter(
         (completion) => completion.status === "skipped"
       );
-      const skippedModules = skipped.map((mod) => {
-        return mod.module_id;
-      });
-      const skippedModulesDuplicatesRemoved = [...new Set(skippedModules)];
-      const skippedModulesCompletionsRemoved =
-        skippedModulesDuplicatesRemoved.map((mod_id) => {
-          if (!completedModules.includes(mod_id)) {
-            return mod_id;
-          }
-        });
-      setSkippedEducationModules(skippedModulesCompletionsRemoved);
+      setSkippedEducationModules(skipped);
 
     } catch (error) {
       console.error(error);
