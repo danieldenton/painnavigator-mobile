@@ -75,6 +75,7 @@ export const ExpandableCard = ({ moduleType, navigation, title, units, completeS
     const unitsPresent = units?.length;
 
     const unitButtons = units?.map((unit) => {
+        console.log(unit)
         return (
             <OptionButton 
                 onPress={() => navigation.navigate("ReplayUnit", 
@@ -85,10 +86,10 @@ export const ExpandableCard = ({ moduleType, navigation, title, units, completeS
                         title: title 
                     }
                 )}
-                key={unit.id}
+                // key={unit.id}
             > 
                 <OptionTextSection>
-                    <OptionText>{unit.name}</OptionText>
+                    {/* <OptionText>{unit.name}</OptionText> */}
                 </OptionTextSection>
                 <OptionIconSection>
                     <Next />
