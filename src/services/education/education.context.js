@@ -52,7 +52,9 @@ export const EducationContextProvider = ({ children }) => {
     try {
       const response = await axios.get(
         `${API_URL}/api/v2/education_module_completions`,
-        { uid: uid }
+        {
+          uid: uid
+        }
       );
       const data = response.data.data;
       const completions = data.map((completion) => {
@@ -91,7 +93,6 @@ export const EducationContextProvider = ({ children }) => {
       );
       const data = response.data.data.attributes;
       setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
-
     } catch (error) {
       console.error(error);
     }
@@ -105,7 +106,6 @@ export const EducationContextProvider = ({ children }) => {
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
-    setLastCompletedEducationModuleDate(timeZonedTodaysDate);
   };
 
   const skipModule = () => {
