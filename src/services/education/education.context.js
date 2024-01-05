@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, createContext } from "react";
-import { postEducationModule } from "./education.service";
+import { postEducationModule, patchCompleteSkippedEducationModule } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json"
 import { AuthenticationContext } from "../authentication/authentication.context";
