@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { timeZonedTodaysDate } from "../../utils";
+import { formatBackendCreatedAtDate, timeZonedTodaysDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -67,6 +67,11 @@ export const EducationContextProvider = ({ children }) => {
         (completion) => completion.status === "completed"
       );
       setCompletedEducationModules(completed);
+
+      const lastModuleDate = formatBackendCreatedAtDate(
+        completed[0].created_at
+      );
+      setLastCompletedEducationModuleDate(lastModuleDate);
 
       const skipped = completions.filter(
         (completion) => completion.status === "skipped"
