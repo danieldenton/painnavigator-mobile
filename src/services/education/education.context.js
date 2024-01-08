@@ -78,8 +78,6 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  // complete and skipped education module posting below
-
   const postEducationModule = async (uid, module) => {
     try {
       const response = await axios.post(
