@@ -4,7 +4,6 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { timeZonedTodaysDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -15,10 +14,6 @@ export const EducationContextProvider = ({ children }) => {
     []
   );
   const [skippedEducationModules, setSkippedEducationModules] = useState([]);
-  const [
-    lastCompletedEducationModuleDate,
-    setLastCompletedEducationModuleDate,
-  ] = useState(null);
   const { uid, educationProgram } = useContext(AuthenticationContext);
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
@@ -61,18 +56,16 @@ export const EducationContextProvider = ({ children }) => {
 
       if (completions) {
         setEducationProgress(completions[0].module_id + 1);
+        const completed = completions.filter(
+          (completion) => completion.status === "completed"
+        );
+        setCompletedEducationModules(completed);
+        const skipped = completions.filter(
+          (completion) => completion.status === "skipped"
+        );
+        setSkippedEducationModules(skipped);
       }
-
-      const completed = completions.filter(
-        (completion) => completion.status === "completed"
-      );
-      setCompletedEducationModules(completed);
-
-      const skipped = completions.filter(
-        (completion) => completion.status === "skipped"
-      );
-      setSkippedEducationModules(skipped);
-
+      
     } catch (error) {
       console.error(error);
     }
@@ -90,12 +83,14 @@ export const EducationContextProvider = ({ children }) => {
       const data = response.data.data.attributes;
 
       if (data.status === "completed") {
-        setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
+        setCompletedEducationModules((prevCompleted) => [
+          data,
+          ...prevCompleted,
+        ]);
       } else {
-        setSkippedEducationModules((prevSkipped) => [...prevSkipped, data])
-        console.log(skippedEducationModules, data.status)
+        setSkippedEducationModules((prevSkipped) => [data, ...prevSkipped]);
+        console.log(skippedEducationModules, data.status);
       }
-      
     } catch (error) {
       console.error(error);
     }
@@ -123,7 +118,6 @@ export const EducationContextProvider = ({ children }) => {
     };
     postEducationModule(uid, module);
     setEducationProgress(educationProgress + 1);
-    setLastCompletedEducationModuleDate(timeZonedTodaysDate);
   };
 
   const skipModule = () => {
@@ -133,12 +127,6 @@ export const EducationContextProvider = ({ children }) => {
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
-    if (!skippedEducationModules.includes(currentModule.id)) {
-      setSkippedEducationModules((prevSkipped) => [
-        ...prevSkipped,
-        currentModule.id,
-      ]);
-    }
   };
 
   const completeEducationSkippedUnit = (unitId) => {
@@ -161,9 +149,7 @@ export const EducationContextProvider = ({ children }) => {
         completedEducationModules,
         completeEducationSkippedUnit,
         educationProgress,
-        lastCompletedEducationModuleDate,
         setEducationProgress,
-        setLastCompletedEducationModuleDate,
         skipModule,
         skippedEducationModules,
         shorterProgram,
