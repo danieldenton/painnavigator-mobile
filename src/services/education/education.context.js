@@ -59,6 +59,10 @@ export const EducationContextProvider = ({ children }) => {
         return completion.attributes;
       });
 
+      if (completions) {
+        setEducationProgress(completions[0].module_id + 1)
+      }
+
       const completed = completions.filter(
         (completion) => completion.status === "completed"
       );
@@ -73,6 +77,7 @@ export const EducationContextProvider = ({ children }) => {
         (completion) => completion.status === "skipped"
       );
       setSkippedEducationModules(skipped);
+
     } catch (error) {
       console.error(error);
     }
