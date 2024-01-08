@@ -31,9 +31,10 @@ export const foodJournalTimeZonedTodaysDate = new Intl.DateTimeFormat("en-US", {
 }).format(todaysDate);
 
 export function formatDate(date_time_value) {
-  return date_time_value
-    ? new Intl.DateTimeFormat("en-US", options).format(date_time_value)
-    : null;
+  if (date_time_value) {
+    const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date_time_value)
+    return formattedDate
+  }
 }
 
 export function formatBackendCreatedAtDate(dateString) {

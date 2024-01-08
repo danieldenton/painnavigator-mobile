@@ -4,7 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "../../features/education/data/education-programs-data.json";
 import { AuthenticationContext } from "../authentication/authentication.context";
-import { formatBackendCreatedAtDate, timeZonedTodaysDate } from "../../utils";
+import { timeZonedTodaysDate } from "../../utils";
 
 export const EducationContext = createContext();
 

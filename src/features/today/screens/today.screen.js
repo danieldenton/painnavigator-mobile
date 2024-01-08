@@ -46,6 +46,7 @@ import {
   todaysDate,
   timeZone,
   timeZonedTodaysDate,
+  formatBackendCreatedAtDate,
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
@@ -78,8 +79,8 @@ export const TodayScreen = ({ navigation }) => {
   const {
     educationProgress,
     completedEducationModules,
-    lastCompletedEducationModuleDate,
     getEducationModuleCompletions,
+    lastCompletedEducationModuleDate
   } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -102,7 +103,7 @@ export const TodayScreen = ({ navigation }) => {
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
   );
-  const lastEducationModuleId = educationProgress - 1;
+  const lastEducationModuleId = completedEducationModules[0]?.module_id;
 
   useEffect(() => {
     getUser(
