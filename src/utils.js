@@ -38,9 +38,11 @@ export function formatDate(date_time_value) {
 }
 
 export function formatBackendCreatedAtDate(dateString) {
-  const dateObject = new Date(dateString);
-  const newDate = formatDate(dateObject);
-  return newDate;
+  if (dateString) {
+    const dateObject = new Date(dateString);
+    const newDate = formatDate(dateObject);
+    return newDate;
+  }
 }
 
 export function formatDateNoYear(date_time_value) {

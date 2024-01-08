@@ -80,7 +80,6 @@ export const TodayScreen = ({ navigation }) => {
     educationProgress,
     completedEducationModules,
     getEducationModuleCompletions,
-    lastCompletedEducationModuleDate
   } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -104,6 +103,9 @@ export const TodayScreen = ({ navigation }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
   const lastEducationModuleId = completedEducationModules[0]?.module_id;
+  const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
+    completedEducationModules[0]?.created_at
+  );
 
   useEffect(() => {
     getUser(
