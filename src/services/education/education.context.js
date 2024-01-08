@@ -68,16 +68,11 @@ export const EducationContextProvider = ({ children }) => {
       );
       setCompletedEducationModules(completed);
 
-      const lastModuleDate = formatBackendCreatedAtDate(
-        completed[0].created_at
-      );
-      setLastCompletedEducationModuleDate(lastModuleDate);
-
       const skipped = completions.filter(
         (completion) => completion.status === "skipped"
       );
       setSkippedEducationModules(skipped);
-      
+
     } catch (error) {
       console.error(error);
     }
@@ -98,6 +93,7 @@ export const EducationContextProvider = ({ children }) => {
         setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
       } else {
         setSkippedEducationModules((prevSkipped) => [...prevSkipped, data])
+        console.log(skippedEducationModules, data.status)
       }
       
     } catch (error) {

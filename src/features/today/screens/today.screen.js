@@ -77,6 +77,7 @@ export const TodayScreen = ({ navigation }) => {
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
   const {
     educationProgress,
+    completedEducationModules,
     lastCompletedEducationModuleDate,
     getEducationModuleCompletions,
   } = useContext(EducationContext);
