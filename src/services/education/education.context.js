@@ -65,7 +65,6 @@ export const EducationContextProvider = ({ children }) => {
         );
         setSkippedEducationModules(skipped);
       }
-      
     } catch (error) {
       console.error(error);
     }
@@ -89,23 +88,20 @@ export const EducationContextProvider = ({ children }) => {
         ]);
       } else {
         setSkippedEducationModules((prevSkipped) => [data, ...prevSkipped]);
-        console.log(skippedEducationModules, data.status);
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const patchCompleteSkippedEducationModule = async (uid, module) => {
+  const patchCompleteSkippedEducationModule = async (skippedModuleId) => {
     try {
       const response = await axios.patch(
-        `${API_URL}/api/v2/education_module_completions`,
-        {
-          uid: uid,
-          education_module_completion: { status: 0 },
-        }
+        `${API_URL}/api/v2/education_module_completions/${skippedModuleId}`,
+        { status: 0 }
       );
-      return response;
+      const data = response.data.data.attributes;
+      setCompletedEducationModules((prevCompleted) => [data, ...prevCompleted]);
     } catch (error) {
       console.error(error);
     }
@@ -125,19 +121,17 @@ export const EducationContextProvider = ({ children }) => {
       module_id: currentModule.id,
       status: 1,
     };
-    setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
+    setEducationProgress(educationProgress + 1);
   };
 
   const completeEducationSkippedUnit = (unitId) => {
-    const newCompletedModules = [...completedEducationModules, unitId];
-    const sortedData = newCompletedModules.sort(function (a, b) {
-      return a - b;
-    });
-    setCompletedEducationModules(sortedData);
+    const skippedModule = skippedEducationModules.find(module => module.module_id === unitId)   
+    patchCompleteSkippedEducationModule(skippedModule.id)
     setSkippedEducationModules((prevSkipped) =>
-      prevSkipped.filter((unit) => unit !== unitId)
+      prevSkipped.filter((module) => module.id !== skippedModule.id)
     );
+    
   };
 
   return (
