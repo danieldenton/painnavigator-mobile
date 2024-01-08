@@ -78,7 +78,6 @@ export const TodayScreen = ({ navigation }) => {
   const {
     educationProgress,
     lastCompletedEducationModuleDate,
-    setEducationProgress,
     getEducationModuleCompletions,
   } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
@@ -109,7 +108,6 @@ export const TodayScreen = ({ navigation }) => {
       uid,
       setUserInfo,
       setEducationProgram,
-      setEducationProgress,
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,
