@@ -60,7 +60,7 @@ export const EducationContextProvider = ({ children }) => {
       });
 
       if (completions) {
-        setEducationProgress(completions[0].module_id + 1)
+        setEducationProgress(completions[0].module_id + 1);
       }
 
       const completed = completions.filter(
@@ -77,7 +77,7 @@ export const EducationContextProvider = ({ children }) => {
         (completion) => completion.status === "skipped"
       );
       setSkippedEducationModules(skipped);
-
+      
     } catch (error) {
       console.error(error);
     }
@@ -93,34 +93,15 @@ export const EducationContextProvider = ({ children }) => {
         }
       );
       const data = response.data.data.attributes;
-      setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
+
+      if (data.status === "completed") {
+        setCompletedEducationModules((prevCompleted) => [...prevCompleted, data]);
+      } else {
+        setSkippedEducationModules((prevSkipped) => [...prevSkipped, data])
+      }
+      
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const completeModule = () => {
-    const module = {
-      module_id: currentModule.id,
-      status: 0,
-    };
-    postEducationModule(uid, module);
-    setEducationProgress(educationProgress + 1);
-    setLastCompletedEducationModuleDate(timeZonedTodaysDate)
-  };
-
-  const skipModule = () => {
-    const module = {
-      module_id: currentModule.id,
-      status: 1,
-    };
-    setEducationProgress(educationProgress + 1);
-    postEducationModule(uid, module);
-    if (!skippedEducationModules.includes(currentModule.id)) {
-      setSkippedEducationModules((prevSkipped) => [
-        ...prevSkipped,
-        currentModule.id,
-      ]);
     }
   };
 
@@ -136,6 +117,31 @@ export const EducationContextProvider = ({ children }) => {
       return response;
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const completeModule = () => {
+    const module = {
+      module_id: currentModule.id,
+      status: 0,
+    };
+    postEducationModule(uid, module);
+    setEducationProgress(educationProgress + 1);
+    setLastCompletedEducationModuleDate(timeZonedTodaysDate);
+  };
+
+  const skipModule = () => {
+    const module = {
+      module_id: currentModule.id,
+      status: 1,
+    };
+    setEducationProgress(educationProgress + 1);
+    postEducationModule(uid, module);
+    if (!skippedEducationModules.includes(currentModule.id)) {
+      setSkippedEducationModules((prevSkipped) => [
+        ...prevSkipped,
+        currentModule.id,
+      ]);
     }
   };
 
