@@ -103,10 +103,9 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
-      education_progress: educationProgress,
     };
-    setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
+    setEducationProgress(educationProgress + 1);
     setLastCompletedEducationModuleDate(timeZonedTodaysDate)
   };
 
@@ -114,7 +113,6 @@ export const EducationContextProvider = ({ children }) => {
     const module = {
       module_id: currentModule.id,
       status: 1,
-      education_progress: educationProgress,
     };
     setEducationProgress(educationProgress + 1);
     postEducationModule(uid, module);
