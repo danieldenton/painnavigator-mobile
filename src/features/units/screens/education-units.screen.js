@@ -24,7 +24,6 @@ export const EducationUnitsScreen = ({ navigation }) => {
     useEffect(() => {
         const completedEducationModules = educationModuleCompletionData.filter((module) => module.status === "completed")
         const skippedEducationModules = educationModuleCompletionData.filter((module) => module.status === "skipped")
-        console.log(educationModuleCompletionData)
         const completedData = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
         setCompletedEducationModuleData(completedData);
         const skippedData = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
