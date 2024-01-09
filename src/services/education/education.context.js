@@ -55,8 +55,9 @@ export const EducationContextProvider = ({ children }) => {
       const data = dataToBeMapped.map((completion) => {
         return completion.attributes;
       });
+      console.log(data);
       setEducationModuleCompletionData(data);
-      setEducationProgress(data[0].module_id + 1)
+      setEducationProgress(data[0].module_id + 1);
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +77,7 @@ export const EducationContextProvider = ({ children }) => {
         data,
         ...prevCompleted,
       ]);
-      console.log("hey")
+      console.log("hey");
     } catch (error) {
       console.error(error);
     }
@@ -89,7 +90,10 @@ export const EducationContextProvider = ({ children }) => {
         { status: 0 }
       );
       const data = response.data.data.attributes;
-      const newCompletedModuleData = [data, ...educationModuleCompletionData];
+      const editedEducationModuleDate = educationModuleCompletionData.filter(
+        (module) => module.id !== data.id
+      );
+      const newCompletedModuleData = [data, ...editedEducationModuleDate];
       const sortedData = newCompletedModuleData.sort((a, b) => a.id - b.id);
       setEducationModuleCompletionData(sortedData);
     } catch (error) {
@@ -103,7 +107,7 @@ export const EducationContextProvider = ({ children }) => {
       status: 0,
     };
     postEducationModule(uid, module);
-    setEducationProgress(educationProgress + 1)
+    setEducationProgress(educationProgress + 1);
   };
 
   const skipModule = () => {
@@ -112,7 +116,7 @@ export const EducationContextProvider = ({ children }) => {
       status: 1,
     };
     postEducationModule(uid, module);
-    setEducationProgress(educationProgress + 1)
+    setEducationProgress(educationProgress + 1);
   };
 
   const completeEducationSkippedUnit = (unitId) => {
