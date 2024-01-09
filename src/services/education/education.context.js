@@ -90,7 +90,7 @@ export const EducationContextProvider = ({ children }) => {
         { status: 0 }
       );
       const data = response.data.data.attributes;
-      setCompletedEducationModules((prevCompleted) => [data, ...prevCompleted]);
+      setEducationModuleCompletionData((prevCompleted) => [data, ...prevCompleted]);
     } catch (error) {
       console.error(error);
     }
