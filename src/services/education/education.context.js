@@ -33,9 +33,6 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
-    if (educationModuleCompletionData[0]) {
-      setEducationProgress(educationModuleCompletionData[0].module_id + 1);
-    }
     const module = educationModules.find(
       (unit) =>
         unit.id ===
@@ -59,6 +56,7 @@ export const EducationContextProvider = ({ children }) => {
         return completion.attributes;
       });
       setEducationModuleCompletionData(data);
+      setEducationProgress(data[0].module_id + 1)
     } catch (error) {
       console.error(error);
     }
@@ -78,6 +76,7 @@ export const EducationContextProvider = ({ children }) => {
         data,
         ...prevCompleted,
       ]);
+      console.log("hey")
     } catch (error) {
       console.error(error);
     }

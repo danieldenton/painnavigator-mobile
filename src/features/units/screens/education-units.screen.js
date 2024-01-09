@@ -19,13 +19,16 @@ export const EducationUnitsScreen = ({ navigation }) => {
 
     useEffect(() => {
         setIsMovement(false)
-        const completedEducationModules = educationModuleCompletionData.filter((module.status === "completed"))
+    }, [])
+
+    useEffect(() => {
+        const completedEducationModules = educationModuleCompletionData.filter((module) => module.status === "completed")
         const skippedEducationModules = educationModuleCompletionData.filter((module) => module.status === "skipped")
         const completedData = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
         setCompletedEducationModuleData(completedData);
         const skippedData = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
         setSkippedEducationModuleData(skippedData);
-    }, [])
+    }, [educationModuleCompletionData])
     
     useEffect(() => {
         // the last education unit id is 62. Not anymore!!!!
@@ -34,14 +37,6 @@ export const EducationUnitsScreen = ({ navigation }) => {
         const data = educationBookmarks.map(bookmark => educationModules.find(item => item.id === bookmark));
         setBookmarkedEducationModuleData(data);
     }, [bookmarks]);
-
-    // useEffect(() => {
-        
-    // }, [completedEducationModules]);
-
-    useEffect(() => {
-        
-    }, [skippedEducationModules]);
 
     const educationExpandableCardData = [
         {
