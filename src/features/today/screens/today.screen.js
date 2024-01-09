@@ -103,8 +103,9 @@ export const TodayScreen = ({ navigation }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
   const lastEducationModuleId = educationModuleCompletionData[0]?.module_id;
+  const lastCompletedEducationModule = educationModuleCompletionData.find((module) => module.status === "completed")
   const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
-    educationModuleCompletionData[0]?.created_at
+    lastCompletedEducationModule?.created_at
   );
 
   useEffect(() => {
