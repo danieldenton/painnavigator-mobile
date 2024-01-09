@@ -10,6 +10,7 @@ export const EducationContext = createContext();
 export const EducationContextProvider = ({ children }) => {
   const [educationProgress, setEducationProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState({});
+  const [educationModuleCompletionData, setEducationModuleCompletionData] = useState([])
   const [completedEducationModules, setCompletedEducationModules] = useState(
     []
   );
@@ -31,6 +32,9 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
+    if (educationModuleCompletionData[0]) {
+      setEducationProgress(educationModuleCompletionData[0] + 1)
+    }
     const module = educationModules.find(
       (unit) =>
         unit.id ===
@@ -41,7 +45,7 @@ export const EducationContextProvider = ({ children }) => {
     if (module) {
       setCurrentModule(module);
     }
-  }, [educationProgress]);
+  }, [educationModuleCompletionData]);
 
   const getEducationModuleCompletions = async (uid) => {
     try {
@@ -53,18 +57,19 @@ export const EducationContextProvider = ({ children }) => {
       const completions = data.map((completion) => {
         return completion.attributes;
       });
+      setEducationModuleCompletionData(completions)
 
-      if (completions) {
-        setEducationProgress(completions[0].module_id + 1);
-        const completed = completions.filter(
-          (completion) => completion.status === "completed"
-        );
-        setCompletedEducationModules(completed);
-        const skipped = completions.filter(
-          (completion) => completion.status === "skipped"
-        );
-        setSkippedEducationModules(skipped);
-      }
+      // if (completions) {
+      //   setEducationProgress(completions[0].module_id + 1);
+      //   const completed = completions.filter(
+      //     (completion) => completion.status === "completed"
+      //   );
+      //   setCompletedEducationModules(completed);
+      //   const skipped = completions.filter(
+      //     (completion) => completion.status === "skipped"
+      //   );
+      //   setSkippedEducationModules(skipped);
+      // }
     } catch (error) {
       console.error(error);
     }
@@ -87,7 +92,7 @@ export const EducationContextProvider = ({ children }) => {
           ...prevCompleted,
         ]);
       } else {
-        setSkippedEducationModules((prevSkipped) => [data, ...prevSkipped]);
+       educationModuleCompletionData;
       }
     } catch (error) {
       console.error(error);
