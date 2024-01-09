@@ -103,6 +103,7 @@ export const EducationContextProvider = ({ children }) => {
       status: 0,
     };
     postEducationModule(uid, module);
+    setEducationProgress(educationProgress + 1)
   };
 
   const skipModule = () => {
@@ -111,6 +112,7 @@ export const EducationContextProvider = ({ children }) => {
       status: 1,
     };
     postEducationModule(uid, module);
+    setEducationProgress(educationProgress + 1)
   };
 
   const completeEducationSkippedUnit = (unitId) => {
