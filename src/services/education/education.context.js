@@ -34,7 +34,7 @@ export const EducationContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (educationModuleCompletionData[0]) {
-      setEducationProgress(educationModuleCompletionData[0] + 1);
+      setEducationProgress(educationModuleCompletionData[0].module_id + 1);
     }
     const module = educationModules.find(
       (unit) =>
@@ -90,7 +90,9 @@ export const EducationContextProvider = ({ children }) => {
         { status: 0 }
       );
       const data = response.data.data.attributes;
-      setEducationModuleCompletionData((prevCompleted) => [data, ...prevCompleted]);
+      const newCompletedModuleData = [data, ...educationModuleCompletionData];
+      const sortedData = newCompletedModuleData.sort((a, b) => a.id - b.id);
+      setEducationModuleCompletionData(sortedData);
     } catch (error) {
       console.error(error);
     }
@@ -113,7 +115,7 @@ export const EducationContextProvider = ({ children }) => {
   };
 
   const completeEducationSkippedUnit = (unitId) => {
-    const skippedModule = skippedEducationModules.find(
+    const skippedModule = educationModuleCompletionData.find(
       (module) => module.module_id === unitId
     );
     patchCompleteSkippedEducationModule(skippedModule.id);
