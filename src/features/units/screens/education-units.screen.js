@@ -11,7 +11,7 @@ import { View } from "react-native";
 
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
-    const { completedEducationModules, completeEducationSkippedUnit, skippedEducationModules } = useContext(EducationContext);
+    const { educationModuleCompletionData, completeEducationSkippedUnit } = useContext(EducationContext);
     const { setIsMovement } = useContext(MovementContext)
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
@@ -19,6 +19,12 @@ export const EducationUnitsScreen = ({ navigation }) => {
 
     useEffect(() => {
         setIsMovement(false)
+        const completedEducationModules = educationModuleCompletionData.filter((module.status === "completed"))
+        const skippedEducationModules = educationModuleCompletionData.filter((module) => module.status === "skipped")
+        const completedData = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
+        setCompletedEducationModuleData(completedData);
+        const skippedData = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
+        setSkippedEducationModuleData(skippedData);
     }, [])
     
     useEffect(() => {
@@ -29,14 +35,12 @@ export const EducationUnitsScreen = ({ navigation }) => {
         setBookmarkedEducationModuleData(data);
     }, [bookmarks]);
 
-    useEffect(() => {
-        const data = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
-        setCompletedEducationModuleData(data);
-    }, [completedEducationModules]);
+    // useEffect(() => {
+        
+    // }, [completedEducationModules]);
 
     useEffect(() => {
-        const data = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
-        setSkippedEducationModuleData(data);
+        
     }, [skippedEducationModules]);
 
     const educationExpandableCardData = [
