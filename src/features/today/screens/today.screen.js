@@ -77,9 +77,9 @@ export const TodayScreen = ({ navigation }) => {
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
   const {
-    educationProgress,
-    completedEducationModules,
     getEducationModuleCompletions,
+    educationProgress,
+    educationModuleCompletionData,
   } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -102,9 +102,9 @@ export const TodayScreen = ({ navigation }) => {
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
   );
-  const lastEducationModuleId = completedEducationModules[0]?.module_id;
+  const lastEducationModuleId = educationModuleCompletionData[0]?.module_id;
   const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
-    completedEducationModules[0]?.created_at
+    educationModuleCompletionData[0]?.created_at
   );
 
   useEffect(() => {
