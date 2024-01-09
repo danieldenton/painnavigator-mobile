@@ -72,7 +72,6 @@ export const EducationContextProvider = ({ children }) => {
         data,
         ...prevCompleted,
       ]);
-      console.log("hey");
     } catch (error) {
       console.error(error);
     }
