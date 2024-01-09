@@ -12,10 +12,6 @@ export const EducationContextProvider = ({ children }) => {
   const [currentModule, setCurrentModule] = useState({});
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
-  const [completedEducationModules, setCompletedEducationModules] = useState(
-    []
-  );
-  const [skippedEducationModules, setSkippedEducationModules] = useState([]);
   const { uid, educationProgram } = useContext(AuthenticationContext);
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
@@ -55,7 +51,6 @@ export const EducationContextProvider = ({ children }) => {
       const data = dataToBeMapped.map((completion) => {
         return completion.attributes;
       });
-      console.log(data);
       setEducationModuleCompletionData(data);
       setEducationProgress(data[0].module_id + 1);
     } catch (error) {

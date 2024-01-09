@@ -103,7 +103,9 @@ export const TodayScreen = ({ navigation }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
   const lastEducationModuleId = educationModuleCompletionData[0]?.module_id;
-  const lastCompletedEducationModule = educationModuleCompletionData.find((module) => module.status === "completed")
+  const lastCompletedEducationModule = educationModuleCompletionData.find(
+    (module) => module.status === "completed"
+  );
   const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
     lastCompletedEducationModule?.created_at
   );
@@ -217,24 +219,24 @@ export const TodayScreen = ({ navigation }) => {
           ) : (
             <DailyPainScore navigation={navigation} />
           )}
-          {!completedAllEducationModules && (
+          {!completedAllEducationModules ? (
             <SubHeader title={"TODAY'S EDUCATION"} size={14} />
-          )}
+          ) : null}
           {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
             <DailyGoalCompleted
               type={"module"}
               moduleId={lastEducationModuleId}
             />
           )}
-          {!completedAllEducationModules && (
+          {!completedAllEducationModules ? (
             <EducationUnitCard navigation={navigation} />
-          )}
-          {!completedAllMovementModules && educationProgram !== 10 && (
+          ) : null}
+          {!completedAllMovementModules && educationProgram !== 10 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
             </>
-          )}
+          ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
             {hasUnreadMessages && accessToWellnessCoach ? (
@@ -243,15 +245,15 @@ export const TodayScreen = ({ navigation }) => {
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}
-            {lastPainJournal === timeZonedTodaysDate && (
+            {lastPainJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Pain Journal"} />
-            )}
-            {lastMoodJournal === timeZonedTodaysDate && (
+            ) : null}
+            {lastMoodJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Mood Journal"} />
-            )}
-            {lastFoodJournal === timeZonedTodaysDate && (
+            ) : null}
+            {lastFoodJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Food Journal"} />
-            )}
+            ) : null}
           </View>
         </Scroll>
         <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
