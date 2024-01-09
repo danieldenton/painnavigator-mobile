@@ -74,15 +74,10 @@ export const EducationContextProvider = ({ children }) => {
         }
       );
       const data = response.data.data.attributes;
-
-      if (data.status === "completed") {
-        setCompletedEducationModules((prevCompleted) => [
-          data,
-          ...prevCompleted,
-        ]);
-      } else {
-        educationModuleCompletionData;
-      }
+      setEducationModuleCompletionData((prevCompleted) => [
+        data,
+        ...prevCompleted,
+      ]);
     } catch (error) {
       console.error(error);
     }
