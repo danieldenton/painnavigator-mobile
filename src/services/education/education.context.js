@@ -117,9 +117,6 @@ export const EducationContextProvider = ({ children }) => {
       (module) => module.module_id === unitId
     );
     patchCompleteSkippedEducationModule(skippedModule.id);
-    setSkippedEducationModules((prevSkipped) =>
-      prevSkipped.filter((module) => module.id !== skippedModule.id)
-    );
   };
 
   return (
