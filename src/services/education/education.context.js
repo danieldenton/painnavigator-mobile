@@ -39,7 +39,7 @@ export const EducationContextProvider = ({ children }) => {
     if (module) {
       setCurrentModule(module);
     }
-  }, [educationModuleCompletionData]);
+  }, [educationProgress]);
 
   const getEducationModuleCompletions = async (uid) => {
     try {
@@ -52,7 +52,6 @@ export const EducationContextProvider = ({ children }) => {
         return completion.attributes;
       });
       setEducationModuleCompletionData(data);
-      setEducationProgress(data[0].module_id + 1);
     } catch (error) {
       console.error(error);
     }
