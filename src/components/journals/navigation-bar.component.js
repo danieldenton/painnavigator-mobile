@@ -100,6 +100,7 @@ export const TodayNavBar = ({
   hasUnreadMessages,
   accessToWellnessCoach,
 }) => {
+
   return (
     <NavContainer>
       <LeftPressableArea
@@ -151,7 +152,6 @@ export const ReviewJournalNavigationBar = ({
         resetJournal();
       }, 500);
   };
-
   return (
     <NavContainer>
       <LeftPressableArea

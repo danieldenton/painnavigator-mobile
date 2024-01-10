@@ -11,7 +11,7 @@ import { View } from "react-native";
 
 export const EducationUnitsScreen = ({ navigation }) => {
     const { bookmarks } = useContext(BookmarksContext);
-    const { completedEducationModules, completeEducationSkippedUnit, skippedEducationModules } = useContext(EducationContext);
+    const { educationModuleCompletionData, completeEducationSkippedUnit } = useContext(EducationContext);
     const { setIsMovement } = useContext(MovementContext)
     const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] = useState([]);
     const [completedEducationModuleData, setCompletedEducationModuleData] = useState([]);
@@ -20,24 +20,23 @@ export const EducationUnitsScreen = ({ navigation }) => {
     useEffect(() => {
         setIsMovement(false)
     }, [])
+
+    useEffect(() => {
+        const completedEducationModules = educationModuleCompletionData.filter((module) => module.status === "completed")
+        const skippedEducationModules = educationModuleCompletionData.filter((module) => module.status === "skipped")
+        const completedData = completedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
+        setCompletedEducationModuleData(completedData);
+        const skippedData = skippedEducationModules?.map(module => educationModules.find(item => item.id === module.module_id));
+        setSkippedEducationModuleData(skippedData);
+    }, [educationModuleCompletionData])
     
     useEffect(() => {
-        // the last education unit id is 62
+        // the last education unit id is 62. Not anymore!!!!
         const firstMovementUnit = 63; 
         const educationBookmarks = bookmarks?.filter(bookmark => bookmark < firstMovementUnit);
         const data = educationBookmarks.map(bookmark => educationModules.find(item => item.id === bookmark));
         setBookmarkedEducationModuleData(data);
     }, [bookmarks]);
-
-    useEffect(() => {
-        const data = completedEducationModules?.map(module => educationModules.find(item => item.id === module));
-        setCompletedEducationModuleData(data);
-    }, [completedEducationModules]);
-
-    useEffect(() => {
-        const data = skippedEducationModules?.map(module => educationModules.find(item => item.id === module));
-        setSkippedEducationModuleData(data);
-    }, [skippedEducationModules]);
 
     const educationExpandableCardData = [
         {

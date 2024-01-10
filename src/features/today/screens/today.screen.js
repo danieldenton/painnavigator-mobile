@@ -46,6 +46,7 @@ import {
   todaysDate,
   timeZone,
   timeZonedTodaysDate,
+  formatBackendCreatedAtDate,
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
@@ -75,8 +76,12 @@ export const TodayScreen = ({ navigation }) => {
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementProgress, setMovementProgress } = useContext(MovementContext);
-  const { educationProgress, lastCompletedModule, setEducationProgress } =
-    useContext(EducationContext);
+  const {
+    getEducationModuleCompletions,
+    educationProgress,
+    educationModuleCompletionData,
+    setEducationProgress,
+  } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
@@ -98,9 +103,13 @@ export const TodayScreen = ({ navigation }) => {
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
   );
-  const lastEducationModule =
-    lastCompletedModule !== null && formatDate(lastCompletedModule);
-  const lastEducationModuleId = educationProgress - 1;
+  const lastEducationModuleId = educationModuleCompletionData[0]?.module_id;
+  const lastCompletedEducationModule = educationModuleCompletionData.find(
+    (module) => module.status === "completed"
+  );
+  const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
+    lastCompletedEducationModule?.created_at
+  );
 
   useEffect(() => {
     getUser(
@@ -119,8 +128,9 @@ export const TodayScreen = ({ navigation }) => {
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
+    getEducationModuleCompletions(uid);
   }, []);
-                 
+
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
       patchLastDateOnApp(uid, timeZonedTodaysDate);
@@ -211,24 +221,24 @@ export const TodayScreen = ({ navigation }) => {
           ) : (
             <DailyPainScore navigation={navigation} />
           )}
-          {!completedAllEducationModules && (
+          {!completedAllEducationModules ? (
             <SubHeader title={"TODAY'S EDUCATION"} size={14} />
-          )}
-          {lastEducationModule === timeZonedTodaysDate && (
+          ) : null}
+          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
             <DailyGoalCompleted
               type={"module"}
               moduleId={lastEducationModuleId}
             />
           )}
-          {!completedAllEducationModules && (
+          {!completedAllEducationModules ? (
             <EducationUnitCard navigation={navigation} />
-          )}
-          {!completedAllMovementModules && educationProgram !== 10 && (
+          ) : null}
+          {!completedAllMovementModules && educationProgram !== 10 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
             </>
-          )}
+          ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
             {hasUnreadMessages && accessToWellnessCoach ? (
@@ -237,15 +247,15 @@ export const TodayScreen = ({ navigation }) => {
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}
-            {lastPainJournal === timeZonedTodaysDate && (
+            {lastPainJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Pain Journal"} />
-            )}
-            {lastMoodJournal === timeZonedTodaysDate && (
+            ) : null}
+            {lastMoodJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Mood Journal"} />
-            )}
-            {lastFoodJournal === timeZonedTodaysDate && (
+            ) : null}
+            {lastFoodJournal === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Food Journal"} />
-            )}
+            ) : null}
           </View>
         </Scroll>
         <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
