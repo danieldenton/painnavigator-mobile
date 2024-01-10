@@ -80,6 +80,7 @@ export const TodayScreen = ({ navigation }) => {
     getEducationModuleCompletions,
     educationProgress,
     educationModuleCompletionData,
+    setEducationProgress,
   } = useContext(EducationContext);
   const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
@@ -115,6 +116,7 @@ export const TodayScreen = ({ navigation }) => {
       uid,
       setUserInfo,
       setEducationProgram,
+      setEducationProgress,
       setMovementProgress,
       setProfileComplete,
       setCompletedProgram,

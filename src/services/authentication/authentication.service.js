@@ -40,6 +40,7 @@ export async function getUser(
   uid,
   setUserInfo,
   setEducationProgram,
+  setEducationProgress,
   setMovementProgress,
   setProfileComplete,
   setCompletedProgram,
@@ -49,8 +50,12 @@ export async function getUser(
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
     const data = response.data.data.attributes;
+    const eProgress = data.education_progress.education_progress
+      ? data.education_progress.education_progress
+      : data.education_progress.progress;
     setUserInfo(data.profile);
     setEducationProgram(data.education_program);
+    setEducationProgress(eProgress);
     setMovementProgress(data.movement_progress.progress);
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.outcome.completed_program === true);

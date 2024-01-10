@@ -124,6 +124,7 @@ export const EducationContextProvider = ({ children }) => {
     <EducationContext.Provider
       value={{
         getEducationModuleCompletions,
+        setEducationProgress,
         currentModule,
         completeModule,
         educationModuleCompletionData,
