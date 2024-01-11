@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "./../../education/data/education-programs-data.json";
+import { educationPrograms } from "../../../services/education/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
