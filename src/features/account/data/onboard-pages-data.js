@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -11,6 +12,9 @@ import { Other } from "../components/other";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+
+const { changeOnboardEntry, educationProgram } = useContext(AuthenticationContext)
 
 pages = [
   { component: <AvgPainPreStart />, disabled: false },
