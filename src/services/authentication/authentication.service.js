@@ -6,6 +6,18 @@ import { API_URL } from "@env";
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
+export async function checkReferralCode(referralCode) {
+  try {
+    const response = await axios.get(
+      `${API_URL}/api/v1/providers/${referralCode}`
+    );
+    const provider_id = response.data.data.attributes.id;
+    return provider_id;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export async function postUser(uid, onboardingData) {
   const userData = {
     uid: uid,

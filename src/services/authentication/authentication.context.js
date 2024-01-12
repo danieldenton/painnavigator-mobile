@@ -311,7 +311,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         changeOnboardEntry,
-        checkProviderCode,
+        handleEducationProgram,
         handleOtherPainTypeProgram,
         accessToWellnessCoach,
         setAccessToWellnessCoach,

@@ -14,9 +14,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
     nextStep,
     onboardingData,
     programSafety,
-    checkProviderCode,
+    handleEducationProgram,
     handleOtherPainTypeProgram
   } = useContext(AuthenticationContext);
+
+  
 
   return (
     <SafeView>
@@ -33,7 +35,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
           title={"Next"}
           onPress={() => {
             step >= 11
-              ? (checkProviderCode(), navigation.navigate("Register"))
+              ? (handleEducationProgram(), navigation.navigate("Register"))
               : step === 8 &&
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
