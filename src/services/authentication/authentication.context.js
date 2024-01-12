@@ -73,7 +73,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   }
 
-  const handleProgram = (providerCode) => {
+  const handleProgramSafety = (providerCode) => {
     providerCode === "ASC112" ||
     providerCode === "EXPL22" ||
     providerCode === "CORE55"
@@ -316,7 +316,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         accessToWellnessCoach,
         setAccessToWellnessCoach,
         checkProviderCode,
-        handleProgram,
+        handleProgramSafety,
         error,
         tour,
         setTour,

@@ -11,7 +11,7 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, handleProgram, checkProviderCode } =
+  const { changeOnboardEntry, error, handleProgramSafety, checkProviderCode } =
     useContext(AuthenticationContext);
   const [providerCode, setProviderCode] = useState("");
 
@@ -61,7 +61,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
             title={"Submit"}
             onPress={() => {
               checkProviderCode(providerCode);
-              handleProgram(providerCode);
+              handleProgramSafety(providerCode);
               navigation.navigate("Explanation")
             }}
           />
