@@ -11,9 +11,9 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, handleProgram, handleProviderCode } =
+  const { changeOnboardEntry, error, handleProgram, checkProviderCode } =
     useContext(AuthenticationContext);
-  const [referralCode, setReferralCode] = useState("");
+  const [providerCode, setProviderCode] = useState("");
 
   return (
     <SafeView style={{ flex: 1 }}>
@@ -41,11 +41,11 @@ export const ProviderCodeScreen = ({ navigation }) => {
       </View>
       <AuthTextInput
         accessibilityLabel={"referral-code-input"}
-        value={referralCode}
+        value={providerCode}
         autoCapitalize="characters"
-        onChangeText={(referralCode) => (
-          changeOnboardEntry(referralCode, "referral_code"),
-          setReferralCode(referralCode)
+        onChangeText={(providerCode) => (
+          changeOnboardEntry(providerCode, "referral_code"),
+          setProviderCode(providerCode)
         )}
         keyboardType="visible-password"
         testID={"code-input"}
@@ -57,11 +57,11 @@ export const ProviderCodeScreen = ({ navigation }) => {
         <View style={{ marginBottom: 32 }}>
           {error && <ErrorMessage error={error} />}
           <JournalButton
-            disabled={referralCode.length === 6 ? false : true}
+            disabled={providerCode.length === 6 ? false : true}
             title={"Submit"}
             onPress={() => {
-              handleProviderCode(referralCode);
-              handleProgram(referralCode);
+              checkProviderCode(providerCode);
+              handleProgram(providerCode);
               navigation.navigate("Explanation")
             }}
           />
