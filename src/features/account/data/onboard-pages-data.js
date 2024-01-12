@@ -14,9 +14,9 @@ import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-const { changeOnboardEntry, educationProgram } = useContext(AuthenticationContext)
+const { changeOnboardEntry } = useContext(AuthenticationContext)
 
-pages = [
+export const onboardPages = [
   { component: <AvgPainPreStart />, disabled: false },
   {
     component: (

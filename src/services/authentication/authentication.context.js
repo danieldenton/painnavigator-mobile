@@ -17,7 +17,6 @@ export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
-  // user set to true for testing
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -61,7 +60,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       const response = await checkReferralCode(referralCode);
       response
         ? (setProviderId(response),
-          referralCode.endsWith("N") ? setAccessToWellnessCoach(false) : setAccessToWellnessCoach(true),
+          referralCode.endsWith("N")
+            ? setAccessToWellnessCoach(false)
+            : setAccessToWellnessCoach(true),
           setError(null),
           track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE))
         : setError("Please enter a valid code");
@@ -80,6 +81,75 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     referralCode === "ISCS23"
       ? (setProgramSafety(true), setEducationProgram(2))
       : null;
+  };
+
+  const handleEducationProgram = () => {
+    if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
+      if (
+        onboardingData.hopesToAchieve.length === 1 &&
+        onboardingData.hopesToAchieve[0] === 4
+      ) {
+        if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(5);
+        } else if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(6);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(4);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(3);
+        }
+      } else {
+        if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(8);
+        } else if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(9);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(7);
+        } else {
+          return;
+        }
+      }
+    } else {
+      return;
+    }
+  };
+
+  const handleOtherPainType = () => {
+    if (
+      onboardingData.hopesToAchieve.length === 1 &&
+      onboardingData.hopesToAchieve[0] === 4
+    ) {
+      setEducationProgram(11);
+    } else {
+      setEducationProgram(10);
+    }
+    if (onboardingData.typeOfPain === "Other") {
+      setStep(12);
+      onboardingData.typeOfPain = "";
+    } else {
+      navigation.navigate("Register");
+    }
   };
 
   const changeOnboardEntry = (change, state) => {
@@ -131,17 +201,14 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
 
   const onRegister = (password, repeatedPassword) => {
     const { first_name, last_name, email } = onboardingData;
-
     if (!first_name || !last_name) {
       setError("Error: Please provide your name");
       return;
     }
-
     if (password !== repeatedPassword) {
       setError("Error: Passwords do not match");
       return;
     }
-
     setUserLoading(true);
     firebase
       .auth()
@@ -249,7 +316,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         changeOnboardEntry,
-        currentQuestion,
+        handleEducationProgram,
+        handleOtherPainType,
         error,
         isAuthenticated: !!user,
         nextStep,
@@ -263,7 +331,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         previousStep,
         user,
         userLoading,
-        setCurrentQuestion,
         signOut,
         setProviderId,
         expoPushToken,

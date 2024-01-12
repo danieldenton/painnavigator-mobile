@@ -5,79 +5,20 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
+import { onboardPages } from "../data/onboard-pages-data";
 
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
-    setStep,
     previousStep,
     nextStep,
     onboardingData,
-    setEducationProgram,
     programSafety,
+    handleEducationProgram,
+    handleOtherPainType
   } = useContext(AuthenticationContext);
 
-  const handleEducationProgram = () => {
-    if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
-      if (
-        onboardingData.hopesToAchieve.length === 1 &&
-        onboardingData.hopesToAchieve[0] === 4
-      ) {
-        if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(5);
-        } else if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(6);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(4);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(3);
-        }
-      } else {
-        if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(8);
-        } else if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(9);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(7);
-        } else {
-          return;
-        }
-      }
-    } else {
-      return;
-    }
-  };
-
-  const handleOtherPainType = () => {
-    setEducationProgram(10);
-    if (onboardingData.typeOfPain === "Other") {
-      setStep(12);
-      onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
-    }
-  };
+  
 
   return (
     <SafeView>
@@ -87,7 +28,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         screen={"Sign Up"}
         previousPage={step > 0 ? previousStep : null}
       />
-      {pages[step].component}
+      {onboardPages[step].component}
       <ButtonSection>
         <JournalButton
           disabled={pages[step].disabled}
