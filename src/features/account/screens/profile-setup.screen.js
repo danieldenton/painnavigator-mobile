@@ -15,7 +15,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     onboardingData,
     programSafety,
     handleEducationProgram,
-    handleOtherPainType
+    handleOtherPainTypeProgram
   } = useContext(AuthenticationContext);
 
   
@@ -39,7 +39,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
               : step === 8 &&
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
-              ? handleOtherPainType()
+              ? handleOtherPainTypeProgram()
               : nextStep();
           }}
         />

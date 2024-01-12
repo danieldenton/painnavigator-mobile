@@ -19,7 +19,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const [currentQuestion, setCurrentQuestion] = useState(1);
   const [step, setStep] = useState(0);
   const [accessToWellnessCoach, setAccessToWellnessCoach] = useState(true);
   const [onboardingData, setOnboardingData] = useState({
@@ -135,7 +134,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const handleOtherPainType = () => {
+  const handleOtherPainTypeProgram = () => {
     if (
       onboardingData.hopesToAchieve.length === 1 &&
       onboardingData.hopesToAchieve[0] === 4
@@ -183,12 +182,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   function resetPassword(email) {
     return firebase.auth().sendPasswordResetEmail(email);
   }
-
-  const nextQuestion = () => {
-    setCurrentQuestion((prevQuestion) => {
-      return prevQuestion + 1;
-    });
-  };
 
   const findHopesToAchieve = () => {
     const selectedHopes = onboardingData.hopesToAchieve;
@@ -317,7 +310,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       value={{
         changeOnboardEntry,
         handleEducationProgram,
-        handleOtherPainType,
+        handleOtherPainTypeProgram,
         error,
         isAuthenticated: !!user,
         nextStep,
