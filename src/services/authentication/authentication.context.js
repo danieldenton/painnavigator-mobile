@@ -9,7 +9,7 @@ import {
   patchCompletedProgram,
 } from "./authentication.service";
 import { hopesOptions } from "../../features/account/data/onboard-data.json";
-import { checkReferralCode } from "./authentication.service";
+import { checkproviderCode } from "./authentication.service";
 import { track } from "@amplitude/analytics-react-native";
 import { ONBOARD_EVENTS } from "../../amplitude-events";
 
@@ -54,30 +54,32 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
 
-  const handleProviderCode = async (referralCode) => {
+  async function checkProviderCode(providerCode) {
     try {
-      const response = await checkReferralCode(referralCode);
-      response
-        ? (setProviderId(response),
-          referralCode.endsWith("N")
+      const response = await axios.get(
+        `${API_URL}/api/v1/providers/${providerCode}`
+      );
+      const provider_id = response.data.data.attributes.id;
+      provider_id
+        ? (setProviderId(provider_id),
+          providerCode.endsWith("N")
             ? setAccessToWellnessCoach(false)
             : setAccessToWellnessCoach(true),
-          setError(null),
-          track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE))
+          setError(null))
         : setError("Please enter a valid code");
     } catch (err) {
       setError("Please enter a valid code");
       console.error(err);
     }
-  };
+  }
 
-  const handleProgram = (referralCode) => {
-    referralCode === "ASC112" ||
-    referralCode === "EXPL22" ||
-    referralCode === "CORE55"
+  const handleProgram = (providerCode) => {
+    providerCode === "ASC112" ||
+    providerCode === "EXPL22" ||
+    providerCode === "CORE55"
       ? setProgramSafety(true)
       : null;
-    referralCode === "ISCS23"
+    providerCode === "ISCS23"
       ? (setProgramSafety(true), setEducationProgram(2))
       : null;
   };
@@ -309,9 +311,16 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         changeOnboardEntry,
-        handleEducationProgram,
+        checkProviderCode,
         handleOtherPainTypeProgram,
+        accessToWellnessCoach,
+        setAccessToWellnessCoach,
+        checkProviderCode,
+        handleProgram,
         error,
+        tour,
+        setTour,
+        uid,
         isAuthenticated: !!user,
         nextStep,
         nextQuestion,
@@ -340,13 +349,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,
-        tour,
-        setTour,
-        uid,
-        accessToWellnessCoach,
-        setAccessToWellnessCoach,
-        handleProviderCode,
-        handleProgram,
       }}
     >
       {children}
