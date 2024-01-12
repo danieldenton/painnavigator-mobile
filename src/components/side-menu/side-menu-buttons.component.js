@@ -12,7 +12,6 @@ export const MenuButtons = ({ navigation }) => {
     const showJournals = educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
     const journalDestination = additionalJournals ? "JournalsNavigator" : "PainJournals";
     const journalLabel = additionalJournals ? "Journals" : "Pain Journals";
-    const otherProgram = educationProgram === 10 ? false : true
 
     const menuOptions = [
         {
@@ -20,7 +19,7 @@ export const MenuButtons = ({ navigation }) => {
             label: "My Progress",
             destination: "Progress",
             icon: <ProgressMenuIcon />,
-            show: educationProgram === 10 || completedProgram ? false : true
+            show: completedProgram ? false : true
         },
         {
             id: 2,
@@ -48,7 +47,7 @@ export const MenuButtons = ({ navigation }) => {
             label: "Units",
             destination: "Units",
             icon: <Units />,
-            show: otherProgram
+            show: true
         },
         {
             id: 6,
