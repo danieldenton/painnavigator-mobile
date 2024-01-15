@@ -94,7 +94,7 @@ export const TodayScreen = ({ navigation }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
-  const noMovementModules = educationProgram === 10 || educationProgram === 11
+  const noMovementModules = educationProgram > 9
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
