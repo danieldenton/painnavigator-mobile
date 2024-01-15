@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback, useRef } from "react";
+import React, { useState, useContext, useCallback, useRef } from "react";
 import { BottomModal } from "../../../components/bottom-sheet/bottom-modal.component";
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ExitModal } from "../../../components/journals/exit-modal.component";
