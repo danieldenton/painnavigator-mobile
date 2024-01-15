@@ -9,9 +9,6 @@ import {
   patchCompletedProgram,
 } from "./authentication.service";
 import { hopesOptions } from "../../features/account/data/onboard-data.json";
-import { checkproviderCode } from "./authentication.service";
-import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 export const AuthenticationContext = createContext();
 
