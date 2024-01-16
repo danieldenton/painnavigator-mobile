@@ -26,6 +26,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     previousStep,
     nextStep,
     onboardingData,
+    setOnboardingData,
     programSafety,
     handleEducationProgram,
     handleOtherPainTypeProgram,
@@ -36,7 +37,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     {
       component: (
         <EnjoymentOfLife
-          onValueChange={changeOnboardEntry}
+          setState={setOnboardingData}
           data={onboardingData}
         />
       ),
