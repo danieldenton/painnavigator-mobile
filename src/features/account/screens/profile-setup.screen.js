@@ -26,7 +26,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
     previousStep,
     nextStep,
     onboardingData,
-    setOnboardingData,
     programSafety,
     handleEducationProgram,
     handleOtherPainTypeProgram,
@@ -34,34 +33,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
-    {
-      component: (
-        <EnjoymentOfLife
-          setState={setOnboardingData}
-          data={onboardingData}
-        />
-      ),
-      disabled: false,
-    },
-    {
-      component: (
-        <ActivityInterference
-          onValueChange={changeOnboardEntry}
-          data={onboardingData}
-        />
-      ),
-      disabled: false,
-    },
-    {
-      component: (
-        <Anxious onValueChange={changeOnboardEntry} data={onboardingData} />
-      ),
-      disabled: onboardingData.anxious ? false : true,
-    },
+    { component: <EnjoymentOfLife />, disabled: false },
+    { component: <ActivityInterference />, disabled: false },
+    { component: <Anxious />, disabled: onboardingData.anxious ? false : true },
     {
       component: (
         <UnableToStopWorrying
-          onValueChange={changeOnboardEntry}
+          setState={setOnboardingData}
           data={onboardingData}
         />
       ),
@@ -70,7 +48,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     {
       component: (
         <LittleInterestOrPleasure
-          onValueChange={changeOnboardEntry}
+          setState={setOnboardingData}
           data={onboardingData}
         />
       ),
@@ -78,14 +56,14 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
     {
       component: (
-        <Depressed onValueChange={changeOnboardEntry} data={onboardingData} />
+        <Depressed setState={setOnboardingData} data={onboardingData} />
       ),
       disabled: onboardingData.depressed ? false : true,
     },
     { component: <AlmostThere />, disabled: false },
     {
       component: (
-        <TypeOfPain onValueChange={changeOnboardEntry} data={onboardingData} />
+        <TypeOfPain setState={setOnboardingData} data={onboardingData} />
       ),
       disabled: onboardingData.typeOfPain ? false : true,
     },
@@ -95,26 +73,18 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
     {
       component: (
-        <PainInjections
-          onValueChange={changeOnboardEntry}
-          data={onboardingData}
-        />
+        <PainInjections setState={setOnboardingData} data={onboardingData} />
       ),
       disabled: onboardingData.painInjections ? false : true,
     },
     {
       component: (
-        <SpineSurgery
-          onValueChange={changeOnboardEntry}
-          data={onboardingData}
-        />
+        <SpineSurgery setState={setOnboardingData} data={onboardingData} />
       ),
       disabled: onboardingData.spineSurgery ? false : true,
     },
     {
-      component: (
-        <Other onValueChange={changeOnboardEntry} data={onboardingData} />
-      ),
+      component: <Other setState={setOnboardingData} data={onboardingData} />,
       disabled: onboardingData.typeOfPain ? false : true,
     },
   ];
