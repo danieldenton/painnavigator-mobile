@@ -53,6 +53,14 @@ export function formatDateNoYear(date_time_value) {
     : null;
 }
 
+export const setObjectState = (value, key, setObject) => {
+  setObject((object) => ({
+    ...object,
+    [key]: value,
+  }));
+};
+
+
 export function handleTrackEvent(trackEvent) {
   if (trackEvent) {
     track(trackEvent);
