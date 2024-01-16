@@ -30,26 +30,31 @@ export const ProfileSetupScreen = ({ navigation }) => {
     handleEducationProgram,
     handleOtherPainTypeProgram,
   } = useContext(AuthenticationContext);
+  const {
+    anxious,
+    unableToStopWorrying,
+    littleInterestOrPleasure,
+    depressed,
+    typeOfPain,
+    hopesToAchieve,
+    painInjections,
+    spineSurgery,
+  } = onboardingData;
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
     { component: <EnjoymentOfLife />, disabled: false },
     { component: <ActivityInterference />, disabled: false },
-    { component: <Anxious />, disabled: onboardingData.anxious ? false : true },
+    { component: <Anxious />, disabled: anxious ? false : true },
     {
       component: <UnableToStopWorrying />,
-      disabled: onboardingData.unableToStopWorrying ? false : true,
+      disabled: unableToStopWorrying ? false : true,
     },
     {
       component: <LittleInterestOrPleasure />,
-      disabled: onboardingData.littleInterestOrPleasure ? false : true,
+      disabled: littleInterestOrPleasure ? false : true,
     },
-    {
-      component: (
-        <Depressed setState={setOnboardingData} data={onboardingData} />
-      ),
-      disabled: onboardingData.depressed ? false : true,
-    },
+    { component: <Depressed />, disabled: depressed ? false : true },
     { component: <AlmostThere />, disabled: false },
     {
       component: (

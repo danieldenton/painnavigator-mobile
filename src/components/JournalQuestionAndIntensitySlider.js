@@ -1,7 +1,7 @@
 import { JournalQuestion } from './journal-question.component'
 import { IntensitySlider } from './slider.component';
 
-export const JournalQuestionAndIntensitySlider = ({ question, helpText, value, onValueChange, state }) => {
+export const JournalQuestionAndIntensitySlider = ({ question, helpText, value, state, setState }) => {
     return (
         <>
             <JournalQuestion 
@@ -10,7 +10,7 @@ export const JournalQuestionAndIntensitySlider = ({ question, helpText, value, o
             />
             <IntensitySlider 
                 value={value} 
-                onValueChange={onValueChange} 
+                setState={setState}
                 state={state}
             />
         </> 
