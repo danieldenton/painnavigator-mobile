@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { AuthenticationContext } from '../../../services/authentication/authentication.context';
+import React from 'react'
 import { JournalQuestion } from '../../../components/journal-question.component'
 import { AuthTextInput } from '../../../components/text-input.component';
 
@@ -13,7 +12,7 @@ export const Other = ({ onValueChange, data }) => {
             />
             <AuthTextInput
                 accessibilityLabel={"type-of-pain-input"}
-                value={data.typeOfPain}
+                value={typeOfPain}
                 onChangeText={(typeOfPain) => onValueChange(typeOfPain, "typeOfPain")}
             />
                 

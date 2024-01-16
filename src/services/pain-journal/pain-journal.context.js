@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from "react";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 import { destroyPainJournal, patchPainJournal, postPainJournal } from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
