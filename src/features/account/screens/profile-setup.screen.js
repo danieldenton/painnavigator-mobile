@@ -37,21 +37,11 @@ export const ProfileSetupScreen = ({ navigation }) => {
     { component: <ActivityInterference />, disabled: false },
     { component: <Anxious />, disabled: onboardingData.anxious ? false : true },
     {
-      component: (
-        <UnableToStopWorrying
-          setState={setOnboardingData}
-          data={onboardingData}
-        />
-      ),
+      component: <UnableToStopWorrying />,
       disabled: onboardingData.unableToStopWorrying ? false : true,
     },
     {
-      component: (
-        <LittleInterestOrPleasure
-          setState={setOnboardingData}
-          data={onboardingData}
-        />
-      ),
+      component: <LittleInterestOrPleasure />,
       disabled: onboardingData.littleInterestOrPleasure ? false : true,
     },
     {
