@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import Slider from '@react-native-community/slider';
 import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
-import { setObjectState } from "../utils";
 
 const SliderWrapper = styled.View`
     flex: 1;
