@@ -320,7 +320,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         uid,
         isAuthenticated: !!user,
         nextStep,
-        nextQuestion,
         step,
         setStep,
         onLogin,
