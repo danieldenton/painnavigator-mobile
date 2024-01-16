@@ -21,8 +21,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [step, setStep] = useState(0);
   const [accessToWellnessCoach, setAccessToWellnessCoach] = useState(true);
   const [onboardingData, setOnboardingData] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     startingPainScore: 5,
     enjoymentOfLife: 5,
@@ -202,8 +202,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   };
 
   const onRegister = (password, repeatedPassword) => {
-    const { first_name, last_name, email } = onboardingData;
-    if (!first_name || !last_name) {
+    const { firstName, lastName, email } = onboardingData;
+    if (!firstName || !lastName) {
       setError("Error: Please provide your name");
       return;
     }
@@ -220,8 +220,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         const strippedOnboardingData = {
           provider_id: providerId,
           access_to_wellness_coach: accessToWellnessCoach,
-          first_name: onboardingData.first_name.trim(),
-          last_name: onboardingData.last_name.trim(),
+          first_name: onboardingData.firstName.trim(),
+          last_name: onboardingData.lastName.trim(),
           email: onboardingData.email.trim(),
           starting_pain_score: onboardingData.startingPainScore,
           enjoyment_of_life: onboardingData.enjoymentOfLife,

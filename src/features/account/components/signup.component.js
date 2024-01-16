@@ -16,7 +16,7 @@ export const Signup = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
     const { onboardingData, changeOnboardEntry, onRegister, error, userLoading } = useContext(AuthenticationContext);
-    const { first_name, last_name, email } = onboardingData;
+    const { firstName, lastName, email } = onboardingData;
     const [showButton, setShowButton] = useState(true);
 
     return(
@@ -28,21 +28,21 @@ export const Signup = ({ navigation }) => {
                 <InputLabel>First Name</InputLabel>
                 <AuthTextInput
                     accessibilityLabel={"first-name-input"}
-                    value={first_name}
+                    value={firstName}
                     
                     onFocus={() => setShowButton(false)}
                     onBlur={() => setShowButton(true)}
                     textContentType="name"
-                    onChangeText={(first) => changeOnboardEntry(first, "first_name")}
+                    onChangeText={(first) => changeOnboardEntry(first, "firstName")}
                 />
                 <InputLabel>Last Name</InputLabel>
                 <AuthTextInput
                     accessibilityLabel={"last-name-input"}
-                    value={last_name}
+                    value={lastName}
                     onFocus={() => setShowButton(false)}
                     onBlur={() => setShowButton(true)}
                     textContentType="name"
-                    onChangeText={(last) => changeOnboardEntry(last, "last_name")}
+                    onChangeText={(last) => changeOnboardEntry(last, "lastName")}
                 />
                 <InputLabel>Email</InputLabel>
                 <AuthTextInput
