@@ -63,7 +63,6 @@ export const IntensitySlider = ({ setState, key, value, min, max, step }) => {
                         maximumValue={typeof max === 'number' && !isNaN(max) ? max : 10}
                         minimumTrackTintColor="hsl(216, 19%, 61%)"
                         minimumValue={typeof min === 'number' && !isNaN(min) ? min : 0}
-                        // onValueChange={value => onValueChange(Number(value), state)} 
                         onValueChange={value => setState((object) => ({ ...object, [key]: value }))}
                         step={typeof step === 'number' && !isNaN(step) ? step : 1}
                         thumbTintColor="hsl(210, 25%, 17%)"
