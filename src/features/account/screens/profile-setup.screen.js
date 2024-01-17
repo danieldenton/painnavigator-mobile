@@ -61,12 +61,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
       component: <HopeToAchieve />,
       disabled: hopesToAchieve.length > 0 ? false : true,
     },
-    {
-      component: (
-        <PainInjections setState={setOnboardingData} data={onboardingData} />
-      ),
-      disabled: onboardingData.painInjections ? false : true,
-    },
+    { component: <PainInjections />, disabled: painInjections ? false : true },
     {
       component: (
         <SpineSurgery setState={setOnboardingData} data={onboardingData} />
