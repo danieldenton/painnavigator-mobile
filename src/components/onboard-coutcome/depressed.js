@@ -10,8 +10,12 @@ export const Depressed = () => {
   const { onboardingData, setOnboardingData } = useContext(
     AuthenticationContext
   );
+  const { depressed } = onboardingData;
   const add = (optionId) => {
-    setObjectState(optionId, "depressed", setOnboardingData);
+    setOnboardingData((object) => ({
+      ...object,
+      depressed: optionId,
+    }));
   };
 
   const opts = options.map((option) => {
@@ -20,7 +24,7 @@ export const Depressed = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={onboardingData.depressed}
+        selectedOption={depressed}
       />
     );
   });

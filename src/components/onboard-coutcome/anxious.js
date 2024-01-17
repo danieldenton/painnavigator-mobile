@@ -6,10 +6,10 @@ import { options } from "./options.json";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 export const Anxious = () => {
-  const { onbaordingData, setOnboardingData } = useContext(
+  const { onboardingData, setOnboardingData } = useContext(
     AuthenticationContext
   );
-  const { anxious } = onbaordingData;
+  const { anxious } = onboardingData;
   const add = (optionId) => {
     setOnboardingData((object) => ({ ...object, anxious: optionId }));
   };

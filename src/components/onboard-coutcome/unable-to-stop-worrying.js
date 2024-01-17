@@ -6,10 +6,10 @@ import { options } from "./options.json";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 export const UnableToStopWorrying = () => {
-  const { onbaordingData, setOnboardingData } = useContext(
+  const { onboardingData, setOnboardingData } = useContext(
     AuthenticationContext
   );
-  const { unableToStopWorrying } = onbaordingData;
+  const { unableToStopWorrying } = onboardingData;
   const add = (optionId) => {
     setOnboardingData((object) => ({
       ...object,
