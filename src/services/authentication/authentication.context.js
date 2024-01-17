@@ -10,7 +10,6 @@ import {
   postUser,
   patchCompletedProgram,
 } from "./authentication.service";
-import { hopesOptions } from "../../features/account/data/onboard-data.json";
 
 export const AuthenticationContext = createContext();
 
@@ -93,12 +92,12 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
 
   const handleEducationProgram = () => {
     if (educationProgram === 2) {
-      return
+      return;
     }
     if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
       if (
         onboardingData.hopesToAchieve.length === 1 &&
-        onboardingData.hopesToAchieve[0] === 4
+        onboardingData.hopesToAchieve[0] === "Strength & Prevention"
       ) {
         if (
           onboardingData.spineSurgery !== "No" &&
@@ -149,7 +148,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const handleOtherPainTypeProgram = () => {
     if (
       onboardingData.hopesToAchieve.length === 1 &&
-      onboardingData.hopesToAchieve[0] === 4
+      onboardingData.hopesToAchieve[0] === "Strength & Prevention"
     ) {
       setEducationProgram(11);
     } else {
@@ -161,13 +160,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     } else {
       navigation.navigate("Register");
     }
-  };
-
-  const changeOutcomeEntry = (change, state) => {
-    setOutcomeData((entry) => ({
-      ...entry,
-      [state]: change,
-    }));
   };
 
   const onLogin = (email, password) => {
@@ -188,15 +180,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  const findHopesToAchieve = () => {
-    const selectedHopes = onboardingData.hopesToAchieve;
-    const text = hopesOptions.filter((option) =>
-      selectedHopes.includes(option.id)
-    );
-    const hopes = text.map((option) => option.option);
-    return String(hopes).replace(/,/g, ", ");
-  };
-
   const onRegister = (password, repeatedPassword) => {
     const { firstName, lastName, email } = onboardingData;
     if (!firstName || !lastName) {
@@ -212,7 +195,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        const hopes_to_achieve = findHopesToAchieve();
         const strippedOnboardingData = {
           provider_id: providerId,
           access_to_wellness_coach: accessToWellnessCoach,
@@ -222,7 +204,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           starting_pain_score: onboardingData.startingPainScore,
           enjoyment_of_life: onboardingData.enjoymentOfLife,
           activity_interference: onboardingData.activityInterference,
-          hopes_to_achieve: hopes_to_achieve,
+          hopes_to_achieve: hopesToAchieve,
           anxious: onboardingData.anxious,
           unable_to_stop_worrying: onboardingData.unableToStopWorrying,
           little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
