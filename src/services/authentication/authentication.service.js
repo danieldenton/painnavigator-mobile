@@ -46,7 +46,7 @@ export async function getUser(
     setEducationProgress(eProgress);
     setMovementProgress(data.movement_progress.progress);
     setProfileComplete(data.profile.profile_status === 1);
-    setCompletedProgram(data.outcome.completed_program === true);
+    setCompletedProgram(data.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
     setAccessToWellnessCoach(data.access_to_wellness_coach);
   } catch (error) {

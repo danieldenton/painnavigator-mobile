@@ -106,61 +106,61 @@ export const ProfileContextProvider = ({ children }) => {
         patchUser(userId, data, setUserInfo, setProfileComplete);
     };
 
-    const saveProfileComplete = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem("@profile_status", jsonValue);
-        } catch (e) {
-            console.log("error storing profile_status", e);
-        }
-    };
+    // const saveProfileComplete = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //     await AsyncStorage.setItem("@profile_status", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing profile_status", e);
+    //     }
+    // };
 
-    const loadProfileComplete = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@profile_status");
-            if (value !== null) {
-                setProfileComplete(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading profile_status", e);
-        }
-    };
+    // const loadProfileComplete = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@profile_status");
+    //         if (value !== null) {
+    //             setProfileComplete(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading profile_status", e);
+    //     }
+    // };
 
-    useEffect(() => {
-        loadProfileComplete();
-    }, []);
+    // useEffect(() => {
+    //     loadProfileComplete();
+    // }, []);
 
-    useEffect(() => {
-        saveProfileComplete(profileComplete);
-    }, [profileComplete]);
+    // useEffect(() => {
+    //     saveProfileComplete(profileComplete);
+    // }, [profileComplete]);
 
-    const saveUserInfo = async (value) => {
-        try {
-            const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem("@user_info", jsonValue);
-        } catch (e) {
-            console.log("error storing user_info", e);
-        }
-    };
+    // const saveUserInfo = async (value) => {
+    //     try {
+    //         const jsonValue = JSON.stringify(value);
+    //     await AsyncStorage.setItem("@user_info", jsonValue);
+    //     } catch (e) {
+    //         console.log("error storing user_info", e);
+    //     }
+    // };
 
-    const loadUserInfo = async () => {
-        try {
-            const value = await AsyncStorage.getItem("@user_info");
-            if (value !== null) {
-                setUserInfo(JSON.parse(value));
-            }
-        } catch (e) {
-            console.log("error loading user_info", e);
-        }
-    };
+    // const loadUserInfo = async () => {
+    //     try {
+    //         const value = await AsyncStorage.getItem("@user_info");
+    //         if (value !== null) {
+    //             setUserInfo(JSON.parse(value));
+    //         }
+    //     } catch (e) {
+    //         console.log("error loading user_info", e);
+    //     }
+    // };
 
-    useEffect(() => {
-        loadUserInfo();
-    }, []);
+    // useEffect(() => {
+    //     loadUserInfo();
+    // }, []);
 
-    useEffect(() => {
-        saveUserInfo(userInfo);
-    }, [userInfo]);
+    // useEffect(() => {
+    //     saveUserInfo(userInfo);
+    // }, [userInfo]);
 
     return (
         <ProfileContext.Provider
