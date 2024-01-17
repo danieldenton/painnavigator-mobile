@@ -102,7 +102,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: painInjections ? false : true,
     },
     {
-      component: <SpineSurgery />,
+      component: <SpineSurgery setState={setOnboardingData} value={spineSurgery}/>,
       disabled: spineSurgery ? false : true,
     },
     { component: <Other />, disabled: typeOfPain ? false : true },
