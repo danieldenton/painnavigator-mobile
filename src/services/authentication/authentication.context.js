@@ -160,13 +160,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const changeOnboardEntry = (change, state) => {
-    setOnboardingData((entry) => ({
-      ...entry,
-      [state]: change,
-    }));
-  };
-
   const changeOutcomeEntry = (change, state) => {
     setOutcomeData((entry) => ({
       ...entry,
@@ -317,7 +310,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   return (
     <AuthenticationContext.Provider
       value={{
-        changeOnboardEntry,
         handleEducationProgram,
         handleOtherPainTypeProgram,
         accessToWellnessCoach,
