@@ -46,7 +46,7 @@ const SliderEndText = styled.Text`
     color: hsl(215, 15%, 52%);
 `;
 
-export const IntensitySlider = ({ setState, key, value, min, max, step }) => {
+export const IntensitySlider = ({ setState, objectKey, value, min, max, step }) => {
     return(
         <SliderWrapper>
             <SliderValueWindow>
@@ -63,7 +63,7 @@ export const IntensitySlider = ({ setState, key, value, min, max, step }) => {
                         maximumValue={typeof max === 'number' && !isNaN(max) ? max : 10}
                         minimumTrackTintColor="hsl(216, 19%, 61%)"
                         minimumValue={typeof min === 'number' && !isNaN(min) ? min : 0}
-                        onValueChange={value => setState((object) => ({ ...object, [key]: value }))}
+                        onValueChange={value => setState((object) => ({ ...object, [objectKey]: value }))}
                         step={typeof step === 'number' && !isNaN(step) ? step : 1}
                         thumbTintColor="hsl(210, 25%, 17%)"
                         value={value} 

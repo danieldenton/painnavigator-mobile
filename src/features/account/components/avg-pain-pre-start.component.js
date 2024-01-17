@@ -15,7 +15,7 @@ export const AvgPainPreStart = () => {
       }
       helpText={"0 is no pain, 10 is the worst pain you can imagine"}
       setState={setOnboardingData}
-      key={"startingPainScore"}
+      objectKey={"startingPainScore"}
       value={startingPainScore}
     />
   );

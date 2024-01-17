@@ -16,7 +16,7 @@ export const ActivityInterference = () => {
         "0 is not at all, 10 is pain has made normal activities impossible"
       }
       setState={setOnboardingData}
-      key={"activityInterference"}
+      objectKey={"activityInterference"}
       value={activityInterference}
     />
   );

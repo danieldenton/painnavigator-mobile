@@ -80,7 +80,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
       {onboardPages[step].component}
       <ButtonSection>
         <JournalButton
-          disabled={pages[step].disabled}
+          disabled={onboardPages[step].disabled}
           title={"Next"}
           onPress={() => {
             step >= 11

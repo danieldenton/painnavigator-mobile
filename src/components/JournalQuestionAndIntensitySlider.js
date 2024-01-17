@@ -5,13 +5,13 @@ export const JournalQuestionAndIntensitySlider = ({
   question,
   helpText,
   setState,
-  key,
+  objectKey,
   value,
 }) => {
   return (
     <>
       <JournalQuestion question={question} helpText={helpText} />
-      <IntensitySlider setState={setState} key={key} value={value} />
+      <IntensitySlider setState={setState} objectKey={objectKey} value={value} />
     </>
   );
 };

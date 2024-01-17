@@ -10,7 +10,6 @@ export const TypeOfPain = () => {
   const { onboardingData, setOnboardingData } = useContext(
     AuthenticationContext
   );
-  const { typeOfPain } = onboardingData;
   const add = (optionId) => {
     setOnboardingData((object) => ({
       ...object,
@@ -24,7 +23,7 @@ export const TypeOfPain = () => {
         add={add}
         key={option.option}
         optionData={option}
-        selectedOption={typeOfPain}
+        selectedOption={onboardingData.typeOfPain}
       />
     );
   });
