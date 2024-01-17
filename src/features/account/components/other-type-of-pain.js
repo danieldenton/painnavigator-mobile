@@ -10,7 +10,7 @@ export const OtherTypeOfPain = ({ setState, value }) => {
       />
       <AuthTextInput
         accessibilityLabel={"type-of-pain-input"}
-        value={typeOfPain}
+        value={value}
         onChangeText={(value) =>
           setState((object) => ({ ...object, typeOfPain: value }))
         }
