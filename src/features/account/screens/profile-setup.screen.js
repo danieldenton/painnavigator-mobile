@@ -90,7 +90,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     { component: <AlmostThere />, disabled: false },
     { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
-      component: <HopeToAchieve />,
+      component: <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve}/>,
       disabled: hopesToAchieve.length > 0 ? false : true,
     },
     { component: <PainInjections />, disabled: painInjections ? false : true },

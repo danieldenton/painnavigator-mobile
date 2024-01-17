@@ -1,31 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View } from "react-native";
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import {
   MultiSelectCheckBox,
   MultiSelectScroll,
 } from "../../../components/multi-select-checkbox.component";
 import { hopesOptions } from "./../data/onboard-data.json";
 
-export const HopeToAchieve = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { hopesToAchieve } = onboardingData;
+export const HopeToAchieve = ({ setState, value }) => {
+  const selectedHopes = value;
 
-  const selectedHopes = hopesToAchieve;
-
-  const add = (optionId) => {
-    setOnboardingData((object) => ({
+  const add = (option) => {
+    setState((object) => ({
       ...object,
-      ["hopesToAchieve"]: [...selectedHopes, optionId],
+      hopesToAcheive: [...selectedHopes, option],
     }));
   };
 
-  const remove = (optionId) => {
-    const newHopes = selectedHopes.filter((x) => x !== optionId);
-    setOnboardingData((entry) => ({
+  const remove = (option) => {
+    const newHopes = selectedHopes.filter((x) => x !== option);
+    setState((entry) => ({
       ...entry,
       ["hopesToAchieve"]: newHopes,
     }));
