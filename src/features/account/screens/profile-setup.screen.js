@@ -15,7 +15,7 @@ import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unabl
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
 import { Depressed } from "../../../components/onboard-coutcome/depressed";
 import { TypeOfPain } from "../components/type-of-pain";
-import { Other } from "../components/other";
+import { Other, OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
@@ -102,10 +102,17 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: painInjections ? false : true,
     },
     {
-      component: <SpineSurgery setState={setOnboardingData} value={spineSurgery}/>,
+      component: (
+        <SpineSurgery setState={setOnboardingData} value={spineSurgery} />
+      ),
       disabled: spineSurgery ? false : true,
     },
-    { component: <Other />, disabled: typeOfPain ? false : true },
+    {
+      component: (
+        <OtherTypeOfPain setState={setOnboardingData} value={typeOfPain} />
+      ),
+      disabled: typeOfPain ? false : true,
+    },
   ];
 
   return (
