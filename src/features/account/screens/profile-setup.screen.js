@@ -75,7 +75,12 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: unableToStopWorrying ? false : true,
     },
     {
-      component: <LittleInterestOrPleasure />,
+      component: (
+        <LittleInterestOrPleasure
+          setState={setOnboardingData}
+          value={littleInterestOrPleasure}
+        />
+      ),
       disabled: littleInterestOrPleasure ? false : true,
     },
     { component: <Depressed />, disabled: depressed ? false : true },

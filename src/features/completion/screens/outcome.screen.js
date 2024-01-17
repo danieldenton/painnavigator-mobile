@@ -29,6 +29,7 @@ export const OutcomeScreen = ({ navigation }) => {
     activityInterference,
     anxious,
     unableToStopWorrying,
+    littleInterestOrPleasure,
   } = outcomeData;
 
   pages = [
@@ -64,11 +65,11 @@ export const OutcomeScreen = ({ navigation }) => {
     {
       component: (
         <LittleInterestOrPleasure
-          onValueChange={changeOutcomeEntry}
-          data={outcomeData}
+          setState={setOutcomeData}
+          value={littleInterestOrPleasure}
         />
       ),
-      disabled: outcomeData.littleInterestOrPleasure ? false : true,
+      disabled: littleInterestOrPleasure ? false : true,
     },
     {
       component: (
