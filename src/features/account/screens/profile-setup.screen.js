@@ -90,10 +90,17 @@ export const ProfileSetupScreen = ({ navigation }) => {
     { component: <AlmostThere />, disabled: false },
     { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
-      component: <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve}/>,
+      component: (
+        <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve} />
+      ),
       disabled: hopesToAchieve.length > 0 ? false : true,
     },
-    { component: <PainInjections />, disabled: painInjections ? false : true },
+    {
+      component: (
+        <PainInjections setState={setOnboardingData} value={painInjections} />
+      ),
+      disabled: painInjections ? false : true,
+    },
     {
       component: <SpineSurgery />,
       disabled: spineSurgery ? false : true,

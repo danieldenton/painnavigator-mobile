@@ -1,19 +1,14 @@
-import React, { useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import React from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { SingleSelectCheckBox } from "../../../components/checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { injectionsAndSurgery } from "./../data/onboard-data.json";
 
-export const PainInjections = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { painInjections } = onboardingData;
-  const add = (optionId) => {
-    setOnboardingData((object) => ({
+export const PainInjections = ({ setState, value }) => {
+  const add = (option) => {
+    setState((object) => ({
       ...object,
-      painInjections: optionId,
+      painInjections: option,
     }));
   };
 
@@ -23,7 +18,7 @@ export const PainInjections = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={painInjections}
+        selectedOption={value}
       />
     );
   });

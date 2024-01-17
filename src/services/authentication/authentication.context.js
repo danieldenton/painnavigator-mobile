@@ -35,14 +35,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     painInjections: "",
     spineSurgery: "",
   });
-  // const [firstName, setFirstName] = useState("")
-  // const [lastName, setLastName] = useState("")
-  // const [email, setEmail] = useState("")
-  // const [startingPainScore, setStartingPainScore] = useState(5)
-  // const [enjoymentOfLife, setEnjoymentOfLife] = useState(5)
-  // const [activityInterference, setActivityInterference] = useState(5)
-  // const [hoesToAchieve, setHopesToAchieve] = useState([])
-  // const [anxious, setAnxious] = useState("")
   const [providerId, setProviderId] = useState(null);
   const [completedProgram, setCompletedProgram] = useState(false);
   const [outcomeData, setOutcomeData] = useState({
@@ -286,6 +278,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
+  // TODO fix this so it doesnt patch everytime.
   useEffect(() => {
     if (user && expoPushToken) {
       patchExpoPushToken(uid, expoPushToken);

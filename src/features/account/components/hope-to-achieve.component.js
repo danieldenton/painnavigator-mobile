@@ -21,7 +21,7 @@ export const HopeToAchieve = ({ setState, value }) => {
     const newHopes = selectedHopes.filter((x) => x !== option);
     setState((entry) => ({
       ...entry,
-      ["hopesToAchieve"]: newHopes,
+      hopesToAcheive: newHopes,
     }));
   };
 
