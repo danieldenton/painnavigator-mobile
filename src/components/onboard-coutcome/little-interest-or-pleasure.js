@@ -3,16 +3,18 @@ import { JournalQuestion } from "../journal-question.component";
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { options } from "./options.json";
-import { setObjectState } from "../../utils";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import { useContext } from "react";
 
 export const LittleInterestOrPleasure = () => {
-  const { onbaordingData, setOnaboardingData } = useContext(
+  const { onbaordingData, setOnboardingData } = useContext(
     AuthenticationContext
   );
+  const { littleInterestOrPleasure } = onbaordingData;
   const add = (optionId) => {
-    setObjectState(optionId, "anxious", setOnaboardingData);
+    setOnboardingData((object) => ({
+      ...object,
+      littleInterestOrPleasure: optionId,
+    }));
   };
 
   const opts = options.map((option) => {
@@ -21,7 +23,7 @@ export const LittleInterestOrPleasure = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={onbaordingData.littleInterestOrPleasure}
+        selectedOption={littleInterestOrPleasure}
       />
     );
   });
