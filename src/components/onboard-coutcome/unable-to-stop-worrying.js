@@ -5,10 +5,10 @@ import { View } from "react-native";
 import { options } from "./options.json";
 
 export const UnableToStopWorrying = ({ setState, value }) => {
-  const add = (option) => {
+  const add = (optionId) => {
     setState((object) => ({
       ...object,
-      unableToStopWorrying: option,
+      unableToStopWorrying: optionId,
     }));
   };
 

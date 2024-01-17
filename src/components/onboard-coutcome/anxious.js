@@ -5,8 +5,8 @@ import { View } from "react-native";
 import { options } from "./options.json";
 
 export const Anxious = ({ setState, value }) => {
-  const add = (option) => {
-    setState((object) => ({ ...object, anxious: option }));
+  const add = (optionId) => {
+    setState((object) => ({ ...object, anxious: optionId }));
   };
 
   const opts = options.map((option) => {

@@ -10,10 +10,10 @@ import { hopesOptions } from "./../data/onboard-data.json";
 export const HopeToAchieve = ({ setState, value }) => {
   const selectedHopes = value;
 
-  const add = (option) => {
+  const add = (optionId) => {
     setState((object) => ({
       ...object,
-      hopesToAcheive: [...selectedHopes, option],
+      hopesToAcheive: [...selectedHopes, optionId],
     }));
   };
 

@@ -5,10 +5,10 @@ import { View } from "react-native";
 import { injectionsAndSurgery } from "./../data/onboard-data.json";
 
 export const SpineSurgery = ({ setState, value }) => {
-  const add = (option) => {
+  const add = (optionId) => {
     setState((object) => ({
       ...object,
-      spineSurgery: option,
+      spineSurgery: optionId,
     }));
   };
 
