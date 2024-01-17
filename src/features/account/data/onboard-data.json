@@ -24,17 +24,17 @@
 
     "injectionsAndSurgery": [
         {
-            "id": "Yes and cleared for exercise",
+            "id": 1,
             "option": "Yes and cleared for exercise",
             "helpText": null
         },
         {
-            "id": "Yes but not yet cleared for exercise",
+            "id": 2,
             "option": "Yes but not yet and cleared for exercise",
             "helpText": null
         },
         {
-            "id": "No",
+            "id": 3,
             "option": "No",
             "helpText": null
         }
@@ -42,12 +42,12 @@
 
     "typeOfPain": [
         {
-            "id": "Low Back Pain",
+            "id": 1,
             "option": "Low Back Pain",
             "helpText": null
         },
         {
-            "id": "Mid Back Pain",
+            "id": 2,
             "option": "Mid Back Pain",
             "helpText": null
         },
@@ -57,27 +57,27 @@
             "helpText": null
         },
         {
-            "id": "Shoulder Pain",
+            "id": 4,
             "option": "Shoulder Pain",
             "helpText": null
         },
         {
-            "id": "Hip Pain",
+            "id": 5,
             "option": "Hip Pain",
             "helpText": null
         },
         {
-            "id": "Knee Pain",
+            "id": 6,
             "option": "Knee Pain",
             "helpText": null
         },
         {
-            "id": "Foot Pain",
+            "id": 7,
             "option": "Foot Pain",
             "helpText": null
         },
         {
-            "id": "Other",
+            "id": 8,
             "option": "Other",
             "helpText": null
         }
