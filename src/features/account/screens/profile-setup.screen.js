@@ -59,7 +59,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: <HopeToAchieve />,
-      disabled: onboardingData.hopesToAchieve.length > 0 ? false : true,
+      disabled: hopesToAchieve.length > 0 ? false : true,
     },
     {
       component: (

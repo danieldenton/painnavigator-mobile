@@ -12,8 +12,8 @@ export const HopeToAchieve = () => {
     const selectedHopes = hopesToAchieve;
 
     const add = (optionId) => {
-        setOnboardingData(entry => ({
-            ...entry,
+        setOnboardingData(object => ({
+            ...object,
             ["hopesToAchieve"]: [...selectedHopes, optionId]
         }));
     };
