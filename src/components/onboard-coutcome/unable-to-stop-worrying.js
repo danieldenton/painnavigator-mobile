@@ -3,7 +3,6 @@ import { JournalQuestion } from "../journal-question.component";
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { options } from "./options.json";
-import { setObjectState } from "../../utils";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 export const UnableToStopWorrying = () => {
