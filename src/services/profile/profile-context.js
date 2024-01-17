@@ -15,9 +15,9 @@ export const ProfileContextProvider = ({ children }) => {
     const [profileData, setProfileData] = useState({
         phone: "",
         dob: "",
-        starting_pain_duration: 0,
-        gender: 0,
-        activity_level: 0
+        starting_pain_duration: "",
+        gender: "",
+        activity_level: ""
     })
     const [profileStep, setProfileStep] = useState(0);
     const [profileComplete, setProfileComplete] = useState(false);
