@@ -11,7 +11,7 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { changeOnboardEntry, error, handleProgramSafety, checkProviderCode } =
+  const { error, handleProgramSafety, checkProviderCode } =
     useContext(AuthenticationContext);
   const [providerCode, setProviderCode] = useState("");
 
@@ -43,10 +43,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
         accessibilityLabel={"referral-code-input"}
         value={providerCode}
         autoCapitalize="characters"
-        onChangeText={(providerCode) => (
-          changeOnboardEntry(providerCode, "referral_code"),
-          setProviderCode(providerCode)
-        )}
+        onChangeText={(providerCode) => setProviderCode(providerCode)}
         keyboardType="visible-password"
         testID={"code-input"}
       />
@@ -62,7 +59,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
             onPress={() => {
               checkProviderCode(providerCode);
               handleProgramSafety(providerCode);
-              navigation.navigate("Explanation")
+              navigation.navigate("Explanation");
             }}
           />
         </View>
