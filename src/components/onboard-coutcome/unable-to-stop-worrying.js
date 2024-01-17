@@ -1,19 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { JournalQuestion } from "../journal-question.component";
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { options } from "./options.json";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-export const UnableToStopWorrying = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { unableToStopWorrying } = onboardingData;
-  const add = (optionId) => {
-    setOnboardingData((object) => ({
+export const UnableToStopWorrying = ({ setState, value }) => {
+  const add = (option) => {
+    setState((object) => ({
       ...object,
-      unableToStopWorrying: optionId,
+      unableToStopWorrying: option,
     }));
   };
 
@@ -23,7 +18,7 @@ export const UnableToStopWorrying = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={unableToStopWorrying}
+        selectedOption={value}
       />
     );
   });

@@ -24,7 +24,12 @@ export const OutcomeScreen = ({ navigation }) => {
     outcomeData,
     setOutcomeData,
   } = useContext(AuthenticationContext);
-  const { enjoymentOfLife, activityInterference, anxious } = outcomeData;
+  const {
+    enjoymentOfLife,
+    activityInterference,
+    anxious,
+    unableToStopWorrying,
+  } = outcomeData;
 
   pages = [
     { component: <Recommend />, disabled: false },
@@ -50,11 +55,11 @@ export const OutcomeScreen = ({ navigation }) => {
     {
       component: (
         <UnableToStopWorrying
-          onValueChange={changeOutcomeEntry}
-          data={outcomeData}
+          setState={setOutcomeData}
+          value={activityInterference}
         />
       ),
-      disabled: outcomeData.unableToStopWorrying ? false : true,
+      disabled: unableToStopWorrying ? false : true,
     },
     {
       component: (
