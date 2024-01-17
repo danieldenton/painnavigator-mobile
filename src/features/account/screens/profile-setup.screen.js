@@ -61,7 +61,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
       ),
       disabled: false,
     },
-    { component: <Anxious />, disabled: anxious ? false : true },
+    {
+      component: <Anxious setState={setOnboardingData} value={anxious} />,
+      disabled: anxious ? false : true,
+    },
     {
       component: <UnableToStopWorrying />,
       disabled: unableToStopWorrying ? false : true,

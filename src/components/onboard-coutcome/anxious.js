@@ -1,17 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { JournalQuestion } from "../journal-question.component";
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { options } from "./options.json";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-export const Anxious = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { anxious } = onboardingData;
+export const Anxious = ({ setState, value }) => {
   const add = (optionId) => {
-    setOnboardingData((object) => ({ ...object, anxious: optionId }));
+    setState((object) => ({ ...object, anxious: optionId }));
   };
 
   const opts = options.map((option) => {
@@ -20,7 +15,7 @@ export const Anxious = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={anxious}
+        selectedOption={value}
       />
     );
   });

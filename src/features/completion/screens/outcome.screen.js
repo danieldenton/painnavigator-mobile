@@ -24,7 +24,7 @@ export const OutcomeScreen = ({ navigation }) => {
     outcomeData,
     setOutcomeData,
   } = useContext(AuthenticationContext);
-  const { enjoymentOfLife, activityInterference } = outcomeData;
+  const { enjoymentOfLife, activityInterference, anxious } = outcomeData;
 
   pages = [
     { component: <Recommend />, disabled: false },
@@ -44,10 +44,8 @@ export const OutcomeScreen = ({ navigation }) => {
       disabled: false,
     },
     {
-      component: (
-        <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />
-      ),
-      disabled: outcomeData.anxious ? false : true,
+      component: <Anxious setState={setOutcomeData} value={anxious} />,
+      disabled: anxious ? false : true,
     },
     {
       component: (
