@@ -24,19 +24,21 @@ export const OutcomeScreen = ({ navigation }) => {
     outcomeData,
     setOutcomeData,
   } = useContext(AuthenticationContext);
-  const { enjoymentOfLife } = outcomeData;
+  const { enjoymentOfLife, activityInterference } = outcomeData;
 
   pages = [
     { component: <Recommend />, disabled: false },
     {
-      component: <EnjoymentOfLife setState={setOutcomeData} value={enjoymentOfLife} />,
+      component: (
+        <EnjoymentOfLife setState={setOutcomeData} value={enjoymentOfLife} />
+      ),
       disabled: false,
     },
     {
       component: (
         <ActivityInterference
-          onValueChange={changeOutcomeEntry}
-          data={outcomeData}
+          setState={setOutcomeData}
+          value={activityInterference}
         />
       ),
       disabled: false,

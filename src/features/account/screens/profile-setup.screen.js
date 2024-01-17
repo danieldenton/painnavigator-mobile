@@ -33,6 +33,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
+    activityInterference,
     anxious,
     unableToStopWorrying,
     littleInterestOrPleasure,
@@ -45,8 +46,21 @@ export const ProfileSetupScreen = ({ navigation }) => {
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
-    { component: <EnjoymentOfLife setState={setOnboardingData} value={enjoymentOfLife} />, disabled: false },
-    { component: <ActivityInterference />, disabled: false },
+    {
+      component: (
+        <EnjoymentOfLife setState={setOnboardingData} value={enjoymentOfLife} />
+      ),
+      disabled: false,
+    },
+    {
+      component: (
+        <ActivityInterference
+          setState={setOnboardingData}
+          value={activityInterference}
+        />
+      ),
+      disabled: false,
+    },
     { component: <Anxious />, disabled: anxious ? false : true },
     {
       component: <UnableToStopWorrying />,

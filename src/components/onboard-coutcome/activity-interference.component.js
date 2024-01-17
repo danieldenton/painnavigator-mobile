@@ -1,12 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { JournalQuestionAndIntensitySlider } from "../JournalQuestionAndIntensitySlider";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-export const ActivityInterference = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { activityInterference } = onboardingData;
+export const ActivityInterference = ({ setState, value }) => {
   return (
     <JournalQuestionAndIntensitySlider
       question={
@@ -15,9 +10,9 @@ export const ActivityInterference = () => {
       helpText={
         "0 is not at all, 10 is pain has made normal activities impossible"
       }
-      setState={setOnboardingData}
+      setState={setState}
       objectKey={"activityInterference"}
-      value={activityInterference}
+      value={value}
     />
   );
 };
