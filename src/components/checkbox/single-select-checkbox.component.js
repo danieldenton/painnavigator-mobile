@@ -12,21 +12,21 @@ import * as Haptics from 'expo-haptics';
 import { isAndroid } from "../../utils";
 
 export const SingleSelectCheckBox = ({ add, optionData, selectedOption }) => {
-    const { id, helpText, option } = optionData;
+    const { helpText, option } = optionData;
         
     return (
         <CheckBoxPressableArea
             activeOpacity={0.5}
             accessibilityLabel={`select-${option}`}
             onPress={() => {
-                add(id);
+                add(option);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
             }}
             role={"checkbox"}
             style={{ marginBottom: isAndroid ? 12 : 20 }}
         >
             <CheckCircleArea>
-                {selectedOption === id ? 
+                {selectedOption === option ? 
                     <Selected />
                     : 
                     <UncheckedCheckCircle />

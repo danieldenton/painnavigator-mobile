@@ -1,22 +1,22 @@
 {
     "options": [
         { 
-            "id": "Not At All",
+            "id": 1,
             "option": "Not At All",
             "helpText": null
         }, 
         {
-            "id": "Several Days",
+            "id": 2,
             "option": "Several Days",
             "helpText": null
         },
         {
-            "id": "More Than Half the Days",
+            "id": 3,
             "option": "More Than Half the Days",
             "helpText": null
          },
          {
-            "id": "Nearly Every Day",
+            "id": 4,
             "option": "Nearly Every Day",
             "helpText": null
          }
