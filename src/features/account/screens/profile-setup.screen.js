@@ -56,12 +56,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
     { component: <Depressed />, disabled: depressed ? false : true },
     { component: <AlmostThere />, disabled: false },
-    {
-      component: (
-        <TypeOfPain setState={setOnboardingData} data={onboardingData} />
-      ),
-      disabled: onboardingData.typeOfPain ? false : true,
-    },
+    { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: <HopeToAchieve />,
       disabled: onboardingData.hopesToAchieve.length > 0 ? false : true,
