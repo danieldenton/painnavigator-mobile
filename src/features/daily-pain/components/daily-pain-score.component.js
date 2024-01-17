@@ -10,7 +10,7 @@ import { track } from '@amplitude/analytics-react-native';
 import { DAILY_PAIN_EVENTS } from '../../../amplitude-events';
 
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
+    const { dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { uid } = useContext(AuthenticationContext)
 
     const handleDailyPainScore = () => {
