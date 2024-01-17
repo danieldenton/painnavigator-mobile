@@ -83,7 +83,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
       ),
       disabled: littleInterestOrPleasure ? false : true,
     },
-    { component: <Depressed />, disabled: depressed ? false : true },
+    {
+      component: <Depressed setState={setOnboardingData} value={depressed} />,
+      disabled: depressed ? false : true,
+    },
     { component: <AlmostThere />, disabled: false },
     { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {

@@ -1,20 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { JournalQuestion } from "../journal-question.component";
 import { SingleSelectCheckBox } from "../checkbox/single-select-checkbox.component";
 import { View } from "react-native";
 import { options } from "./options.json";
-import { setObjectState } from "../../utils";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-export const Depressed = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
-  const { depressed } = onboardingData;
-  const add = (optionId) => {
-    setOnboardingData((object) => ({
+export const Depressed = ({ setState, value }) => {
+  const add = (option) => {
+    setState((object) => ({
       ...object,
-      depressed: optionId,
+      depressed: option,
     }));
   };
 
@@ -24,7 +18,7 @@ export const Depressed = () => {
         add={add}
         key={option.id}
         optionData={option}
-        selectedOption={depressed}
+        selectedOption={value}
       />
     );
   });

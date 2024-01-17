@@ -30,6 +30,7 @@ export const OutcomeScreen = ({ navigation }) => {
     anxious,
     unableToStopWorrying,
     littleInterestOrPleasure,
+    depressed,
   } = outcomeData;
 
   pages = [
@@ -72,10 +73,8 @@ export const OutcomeScreen = ({ navigation }) => {
       disabled: littleInterestOrPleasure ? false : true,
     },
     {
-      component: (
-        <Depressed onValueChange={changeOutcomeEntry} data={outcomeData} />
-      ),
-      disabled: outcomeData.depressed ? false : true,
+      component: <Depressed setState={setOutcomeData} value={depressed} />,
+      disabled: depressed ? false : true,
     },
   ];
 
