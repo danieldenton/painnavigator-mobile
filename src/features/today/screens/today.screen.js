@@ -130,6 +130,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
+    console.log(uid)
   }, []);
 
   useEffect(() => {

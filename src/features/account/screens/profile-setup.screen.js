@@ -26,11 +26,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
     previousStep,
     nextStep,
     onboardingData,
+    setOnboardingData,
     programSafety,
     handleEducationProgram,
     handleOtherPainTypeProgram,
   } = useContext(AuthenticationContext);
   const {
+    enjoymentOfLife,
     anxious,
     unableToStopWorrying,
     littleInterestOrPleasure,
@@ -43,7 +45,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
-    { component: <EnjoymentOfLife />, disabled: false },
+    { component: <EnjoymentOfLife setState={setOnboardingData} value={enjoymentOfLife} />, disabled: false },
     { component: <ActivityInterference />, disabled: false },
     { component: <Anxious />, disabled: anxious ? false : true },
     {

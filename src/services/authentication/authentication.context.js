@@ -92,6 +92,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   };
 
   const handleEducationProgram = () => {
+    if (educationProgram === 2) {
+      return
+    }
     if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
       if (
         onboardingData.hopesToAchieve.length === 1 &&
@@ -337,7 +340,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setError,
         setCompletedProgram,
         outcomeData,
-        changeOutcomeEntry,
+        setOutcomeData,
         completedProgram,
         completeProgram,
         educationProgram,
