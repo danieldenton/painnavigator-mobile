@@ -66,10 +66,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
       component: <SpineSurgery />,
       disabled: spineSurgery ? false : true,
     },
-    {
-      component: <Other setState={setOnboardingData} data={onboardingData} />,
-      disabled: onboardingData.typeOfPain ? false : true,
-    },
+    { component: <Other />, disabled: typeOfPain ? false : true },
   ];
 
   return (
