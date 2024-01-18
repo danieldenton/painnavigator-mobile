@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "./../../education/data/education-programs-data.json";
+import { educationPrograms } from "../../../services/education/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -94,6 +94,7 @@ export const TodayScreen = ({ navigation }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
+  const noMovementModules = educationProgram > 9
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
@@ -129,6 +130,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
+    console.log(uid)
   }, []);
 
   useEffect(() => {
@@ -230,10 +232,10 @@ export const TodayScreen = ({ navigation }) => {
               moduleId={lastEducationModuleId}
             />
           )}
-          {!completedAllEducationModules ? (
+          {!completedAllEducationModules || !noMovementModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          {!completedAllMovementModules && educationProgram !== 10 ? (
+          {!completedAllMovementModules || educationProgram !== 10 || educationProgram !== 11 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />

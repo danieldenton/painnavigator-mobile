@@ -4,10 +4,6 @@ import Slider from '@react-native-community/slider';
 import { colors } from "../infrastructure/theme/colors";
 import { space } from "../infrastructure/theme/spacing";
 
-//TODO: complete ProgramPaceGraphic
-const ProgramPaceGraphic = styled.View`
-`;
-
 const SliderWrapper = styled.View`
     flex: 1;
     margin: ${space[3]};
@@ -50,7 +46,7 @@ const SliderEndText = styled.Text`
     color: hsl(215, 15%, 52%);
 `;
 
-export const IntensitySlider = ({ value, onValueChange, min, max, step, state }) => {
+export const IntensitySlider = ({ setState, objectKey, value, min, max, step }) => {
     return(
         <SliderWrapper>
             <SliderValueWindow>
@@ -67,7 +63,7 @@ export const IntensitySlider = ({ value, onValueChange, min, max, step, state })
                         maximumValue={typeof max === 'number' && !isNaN(max) ? max : 10}
                         minimumTrackTintColor="hsl(216, 19%, 61%)"
                         minimumValue={typeof min === 'number' && !isNaN(min) ? min : 0}
-                        onValueChange={value => onValueChange(Number(value), state)} 
+                        onValueChange={value => setState((object) => ({ ...object, [objectKey]: value }))}
                         step={typeof step === 'number' && !isNaN(step) ? step : 1}
                         thumbTintColor="hsl(210, 25%, 17%)"
                         value={value} 

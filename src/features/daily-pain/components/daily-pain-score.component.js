@@ -10,7 +10,7 @@ import { track } from '@amplitude/analytics-react-native';
 import { DAILY_PAIN_EVENTS } from '../../../amplitude-events';
 
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, dailyPain, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
+    const { dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
     const { uid } = useContext(AuthenticationContext)
 
     const handleDailyPainScore = () => {
@@ -27,7 +27,7 @@ export const DailyPainScoreComponent = () => {
     return (
         <>
             <JournalQuestion question={"How is your pain today?"} helpText={"0 is no pain, 10 is pain as bad as you can imagine."} />
-            <IntensitySlider value={dailyPainScore.score} onValueChange={dailyPain} state={"score"} />
+            <IntensitySlider setState={setDailyPainScore} objectKey={"score"} value={dailyPainScore.score} />
             <ButtonSection>
                 <JournalButton 
                     title={"Log Pain Score"} 

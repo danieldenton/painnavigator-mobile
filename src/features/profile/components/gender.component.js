@@ -9,8 +9,8 @@ import { Scroll } from "../../../components/scroll.component";
 export const Gender = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
 
-    const add = (optionId) => {
-        changeProfileEntry(optionId, "gender");
+    const add = (option) => {
+        changeProfileEntry(option, "gender");
     };
 
     const questionOptions = genderOptions.map((option) => {

@@ -1,4 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
+import axios from "axios";
+import { API_URL } from "@env";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,24 +10,18 @@ import {
   postUser,
   patchCompletedProgram,
 } from "./authentication.service";
-import { hopesOptions } from "../../features/account/data/onboard-data.json";
-import { checkReferralCode } from "./authentication.service";
-import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../amplitude-events";
 
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
-  // user set to true for testing
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const [currentQuestion, setCurrentQuestion] = useState(1);
   const [step, setStep] = useState(0);
   const [accessToWellnessCoach, setAccessToWellnessCoach] = useState(true);
   const [onboardingData, setOnboardingData] = useState({
-    first_name: "",
-    last_name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     startingPainScore: 5,
     enjoymentOfLife: 5,
@@ -56,44 +52,106 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
 
-  const handleProviderCode = async (referralCode) => {
+  async function checkProviderCode(providerCode) {
     try {
-      const response = await checkReferralCode(referralCode);
-      response
-        ? (setProviderId(response),
-          referralCode.endsWith("N") ? setAccessToWellnessCoach(false) : setAccessToWellnessCoach(true),
-          setError(null),
-          track(ONBOARD_EVENTS.ENTER_REFERRAL_CODE))
+      const response = await axios.get(
+        `${API_URL}/api/v1/providers/${providerCode}`
+      );
+      const provider_id = response.data.data.attributes.id;
+      provider_id
+        ? (setProviderId(provider_id),
+          providerCode.endsWith("N")
+            ? setAccessToWellnessCoach(false)
+            : setAccessToWellnessCoach(true),
+          setError(null))
         : setError("Please enter a valid code");
     } catch (err) {
       setError("Please enter a valid code");
       console.error(err);
     }
-  };
+  }
 
-  const handleProgram = (referralCode) => {
-    referralCode === "ASC112" ||
-    referralCode === "EXPL22" ||
-    referralCode === "CORE55"
+  const handleProgramSafety = (providerCode) => {
+    providerCode === "ASC112" ||
+    providerCode === "EXPL22" ||
+    providerCode === "CORE55"
       ? setProgramSafety(true)
       : null;
-    referralCode === "ISCS23"
+    providerCode === "ISCS23"
       ? (setProgramSafety(true), setEducationProgram(2))
       : null;
   };
 
-  const changeOnboardEntry = (change, state) => {
-    setOnboardingData((entry) => ({
-      ...entry,
-      [state]: change,
-    }));
+  const handleEducationProgram = () => {
+    if (educationProgram === 2) {
+      return;
+    }
+    if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
+      if (
+        onboardingData.hopesToAchieve.length === 1 &&
+        onboardingData.hopesToAchieve[0] === "Strength & Prevention"
+      ) {
+        if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(5);
+        } else if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(6);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(4);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(3);
+        }
+      } else {
+        if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(8);
+        } else if (
+          onboardingData.spineSurgery !== "No" &&
+          onboardingData.painInjections === "No"
+        ) {
+          setEducationProgram(9);
+        } else if (
+          onboardingData.spineSurgery === "No" &&
+          onboardingData.painInjections !== "No"
+        ) {
+          setEducationProgram(7);
+        } else {
+          return;
+        }
+      }
+    } else {
+      return;
+    }
   };
 
-  const changeOutcomeEntry = (change, state) => {
-    setOutcomeData((entry) => ({
-      ...entry,
-      [state]: change,
-    }));
+  const handleOtherPainTypeProgram = () => {
+    if (
+      onboardingData.hopesToAchieve.length === 1 &&
+      onboardingData.hopesToAchieve[0] === "Strength & Prevention"
+    ) {
+      setEducationProgram(11);
+    } else {
+      setEducationProgram(10);
+    }
+    if (onboardingData.typeOfPain === "Other") {
+      setStep(12);
+      onboardingData.typeOfPain = "";
+    } else {
+      navigation.navigate("Register");
+    }
   };
 
   const onLogin = (email, password) => {
@@ -114,50 +172,31 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  const nextQuestion = () => {
-    setCurrentQuestion((prevQuestion) => {
-      return prevQuestion + 1;
-    });
-  };
-
-  const findHopesToAchieve = () => {
-    const selectedHopes = onboardingData.hopesToAchieve;
-    const text = hopesOptions.filter((option) =>
-      selectedHopes.includes(option.id)
-    );
-    const hopes = text.map((option) => option.option);
-    return String(hopes).replace(/,/g, ", ");
-  };
-
   const onRegister = (password, repeatedPassword) => {
-    const { first_name, last_name, email } = onboardingData;
-
-    if (!first_name || !last_name) {
+    const { firstName, lastName, email } = onboardingData;
+    if (!firstName || !lastName) {
       setError("Error: Please provide your name");
       return;
     }
-
     if (password !== repeatedPassword) {
       setError("Error: Passwords do not match");
       return;
     }
-
     setUserLoading(true);
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((u) => {
-        const hopes_to_achieve = findHopesToAchieve();
         const strippedOnboardingData = {
           provider_id: providerId,
           access_to_wellness_coach: accessToWellnessCoach,
-          first_name: onboardingData.first_name.trim(),
-          last_name: onboardingData.last_name.trim(),
+          first_name: onboardingData.firstName.trim(),
+          last_name: onboardingData.lastName.trim(),
           email: onboardingData.email.trim(),
           starting_pain_score: onboardingData.startingPainScore,
           enjoyment_of_life: onboardingData.enjoymentOfLife,
           activity_interference: onboardingData.activityInterference,
-          hopes_to_achieve: hopes_to_achieve,
+          hopes_to_achieve: hopesToAchieve,
           anxious: onboardingData.anxious,
           unable_to_stop_worrying: onboardingData.unableToStopWorrying,
           little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
@@ -239,6 +278,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
+  // TODO fix this so it doesnt patch everytime.
   useEffect(() => {
     if (user && expoPushToken) {
       patchExpoPushToken(uid, expoPushToken);
@@ -248,12 +288,18 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   return (
     <AuthenticationContext.Provider
       value={{
-        changeOnboardEntry,
-        currentQuestion,
+        handleEducationProgram,
+        handleOtherPainTypeProgram,
+        accessToWellnessCoach,
+        setAccessToWellnessCoach,
+        checkProviderCode,
+        handleProgramSafety,
         error,
+        tour,
+        setTour,
+        uid,
         isAuthenticated: !!user,
         nextStep,
-        nextQuestion,
         step,
         setStep,
         onLogin,
@@ -263,14 +309,13 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         previousStep,
         user,
         userLoading,
-        setCurrentQuestion,
         signOut,
         setProviderId,
         expoPushToken,
         setError,
         setCompletedProgram,
         outcomeData,
-        changeOutcomeEntry,
+        setOutcomeData,
         completedProgram,
         completeProgram,
         educationProgram,
@@ -280,13 +325,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,
-        tour,
-        setTour,
-        uid,
-        accessToWellnessCoach,
-        setAccessToWellnessCoach,
-        handleProviderCode,
-        handleProgram,
       }}
     >
       {children}

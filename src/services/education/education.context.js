@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
-import { educationPrograms } from "../../features/education/data/education-programs-data.json";
+import { educationPrograms } from "./education-programs-data.json"
 import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const EducationContext = createContext();

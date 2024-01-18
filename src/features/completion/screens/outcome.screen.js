@@ -11,49 +11,98 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { SafeView } from "../../../components/safe-area.component"; 
+import { SafeView } from "../../../components/safe-area.component";
 import { track } from "@amplitude/analytics-react-native";
 import { COMPLETION_EVENTS } from "../../../amplitude-events";
 
-
 export const OutcomeScreen = ({ navigation }) => {
-    const { step, previousStep, nextStep, completeProgram, outcomeData, changeOutcomeEntry } = useContext(AuthenticationContext);
+  const {
+    step,
+    previousStep,
+    nextStep,
+    completeProgram,
+    outcomeData,
+    setOutcomeData,
+  } = useContext(AuthenticationContext);
+  const {
+    enjoymentOfLife,
+    activityInterference,
+    anxious,
+    unableToStopWorrying,
+    littleInterestOrPleasure,
+    depressed,
+  } = outcomeData;
 
-    pages = [
-        { component: <Recommend />, disabled: false }, 
-        { component: <EnjoymentOfLife onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: false }, 
-        { component: <ActivityInterference onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: false },
-        { component: <Anxious onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.anxious ? false : true },
-        { component: <UnableToStopWorrying onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.unableToStopWorrying ? false : true},
-        { component:  <LittleInterestOrPleasure onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.littleInterestOrPleasure ? false : true},
-        { component: <Depressed onValueChange={changeOutcomeEntry} data={outcomeData} />, disabled: outcomeData.depressed ? false : true}
-    ]
+  pages = [
+    { component: <Recommend />, disabled: false },
+    {
+      component: (
+        <EnjoymentOfLife setState={setOutcomeData} value={enjoymentOfLife} />
+      ),
+      disabled: false,
+    },
+    {
+      component: (
+        <ActivityInterference
+          setState={setOutcomeData}
+          value={activityInterference}
+        />
+      ),
+      disabled: false,
+    },
+    {
+      component: <Anxious setState={setOutcomeData} value={anxious} />,
+      disabled: anxious ? false : true,
+    },
+    {
+      component: (
+        <UnableToStopWorrying
+          setState={setOutcomeData}
+          value={activityInterference}
+        />
+      ),
+      disabled: unableToStopWorrying ? false : true,
+    },
+    {
+      component: (
+        <LittleInterestOrPleasure
+          setState={setOutcomeData}
+          value={littleInterestOrPleasure}
+        />
+      ),
+      disabled: littleInterestOrPleasure ? false : true,
+    },
+    {
+      component: <Depressed setState={setOutcomeData} value={depressed} />,
+      disabled: depressed ? false : true,
+    },
+  ];
 
-    const handleCompletProgram = () => {
-        completeProgram()
-        navigation.navigate("ProgramCompleted")
-        track(COMPLETION_EVENTS.COMPLETE_PROGRAM)
-    }
+  const handleCompletProgram = () => {
+    completeProgram();
+    navigation.navigate("ProgramCompleted");
+    track(COMPLETION_EVENTS.COMPLETE_PROGRAM);
+  };
 
-    return(
-        <SafeView>
-            <NavigationBarLeft 
-                destination={"Today"} 
-                navigation={navigation} 
-                screen={"Outcome"} 
-                previousPage={step >  0 ? previousStep : null} 
-            />
-            {pages[step].component}
-            <ButtonSection>
-                <JournalButton 
-                disabled={pages[step].disabled}
-                    title={"Next"} 
-                    onPress={() => {
-                        step === 6 ?  handleCompletProgram() : nextStep()
-                    }} 
-                />
-                <ProgressDots progress={step +1} total={7} />
-            </ButtonSection>
-        </SafeView>
-    );
+  return (
+    <SafeView>
+      <NavigationBarLeft
+        destination={"Today"}
+        navigation={navigation}
+        screen={"Outcome"}
+        previousPage={step > 0 ? previousStep : null}
+      />
+      {pages[step].component}
+      <ButtonSection>
+        <JournalButton
+          disabled={pages[step].disabled}
+          title={"Next"}
+          onPress={() => {
+            step === 6 ? handleCompletProgram() : nextStep();
+          }}
+        />
+        <ProgressDots progress={step + 1} total={7} />
+      </ButtonSection>
+    </SafeView>
+  );
 };

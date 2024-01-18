@@ -1,22 +1,22 @@
 {
     "hopesOptions": [
         {
-            "id": 1,
+            "id": "Less Pain",
             "option": "Less Pain",
             "helpText": null
         },
         {
-            "id": 2,
+            "id": "Improved Function",
             "option": "Improved Function",
             "helpText": null
         },
         {
-            "id": 3,
+            "id": "Improved Mood",
             "option": "Improved Mood",
             "helpText": null
         },
         {
-            "id": 4,
+            "id": "Strength & Prevention",
             "option": "Strength & Prevention",
             "helpText": null
         }
@@ -29,7 +29,7 @@
             "helpText": null
         },
         {
-            "id": "Yes but not yet cleared for exercise",
+            "id": "Yes but not yet and cleared for exercise",
             "option": "Yes but not yet and cleared for exercise",
             "helpText": null
         },
@@ -52,7 +52,7 @@
             "helpText": null
         },
         {
-            "id": 3,
+            "id": "Neck Pain",
             "option": "Neck Pain",
             "helpText": null
         },

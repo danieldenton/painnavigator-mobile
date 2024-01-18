@@ -9,8 +9,8 @@ import { View } from "react-native";
 export const StartingPainDuration = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
 
-    const add = (optionId) => {
-        changeProfileEntry(optionId, "starting_pain_duration");
+    const add = (option) => {
+        changeProfileEntry(option, "starting_pain_duration");
     };
 
     const questionOptions = painDurationOptions.map((option) => {

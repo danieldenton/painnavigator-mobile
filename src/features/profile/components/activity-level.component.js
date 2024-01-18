@@ -8,8 +8,8 @@ import { activityLevelOptions } from "../data/activity-level-options.data.json";
 export const ActivityLevel = () => {
     const { changeProfileEntry, profileData } = useContext(ProfileContext);
 
-    const add = (optionId) => {
-        changeProfileEntry(optionId, "activity_level");
+    const add = (option) => {
+        changeProfileEntry(option, "activity_level");
     };
 
     const questionOptions = activityLevelOptions.map((option) => {

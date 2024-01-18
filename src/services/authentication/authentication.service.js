@@ -6,18 +6,6 @@ import { API_URL } from "@env";
 export const loginRequest = (email, password) =>
   firebase.auth().signInWithEmailAndPassword(email, password);
 
-export async function checkReferralCode(referralCode) {
-  try {
-    const response = await axios.get(
-      `${API_URL}/api/v1/providers/${referralCode}`
-    );
-    const provider_id = response.data.data.attributes.id;
-    return provider_id;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 export async function postUser(uid, onboardingData) {
   const userData = {
     uid: uid,
@@ -58,7 +46,7 @@ export async function getUser(
     setEducationProgress(eProgress);
     setMovementProgress(data.movement_progress.progress);
     setProfileComplete(data.profile.profile_status === 1);
-    setCompletedProgram(data.outcome.completed_program === true);
+    setCompletedProgram(data.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
     setAccessToWellnessCoach(data.access_to_wellness_coach);
   } catch (error) {
@@ -92,41 +80,3 @@ export const patchCompletedProgram = async (uid, outcomeData) => {
     console.error(error);
   }
 };
-
-// function painGraphDataTransform(data) {
-//   const painDataArray = [];
-//   const lineDataArray = [];
-//   Object.entries(data).forEach(([key, value]) => {
-//       painDataArray.push({ x: key, y: value === null ? value : Number(value) });
-//       lineDataArray.push({ x: key, y: value === null ? value : Number(value) });
-//   });
-//   const currentMonthArray = new Array(painDataArray.pop());
-//   return { line: lineDataArray, graph: painDataArray, current: currentMonthArray, xAxis: fillMonths(lineDataArray) }
-// };
-
-// const fillMonths = (data) => {
-//   const monthCount = Object.entries(data).length;
-//   if(monthCount === 3) {
-//       const firstMonth = data[0].x;
-//       const secondMonth = data[1].x;
-//       const thirdMonth = data[2].x;
-//       const xData = [`${firstMonth}`, `${secondMonth}`, `${thirdMonth}`];
-//       return xData;
-//   } else if (monthCount === 2) {
-//       const firstMonth = data[0].x;
-//       const secondMonth = data[1].x;
-//       const secondMonthData = months.find(month => month.month === secondMonth);
-//       const thirdMonthData = months.find(month => month.id === secondMonthData.id + 1);
-//       const xData = new Array(firstMonth, secondMonth, thirdMonthData.month);
-//       return xData;
-//   } else if (monthCount === 1) {
-//       const firstMonth = data[0].x;
-//       const firstMonthData = months.find(month => month.month === firstMonth);
-//       const secondMonthData = months.find(month => month.id === firstMonthData.id + 1);
-//       const thirdMonthData = months.find(month => month.id === firstMonthData.id + 2);
-//       const xData = new Array(firstMonth, secondMonthData.month, thirdMonthData.month);
-//       return xData;
-//   } else {
-//     return data.map(month => month.x);
-//   }
-// };
