@@ -30,9 +30,8 @@
     "ios": {
       "supportsTablet": true,
       "requireFullScreen": true,
-      "initialOrientation": "PORTRAIT",
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "73",
+      "buildNumber": "74",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -42,9 +41,6 @@
     "android": {
       "package": "com.PainNavigator",
       "googleServicesFile": "./google-services.json",
-      "config": {
-        "targetSdkVersion": 33
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#5CCBB8"
@@ -53,7 +49,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 71
+      "versionCode": 73
     },
     "web": {
       "favicon": "./assets/favicon.png"
