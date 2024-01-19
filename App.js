@@ -79,6 +79,7 @@ import { registerForPushNotificationsAsync } from "./src/expoPushNotificationReg
 
 Sentry.init({
   dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+  debug: true
 });
 
 const firebaseConfig = {
