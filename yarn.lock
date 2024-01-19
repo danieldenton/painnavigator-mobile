@@ -3108,20 +3108,6 @@
     "@sentry/utils" "7.81.1"
     localforage "^1.8.1"
 
-"@sentry/react-native@5.16.0":
-  version "5.16.0"
-  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-5.16.0.tgz#a75b53ce28ac3e651be3dbd6ae27205778357b27"
-  integrity sha512-Tc67g4UJO7nFJWrbsTGP/zrsTErXWvL8YNOR9pNvGPcsNdP2HcLrYfuHE7B29EQZeH6psEGVJuWeWbdlqRuKzA==
-  dependencies:
-    "@sentry/browser" "7.81.1"
-    "@sentry/cli" "2.23.0"
-    "@sentry/core" "7.81.1"
-    "@sentry/hub" "7.81.1"
-    "@sentry/integrations" "7.81.1"
-    "@sentry/react" "7.81.1"
-    "@sentry/types" "7.81.1"
-    "@sentry/utils" "7.81.1"
-
 "@sentry/react-native@5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-5.5.0.tgz#b1283f68465b1772ad6059ebba149673cef33f2d"
@@ -3135,6 +3121,20 @@
     "@sentry/react" "7.52.0"
     "@sentry/types" "7.52.0"
     "@sentry/utils" "7.52.0"
+
+"@sentry/react-native@^5.16.0":
+  version "5.16.0"
+  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-5.16.0.tgz#a75b53ce28ac3e651be3dbd6ae27205778357b27"
+  integrity sha512-Tc67g4UJO7nFJWrbsTGP/zrsTErXWvL8YNOR9pNvGPcsNdP2HcLrYfuHE7B29EQZeH6psEGVJuWeWbdlqRuKzA==
+  dependencies:
+    "@sentry/browser" "7.81.1"
+    "@sentry/cli" "2.23.0"
+    "@sentry/core" "7.81.1"
+    "@sentry/hub" "7.81.1"
+    "@sentry/integrations" "7.81.1"
+    "@sentry/react" "7.81.1"
+    "@sentry/types" "7.81.1"
+    "@sentry/utils" "7.81.1"
 
 "@sentry/react@7.52.0":
   version "7.52.0"

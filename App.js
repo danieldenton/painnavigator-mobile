@@ -77,6 +77,10 @@ import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
 
+Sentry.init({
+  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+});
+
 const firebaseConfig = {
   apiKey: "AIzaSyCzgZ9b1f-a-wYoGeelMvZfbFvjs2amnL0",
   authDomain: "painnavigator-ccabd.firebaseapp.com",
