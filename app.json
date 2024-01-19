@@ -55,7 +55,13 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "sentry-expo",
+      [
+        "@sentry/react-native/expo",
+        {
+          "organization": "painnavigator",
+          "project": "painnavigator"
+        }
+      ],
       "expo-localization",
       [
         "expo-screen-orientation",
