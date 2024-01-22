@@ -36,7 +36,7 @@
         "UIBackgroundModes": [
           "remote-notification"
         ],
-        "NSMicrophoneUsageDescription": ""
+        "NSMicrophoneUsageDescription": "Allow PainNavigator to access your microphone."
       }
     },
     "android": {
@@ -75,6 +75,12 @@
         {
           "icon": "./assets/adaptive-icon.png",
           "color": "#37b29d"
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow PainNavigator to access your microphone."
         }
       ],
       "expo-font"
