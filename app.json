@@ -35,7 +35,8 @@
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
-        ]
+        ],
+        "NSMicrophoneUsageDescription": ""
       }
     },
     "android": {
