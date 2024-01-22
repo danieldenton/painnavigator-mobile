@@ -1,22 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
+import * as ScreenOrientation from "expo-screen-orientation";
+import { track } from "@amplitude/analytics-react-native";
+import { EducationContext } from "../../../services/education/education.context";
+import { MovementContext } from "../../../services/movement/movement.context";
 import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";
-import { EducationContext } from "../../../services/education/education.context";
+import { SafeView } from "../../../components/safe-area.component";
 import {
   NavigationBarLeft,
   TextModuleNavBar,
 } from "../../../components/journals/navigation-bar.component";
-import { SafeView } from "../../../components/safe-area.component";
 import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { StackActions } from "@react-navigation/native";
-import { track } from "@amplitude/analytics-react-native";
-import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
-import { MovementContext } from "../../../services/movement/movement.context";
-import * as ScreenOrientation from "expo-screen-orientation"
 
+import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const EducationUnitScreen = ({ navigation }) => {
   const { completeModule, currentModule, skipModule } =
@@ -30,7 +30,6 @@ export const EducationUnitScreen = ({ navigation }) => {
   useEffect(() => {
     setIsMovement(false);
   }, []);
-
 
   const postVideoAction = () => {
     const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
@@ -78,7 +77,9 @@ export const EducationUnitScreen = ({ navigation }) => {
       <ButtonSection>
         <ModuleButton
           onPress={() => {
-            ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            ScreenOrientation.lockAsync(
+              ScreenOrientation.OrientationLock.PORTRAIT_UP
+            );
             {
               post_video_destination
                 ? postVideoAction()

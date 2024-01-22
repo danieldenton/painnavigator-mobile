@@ -12,7 +12,7 @@ export const ForgotPasswordWrapper = styled.Pressable`
   justify-content: center;
   position: absolute;
   bottom: 20px;
-  height: 40;
+  height: 40px;
   width: 160px;
 `
 
