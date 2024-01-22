@@ -5315,10 +5315,10 @@ expo-modules-core@1.11.7:
   dependencies:
     invariant "^2.2.4"
 
-expo-notifications@~0.27.3:
-  version "0.27.3"
-  resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.27.3.tgz#18f3d6dadc14aefc32937bddc54572bbf68236a7"
-  integrity sha512-P4zhbVYDhTtV7xCdcxpk4tTbWh33P+A0ZTbpUrp6vcpZk8QprhjhB2okr1/R1z0fpxUPv74KYex5fnAHxTVIvw==
+expo-notifications@~0.27.4:
+  version "0.27.4"
+  resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.27.4.tgz#04f36a8393049ee2fc7658494f1dc58c390da3d9"
+  integrity sha512-CryQvd2x868GpBI2DzabPPRL2HAD8O+rm2hwYH1sN5lTb39kmC9jm2Riu6RdWoL5XYzayCp9IHIjL6Dnu9hHAw==
   dependencies:
     "@expo/image-utils" "^0.4.0"
     "@ide/backoff" "^1.0.0"
