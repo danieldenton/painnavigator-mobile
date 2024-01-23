@@ -43,7 +43,7 @@
     "camelize": "^1.0.0",
     "cloudinary-react": "^1.7.1",
     "date-fns": "^2.29.3",
-    "expo": "^50.0.2",
+    "expo": "^50.0.3",
     "expo-application": "~5.8.3",
     "expo-av": "~13.10.3",
     "expo-constants": "~15.4.5",
