@@ -87,8 +87,7 @@ To add a global depency in you GitPod you should use npm
 5. jest ^29.2.1
 6. jest-expo ~50.0.1
 7. msw ^1.0.0
-8. react-test-renderer
-9. 17.0.2
+8. react-test-renderer 17.0.2
     
 # Testing
 
