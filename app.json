@@ -72,7 +72,8 @@
           "microphonePermission": "Allow PainNavigator to access your microphone."
         }
       ],
-      "expo-font"
+      "expo-font",
+      "sentry-expo"
     ],
     "extra": {
       "eas": {
