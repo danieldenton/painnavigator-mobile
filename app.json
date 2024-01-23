@@ -4,6 +4,17 @@
     "slug": "PainNavigator",
     "version": "1.5.30",
     "icon": "./assets/icon.png",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "painnavigator",
+            "project": "painnavigator"
+          }
+        }
+      ]
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -45,13 +56,6 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      [
-        "@sentry/react-native/expo",
-        {
-          "organization": "painnavigator",
-          "project": "painnavigator"
-        }
-      ],
       "expo-localization",
       [
         "expo-screen-orientation",
@@ -72,7 +76,6 @@
           "microphonePermission": "Allow PainNavigator to access your microphone."
         }
       ],
-      "expo-font",
       "sentry-expo"
     ],
     "extra": {
