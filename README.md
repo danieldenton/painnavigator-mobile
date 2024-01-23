@@ -100,7 +100,7 @@ The root directory of this project contains the standard React Native files, App
 Contained in this folder are a few utility files as well as 5 directories:
 
 1. features: This is where the screens and components rendered on the device are found. Within the directory each feature has it's own directory which includes 2-4 additional directories. The screens directory contains all screen files which render the total screen including additional components. The components directory, (not to be confused with the components directory outside of the features directory) contains the component files specifically related to this feature. The tests directory will contain all test files. Not every feature will have these as testing implementation is still in progress. And finally a data folder. This will only appear in a few features.
-
 2. components: The is where components used by multiple features will be found.
-
 3. infastructure: This directory contains a navigation directory, for all navigation, and a theme directory for some repeat stylings.
+4. services: This contains context and service files. The service files for now, contain API calls. These calls will be absorbed into the context files and deleted. This folder also contains some data files.
+5. mocks: testing under construction.
