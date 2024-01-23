@@ -16,6 +16,10 @@ PainNavigator is pain management application that provides a physical and psycho
 3. Login to Expo with the PainNavigator account. You will need that password. 
 4. Scan the QR code with your camera for iOS or the Expo Go app on Android and this will run your application.
 
+# Misc
+
+ *** If the production builds are crashing and the development builds are working correctly, try running 'npx expo start --no-dev --minify'
+
 # Dependencies
 
 To add any new depencies use "yarn add" or "npx expo install". Do not use npm.
