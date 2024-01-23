@@ -4,17 +4,6 @@
     "slug": "PainNavigator",
     "version": "1.5.30",
     "icon": "./assets/icon.png",
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "painnavigator",
-            "project": "painnavigator"
-          }
-        }
-      ]
-    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
