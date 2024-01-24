@@ -172,15 +172,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  const findHopesToAchieve = () => {
-    const selectedHopes = onboardingData.hopesToAchieve;
-    const text = hopesOptions.filter((option) =>
-      selectedHopes.includes(option.id)
-    );
-    const hopes = text.map((option) => option.option);
-    return String(hopes).replace(/,/g, ", ");
-  };
-
   const onRegister = (password, repeatedPassword) => {
     const { firstName, lastName, email } = onboardingData;
     if (!firstName || !lastName) {
