@@ -26,7 +26,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     startingPainScore: 5,
     enjoymentOfLife: 5,
     activityInterference: 5,
-    hopesToAchieve: new Array(),
+    hopesToAchieve: [],
     anxious: "",
     unableToStopWorrying: "",
     littleInterestOrPleasure: "",
@@ -172,6 +172,15 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
+  const findHopesToAchieve = () => {
+    const selectedHopes = onboardingData.hopesToAchieve;
+    const text = hopesOptions.filter((option) =>
+      selectedHopes.includes(option.id)
+    );
+    const hopes = text.map((option) => option.option);
+    return String(hopes).replace(/,/g, ", ");
+  };
+
   const onRegister = (password, repeatedPassword) => {
     const { firstName, lastName, email } = onboardingData;
     if (!firstName || !lastName) {
@@ -196,7 +205,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           starting_pain_score: onboardingData.startingPainScore,
           enjoyment_of_life: onboardingData.enjoymentOfLife,
           activity_interference: onboardingData.activityInterference,
-          hopes_to_achieve: hopesToAchieve,
+          hopes_to_achieve: onboardingData.hopesToAchieve,
           anxious: onboardingData.anxious,
           unable_to_stop_worrying: onboardingData.unableToStopWorrying,
           little_interest_or_pleasure: onboardingData.littleInterestOrPleasure,
