@@ -10,6 +10,7 @@ export const EducationContext = createContext();
 export const EducationContextProvider = ({ children }) => {
   const [educationProgress, setEducationProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState({});
+  const [educationIntroStep, setEducationIntroStep] = useState(0)
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
   const { uid, educationProgram } = useContext(AuthenticationContext);
@@ -126,6 +127,8 @@ export const EducationContextProvider = ({ children }) => {
         setEducationProgress,
         currentModule,
         completeModule,
+        educationIntroStep,
+        setEducationIntroStep,
         educationModuleCompletionData,
         completeEducationSkippedUnit,
         educationProgress,
