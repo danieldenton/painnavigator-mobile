@@ -5,6 +5,7 @@
       "type": "text",
       "group": "education",
       "source": null,
+      "post_video_destination": null,
       "skippable": false,
       "pnIntroData": [
         {

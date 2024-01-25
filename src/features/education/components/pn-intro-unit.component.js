@@ -7,7 +7,7 @@ import { BulletList } from "../../../components/bullet-list.component";
 import { View } from "react-native";
 
 export const TextUnit = () => {
-  const { currentModule, educationIntroStep, setEducationIntroStep } =
+  const { currentModule, educationIntroStep } =
     useContext(EducationContext);
   const { pnIntroData } = currentModule;
 

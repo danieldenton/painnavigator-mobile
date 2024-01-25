@@ -2,7 +2,7 @@
   "pnIntroData": [
     {
       "id": 1,
-      "type": "text",
+      "type": "intro-text",
       "name": "Welcome",
       "source": null,
       "skippable": false,

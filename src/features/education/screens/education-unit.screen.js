@@ -19,7 +19,7 @@ import { StackActions } from "@react-navigation/native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const EducationUnitScreen = ({ navigation }) => {
-  const { completeModule, currentModule, skipModule } =
+  const { completeModule, currentModule, skipModule, setEducationInroStep } =
     useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
   const { post_video_destination, type, skippable, id } = currentModule;
@@ -40,46 +40,62 @@ export const EducationUnitScreen = ({ navigation }) => {
     );
   };
 
+  const educationUnitTypeCheckForRender = () => {
+    if (type === "video") {
+      return (
+        <>
+          <NavigationBarLeft
+            screen={"Education"}
+            destination={"Today"}
+            navigation={navigation}
+            orientation={true}
+            trackNavBarEvent={trackNavBarEvent}
+          />
+          <VideoUnit />
+        </>
+      );
+    } else if (type === "audio") {
+      return (
+        <>
+          <TextModuleNavBar
+            screen={"Education"}
+            destination={"Today"}
+            navigation={navigation}
+            id={id}
+            trackEvent={trackEvent}
+            trackNavBarEvent={trackNavBarEvent}
+          />
+          <AudioUnit unit={currentModule} />
+        </>
+      );
+    } else if (type === "text") {
+      <>
+        <TextModuleNavBar
+          screen={"Education"}
+          destination={"Today"}
+          navigation={navigation}
+          id={id}
+          trackEvent={trackEvent}
+          trackNavBarEvent={trackNavBarEvent}
+        />
+        <TextUnit />
+      </>;
+    }
+  };
+
   return (
     <SafeView>
-      {type === "video" && (
-        <NavigationBarLeft
-          screen={"Education"}
-          destination={"Today"}
-          navigation={navigation}
-          orientation={true}
-          trackNavBarEvent={trackNavBarEvent}
-        />
-      )}
-      {type === "video" && <VideoUnit />}
-      {type === "audio" && (
-        <TextModuleNavBar
-          screen={"Education"}
-          destination={"Today"}
-          navigation={navigation}
-          id={id}
-          trackEvent={trackEvent}
-          trackNavBarEvent={trackNavBarEvent}
-        />
-      )}
-      {type === "audio" && <AudioUnit unit={currentModule} />}
-      {type === "text" && (
-        <TextModuleNavBar
-          screen={"Education"}
-          destination={"Today"}
-          navigation={navigation}
-          id={id}
-          trackEvent={trackEvent}
-          trackNavBarEvent={trackNavBarEvent}
-        />
-      )}
-      {type === "text" && <TextUnit />}
+      {educationUnitTypeCheckForRender()}
       <ButtonSection>
         <ModuleButton
           onPress={() => {
-            ScreenOrientation.lockAsync(
-              ScreenOrientation.OrientationLock.PORTRAIT_UP
-            );
+            {
+              type === "video"
+                ? ScreenOrientation.lockAsync(
+                    ScreenOrientation.OrientationLock.PORTRAIT_UP
+                  )
+                : null;
+            }
             {
               post_video_destination
                 ? postVideoAction()
