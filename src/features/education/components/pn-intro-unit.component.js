@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { View, Text } from "react-native";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitInfo } from "./education-unit-info.component";
 import { Scroll } from "../../../components/scroll.component";
 import { Summary } from "./education-unit.styles";
 import { BulletList } from "../../../components/bullet-list.component";
-import { View } from "react-native";
+
 
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep } = useContext(EducationContext);
@@ -28,12 +29,16 @@ export const PNIntroUnit = () => {
             summary={pnIntroData[educationIntroStep].summary}
             type={"text"}
           />
-          {/* {pnIntroData[educationIntroStep].summary_2 ? ( */}
-            <Summary summary={pnIntroData[educationIntroStep].summary_2} />
-          {/* ) : null} */}
+          {pnIntroData[educationIntroStep].summary_2 ? (
+            <View style={{ marginBottom: 10 }}>
+            <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>  
+            </View>
+          ) : null}
           <BulletList bullets={pnIntroData[educationIntroStep].steps} />
           {pnIntroData[educationIntroStep].summary_3 ? (
-            <Summary summary={pnIntroData[educationIntroStep].summary_3} />
+            <View style={{ marginBottom: 10 }}>
+            <Summary>{pnIntroData[educationIntroStep].summary_3}</Summary>  
+            </View>
           ) : null}
         </View>
       </Scroll>
