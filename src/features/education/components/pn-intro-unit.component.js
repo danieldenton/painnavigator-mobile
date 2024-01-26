@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { Scroll } from "../../../components/scroll.component";
 import { EducationContext } from "../../../services/education/education.context";
-import {
-  Summary,
-  Header,
-  TitleSection,
-  UnitTitle,
-} from "./education-unit.styles";
-import { BulletList } from "../../../components/bullet-list.component";
+import { Header, TitleSection, UnitTitle } from "./education-unit.styles";
 import {
   EducationSummaryStepZero,
   EducationSummaryStepOne,
+  EducationSummaryStepTwo,
+  EducationSummaryStepThree,
+  EducationSummaryStepFour,
 } from "./pn-intro-steps.component";
 
 export const PNIntroUnit = () => {
@@ -28,6 +25,9 @@ export const PNIntroUnit = () => {
   const educationIntroStepComponents = [
     <EducationSummaryStepZero data={pnIntroData[0]} />,
     <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
+    <EducationSummaryStepTwo data={pnIntroData[2]} />,
+    <EducationSummaryStepThree data={pnIntroData[3]} />,
+    <EducationSummaryStepFour data={pnIntroData[4].summary} />,
   ];
 
   return (
@@ -42,24 +42,7 @@ export const PNIntroUnit = () => {
               <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
             </TitleSection>
           </Header>
-          {educationIntroStep === 1 ? (
-            <EducationSummaryStepOne
-              summary={pnIntroData[educationIntroStep].summary}
-            />
-          ) : (
-            <Summary>{pnIntroData[educationIntroStep].summary}</Summary>
-          )}
-          {educationIntroStep === 0 ? (
-            <View style={{ marginBottom: 10 }}>
-              <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>
-            </View>
-          ) : null}
-          <BulletList bullets={pnIntroData[educationIntroStep].steps} />
-          {educationIntroStep === 0 ? (
-            <View style={{ marginBottom: 10 }}>
-              <Summary>{pnIntroData[educationIntroStep].summary_3}</Summary>
-            </View>
-          ) : null}
+          {educationIntroStepComponents[educationIntroStep]}
         </View>
       </Scroll>
     </>

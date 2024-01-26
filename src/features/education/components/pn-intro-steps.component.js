@@ -46,4 +46,24 @@ export const EducationSummaryStepOne = ({ summary }) => {
     </Text>
   );
 };
+export const EducationSummaryStepTwo = ({ data }) => {
+  return (
+    <>
+      <Text style={introStyles.summary}>{data.summary}</Text>
+      <BulletList bullets={data.steps} />
+    </>
+  );
+};
 
+export const EducationSummaryStepThree = ({ data }) => {
+  return (
+    <>
+      <Text style={introStyles.summary}>{data.summary}</Text>
+      <BulletList bullets={data.steps} />
+    </>
+  );
+};
+
+export const EducationSummaryStepFour = ({ summary }) => {
+  return <Text style={introStyles.summary}>{summary}</Text>;
+};
