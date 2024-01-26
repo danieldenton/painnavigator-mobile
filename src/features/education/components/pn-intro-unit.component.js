@@ -9,6 +9,7 @@ import {
   UnitTitle,
 } from "./education-unit.styles";
 import { BulletList } from "../../../components/bullet-list.component";
+import { EducationSummaryStepOne } from "./pn-intro.styles";
 
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep } = useContext(EducationContext);
@@ -33,14 +34,20 @@ export const PNIntroUnit = () => {
               <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
             </TitleSection>
           </Header>
-          <Summary>{pnIntroData[educationIntroStep].summary}</Summary>
-          {pnIntroData[educationIntroStep].summary_2 ? (
+          {educationIntroStep === 1 ? (
+            <EducationSummaryStepOne
+              summary={pnIntroData[educationIntroStep].summary}
+            />
+          ) : (
+            <Summary>{pnIntroData[educationIntroStep].summary}</Summary>
+          )}
+          {educationIntroStep === 0 ? (
             <View style={{ marginBottom: 10 }}>
               <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>
             </View>
           ) : null}
           <BulletList bullets={pnIntroData[educationIntroStep].steps} />
-          {pnIntroData[educationIntroStep].summary_3 ? (
+          {educationIntroStep === 0 ? (
             <View style={{ marginBottom: 10 }}>
               <Summary>{pnIntroData[educationIntroStep].summary_3}</Summary>
             </View>

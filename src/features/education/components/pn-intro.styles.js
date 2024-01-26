@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-export const introStyles = StyleSheet.create({
+const introStyles = StyleSheet.create({
   summary: {
     marginTop: 8,
     fontSize: 16,
@@ -9,11 +9,31 @@ export const introStyles = StyleSheet.create({
   },
   boldSummayText: {
     fontSize: 16,
-    fontFamily: "Inter_400Regular",
-    fontWeight: 'bold'
-  }
+    fontFamily: "Inter_700Bold",
+    fontWeight: "bold",
+  },
+  summaryContainer: {
+    flex: 1,
+    alignContent: "center",
+    justifyContent: "center",
+  },
 });
 
+export const EducationSummaryStepOne = ({ summary }) => {
+  const firstHalfSummary = summary.slice(0, 394);
+  const boldText = summary.slice(394, 410);
+  const secondHalfSummary = summary.slice(410, 1104);
+
+  return (
+    <View styel={introStyles.summaryContainer}>
+      <Text style={introStyles.summary}>
+        {firstHalfSummary}
+        <Text style={introStyles.boldSummayText}>{boldText}</Text>
+        {secondHalfSummary}
+      </Text>
+    </View>
+  );
+};
 // export const Summary = styled.Text`
 //   margin-top: 8px;
 //   font-size: 16px;
