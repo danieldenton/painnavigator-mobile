@@ -9,7 +9,10 @@ import {
   UnitTitle,
 } from "./education-unit.styles";
 import { BulletList } from "../../../components/bullet-list.component";
-import { EducationSummaryStepOne } from "./pn-intro.styles";
+import {
+  EducationSummaryStepZero,
+  EducationSummaryStepOne,
+} from "./pn-intro-steps.component";
 
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep } = useContext(EducationContext);
@@ -21,6 +24,11 @@ export const PNIntroUnit = () => {
       scrollViewRef.current.scrollTo({ y: 0, animated: true });
     }
   }, [educationIntroStep]);
+
+  const educationIntroStepComponents = [
+    <EducationSummaryStepZero data={pnIntroData[0]} />,
+    <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
+  ];
 
   return (
     <>
