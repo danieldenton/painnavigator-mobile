@@ -2,8 +2,12 @@ import React, { useContext, useEffect, useRef } from "react";
 import { View, Text } from "react-native";
 import { Scroll } from "../../../components/scroll.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { EducationUnitInfo } from "./education-unit-info.component";
-import { Summary, Header, TitleSection, UnitTitle } from "./education-unit.styles";
+import {
+  Summary,
+  Header,
+  TitleSection,
+  UnitTitle,
+} from "./education-unit.styles";
 import { BulletList } from "../../../components/bullet-list.component";
 
 export const PNIntroUnit = () => {
@@ -25,11 +29,11 @@ export const PNIntroUnit = () => {
       >
         <View style={{ marginBottom: 60 }}>
           <Header>
-        <TitleSection>
-          <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
-        </TitleSection>
-      </Header>
-      <Summary>{pnIntroData[educationIntroStep].summary}</Summary>
+            <TitleSection>
+              <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
+            </TitleSection>
+          </Header>
+          <Summary>{pnIntroData[educationIntroStep].summary}</Summary>
           {pnIntroData[educationIntroStep].summary_2 ? (
             <View style={{ marginBottom: 10 }}>
               <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>
