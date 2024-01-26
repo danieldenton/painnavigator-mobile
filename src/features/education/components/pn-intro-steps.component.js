@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from "react-native";
-import { BulletList, BoldIntroBulletList } from "../../../components/bullet-list.component";
+import { BulletList, BoldIntroBulletList, SubStepBullets } from "../../../components/bullet-list.component";
 
 const introStyles = StyleSheet.create({
   summary: {
@@ -51,6 +51,7 @@ export const EducationSummaryStepTwo = ({ data }) => {
     <>
       <Text style={introStyles.summaryAboveBullets}>{data.summary}</Text>
       <BoldIntroBulletList bullets={data.steps} />
+      <SubStepBullets subBullets={data.subSteps} />
     </>
   );
 };

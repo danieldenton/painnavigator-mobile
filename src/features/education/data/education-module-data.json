@@ -23,44 +23,40 @@
         {
           "id": 2,
           "name": "Biopsychosocial Approach",
-          "summary": "Although medical and surgical approaches can improve the lives of many, these treatments have a limited response because they only focus on the biological causes of the pain. They do not address the psychological or social impacts of pain and do not provide people with the tools they need to reclaim their lives over pain. Combining medical treatments with wellness strategies is known as the biopsychosocial approach to pain management. This approach has been scientifically proven to reduce pain, improve function, decrease the need for opioid medications, and even reduce invasive procedures like surgery. Most healthcare providers agree that this is the best way to manage chronic pain.  Patients who have access to exercise, wellness strategies, mind-body strengthening, and appropriate medical education typically experience a 50% reduction in pain, a 40% reduction in disability, and a 60% reduction in depression.  However, this approach can be time-consuming, expensive, and impractical. PainNavigator makes it easier by bringing your healthcare team’s recommendations right to your fingertips.",
-          "summary_2": null,
-          "steps": [],
-          "summary_3": null
+          "summary": "Although medical and surgical approaches can improve the lives of many, these treatments have a limited response because they only focus on the biological causes of the pain. They do not address the psychological or social impacts of pain and do not provide people with the tools they need to reclaim their lives over pain. Combining medical treatments with wellness strategies is known as the biopsychosocial approach to pain management. This approach has been scientifically proven to reduce pain, improve function, decrease the need for opioid medications, and even reduce invasive procedures like surgery. Most healthcare providers agree that this is the best way to manage chronic pain.  Patients who have access to exercise, wellness strategies, mind-body strengthening, and appropriate medical education typically experience a 50% reduction in pain, a 40% reduction in disability, and a 60% reduction in depression.  However, this approach can be time-consuming, expensive, and impractical. PainNavigator makes it easier by bringing your healthcare team’s recommendations right to your fingertips."
         },
         {
           "id": 3,
           "name": "How it Works",
           "summary": "Let’s walk through PainNavigator’s checklist on your home dashboard.",
-          "summary_2": null,
           "steps": [
             "Today’s Education: these modules provide educational information and wellness strategies that will help you better understand and manage your pain. They can be done at your own pace and range in length from 5-10 minutes.",
             "Today’s Movement: these modules provide exercises and stretches to improve your function and mobility, and mind-body techniques that incorporate the power of mindfulness and yoga. They are intended to be done once a day and range in length from 5-15 minutes.",
             "SMART GOAL: SMART GOALs are an excellent way to help you redefine your relationship with your pain. During this program, we’ll ask you to make a SMART Goal that you can accomplish during the program…an activity that your pain has prevented you from doing. Your SMART Goal will serve as a marker of your progress over your pain.",
-            "WELLNESS COACH: You’ll have access to one of PainNavigator’s Wellness Coaches, so check the app's messages section on a regular basis. Your wellness coach will reach out and help you: Navigate through the program Implement a schedule that works for your lifestyle Help you overcome any obstacles you may encounter Help you achieve your SMART Goal."
+            "WELLNESS COACH: You’ll have access to one of PainNavigator’s Wellness Coaches, so check the app's messages section on a regular basis. Your wellness coach will reach out and help you:"
           ],
-          "summary_3": null
+          "subSteps": [
+            "Navigate through the program",
+            "Implement a schedule that works for your lifestyle",
+            "Help you overcome any obstacles you may encounter",
+            "Help you achieve your SMART Goal"
+          ]
         },
         {
           "id": 4,
           "name": "Key Components",
           "summary": "Altogether, this program will utilize these key components to help you better manage your pain:",
-          "summary_2": null,
           "steps": [
             "PHYSICAL:  Strengthen your muscles, help your posture, increase your functioning, and improve your nutrition.",
             "WELLNESS: Modify your lifestyle to reduce chronic pain’s impact on your life.",
             "MIND-BODY: Better understand how social, emotional, and biological factors can affect your response to chronic pain, and vice-versa. Regain the balance your body needs to refocus its attention away from chronic pain.  Experience the benefits of yoga and mindfulness as you begin to feel healthier and more in control of your life",
             "MEDICAL: Provide education about the biological causes of chronic pain and inform you of the benefits and limitations that different medical therapies, procedures, and surgeries can have as part of your chronic pain management plan."
-          ],
-          "summary_3": null
+          ]
         },
         {
           "id": 5,
           "name": "You got this!",
-          "summary": "None of this can happen without your active participation! When you signed up we asked you what you hoped to achieve by participating in PainNavigator. So, please do whatever you can to remove any obstacles that might get in the way of staying committed to your program. Taking that first step toward change and then staying motivated to keep going are often the hardest parts. You took the first step in signing up for PainNavigator and we’re ready to be your partner as you re-define your relationship with pain.  Your Wellness Coach is here to help you on your journey, so make sure to message them in the chat and set up time to meet as your next step. Then, start with a movement or continue with these education modules on the home dashboard.",
-          "summary_2": null,
-          "steps": [],
-          "summary_3": null
+          "summary": "None of this can happen without your active participation! When you signed up we asked you what you hoped to achieve by participating in PainNavigator. So, please do whatever you can to remove any obstacles that might get in the way of staying committed to your program. Taking that first step toward change and then staying motivated to keep going are often the hardest parts. You took the first step in signing up for PainNavigator and we’re ready to be your partner as you re-define your relationship with pain.  Your Wellness Coach is here to help you on your journey, so make sure to message them in the chat and set up time to meet as your next step. Then, start with a movement or continue with these education modules on the home dashboard."
         }
       ]
     },

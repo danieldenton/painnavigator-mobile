@@ -27,7 +27,7 @@ export const PNIntroUnit = () => {
     <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
     <EducationSummaryStepTwo data={pnIntroData[2]} />,
     <EducationSummaryStepThree data={pnIntroData[3]} />,
-    <EducationSummaryStepFour data={pnIntroData[4].summary} />,
+    <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
   ];
 
   return (

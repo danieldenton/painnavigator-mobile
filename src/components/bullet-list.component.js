@@ -8,6 +8,14 @@ const BulletWrapper = styled.View`
   margin-top: 16px;
 `;
 
+const SubBulletWrapper = styled.View`
+  flex-direction: row;
+  align-items: flex-start;
+  margin-right: 8px;
+  margin-left: 30px;
+  margin-top: 16px;
+`;
+
 const BulletDot = styled.View`
   border-radius: 100px;
   background-color: #16a28b;
@@ -41,6 +49,21 @@ export const BulletList = ({ bullets }) => {
           <BulletText>{bullet}</BulletText>
         </BulletTextSection>
       </BulletWrapper>
+    );
+  });
+
+  return <>{bulletElements}</>;
+};
+
+export const SubStepBullets = ({ subBullets }) => {
+  const bulletElements = subBullets.map((bullet, index) => {
+    return (
+      <SubBulletWrapper key={index}>
+        <BulletDot />
+        <BulletTextSection>
+          <BulletText>{bullet}</BulletText>
+        </BulletTextSection>
+      </SubBulletWrapper>
     );
   });
 
