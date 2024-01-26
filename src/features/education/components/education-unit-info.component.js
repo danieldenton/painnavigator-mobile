@@ -17,12 +17,9 @@ export const EducationUnitInfo = ({ id, name, summary, type }) => {
  
   return (
     <>
-      {id !== 1 ? (
         <ModuleTypeTitle>
           EDUCATION{type === "audio" && ": AUDIO MODULE"}
         </ModuleTypeTitle>
-      ) : null}
-
       <Header>
         <TitleSection>
           <UnitTitle>{name}</UnitTitle>
