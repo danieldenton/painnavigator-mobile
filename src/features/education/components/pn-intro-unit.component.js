@@ -1,43 +1,44 @@
-import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import React, { useContext, useEffect, useRef } from "react";
+import { View } from "react-native";
+import { Scroll } from "../../../components/scroll.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitInfo } from "./education-unit-info.component";
-import { Scroll } from "../../../components/scroll.component";
 import { Summary } from "./education-unit.styles";
 import { BulletList } from "../../../components/bullet-list.component";
-
 
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep } = useContext(EducationContext);
   const { pnIntroData } = currentModule;
+  const scrollViewRef = useRef();
 
-  const check = () => {
-    if (pnIntroData[educationIntroStep].summary_2) {
-      return true;
+  useEffect(() => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: true });
     }
-    return false;
-  };
-  console.log(check());
+  }, [educationIntroStep]);
 
   return (
     <>
-      <Scroll style={{ paddingLeft: 16, paddingRight: 16, marginBottom: 100 }}>
+      <Scroll
+        ref={scrollViewRef}
+        style={{ paddingLeft: 16, paddingRight: 16, marginBottom: 100 }}
+      >
         <View style={{ marginBottom: 60 }}>
           <EducationUnitInfo
-            id={educationIntroStep}
+            id={1}
             name={pnIntroData[educationIntroStep].name}
             summary={pnIntroData[educationIntroStep].summary}
             type={"text"}
           />
           {pnIntroData[educationIntroStep].summary_2 ? (
             <View style={{ marginBottom: 10 }}>
-            <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>  
+              <Summary>{pnIntroData[educationIntroStep].summary_2}</Summary>
             </View>
           ) : null}
           <BulletList bullets={pnIntroData[educationIntroStep].steps} />
           {pnIntroData[educationIntroStep].summary_3 ? (
             <View style={{ marginBottom: 10 }}>
-            <Summary>{pnIntroData[educationIntroStep].summary_3}</Summary>  
+              <Summary>{pnIntroData[educationIntroStep].summary_3}</Summary>
             </View>
           ) : null}
         </View>

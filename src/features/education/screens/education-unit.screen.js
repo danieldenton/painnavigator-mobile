@@ -100,7 +100,7 @@ export const EducationUnitScreen = ({ navigation }) => {
                 : postVideoAction();
             }
           }}
-          title={id === 1 && educationIntroStep< 4 ? "Next" : "Mark Complete"}
+          title={id === 1 && educationIntroStep < 4 ? "Next" : "Mark Complete"}
         />
         {skippable ? (
           <SkipQuestion
