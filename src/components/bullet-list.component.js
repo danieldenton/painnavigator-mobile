@@ -49,7 +49,9 @@ export const BulletList = ({ bullets }) => {
 
 export const BoldIntroBulletList = ({ bullets }) => {
   const bulletElements = bullets.map((bullet, index) => {
-    const colonIndex = bullet.indexOf(":") - 1;
+    const colonIndex = bullet.startsWith("SMART")
+      ? bullet.indexOf(".") - 1
+      : bullet.indexOf(":") - 1;
     const boldText = bullet.slice(0, colonIndex + 1);
     const text = bullet.slice(colonIndex + 1);
 
