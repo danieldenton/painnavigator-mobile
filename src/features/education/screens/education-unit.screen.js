@@ -6,6 +6,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";
+import { PNIntroUnit } from "../components/pn-intro-unit.component";
 import { SafeView } from "../../../components/safe-area.component";
 import {
   NavigationBarLeft,
@@ -19,8 +20,13 @@ import { StackActions } from "@react-navigation/native";
 import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const EducationUnitScreen = ({ navigation }) => {
-  const { completeModule, currentModule, skipModule } =
-    useContext(EducationContext);
+  const {
+    completeModule,
+    currentModule,
+    skipModule,
+    educationIntroStep,
+    setEducationIntroStep,
+  } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
   const { post_video_destination, type, skippable, id } = currentModule;
 
@@ -32,17 +38,39 @@ export const EducationUnitScreen = ({ navigation }) => {
   }, []);
 
   const postVideoAction = () => {
-    const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
-    navigation.dispatch(
-      StackActions.replace(PAIN_JOURNAL_HOME ? post_video_destination : "Why", {
-        post_video_destination: post_video_destination,
-      })
-    );
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+    track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
+    completeModule();
+    if (post_video_destination) {
+      const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
+      navigation.dispatch(
+        StackActions.replace(
+          PAIN_JOURNAL_HOME ? post_video_destination : "Why",
+          {
+            post_video_destination: post_video_destination,
+          }
+        )
+      );
+    } else {
+      navigation.dispatch(StackActions.replace("Completion"));
+    }
+  };
+
+  const educationUnitTypeCheckForRender = () => {
+    if (type === "video") {
+      return <VideoUnit />;
+    } else if (type === "audio") {
+      return <AudioUnit unit={currentModule} />;
+    } else if (type === "text") {
+      return <TextUnit />;
+    } else {
+      return <PNIntroUnit />;
+    }
   };
 
   return (
     <SafeView>
-      {type === "video" && (
+      {type === "video" ? (
         <NavigationBarLeft
           screen={"Education"}
           destination={"Today"}
@@ -50,9 +78,7 @@ export const EducationUnitScreen = ({ navigation }) => {
           orientation={true}
           trackNavBarEvent={trackNavBarEvent}
         />
-      )}
-      {type === "video" && <VideoUnit />}
-      {type === "audio" && (
+      ) : (
         <TextModuleNavBar
           screen={"Education"}
           destination={"Today"}
@@ -62,35 +88,21 @@ export const EducationUnitScreen = ({ navigation }) => {
           trackNavBarEvent={trackNavBarEvent}
         />
       )}
-      {type === "audio" && <AudioUnit unit={currentModule} />}
-      {type === "text" && (
-        <TextModuleNavBar
-          screen={"Education"}
-          destination={"Today"}
-          navigation={navigation}
-          id={id}
-          trackEvent={trackEvent}
-          trackNavBarEvent={trackNavBarEvent}
-        />
-      )}
-      {type === "text" && <TextUnit />}
+      {educationUnitTypeCheckForRender()}
       <ButtonSection>
         <ModuleButton
           onPress={() => {
-            ScreenOrientation.lockAsync(
-              ScreenOrientation.OrientationLock.PORTRAIT_UP
-            );
             {
-              post_video_destination
-                ? postVideoAction()
-                : navigation.dispatch(StackActions.replace("Completion"));
+              id === 1 && educationIntroStep < 4
+                ? setEducationIntroStep(
+                    (educationIntroStep) => educationIntroStep + 1
+                  )
+                : postVideoAction();
             }
-            track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
-            completeModule();
           }}
-          title={"Mark Complete"}
+          title={id === 1 && educationIntroStep < 4 ? "Next" : "Mark Complete"}
         />
-        {skippable && (
+        {skippable ? (
           <SkipQuestion
             module={true}
             onPress={() => {
@@ -99,7 +111,7 @@ export const EducationUnitScreen = ({ navigation }) => {
               skipModule();
             }}
           />
-        )}
+        ) : null}
       </ButtonSection>
     </SafeView>
   );

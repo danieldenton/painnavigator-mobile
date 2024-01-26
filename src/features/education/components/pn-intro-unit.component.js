@@ -1,22 +1,50 @@
-import React, { useContext } from "react";
-import { EducationContext } from "../../../services/education/education.context";
-import { EducationUnitInfo } from "./education-unit-info.component";
-import { Scroll } from "../../../components/scroll.component";
-import { BulletList } from "../../../components/bullet-list.component";
+import React, { useContext, useEffect, useRef } from "react";
 import { View } from "react-native";
+import { Scroll } from "../../../components/scroll.component";
+import { EducationContext } from "../../../services/education/education.context";
+import { Header, TitleSection, UnitTitle } from "./education-unit.styles";
+import {
+  EducationSummaryStepZero,
+  EducationSummaryStepOne,
+  EducationSummaryStepTwo,
+  EducationSummaryStepThree,
+  EducationSummaryStepFour,
+} from "./pn-intro-steps.component";
 
-export const TextUnit = () => {
-    const { currentModule } = useContext(EducationContext);
-    const { id, name, summary, steps, type } = currentModule;
+export const PNIntroUnit = () => {
+  const { currentModule, educationIntroStep } = useContext(EducationContext);
+  const { pnIntroData } = currentModule;
+  const scrollViewRef = useRef();
 
-    return (
-        <>
-            <Scroll style={{ paddingLeft: 16, paddingRight: 16, marginBottom: 100 }}>
-                <View style={{ marginBottom: 60 }}>
-                    <EducationUnitInfo id={id} name={name} summary={summary} type={type} />
-                    <BulletList bullets={steps}/>
-                </View>
-            </Scroll>
-        </>
-    );
+  useEffect(() => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ y: 0, animated: true });
+    }
+  }, [educationIntroStep]);
+
+  const educationIntroStepComponents = [
+    <EducationSummaryStepZero data={pnIntroData[0]} />,
+    <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
+    <EducationSummaryStepTwo data={pnIntroData[2]} />,
+    <EducationSummaryStepThree data={pnIntroData[3]} />,
+    <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
+  ];
+
+  return (
+    <>
+      <Scroll
+        ref={scrollViewRef}
+        style={{ paddingLeft: 16, paddingRight: 16, marginBottom: 100 }}
+      >
+        <View style={{ marginBottom: 60 }}>
+          <Header>
+            <TitleSection>
+              <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
+            </TitleSection>
+          </Header>
+          {educationIntroStepComponents[educationIntroStep]}
+        </View>
+      </Scroll>
+    </>
+  );
 };

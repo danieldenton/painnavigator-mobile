@@ -1,6 +1,8 @@
-import React from "react";
-import styled from "styled-components/native";
+import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
+import * as ScreenOrientation from "expo-screen-orientation";
+import { track } from "@amplitude/analytics-react-native";
 import {
   Back,
   Close,
@@ -9,10 +11,9 @@ import {
   More,
   UnreadMessageIcon,
 } from "../../icons";
-import { Bookmark } from "../bookmark.component";
-import { track } from "@amplitude/analytics-react-native";
 import { MESSAGE_EVENTS } from "../../amplitude-events";
-import * as ScreenOrientation from "expo-screen-orientation";
+import { EducationContext } from "../../services/education/education.context";
+import { Bookmark } from "../bookmark.component";
 
 const NavContainer = styled.View`
   flex-direction: row;
@@ -100,7 +101,6 @@ export const TodayNavBar = ({
   hasUnreadMessages,
   accessToWellnessCoach,
 }) => {
-
   return (
     <NavContainer>
       <LeftPressableArea
@@ -185,12 +185,19 @@ export const TextModuleNavBar = ({
   trackEvent,
   trackNavBarEvent,
 }) => {
+  const { setEducationIntroStep, educationIntroStep } =
+    useContext(EducationContext);
   return (
     <NavContainer>
       <LeftPressableArea
         accessibilityLabel={`go-to-${destination}`}
         onPress={() => (
-          navigation.navigate(destination), track(trackNavBarEvent)
+          id === 1 && educationIntroStep > 0
+            ? setEducationIntroStep(
+                (educationIntroStep) => educationIntroStep - 1
+              )
+            : navigation.navigate(destination),
+          track(trackNavBarEvent)
         )}
       >
         <Back />
@@ -200,7 +207,7 @@ export const TextModuleNavBar = ({
       </HeaderSection>
       <RightSection>
         <RightArea>
-          <Bookmark id={id} trackEvent={trackEvent} />
+          {id !== 1 ? <Bookmark id={id} trackEvent={trackEvent} /> : null}
         </RightArea>
       </RightSection>
     </NavContainer>

@@ -28,7 +28,6 @@ export const handlers = [
                         "phone": null
                     },
                     "onboard_status": 0,
-                    "condensed_program": false,
                     "profile_status": 1,
                     "education_progress": {
                         "progress": 8,
@@ -88,7 +87,6 @@ export const handlers = [
                         "id": 4,
                         "name": "TEST12",
                         "code": "TEST12",
-                        "condensed_program": false,
                         "users_count": 9
                     }
                 }
