@@ -4,6 +4,8 @@ import { track } from "@amplitude/analytics-react-native";
 
 export const isAndroid = Platform.OS === "android";
 
+export const isIPad = Platform.isPad 
+
 export const timeZone = Localization.timezone;
 export const todaysDate = new Date();
 let options = {

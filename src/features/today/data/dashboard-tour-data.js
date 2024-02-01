@@ -3,7 +3,7 @@ import { EducationUnitCard } from "../../education/components/education-unit-car
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import { WellnessCoach, ProfileSetup } from "../components/small-daily-activities";
-import { isAndroid } from "../../../utils";
+import { isAndroid, isIPad } from "../../../utils";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
@@ -33,7 +33,7 @@ export const tourObj = [
     { 
         text: "To get the most out of the program, we recommend you log your pain score daily here.",
         tourTextBubble: 20,
-        tourComponentPlacement: isAndroid ? 214 : 245,
+        tourComponentPlacement: isAndroid ? 214 : isIPad ? 215 : 245,
         component: <DailyPainScore />
     },
     { 
