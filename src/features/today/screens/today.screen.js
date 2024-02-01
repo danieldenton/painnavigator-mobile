@@ -48,8 +48,6 @@ import {
   timeZonedTodaysDate,
   formatBackendCreatedAtDate,
 } from "../../../utils";
-import { isIPad } from "../../../utils";
-console.log(isIPad)
 
 export const TodayScreen = ({ navigation }) => {
   const {
