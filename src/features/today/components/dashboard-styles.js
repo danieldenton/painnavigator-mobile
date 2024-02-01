@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { isAndroid } from "../../../utils";
+import { isAndroid, isIPad } from "../../../utils";
 
 export const styles = StyleSheet.create({
     container: {
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     triangleRightTop: {
         position: 'absolute',
         top: -20,
-        left: 270,
+        left: isIPad ? 700 : 270,
         width: 0,
         height: 0,
         borderStyle: 'solid',
@@ -110,8 +110,8 @@ export const styles = StyleSheet.create({
     messageContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: isAndroid ? 3 : 50,
-        left: isAndroid ? 298 : 315,        
+        marginTop: isAndroid ? 3 : isIPad ? 20 : 50,
+        left: isAndroid ? 298 : isIPad ? 740 : 315,        
         height: 60,
         width: 60,
         backgroundColor: 'white',
@@ -120,7 +120,7 @@ export const styles = StyleSheet.create({
     menuContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: isAndroid ? 3 : 50,
+        marginTop: isAndroid ? 3 : isIPad ? 20 : 50,
         left: 5,        
         height: 60,
         width: 60,
