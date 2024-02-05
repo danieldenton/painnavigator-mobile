@@ -5,7 +5,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "../../../services/education/education-programs-data.json"
+import { educationPrograms } from "../../../services/education/education-programs-data.json";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -83,7 +83,8 @@ export const TodayScreen = ({ navigation }) => {
     educationModuleCompletionData,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
+  const { getMessages, hasUnreadMessages, messages } =
+    useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
 
@@ -95,7 +96,7 @@ export const TodayScreen = ({ navigation }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
-  const noMovementModules = educationProgram > 9
+  const noMovementModules = educationProgram > 9;
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
@@ -131,7 +132,6 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
-    setTour(0)
   }, []);
 
   useEffect(() => {
@@ -139,6 +139,10 @@ export const TodayScreen = ({ navigation }) => {
       patchLastDateOnApp(uid, timeZonedTodaysDate);
     }
   }, [lastDateOnApp]);
+
+  useEffect(() => {
+    getMessages();
+  }, [messages]);
 
   useEffect(() => {
     getMessages();
@@ -236,7 +240,9 @@ export const TodayScreen = ({ navigation }) => {
           {!completedAllEducationModules || !noMovementModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          {!completedAllMovementModules || educationProgram !== 10 || educationProgram !== 11 ? (
+          {!completedAllMovementModules ||
+          educationProgram !== 10 ||
+          educationProgram !== 11 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
