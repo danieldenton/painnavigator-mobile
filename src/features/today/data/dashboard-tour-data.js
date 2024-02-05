@@ -20,9 +20,9 @@ const DailyActivities = () => {
   );
 };
 
-export const shortTour = [0, 1, 4, 6];
+export const shortTour = [0, 1, 3, 4, 6];
 
-export const noWCShortTour = [0, 1, 6];
+export const noWCShortTour = [0, 1, 3,  6];
 
 export const tourObj = [
   {
