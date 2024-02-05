@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, Modal, Pressable } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { JournalButton } from "../../../components/button.component";
+import { ModuleButton } from "../../../components/button.component";
 import { tourObj, shortTour, noWCShortTour } from "../data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
 import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
@@ -56,23 +56,17 @@ export const DashboardTour = ({ visible, setVisible }) => {
                   ]}
                 />
               ) : null}
-              <Text style={styles.modalContent}>
-                {customTour !== 6
-                  ? tourObj[customTour]?.text
-                  : "You can explore other features and update settings in the menu."}
-              </Text>
-              <View style={styles.buttonsContanier}>
-                <JournalButton
-                  onPress={() => {
-                    customTour < 6
-                      ? tour === 3 && !accessToWellnessCoach
-                        ? setTour((tour) => tour + 2)
-                        : setTour((tour) => tour + 1)
-                      : handleFinish();
-                  }}
-                  title={"GOT IT!"}
-                />
-              </View>
+              <Text style={styles.modalContent}>{tourObj[customTour]?.text}</Text>
+              <ModuleButton
+                onPress={() => {
+                  customTour < 6
+                    ? tour === 3 && !accessToWellnessCoach
+                      ? setTour((tour) => tour + 2)
+                      : setTour((tour) => tour + 1)
+                    : handleFinish();
+                }}
+                title={tour === 0 ? "LET'S GO!" : "GOT IT!"}
+              />
             </View>
             {customTour === 2 || customTour === 3 || customTour === 5 ? (
               <DashboardTourComponentOnBottom customTour={customTour} />

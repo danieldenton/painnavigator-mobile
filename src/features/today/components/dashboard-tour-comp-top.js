@@ -12,8 +12,10 @@ export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
     >
       {tourObj[customTour]?.component}
     </View>
-  ) : customTour === 4 ? (
-    <View style={styles.messageContainer}>
+  ) : (
+    <View
+      style={customTour === 4 ? styles.messageContainer : styles.menuContainer}
+    >
       <View
         style={[
           styles.bubble,
@@ -21,17 +23,6 @@ export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
         ]}
       >
         {tourObj[customTour].component}
-      </View>
-    </View>
-  ) : (
-    <View style={styles.menuContainer}>
-      <View
-        style={[
-          styles.bubble,
-          { marginTop: tourObj[customTour]?.tourComponentPlacement },
-        ]}
-      >
-        {tourObj[customTour]?.component}
       </View>
     </View>
   );
