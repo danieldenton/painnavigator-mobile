@@ -1,4 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
+import axios from 'axios';
+import { API_URL } from "@env"
 import { patchMessage, postMessage } from "./wellness-coach.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
@@ -24,6 +26,17 @@ export const WellnessCoachContextProvider = ({ children }) => {
             setHasUnreadMessages(false);
         }
     }, [messages]);
+
+
+   async function getMessages() {
+        try {
+          const response = await axios.get(`${API_URL}/api/v1/messages/${uid}`);
+          const data = response.data.data.map((message) => message.attributes)
+          setMessages(data)
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
     const clearUnreadMessages = () => {
         const newMessages = messages.map(message => message.status === "unread" ?
@@ -66,6 +79,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     return (
         <WellnessCoachContext.Provider
             value={{
+                getMessages,
                 clearUnreadMessages,
                 hasUnreadMessages,
                 message,

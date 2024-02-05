@@ -39,7 +39,6 @@ import {
   getUser,
   patchLastDateOnApp,
 } from "../../../services/authentication/authentication.service";
-import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import {
   formatDate,
@@ -82,7 +81,7 @@ export const TodayScreen = ({ navigation }) => {
     educationModuleCompletionData,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
+  const { getMessages, hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
 
@@ -139,7 +138,7 @@ export const TodayScreen = ({ navigation }) => {
   }, [lastDateOnApp]);
 
   useEffect(() => {
-    getMessages(uid, setMessages);
+    getMessages();
     let options = { hour: "numeric", hour12: false, timeZone: timeZone };
     const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
       todaysDate
