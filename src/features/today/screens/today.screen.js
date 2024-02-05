@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "../../../services/education/education-programs-data.json";
+import { educationPrograms } from "../../../services/education/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -39,6 +39,7 @@ import {
   getUser,
   patchLastDateOnApp,
 } from "../../../services/authentication/authentication.service";
+import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import {
   formatDate,
@@ -81,7 +82,7 @@ export const TodayScreen = ({ navigation }) => {
     educationModuleCompletionData,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
+  const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
 
@@ -93,7 +94,7 @@ export const TodayScreen = ({ navigation }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
-  const noMovementModules = educationProgram > 9;
+  const noMovementModules = educationProgram > 9
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
@@ -138,7 +139,7 @@ export const TodayScreen = ({ navigation }) => {
   }, [lastDateOnApp]);
 
   useEffect(() => {
-    getMessages();
+    getMessages(uid, setMessages);
     let options = { hour: "numeric", hour12: false, timeZone: timeZone };
     const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
       todaysDate
@@ -233,9 +234,7 @@ export const TodayScreen = ({ navigation }) => {
           {!completedAllEducationModules || !noMovementModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          {!completedAllMovementModules ||
-          educationProgram !== 10 ||
-          educationProgram !== 11 ? (
+          {!completedAllMovementModules || educationProgram !== 10 || educationProgram !== 11 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
