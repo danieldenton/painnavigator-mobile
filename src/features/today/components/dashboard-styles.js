@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
   },
   modalContainer: {
     justifyContent: "center",
-  
     marginLeft: 16,
     marginRight: 16,
     backgroundColor: "white",
