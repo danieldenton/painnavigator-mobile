@@ -145,7 +145,7 @@ export const TodayScreen = ({ navigation }) => {
   }, [messages]);
 
   useEffect(() => {
-    getMessages();
+ 
     let options = { hour: "numeric", hour12: false, timeZone: timeZone };
     const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
       todaysDate
