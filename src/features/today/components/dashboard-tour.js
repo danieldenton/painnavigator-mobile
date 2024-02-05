@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, Modal, Pressable } from "react-native";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { JournalButton } from "../../../components/button.component";
 import { tourObj, shortTour, noWCShortTour } from "../data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
 import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
@@ -61,46 +62,16 @@ export const DashboardTour = ({ visible, setVisible }) => {
                   : "You can explore other features and update settings in the menu."}
               </Text>
               <View style={styles.buttonsContanier}>
-                {tour === 0 ? null : (
-                  <Pressable
-                    onPress={() =>
-                      setTour(
-                        tour === 5 && !accessToWellnessCoach
-                          ? tour - 2
-                          : tour - 1
-                      )
-                    }
-                  >
-                    <View style={styles.previousButtonContainer}>
-                      <Text style={styles.previousButtons}>PREVIOUS</Text>
-                    </View>
-                  </Pressable>
-                )}
-                {customTour < 6 ? (
-                  <Pressable
-                    style={styles.buttons}
-                    onPress={() =>
-                      setTour(
-                        tour === 3 && !accessToWellnessCoach
-                          ? tour + 2
-                          : tour + 1
-                      )
-                    }
-                  >
-                    <View style={styles.buttonContainer}>
-                      <Text style={styles.buttons}>NEXT</Text>
-                    </View>
-                  </Pressable>
-                ) : (
-                  <Pressable
-                    style={styles.buttons}
-                    onPress={() => handleFinish()}
-                  >
-                    <View style={styles.buttonContainer}>
-                      <Text style={styles.buttons}>FINISH</Text>
-                    </View>
-                  </Pressable>
-                )}
+                <JournalButton
+                  onPress={() => {
+                    customTour < 6
+                      ? tour === 3 && !accessToWellnessCoach
+                        ? setTour((tour) => tour + 2)
+                        : setTour((tour) => tour + 1)
+                      : handleFinish();
+                  }}
+                  title={"GOT IT!"}
+                />
               </View>
             </View>
             {customTour === 2 || customTour === 3 || customTour === 5 ? (

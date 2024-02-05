@@ -64,8 +64,7 @@ export const styles = StyleSheet.create({
       },
     buttonsContanier: {
         justifyContent: 'center',
-        flexDirection: 'row', 
-        width: 200
+        flexDirection: 'row'
     },
     buttonContainer: {
       justifyContent: 'center',
