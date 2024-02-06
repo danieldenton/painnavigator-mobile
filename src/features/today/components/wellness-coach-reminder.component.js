@@ -5,7 +5,7 @@ import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 
-export const DashboardTour = ({ visible, setVisible, navigation }) => {
+export const WellnessCoachReminder = ({ visible, setVisible, navigation }) => {
 
   const handleFinish = () => {
     setTour(null);

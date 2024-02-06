@@ -28,7 +28,7 @@ import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScore } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
-
+import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import {
   Journals,
   WellnessCoach,
@@ -87,6 +87,7 @@ export const TodayScreen = ({ navigation }) => {
     useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   const [tourVisible, setTourVisible] = useState(false);
+  const [wellnessCoachReminder, setWellnessCoachReminder] = useState(false)
 
   const isFocused = useIsFocused();
   const educationProgramLength =
@@ -269,6 +270,7 @@ export const TodayScreen = ({ navigation }) => {
           </View>
         </Scroll>
         <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
+        <WellnessCoach visible={wellnessCoachReminder} setVisible={setWellnessCoachReminder} />
       </SafeView>
     </Provider>
   );
