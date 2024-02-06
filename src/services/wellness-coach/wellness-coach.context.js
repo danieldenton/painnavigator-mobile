@@ -1,6 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from "@env";
 import { AuthenticationContext } from "../authentication/authentication.context";
 
@@ -99,35 +98,6 @@ export const WellnessCoachContextProvider = ({ children }) => {
       ...message,
       body: change,
     }));
-  };
-
-  const signOut = async () => {
-    try {
-      setUser(null);
-      await AsyncStorage.removeItem("@user");
-    } catch (e) {
-      console.log("error clearing user", e);
-    }
-  };
-
-  const saveUser = async (value) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("@user", jsonValue);
-    } catch (e) {
-      console.log("error storing user", e);
-    }
-  };
-
-  const loadUser = async () => {
-    try {
-      const value = await AsyncStorage.getItem("@user");
-      if (value !== null) {
-        setUser(JSON.parse(value));
-      }
-    } catch (e) {
-      console.log("error loading user", e);
-    }
   };
 
   return (
