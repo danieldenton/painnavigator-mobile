@@ -1,0 +1,94 @@
+{
+    "painJournalQuestions": [
+        {
+            "page": 1,
+            "question": "How is your pain today?",
+            "helpText": "0 is no pain, 10 is pain as bad as you can imagine."
+        },
+        {
+            "page": 2,
+            "questions": [
+                {
+                    "question": "What were you doing when your pain increased?",
+                    "helpText": "Walking down the street on the way to work.",
+                    "state": "situation"
+                },
+                {
+                    "question": "What were you feeling?",
+                    "helpText": "I was feeling anxious because I was running late.",
+                    "state": "feeling"
+                },
+                {
+                    "question": "Who were you with?",
+                    "helpText": "I was by myself.",
+                    "state": "whoIWasWith"
+                }
+            ]
+        },
+        {
+            "page": 3,
+            "question": "Did you try any coping strategies?",
+            "helpText": "Tap the circle to select",
+            "options": [
+                {
+                    "id": 1,
+                    "option": "Distraction"
+                },
+                {
+                    "id": 2,
+                    "option": "Mindfulness"
+                },
+                {
+                    "id": 3,
+                    "option": "Pacing"
+                },
+                {
+                    "id": 4,
+                    "option": "Quieting the mind"
+                },
+                {
+                    "id": 5,
+                    "option": "Socializing"
+                },
+                {
+                    "id": 6,
+                    "option": "Belly Breathing"
+                },
+                {
+                    "id": 7,
+                    "option": "Stretching"
+                },
+                {
+                    "id": 8,
+                    "option": "Ice/Heat"
+                },
+                {
+                    "id": 9,
+                    "option": "Electrical Stimulation"
+                },
+                {
+                    "id": 10,
+                    "option": "Massage"
+                },
+                {
+                    "id": 11,
+                    "option": "Exercise"
+                },
+                {
+                    "id": 12,
+                    "option": "I didn't try any coping strategies"
+                }
+            ]
+        },
+        {
+            "page": 4,
+            "question": "Anything else you'd like to add?",
+            "helpText": "Enter some notes that will be helpful to reflect on."
+        },
+        {
+            "page": 5,
+            "question": "How was your pain after the episode?",
+            "helpText": "0 is no pain, 10 is pain as bad as you can imagine."
+        }
+    ]
+}
