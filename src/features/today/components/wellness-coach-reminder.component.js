@@ -7,8 +7,9 @@ import { styles } from "../../dashboard-tour/dashboard-styles";
 
 export const WellnessCoachReminder = ({ navigation }) => {
   const [wellnessCoachReminder, setWellnessCoachReminder] = useState(true);
-  const handleFinish = () => {
+  const handleCheckIn = () => {
     setWellnessCoachReminder(false);
+    navigation.navigate("WellnessCoach")
   };
 
   return (
@@ -36,7 +37,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
                 pain and your life.
               </Text>
               <ModuleButton
-                onPress={() => navigation.navigate("WellnessCoach")}
+                onPress={() => handleCheckIn()}
                 title={"CHECK IN!"}
               />
             </View>

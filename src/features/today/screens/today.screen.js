@@ -132,6 +132,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
+    // setTour(0)
   }, []);
 
   useEffect(() => {
@@ -176,12 +177,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
-
-  useEffect(() => {
-    if (tour !== null) {
-      setTourVisible(true);
-    }
-  }, [tour]);
 
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
@@ -267,7 +262,7 @@ export const TodayScreen = ({ navigation }) => {
             ) : null}
           </View>
         </Scroll>
-        <DashboardTour />
+        <DashboardTour tour={tour} />
         <WellnessCoachReminder navigation={navigation} />
       </SafeView>
     </Provider>

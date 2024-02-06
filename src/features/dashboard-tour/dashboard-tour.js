@@ -11,7 +11,6 @@ export const DashboardTour = () => {
   const { tour, setTour, educationProgram, accessToWellnessCoach } = useContext(
     AuthenticationContext
   );
-  const [tourVisible, setTourVisible] = useState(false);
 
   const customTour =
     educationProgram !== 10
@@ -22,13 +21,12 @@ export const DashboardTour = () => {
 
   const handleFinish = () => {
     setTour(null);
-    setTourVisible(false);
   };
 
   return (
     <>
       <View style={styles.container}>
-        <Modal animationType="slide" transparent={true} visible={tourVisible}>
+        <Modal animationType="slide" transparent={true} visible={tour !== null}>
           <View style={styles.modalBackground}>
             {customTour !== 0 &&
             customTour !== 2 &&
