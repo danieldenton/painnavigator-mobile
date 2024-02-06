@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Modal } from "react-native";
 import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 
-export const WellnessCoachReminder = ({ visible, setVisible, navigation }) => {
+export const WellnessCoachReminder = ({ navigation }) => {
+  const [wellnessCoachReminder, setWellnessCoachReminder] = useState(true);
   const handleFinish = () => {
-    setTour(null);
-    setVisible(false);
+    setWellnessCoachReminder(false);
   };
 
   return (
     <>
       <View style={styles.container}>
-        <Modal animationType="slide" transparent={true} visible={visible}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={wellnessCoachReminder}
+        >
           <View style={styles.modalBackground}>
-            <DashboardTourComponentOnTop />
+            <DashboardTourComponentOnTop customTour={4} tour={null} />
             <View
               style={[
                 styles.modalContainer,
@@ -25,15 +29,15 @@ export const WellnessCoachReminder = ({ visible, setVisible, navigation }) => {
             >
               <View style={styles.triangleRightTop} />
               <Text style={styles.modalContent}>
-                Text: Ready to meet with your personal Wellness Coach? Click
-                here. Collaborating with your coach is one of the keys to
-                achieving your goals - your coach is a real person, there to
-                answer questions, support you, and help you overcome obstacles
-                in your pain and your life.
+                Ready to meet with your personal Wellness Coach? Click here.
+                Collaborating with your coach is one of the keys to achieving
+                your goals - your coach is a real person, there to answer
+                questions, support you, and help you overcome obstacles in your
+                pain and your life.
               </Text>
               <ModuleButton
                 onPress={() => navigation.navigate("WellnessCoach")}
-                title={"CHECK IN WITH YOUR COACH"}
+                title={"CHECK IN!"}
               />
             </View>
           </View>

@@ -86,8 +86,7 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
-  const [tourVisible, setTourVisible] = useState(false);
-  const [wellnessCoachReminder, setWellnessCoachReminder] = useState(false)
+  
 
   const isFocused = useIsFocused();
   const educationProgramLength =
@@ -133,7 +132,6 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
-    setTour(0)
   }, []);
 
   useEffect(() => {
@@ -269,8 +267,8 @@ export const TodayScreen = ({ navigation }) => {
             ) : null}
           </View>
         </Scroll>
-        <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
-        <WellnessCoachReminder visible={wellnessCoachReminder} setVisible={setWellnessCoachReminder} />
+        <DashboardTour />
+        <WellnessCoachReminder navigation={navigation} />
       </SafeView>
     </Provider>
   );

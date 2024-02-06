@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Modal } from "react-native";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { ModuleButton } from "../../components/button.component";
@@ -7,10 +7,11 @@ import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
 import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
 import { styles } from "./dashboard-styles";
 
-export const DashboardTour = ({ visible, setVisible }) => {
+export const DashboardTour = () => {
   const { tour, setTour, educationProgram, accessToWellnessCoach } = useContext(
     AuthenticationContext
   );
+  const [tourVisible, setTourVisible] = useState(false);
 
   const customTour =
     educationProgram !== 10
@@ -21,13 +22,13 @@ export const DashboardTour = ({ visible, setVisible }) => {
 
   const handleFinish = () => {
     setTour(null);
-    setVisible(false);
+    setTourVisible(false);
   };
 
   return (
     <>
       <View style={styles.container}>
-        <Modal animationType="slide" transparent={true} visible={visible}>
+        <Modal animationType="slide" transparent={true} visible={tourVisible}>
           <View style={styles.modalBackground}>
             {customTour !== 0 &&
             customTour !== 2 &&
