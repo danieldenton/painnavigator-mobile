@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { View, Text, Modal } from "react-native";
 import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
+import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 
 export const WellnessCoachReminder = ({ navigation }) => {
-  const [wellnessCoachReminder, setWellnessCoachReminder] = useState(true);
+    const { wellnessCoachReminder, setWellnessCoachReminder } = useContext(WellnessCoachContext)
+  
   const handleCheckIn = () => {
     setWellnessCoachReminder(false);
     navigation.navigate("WellnessCoach")
