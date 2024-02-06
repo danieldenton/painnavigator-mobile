@@ -237,12 +237,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const nextStep = () => {
-    setStep((prevPage) => {
-      return prevPage + 1;
-    });
-  };
-
   const previousStep = () => {
     if (step === 12) {
       setStep(8);
@@ -299,7 +293,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setTour,
         uid,
         isAuthenticated: !!user,
-        nextStep,
         step,
         setStep,
         onLogin,

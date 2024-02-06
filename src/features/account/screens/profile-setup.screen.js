@@ -23,8 +23,8 @@ import { AlmostThere } from "../components/almost-there.component";
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
+    setStep,
     previousStep,
-    nextStep,
     onboardingData,
     setOnboardingData,
     programSafety,
@@ -135,7 +135,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
               ? handleOtherPainTypeProgram()
-              : nextStep();
+              : setStep((step) => step + 1);
           }}
         />
         {step === 12 ? (

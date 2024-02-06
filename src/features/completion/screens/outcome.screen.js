@@ -18,8 +18,8 @@ import { COMPLETION_EVENTS } from "../../../amplitude-events";
 export const OutcomeScreen = ({ navigation }) => {
   const {
     step,
+    setStep,
     previousStep,
-    nextStep,
     completeProgram,
     outcomeData,
     setOutcomeData,
@@ -98,7 +98,7 @@ export const OutcomeScreen = ({ navigation }) => {
           disabled={pages[step].disabled}
           title={"Next"}
           onPress={() => {
-            step === 6 ? handleCompletProgram() : nextStep();
+            step === 6 ? handleCompletProgram() : setStep((step) => step + 1);
           }}
         />
         <ProgressDots progress={step + 1} total={7} />

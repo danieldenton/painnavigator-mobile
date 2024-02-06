@@ -38,7 +38,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
               </Text>
               <ModuleButton
                 onPress={() => handleCheckIn()}
-                title={"CHECK IN!"}
+                title={"MEET YOUR COACH"}
               />
             </View>
           </View>
