@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
   triangleRightTop: {
     position: "absolute",
     top: -20,
-    left: isIPad ? 700 : 270,
+    left: isIPad ? 700 : 280,
     width: 0,
     height: 0,
     borderStyle: "solid",
