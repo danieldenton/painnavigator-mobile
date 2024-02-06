@@ -4,7 +4,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { ModuleButton } from "../../components/button.component";
 import { tourObj, shortTour, noWCShortTour } from "./data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
-import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
+import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = ({ visible, setVisible }) => {

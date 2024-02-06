@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text, Modal } from "react-native";
 import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
@@ -17,14 +17,11 @@ export const WellnessCoachReminder = ({ visible, setVisible, navigation }) => {
       <View style={styles.container}>
         <Modal animationType="slide" transparent={true} visible={visible}>
           <View style={styles.modalBackground}>
-              <DashboardTourComponentOnTop
-                customTour={customTour}
-                tour={tour}
-              />
+              <DashboardTourComponentOnTop />
             <View
               style={[
                 styles.modalContainer,
-                { marginTop: tourObj[customTour]?.tourTextBubble },
+                { marginTop: tourObj[4].tourTextBubble },
               ]}
             >
                 <View
