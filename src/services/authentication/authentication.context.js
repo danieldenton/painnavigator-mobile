@@ -237,16 +237,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const previousStep = () => {
-    if (step === 12) {
-      setStep(8);
-    } else {
-      setStep((prevPage) => {
-        return prevPage - 1;
-      });
-    }
-  };
-
   const loadUser = async () => {
     try {
       const value = await AsyncStorage.getItem("@user");
@@ -299,7 +289,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onRegister,
         setOnboardingData,
         onboardingData,
-        previousStep,
         user,
         userLoading,
         signOut,

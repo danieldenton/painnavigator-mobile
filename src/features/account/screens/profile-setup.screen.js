@@ -24,7 +24,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
     setStep,
-    previousStep,
     onboardingData,
     setOnboardingData,
     programSafety,
@@ -121,7 +120,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         destination={"Onboard"}
         navigation={navigation}
         screen={"Sign Up"}
-        previousPage={step > 0 ? previousStep : null}
+        previousPage={step > 0 ? setStep(step === 12 ? 8 : (step) => step - 1) : null}
       />
       {onboardPages[step].component}
       <ButtonSection>

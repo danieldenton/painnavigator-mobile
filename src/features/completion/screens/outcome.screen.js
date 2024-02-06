@@ -19,7 +19,6 @@ export const OutcomeScreen = ({ navigation }) => {
   const {
     step,
     setStep,
-    previousStep,
     completeProgram,
     outcomeData,
     setOutcomeData,
@@ -90,7 +89,7 @@ export const OutcomeScreen = ({ navigation }) => {
         destination={"Today"}
         navigation={navigation}
         screen={"Outcome"}
-        previousPage={step > 0 ? previousStep : null}
+        previousPage={step > 0 ? setStep((step) => step - 1) : null}
       />
       {pages[step].component}
       <ButtonSection>
