@@ -270,7 +270,7 @@ export const TodayScreen = ({ navigation }) => {
           </View>
         </Scroll>
         <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
-        <WellnessCoach visible={wellnessCoachReminder} setVisible={setWellnessCoachReminder} />
+        <WellnessCoachReminder visible={wellnessCoachReminder} setVisible={setWellnessCoachReminder} />
       </SafeView>
     </Provider>
   );
