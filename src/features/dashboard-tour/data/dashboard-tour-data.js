@@ -1,11 +1,11 @@
-import { DailyPainScore } from "../components/daily-activities.component";
+import { DailyPainScore } from "../../today/components/daily-activities.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import {
   WellnessCoach,
   ProfileSetup,
-} from "../components/small-daily-activities";
+} from "../../today/components/small-daily-activities";
 import { isAndroid, isIPad } from "../../../utils";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { isAndroid, isIPad } from "../../../utils";
+import { isAndroid, isIPad } from "../../utils";
 
 export const styles = StyleSheet.create({
   container: {

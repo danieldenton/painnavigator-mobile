@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { styles } from "./dashboard-styles";
-import { tourObj } from "../data/dashboard-tour-data";
+import { tourObj } from "./data/dashboard-tour-data";
 
 export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
   return (

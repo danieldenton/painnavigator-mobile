@@ -27,7 +27,7 @@ import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScore } from "../components/daily-activities.component";
-import { DashboardTour } from "../components/dashboard-tour";
+import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 
 import {
   Journals,
@@ -132,6 +132,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
+    setTour(0)
   }, []);
 
   useEffect(() => {
