@@ -150,8 +150,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     if (onboardingData.typeOfPain === "Other") {
       setStep(12);
       onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
     }
   };
 

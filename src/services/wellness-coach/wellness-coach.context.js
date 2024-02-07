@@ -1,4 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
+import add from 'date-fns/add';
 import axios from "axios";
 import { API_URL } from "@env";
 import { AuthenticationContext } from "../authentication/authentication.context";
@@ -6,7 +7,7 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
-  const { uid } = useContext(AuthenticationContext);
+  const { uid, firstDateOnApp } = useContext(AuthenticationContext);
   const [message, setMessage] = useState({
     recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
     body: "",

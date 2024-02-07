@@ -15,7 +15,7 @@ import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unabl
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
 import { Depressed } from "../../../components/onboard-coutcome/depressed";
 import { TypeOfPain } from "../components/type-of-pain";
-import { Other, OtherTypeOfPain } from "../components/other-type-of-pain";
+import { OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
@@ -133,7 +133,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
               : step === 8 &&
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
-              ? handleOtherPainTypeProgram()
+              ? (handleOtherPainTypeProgram(), navigation.navigate("Register"))
               : setStep((step) => step + 1);
           }}
         />
