@@ -137,23 +137,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const handleOtherPainTypeProgram = () => {
-    if (
-      onboardingData.hopesToAchieve.length === 1 &&
-      onboardingData.hopesToAchieve[0] === "Strength & Prevention"
-    ) {
-      setEducationProgram(11);
-    } else {
-      setEducationProgram(10);
-    }
-    if (onboardingData.typeOfPain === "Other") {
-      setStep(12);
-      onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
-    }
-  };
-
   const onLogin = (email, password) => {
     setUserLoading(true);
     loginRequest(email, password)
@@ -289,7 +272,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         handleEducationProgram,
-        handleOtherPainTypeProgram,
         accessToWellnessCoach,
         setAccessToWellnessCoach,
         checkProviderCode,

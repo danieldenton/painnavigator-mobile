@@ -28,8 +28,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     onboardingData,
     setOnboardingData,
     programSafety,
-    handleEducationProgram,
-    handleOtherPainTypeProgram,
+    handleEducationProgram
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -114,6 +113,24 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: typeOfPain ? false : true,
     },
   ];
+
+
+  const handleOtherPainTypeProgram = () => {
+    if (
+      onboardingData.hopesToAchieve.length === 1 &&
+      onboardingData.hopesToAchieve[0] === "Strength & Prevention"
+    ) {
+      setEducationProgram(11);
+    } else {
+      setEducationProgram(10);
+    }
+    if (onboardingData.typeOfPain === "Other") {
+      setStep(12);
+      onboardingData.typeOfPain = "";
+    } else {
+      navigation.navigate("Register");
+    }
+  };
 
   return (
     <SafeView>
