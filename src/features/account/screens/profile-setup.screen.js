@@ -28,7 +28,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
     onboardingData,
     setOnboardingData,
     programSafety,
-    handleEducationProgram
+    handleEducationProgram,
+    setEducationProgram,
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -113,7 +114,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: typeOfPain ? false : true,
     },
   ];
-
 
   const handleOtherPainTypeProgram = () => {
     if (
