@@ -53,6 +53,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
   // TODO get wellnessCoachReminder from back end and post a response when the user clicks on the reminder.
+  // TODO fix provider code so it keeps you from advancing.
 
   async function checkProviderCode(providerCode) {
     try {
@@ -194,7 +195,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
         setTour(0);
-        setStep(0);
       })
       .catch((e) => {
         setError(e.toString());
@@ -236,7 +236,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const completeProgram = () => {
     patchCompletedProgram(uid, outcomeData);
     setCompletedProgram(true);
-    setStep(0);
   };
 
   useEffect(() => {

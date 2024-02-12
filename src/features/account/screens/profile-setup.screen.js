@@ -27,7 +27,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
     onboardingData,
     setOnboardingData,
     programSafety,
-    handleEducationProgram
+    handleEducationProgram,
+    setEducationProgram
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -86,13 +87,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: depressed ? false : true,
     },
     { component: <AlmostThere />, disabled: false },
-    { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: (
         <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve} />
       ),
       disabled: hopesToAchieve.length > 0 ? false : true,
     },
+    { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: (
         <PainInjections setState={setOnboardingData} value={painInjections} />
