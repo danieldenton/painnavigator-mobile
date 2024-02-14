@@ -15,7 +15,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
   });
   const [messages, setMessages] = useState([]);
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
-  const [wellnessCoachReminder, setWellnessCoachReminder] = useState(true);
+  const [wellnessCoachReminded, setWellnessCoachReminded] = useState(true);
 
   useEffect(() => {
     if (messages.length === 2) {
@@ -116,8 +116,8 @@ export const WellnessCoachContextProvider = ({ children }) => {
         sendMessage,
         setMessages,
         writeMessage,
-        wellnessCoachReminder,
-        setWellnessCoachReminder
+        wellnessCoachReminded,
+        setWellnessCoachReminded
       }}
     >
       {children}

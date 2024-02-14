@@ -49,7 +49,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [educationProgram, setEducationProgram] = useState(1);
   const [programSafety, setProgramSafety] = useState(false);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
-  const [firstDateOnApp, setFirstDateOnApp] = useState("")
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
   // TODO get wellnessCoachReminder from back end and post a response when the user clicks on the reminder.

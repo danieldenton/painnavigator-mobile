@@ -7,11 +7,11 @@ import { styles } from "../../dashboard-tour/dashboard-styles";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 
 export const WellnessCoachReminder = ({ navigation }) => {
-  const { wellnessCoachReminder, setWellnessCoachReminder } =
+  const { wellnessCoachReminded, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
 
   const handleCheckIn = () => {
-    setWellnessCoachReminder(false);
+    setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
   };
 
@@ -21,7 +21,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
         <Modal
           animationType="slide"
           transparent={true}
-          visible={wellnessCoachReminder}
+          visible={!wellnessCoachReminded}
         >
           <View style={styles.modalBackground}>
             <DashboardTourComponentOnTop customTour={4} tour={null} />
