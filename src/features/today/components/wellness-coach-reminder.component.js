@@ -10,7 +10,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
   const { wellnessCoachReminded, setWellnessCoachReminded, patchWellnessCoachReminded } =
     useContext(WellnessCoachContext);
 
-  const handleCheckIn = () => {
+  const handleWellnessCoachReminder = () => {
     patchWellnessCoachReminded()
     setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
@@ -41,7 +41,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
                 pain and your life.
               </Text>
               <ModuleButton
-                onPress={() => handleCheckIn()}
+                onPress={() => handleWellnessCoachReminder()}
                 title={"MEET YOUR COACH"}
               />
             </View>
