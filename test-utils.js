@@ -5,7 +5,7 @@ import { theme } from "./src/infrastructure/theme"
 import { AuthenticationContext } from './src/services/authentication/authentication.context';
 import { ProfileContextProvider } from './src/services/profile/profile-context';
 import { BookmarksContextProvider } from './src/services/bookmarks/bookmarks.context';
-import { EducationContext, EducationContextProvider } from './src/services/education/education.context';
+import { EducationContextProvider } from './src/services/education/education.context';
 import { MovementContextProvider } from './src/services/movement/movement.context';
 import { SmartGoalContext } from './src/services/smart-goal/smart-goal.context';
 import { PainJournalContextProvider } from './src/services/pain-journal/pain-journal.context';
@@ -18,7 +18,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const Providers = ({children}) => {
 
   
-  const authenticationContextValueProvider =  {"user": {"user":{"uid":"6Iw0r8lNxmQ8MDt5hipTI4xrZNA2"}}}
+  const authenticationContextValueProvider =  {"user": {"user":{"uid":"bLoeq82MXWacR4N42bcweyrA08X2"}}}
   // const smartGoalContextValueProvider = { "activeGoal": {
   //   "id": 54,
   //   "goal": "test",
@@ -38,7 +38,7 @@ const Providers = ({children}) => {
            <BookmarksContextProvider>
              <EducationContextProvider>
                <MovementContextProvider>
-                 <SmartGoalContext.Provider value={smartGoalContextValueProvider}>
+                 <SmartGoalContext.Provider>
                    <PainJournalContextProvider>
                      <FoodJournalContextProvider>
                        <MoodJournalContextProvider>

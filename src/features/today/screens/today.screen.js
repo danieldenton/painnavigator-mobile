@@ -132,7 +132,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
-    // setTour(0)
+    console.log(uid)
   }, []);
 
   useEffect(() => {
