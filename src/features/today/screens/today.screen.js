@@ -1,7 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { View } from "react-native";
+import { Audio } from "expo-av";
+import { useIsFocused } from "@react-navigation/native";
+import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "../../../services/education/education-programs-data.json"
+import { educationPrograms } from "../../../services/education/education-programs-data.json";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -22,10 +26,9 @@ import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.contex
 import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
-import { View } from "react-native";
 import { DailyPainScore } from "../components/daily-activities.component";
-import { DashboardTour } from "../components/dashboard-tour";
-import { Provider } from "react-native-paper";
+import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
+import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import {
   Journals,
   WellnessCoach,
@@ -33,13 +36,10 @@ import {
   ProfileSetup,
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
-import { Audio } from "expo-av";
-import { useIsFocused } from "@react-navigation/native";
 import {
   getUser,
   patchLastDateOnApp,
 } from "../../../services/authentication/authentication.service";
-import { getMessages } from "../../../services/wellness-coach/wellness-coach.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import {
   formatDate,
@@ -82,9 +82,10 @@ export const TodayScreen = ({ navigation }) => {
     educationModuleCompletionData,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { hasUnreadMessages, setMessages } = useContext(WellnessCoachContext);
+  const { getMessages, hasUnreadMessages, messages, setWellnessCoachReminded } =
+    useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
-  const [tourVisible, setTourVisible] = useState(false);
+  
 
   const isFocused = useIsFocused();
   const educationProgramLength =
@@ -94,7 +95,7 @@ export const TodayScreen = ({ navigation }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
-  const noMovementModules = educationProgram > 9
+  const noMovementModules = educationProgram > 9;
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
@@ -122,6 +123,7 @@ export const TodayScreen = ({ navigation }) => {
       setProfileComplete,
       setCompletedProgram,
       setLastDateOnApp,
+      setWellnessCoachReminded,
       setAccessToWellnessCoach
     );
     getDailyPainScores(uid, setDailyPainScores);
@@ -130,6 +132,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
+    // setTour(0)
   }, []);
 
   useEffect(() => {
@@ -139,7 +142,11 @@ export const TodayScreen = ({ navigation }) => {
   }, [lastDateOnApp]);
 
   useEffect(() => {
-    getMessages(uid, setMessages);
+    getMessages();
+  }, [messages]);
+
+  useEffect(() => {
+ 
     let options = { hour: "numeric", hour12: false, timeZone: timeZone };
     const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
       todaysDate
@@ -170,12 +177,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
-
-  useEffect(() => {
-    if (tour !== null) {
-      setTourVisible(true);
-    }
-  }, [tour]);
 
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
@@ -234,7 +235,9 @@ export const TodayScreen = ({ navigation }) => {
           {!completedAllEducationModules || !noMovementModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          {!completedAllMovementModules || educationProgram !== 10 || educationProgram !== 11 ? (
+          {!completedAllMovementModules ||
+          educationProgram !== 10 ||
+          educationProgram !== 11 ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
@@ -259,7 +262,8 @@ export const TodayScreen = ({ navigation }) => {
             ) : null}
           </View>
         </Scroll>
-        <DashboardTour visible={tourVisible} setVisible={setTourVisible} />
+        <DashboardTour tour={tour} />
+        <WellnessCoachReminder navigation={navigation} />
       </SafeView>
     </Provider>
   );

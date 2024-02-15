@@ -1,11 +1,11 @@
-import { DailyPainScore } from "../components/daily-activities.component";
+import { DailyPainScore } from "../../today/components/daily-activities.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
 import {
   WellnessCoach,
   ProfileSetup,
-} from "../components/small-daily-activities";
+} from "../../today/components/small-daily-activities";
 import { isAndroid, isIPad } from "../../../utils";
 import { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -42,14 +42,14 @@ export const tourObj = [
   {
     id: 3,
     text: "Learn more about your pain and how to best manage it through the daily education videos here. Tap the first one to play the video!",
-    tourTextBubble: isAndroid ? 159 : isIPad ? 160 : 190,
+    tourTextBubble: isAndroid ? 130 : isIPad ? 160 : 190,
     tourComponentPlacement: 6,
     component: <EducationUnitCard />,
   },
   {
     id: 4,
     text: "Move daily or as often as you can! Daily recommended exercises are here.",
-    tourTextBubble: isAndroid ? 338 : isIPad ? 310 : 350,
+    tourTextBubble: isAndroid ? 325 : isIPad ? 310 : 350,
     tourComponentPlacement: 6,
     component: <MovementUnitCard />,
   },

@@ -51,6 +51,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
+  // TODO get wellnessCoachReminder from back end and post a response when the user clicks on the reminder.
+  // TODO fix provider code so it keeps you from advancing.
 
   async function checkProviderCode(providerCode) {
     try {
@@ -192,7 +194,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
         setTour(0);
-        setStep(0);
+        setStep(0)
       })
       .catch((e) => {
         setError(e.toString());
@@ -220,22 +222,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const nextStep = () => {
-    setStep((prevPage) => {
-      return prevPage + 1;
-    });
-  };
-
-  const previousStep = () => {
-    if (step === 12) {
-      setStep(8);
-    } else {
-      setStep((prevPage) => {
-        return prevPage - 1;
-      });
-    }
-  };
-
   const loadUser = async () => {
     try {
       const value = await AsyncStorage.getItem("@user");
@@ -250,7 +236,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const completeProgram = () => {
     patchCompletedProgram(uid, outcomeData);
     setCompletedProgram(true);
-    setStep(0);
   };
 
   useEffect(() => {
@@ -281,14 +266,12 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setTour,
         uid,
         isAuthenticated: !!user,
-        nextStep,
         step,
         setStep,
         onLogin,
         onRegister,
         setOnboardingData,
         onboardingData,
-        previousStep,
         user,
         userLoading,
         signOut,

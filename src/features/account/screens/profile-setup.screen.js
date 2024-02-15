@@ -15,7 +15,7 @@ import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unabl
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
 import { Depressed } from "../../../components/onboard-coutcome/depressed";
 import { TypeOfPain } from "../components/type-of-pain";
-import { Other, OtherTypeOfPain } from "../components/other-type-of-pain";
+import { OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 import { AlmostThere } from "../components/almost-there.component";
@@ -23,13 +23,12 @@ import { AlmostThere } from "../components/almost-there.component";
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
-    previousStep,
-    nextStep,
+    setStep,
     onboardingData,
     setOnboardingData,
     programSafety,
     handleEducationProgram,
-    setEducationProgram,
+    setEducationProgram
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -88,13 +87,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: depressed ? false : true,
     },
     { component: <AlmostThere />, disabled: false },
-    { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: (
         <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve} />
       ),
       disabled: hopesToAchieve.length > 0 ? false : true,
     },
+    { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
       component: (
         <PainInjections setState={setOnboardingData} value={painInjections} />
@@ -138,7 +137,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         destination={"Onboard"}
         navigation={navigation}
         screen={"Sign Up"}
-        previousPage={step > 0 ? previousStep : null}
+        previousPage={step > 0 ? setStep(step === 12 ? 8 : (step) => step - 1) : null}
       />
       {onboardPages[step].component}
       <ButtonSection>
@@ -152,7 +151,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
               ? handleOtherPainTypeProgram()
-              : nextStep();
+              : setStep((step) => step + 1);
           }}
         />
         {step === 12 ? (
