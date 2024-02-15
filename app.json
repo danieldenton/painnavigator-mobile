@@ -2,7 +2,7 @@
   "expo": {
     "name": "PainNavigator",
     "slug": "PainNavigator",
-    "version": "1.5.33",
+    "version": "1.5.34",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,7 +20,7 @@
       "supportsTablet": true,
       "requireFullScreen": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "85",
+      "buildNumber": "87",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -39,7 +39,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 78,
+      "versionCode": 80,
       "permissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
