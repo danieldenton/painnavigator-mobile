@@ -289,8 +289,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setProgramSafety,
         lastDateOnApp,
         setLastDateOnApp,
-        firstDateOnApp,
-        setFirstDateOnApp,
         resetPassword,
       }}
     >

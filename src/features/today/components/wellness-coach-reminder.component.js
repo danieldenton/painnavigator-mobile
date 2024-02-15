@@ -7,10 +7,11 @@ import { styles } from "../../dashboard-tour/dashboard-styles";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 
 export const WellnessCoachReminder = ({ navigation }) => {
-  const { wellnessCoachReminded, setWellnessCoachReminded } =
+  const { wellnessCoachReminded, setWellnessCoachReminded, patchWellnessCoachReminded } =
     useContext(WellnessCoachContext);
 
   const handleCheckIn = () => {
+    patchWellnessCoachReminded()
     setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
   };

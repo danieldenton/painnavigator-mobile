@@ -7,7 +7,7 @@ import { AuthenticationContext } from "../authentication/authentication.context"
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
-  const { uid, firstDateOnApp } = useContext(AuthenticationContext);
+  const { uid } = useContext(AuthenticationContext);
   const [message, setMessage] = useState({
     recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
     body: "",
@@ -44,6 +44,16 @@ export const WellnessCoachContextProvider = ({ children }) => {
       console.error(error);
     }
   }
+
+  const patchWellnessCoachReminded = async () => {
+    try {
+      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+        wellness_coach_reminded: true
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const patchMessage = () => {
     axios
@@ -117,7 +127,8 @@ export const WellnessCoachContextProvider = ({ children }) => {
         setMessages,
         writeMessage,
         wellnessCoachReminded,
-        setWellnessCoachReminded
+        setWellnessCoachReminded,
+        patchWellnessCoachReminded
       }}
     >
       {children}

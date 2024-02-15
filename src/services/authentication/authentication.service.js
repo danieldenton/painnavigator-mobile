@@ -33,7 +33,7 @@ export async function getUser(
   setProfileComplete,
   setCompletedProgram,
   setLastDateOnApp,
-  setFirstDateOnApp,
+  setWellnessCoachReminded,
   setAccessToWellnessCoach
 ) {
   try {
@@ -49,7 +49,7 @@ export async function getUser(
     setProfileComplete(data.profile.profile_status === 1);
     setCompletedProgram(data.completed_program === true);
     setLastDateOnApp(data.last_date_on_app);
-    setFirstDateOnApp(data.dates_on_app[0])
+    setWellnessCoachReminded(data.wellness_coach_reminded)
     setAccessToWellnessCoach(data.access_to_wellness_coach);
   } catch (error) {
     console.error(error);

@@ -57,9 +57,7 @@ export const TodayScreen = ({ navigation }) => {
     educationProgram,
     setLastDateOnApp,
     lastDateOnApp,
-    setFirstDateOnApp,
     tour,
-    setTour,
     accessToWellnessCoach,
     setAccessToWellnessCoach,
   } = useContext(AuthenticationContext);
@@ -84,7 +82,7 @@ export const TodayScreen = ({ navigation }) => {
     educationModuleCompletionData,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages, messages } =
+  const { getMessages, hasUnreadMessages, messages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
   
@@ -125,7 +123,7 @@ export const TodayScreen = ({ navigation }) => {
       setProfileComplete,
       setCompletedProgram,
       setLastDateOnApp,
-      setFirstDateOnApp,
+      setWellnessCoachReminded,
       setAccessToWellnessCoach
     );
     getDailyPainScores(uid, setDailyPainScores);
