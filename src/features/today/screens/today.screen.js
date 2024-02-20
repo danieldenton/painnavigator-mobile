@@ -88,10 +88,8 @@ export const TodayScreen = ({ navigation }) => {
   
 
   const isFocused = useIsFocused();
-  const educationProgramLength =
-    educationProgram < 10
-      ? educationPrograms[educationProgram - 1].educationModulesId.length
-      : null;
+  const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
+     
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const completedAllMovementModules = movementProgress > 36;
