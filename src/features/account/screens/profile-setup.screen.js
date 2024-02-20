@@ -142,7 +142,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
           onPress={() => {
             step >= 11
               ? (handleEducationProgram(), navigation.navigate("Register"))
-              : step === 8 &&
+              : step === 9 &&
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
               ? handleOtherPainType()
