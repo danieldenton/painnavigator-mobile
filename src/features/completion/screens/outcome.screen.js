@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
@@ -17,11 +17,11 @@ import { COMPLETION_EVENTS } from "../../../amplitude-events";
 
 export const OutcomeScreen = ({ navigation }) => {
   const {
-    step,
-    setStep,
     completeProgram,
     outcomeData,
     setOutcomeData,
+    nextStep,
+    previousStep
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -89,7 +89,7 @@ export const OutcomeScreen = ({ navigation }) => {
         destination={"Today"}
         navigation={navigation}
         screen={"Outcome"}
-        previousPage={step > 0 ? setStep((step) => step - 1) : null}
+        previousPage={step > 0 ? previousStep() : null}
       />
       {pages[step].component}
       <ButtonSection>
@@ -97,7 +97,7 @@ export const OutcomeScreen = ({ navigation }) => {
           disabled={pages[step].disabled}
           title={"Next"}
           onPress={() => {
-            step === 6 ? handleCompletProgram() : setStep((step) => step + 1);
+            step === 6 ? handleCompletProgram() : nextStep();
           }}
         />
         <ProgressDots progress={step + 1} total={7} />

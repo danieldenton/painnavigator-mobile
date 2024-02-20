@@ -24,11 +24,13 @@ export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
     setStep,
+    previousStep,
+    nextStep,
     onboardingData,
-    setOnboardingData,
-    programSafety,
     handleEducationProgram,
-    setEducationProgram
+    setEducationProgram,
+    programSafety,
+    setOnboardingData,
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
@@ -114,15 +116,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
   ];
 
-  const handleOtherPainTypeProgram = () => {
-    if (
-      onboardingData.hopesToAchieve.length === 1 &&
-      onboardingData.hopesToAchieve[0] === "Strength & Prevention"
-    ) {
-      setEducationProgram(11);
-    } else {
-      setEducationProgram(10);
-    }
+  const handleOtherPainType = () => {
+    setEducationProgram(10);
     if (onboardingData.typeOfPain === "Other") {
       setStep(12);
       onboardingData.typeOfPain = "";
@@ -137,7 +132,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
         destination={"Onboard"}
         navigation={navigation}
         screen={"Sign Up"}
-        previousPage={step > 0 ? setStep(step === 12 ? 8 : (step) => step - 1) : null}
+        previousPage={step > 0 ? previousStep : null}
       />
       {onboardPages[step].component}
       <ButtonSection>
@@ -150,8 +145,8 @@ export const ProfileSetupScreen = ({ navigation }) => {
               : step === 8 &&
                 !programSafety &&
                 onboardingData.typeOfPain !== "Low Back Pain"
-              ? handleOtherPainTypeProgram()
-              : setStep((step) => step + 1);
+              ? handleOtherPainType()
+              : nextStep();
           }}
         />
         {step === 12 ? (

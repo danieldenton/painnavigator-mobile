@@ -194,7 +194,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
         setTour(0);
-        setStep(0)
+        setStep(0);
       })
       .catch((e) => {
         setError(e.toString());
@@ -238,6 +238,22 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     setCompletedProgram(true);
   };
 
+  const nextStep = () => {
+    setStep((prevPage) => {
+      return prevPage + 1;
+    });
+  };
+
+  const previousStep = () => {
+    if (step === 12) {
+      setStep(8);
+    } else {
+      setStep((prevPage) => {
+        return prevPage - 1;
+      });
+    }
+  };
+
   useEffect(() => {
     loadUser();
   }, []);
@@ -268,6 +284,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         isAuthenticated: !!user,
         step,
         setStep,
+        nextStep,
+        previousStep,
         onLogin,
         onRegister,
         setOnboardingData,
