@@ -43,7 +43,7 @@ export const tourObj = [
   {
     id: 4,
     text: "Move daily or as often as you can! Daily recommended exercises are here.",
-    tourTextBubble: isAndroid ? 325 : isIPad ? 310 : 350,
+    tourTextBubble: isAndroid ? 325 : isIPad ? 310 : 367,
     tourComponentPlacement: 6,
     component: <MovementUnitCard />,
   },

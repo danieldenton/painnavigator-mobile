@@ -4,7 +4,7 @@ import { tourObj } from "./data/dashboard-tour-data";
 
 export const DashboardTourComponentOnTop = ({ tour }) => {
   return (
-    <View style={tour === 4 ? styles.messageContainer : styles.menuContainer}>
+    <View style={tour < 4 ? null : tour === 4 ? styles.messageContainer : styles.menuContainer}>
       <View
         style={[
           styles.bubble,

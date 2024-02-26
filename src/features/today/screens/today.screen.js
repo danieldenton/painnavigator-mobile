@@ -58,6 +58,7 @@ export const TodayScreen = ({ navigation }) => {
     setLastDateOnApp,
     lastDateOnApp,
     tour,
+    setTour
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -127,7 +128,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
-   
+   setTour(0)
   }, []);
 
   useEffect(() => {

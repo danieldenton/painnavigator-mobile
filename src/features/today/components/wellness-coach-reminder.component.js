@@ -25,7 +25,7 @@ export const WellnessCoachReminder = ({ navigation }) => {
           visible={!wellnessCoachReminded}
         >
           <View style={styles.modalBackground}>
-            <DashboardTourComponentOnTop tour={tour} />
+            <DashboardTourComponentOnTop tour={4} />
             <View
               style={[
                 styles.modalContainer,
