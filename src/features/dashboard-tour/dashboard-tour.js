@@ -4,31 +4,20 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { ModuleButton } from "../../components/button.component";
 import { tourObj } from "./data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
-import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
+import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = () => {
-  const { tour, setTour } = useContext(
-    AuthenticationContext
-  );
+  const { tour, setTour } = useContext(AuthenticationContext);
 
-
-  const handleFinish = () => {
-    setTour(null);
-  };
 
   return (
     <>
       <View style={styles.container}>
         <Modal animationType="slide" transparent={true} visible={tour !== null}>
           <View style={styles.modalBackground}>
-            {tour !== 0 &&
-            tour !== 2 &&
-            tour !== 3 &&
-            tour !== 5 ? (
-              <DashboardTourComponentOnTop
-                tour={tour}
-              />
+            {tour !== 0 && tour !== 2 && tour !== 3 && tour !== 5 ? (
+              <DashboardTourComponentOnTop tour={tour} />
             ) : null}
             <View
               style={[
@@ -39,9 +28,7 @@ export const DashboardTour = () => {
               {tour > 0 ? (
                 <View
                   style={[
-                    tour === 4
-                      ? styles.triangleRightTop
-                      : styles.triangle,
+                    tour === 4 ? styles.triangleRightTop : styles.triangle,
                     tour !== 2 && tour !== 3 && tour !== 5
                       ? styles.topLeft
                       : styles.bottom,
@@ -51,11 +38,7 @@ export const DashboardTour = () => {
               <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
               <ModuleButton
                 onPress={() => {
-                  tour < 6
-                    ? tour === 3 
-                      ? setTour((tour) => tour + 2)
-                      : setTour((tour) => tour + 1)
-                    : handleFinish();
+                  tour < 6 ? setTour((tour) => tour + 1) : setTour(null);
                 }}
                 title={tour === 0 ? "LET'S GO!" : "GOT IT!"}
               />
