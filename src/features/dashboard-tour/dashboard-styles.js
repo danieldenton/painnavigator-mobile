@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 16
   },
-  triangle: {
+  triangleTop: {
     position: "absolute",
     left: 25,
     width: 0,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     borderRightWidth: 30,
     borderRightColor: "transparent",
   },
-  topLeft: {
+  triangleTopLeft: {
     top: -20,
     borderBottomWidth: 20,
     borderBottomColor: "white",
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: "white",
     borderRightColor: "transparent",
   },
-  bottom: {
+  triangleBottom: {
     bottom: -20,
     borderTopWidth: 20,
     borderTopColor: "white",

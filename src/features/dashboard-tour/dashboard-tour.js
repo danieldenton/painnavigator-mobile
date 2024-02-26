@@ -9,16 +9,15 @@ import { styles } from "./dashboard-styles";
 
 export const DashboardTour = () => {
   const { tour, setTour } = useContext(AuthenticationContext);
-
+  const componentOnBottomIndices = [2, 3, 5];
+  const componentOnBottom = componentOnBottomIndices.includes(tour);
 
   return (
     <>
       <View style={styles.container}>
         <Modal animationType="slide" transparent={true} visible={tour !== null}>
           <View style={styles.modalBackground}>
-            {tour !== 0 && tour !== 2 && tour !== 3 && tour !== 5 ? (
-              <DashboardTourComponentOnTop tour={tour} />
-            ) : null}
+            {!componentOnBottom? <DashboardTourComponentOnTop tour={tour} /> : null}
             <View
               style={[
                 styles.modalContainer,
@@ -28,10 +27,8 @@ export const DashboardTour = () => {
               {tour > 0 ? (
                 <View
                   style={[
-                    tour === 4 ? styles.triangleRightTop : styles.triangle,
-                    tour !== 2 && tour !== 3 && tour !== 5
-                      ? styles.topLeft
-                      : styles.bottom,
+                    tour === 4 ? styles.triangleRightTop : styles.triangleTop,
+                    componentOnBottom ? styles.triangleBottom : styles.triangleTopLeft 
                   ]}
                 />
               ) : null}
@@ -43,7 +40,7 @@ export const DashboardTour = () => {
                 title={tour === 0 ? "LET'S GO!" : "GOT IT!"}
               />
             </View>
-            {tour === 2 || tour === 3 || tour === 5 ? (
+            {componentOnBottom ? (
               <DashboardTourComponentOnBottom tour={tour} />
             ) : null}
           </View>
