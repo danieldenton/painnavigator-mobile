@@ -46,7 +46,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     depressed: "",
   });
   const [educationProgram, setEducationProgram] = useState(1);
-  const [programSafety, setProgramSafety] = useState(false);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
@@ -66,22 +65,11 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   }
 
-  const handleProgramSafety = (providerCode) => {
-    providerCode === "ASC112" ||
-    providerCode === "EXPL22" ||
-    providerCode === "CORE55"
-      ? setProgramSafety(true)
-      : null;
-    providerCode === "ISCS23"
-      ? (setProgramSafety(true), setEducationProgram(2))
-      : null;
-  };
-
   const handleEducationProgram = () => {
     if (educationProgram === 2) {
       return;
     }
-    if (programSafety || onboardingData.typeOfPain === "Low Back Pain") {
+    if (onboardingData.typeOfPain === "Low Back Pain") {
       if (
         onboardingData.hopesToAchieve.length === 1 &&
         onboardingData.hopesToAchieve[0] === "Strength & Prevention"
@@ -266,7 +254,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       value={{
         handleEducationProgram,
         checkProviderCode,
-        handleProgramSafety,
         error,
         tour,
         setTour,
@@ -293,8 +280,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         completeProgram,
         educationProgram,
         setEducationProgram,
-        programSafety,
-        setProgramSafety,
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,

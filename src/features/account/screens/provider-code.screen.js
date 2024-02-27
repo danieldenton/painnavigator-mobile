@@ -11,8 +11,7 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, handleProgramSafety, checkProviderCode } =
-    useContext(AuthenticationContext);
+  const { error, checkProviderCode } = useContext(AuthenticationContext);
   const [providerCode, setProviderCode] = useState("");
 
   return (
@@ -58,7 +57,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
             title={"Submit"}
             onPress={() => {
               checkProviderCode(providerCode);
-              handleProgramSafety(providerCode);
               navigation.navigate("Explanation");
             }}
           />
