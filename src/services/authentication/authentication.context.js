@@ -56,9 +56,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         `${API_URL}/api/v1/providers/${providerCode}`
       );
       const provider_id = response.data.data.attributes.id;
-      provider_id
-        ? (setProviderId(provider_id), setError(null))
-        : setError("Please enter a valid code");
+      setProviderId(provider_id);
+      setError(null);
     } catch (err) {
       setError("Please enter a valid code");
       console.error(err);
