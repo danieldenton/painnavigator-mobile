@@ -1,6 +1,4 @@
 import React, { useState, createContext, useEffect } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -50,19 +48,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
 
-  async function checkProviderCode(providerCode) {
-    try {
-      const response = await axios.get(
-        `${API_URL}/api/v1/providers/${providerCode}`
-      );
-      const provider_id = response.data.data.attributes.id;
-      setProviderId(provider_id);
-      setError(null);
-    } catch (err) {
-      setError("Please enter a valid code");
-      console.error(err);
-    }
-  }
+  
 
   const handleEducationProgram = () => {
     if (educationProgram === 2) {
@@ -252,7 +238,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         handleEducationProgram,
-        checkProviderCode,
         error,
         tour,
         setTour,

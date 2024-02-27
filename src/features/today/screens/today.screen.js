@@ -58,7 +58,7 @@ export const TodayScreen = ({ navigation }) => {
     setLastDateOnApp,
     lastDateOnApp,
     tour,
-    setTour
+    setTour,
   } = useContext(AuthenticationContext);
   const {
     setDailyPainScores,
@@ -84,14 +84,15 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages, messages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [greeting, setGreeting] = useState("");
-  
 
   const isFocused = useIsFocused();
-  const educationProgramLength = educationPrograms[educationProgram - 1].educationModulesId.length
-     
+  const educationProgramLength =
+    educationPrograms[educationProgram - 1].educationModulesId.length;
+
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
-  const movementModulesOnScreen = educationProgram < 10 && movementProgress < 36
+  const movementModulesOnScreen =
+    educationProgram < 10 && movementProgress < 36;
 
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
@@ -120,7 +121,7 @@ export const TodayScreen = ({ navigation }) => {
       setProfileComplete,
       setCompletedProgram,
       setLastDateOnApp,
-      setWellnessCoachReminded,
+      setWellnessCoachReminded
     );
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);
@@ -128,7 +129,6 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
-   setTour(0)
   }, []);
 
   useEffect(() => {
@@ -142,7 +142,6 @@ export const TodayScreen = ({ navigation }) => {
   }, [messages]);
 
   useEffect(() => {
- 
     let options = { hour: "numeric", hour12: false, timeZone: timeZone };
     const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
       todaysDate
@@ -230,10 +229,10 @@ export const TodayScreen = ({ navigation }) => {
           {!completedAllEducationModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          
+
           {movementModulesOnScreen ? (
             <>
-             <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
+              <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
             </>
           ) : null}

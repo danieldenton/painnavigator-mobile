@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
+import axios from "axios";
+import { API_URL } from "@env";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
@@ -11,8 +13,23 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, checkProviderCode } = useContext(AuthenticationContext);
+  const { error, setProviderId, setError } = useContext(AuthenticationContext);
   const [providerCode, setProviderCode] = useState("");
+
+  async function checkProviderCode(providerCode) {
+    try {
+      const response = await axios.get(
+        `${API_URL}/api/v1/providers/${providerCode}`
+      );
+      const provider_id = response.data.data.attributes.id;
+      setProviderId(provider_id);
+      setError(null);
+      navigation.navigate("Explanation");
+    } catch (error) {
+      setError("Please enter a valid code");
+      console.error(error);
+    }
+  }
 
   return (
     <SafeView style={{ flex: 1 }}>
@@ -57,7 +74,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
             title={"Submit"}
             onPress={() => {
               checkProviderCode(providerCode);
-              navigation.navigate("Explanation");
             }}
           />
         </View>
