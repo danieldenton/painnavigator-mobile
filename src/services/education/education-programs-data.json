@@ -48,7 +48,7 @@
       ],
       "questionAnswers": [
         "hopesToAchieve: Strength & Prevention ONLY",
-        "painInjections: Yes"
+        "painInjections: No"
       ],
       "painJournal": 4,
       "smartGoal": 7,
@@ -64,8 +64,8 @@
       ],
       "questionAnswers": [
         "hopesToAchieve: Strength & Prevention ONLY",
-        "painInjections: Yes",
-        "spineSurgery: Yes"
+        "painInjections: No",
+        "spineSurgery: No"
       ],
       "painJournal": 4,
       "smartGoal": 7,
@@ -81,7 +81,7 @@
       ],
       "questionAnswers": [
         "hopesToAchieve: Strength & Prevention ONLY",
-        "spineSurgery: Yes"
+        "spineSurgery: No"
       ],
       "painJournal": 4,
       "smartGoal": 7,
@@ -96,7 +96,7 @@
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 63, 64, 65, 66, 67
       ],
-      "questionAnswers": "painInjections: Yes",
+      "questionAnswers": "painInjections: No",
       "painJournal": 4,
       "smartGoal": 7,
       "foodJournals": 24,
@@ -110,7 +110,7 @@
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 65, 66, 67
       ],
-      "questionAnswers": ["painInjections: Yes", "spineSurgery: Yes"],
+      "questionAnswers": ["painInjections: No", "spineSurgery: No"],
       "painJournal": 4,
       "smartGoal": 7,
       "foodJournals": 24,
@@ -124,7 +124,7 @@
         39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
         57, 58, 59, 60, 61, 62, 65, 66, 67
       ],
-      "questionAnswers": "spineSurgery: Yes",
+      "questionAnswers": "spineSurgery: No",
       "painJournal": 4,
       "smartGoal": 7,
       "foodJournals": 24,
