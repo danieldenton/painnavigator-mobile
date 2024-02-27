@@ -51,8 +51,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   
 
   const handleEducationProgram = () => {
-    if (educationProgram === 2) {
-      return;
+    if (providerId === 8) {
+      setEducationProgram(2)
     }
     if (onboardingData.typeOfPain === "Low Back Pain") {
       if (
@@ -97,7 +97,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         ) {
           setEducationProgram(7);
         } else {
-          return;
+          setEducationProgram(1)
         }
       }
     } else {

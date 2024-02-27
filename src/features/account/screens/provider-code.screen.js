@@ -23,9 +23,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
       );
       const provider_id = response.data.data.attributes.id;
       setProviderId(provider_id);
-      if (provider_id === 8) {
-        setEducationProgram(2)
-      }
       setError(null);
       navigation.navigate("Explanation");
     } catch (error) {
