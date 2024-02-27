@@ -13,7 +13,7 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, setProviderId, setError } = useContext(AuthenticationContext);
+  const { error, setProviderId, setError, setEducationProgram } = useContext(AuthenticationContext);
   const [providerCode, setProviderCode] = useState("");
 
   async function checkProviderCode(providerCode) {
@@ -23,6 +23,9 @@ export const ProviderCodeScreen = ({ navigation }) => {
       );
       const provider_id = response.data.data.attributes.id;
       setProviderId(provider_id);
+      if (provider_id === 8) {
+        setEducationProgram(2)
+      }
       setError(null);
       navigation.navigate("Explanation");
     } catch (error) {
