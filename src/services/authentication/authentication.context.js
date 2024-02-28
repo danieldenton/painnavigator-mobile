@@ -109,7 +109,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       console.log("error loading user", e);
     }
   };
-
   
   useEffect(() => {
     loadUser();
