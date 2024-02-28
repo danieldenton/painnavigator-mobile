@@ -12,7 +12,7 @@ import { isAndroid, timeZonedTodaysDate } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
     const { uid } = useContext(AuthenticationContext);
-    const { dailyPainStep, setDailyPainStep, setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep } = useContext(DailyPainContext)
 
     const previousPage = () => {
         setDailyPainStep(0)

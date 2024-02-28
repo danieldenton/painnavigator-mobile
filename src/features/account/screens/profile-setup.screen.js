@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
@@ -23,14 +23,12 @@ import { AlmostThere } from "../components/almost-there.component";
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
-    setStep,
     previousStep,
     nextStep,
     onboardingData,
     handleEducationProgram,
-    setEducationProgram,
     setOnboardingData,
-  } = useContext(AuthenticationContext);
+  } = useContext(OnboardContext);
   const {
     enjoymentOfLife,
     activityInterference,

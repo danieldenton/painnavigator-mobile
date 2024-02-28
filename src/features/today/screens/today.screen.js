@@ -10,6 +10,7 @@ import { EducationUnitCard } from "../../education/components/education-unit-car
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
@@ -50,16 +51,9 @@ import {
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const {
-    uid,
-    setCompletedProgram,
-    setEducationProgram,
-    educationProgram,
-    setLastDateOnApp,
-    lastDateOnApp,
-    tour,
-    setTour,
-  } = useContext(AuthenticationContext);
+  const { uid, setCompletedProgram, setLastDateOnApp, lastDateOnApp, tour } =
+    useContext(AuthenticationContext);
+  const { setEducationProgram, educationProgram } = useContext(OnboardContext);
   const {
     setDailyPainScores,
     dailyPainScores,

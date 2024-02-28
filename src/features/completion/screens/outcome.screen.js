@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -20,9 +21,12 @@ export const OutcomeScreen = ({ navigation }) => {
     completeProgram,
     outcomeData,
     setOutcomeData,
+  } = useContext(AuthenticationContext);
+  // TODO deal with steps. Create new ones not coming from onboard.
+  const {
     nextStep,
     previousStep
-  } = useContext(AuthenticationContext);
+  } = useContext(OnboardContext)
   const {
     enjoymentOfLife,
     activityInterference,

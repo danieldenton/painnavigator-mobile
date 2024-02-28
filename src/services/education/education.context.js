@@ -4,6 +4,7 @@ import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json"
 import { AuthenticationContext } from "../authentication/authentication.context";
+import { OnboardContext } from "../onboard.context";
 
 export const EducationContext = createContext();
 
@@ -13,7 +14,8 @@ export const EducationContextProvider = ({ children }) => {
   const [educationIntroStep, setEducationIntroStep] = useState(0)
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
-  const { uid, educationProgram } = useContext(AuthenticationContext);
+  const { uid } = useContext(AuthenticationContext);
+  const { educationProgram } = useContext(OnboardContext)
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
   const additionalJournals =
