@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import {
   AuthTextInput,
   InputLabel,
@@ -20,7 +21,7 @@ export const Signup = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, userLoading } = useContext(AuthenticationContext);
-  const { onboardingData, setOnboardingData, error } =
+  const { onboardingData, setOnboardingData, error, setTour } =
     useContext(OnboardContext);
   const { firstName, lastName, email } = onboardingData;
   const [showButton, setShowButton] = useState(true);
@@ -104,6 +105,7 @@ export const Signup = ({ navigation }) => {
             title={"Create Account"}
             onPress={() => {
               track(ONBOARD_EVENTS.COMPLETE_CREATE_ACCOUNT);
+              setTour(0)
               onRegister(password, repeatedPassword);
             }}
           />

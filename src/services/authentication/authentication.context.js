@@ -7,7 +7,6 @@ import {
   loginRequest,
   patchExpoPushToken,
   postUser,
-  patchCompletedProgram,
 } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -18,7 +17,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
-  const [completedProgram, setCompletedProgram] = useState(false);
   const uid = user?.user.uid;
 
   const onLogin = (email, password) => {
@@ -112,11 +110,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const completeProgram = () => {
-    patchCompletedProgram(uid, outcomeData);
-    setCompletedProgram(true);
-  };
-
+  
   useEffect(() => {
     loadUser();
   }, []);
@@ -143,11 +137,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         userLoading,
         signOut,
         expoPushToken,
-        setCompletedProgram,
         outcomeData,
         setOutcomeData,
-        completedProgram,
-        completeProgram,
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { View } from "react-native";
 import { ButtonSection, GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { SkipQuestionButton, SkipQuestionText} from "../../../components/skip-question.component";
@@ -13,11 +14,12 @@ import {
 } from "../../../components/completion/completion.styles";
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
-import { View } from "react-native";
+import { OutcomeContext } from "../../../services/outcome.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {
-    const { uid, completeProgram, completedProgram } = useContext(AuthenticationContext)
+    const { uid } = useContext(AuthenticationContext)
+    const { completeProgram, completedProgram } = useContext(OutcomeContext)
 
     return (
         <SafeView>

@@ -1,8 +1,8 @@
 import React, { useState, createContext } from "react";
 
-export const outcomeDataContext = createContext();
+export const OutcomeContext = createContext();
 
-export const outcomeDataContextProvider = ({ children }) => {
+export const OutcomeContextProvider = ({ children }) => {
   const [outcomeStep, setOutcomeStep] = useState(0);
   const [outcomeData, setOutcomeData] = useState({
     recommendation: 5,
@@ -13,18 +13,28 @@ export const outcomeDataContextProvider = ({ children }) => {
     littleInterestOrPleasure: "",
     depressed: "",
   });
+  const [completedProgram, setCompletedProgram] = useState(false);
+
+  const completeProgram = () => {
+    patchCompletedProgram(uid, outcomeData);
+    setCompletedProgram(true);
+  };
+
 
 
   return (
-    <outcomeDataContext.Provider
+    <OutcomeContext.Provider
       value={{
         outcomeStep,
         setOutcomeStep,
         setOutcomeData,
         outcomeData,
+        completeProgram,
+        setCompletedProgram,
+        completedProgram
       }}
     >
       {children}
-    </outcomeDataContext.Provider>
+    </OutcomeContext.Provider>
   );
 };
