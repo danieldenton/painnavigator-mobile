@@ -15,19 +15,6 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const { onboardingData, setError, providerId, educationProgram } =
     useContext(OnboardContext);
-  const {
-    startingPainScore,
-    enjoymentOfLife,
-    activityInterference,
-    hopesToAchieve,
-    anxious,
-    unableToStopWorrying,
-    littleInterestOrPleasure,
-    depressed,
-    typeOfPain,
-    painInjections,
-    spineSurgery,
-  } = onboardingData;
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
@@ -73,17 +60,17 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           first_name: onboardingData.firstName.trim(),
           last_name: onboardingData.lastName.trim(),
           email: onboardingData.email.trim(),
-          starting_pain_score: startingPainScore,
-          enjoyment_of_life: enjoymentOfLife,
-          activity_interference: activityInterference,
-          hopes_to_achieve: hopesToAchieve,
-          anxious: anxious,
-          unable_to_stop_worrying: unableToStopWorrying,
-          little_interest_or_pleasure: littleInterestOrPleasure,
-          depressed: depressed,
-          type_of_pain: typeOfPain,
-          pain_injections: painInjections,
-          spine_surgery: spineSurgery,
+          starting_pain_score: onboardingData.startingPainScore,
+          enjoyment_of_life: onboardingData.enjoymentOfLife,
+          activity_interference: onboardingData.activityInterference,
+          hopes_to_achieve: onboardingData.hopesToAchieve,
+          anxious: onboardingData.anxious,
+          unable_to_stop_worrying: onboardingData.unableToStopWorrying,
+          little_interest_or_pleasure: onboardingData.ittleInterestOrPleasure,
+          depressed: onboardingData.depressed,
+          type_of_pain: onboardingData.typeOfPain,
+          pain_injections: onboardingData.painInjections,
+          spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
         };
         postUser(u.user.uid, strippedOnboardingData);
