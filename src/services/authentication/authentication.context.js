@@ -18,7 +18,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
-  const [tour, setTour] = useState(null);
   const [completedProgram, setCompletedProgram] = useState(false);
   const uid = user?.user.uid;
 
@@ -75,7 +74,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         };
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
-        setTour(0);
       })
       .catch((e) => {
         setError(e.toString());
@@ -137,8 +135,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   return (
     <AuthenticationContext.Provider
       value={{
-        tour,
-        setTour,
         uid,
         isAuthenticated: !!user,
         onLogin,
@@ -152,8 +148,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         setOutcomeData,
         completedProgram,
         completeProgram,
-        educationProgram,
-        setEducationProgram,
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,

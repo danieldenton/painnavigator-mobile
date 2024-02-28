@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 
 export const OnboardContext = createContext();
 
-export const OnboardContextProvider = ({ children, expoPushToken }) => {
+export const OnboardContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [step, setStep] = useState(0);
   const [onboardingData, setOnboardingData] = useState({
@@ -23,6 +23,7 @@ export const OnboardContextProvider = ({ children, expoPushToken }) => {
   });
   const [providerId, setProviderId] = useState(null);
   const [educationProgram, setEducationProgram] = useState(1);
+  const [tour, setTour] = useState(null);
 
   const handlePossibleEducationPrograms = (possiblePrograms) => {
     const painInjectionsAndSpineSurgery =
@@ -94,6 +95,7 @@ export const OnboardContextProvider = ({ children, expoPushToken }) => {
       value={{
         handleEducationProgram,
         educationProgram,
+        setError,
         error,
         step,
         setStep,
@@ -102,8 +104,8 @@ export const OnboardContextProvider = ({ children, expoPushToken }) => {
         setOnboardingData,
         onboardingData,
         setProviderId,
-        expoPushToken,
-        setError,
+        tour,
+        setTour,
       }}
     >
       {children}

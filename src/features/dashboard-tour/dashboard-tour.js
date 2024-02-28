@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, Modal } from "react-native";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { OnboardContext } from "../../services/onboard.context";
 import { ModuleButton } from "../../components/button.component";
 import { tourObj } from "./data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
@@ -8,7 +8,7 @@ import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = () => {
-  const { tour, setTour } = useContext(AuthenticationContext);
+  const { tour, setTour } = useContext(OnboardContext);
   const componentOnBottomIndices = [2, 3, 5];
   const componentOnBottom = componentOnBottomIndices.includes(tour);
 
