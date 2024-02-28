@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { AuthTextInput, InputLabel } from "../../../components/text-input.component";
 import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, ForgotPassword, ForgotPasswordWrapper } from "../styles/account.styles";
@@ -13,7 +14,8 @@ import { ONBOARD_EVENTS } from "../../../amplitude-events";
 export const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { onLogin, error, userLoading } = useContext(AuthenticationContext);
+    const { onLogin, userLoading } = useContext(AuthenticationContext);
+    const { error } = useContext(OnboardContext)
 
     
 

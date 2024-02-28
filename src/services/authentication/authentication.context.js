@@ -13,7 +13,7 @@ import {
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
-  const { onboardingData } = useContext(OnboardContext);
+  const { onboardingData, setError } = useContext(OnboardContext);
   const {
     startingPainScore,
     enjoymentOfLife,

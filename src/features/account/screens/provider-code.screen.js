@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import axios from "axios";
 import { API_URL } from "@env";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { AuthTextInput } from "../../../components/text-input.component";
@@ -13,7 +13,7 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, setProviderId, setError, setEducationProgram } = useContext(AuthenticationContext);
+  const { error, setProviderId, setError } = useContext(OnboardContext);
   const [providerCode, setProviderCode] = useState("");
 
   async function checkProviderCode(providerCode) {
