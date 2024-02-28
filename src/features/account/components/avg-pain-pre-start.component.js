@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 
 export const AvgPainPreStart = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
+  const { onboardingData, setOnboardingData } = useContext(OnboardContext);
   const { startingPainScore } = onboardingData;
 
   return (

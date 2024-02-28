@@ -13,7 +13,8 @@ import {
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
-  const { onboardingData, setError } = useContext(OnboardContext);
+  const { onboardingData, setError, providerId, educationProgram } =
+    useContext(OnboardContext);
   const {
     startingPainScore,
     enjoymentOfLife,
@@ -31,7 +32,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [tour, setTour] = useState(null);
-  const [completedProgram, setCompletedProgram] = useState(false)
+  const [completedProgram, setCompletedProgram] = useState(false);
   const uid = user?.user.uid;
 
   const onLogin = (email, password) => {

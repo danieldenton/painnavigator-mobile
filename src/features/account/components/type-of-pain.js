@@ -4,12 +4,10 @@ import { SingleSelectCheckBox } from "../../../components/checkbox/single-select
 import { View } from "react-native";
 import { typeOfPain } from "./../data/onboard-data.json";
 import { isAndroid } from "../../../utils";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 
 export const TypeOfPain = () => {
-  const { onboardingData, setOnboardingData } = useContext(
-    AuthenticationContext
-  );
+  const { onboardingData, setOnboardingData } = useContext(OnboardContext);
   const add = (optionId) => {
     setOnboardingData((object) => ({
       ...object,
