@@ -115,15 +115,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
   ];
 
-  const handleOtherPainType = () => {
-    setEducationProgram(10);
-    if (onboardingData.typeOfPain === "Other") {
-      setStep(12);
-      onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
-    }
-  };
 
   return (
     <SafeView>

@@ -79,6 +79,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onboardingData.hopesToAchieve.length === 1 &&
         onboardingData.hopesToAchieve[0] === "Strength & Prevention"
       ) {
+        if onboardingData.typeOfPain === "Lower Back Pain"
         handlePossibleEducationPrograms(
           lowBackPainPossibleProgramsHopesToAchieveOnly
         );
@@ -88,6 +89,15 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
+  const handleOtherPainType = () => {
+    setEducationProgram(10);
+    if (onboardingData.typeOfPain === "Other") {
+      setStep(12);
+      onboardingData.typeOfPain = "";
+    } else {
+      navigation.navigate("Register");
+    }
+  };
 
   const onLogin = (email, password) => {
     setUserLoading(true);
