@@ -51,9 +51,9 @@ import {
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, setCompletedProgram, setLastDateOnApp, lastDateOnApp, tour } =
+  const { uid, setCompletedProgram, setLastDateOnApp, lastDateOnApp } =
     useContext(AuthenticationContext);
-  const { setEducationProgram, educationProgram } = useContext(OnboardContext);
+  const { setEducationProgram, educationProgram, tour } = useContext(OnboardContext);
   const {
     setDailyPainScores,
     dailyPainScores,

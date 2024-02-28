@@ -1,59 +1,65 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { handleTrackEvent } from "../utils";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
 
 const DailyActivitiesCard = styled(Card)`
-    margin-top: 16px;
-    border-radius: 15px;
-    padding: 12px;
-    background-color: white;
+  margin-top: 16px;
+  border-radius: 15px;
+  padding: 12px;
+  background-color: white;
 `;
 
 const ModuleCardContent = styled(Card.Content)`
-    flex-direction: row;
-    padding: 0px;
-    align-items: center;
+  flex-direction: row;
+  padding: 0px;
+  align-items: center;
 `;
 
 const CardTextSection = styled.View`
-    flex: .8;
+  flex: 0.8;
 `;
 
 const CardHeader = styled.Text`
-    font-family: Inter_500Medium;
-    font-size: 18px;
+  font-family: Inter_500Medium;
+  font-size: 18px;
 `;
 
 const CardIconSection = styled.View`
-    flex: .2;
-    align-items: flex-end;
-    justify-content: flex-end;
+  flex: 0.2;
+  align-items: flex-end;
+  justify-content: flex-end;
 `;
 
+export const SmallDailyActivitiesTile = ({
+  destination,
+  title,
+  navigation,
+  icon,
+  screen,
+  screenParams,
+  trackEvent,
+}) => {
 
-export const SmallDailyActivitiesTile = ({ destination, title, navigation, icon, screen, screenParams, trackEvent }) => {
-    const { tour } =  useContext(AuthenticationContext)
-
-    return (
-        <TouchableOpacity
-            onPress={() => !tour ? (handleTrackEvent(trackEvent), navigation.navigate(destination, {
-                screen: screen,
-                params: { type: screenParams }
-            }
-            )) : null}>
-            <DailyActivitiesCard>
-                <ModuleCardContent>
-                    <CardTextSection>
-                        <CardHeader>{title}</CardHeader>
-                    </CardTextSection>
-                    <CardIconSection>
-                        {icon}
-                    </CardIconSection>
-                </ModuleCardContent>
-            </DailyActivitiesCard>
-        </TouchableOpacity>
-    );
+  return (
+    <TouchableOpacity
+      onPress={() => (
+        handleTrackEvent(trackEvent),
+        navigation.navigate(destination, {
+          screen: screen,
+          params: { type: screenParams },
+        })
+      )}
+    >
+      <DailyActivitiesCard>
+        <ModuleCardContent>
+          <CardTextSection>
+            <CardHeader>{title}</CardHeader>
+          </CardTextSection>
+          <CardIconSection>{icon}</CardIconSection>
+        </ModuleCardContent>
+      </DailyActivitiesCard>
+    </TouchableOpacity>
+  );
 };
