@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { LogBox } from "react-native";
-import * as Sentry from '@sentry/react-native';
+import * as Sentry from "@sentry/react-native";
 import { init } from "@amplitude/analytics-react-native";
 import { AMPLITUDE_API_KEY } from "@env";
 import * as Notifications from "expo-notifications";
@@ -36,7 +36,7 @@ init(AMPLITUDE_API_KEY);
 Sentry.init({
   dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true
+  debug: true,
 });
 
 LogBox.ignoreLogs([
@@ -61,6 +61,7 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { OnboardContextProvider } from "./src/services/onboard.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
@@ -78,9 +79,9 @@ import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
 
 Sentry.init({
-  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+  dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true
+  debug: true,
 });
 
 const firebaseConfig = {
@@ -148,31 +149,33 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider expoPushToken={expoPushToken}>
-          <DailyPainContextProvider>
-            <ProfileContextProvider>
-              <BookmarksContextProvider>
-                <EducationContextProvider>
-                  <MovementContextProvider>
-                    <SmartGoalContextProvider>
-                      <PainJournalContextProvider>
-                        <FoodJournalContextProvider>
-                          <MoodJournalContextProvider>
-                            <WellnessCoachContextProvider>
-                              <FavoriteActivitiesContextProvider>
-                                <Navigation />
-                              </FavoriteActivitiesContextProvider>
-                            </WellnessCoachContextProvider>
-                          </MoodJournalContextProvider>
-                        </FoodJournalContextProvider>
-                      </PainJournalContextProvider>
-                    </SmartGoalContextProvider>
-                  </MovementContextProvider>
-                </EducationContextProvider>
-              </BookmarksContextProvider>
-            </ProfileContextProvider>
-          </DailyPainContextProvider>
-        </AuthenticationContextProvider>
+        <OnboardContextProvider>
+          <AuthenticationContextProvider expoPushToken={expoPushToken}>
+            <DailyPainContextProvider>
+              <ProfileContextProvider>
+                <BookmarksContextProvider>
+                  <EducationContextProvider>
+                    <MovementContextProvider>
+                      <SmartGoalContextProvider>
+                        <PainJournalContextProvider>
+                          <FoodJournalContextProvider>
+                            <MoodJournalContextProvider>
+                              <WellnessCoachContextProvider>
+                                <FavoriteActivitiesContextProvider>
+                                  <Navigation />
+                                </FavoriteActivitiesContextProvider>
+                              </WellnessCoachContextProvider>
+                            </MoodJournalContextProvider>
+                          </FoodJournalContextProvider>
+                        </PainJournalContextProvider>
+                      </SmartGoalContextProvider>
+                    </MovementContextProvider>
+                  </EducationContextProvider>
+                </BookmarksContextProvider>
+              </ProfileContextProvider>
+            </DailyPainContextProvider>
+          </AuthenticationContextProvider>
+        </OnboardContextProvider>
       </ThemeProvider>
     </>
   );

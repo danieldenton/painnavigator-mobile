@@ -1,8 +1,8 @@
 import React, { useState, createContext } from "react";
 
-export const AuthenticationContext = createContext();
+export const OnboardContext = createContext();
 
-export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
+export const OnboardContextProvider = ({ children, expoPushToken }) => {
   const [error, setError] = useState(null);
   const [step, setStep] = useState(0);
   const [onboardingData, setOnboardingData] = useState({
@@ -90,7 +90,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   };
 
   return (
-    <AuthenticationContext.Provider
+    <OnboardContext.Provider
       value={{
         handleEducationProgram,
         educationProgram,
@@ -107,6 +107,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       }}
     >
       {children}
-    </AuthenticationContext.Provider>
+    </OnboardContext.Provider>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import {
   AuthTextInput,
   InputLabel,
@@ -18,8 +19,9 @@ import { ONBOARD_EVENTS } from "../../../amplitude-events";
 export const Signup = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-  const { onboardingData, setOnboardingData, onRegister, error, userLoading } =
-    useContext(AuthenticationContext);
+  const { onRegister, userLoading } = useContext(AuthenticationContext);
+  const { onboardingData, setOnboardingData, error } =
+    useContext(OnboardContext);
   const { firstName, lastName, email } = onboardingData;
   const [showButton, setShowButton] = useState(true);
 
