@@ -49,20 +49,21 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const uid = user?.user.uid;
 
   const handlePossibleEducationPrograms = (possiblePrograms) => {
-    if (
+    const painInjectionsAndSpineSurgery =
       onboardingData.painInjections !== "No" &&
-      onboardingData.spineSurgery !== "No"
-    ) {
-      setEducationProgram(possiblePrograms[0]);
-    } else if (
+      onboardingData.spineSurgery !== "No";
+    const painInjectionsButNoSpineSurgery =
       onboardingData.painInjections !== "No" &&
-      onboardingData.spineSurgery === "No"
-    ) {
-      setEducationProgram(possiblePrograms[1]);
-    } else if (
+      onboardingData.spineSurgery === "No";
+    const neitherPainInjectionsNorSpineSurgery =
       onboardingData.painInjections === "No" &&
-      onboardingData.spineSurgery === "No"
-    ) {
+      onboardingData.spineSurgery === "No";
+      // the "else" condition covers noPainInjectionsButSpineSurgery
+    if (painInjectionsAndSpineSurgery) {
+      setEducationProgram(possiblePrograms[0]);
+    } else if (painInjectionsButNoSpineSurgery) {
+      setEducationProgram(possiblePrograms[1]);
+    } else if (neitherPainInjectionsNorSpineSurgery) {
       setEducationProgram(possiblePrograms[2]);
     } else {
       setEducationProgram(possiblePrograms[3]);
@@ -72,13 +73,13 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const handleEducationProgram = () => {
     const lowBackPainPossiblePrograms = [1, 7, 8, 9];
     const lowBackPainPossibleProgramsHopesToAchieveOnly = [3, 4, 5, 6];
+    const hopesToAchieveStrengthAndPreventionOnly =
+      onboardingData.hopesToAchieve.length === 1 &&
+      onboardingData.hopesToAchieve[0] === "Strength & Prevention";
     if (providerId === 8) {
       setEducationProgram(2);
     } else {
-      if (
-        onboardingData.hopesToAchieve.length === 1 &&
-        onboardingData.hopesToAchieve[0] === "Strength & Prevention"
-      ) {
+      if (hopesToAchieveStrengthAndPreventionOnly) {
         if (onboardingData.typeOfPain === "Low Back Pain") {
           handlePossibleEducationPrograms(
             lowBackPainPossibleProgramsHopesToAchieveOnly
@@ -95,7 +96,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       }
     }
   };
-
 
   const onLogin = (email, password) => {
     setUserLoading(true);
