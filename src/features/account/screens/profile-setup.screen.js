@@ -114,7 +114,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: typeOfPain ? false : true,
     },
   ];
-
+console.log(step)
 
   return (
     <SafeView>

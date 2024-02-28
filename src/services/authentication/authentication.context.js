@@ -79,25 +79,23 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onboardingData.hopesToAchieve.length === 1 &&
         onboardingData.hopesToAchieve[0] === "Strength & Prevention"
       ) {
-        if onboardingData.typeOfPain === "Lower Back Pain"
-        handlePossibleEducationPrograms(
-          lowBackPainPossibleProgramsHopesToAchieveOnly
-        );
+        if (onboardingData.typeOfPain === "Low Back Pain") {
+          handlePossibleEducationPrograms(
+            lowBackPainPossibleProgramsHopesToAchieveOnly
+          );
+        } else {
+          setEducationProgram(11);
+        }
       } else {
-        handlePossibleEducationPrograms(lowBackPainPossiblePrograms);
+        if (onboardingData.typeOfPain === "Low Back Pain") {
+          handlePossibleEducationPrograms(lowBackPainPossiblePrograms);
+        } else {
+          setEducationProgram(10);
+        }
       }
     }
   };
 
-  const handleOtherPainType = () => {
-    setEducationProgram(10);
-    if (onboardingData.typeOfPain === "Other") {
-      setStep(12);
-      onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
-    }
-  };
 
   const onLogin = (email, password) => {
     setUserLoading(true);
