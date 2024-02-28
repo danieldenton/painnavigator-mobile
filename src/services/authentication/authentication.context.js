@@ -48,62 +48,46 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [tour, setTour] = useState(null);
   const uid = user?.user.uid;
 
-  
+  const handlePossibleEducationPrograms = (possiblePrograms) => {
+    if (
+      onboardingData.painInjections !== "No" &&
+      onboardingData.spineSurgery !== "No"
+    ) {
+      setEducationProgram(possiblePrograms[0]);
+    } else if (
+      onboardingData.painInjections !== "No" &&
+      onboardingData.spineSurgery === "No"
+    ) {
+      setEducationProgram(possiblePrograms[1]);
+    } else if (
+      onboardingData.painInjections === "No" &&
+      onboardingData.spineSurgery === "No"
+    ) {
+      setEducationProgram(possiblePrograms[2]);
+    } else {
+      setEducationProgram(possiblePrograms[3]);
+    }
+  };
 
   const handleEducationProgram = () => {
+    const lowBackPainPossiblePrograms = [1, 7, 8, 9];
+    const lowBackPainPossibleProgramsHopesToAchieveOnly = [3, 4, 5, 6];
     if (providerId === 8) {
-      setEducationProgram(2)
-    }
-    if (onboardingData.typeOfPain === "Low Back Pain") {
+      setEducationProgram(2);
+    } else {
       if (
         onboardingData.hopesToAchieve.length === 1 &&
         onboardingData.hopesToAchieve[0] === "Strength & Prevention"
       ) {
-        if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(5);
-        } else if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(6);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(4);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(3);
-        }
+        handlePossibleEducationPrograms(
+          lowBackPainPossibleProgramsHopesToAchieveOnly
+        );
       } else {
-        if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(8);
-        } else if (
-          onboardingData.spineSurgery !== "No" &&
-          onboardingData.painInjections === "No"
-        ) {
-          setEducationProgram(9);
-        } else if (
-          onboardingData.spineSurgery === "No" &&
-          onboardingData.painInjections !== "No"
-        ) {
-          setEducationProgram(7);
-        } else {
-          setEducationProgram(1)
-        }
+        handlePossibleEducationPrograms(lowBackPainPossiblePrograms);
       }
-    } else {
-      return;
     }
   };
+
 
   const onLogin = (email, password) => {
     setUserLoading(true);
