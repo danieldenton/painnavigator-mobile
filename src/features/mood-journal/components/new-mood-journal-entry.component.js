@@ -8,7 +8,7 @@ import { Intensity } from "./intensity.component";
 import { Situation } from "./situation.component";
 import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
-import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { track } from "@amplitude/analytics-react-native";
 import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 

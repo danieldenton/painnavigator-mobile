@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
-import { AuthenticationContext } from "../authentication.context";
+import { moodJournalQuestions } from "../features/mood-journal/data/mood-journal-question-data.json";
+import { AuthenticationContext } from "./authentication.context";
 
 export const MoodJournalContext = createContext();
 
@@ -46,16 +46,16 @@ export const MoodJournalContextProvider = ({ children }) => {
     }
   }
 
-  async function patchMoodJournal(journalId, moodJournal, setMoodJournals) {
+  async function patchMoodJournal() {
     try {
       const response = await axios.patch(
-        `${API_URL}/api/v1/mood_journals/${journalId}`,
-        { mood_journal: moodJournal }
+        `${API_URL}/api/v1/mood_journals/${reviewJournal.id}`,
+        { mood_journal: reviewJournal }
       );
       const data = response.data.data.attributes;
       setMoodJournals((prevJournals) =>
         prevJournals.map((journal) =>
-          journal.id === journalId ? data : journal
+          journal.id === reviewJournal.id ? data : journal
         )
       );
     } catch (error) {
@@ -63,9 +63,9 @@ export const MoodJournalContextProvider = ({ children }) => {
     }
   }
 
-  const destroyMoodJournal = (journalId) => {
+  const destroyMoodJournal = () => {
     axios
-      .delete(`${API_URL}/api/v1/mood_journals/${journalId}`)
+      .delete(`${API_URL}/api/v1/mood_journals/${reviewJournal.id}`)
       .then((response) => {});
   };
 
@@ -100,8 +100,7 @@ export const MoodJournalContextProvider = ({ children }) => {
   };
 
   const deleteMoodJournal = () => {
-    const id = reviewJournal.id;
-    destroyMoodJournal(id);
+    destroyMoodJournal();
     const newMoodJournals = moodJournals.filter((journal) => journal.id !== id);
     setMoodJournals(newMoodJournals);
   };
@@ -144,18 +143,6 @@ export const MoodJournalContextProvider = ({ children }) => {
     setCurrentPage(0);
   };
 
-  const updateMoodJournal = () => {
-    const updatedMoodJournal = {
-      feeling: reviewJournal.feeling,
-      intensity: reviewJournal.intensity,
-      situation: reviewJournal.situation,
-      who_i_was_with: reviewJournal.who_i_was_with,
-      primary_thought: reviewJournal.primary_thought,
-      cognitive_distortions: reviewJournal.cognitive_distortions,
-    };
-    patchMoodJournal(reviewJournal.id, updatedMoodJournal, setMoodJournals);
-  };
-
   const saveEdits = () => {
     const newJournals = moodJournals.map((journal) =>
       journal.id === reviewJournal.id
@@ -166,7 +153,7 @@ export const MoodJournalContextProvider = ({ children }) => {
         : journal
     );
     setMoodJournals(newJournals);
-    updateMoodJournal();
+    patchMoodJournal();
     setChanges("");
   };
 
@@ -195,7 +182,6 @@ export const MoodJournalContextProvider = ({ children }) => {
         setMoodJournal,
         setMoodJournals,
         setReviewJournal,
-        updateMoodJournal,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalTile } from "../../../components/journal-tile.component";
 import { MoodGraphic } from "../../../graphics";
-import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
