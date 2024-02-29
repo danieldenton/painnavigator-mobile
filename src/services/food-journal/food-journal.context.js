@@ -45,7 +45,7 @@ export const FoodJournalContextProvider = ({ children }) => {
     }
   }
 
-  async function patchFoodJournal(journalId, journalEntry, setFoodJournals) {
+  async function patchFoodJournal(journalId, journalEntry) {
     try {
       const response = await axios.patch(
         `${API_URL}/api/v1/food_journals/${journalId}`,
@@ -66,7 +66,7 @@ export const FoodJournalContextProvider = ({ children }) => {
     const mealEntry = {
       [meal.toLowerCase()]: JSON.stringify(foodJournal),
     };
-    patchFoodJournal(journalId, mealEntry, setFoodJournals);
+    patchFoodJournal(journalId, mealEntry);
     setTimeout(() => {
       resetFoodJournal(false);
     }, 1000);
