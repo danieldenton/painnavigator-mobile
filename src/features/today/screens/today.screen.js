@@ -15,7 +15,6 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
-import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
@@ -38,7 +37,6 @@ import {
 import {
   formatDate,
   timeZonedTodaysDate,
-  formatBackendCreatedAtDate,
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
@@ -46,8 +44,8 @@ export const TodayScreen = ({ navigation }) => {
   const { tour } = useContext(OnboardContext);
   const { getDailyPainScores, painScoreToday } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
-  const { getSmartGoals, activeGoal } = useContext(SmartGoalContext);
-  const { painJournals, setPainJournals } = useContext(PainJournalContext);
+  const { getSmartGoals, activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
+  const { getPainJournals, painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementModulesOnScreen } = useContext(MovementContext);
@@ -65,9 +63,6 @@ export const TodayScreen = ({ navigation }) => {
   const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
-  const lastSmartGoalUpdate = formatDate(
-    activeGoal?.goal_updates[0]?.date_time_value
-  );
   
   const isFocused = useIsFocused();
 
@@ -75,7 +70,7 @@ export const TodayScreen = ({ navigation }) => {
     getUser();
     getDailyPainScores(uid);
     getSmartGoals();
-    getPainJournals(uid, setPainJournals);
+    getPainJournals();
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);

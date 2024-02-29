@@ -19,6 +19,9 @@ export const SmartGoalContextProvider = ({ children }) => {
   const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const { uid } = useContext(AuthenticationContext);
+  const lastSmartGoalUpdate = formatDate(
+    activeGoal?.goal_updates[0]?.date_time_value
+  );
 
   useEffect(() => {
     setReviewGoal(activeGoal);
@@ -218,6 +221,7 @@ export const SmartGoalContextProvider = ({ children }) => {
         endJournalDate,
         setFinishedGoals,
         setActiveGoal,
+        lastSmartGoalUpdate,
       }}
     >
       {children}
