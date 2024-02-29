@@ -18,7 +18,7 @@ import { EducationContext } from "../education/education.context";
 import { ProfileContext } from "../profile/profile-context";
 import { OutcomeContext } from "../outcome.context";
 import { MovementContext } from "../movement/movement.context";
-import { WellnessCoachContext } from "../wellness-coach/wellness-coach.context";
+import { WellnessCoachContext } from "../wellness-coach.context";
 
 export const AuthenticationContext = createContext();
 

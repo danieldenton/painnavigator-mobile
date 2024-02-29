@@ -13,7 +13,7 @@ import { OnboardContext } from "../../../services/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
+import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { getPainJournals } from "../../../services/pain-journal/pain-journal.service";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";

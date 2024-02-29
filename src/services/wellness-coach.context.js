@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext, useContext } from "react";
 import add from 'date-fns/add';
 import axios from "axios";
 import { API_URL } from "@env";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthenticationContext } from "./authentication/authentication.context";
 
 export const WellnessCoachContext = createContext();
 
