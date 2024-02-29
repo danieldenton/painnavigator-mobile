@@ -23,10 +23,6 @@ export const SmartGoalContextProvider = ({ children }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
 
-  useEffect(() => {
-    setReviewGoal(activeGoal);
-  }, [activeGoal]);
-
   const getSmartGoals = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/v2/smart_goals`, {
@@ -191,6 +187,14 @@ export const SmartGoalContextProvider = ({ children }) => {
     });
     setCurrentPage(0);
   };
+
+  useEffect(() => {
+    getSmartGoals()
+  }, [])
+
+  useEffect(() => {
+    setReviewGoal(activeGoal);
+  }, [activeGoal]);
 
   return (
     <SmartGoalContext.Provider

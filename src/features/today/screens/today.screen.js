@@ -44,8 +44,8 @@ export const TodayScreen = ({ navigation }) => {
   const { tour } = useContext(OnboardContext);
   const { getDailyPainScores, painScoreToday } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
-  const { getSmartGoals, activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
-  const { getPainJournals, painJournals, setPainJournals } = useContext(PainJournalContext);
+  const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
+  const { lastPainJournal } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementModulesOnScreen } = useContext(MovementContext);
@@ -60,7 +60,6 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
 
-  const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   
@@ -69,8 +68,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getDailyPainScores(uid);
-    getSmartGoals();
-    getPainJournals();
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
