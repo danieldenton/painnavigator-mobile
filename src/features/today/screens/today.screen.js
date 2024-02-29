@@ -4,8 +4,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
-import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "../../../services/education/education-programs-data.json"
+import { EducationContext } from "../../../services/education/education.context"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -38,7 +37,6 @@ import {
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
 import { patchLastDateOnApp } from "../../../services/authentication/authentication.service";
-import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import {
   formatDate,
   timeZonedTodaysDate,
@@ -49,7 +47,7 @@ export const TodayScreen = ({ navigation }) => {
   const { uid, getUser, lastDateOnApp } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const {
-    setDailyPainScores,
+    getDailyPainScores,
     dailyPainScores,
     dailyPainScore,
     setDailyPainScore,
@@ -93,7 +91,7 @@ export const TodayScreen = ({ navigation }) => {
 
   useEffect(() => {
     getUser();
-    getDailyPainScores(uid, setDailyPainScores);
+    getDailyPainScores(uid);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);

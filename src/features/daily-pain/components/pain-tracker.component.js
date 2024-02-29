@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
 import { PainGraph } from "./pain-graph.component";
@@ -33,12 +32,12 @@ export const DescriptionHelpMessage = styled.Text`
 
 
 export const PainTrackerComponent = ({ navigation }) => {
-    const { dailyPainScores, setDailyPainScores } = useContext(DailyPainContext)
+    const { dailyPainScores, getDailyPainScores } = useContext(DailyPainContext)
     const { uid } = useContext(AuthenticationContext)
    
 
     useEffect(() => {
-        getDailyPainScores(uid, setDailyPainScores)
+        getDailyPainScores(uid)
     }, [])
     
     const startDate = formatDate(dailyPainScores[0]?.date_time_value)
