@@ -45,17 +45,12 @@ export const DailyPainContextProvider = ({ children }) => {
 
   // TODO fix graph response.
   async function postDailyPainScore(userUid) {
-    const score = {
-      uid: userUid,
-      score: dailyPainScore.score,
-      date_time_value: Date.now(),
-    };
-    // setDailyPainScores(score, ...dailyPainScores);
     try {
-      const response = await axios.post(
-        `${API_URL}/api/v2/daily_pain_scores`,
-        score
-      );
+      const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, {
+        uid: userUid,
+        score: dailyPainScore.score,
+        date_time_value: Date.now(),
+      });
       return response.data;
     } catch (error) {
       console.error(error);
@@ -71,8 +66,7 @@ export const DailyPainContextProvider = ({ children }) => {
           date_time_value: Date.now(),
         }
       );
-      const score = response.data;
-      setDailyPainScores(score, ...dailyPainScores);
+      return response.data;
     } catch (error) {
       console.error(error);
     }
