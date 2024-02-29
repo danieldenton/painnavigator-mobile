@@ -30,11 +30,11 @@ export const DailyPainContextProvider = ({ children }) => {
     }
   }, [dailyPainScores]);
 
-  async function getDailyPainScores(userUid) {
+  async function getDailyPainScores(uid) {
     try {
       const response = await axios.get(`${API_URL}/api/v2/daily_pain_scores`, {
         params: {
-          uid: userUid,
+          uid: uid,
         },
       });
       setDailyPainScores(response.data);
@@ -44,10 +44,10 @@ export const DailyPainContextProvider = ({ children }) => {
   }
 
   // TODO fix graph response.
-  async function postDailyPainScore(userUid) {
+  async function postDailyPainScore(uid) {
     try {
       const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, {
-        uid: userUid,
+        uid: uid,
         score: dailyPainScore.score,
         date_time_value: Date.now(),
       });
