@@ -1,8 +1,6 @@
 import React, { createContext, useState } from "react";
 import axios from "axios";
-import { track } from '@amplitude/analytics-react-native';
 import { API_URL } from "@env";
-import { DAILY_PAIN_EVENTS } from "../../amplitude-events";
 
 export const DailyPainContext = createContext();
 
@@ -29,12 +27,17 @@ export const DailyPainContextProvider = ({ children }) => {
   }
 
   async function postDailyPainScore(userUid) {
+    const score = {
+      uid: userUid,
+      score: dailyPainScore.score,
+      date_time_value: Date.now(),
+    };
+    setDailyPainScores(score, ...dailyPainScores);
     try {
-      const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, {
-        uid: userUid,
-        score: dailyPainScore.score,
-        date_time_value: Date.now(),
-      });
+      const response = await axios.post(
+        `${API_URL}/api/v2/daily_pain_scores`,
+        score
+      );
       return response.data;
     } catch (error) {
       console.error(error);
@@ -50,22 +53,21 @@ export const DailyPainContextProvider = ({ children }) => {
           date_time_value: Date.now(),
         }
       );
-      return response.data;
+      const score = response.data;
+      setDailyPainScores(score, ...dailyPainScores);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const handleDailyPainScore = () => {
+  const handleDailyPainScore = (uid) => {
     if (dailyPainScore.id) {
-        setDailyPainScore(patchDailyPainScore())
-        track(DAILY_PAIN_EVENTS.EDIT_DAILY_PAIN_SCORE)
+      setDailyPainScore(patchDailyPainScore());
     } else {
-        setDailyPainScore(postDailyPainScore(uid))
-        track(DAILY_PAIN_EVENTS.LOG_DAILY_PAIN_SCORE)
-    }  
-    setDailyPainStep(1)
-}
+      setDailyPainScore(postDailyPainScore(uid));
+    }
+    setDailyPainStep(1);
+  };
 
   return (
     <DailyPainContext.Provider

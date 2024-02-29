@@ -4,9 +4,11 @@ import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
+import { AuthenticationContext } from '../../../services/authentication/authentication.context';
 
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, setDailyPainScore, handleDailyPainScore } = useContext(DailyPainContext)   
+    const { dailyPainScore, setDailyPainScore, handleDailyPainScore } = useContext(DailyPainContext)  
+    const { uid } = useContext(AuthenticationContext) 
 
     return (
         <>
@@ -15,7 +17,7 @@ export const DailyPainScoreComponent = () => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Pain Score"} 
-                    onPress={() => handleDailyPainScore()}
+                    onPress={() => handleDailyPainScore(uid)}
                 /> 
             </ButtonSection>  
         </>
