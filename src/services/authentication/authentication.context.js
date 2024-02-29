@@ -2,6 +2,8 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { API_URL } from "@env";
 import { OnboardContext } from "../onboard.context";
 import {
   loginRequest,
@@ -16,6 +18,7 @@ import { EducationContext } from "../education/education.context";
 import { ProfileContext } from "../profile/profile-context";
 import { OutcomeContext } from "../outcome.context";
 import { MovementContext } from "../movement/movement.context";
+import { WellnessCoachContext } from "../wellness-coach/wellness-coach.context";
 
 export const AuthenticationContext = createContext();
 
@@ -35,8 +38,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     completedMovementModules,
     skippedMovementModules,
   } = useContext(MovementContext);
+  const { setWellnessCoachReminded } = useContext(WellnessCoachContext)
 
-  async function getUser(setWellnessCoachReminded) {
+  async function getUser() {
     try {
       const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
       const data = response.data.data.attributes;
@@ -179,6 +183,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         uid,
+        getUser,
         isAuthenticated: !!user,
         onLogin,
         onRegister,

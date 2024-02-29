@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
-import { educationPrograms } from "./education-programs-data.json"
+import { educationPrograms } from "./education-programs-data.json";
 
 export const EducationContext = createContext();
 
@@ -10,9 +10,13 @@ export const EducationContextProvider = ({ children }) => {
   const [educationProgram, setEducationProgram] = useState(1);
   const [educationProgress, setEducationProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState({});
-  const [educationIntroStep, setEducationIntroStep] = useState(0)
+  const [educationIntroStep, setEducationIntroStep] = useState(0);
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
+  const educationProgramLength =
+    educationPrograms[educationProgram - 1].educationModuleIds;
+  const completedAllEducationModules =
+    educationProgress > educationProgramLength;
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
   const additionalJournals =
@@ -29,7 +33,6 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
-    console.log(educationPrograms)
     const module = educationModules.find(
       (unit) =>
         unit.id ===
@@ -95,7 +98,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  const completeModule = () => {
+  const completeModule = (uid) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
@@ -137,6 +140,7 @@ export const EducationContextProvider = ({ children }) => {
         shorterProgram,
         additionalJournals,
         moodJournalReady,
+        completedAllEducationModules
       }}
     >
       {children}

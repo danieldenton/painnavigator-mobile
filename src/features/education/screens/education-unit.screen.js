@@ -3,6 +3,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { track } from "@amplitude/analytics-react-native";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";
@@ -28,6 +29,7 @@ export const EducationUnitScreen = ({ navigation }) => {
     setEducationIntroStep,
   } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
+  const { uid } = useContext(AuthenticationContext)
   const { post_video_destination, type, skippable, id } = currentModule;
 
   const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
@@ -40,7 +42,7 @@ export const EducationUnitScreen = ({ navigation }) => {
   const postVideoAction = () => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
-    completeModule();
+    completeModule(uid);
     if (post_video_destination) {
       const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
       navigation.dispatch(

@@ -61,22 +61,17 @@ export const TodayScreen = ({ navigation }) => {
   const { painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
-  const { movementProgress } = useContext(MovementContext);
+  const { movementModulesOnScreen } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
     educationProgress,
     educationModuleCompletionData,
     educationProgram,
+    completedAllEducationModules
   } = useContext(EducationContext);
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
-  const educationProgramLength =
-    educationPrograms[educationProgram - 1].educationModuleIds
-
-  const completedAllEducationModules =
-    educationProgress > educationProgramLength;
-  const movementModulesOnScreen =
-    educationProgram < 10 && movementProgress < 36;
+  
 
   const dailyPain = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
@@ -195,7 +190,7 @@ export const TodayScreen = ({ navigation }) => {
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
             </>
-          ) : null}
+           ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
             {hasUnreadMessages ? (
