@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import { ThemeProvider } from 'styled-components';
 import { theme } from "./src/infrastructure/theme"
-import { AuthenticationContext } from './src/services/authentication/authentication.context';
+import { AuthenticationContext } from './src/services/authentication.context';
 import { ProfileContextProvider } from './src/services/profile/profile-context';
 import { BookmarksContextProvider } from './src/services/bookmarks/bookmarks.context';
 import { EducationContextProvider } from './src/services/education/education.context';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { destroyGoal, patchSmartGoal, patchSmartGoalUpdate, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthenticationContext } from "../authentication.context";
 import { formatDate } from "../../utils";
 
 export const SmartGoalContext = createContext();

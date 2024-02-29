@@ -3,7 +3,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { track } from "@amplitude/analytics-react-native";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";

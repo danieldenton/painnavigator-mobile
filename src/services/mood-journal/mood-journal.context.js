@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
 import { destroyMoodJournal, getMoodJournals, patchMoodJournal, postMoodJournal } from "./mood-journal.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthenticationContext } from "../authentication.context";
 
 export const MoodJournalContext = createContext();
 

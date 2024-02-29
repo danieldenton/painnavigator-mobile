@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { MovementUnit } from "../components/movement-unit.component";
 import { CompletionScreen } from "./completion-screen";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
 import { getMovementUnits } from "../../../services/movement/movement.service";

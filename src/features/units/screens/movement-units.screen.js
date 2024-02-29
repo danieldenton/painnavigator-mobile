@@ -7,7 +7,7 @@ import { movementVideos } from "../../movement/data/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 import { getMovementUnits } from "../../../services/movement/movement.service";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {

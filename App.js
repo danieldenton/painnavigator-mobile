@@ -60,7 +60,7 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 
-import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
+import { AuthenticationContextProvider } from "./src/services/authentication.context";
 import { OnboardContextProvider } from "./src/services/onboard.context";
 import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain.context";

@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getFoodJournals, patchFoodJournal, postFoodJournal } from "./food-journal.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthenticationContext } from "../authentication.context";
 import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
 
 export const FoodJournalContext = createContext();

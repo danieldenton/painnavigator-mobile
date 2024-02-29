@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native';
-import { AuthenticationContextProvider } from "../../../services/authentication/authentication.context";
+import { AuthenticationContextProvider } from "../../../services/authentication.context";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Providers = ({children}) => {

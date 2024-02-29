@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { patch, post } from "../favorite-activities/favorite-activities.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { AuthenticationContext } from "../authentication.context";
 
 export const FavoriteActivitiesContext = createContext();
 

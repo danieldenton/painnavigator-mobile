@@ -4,21 +4,17 @@ import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API_URL } from "@env";
-import { OnboardContext } from "../onboard.context";
-import {
-  loginRequest,
-  patchExpoPushToken,
-  postUser,
-} from "./authentication.service";
+import { OnboardContext } from "./onboard.context";
 import {
   patchSkippedMovementUnits,
   patchCompletedMovementUnits,
-} from "../movement/movement.service";
-import { EducationContext } from "../education/education.context";
-import { ProfileContext } from "../profile/profile-context";
-import { OutcomeContext } from "../outcome.context";
-import { MovementContext } from "../movement/movement.context";
-import { WellnessCoachContext } from "../wellness-coach.context";
+} from "./movement/movement.service";
+import { EducationContext } from "./education/education.context";
+import { ProfileContext } from "./profile/profile-context";
+import { OutcomeContext } from "./outcome.context";
+import { MovementContext } from "./movement/movement.context";
+import { WellnessCoachContext } from "./wellness-coach.context";
+import { timeZonedTodaysDate } from "../utils";
 
 export const AuthenticationContext = createContext();
 
@@ -38,7 +34,28 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     completedMovementModules,
     skippedMovementModules,
   } = useContext(MovementContext);
-  const { setWellnessCoachReminded } = useContext(WellnessCoachContext)
+  const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
+
+  const loginRequest = (email, password) =>
+    firebase.auth().signInWithEmailAndPassword(email, password);
+
+  async function postUser() {
+    const userData = {
+      uid: uid,
+      ...onboardingData,
+    };
+    await axios.post(`${API_URL}/api/v2/users`, { user: userData });
+  }
+
+  const patchExpoPushToken = async () => {
+    try {
+      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+        expo_push_token: expoPushToken,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   async function getUser() {
     try {
@@ -59,6 +76,16 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       console.error(error);
     }
   }
+
+  const patchLastDateOnApp = async () => {
+    try {
+      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+        last_date_on_app: timeZonedTodaysDate,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onLogin = (email, password) => {
     setUserLoading(true);
@@ -159,10 +186,16 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
+  useEffect(() => {
+    if (lastDateOnApp !== timeZonedTodaysDate) {
+      patchLastDateOnApp();
+    }
+  }, [lastDateOnApp]);
+
   // TODO fix this so it doesnt patch everytime.
   useEffect(() => {
     if (user && expoPushToken) {
-      patchExpoPushToken(uid, expoPushToken);
+      patchExpoPushToken();
     }
   }, [user, expoPushToken]);
 

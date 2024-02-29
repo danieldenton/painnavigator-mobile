@@ -8,7 +8,7 @@ import { EducationContext } from "../../../services/education/education.context"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
@@ -36,7 +36,6 @@ import {
   ProfileSetup,
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
-import { patchLastDateOnApp } from "../../../services/authentication/authentication.service";
 import {
   formatDate,
   timeZonedTodaysDate,
@@ -91,13 +90,6 @@ export const TodayScreen = ({ navigation }) => {
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
   }, []);
-
-
-  useEffect(() => {
-    if (lastDateOnApp !== timeZonedTodaysDate) {
-      patchLastDateOnApp(uid, timeZonedTodaysDate);
-    }
-  }, [lastDateOnApp]);
   
 
   useEffect(() => {

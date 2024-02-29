@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 import { ButtonSection } from "./journals/journal.styles";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
+import { AuthenticationContext } from "../services/authentication.context";
 import { handleTrackEvent } from "../utils";
 
 export const Button = styled(ReactPaperButton).attrs({

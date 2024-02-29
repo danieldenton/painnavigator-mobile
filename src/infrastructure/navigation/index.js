@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../services/authentication.context";
 import { AccountNavigator } from "./account.navigator";
 import { SideMenuNavigator } from "./side-menu.navigator";
 
