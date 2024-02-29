@@ -23,7 +23,6 @@ import { getFoodJournals } from "../../../services/food-journal/food-journal.ser
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
-import { getSmartGoals } from "../../../services/smart-goal/smart-goal.service";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScore } from "../components/daily-activities.component";
@@ -43,14 +42,14 @@ import {
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp } = useContext(AuthenticationContext);
+  const { uid, getUser } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const {
     getDailyPainScores,
     painScoreToday 
   } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
-  const { activeGoal, setActiveGoal, setFinishedGoals } =
+  const { getSmartGoals, activeGoal, setActiveGoal, setFinishedGoals } =
     useContext(SmartGoalContext);
   const { painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
@@ -84,7 +83,7 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getDailyPainScores(uid);
-    getSmartGoals(uid, setActiveGoal, setFinishedGoals);
+    getSmartGoals();
     getPainJournals(uid, setPainJournals);
     getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);

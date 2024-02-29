@@ -9,7 +9,7 @@ import { track } from "@amplitude/analytics-react-native"
 import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const NewSmartGoal = ({ navigation }) => {
-    const { createSmartGoal, currentPage, smartGoal, nextPage } = useContext(SmartGoalContext);
+    const { postSmartGoal, currentPage, smartGoal, nextPage } = useContext(SmartGoalContext);
     const { goal, steps, reward } = smartGoal;
 
     pages = [
@@ -32,7 +32,7 @@ export const NewSmartGoal = ({ navigation }) => {
 
     const handleCreateSmartGoal = () => {
         track(pages[currentPage].trackEvent)
-        createSmartGoal()
+        postSmartGoal()
         navigation.navigate("SmartGoalCreated")
     }
     
