@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
 import { AuthenticationContext } from "../authentication.context";
-import { formatDate } from "../../utils";
+import { formatDate, timeZonedTodaysDate } from "../../utils";
 
 export const PainJournalContext = createContext();
 
@@ -24,6 +24,7 @@ export const PainJournalContextProvider = ({ children }) => {
   const [reviewJournal, setReviewJournal] = useState({});
   const { uid } = useContext(AuthenticationContext);
   const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
+  const painJournalToday = lastPainJournal === timeZonedTodaysDate
 
   const getPainJournals = async () => {
     try {
@@ -185,7 +186,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournal,
         setPainJournals,
         setReviewJournal,
-        lastPainJournal,
+        painJournalToday,
       }}
     >
       {children}

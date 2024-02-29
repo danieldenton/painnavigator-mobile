@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { moodJournalQuestions } from "../features/mood-journal/data/mood-journal-question-data.json";
 import { AuthenticationContext } from "./authentication.context";
-import { formatDate } from "../utils";
+import { formatDate, timeZonedTodaysDate } from "../utils";
 
 export const MoodJournalContext = createContext();
 
@@ -23,6 +23,7 @@ export const MoodJournalContextProvider = ({ children }) => {
   const [reviewJournal, setReviewJournal] = useState({});
   const { uid } = useContext(AuthenticationContext);
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
+  const moodJournalToday = lastMoodJournal === timeZonedTodaysDate;
 
   const getMoodJournals = async () => {
     try {
@@ -184,7 +185,7 @@ export const MoodJournalContextProvider = ({ children }) => {
         setMoodJournal,
         setMoodJournals,
         setReviewJournal,
-        lastMoodJournal
+        moodJournalToday,
       }}
     >
       {children}

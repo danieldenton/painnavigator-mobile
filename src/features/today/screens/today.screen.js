@@ -44,9 +44,9 @@ export const TodayScreen = ({ navigation }) => {
   const { getDailyPainScores, painScoreToday } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
-  const { lastPainJournal } = useContext(PainJournalContext);
-  const { lastMoodJournal } = useContext(MoodJournalContext);
-  const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
+  const { painJournalToday } = useContext(PainJournalContext);
+  const { moodJournalToday } = useContext(MoodJournalContext);
+  const { foodJournalToday } = useContext(FoodJournalContext);
   const { movementModulesOnScreen } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
@@ -58,15 +58,12 @@ export const TodayScreen = ({ navigation }) => {
   } = useContext(EducationContext);
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
-
-  const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   
   const isFocused = useIsFocused();
 
   useEffect(() => {
     getUser();
     getDailyPainScores(uid);
-    getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
   }, []);
 
@@ -83,9 +80,9 @@ export const TodayScreen = ({ navigation }) => {
       educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
     if (
       userCompletedPainJournallUnit &&
-      lastFoodJournal !== timeZonedTodaysDate &&
-      lastMoodJournal !== timeZonedTodaysDate &&
-      lastPainJournal !== timeZonedTodaysDate
+      foodJournalToday &&
+      moodJournalToday &&
+      painJournalToday
     ) {
       return <Journals navigation={navigation} />;
     }
@@ -149,10 +146,10 @@ export const TodayScreen = ({ navigation }) => {
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {renderJournalDailyActivity()}
             {renderSmartGoalDailyActivity()}
-            {lastPainJournal === timeZonedTodaysDate ? (
+            {painJournalToday ? (
               <DailyGoalCompleted type={"Pain Journal"} />
             ) : null}
-            {lastMoodJournal === timeZonedTodaysDate ? (
+            {moodJournalToday === timeZonedTodaysDate ? (
               <DailyGoalCompleted type={"Mood Journal"} />
             ) : null}
             {lastFoodJournal === timeZonedTodaysDate ? (
