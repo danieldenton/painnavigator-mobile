@@ -82,7 +82,7 @@ export const OutcomeScreen = ({ navigation }) => {
     },
   ];
 
-  const handleCompletProgram = () => {
+  const handleCompleteProgram = () => {
     completeProgram();
     navigation.navigate("ProgramCompleted");
     track(COMPLETION_EVENTS.COMPLETE_PROGRAM);
@@ -102,7 +102,7 @@ export const OutcomeScreen = ({ navigation }) => {
           disabled={pages[step].disabled}
           title={"Next"}
           onPress={() => {
-            step === 6 ? handleCompletProgram() : nextStep();
+            step === 6 ? handleCompleteProgram() : nextStep();
           }}
         />
         <ProgressDots progress={step + 1} total={7} />

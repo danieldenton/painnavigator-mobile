@@ -2,6 +2,7 @@ import { Platform } from "react-native";
 import * as Localization from "expo-localization";
 import { track } from "@amplitude/analytics-react-native";
 
+
 export const isAndroid = Platform.OS === "android";
 
 export const isIPad = Platform.isPad 

@@ -1,7 +1,5 @@
-import React, { useState, createContext, useContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 import { patchUser } from "./profile-service";
-import { AuthenticationContext } from "../authentication/authentication.context";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { track } from "@amplitude/analytics-react-native";
 import { PROFILE_EVENTS } from "../../amplitude-events";
 
@@ -21,14 +19,13 @@ export const ProfileContextProvider = ({ children }) => {
     })
     const [profileStep, setProfileStep] = useState(0);
     const [profileComplete, setProfileComplete] = useState(false);
-    const { uid } = useContext(AuthenticationContext);
 
     const cancelEdits = () => {
         setReviewProfile(userInfo);
         setChanges("");
     };
 
-    const completeProfile = () => {
+    const completeProfile = (uid) => {
         const profile = {
             ...profileData,
             profile_status: 1,
@@ -97,7 +94,7 @@ export const ProfileContextProvider = ({ children }) => {
         setProfileStep(1);
     };
 
-    const saveEdits = () => {
+    const saveEdits = (uid) => {
         updateProfile(uid, reviewProfile);
         setChanges("");
     }

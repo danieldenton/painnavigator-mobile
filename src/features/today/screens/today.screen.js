@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { View } from "react-native";
-import { Audio } from "expo-av";
 import { useIsFocused } from "@react-navigation/native";
+import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { educationPrograms } from "../../../services/education/education-programs-data.json";
+import { educationPrograms } from "../../../services/education/education-programs-data.json"
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
-import { OutcomeContext } from "../../../services/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
@@ -38,26 +37,17 @@ import {
   ProfileSetup,
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
-import {
-  getUser,
-  patchLastDateOnApp,
-} from "../../../services/authentication/authentication.service";
+import { patchLastDateOnApp } from "../../../services/authentication/authentication.service";
 import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import {
   formatDate,
-  todaysDate,
-  timeZone,
   timeZonedTodaysDate,
   formatBackendCreatedAtDate,
 } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, setLastDateOnApp, lastDateOnApp } = useContext(
-    AuthenticationContext
-  );
-  const { setEducationProgram, educationProgram, tour } =
-    useContext(OnboardContext);
-  const { setCompletedProgram } = useContext(OutcomeContext);
+  const { uid, getUser, lastDateOnApp } = useContext(AuthenticationContext);
+  const { tour } = useContext(OnboardContext);
   const {
     setDailyPainScores,
     dailyPainScores,
@@ -65,27 +55,23 @@ export const TodayScreen = ({ navigation }) => {
     setDailyPainScore,
     setDailyPainStep,
   } = useContext(DailyPainContext);
-  const { userInfo, profileComplete, setUserInfo, setProfileComplete } =
-    useContext(ProfileContext);
+  const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, setActiveGoal, setFinishedGoals } =
     useContext(SmartGoalContext);
   const { painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
-  const { movementProgress, setMovementProgress } = useContext(MovementContext);
+  const { movementProgress } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
     educationProgress,
     educationModuleCompletionData,
-    setEducationProgress,
+    educationProgram,
   } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages, messages, setWellnessCoachReminded } =
+  const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
-  const [greeting, setGreeting] = useState("");
-
-  const isFocused = useIsFocused();
   const educationProgramLength =
-    educationPrograms[educationProgram - 1].educationModulesId.length;
+    educationPrograms[educationProgram - 1].educationModuleIds
 
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
@@ -108,19 +94,10 @@ export const TodayScreen = ({ navigation }) => {
   const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
     lastCompletedEducationModule?.created_at
   );
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    getUser(
-      uid,
-      setUserInfo,
-      setEducationProgram,
-      setEducationProgress,
-      setMovementProgress,
-      setProfileComplete,
-      setCompletedProgram,
-      setLastDateOnApp,
-      setWellnessCoachReminded
-    );
+    getUser();
     getDailyPainScores(uid, setDailyPainScores);
     getSmartGoals(uid, setActiveGoal, setFinishedGoals);
     getPainJournals(uid, setPainJournals);
@@ -136,23 +113,8 @@ export const TodayScreen = ({ navigation }) => {
   }, [lastDateOnApp]);
 
   useEffect(() => {
-    getMessages();
+    getMessages(uid);
   }, [messages]);
-
-  useEffect(() => {
-    let options = { hour: "numeric", hour12: false, timeZone: timeZone };
-    const timeZoneDateNumber = new Intl.DateTimeFormat("en-US", options).format(
-      todaysDate
-    );
-    const timeNumber = Number(timeZoneDateNumber);
-    if (timeNumber < 12) {
-      setGreeting("Good Morning");
-    } else if ((timeNumber > 11) & (timeNumber < 17)) {
-      setGreeting("Good Afternoon");
-    } else {
-      setGreeting("Good Evening");
-    }
-  }, [isFocused]);
 
   useEffect(() => {
     if (dailyPain === timeZonedTodaysDate) {
@@ -208,7 +170,7 @@ export const TodayScreen = ({ navigation }) => {
           hasUnreadMessages={hasUnreadMessages}
         />
         <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-          <Greeting greeting={greeting} name={userInfo.first_name} />
+          <Greeting name={userInfo.first_name} isFocused={isFocused} />
           <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
           {dailyPainScore.id ? (
             <DailyGoalCompleted type={"Daily Pain Score"} />

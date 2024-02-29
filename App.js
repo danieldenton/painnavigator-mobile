@@ -62,6 +62,7 @@ import {
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { OnboardContextProvider } from "./src/services/onboard.context";
+import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
@@ -149,33 +150,37 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <OnboardContextProvider>
-          <AuthenticationContextProvider expoPushToken={expoPushToken}>
-            <DailyPainContextProvider>
-              <ProfileContextProvider>
-                <BookmarksContextProvider>
-                  <EducationContextProvider>
-                    <MovementContextProvider>
-                      <SmartGoalContextProvider>
-                        <PainJournalContextProvider>
-                          <FoodJournalContextProvider>
-                            <MoodJournalContextProvider>
-                              <WellnessCoachContextProvider>
-                                <FavoriteActivitiesContextProvider>
-                                  <Navigation />
-                                </FavoriteActivitiesContextProvider>
-                              </WellnessCoachContextProvider>
-                            </MoodJournalContextProvider>
-                          </FoodJournalContextProvider>
-                        </PainJournalContextProvider>
-                      </SmartGoalContextProvider>
-                    </MovementContextProvider>
-                  </EducationContextProvider>
-                </BookmarksContextProvider>
-              </ProfileContextProvider>
-            </DailyPainContextProvider>
-          </AuthenticationContextProvider>
-        </OnboardContextProvider>
+        <ProfileContextProvider>
+          <EducationContextProvider>
+            <OnboardContextProvider>
+              <OutcomeContextProvider>
+                <MovementContextProvider>
+                  <WellnessCoachContextProvider>
+                    <AuthenticationContextProvider
+                      expoPushToken={expoPushToken}
+                    >
+                      <DailyPainContextProvider>
+                        <BookmarksContextProvider>
+                          <SmartGoalContextProvider>
+                            <PainJournalContextProvider>
+                              <FoodJournalContextProvider>
+                                <MoodJournalContextProvider>
+                                  <FavoriteActivitiesContextProvider>
+                                    <Navigation />
+                                  </FavoriteActivitiesContextProvider>
+                                </MoodJournalContextProvider>
+                              </FoodJournalContextProvider>
+                            </PainJournalContextProvider>
+                          </SmartGoalContextProvider>
+                        </BookmarksContextProvider>
+                      </DailyPainContextProvider>
+                    </AuthenticationContextProvider>
+                  </WellnessCoachContextProvider>
+                </MovementContextProvider>
+              </OutcomeContextProvider>
+            </OnboardContextProvider>
+          </EducationContextProvider>
+        </ProfileContextProvider>
       </ThemeProvider>
     </>
   );

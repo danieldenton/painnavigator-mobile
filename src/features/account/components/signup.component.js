@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
-import { OnboardContext } from "../../../services/onboard.context";
 import {
   AuthTextInput,
   InputLabel,

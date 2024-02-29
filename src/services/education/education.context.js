@@ -3,19 +3,16 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json"
-import { AuthenticationContext } from "../authentication/authentication.context";
-import { OnboardContext } from "../onboard.context";
 
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
+  const [educationProgram, setEducationProgram] = useState(1);
   const [educationProgress, setEducationProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState({});
   const [educationIntroStep, setEducationIntroStep] = useState(0)
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
-  const { uid } = useContext(AuthenticationContext);
-  const { educationProgram } = useContext(OnboardContext)
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
   const additionalJournals =
@@ -32,10 +29,11 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
+    console.log(educationPrograms)
     const module = educationModules.find(
       (unit) =>
         unit.id ===
-        educationPrograms[educationProgram - 1].educationModulesId[
+        educationPrograms[educationProgram - 1].educationModuleIds[
           educationProgress - 1
         ]
     );
@@ -126,6 +124,7 @@ export const EducationContextProvider = ({ children }) => {
     <EducationContext.Provider
       value={{
         getEducationModuleCompletions,
+        setEducationProgram,
         setEducationProgress,
         currentModule,
         completeModule,

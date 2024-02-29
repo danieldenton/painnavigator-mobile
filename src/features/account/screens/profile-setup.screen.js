@@ -23,6 +23,7 @@ import { AlmostThere } from "../components/almost-there.component";
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
+    setStep,
     previousStep,
     nextStep,
     onboardingData,
@@ -112,7 +113,15 @@ export const ProfileSetupScreen = ({ navigation }) => {
       disabled: typeOfPain ? false : true,
     },
   ];
-console.log(step)
+
+  const handleOtherPainType = () => {
+    if (onboardingData.typeOfPain === "Other") {
+      setStep(12);
+      onboardingData.typeOfPain = "";
+    } else {
+      navigation.navigate("Register");
+    }
+  };
 
   return (
     <SafeView>

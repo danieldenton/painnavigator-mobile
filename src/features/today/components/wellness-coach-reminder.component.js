@@ -5,13 +5,15 @@ import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const WellnessCoachReminder = ({ navigation }) => {
   const { wellnessCoachReminded, setWellnessCoachReminded, patchWellnessCoachReminded } =
     useContext(WellnessCoachContext);
+    const { uid} = useContext(AuthenticationContext)
 
   const handleWellnessCoachReminder = () => {
-    patchWellnessCoachReminded()
+    patchWellnessCoachReminded(uid)
     setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
   };

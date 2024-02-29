@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { View } from "react-native";
 import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { EducationContext } from "../../services/education/education.context";
-import { OnboardContext } from "../../services/onboard.context";
+
 import { OutcomeContext } from "../../services/outcome.context";
 import {
   JournalMenuIcon,
@@ -14,9 +14,8 @@ import {
 } from "../../icons";
 
 export const MenuButtons = ({ navigation }) => {
-  const { additionalJournals, educationProgress } =
+  const { additionalJournals, educationProgress, educationProgram } =
     useContext(EducationContext);
-  const { educationProgram } = useContext(OnboardContext);
   const { completedProgram,} = useContext(OutcomeContext)
   const showSmartGoal =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;

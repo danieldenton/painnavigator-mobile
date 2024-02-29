@@ -1,16 +1,16 @@
 import React, { useContext, useRef } from "react";
+import { View } from "react-native";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SentMessage, RecievedMessage, LinkMessage } from "../components/message.component";
 import { Scroll } from "../../../components/scroll.component";
 import { WellnessCoachContext } from "../../../services/wellness-coach/wellness-coach.context";
 import { MessageInput } from "../components/message_input.component";
-import { View } from "react-native";
+
+
 
 export const ConversationScreen = ({ navigation }) => {
     const { clearUnreadMessages, hasUnreadMessages, message, messages, sendMessage, writeMessage } = useContext(WellnessCoachContext);
-
-
 
     const messageElements = messages?.map(message => message.sender_id === 1 ? 
         message.body.startsWith("http") ?

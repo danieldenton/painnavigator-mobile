@@ -1,4 +1,5 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useContext } from "react";
+import { EducationContext } from "./education/education.context";
 
 export const OnboardContext = createContext();
 
@@ -22,8 +23,8 @@ export const OnboardContextProvider = ({ children }) => {
     spineSurgery: "",
   });
   const [providerId, setProviderId] = useState(null);
-  const [educationProgram, setEducationProgram] = useState(1);
   const [tour, setTour] = useState(null);
+  const { educationProgram, setEducationProgram } = useContext(EducationContext)
 
   const handlePossibleEducationPrograms = (possiblePrograms) => {
     const painInjectionsAndSpineSurgery =

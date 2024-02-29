@@ -8,16 +8,53 @@ import {
   patchExpoPushToken,
   postUser,
 } from "./authentication.service";
+import {
+  patchSkippedMovementUnits,
+  patchCompletedMovementUnits,
+} from "../movement/movement.service";
+import { EducationContext } from "../education/education.context";
+import { ProfileContext } from "../profile/profile-context";
+import { OutcomeContext } from "../outcome.context";
+import { MovementContext } from "../movement/movement.context";
 
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
-  const { onboardingData, setError, providerId, educationProgram } =
-    useContext(OnboardContext);
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const uid = user?.user.uid;
+
+  const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
+  const { setEducationProgram, educationProgram, setEducationProgress } =
+    useContext(EducationContext);
+  const { onboardingData, setError, providerId } = useContext(OnboardContext);
+  const { setCompletedProgram } = useContext(OutcomeContext);
+  const {
+    setMovementProgress,
+    completedMovementModules,
+    skippedMovementModules,
+  } = useContext(MovementContext);
+
+  async function getUser(setWellnessCoachReminded) {
+    try {
+      const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
+      const data = response.data.data.attributes;
+      const eProgress = data.education_progress.education_progress
+        ? data.education_progress.education_progress
+        : data.education_progress.progress;
+      setUserInfo(data.profile);
+      setEducationProgram(data.education_program);
+      setEducationProgress(eProgress);
+      setMovementProgress(data.movement_progress.progress);
+      setProfileComplete(data.profile.profile_status === 1);
+      setCompletedProgram(data.completed_program === true);
+      setLastDateOnApp(data.last_date_on_app);
+      setWellnessCoachReminded(data.wellness_coach_reminded);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const onLogin = (email, password) => {
     setUserLoading(true);
@@ -109,7 +146,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       console.log("error loading user", e);
     }
   };
-  
+
   useEffect(() => {
     loadUser();
   }, []);
@@ -125,6 +162,19 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   }, [user, expoPushToken]);
 
+  // TODO get these out of here
+  useEffect(() => {
+    if (skippedMovementModules) {
+      patchSkippedMovementUnits(uid, skippedMovementModules);
+    }
+  }, [skippedMovementModules]);
+
+  useEffect(() => {
+    if (completedMovementModules) {
+      patchCompletedMovementUnits(uid, completedMovementModules);
+    }
+  }, [completedMovementModules]);
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -136,8 +186,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         userLoading,
         signOut,
         expoPushToken,
-        outcomeData,
-        setOutcomeData,
         lastDateOnApp,
         setLastDateOnApp,
         resetPassword,
