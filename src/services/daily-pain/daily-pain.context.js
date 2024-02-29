@@ -26,13 +26,14 @@ export const DailyPainContextProvider = ({ children }) => {
     }
   }
 
+  // TODO fix graph response
   async function postDailyPainScore(userUid) {
     const score = {
       uid: userUid,
       score: dailyPainScore.score,
       date_time_value: Date.now(),
     };
-    setDailyPainScores(score, ...dailyPainScores);
+    // setDailyPainScores(score, ...dailyPainScores);
     try {
       const response = await axios.post(
         `${API_URL}/api/v2/daily_pain_scores`,
