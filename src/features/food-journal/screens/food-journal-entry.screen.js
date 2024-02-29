@@ -4,7 +4,7 @@ import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBar } from "../../../components/journals/navigation-bar.component";
 import { FoodJournalEntry } from "../components/food-journal-entry.component";
 import { ExitModal } from "../../../components/journals/exit-modal.component";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal.context";
 
 export const FoodJournalEntryScreen = ({ navigation, route }) => {
     const { journalId } = route.params;

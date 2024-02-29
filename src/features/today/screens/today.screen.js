@@ -16,7 +16,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
@@ -37,7 +37,7 @@ import { timeZonedTodaysDate } from "../../../utils";
 export const TodayScreen = ({ navigation }) => {
   const { uid, getUser } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
-  const { getDailyPainScores, painScoreToday } = useContext(DailyPainContext);
+  const { painScoreToday } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
   const { painJournalToday } = useContext(PainJournalContext);
@@ -59,7 +59,6 @@ export const TodayScreen = ({ navigation }) => {
 
   useEffect(() => {
     getUser();
-    getDailyPainScores(uid);
     getEducationModuleCompletions(uid);
   }, []);
 
@@ -145,10 +144,10 @@ export const TodayScreen = ({ navigation }) => {
             {painJournalToday ? (
               <DailyGoalCompleted type={"Pain Journal"} />
             ) : null}
-            {moodJournalToday === timeZonedTodaysDate ? (
+            {moodJournalToday  ? (
               <DailyGoalCompleted type={"Mood Journal"} />
             ) : null}
-            {lastFoodJournal === timeZonedTodaysDate ? (
+            {foodJournalToday ? (
               <DailyGoalCompleted type={"Food Journal"} />
             ) : null}
           </View>

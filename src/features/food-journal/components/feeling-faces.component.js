@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { Pressable } from "react-native";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal.context";
 import { 
     HappyFace, 
     HappyFaceSelected, 

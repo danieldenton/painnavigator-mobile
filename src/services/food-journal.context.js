@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { AuthenticationContext } from "../authentication.context";
-import { FOOD_JOURNAL_EVENTS } from "../../amplitude-events";
-import { formatDate, timeZonedTodaysDate } from "../../utils";
+import { AuthenticationContext } from "./authentication.context";
+import { FOOD_JOURNAL_EVENTS } from "../amplitude-events";
+import { formatDate, timeZonedTodaysDate } from "../utils";
 
 export const FoodJournalContext = createContext();
 

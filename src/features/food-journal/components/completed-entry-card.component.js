@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Card } from "react-native-paper";
 import { FeelingsDiagram } from "./feelings-diagram.component";
 import { EditButton } from "./edit-button.component";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal.context";
 
 const EntryCard = styled(Card)`
     flex: 1;

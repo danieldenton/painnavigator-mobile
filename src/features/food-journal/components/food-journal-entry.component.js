@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal.context";
 import { track } from '@amplitude/analytics-react-native'
 import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
