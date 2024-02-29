@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { useIsFocused } from "@react-navigation/native";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ButtonSection } from '../../../components/journals/journal.styles';
@@ -35,12 +34,11 @@ export const DescriptionHelpMessage = styled.Text`
 export const PainTrackerComponent = ({ navigation }) => {
     const { dailyPainScores, getDailyPainScores } = useContext(DailyPainContext)
     const { uid } = useContext(AuthenticationContext)
-    const isFocused = useIsFocused()
    
 
     useEffect(() => {
         getDailyPainScores(uid)
-    }, [isFocused])
+    }, [])
     
     const startDate = formatDate(dailyPainScores[0]?.date_time_value)
 

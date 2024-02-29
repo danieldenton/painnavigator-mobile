@@ -52,6 +52,7 @@ export const DailyPainContextProvider = ({ children }) => {
         score: dailyPainScore.score,
         date_time_value: Date.now(),
       });
+      setDailyPainStep(1)
       return response.data;
     } catch (error) {
       console.error(error);
@@ -67,6 +68,7 @@ export const DailyPainContextProvider = ({ children }) => {
           date_time_value: Date.now(),
         }
       );
+      setDailyPainStep(1)
       return response.data;
     } catch (error) {
       console.error(error);
@@ -79,7 +81,6 @@ export const DailyPainContextProvider = ({ children }) => {
     } else {
       setDailyPainScore(postDailyPainScore(uid));
     }
-    setDailyPainStep(1);
   };
 
   return (
