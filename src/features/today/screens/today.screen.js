@@ -45,7 +45,7 @@ export const TodayScreen = ({ navigation }) => {
   const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
   const { lastPainJournal } = useContext(PainJournalContext);
-  const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
+  const { lastMoodJournal } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
   const { movementModulesOnScreen } = useContext(MovementContext);
   const {
@@ -59,7 +59,6 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
 
-  const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   
   const isFocused = useIsFocused();
