@@ -16,7 +16,6 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
-import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
@@ -68,7 +67,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getDailyPainScores(uid);
-    getMoodJournals(uid, setMoodJournals);
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
   }, []);
