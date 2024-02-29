@@ -36,10 +36,10 @@ export const PainJournalContextProvider = ({ children }) => {
     }
   };
 
-  async function postPainJournal(uid, painJournal, setPainJournals) {
+  async function postPainJournal(newPainJournal) {
     try {
       const response = await axios.post(`${API_URL}/api/v1/pain_journals`, {
-        pain_journal: painJournal,
+        pain_journal: newPainJournal,
         uid: uid,
       });
       const data = response.data.data.attributes;
@@ -97,7 +97,7 @@ export const PainJournalContextProvider = ({ children }) => {
       intensity_after: painJournal.intensityAfter,
       date_time_value: Date.now(),
     };
-    postPainJournal(uid, newPainJournal, setPainJournals);
+    postPainJournal(newPainJournal);
     setTimeout(() => {
       resetPainJournal(false);
     }, 1000);
