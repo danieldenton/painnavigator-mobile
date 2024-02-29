@@ -4,7 +4,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
-import { EducationContext } from "../../../services/education/education.context"
+import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
@@ -44,13 +44,9 @@ import {
 export const TodayScreen = ({ navigation }) => {
   const { uid, getUser } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
-  const {
-    getDailyPainScores,
-    painScoreToday 
-  } = useContext(DailyPainContext);
+  const { getDailyPainScores, painScoreToday } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
-  const { getSmartGoals, activeGoal, setActiveGoal, setFinishedGoals } =
-    useContext(SmartGoalContext);
+  const { getSmartGoals, activeGoal } = useContext(SmartGoalContext);
   const { painJournals, setPainJournals } = useContext(PainJournalContext);
   const { moodJournals, setMoodJournals } = useContext(MoodJournalContext);
   const { foodJournals, setFoodJournals } = useContext(FoodJournalContext);
@@ -58,26 +54,21 @@ export const TodayScreen = ({ navigation }) => {
   const {
     getEducationModuleCompletions,
     educationProgress,
-    educationModuleCompletionData,
     educationProgram,
-    completedAllEducationModules
+    completedAllEducationModules,
+    lastEducationModuleId,
+    lastCompletedEducationModuleDate
   } = useContext(EducationContext);
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
-  
+
   const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
   );
-  const lastEducationModuleId = educationModuleCompletionData[0]?.module_id;
-  const lastCompletedEducationModule = educationModuleCompletionData.find(
-    (module) => module.status === "completed"
-  );
-  const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
-    lastCompletedEducationModule?.created_at
-  );
+  
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -89,13 +80,10 @@ export const TodayScreen = ({ navigation }) => {
     getFoodJournals(uid, setFoodJournals);
     getEducationModuleCompletions(uid);
   }, []);
-  
 
   useEffect(() => {
     getMessages(uid);
   }, [messages]);
-
-  
 
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
@@ -163,7 +151,7 @@ export const TodayScreen = ({ navigation }) => {
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
             </>
-           ) : null}
+          ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
             {hasUnreadMessages ? (

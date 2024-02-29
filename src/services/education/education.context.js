@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json";
+import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();
 
@@ -17,6 +18,11 @@ export const EducationContextProvider = ({ children }) => {
     educationPrograms[educationProgram - 1].educationModuleIds;
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
+  const lastCompletedEducationModule = educationModuleCompletionData[0];
+  const lastEducationModuleId = lastCompletedEducationModule.module_id;
+  const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
+    lastCompletedEducationModule?.created_at
+  );
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
   const additionalJournals =
@@ -140,7 +146,10 @@ export const EducationContextProvider = ({ children }) => {
         shorterProgram,
         additionalJournals,
         moodJournalReady,
-        completedAllEducationModules
+        completedAllEducationModules,
+        lastCompletedEducationModule,
+        lastEducationModuleId,
+        lastCompletedEducationModuleDate,
       }}
     >
       {children}
