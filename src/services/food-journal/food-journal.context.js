@@ -19,7 +19,7 @@ export const FoodJournalContextProvider = ({ children }) => {
   const [trackExitEvent, setTrackExitEvent] = useState("");
   const { uid } = useContext(AuthenticationContext);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
-  const foodJournalToday = lastFoodJournal === timeZonedTodaysDate
+  const foodJournalToday = lastFoodJournal === timeZonedTodaysDate;
 
   const getFoodJournals = async () => {
     try {
@@ -31,6 +31,20 @@ export const FoodJournalContextProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  async function postFoodJournal(journalEntry) {
+    try {
+      const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
+        food_journal: journalEntry,
+        uid: uid,
+      });
+      const data = response.data.data.attributes;
+      setFoodJournals((prevJournals) => [data, ...prevJournals]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function patchFoodJournal(journalId, journalEntry, setFoodJournals) {
     try {
       const response = await axios.patch(
@@ -43,19 +57,6 @@ export const FoodJournalContextProvider = ({ children }) => {
           journal.id === journalId ? data : journal
         )
       );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function postFoodJournal(uid, journalEntry, setFoodJournals) {
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
-        food_journal: journalEntry,
-        uid: uid,
-      });
-      const data = response.data.data.attributes;
-      setFoodJournals((prevJournals) => [data, ...prevJournals]);
     } catch (error) {
       console.error(error);
     }
@@ -83,7 +84,7 @@ export const FoodJournalContextProvider = ({ children }) => {
       [meal.toLowerCase()]: JSON.stringify(foodJournal),
       date_time_value: Date.now(),
     };
-    postFoodJournal(uid, mealEntry, setFoodJournals);
+    postFoodJournal(mealEntry);
     setTimeout(() => {
       resetFoodJournal(false);
     }, 1000);
@@ -103,8 +104,8 @@ export const FoodJournalContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getFoodJournals()
-  }, [])
+    getFoodJournals();
+  }, []);
 
   useEffect(() => {
     if (meal === "Breakfast") {
@@ -138,7 +139,7 @@ export const FoodJournalContextProvider = ({ children }) => {
         setFoodJournal,
         setFoodJournals,
         setMeal,
-        foodJournalToday
+        foodJournalToday,
       }}
     >
       {children}

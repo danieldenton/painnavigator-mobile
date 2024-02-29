@@ -17,7 +17,6 @@ import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
-import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
@@ -33,10 +32,7 @@ import {
   ProfileSetup,
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
-import {
-  formatDate,
-  timeZonedTodaysDate,
-} from "../../../utils";
+import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, getUser } = useContext(AuthenticationContext);
@@ -54,11 +50,11 @@ export const TodayScreen = ({ navigation }) => {
     educationProgram,
     completedAllEducationModules,
     lastEducationModuleId,
-    lastCompletedEducationModuleDate
+    lastCompletedEducationModuleDate,
   } = useContext(EducationContext);
   const { getMessages, hasUnreadMessages, messages } =
     useContext(WellnessCoachContext);
-  
+
   const isFocused = useIsFocused();
 
   useEffect(() => {
