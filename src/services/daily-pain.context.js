@@ -1,8 +1,8 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { formatDate, timeZonedTodaysDate } from "../utils";
-import { AuthenticationContext } from "./authentication.context";
+
 
 export const DailyPainContext = createContext();
 
@@ -18,9 +18,8 @@ export const DailyPainContextProvider = ({ children }) => {
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
   const painScoreToday = lastDailyPainScoreDate === timeZonedTodaysDate
-  const { uid } = useContext(AuthenticationContext)
 
-  async function getDailyPainScores() {
+  async function getDailyPainScores(uid) {
     try {
       const response = await axios.get(`${API_URL}/api/v2/daily_pain_scores`, {
         params: {
@@ -70,10 +69,6 @@ export const DailyPainContextProvider = ({ children }) => {
       setDailyPainScore(postDailyPainScore(uid));
     }
   };
-
-  useEffect(() => {
-    getDailyPainScores()
-  }, [])
 
   useEffect(() => {
     if (painScoreToday) {

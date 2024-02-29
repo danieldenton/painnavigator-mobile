@@ -37,7 +37,7 @@ import { timeZonedTodaysDate } from "../../../utils";
 export const TodayScreen = ({ navigation }) => {
   const { uid, getUser } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
-  const { painScoreToday } = useContext(DailyPainContext);
+  const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
   const { painJournalToday } = useContext(PainJournalContext);
@@ -60,6 +60,7 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getEducationModuleCompletions(uid);
+    getDailyPainScores(uid)
   }, []);
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export const EducationContextProvider = ({ children }) => {
   const completedAllEducationModules =
     educationProgress > educationProgramLength;
   const lastCompletedEducationModule = educationModuleCompletionData[0];
-  const lastEducationModuleId = lastCompletedEducationModule.module_id;
+  const lastEducationModuleId = lastCompletedEducationModule?.module_id;
   const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
     lastCompletedEducationModule?.created_at
   );
