@@ -13,12 +13,13 @@ export const DailyPainContextProvider = ({ children }) => {
   });
   const [dailyPainScores, setDailyPainScores] = useState([]);
   const [dailyPainStep, setDailyPainStep] = useState(0);
-  const painScoreToday = formatDate(
+  const lastDailyPainScoreDate = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
+  const painScoreToday = lastDailyPainScoreDate === timeZonedTodaysDate
 
   useEffect(() => {
-    if (painScoreToday === timeZonedTodaysDate) {
+    if (painScoreToday) {
       setDailyPainScore(dailyPainScores[dailyPainScores.length - 1]);
       setDailyPainStep(1);
     } else {

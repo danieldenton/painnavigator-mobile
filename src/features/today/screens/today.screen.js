@@ -48,7 +48,7 @@ export const TodayScreen = ({ navigation }) => {
   const { tour } = useContext(OnboardContext);
   const {
     getDailyPainScores,
-    painScoreToday
+    painScoreToday 
   } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
   const { activeGoal, setActiveGoal, setFinishedGoals } =
@@ -92,11 +92,13 @@ export const TodayScreen = ({ navigation }) => {
     getEducationModuleCompletions(uid);
   }, []);
 
+
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
       patchLastDateOnApp(uid, timeZonedTodaysDate);
     }
   }, [lastDateOnApp]);
+  
 
   useEffect(() => {
     getMessages(uid);
