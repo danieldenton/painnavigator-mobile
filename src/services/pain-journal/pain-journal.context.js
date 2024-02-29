@@ -49,7 +49,7 @@ export const PainJournalContextProvider = ({ children }) => {
     }
   }
 
-  async function patchPainJournal(journalId, painJournal, setPainJournals) {
+  async function patchPainJournal(updatedJournal) {
     try {
       const response = await axios.patch(
         `${API_URL}/api/v1/pain_journals/${journalId}`,
@@ -58,7 +58,7 @@ export const PainJournalContextProvider = ({ children }) => {
       const data = response.data.data.attributes;
       setPainJournals((prevJournals) =>
         prevJournals.map((journal) =>
-          journal.id === journalId ? data : journal
+          journal.id === updatedJournal.id ? data : journal
         )
       );
     } catch (error) {
@@ -157,13 +157,12 @@ export const PainJournalContextProvider = ({ children }) => {
           }
         : journal
     );
-    setPainJournals(newJournals);
-    patchPainJournal(reviewJournal.id, reviewJournal, setPainJournals);
+    patchPainJournal(reviewJournal);
   };
 
   useEffect(() => {
-    getPainJournals()
-  }, [])
+    getPainJournals();
+  }, []);
 
   return (
     <PainJournalContext.Provider
@@ -186,7 +185,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournal,
         setPainJournals,
         setReviewJournal,
-        lastPainJournal
+        lastPainJournal,
       }}
     >
       {children}
