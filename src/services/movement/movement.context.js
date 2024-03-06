@@ -4,12 +4,10 @@ import { movementVideos } from "../../features/movement/data/movement-videos-dat
 import { post } from "./movement.service";
 import { track } from "@amplitude/analytics-react-native";
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
-import { EducationContext } from "../education/education.context";
 
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-  const { educationProgram } = useContext(EducationContext)
   const [movementProgress, setMovementProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState(
     movementModules.find((module) => module.id === movementProgress)
@@ -17,8 +15,7 @@ export const MovementContextProvider = ({ children }) => {
   const [moduleComplete, setModuleComplete] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();
   const [completedVideos, setCompletedVideos] = useState(0);
-  const movementModulesOnScreen =
-    educationProgram < 10 && movementProgress < 36;
+  const movementModulesOnScreen = movementProgress < 36;
   const [completedMovementModules, setCompletedMovementModules] =
     useState(null);
   const [skippedMovementModules, setSkippedMovementModules] = useState(null);
