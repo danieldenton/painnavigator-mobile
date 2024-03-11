@@ -39,10 +39,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
 
-  async function postUser() {
+  async function postUser(strippedOnboardingData) {
     const userData = {
       uid: uid,
-      ...onboardingData,
+      ...strippedOnboardingData,
     };
     await axios.post(`${API_URL}/api/v2/users`, { user: userData });
   }
@@ -61,6 +61,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     try {
       const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
       const data = response.data.data.attributes;
+      console.log(data)
       const eProgress = data.education_progress.education_progress
         ? data.education_progress.education_progress
         : data.education_progress.progress;
@@ -138,7 +139,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
         };
-        postUser(u.user.uid, strippedOnboardingData);
+        postUser(strippedOnboardingData);
         setUser(u);
       })
       .catch((e) => {

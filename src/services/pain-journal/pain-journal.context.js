@@ -161,13 +161,10 @@ export const PainJournalContextProvider = ({ children }) => {
     patchPainJournal(reviewJournal);
   };
 
-  useEffect(() => {
-    getPainJournals();
-  }, []);
-
   return (
     <PainJournalContext.Provider
       value={{
+        getPainJournals,
         cancelEdits,
         changes,
         changeEntry,

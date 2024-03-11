@@ -160,13 +160,10 @@ export const MoodJournalContextProvider = ({ children }) => {
     setChanges("");
   };
 
-  useEffect(() => {
-    getMoodJournals();
-  }, []);
-
   return (
     <MoodJournalContext.Provider
       value={{
+        getMoodJournals,
         cancelEdits,
         changes,
         changeEntry,

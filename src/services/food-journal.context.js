@@ -104,10 +104,6 @@ export const FoodJournalContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getFoodJournals();
-  }, []);
-
-  useEffect(() => {
     if (meal === "Breakfast") {
       setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL);
       setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_BREAKFAST);
@@ -126,6 +122,7 @@ export const FoodJournalContextProvider = ({ children }) => {
   return (
     <FoodJournalContext.Provider
       value={{
+        getFoodJournals,
         updateFoodJournal,
         changeEntry,
         completeFoodJournal,
