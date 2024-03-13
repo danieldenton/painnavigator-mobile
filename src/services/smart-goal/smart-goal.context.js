@@ -189,10 +189,6 @@ export const SmartGoalContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getSmartGoals()
-  }, [])
-
-  useEffect(() => {
     setReviewGoal(activeGoal);
   }, [activeGoal]);
 

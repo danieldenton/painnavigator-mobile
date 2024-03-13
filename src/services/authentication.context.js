@@ -61,7 +61,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     try {
       const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
       const data = response.data.data.attributes;
-      console.log(data)
       const eProgress = data.education_progress.education_progress
         ? data.education_progress.education_progress
         : data.education_progress.progress;
@@ -187,12 +186,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
-  useEffect(() => {
-    if (lastDateOnApp !== timeZonedTodaysDate) {
-      patchLastDateOnApp();
-    }
-  }, [lastDateOnApp]);
-
   // TODO fix this so it doesnt patch everytime.
   useEffect(() => {
     if (user && expoPushToken) {
@@ -226,7 +219,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         signOut,
         expoPushToken,
         lastDateOnApp,
-        setLastDateOnApp,
+        patchLastDateOnApp,
         resetPassword,
       }}
     >

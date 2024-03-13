@@ -35,7 +35,9 @@ import {
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser } = useContext(AuthenticationContext);
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
+    AuthenticationContext
+  );
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
@@ -60,7 +62,7 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getEducationModuleCompletions(uid);
-    getDailyPainScores(uid)
+    getDailyPainScores(uid);
     getFoodJournals();
     getMoodJournals();
     getPainJournals();
@@ -69,6 +71,12 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getMessages(uid);
   }, [messages]);
+
+  useEffect(() => {
+    if (lastDateOnApp !== timeZonedTodaysDate) {
+      patchLastDateOnApp();
+    }
+  }, [lastDateOnApp]);
 
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
@@ -148,7 +156,7 @@ export const TodayScreen = ({ navigation }) => {
             {painJournalToday ? (
               <DailyGoalCompleted type={"Pain Journal"} />
             ) : null}
-            {moodJournalToday  ? (
+            {moodJournalToday ? (
               <DailyGoalCompleted type={"Mood Journal"} />
             ) : null}
             {foodJournalToday ? (
