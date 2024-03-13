@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { post } from "./movement.service";
 import { track } from "@amplitude/analytics-react-native";
 import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
 
@@ -40,6 +39,25 @@ export const MovementContextProvider = ({ children }) => {
       return;
     }
 
+   async function postMovementModuleCompletion(module, uid) {
+      try {
+        const response = await axios.post(
+          `${API_URL}/api/v1/movement_module_completions`,
+          { movement_module: module, uid: uid }
+        );
+        const data = response.data.data.attributes;
+        const NEXT_MODULE_ID = data.module_id + 1;
+        setMovementProgress(NEXT_MODULE_ID);
+        const nextModule = movementModules.find(
+          (module) => module.id === NEXT_MODULE_ID
+        );
+        setCurrentModule(nextModule);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    
+
     const nextVideoId = currentModule.videos.filter(
       (video) => !video.completed
     )[0].id;
@@ -55,11 +73,10 @@ export const MovementContextProvider = ({ children }) => {
       module_id: currentModule.id,
       status: STATUS_NOT_STARTED,
     };
-    post(module, uid, setMovementProgress, setCurrentModule);
+    postMovementModuleCompletion(module, uid);
   };
 
   const completeVideo = () => {
-    track(MOVEMENT_UNIT_EVENTS.COMPLETE_MOVEMENT_UNIT);
     setCompletedVideos((prevCompleted) => prevCompleted + 1);
     if (!completedMovementModules.includes(currentVideo.id)) {
       setCompletedMovementModules((prevCompleted) => [
