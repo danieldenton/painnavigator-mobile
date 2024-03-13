@@ -42,7 +42,7 @@ export const MovementContextProvider = ({ children }) => {
    async function postMovementModuleCompletion(module, uid) {
       try {
         const response = await axios.post(
-          `${API_URL}/api/v1/movement_module_completions`,
+          `${API_URL}/api/v2/movement_module_completions`,
           { movement_module: module, uid: uid }
         );
         const data = response.data.data.attributes;
