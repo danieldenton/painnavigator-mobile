@@ -54,13 +54,14 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions`,
         { movement_module: module, uid: uid }
       );
-      const data = response.data.data.attributes;
-      const NEXT_MODULE_ID = data.module_id + 1;
-      setMovementProgress(NEXT_MODULE_ID);
-      const nextModule = movementModules.find(
-        (module) => module.id === NEXT_MODULE_ID
-      );
-      setCurrentModule(nextModule);
+      return response
+      // const data = response.data.data.attributes;
+      // const NEXT_MODULE_ID = data.module_id + 1;
+      // setMovementProgress(NEXT_MODULE_ID);
+      // const nextModule = movementModules.find(
+      //   (module) => module.id === NEXT_MODULE_ID
+      // );
+      // setCurrentModule(nextModule);
     } catch (error) {
       console.error(error);
     }
