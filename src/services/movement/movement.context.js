@@ -15,7 +15,7 @@ export const MovementContextProvider = ({ children }) => {
   const movementModulesOnScreen = movementProgress < 36;
   const [completedMovementModules, setCompletedMovementModules] =
     useState(null);
-  const [skippedMovementModules, setSkippedMovementModules] = useState(null);
+  const [skippedMovementVideos, setSkippedMovementVideos] = useState(null);
   const [savedMovementUnits, setSavedMovementUnits] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
   const [isMovement, setIsMovement] = useState(false);
@@ -46,13 +46,32 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(nextVideoData);
   }, [currentModule]);
 
+  async function getMovementModuleCompletions(uid) {
+    try {
+      const response = await axios.get(
+        `${API_URL}/api/v2/movement_module_completions`,
+        { uid: uid }
+      );
+      const data = response.data.data
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].attributes.status === "completed") {
+          setCompletedVideos(...completedVideos, data[i].attributes.video_id)
+        } else if (data[i].attributes.status === "skipped") {
+          setSkippedMovementVideos
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async function postMovementModuleCompletion(module, uid) {
     try {
       const response = await axios.post(
         `${API_URL}/api/v2/movement_module_completions`,
         { movement_module: module, uid: uid }
       );
-      return response
+      return response;
       // const data = response.data.data.attributes;
       // const NEXT_MODULE_ID = data.module_id + 1;
       // setMovementProgress(NEXT_MODULE_ID);
@@ -64,7 +83,6 @@ export const MovementContextProvider = ({ children }) => {
       console.error(error);
     }
   }
-  
 
   const advanceProgress = () => {
     const completed = 0;
@@ -103,7 +121,7 @@ export const MovementContextProvider = ({ children }) => {
       });
       setCompletedMovementModules(sortedData);
     }
-    setSkippedMovementModules((prevSkipped) =>
+    setSkippedMovementVideos((prevSkipped) =>
       prevSkipped.filter((unit) => unit !== unitId)
     );
   };
@@ -134,8 +152,8 @@ export const MovementContextProvider = ({ children }) => {
 
   const skipVideo = () => {
     setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!skippedMovementModules.includes(currentVideo.id)) {
-      setSkippedMovementModules((prevCompleted) => [
+    if (!skippedMovementVideos.includes(currentVideo.id)) {
+      setSkippedMovementVideos((prevCompleted) => [
         ...prevCompleted,
         currentVideo.id,
       ]);
@@ -186,15 +204,15 @@ export const MovementContextProvider = ({ children }) => {
         switchVideo,
         setCompletedMovementModules,
         completedMovementModules,
-        setSkippedMovementModules,
-        skippedMovementModules,
+        setSkippedMovementVideos,
+        skippedMovementVideos,
         setSavedMovementUnits,
         savedMovementUnits,
         saveMovementModule,
         unsaveMovementModule,
         isMovement,
         setIsMovement,
-        movementModulesOnScreen
+        movementModulesOnScreen,
       }}
     >
       {children}

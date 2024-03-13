@@ -4,14 +4,14 @@ import { API_URL } from "@env";
 export async function getMovementUnits(
   uid,
   setCompletedMovementModules,
-  setSkippedMovementModules,
+  setSkippedMovementVideos,
   setSavedMovementUnits
 ) {
   try {
     const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
     const data = response.data.data.attributes.movement_units;
     setCompletedMovementModules(data.completed_movement_units);
-    setSkippedMovementModules(data.skipped_movement_units);
+    setSkippedMovementVideos(data.skipped_movement_units);
     setSavedMovementUnits(data.saved_movement_units);
   } catch (error) {
     console.error(error);

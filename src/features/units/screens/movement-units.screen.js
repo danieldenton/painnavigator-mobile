@@ -13,11 +13,11 @@ export const MovementUnitsScreen = ({ navigation }) => {
   const {
     completedMovementModules,
     completeMovementSkippedUnit,
-    skippedMovementModules,
+    skippedMovementVideos,
     savedMovementUnits,
     setIsMovement,
     setCompletedMovementModules,
-    setSkippedMovementModules,
+    setSkippedMovementVideos,
     setSavedMovementUnits,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
@@ -33,7 +33,7 @@ export const MovementUnitsScreen = ({ navigation }) => {
     getMovementUnits(
       uid,
       setCompletedMovementModules,
-      setSkippedMovementModules,
+      setSkippedMovementVideos,
       setSavedMovementUnits
     );
   }, []);
@@ -53,11 +53,11 @@ export const MovementUnitsScreen = ({ navigation }) => {
   }, [completedMovementModules]);
 
   useEffect(() => {
-    const data = skippedMovementModules?.map((module) =>
+    const data = skippedMovementVideos?.map((module) =>
       movementVideos.find((item) => item.id === module)
     );
     setSkippedMovementModuleData(data);
-  }, [skippedMovementModules]);
+  }, [skippedMovementVideos]);
 
   const movementExpandableCardData = [
     {
