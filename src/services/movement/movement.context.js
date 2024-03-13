@@ -39,25 +39,6 @@ export const MovementContextProvider = ({ children }) => {
       return;
     }
 
-   async function postMovementModuleCompletion(module, uid) {
-      try {
-        const response = await axios.post(
-          `${API_URL}/api/v2/movement_module_completions`,
-          { movement_module: module, uid: uid }
-        );
-        const data = response.data.data.attributes;
-        const NEXT_MODULE_ID = data.module_id + 1;
-        setMovementProgress(NEXT_MODULE_ID);
-        const nextModule = movementModules.find(
-          (module) => module.id === NEXT_MODULE_ID
-        );
-        setCurrentModule(nextModule);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    
-
     const nextVideoId = currentModule.videos.filter(
       (video) => !video.completed
     )[0].id;
@@ -67,11 +48,30 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(nextVideoData);
   }, [currentModule]);
 
+  async function postMovementModuleCompletion(module, uid) {
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/v2/movement_module_completions`,
+        { movement_module: module, uid: uid }
+      );
+      const data = response.data.data.attributes;
+      const NEXT_MODULE_ID = data.module_id + 1;
+      setMovementProgress(NEXT_MODULE_ID);
+      const nextModule = movementModules.find(
+        (module) => module.id === NEXT_MODULE_ID
+      );
+      setCurrentModule(nextModule);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
   const advanceProgress = () => {
-    const STATUS_NOT_STARTED = 0;
+    const completed = 0;
     const module = {
       module_id: currentModule.id,
-      status: STATUS_NOT_STARTED,
+      status: completed,
     };
     postMovementModuleCompletion(module, uid);
   };

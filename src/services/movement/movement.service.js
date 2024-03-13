@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_URL } from "@env";
-import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 
 export async function getMovementUnits(
   uid,
