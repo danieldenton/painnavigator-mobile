@@ -13,9 +13,8 @@ export const MovementContextProvider = ({ children }) => {
   const [currentVideo, setCurrentVideo] = useState();
   const [completedVideos, setCompletedVideos] = useState(0);
   const movementModulesOnScreen = movementProgress < 36;
-  const [completedMovementVideos, setCompletedMovementVideos] =
-    useState(null);
-  const [skippedMovementVideos, setSkippedMovementVideos] = useState(null);
+  const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
+  const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
   const [isMovement, setIsMovement] = useState(false);
@@ -52,12 +51,12 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions`,
         { uid: uid }
       );
-      const data = response.data.data
+      const data = response.data.data;
       for (let i = 0; i < data.length; i++) {
         if (data[i].attributes.status === "completed") {
-          setCompletedVideos(...completedVideos, data[i].attributes.video_id)
+          setCompletedVideos(...completedVideos, data[i].attributes.video_id);
         } else if (data[i].attributes.status === "skipped") {
-          setSkippedMovementVideos
+          setSkippedMovementVideos;
         }
       }
     } catch (error) {
