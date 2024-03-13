@@ -1,8 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { movementModules } from "../../features/movement/data/movement-modules-data.json";
 import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import { track } from "@amplitude/analytics-react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
 
 export const MovementContext = createContext();
 
