@@ -12,9 +12,9 @@ export const MovementUnitScreen = ({ navigation }) => {
     moduleComplete,
     resetModule,
     setIsMovement,
-    setCompletedMovementModules,
+    setCompletedMovementVideos,
     setSkippedMovementVideos,
-    setSavedMovementUnits,
+    setSavedMovementVideos,
     movementProgress,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
@@ -26,9 +26,9 @@ export const MovementUnitScreen = ({ navigation }) => {
     setIsMovement(true);
     getMovementUnits(
       uid,
-      setCompletedMovementModules,
+      setCompletedMovementVideos,
       setSkippedMovementVideos,
-      setSavedMovementUnits
+      setSavedMovementVideos
     );
     if (movementProgress > 35) {
       setCompletionMessage(

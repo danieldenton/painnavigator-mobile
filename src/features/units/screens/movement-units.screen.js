@@ -11,14 +11,14 @@ import { AuthenticationContext } from "../../../services/authentication.context"
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
-    completedMovementModules,
+    completedMovementVideos,
     completeMovementSkippedUnit,
     skippedMovementVideos,
-    savedMovementUnits,
+    savedMovementVideos,
     setIsMovement,
-    setCompletedMovementModules,
+    setCompletedMovementVideos,
     setSkippedMovementVideos,
-    setSavedMovementUnits,
+    setSavedMovementVideos,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
@@ -32,25 +32,25 @@ export const MovementUnitsScreen = ({ navigation }) => {
     setIsMovement(true);
     getMovementUnits(
       uid,
-      setCompletedMovementModules,
+      setCompletedMovementVideos,
       setSkippedMovementVideos,
-      setSavedMovementUnits
+      setSavedMovementVideos
     );
   }, []);
 
   useEffect(() => {
-    const data = savedMovementUnits?.map((module) =>
+    const data = savedMovementVideos?.map((module) =>
       movementVideos.find((item) => item.id === module)
     );
     setSavedMovementModuleData(data);
-  }, [savedMovementUnits]);
+  }, [savedMovementVideos]);
 
   useEffect(() => {
-    const data = completedMovementModules?.map((module) =>
+    const data = completedMovementVideos?.map((module) =>
       movementVideos.find((item) => item.id === module)
     );
     setCompletedMovementModuleData(data);
-  }, [completedMovementModules]);
+  }, [completedMovementVideos]);
 
   useEffect(() => {
     const data = skippedMovementVideos?.map((module) =>

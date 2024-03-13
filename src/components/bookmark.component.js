@@ -6,7 +6,7 @@ import * as Haptics from "expo-haptics";
 import { track } from "@amplitude/analytics-react-native";
 import { MovementContext } from "../services/movement/movement.context";
 import { AuthenticationContext } from "../services/authentication.context";
-import { patchSavedMovementUnits } from "../services/movement/movement.service";
+import { patchSavedMovementVideos } from "../services/movement/movement.service";
 
 export const Bookmark = ({ id, trackEvent }) => {
   const { bookmarks, addToBookmarks, removeFromBookmarks } =
@@ -14,16 +14,16 @@ export const Bookmark = ({ id, trackEvent }) => {
   const {
     saveMovementModule,
     unsaveMovementModule,
-    savedMovementUnits,
+    savedMovementVideos,
     isMovement,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const isBookmarked = bookmarks?.includes(id);
-  const isSavedMovement = savedMovementUnits?.includes(id);
+  const isSavedMovement = savedMovementVideos?.includes(id);
 
   useEffect(() => {
-    patchSavedMovementUnits(uid, savedMovementUnits);
-  }, [savedMovementUnits]);
+    patchSavedMovementVideos(uid, savedMovementVideos);
+  }, [savedMovementVideos]);
 
   return (
     <TouchableOpacity

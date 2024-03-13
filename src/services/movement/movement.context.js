@@ -13,10 +13,10 @@ export const MovementContextProvider = ({ children }) => {
   const [currentVideo, setCurrentVideo] = useState();
   const [completedVideos, setCompletedVideos] = useState(0);
   const movementModulesOnScreen = movementProgress < 36;
-  const [completedMovementModules, setCompletedMovementModules] =
+  const [completedMovementVideos, setCompletedMovementVideos] =
     useState(null);
   const [skippedMovementVideos, setSkippedMovementVideos] = useState(null);
-  const [savedMovementUnits, setSavedMovementUnits] = useState([]);
+  const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [lastMovement, setLastMovement] = useState(null);
   const [isMovement, setIsMovement] = useState(false);
 
@@ -95,8 +95,8 @@ export const MovementContextProvider = ({ children }) => {
 
   const completeVideo = () => {
     setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!completedMovementModules.includes(currentVideo.id)) {
-      setCompletedMovementModules((prevCompleted) => [
+    if (!completedMovementVideos.includes(currentVideo.id)) {
+      setCompletedMovementVideos((prevCompleted) => [
         ...prevCompleted,
         currentVideo.id,
       ]);
@@ -114,12 +114,12 @@ export const MovementContextProvider = ({ children }) => {
   };
 
   const completeMovementSkippedUnit = (unitId) => {
-    if (!completedMovementModules.includes(unitId)) {
-      const newCompletedModules = [...completedMovementModules, unitId];
+    if (!completedMovementVideos.includes(unitId)) {
+      const newCompletedModules = [...completedMovementVideos, unitId];
       const sortedData = newCompletedModules.sort(function (a, b) {
         return a - b;
       });
-      setCompletedMovementModules(sortedData);
+      setCompletedMovementVideos(sortedData);
     }
     setSkippedMovementVideos((prevSkipped) =>
       prevSkipped.filter((unit) => unit !== unitId)
@@ -176,11 +176,11 @@ export const MovementContextProvider = ({ children }) => {
   };
 
   const saveMovementModule = (id) => {
-    setSavedMovementUnits((prevSaved) => [...prevSaved, id]);
+    setSavedMovementVideos((prevSaved) => [...prevSaved, id]);
   };
 
   const unsaveMovementModule = (id) => {
-    setSavedMovementUnits((prevSaved) =>
+    setSavedMovementVideos((prevSaved) =>
       prevSaved.filter((video) => video !== id)
     );
   };
@@ -202,12 +202,12 @@ export const MovementContextProvider = ({ children }) => {
         setLastMovement,
         skipVideo,
         switchVideo,
-        setCompletedMovementModules,
-        completedMovementModules,
+        setCompletedMovementVideos,
+        completedMovementVideos,
         setSkippedMovementVideos,
         skippedMovementVideos,
-        setSavedMovementUnits,
-        savedMovementUnits,
+        setSavedMovementVideos,
+        savedMovementVideos,
         saveMovementModule,
         unsaveMovementModule,
         isMovement,

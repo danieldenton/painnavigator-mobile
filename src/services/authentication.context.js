@@ -31,7 +31,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const { setCompletedProgram } = useContext(OutcomeContext);
   const {
     setMovementProgress,
-    completedMovementModules,
+    completedMovementVideos,
     skippedMovementVideos,
   } = useContext(MovementContext);
   const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
@@ -201,10 +201,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   }, [skippedMovementVideos]);
 
   useEffect(() => {
-    if (completedMovementModules) {
-      patchCompletedMovementUnits(uid, completedMovementModules);
+    if (completedMovementVideos) {
+      patchCompletedMovementUnits(uid, completedMovementVideos);
     }
-  }, [completedMovementModules]);
+  }, [completedMovementVideos]);
 
   return (
     <AuthenticationContext.Provider
