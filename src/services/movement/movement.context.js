@@ -56,7 +56,9 @@ export const MovementContextProvider = ({ children }) => {
         if (data[i].attributes.status === "completed") {
           setCompletedVideos(...completedVideos, data[i].attributes.video_id);
         } else if (data[i].attributes.status === "skipped") {
-          setSkippedMovementVideos;
+          setSkippedMovementVideos(...skippedMovementVideos, data[i].attributes.video_id)
+        } else {
+          continue
         }
       }
     } catch (error) {
