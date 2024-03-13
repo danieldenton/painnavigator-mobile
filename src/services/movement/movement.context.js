@@ -189,6 +189,7 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
+        getMovementModuleCompletions,
         completeVideo,
         completedVideos,
         completeMovementSkippedUnit,
