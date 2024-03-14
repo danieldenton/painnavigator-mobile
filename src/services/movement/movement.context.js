@@ -32,6 +32,8 @@ export const MovementContextProvider = ({ children }) => {
     const lastMovementModule = movementModules.find(
       (module) => module.id === lastMovementCompletion.attributes.module_id
     );
+    const lastVideoIdCompleted = lastMovementCompletion.attributes.video_id;
+
     if (
       lastMovementModule.videos[lastMovementModule.videos.length - 1].id ===
       lastMovementCompletion.attributes.video_id
@@ -46,7 +48,7 @@ export const MovementContextProvider = ({ children }) => {
     } else {
       setCurrentModule(lastMovementModule);
       const indexOfLastVideoCompleted = currentModule.videos.findIndex(
-        (video) => video.id === lastMovementCompletion.attributes.video_id
+        (video) => video.id === lastVideoIdCompleted
       );
       setCurrentVideo(
         movementVideos.find(
@@ -60,6 +62,7 @@ export const MovementContextProvider = ({ children }) => {
     setPlaylistLength(currentModule.videos.length);
     parseMovementVideoCompletions(movementCompletionData);
   }, [movementCompletionData]);
+
 
   function parseMovementVideoCompletions(data) {
     for (let i = 0; i < data.length; i++) {
@@ -109,21 +112,27 @@ export const MovementContextProvider = ({ children }) => {
     }
   }
 
-  const advanceProgress = () => {};
+  const advanceProgress = () => {
+    if (numOfVideosCompleted === playlistLength) {
+      setCurrentModule()
+      setCurrentVideo()
+      setNumOfVideosCompleted(0) 
+    } else {
+      setCurrentVideo()
+      setNumOfVideosCompleted((numOfVideosCompleted) => {return numOfVideosCompleted + 1})
+    }
+  }
+
 
   const completeVideo = () => {
-    setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!completedMovementVideos.includes(currentVideo.id)) {
-      setCompletedMovementVideos((prevCompleted) => [
-        ...prevCompleted,
-        currentVideo.id,
-      ]);
-      const completed = 0;
-      const module = {
-        module_id: currentModule.id,
-        status: completed,
-      };
-      postMovementModuleCompletion(module, uid);
+    const completed = 0;
+    const module = {
+      module_id: currentModule.id,
+      video_id: currentVideo.id,
+      status: completed
+    };
+    postMovementModuleCompletion(module, uid);
+    advanceProgress()
     }
 
     const newVideos = currentModule.videos.map((video) =>
