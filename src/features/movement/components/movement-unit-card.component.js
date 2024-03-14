@@ -53,10 +53,10 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, getPlaylistLength } = useContext(MovementContext);
+  const { currentModule, playlistLength } = useContext(MovementContext);
   const { name, videos } = currentModule;
   const numVideosCompleted = videos.filter((video) => video.completed).length;
-  const totalVideos = videos.length;
+  
   const moduleProgress = numVideosCompleted / totalVideos;
   const circleProgress = useRef(null);
 
@@ -76,10 +76,10 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
         <ModuleCardContent>
           <CardTextSection>
             <CardHeader>{name}</CardHeader>
-            <CardSubHeader>{getPlaylistLength(videos)} MIN</CardSubHeader>
+            <CardSubHeader>{playlistLength} MIN</CardSubHeader>
             {numVideosCompleted > 0 && (
               <UnitProgress>
-                {numVideosCompleted}/{totalVideos} Videos Completed
+                {numVideosCompleted}/{playlistLength} Videos Completed
               </UnitProgress>
             )}
           </CardTextSection>

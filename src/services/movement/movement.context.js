@@ -29,25 +29,26 @@ export const MovementContextProvider = ({ children }) => {
   //   );
   // }, [movementProgress]);
 
-  // useEffect(() => {
-  //   const allVideosCompleted = Object.values(currentModule.videos).every(
-  //     (value) => value.completed === true
-  //   );
+  useEffect(() => {
+    setPlaylistLength(currentModule.videos.length)
+    // const allVideosCompleted = Object.values(currentModule.videos).every(
+    //   (value) => value.completed === true
+    // );
 
-  //   if (allVideosCompleted) {
-  //     setModuleComplete(true);
-  //     advanceProgress();
-  //     return;
-  //   }
+    // if (allVideosCompleted) {
+    //   setModuleComplete(true);
+    //   advanceProgress();
+    //   return;
+    // }
 
-  //   const nextVideoId = currentModule.videos.filter(
-  //     (video) => !video.completed
-  //   )[0].id;
-  //   const nextVideoData = movementVideos.find(
-  //     (video) => video.id === nextVideoId
-  //   );
-  //   setCurrentVideo(nextVideoData);
-  // }, [currentModule]);
+    // const nextVideoId = currentModule.videos.filter(
+    //   (video) => !video.completed
+    // )[0].id;
+    // const nextVideoData = movementVideos.find(
+    //   (video) => video.id === nextVideoId
+    // );
+    // setCurrentVideo(nextVideoData);
+  }, [currentModule]);
 
   function parseMovementProgress(data) {
     const lastDataIndex = data.length - 1;
@@ -60,7 +61,9 @@ export const MovementContextProvider = ({ children }) => {
       lastMovementCompletion.video_id
     ) {
       setCurrentModule(movementModules[lastMovementCompletion.module_id]);
-      setCurrentVideo(movementVideos.find((video) => video.id === currentModule[0]))
+      setCurrentVideo(
+        movementVideos.find((video) => video.id === currentModule.videos[0].id)
+      );
     } else {
       setCurrentModule(movementModules[lastMovementCompletion.module_id - 1]);
       const indexOfLastVideoCompleted = currentModule.findIndex(
@@ -68,7 +71,8 @@ export const MovementContextProvider = ({ children }) => {
       );
       setCurrentVideo(
         movementVideos.find(
-          (video) => video.id === currentModule[indexOfLastVideoCompleted + 1]
+          (video) =>
+            video.id === currentModule.videos[indexOfLastVideoCompleted + 1].id
         )
       );
     }
@@ -232,7 +236,7 @@ export const MovementContextProvider = ({ children }) => {
         completeMovementSkippedUnit,
         currentModule,
         currentVideo,
-        getPlaylistLength,
+        playlistLength,
         lastMovement,
         moduleComplete,
         movementProgress,
