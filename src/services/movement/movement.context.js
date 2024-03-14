@@ -45,6 +45,18 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(nextVideoData);
   }, [currentModule]);
 
+  function separateCompletedAndSkippedMovementVideos(data) {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].attributes.status === "completed") {
+        setCompletedVideos(...completedVideos, data[i].attributes.video_id);
+      } else if (data[i].attributes.status === "skipped") {
+        setSkippedMovementVideos(...skippedMovementVideos, data[i].attributes);
+      } else {
+        continue;
+      }
+    }
+  }
+
   async function getMovementModuleCompletions(uid) {
     try {
       const response = await axios.get(
@@ -52,15 +64,7 @@ export const MovementContextProvider = ({ children }) => {
         { uid: uid }
       );
       const data = response.data.data;
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].attributes.status === "completed") {
-          setCompletedVideos(...completedVideos, data[i].attributes.video_id);
-        } else if (data[i].attributes.status === "skipped") {
-          setSkippedMovementVideos(...skippedMovementVideos, data[i].attributes.video_id)
-        } else {
-          continue
-        }
-      }
+      separateCompletedAndSkippedMovementVideos(data)
     } catch (error) {
       console.error(error);
     }
@@ -73,31 +77,55 @@ export const MovementContextProvider = ({ children }) => {
         { movement_module: module, uid: uid }
       );
       return response;
-      // const data = response.data.data.attributes;
-      // const NEXT_MODULE_ID = data.module_id + 1;
-      // setMovementProgress(NEXT_MODULE_ID);
-      // const nextModule = movementModules.find(
-      //   (module) => module.id === NEXT_MODULE_ID
-      // );
-      // setCurrentModule(nextModule);
     } catch (error) {
       console.error(error);
     }
   }
 
-  const advanceProgress = () => {
-    const completed = 0;
-    const module = {
-      module_id: currentModule.id,
-      status: completed,
-    };
-    postMovementModuleCompletion(module, uid);
-  };
+  async function patchSkippedToCompleteMovementModuleCompletion(moduleId) {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/api/v2/movement_module_completions/${moduleId}`,
+        { movement_module: { status: 0 } }
+      );
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const advanceProgress = () => {};
 
   const completeVideo = () => {
     setCompletedVideos((prevCompleted) => prevCompleted + 1);
     if (!completedMovementVideos.includes(currentVideo.id)) {
       setCompletedMovementVideos((prevCompleted) => [
+        ...prevCompleted,
+        currentVideo.id,
+      ]);
+      const completed = 0;
+      const module = {
+        module_id: currentModule.id,
+        status: completed,
+      };
+      postMovementModuleCompletion(module, uid);
+    }
+
+    const newVideos = currentModule.videos.map((video) =>
+      video.id === currentVideo.id
+        ? {
+            ...video,
+            completed: true,
+          }
+        : video
+    );
+    setCurrentModule({ ...currentModule, videos: newVideos });
+  };
+
+  const skipVideo = () => {
+    setCompletedVideos((prevCompleted) => prevCompleted + 1);
+    if (!skippedMovementVideos.includes(currentVideo.id)) {
+      setSkippedMovementVideos((prevCompleted) => [
         ...prevCompleted,
         currentVideo.id,
       ]);
@@ -149,26 +177,6 @@ export const MovementContextProvider = ({ children }) => {
       setModuleComplete(false);
       setCompletedVideos(0);
     }, 1000);
-  };
-
-  const skipVideo = () => {
-    setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!skippedMovementVideos.includes(currentVideo.id)) {
-      setSkippedMovementVideos((prevCompleted) => [
-        ...prevCompleted,
-        currentVideo.id,
-      ]);
-    }
-
-    const newVideos = currentModule.videos.map((video) =>
-      video.id === currentVideo.id
-        ? {
-            ...video,
-            completed: true,
-          }
-        : video
-    );
-    setCurrentModule({ ...currentModule, videos: newVideos });
   };
 
   const switchVideo = (videoId) => {
