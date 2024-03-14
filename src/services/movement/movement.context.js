@@ -63,8 +63,7 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions`,
         { uid: uid }
       );
-      const data = response.data.data;
-      separateCompletedAndSkippedMovementVideos(data)
+      separateCompletedAndSkippedMovementVideos(response.data.data)
     } catch (error) {
       console.error(error);
     }
