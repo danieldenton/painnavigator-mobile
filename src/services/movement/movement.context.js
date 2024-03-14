@@ -13,18 +13,13 @@ export const MovementContextProvider = ({ children }) => {
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [playlistLength, setPlaylistLength] = useState(null);
   const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(0);
+  const [isMovement, setIsMovement] = useState(false);
+  const [movementProgram, setMovementProgram] = useState(1);
 
   // TODO replace all movementProgress
   const [movementProgress, setMovementProgress] = useState(1);
-
-  const [moduleComplete, setModuleComplete] = useState(false);
-
   // TODO below here is old. It needs to be dealt with
-  const [completedVideos, setCompletedVideos] = useState(0);
   const movementModulesOnScreen = movementProgress < 36;
-
-  const [lastMovement, setLastMovement] = useState(null);
-  const [isMovement, setIsMovement] = useState(false);
 
   useEffect(() => {
     const lastDataIndex = movementCompletionData.length - 1;
@@ -102,10 +97,10 @@ export const MovementContextProvider = ({ children }) => {
     }
   }
 
-  async function patchSkippedToCompleteMovementModuleCompletion(moduleId) {
+  async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
     try {
       const response = await axios.patch(
-        `${API_URL}/api/v2/movement_module_completions/${moduleId}`,
+        `${API_URL}/api/v2/movement_module_completions/${completionId}`,
         { movement_module: { status: 0 } }
       );
       return response;
@@ -133,7 +128,7 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  const completeVideo = async () => {
+  const completeVideo = () => {
     const completed = 0;
     const module = {
       module_id: currentModule.id,
@@ -161,16 +156,22 @@ export const MovementContextProvider = ({ children }) => {
     advanceProgress();
   };
 
-  const completeSkippedMovementUnit = (unitId) => {
-    if (!completedMovementVideos.includes(unitId)) {
-      const newCompletedModules = [...completedMovementVideos, unitId];
-      const sortedData = newCompletedModules.sort(function (a, b) {
-        return a - b;
-      });
+  const completeSkippedMovementUnit = (skippedMovementCompletion) => {
+    patchSkippedToCompleteMovementModuleCompletion(
+      skippedMovementCompletion.id
+    );
+    if (!completedMovementVideos.includes(skippedMovementCompletion.video_id)) {
+      const newCompletedModules = [
+        ...completedMovementVideos,
+        skippedMovementCompletion.video_id,
+      ];
+      const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);
       setCompletedMovementVideos(sortedData);
     }
     setSkippedMovementVideos((prevSkipped) =>
-      prevSkipped.filter((unit) => unit !== unitId)
+      prevSkipped.filter(
+        (skippedUnit) => skippedUnit.id !== skippedMovementCompletion.id
+      )
     );
   };
 
@@ -187,8 +188,8 @@ export const MovementContextProvider = ({ children }) => {
 
   const resetModule = () => {
     setTimeout(() => {
-      setModuleComplete(false);
-      setCompletedVideos(0);
+      // setModuleComplete(false);
+      // setCompletedVideos(0);
     }, 1000);
   };
 
@@ -212,18 +213,15 @@ export const MovementContextProvider = ({ children }) => {
       value={{
         getMovementModuleCompletions,
         completeVideo,
-        completedVideos,
         completeSkippedMovementUnit,
         currentModule,
         currentVideo,
         playlistLength,
         numOfVideosCompleted,
-        lastMovement,
         moduleComplete,
         movementProgress,
         resetModule,
         setMovementProgress,
-        setLastMovement,
         skipVideo,
         switchVideo,
         setCompletedMovementVideos,
