@@ -53,11 +53,10 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, playlistLength } = useContext(MovementContext);
-  const { name, videos } = currentModule;
-  const numVideosCompleted = videos.filter((video) => video.completed).length;
+  const { currentModule, playlistLength, numOfVideosCompleted } = useContext(MovementContext);
+  const { name } = currentModule;
   
-  const moduleProgress = numVideosCompleted / totalVideos;
+  const moduleProgress = numOfVideosCompleted / playlistLength;
   const circleProgress = useRef(null);
 
   useEffect(() => {
@@ -65,7 +64,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
       return;
     }
 
-    if (numVideosCompleted > 0) {
+    if (numOfVideosCompleted > 0) {
       circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
     }
   }, [isFocused, isAndroid]);
@@ -77,14 +76,14 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
           <CardTextSection>
             <CardHeader>{name}</CardHeader>
             <CardSubHeader>{playlistLength} MIN</CardSubHeader>
-            {numVideosCompleted > 0 && (
+            {numOfVideosCompleted > 0 && (
               <UnitProgress>
-                {numVideosCompleted}/{playlistLength} Videos Completed
+                {numOfVideosCompleted}/{playlistLength} Videos Completed
               </UnitProgress>
             )}
           </CardTextSection>
           <CardIconSection>
-            {numVideosCompleted > 0 && (
+            {numOfVideosCompleted > 0 && (
               <Icon>
                 <AnimatedCircularProgress
                   size={70}
@@ -102,7 +101,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
                 </AnimatedCircularProgress>
               </Icon>
             )}
-            {numVideosCompleted === 0 && <MovementModuleIcon />}
+            {numOfVideosCompleted === 0 && <MovementModuleIcon />}
           </CardIconSection>
         </ModuleCardContent>
       </ModuleCard>

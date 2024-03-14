@@ -11,6 +11,7 @@ export const MovementContextProvider = ({ children }) => {
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [playlistLength, setPlaylistLength] = useState(null);
+  const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(0)
 
   const [movementProgress, setMovementProgress] = useState(1);
 
@@ -64,6 +65,7 @@ export const MovementContextProvider = ({ children }) => {
       setCurrentVideo(
         movementVideos.find((video) => video.id === currentModule.videos[0].id)
       );
+      setNumOfVideosCompleted(0)
     } else {
       setCurrentModule(movementModules[lastMovementCompletion.module_id - 1]);
       const indexOfLastVideoCompleted = currentModule.findIndex(
@@ -75,6 +77,7 @@ export const MovementContextProvider = ({ children }) => {
             video.id === currentModule.videos[indexOfLastVideoCompleted + 1].id
         )
       );
+      setNumOfVideosCompleted(indexOfLastVideoCompleted + 1)
     }
   }
 
