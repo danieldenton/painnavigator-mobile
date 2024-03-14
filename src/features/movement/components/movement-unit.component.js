@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { View } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { VideoInfo } from "./video-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
@@ -6,9 +7,8 @@ import { NextUp } from "../../education/components/education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
-import { View } from "react-native";
-import { track } from "@amplitude/analytics-react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
+
+
 
 export const MovementUnit = () => {
   const {
@@ -32,7 +32,6 @@ export const MovementUnit = () => {
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
-  const trackEvent = MOVEMENT_UNIT_EVENTS.SWITCH_MOVEMENT_VIDEO_IN_LIST;
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
@@ -41,7 +40,6 @@ export const MovementUnit = () => {
       firstVideo={index === 0 && true}
       switchVideo={switchVideo}
       videoId={video.id}
-      trackEvent={trackEvent}
     />
   ));
 
@@ -73,10 +71,6 @@ export const MovementUnit = () => {
     }
   }, [status.didJustFinish]);
 
-  // const handlePress = () => {
-  //   skipVideo();
-  //   track(MOVEMENT_UNIT_EVENTS.SKIP_MOVEMENT_UNIT);
-  // };
 
   return (
     <>
