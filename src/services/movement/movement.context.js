@@ -6,11 +6,10 @@ export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
   const [movementProgress, setMovementProgress] = useState(1);
-  const [currentModule, setCurrentModule] = useState(
-    movementModules.find((module) => module.id === movementProgress)
-  );
+  const [currentModule, setCurrentModule] = useState(1);
   const [moduleComplete, setModuleComplete] = useState(false);
   const [currentVideo, setCurrentVideo] = useState();
+  // TODO below here is old. It needs to be dealt with
   const [completedVideos, setCompletedVideos] = useState(0);
   const movementModulesOnScreen = movementProgress < 36;
   const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
@@ -45,6 +44,19 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(nextVideoData);
   }, [currentModule]);
 
+  function parseMovementProgress(data) {
+    const lastDataIndex = data.length - 1;
+    const lastMovementCompletion = data[lastDataIndex];
+    const lastMovementModule = movementModules.find(module => module.id === lastMovementCompletion.module_id)
+    if (lastMovementModule[lastMovementModule.length -1].id === lastMovementCompletion.video_id) {
+      setCurrentModule(movementModules[lastMovementCompletion.module_id + 1])
+    } else {
+      setCurrentModule(movementModules[lastMovementCompletion.module_id])
+      const indexOfLastVideoCompleted = currentModule.findIndex(video => video.id === lastMovementCompletion.video_id)
+      setCurrentVideo(movementVideos.find(video => video.id === currentModule[indexOfLastVideoCompleted + 1]))
+    }
+  }
+
   function parseMovementVideos(data) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].attributes.status === "completed") {
@@ -63,7 +75,8 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions`,
         { uid: uid }
       );
-      parseMovementVideos(response.data.data)
+      parseMovementProgress(data)
+      parseMovementVideos(response.data.data);
     } catch (error) {
       console.error(error);
     }
