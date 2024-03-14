@@ -62,7 +62,7 @@ export const MovementContextProvider = ({ children }) => {
     for (let i = 0; i < data.length; i++) {
       if (data[i].attributes.status === "completed") {
         setCompletedMovementVideos(
-          ...completedVideos,
+          ...completedMovementVideos,
           data[i].attributes.video_id
         );
       } else if (data[i].attributes.status === "skipped") {

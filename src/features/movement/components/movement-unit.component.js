@@ -13,7 +13,8 @@ import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
 export const MovementUnit = () => {
   const {
     completeVideo,
-    completedVideos,
+    numOfVideosCompleted,
+    playlistLength,
     currentModule,
     currentVideo,
     switchVideo,
@@ -27,7 +28,7 @@ export const MovementUnit = () => {
     (video) => !video.completed
   );
   const allVideosCompleted =
-    completedVideos === currentModule.videos.length - 1;
+    numOfVideosCompleted === playlistLength
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
