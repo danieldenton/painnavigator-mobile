@@ -45,7 +45,7 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(nextVideoData);
   }, [currentModule]);
 
-  function separateCompletedAndSkippedMovementVideos(data) {
+  function parseMovementVideos(data) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].attributes.status === "completed") {
         setCompletedVideos(...completedVideos, data[i].attributes.video_id);
@@ -63,7 +63,7 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions`,
         { uid: uid }
       );
-      separateCompletedAndSkippedMovementVideos(response.data.data)
+      parseMovementVideos(response.data.data)
     } catch (error) {
       console.error(error);
     }
