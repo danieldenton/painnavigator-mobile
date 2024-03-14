@@ -63,11 +63,13 @@ export const MovementContextProvider = ({ children }) => {
     parseMovementVideoCompletions(movementCompletionData);
   }, [movementCompletionData]);
 
-
   function parseMovementVideoCompletions(data) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].attributes.status === "completed") {
-        setCompletedVideos(...completedVideos, data[i].attributes.video_id);
+        setCompletedMovementVideos(
+          ...completedVideos,
+          data[i].attributes.video_id
+        );
       } else if (data[i].attributes.status === "skipped") {
         setSkippedMovementVideos(...skippedMovementVideos, data[i].attributes);
       } else {
@@ -114,59 +116,52 @@ export const MovementContextProvider = ({ children }) => {
 
   const advanceProgress = () => {
     if (numOfVideosCompleted === playlistLength) {
-      setCurrentModule()
-      setCurrentVideo()
-      setNumOfVideosCompleted(0) 
+      setCurrentModule(movementModules[currentModule.id]);
+      setCurrentVideo(
+        movementVideos.find((video) => video.id === currentModule.videos[0].id)
+      );
+      setNumOfVideosCompleted(0);
     } else {
-      setCurrentVideo()
-      setNumOfVideosCompleted((numOfVideosCompleted) => {return numOfVideosCompleted + 1})
+      setCurrentVideo(
+        movementVideos.find(
+          (video) => video.id === currentModule.videos[numOfVideosCompleted].id
+        )
+      );
+      setNumOfVideosCompleted((numOfVideosCompleted) => {
+        return numOfVideosCompleted + 1;
+      });
     }
-  }
+  };
 
-
-  const completeVideo = () => {
+  const completeVideo = async () => {
     const completed = 0;
     const module = {
       module_id: currentModule.id,
       video_id: currentVideo.id,
-      status: completed
+      status: completed,
     };
     postMovementModuleCompletion(module, uid);
-    advanceProgress()
+    if (!completedMovementVideos.includes(currentVideo.id)) {
+      const newCompletedModules = [...completedMovementVideos, currentVideo.id];
+      const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);
+      setCompletedMovementVideos(sortedData);
     }
-
-    const newVideos = currentModule.videos.map((video) =>
-      video.id === currentVideo.id
-        ? {
-            ...video,
-            completed: true,
-          }
-        : video
-    );
-    setCurrentModule({ ...currentModule, videos: newVideos });
+    advanceProgress();
   };
 
-  const skipVideo = () => {
-    setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!skippedMovementVideos.includes(currentVideo.id)) {
-      setSkippedMovementVideos((prevCompleted) => [
-        ...prevCompleted,
-        currentVideo.id,
-      ]);
-    }
-
-    const newVideos = currentModule.videos.map((video) =>
-      video.id === currentVideo.id
-        ? {
-            ...video,
-            completed: true,
-          }
-        : video
-    );
-    setCurrentModule({ ...currentModule, videos: newVideos });
+  const skipVideo = async () => {
+    const skipped = 1;
+    const module = {
+      module_id: currentModule.id,
+      video_id: currentVideo.id,
+      status: skipped,
+    };
+    const response = await postMovementModuleCompletion(module, uid);
+    setSkippedVideos([...skippedMovementVideos, response.data.data.attributes]);
+    advanceProgress();
   };
 
-  const completeMovementSkippedUnit = (unitId) => {
+  const completeSkippedMovementUnit = (unitId) => {
     if (!completedMovementVideos.includes(unitId)) {
       const newCompletedModules = [...completedMovementVideos, unitId];
       const sortedData = newCompletedModules.sort(function (a, b) {
@@ -179,22 +174,16 @@ export const MovementContextProvider = ({ children }) => {
     );
   };
 
-  function getPlaylistLength(videos) {
-    const videoArray = videos.map((video) => {
-      const the_video = movementVideos.find((item) => item.id === video.id);
-      const length = Math.ceil(the_video.length / 60);
-
-      return length;
-    });
-
-    const videoLength = videoArray.reduce(
-      (previousVideoRange, currentVideoRange) =>
-        previousVideoRange + currentVideoRange,
-      0
-    );
-
-    return videoLength;
-  }
+  //   const newVideos = currentModule.videos.map((video) =>
+  //     video.id === currentVideo.id
+  //       ? {
+  //           ...video,
+  //           completed: true,
+  //         }
+  //       : video
+  //   );
+  //   setCurrentModule({ ...currentModule, videos: newVideos });
+  // };
 
   const resetModule = () => {
     setTimeout(() => {
@@ -224,7 +213,7 @@ export const MovementContextProvider = ({ children }) => {
         getMovementModuleCompletions,
         completeVideo,
         completedVideos,
-        completeMovementSkippedUnit,
+        completeSkippedMovementUnit,
         currentModule,
         currentVideo,
         playlistLength,
