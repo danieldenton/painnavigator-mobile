@@ -30,21 +30,23 @@ export const MovementContextProvider = ({ children }) => {
     const lastDataIndex = movementCompletionData.length - 1;
     const lastMovementCompletion = movementCompletionData[lastDataIndex];
     const lastMovementModule = movementModules.find(
-      (module) => module.id === lastMovementCompletion.module_id
+      (module) => module.id === lastMovementCompletion.attributes.module_id
     );
     if (
-      lastMovementModule[lastMovementModule.length - 1].videos.id ===
-      lastMovementCompletion.video_id
+      lastMovementModule.videos[lastMovementModule.videos.length - 1].id ===
+      lastMovementCompletion.attributes.video_id
     ) {
-      setCurrentModule(movementModules[lastMovementCompletion.module_id]);
+      setCurrentModule(
+        movementModules[lastMovementCompletion.attributes.module_id]
+      );
       setCurrentVideo(
         movementVideos.find((video) => video.id === currentModule.videos[0].id)
       );
       setNumOfVideosCompleted(0);
     } else {
-      setCurrentModule(movementModules[lastMovementCompletion.module_id - 1]);
-      const indexOfLastVideoCompleted = currentModule.findIndex(
-        (video) => video.id === lastMovementCompletion.video_id
+      setCurrentModule(lastMovementModule);
+      const indexOfLastVideoCompleted = currentModule.videos.findIndex(
+        (video) => video.id === lastMovementCompletion.attributes.video_id
       );
       setCurrentVideo(
         movementVideos.find(
@@ -54,6 +56,7 @@ export const MovementContextProvider = ({ children }) => {
       );
       setNumOfVideosCompleted(indexOfLastVideoCompleted + 1);
     }
+
     setPlaylistLength(currentModule.videos.length);
     parseMovementVideoCompletions(movementCompletionData);
   }, [movementCompletionData]);
