@@ -47,7 +47,6 @@ export const MovementUnit = () => {
 
   function resetVideo() {
     if (!allVideosCompleted) {
-      track(MOVEMENT_UNIT_EVENTS.PLAY_NEXT_MOVEMENT_VIDEO);
       movementVideo.current.setStatusAsync({ positionMillis: 0 });
     }
   }
@@ -74,10 +73,10 @@ export const MovementUnit = () => {
     }
   }, [status.didJustFinish]);
 
-  const handlePress = () => {
-    skipVideo();
-    track(MOVEMENT_UNIT_EVENTS.SKIP_MOVEMENT_UNIT);
-  };
+  // const handlePress = () => {
+  //   skipVideo();
+  //   track(MOVEMENT_UNIT_EVENTS.SKIP_MOVEMENT_UNIT);
+  // };
 
   return (
     <>
@@ -88,7 +87,7 @@ export const MovementUnit = () => {
         setStatus={setStatus}
         setFullscreenStatus={setFullscreenStatus}
       />
-      <SkipButton handlePress={handlePress} resetVideo={resetVideo} />
+      <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
       <VideoInfo />
       {incompleteVideos.length > 1 && <NextUp />}
       <Scroll
