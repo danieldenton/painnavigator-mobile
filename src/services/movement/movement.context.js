@@ -73,7 +73,7 @@ export const MovementContextProvider = ({ children }) => {
         lastMovementModuleCompletions.length;
       const lastMovementModuleIndex = lastMovementModule.id - 1;
       if (lastModuleComplete) {
-        readyNextModule(lastMovementModuleIndex + 1);
+        readyNextModule(lastMovementModuleIndex);
       } else {
         readyUnfinishedMovementModule(
           lastMovementModule,
