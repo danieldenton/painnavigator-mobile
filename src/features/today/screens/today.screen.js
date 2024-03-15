@@ -62,17 +62,16 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getUser();
     getEducationModuleCompletions(uid);
-    // getMovementModuleCompletions(uid)
-    // getDailyPainScores(uid);
-    // getFoodJournals();
-    // getMoodJournals();
-    // getPainJournals();
-    //  console.log(uid)
+    getMovementModuleCompletions(uid)
+    getDailyPainScores(uid);
+    getFoodJournals();
+    getMoodJournals();
+    getPainJournals();
   }, []);
 
-  // useEffect(() => {
-  //   getMessages(uid);
-  // }, [isFocused]);
+  useEffect(() => {
+    getMessages(uid);
+  }, [isFocused]);
 
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {

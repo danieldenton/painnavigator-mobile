@@ -14,30 +14,29 @@ export const MovementContextProvider = ({ children }) => {
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [playlistLength, setPlaylistLength] = useState(null);
-  const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(0);
+  const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(null);
   const [isMovement, setIsMovement] = useState(false);
   const [movementProgram, setMovementProgram] = useState(1);
-  const moduleComplete = numOfVideosCompleted === playlistLength;
+  // const moduleComplete = numOfVideosCompleted === playlistLength : false
+  const moduleComplete = false;
 
-  // TODO replace all movementProgress
-  const [movementProgress, setMovementProgress] = useState(1);
   // TODO below here is old. It needs to be dealt with
-  const movementModulesComplete = currentModule.id < 37;
+  const movementModulesComplete = currentModule?.id < 37;
 
-  useEffect(() => {
-    if (movementCompletionData) {
-      const lastDataIndex = movementCompletionData.length - 1;
-      const lastMovementCompletion = movementCompletionData[lastDataIndex];
-      console.log(movementCompletionData);
+  function parseMovementProgress(data) {
+    if (data) {
+      const lastDataIndex = data.length - 1;
+      const lastMovementCompletion = data[lastDataIndex];
       const lastMovementModule = movementModules.find(
         (module) => module.id === lastMovementCompletion.attributes.module_id
       );
-      const lastVideoIdCompleted = lastMovementCompletion.video_id;
+      const lastVideoIdCompleted = lastMovementCompletion.attributes.video_id;
 
       if (
         lastMovementModule.videos[lastMovementModule.videos.length - 1].id ===
         lastMovementCompletion.attributes.video_id
       ) {
+        console.log(lastMovementModule.videos.length -1)
         setCurrentModule(
           movementModules[lastMovementCompletion.attributes.module_id]
         );
@@ -61,35 +60,46 @@ export const MovementContextProvider = ({ children }) => {
         );
         setNumOfVideosCompleted(indexOfLastVideoCompleted + 1);
       }
-
-      setPlaylistLength(currentModule.videos.length);
-      parseMovementVideoCompletions(movementCompletionData);
+    } else {
+      console.log("not working");
+      setCurrentModule(movementModules[0]);
+      setCurrentVideo(
+        movementVideos.find((video) => video.id === currentModule.videos[0].id)
+      );
     }
-  }, [movementCompletionData]);
+    setPlaylistLength(currentModule.videos.length);
+  }
 
   function parseMovementVideoCompletions(data) {
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].attributes.status === "completed") {
-        setCompletedMovementVideos(
-          ...completedMovementVideos,
-          data[i].attributes.video_id
-        );
-      } else if (data[i].attributes.status === "skipped") {
-        setSkippedMovementVideos(...skippedMovementVideos, data[i].attributes);
-      } else {
-        continue;
+    if (data) {
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        if (data[i].attributes.status === "completed") {
+          setCompletedMovementVideos(
+            ...completedMovementVideos,
+            data[i].attributes.video_id
+          );
+        } else if (data[i].attributes.status === "skipped") {
+          setSkippedMovementVideos(
+            ...skippedMovementVideos,
+            data[i].attributes
+          );
+        } else {
+          continue;
+        }
       }
     }
   }
 
   async function getMovementModuleCompletions(uid) {
-    console.log(uid);
+    console.log;
     try {
       const response = await axios.get(
-        `${API_URL}/api/v2/movement_module_completions`,
-        { uid: uid }
+        `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
       );
-      setMovementCompletionData(response.data.data);
+      parseMovementProgress(response.data.data);
+      // parseMovementVideoCompletions(response.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -229,9 +239,7 @@ export const MovementContextProvider = ({ children }) => {
         playlistLength,
         numOfVideosCompleted,
         moduleComplete,
-        movementProgress,
         resetModule,
-        setMovementProgress,
         skipVideo,
         switchVideo,
         setCompletedMovementVideos,
