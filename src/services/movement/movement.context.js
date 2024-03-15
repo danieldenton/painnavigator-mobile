@@ -36,15 +36,7 @@ export const MovementContextProvider = ({ children }) => {
     );
   }
 
-  function readyUnfinishedMovementModule(
-    lastMovementModule,
-    lastMovementModuleCompletions
-  ) {
-    setCurrentModule(lastMovementModule);
-    const completedVideoIds = lastMovementModuleCompletions.map(
-      (completion) => completion.attributes.video_id
-    );
-    setCompletedVideos(completedVideoIds);
+  function readyNextVideo() {
     const lastCompletedVideoId = Math.max(completedVideos);
     const indexOfLastCompletedVideo = currentModule.videos.findIndex(
       (video) => video.id === lastCompletedVideoId
@@ -55,6 +47,18 @@ export const MovementContextProvider = ({ children }) => {
           video.id === currentModule.videos[indexOfLastCompletedVideo + 1].id
       )
     );
+  }
+
+  function readyUnfinishedMovementModule(
+    lastMovementModule,
+    lastMovementModuleCompletions
+  ) {
+    setCurrentModule(lastMovementModule);
+    const completedVideoIds = lastMovementModuleCompletions.map(
+      (completion) => completion.attributes.video_id
+    );
+    setCompletedVideos(completedVideoIds);
+    readyNextVideo();
   }
 
   function parseMovementProgress(data) {
@@ -149,14 +153,8 @@ export const MovementContextProvider = ({ children }) => {
       const lastMovementModuleIndex = currentModule.id - 1;
       readyNextModule(lastMovementModuleIndex);
     } else {
-      setCurrentVideo(
-        movementVideos.find(
-          (video) => video.id === currentModule.videos[completedVideos].id
-        )
-      );
-      setCompletedVideos((completedVideos) => {
-        return completedVideos + 1;
-      });
+      setCompletedVideos([...completedVideos, currentVideo.id]);
+      readyNextVideo();
     }
   };
 
@@ -168,7 +166,6 @@ export const MovementContextProvider = ({ children }) => {
       status: completed,
     };
     postMovementModuleCompletion(module, uid);
-    setCompletedVideos([...completedVideos, currentVideo.id])
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];
       const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);

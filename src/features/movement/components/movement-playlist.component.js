@@ -3,13 +3,10 @@ import { CompletedPlaylistTile, PlaylistTile } from "./playlist-tile.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const MovementPlaylist = ({ navigation }) => {
     const { currentModule, switchVideo } = useContext(MovementContext);
     const incompleteVideos = currentModule.videos.filter(video => !video.completed);
-
-    const trackEvent = MOVEMENT_UNIT_EVENTS.START_MOVEMENT_UNIT
 
     const playlistTiles = currentModule.videos.map((video, index) => (
         video.completed ? (

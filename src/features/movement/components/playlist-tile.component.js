@@ -95,7 +95,7 @@ const PlaylistTileWrapper = styled.View`
 const ProgressTrackWrapper = styled.View`
 `;
 
-export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo, trackEvent }) => {
+export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
     const { name, length, thumbnail } = movementVideos.find(video => video.id === videoId);
 
     const dots = [...Array(10)].map((element, index) => {
@@ -113,7 +113,6 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
             </ProgressTrackWrapper>
             <TouchableOpacity
                 onPress={() => {
-                    handleTrackEvent();
                     switchVideo(videoId); 
                     navigation && navigation.navigate("MovementUnit")
                     }
