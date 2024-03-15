@@ -102,7 +102,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
                 </AnimatedCircularProgress>
               </Icon>
             )}
-            {completedVideos === 0 && <MovementModuleIcon />}
+            {numOfCompletedVideos === 0 && <MovementModuleIcon />}
           </CardIconSection>
         </ModuleCardContent>
       </ModuleCard>
