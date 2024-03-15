@@ -5,16 +5,13 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
-import { getMovementUnits } from "../../../services/movement/movement.service";
 
 export const MovementUnitScreen = ({ navigation }) => {
   const {
+    getMovementModuleCompletions,
     moduleComplete,
     resetModule,
     setIsMovement,
-    setCompletedMovementVideos,
-    setSkippedMovementVideos,
-    setSavedMovementVideos,
     movementProgress,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
@@ -24,12 +21,7 @@ export const MovementUnitScreen = ({ navigation }) => {
 
   useEffect(() => {
     setIsMovement(true);
-    getMovementUnits(
-      uid,
-      setCompletedMovementVideos,
-      setSkippedMovementVideos,
-      setSavedMovementVideos
-    );
+    getMovementModuleCompletions(uid);
     if (movementProgress > 35) {
       setCompletionMessage(
         "You've completed ALL of the movement units in your program! You can revisit any of these videos at anytime. They can be found in the 'Units' section in the side menu."

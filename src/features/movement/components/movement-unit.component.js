@@ -8,8 +8,6 @@ import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
 
-
-
 export const MovementUnit = () => {
   const {
     completeVideo,
@@ -27,8 +25,7 @@ export const MovementUnit = () => {
   const incompleteVideos = currentModule.videos.filter(
     (video) => !video.completed
   );
-  const allVideosCompleted =
-    numOfVideosCompleted === playlistLength
+  const allVideosCompleted = numOfVideosCompleted === playlistLength;
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
@@ -70,7 +67,6 @@ export const MovementUnit = () => {
       resetVideo();
     }
   }, [status.didJustFinish]);
-
 
   return (
     <>
