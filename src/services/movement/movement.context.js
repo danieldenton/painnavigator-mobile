@@ -14,29 +14,39 @@ export const MovementContextProvider = ({ children }) => {
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [playlistLength, setPlaylistLength] = useState(null);
-  const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(null);
+  const [completedVideos, setCompletedVideos] = useState([null]);
+  const numOfCompletedVideos = completedVideos.length;
   const [isMovement, setIsMovement] = useState(false);
   const [movementProgram, setMovementProgram] = useState(1);
-  // const moduleComplete = numOfVideosCompleted === playlistLength : false
+  // const moduleComplete = completedVideos === playlistLength : false
   const moduleComplete = false;
 
   // TODO below here is old. It needs to be dealt with
   const movementModulesComplete = currentModule?.id < 37;
 
+  function findAllCompletedVideosInModule(data, currentModuleId) {
+    let i = 0;
+    while (data[i].attributes.module_id === currentModuleId) {
+      setCompletedVideos([...completedVideos, data[i].attributes.video_id]);
+      i++;
+    }
+  }
+
   function parseMovementProgress(data) {
     if (data) {
-      const lastDataIndex = data.length - 1;
-      const lastMovementCompletion = data[lastDataIndex];
+      const reversedData = data.reverse();
+      const lastMovementCompletion = reversedData[0];
       const lastMovementModule = movementModules.find(
         (module) => module.id === lastMovementCompletion.attributes.module_id
       );
       const lastVideoIdCompleted = lastMovementCompletion.attributes.video_id;
+      // const lastModuleComplete =
 
       if (
         lastMovementModule.videos[lastMovementModule.videos.length - 1].id ===
         lastMovementCompletion.attributes.video_id
       ) {
-        console.log(lastMovementModule.videos.length -1)
+        console.log(lastMovementModule.videos.length - 1);
         setCurrentModule(
           movementModules[lastMovementCompletion.attributes.module_id]
         );
@@ -45,7 +55,6 @@ export const MovementContextProvider = ({ children }) => {
             (video) => video.id === currentModule.videos[0].id
           )
         );
-        setNumOfVideosCompleted(0);
       } else {
         setCurrentModule(lastMovementModule);
         const indexOfLastVideoCompleted = currentModule.videos.findIndex(
@@ -58,7 +67,7 @@ export const MovementContextProvider = ({ children }) => {
               currentModule.videos[indexOfLastVideoCompleted + 1].id
           )
         );
-        setNumOfVideosCompleted(indexOfLastVideoCompleted + 1);
+        setCompletedVideos(indexOfLastVideoCompleted + 1);
       }
     } else {
       console.log("not working");
@@ -130,20 +139,20 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   const advanceProgress = () => {
-    if (numOfVideosCompleted === playlistLength) {
+    if (completedVideos === playlistLength) {
       setCurrentModule(movementModules[currentModule.id]);
       setCurrentVideo(
         movementVideos.find((video) => video.id === currentModule.videos[0].id)
       );
-      setNumOfVideosCompleted(0);
+      setCompletedVideos(0);
     } else {
       setCurrentVideo(
         movementVideos.find(
-          (video) => video.id === currentModule.videos[numOfVideosCompleted].id
+          (video) => video.id === currentModule.videos[completedVideos].id
         )
       );
-      setNumOfVideosCompleted((numOfVideosCompleted) => {
-        return numOfVideosCompleted + 1;
+      setCompletedVideos((completedVideos) => {
+        return completedVideos + 1;
       });
     }
   };
@@ -255,7 +264,8 @@ export const MovementContextProvider = ({ children }) => {
         currentModule,
         currentVideo,
         playlistLength,
-        numOfVideosCompleted,
+        completedVideos,
+        numOfCompletedVideos,
         moduleComplete,
         resetModule,
         skipVideo,

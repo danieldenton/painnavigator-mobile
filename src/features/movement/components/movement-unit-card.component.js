@@ -53,10 +53,11 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, playlistLength, numOfVideosCompleted } = useContext(MovementContext);
+  const { currentModule, playlistLength, numOfCompletedVideos } =
+    useContext(MovementContext);
   const { name } = currentModule;
-  
-  const moduleProgress = numOfVideosCompleted / playlistLength;
+
+  const moduleProgress = numOfCompletedVideos / playlistLength;
   const circleProgress = useRef(null);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
       return;
     }
 
-    if (numOfVideosCompleted > 0) {
+    if (numOfCompletedVideos > 0) {
       circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
     }
   }, [isFocused, isAndroid]);
@@ -76,14 +77,14 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
           <CardTextSection>
             <CardHeader>{name}</CardHeader>
             <CardSubHeader>{playlistLength} MIN</CardSubHeader>
-            {numOfVideosCompleted > 0 && (
+            {numOfCompletedVideos > 0 && (
               <UnitProgress>
-                {numOfVideosCompleted}/{playlistLength} Videos Completed
+                {numOfCompletedVideos}/{playlistLength} Videos Completed
               </UnitProgress>
             )}
           </CardTextSection>
           <CardIconSection>
-            {numOfVideosCompleted > 0 && (
+            {completedVideos > 0 && (
               <Icon>
                 <AnimatedCircularProgress
                   size={70}
@@ -101,7 +102,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
                 </AnimatedCircularProgress>
               </Icon>
             )}
-            {numOfVideosCompleted === 0 && <MovementModuleIcon />}
+            {completedVideos === 0 && <MovementModuleIcon />}
           </CardIconSection>
         </ModuleCardContent>
       </ModuleCard>
