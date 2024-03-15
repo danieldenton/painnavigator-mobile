@@ -77,7 +77,7 @@ export const MovementUnit = () => {
         setStatus={setStatus}
         setFullscreenStatus={setFullscreenStatus}
       />
-      <SkipButton handlePress={skipVideo} resetVideo={resetVideo} />
+      <SkipButton skipVideo={skipVideo} resetVideo={resetVideo} />
       <VideoInfo />
       {incompleteVideos.length > 1 && <NextUp />}
       <Scroll

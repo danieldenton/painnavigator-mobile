@@ -174,7 +174,7 @@ export const MovementContextProvider = ({ children }) => {
     advanceProgress();
   };
 
-  const skipVideo = async () => {
+  const skipVideo = async (uid) => {
     const skipped = 1;
     const module = {
       module_id: currentModule.id,

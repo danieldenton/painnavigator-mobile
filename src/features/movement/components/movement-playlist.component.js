@@ -5,11 +5,12 @@ import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
 
 export const MovementPlaylist = ({ navigation }) => {
-    const { currentModule, switchVideo } = useContext(MovementContext);
-    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
+    const { completedVideos, currentModule, switchVideo } = useContext(MovementContext);
+    const incompleteVideos = currentModule.videos.filter(video => !completedVideos.includes(video.id));
+
 
     const playlistTiles = currentModule.videos.map((video, index) => (
-        video.completed ? (
+        completedVideos.includes(video.id) ? (
             <CompletedPlaylistTile
                 key={video.id}
                 firstVideo={index === 0 && true}
@@ -25,7 +26,6 @@ export const MovementPlaylist = ({ navigation }) => {
                 navigation={navigation}
                 switchVideo={switchVideo}
                 videoId={video.id}
-                trackEvent={trackEvent}
             />
         )
     ));

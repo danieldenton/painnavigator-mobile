@@ -5,7 +5,6 @@ import { Card } from "react-native-paper";
 import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
-import { handleTrackEvent } from "../../../utils";
 
 const PlaylistTileCard = styled(Card)`
     border-radius: 15px;
