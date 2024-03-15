@@ -20,7 +20,7 @@ export const MovementContextProvider = ({ children }) => {
   // TODO replace all movementProgress
   const [movementProgress, setMovementProgress] = useState(1);
   // TODO below here is old. It needs to be dealt with
-  const movementModulesOnScreen = movementProgress < 36;
+  const movementModulesComplete = currentModule.id < 37;
 
   useEffect(() => {
     const lastDataIndex = movementCompletionData.length - 1;
@@ -235,7 +235,7 @@ export const MovementContextProvider = ({ children }) => {
         unsaveMovementModule,
         isMovement,
         setIsMovement,
-        movementModulesOnScreen,
+        movementModulesComplete,
       }}
     >
       {children}

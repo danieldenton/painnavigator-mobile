@@ -25,11 +25,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     useContext(EducationContext);
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const {
-    setMovementProgress,
-    completedMovementVideos,
-    skippedMovementVideos,
-  } = useContext(MovementContext);
   const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
 
   const loginRequest = (email, password) =>
@@ -63,7 +58,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       setUserInfo(data.profile);
       setEducationProgram(data.education_program);
       setEducationProgress(eProgress);
-      setMovementProgress(data.movement_progress.progress);
       setProfileComplete(data.profile.profile_status === 1);
       setCompletedProgram(data.completed_program === true);
       setLastDateOnApp(data.last_date_on_app);

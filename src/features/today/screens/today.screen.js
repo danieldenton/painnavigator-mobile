@@ -45,7 +45,7 @@ export const TodayScreen = ({ navigation }) => {
   const { painJournalToday, getPainJournals } = useContext(PainJournalContext);
   const { moodJournalToday, getMoodJournals } = useContext(MoodJournalContext);
   const { foodJournalToday, getFoodJournals } = useContext(FoodJournalContext);
-  const { movementModulesOnScreen } = useContext(MovementContext);
+  const { movementModulesComplete } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
     educationProgress,
@@ -139,7 +139,7 @@ export const TodayScreen = ({ navigation }) => {
             <EducationUnitCard navigation={navigation} />
           ) : null}
 
-          {movementModulesOnScreen ? (
+          {movementModulesComplete ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
               <MovementUnitCard navigation={navigation} isFocused={isFocused} />
