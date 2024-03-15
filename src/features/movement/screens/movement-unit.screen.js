@@ -29,10 +29,10 @@ export const MovementUnitScreen = ({ navigation }) => {
     }
   }, []);
 
-  function finishModule() {
-    navigation.navigate("Today");
-    resetModule();
-  }
+  // function finishModule() {
+  //   navigation.navigate("Today");
+  //   resetModule();
+  // }
 
   return (
     <SafeView>
@@ -40,7 +40,7 @@ export const MovementUnitScreen = ({ navigation }) => {
         screen={"Movement"}
         navigation={navigation}
         destination={"MovementPlaylist"}
-        previousPage={moduleComplete ? finishModule : null}
+        previousPage={moduleComplete ? navigation.navigate("Today") : null}
         orientation={true}
       />
       {moduleComplete ? (

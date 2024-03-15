@@ -15,6 +15,7 @@ export const MovementContextProvider = ({ children }) => {
   const [numOfVideosCompleted, setNumOfVideosCompleted] = useState(0);
   const [isMovement, setIsMovement] = useState(false);
   const [movementProgram, setMovementProgram] = useState(1);
+  const moduleComplete = numOfVideosCompleted === playlistLength
 
   // TODO replace all movementProgress
   const [movementProgress, setMovementProgress] = useState(1);
