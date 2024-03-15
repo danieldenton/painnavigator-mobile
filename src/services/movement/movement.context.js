@@ -21,6 +21,13 @@ export const MovementContextProvider = ({ children }) => {
 
   const movementModulesComplete = currentModule?.id < 37;
 
+  function readyFirstModuleStart() {
+    setCurrentModule(movementModules[0]);
+    setCurrentVideo(
+      movementVideos.find((video) => video.id === currentModule.videos[0].id)
+    );
+  }
+
   function readyNextModule(lastMovementModuleIndex) {
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
     setCompletedVideos([]);
@@ -38,10 +45,14 @@ export const MovementContextProvider = ({ children }) => {
       (completion) => completion.attributes.video_id
     );
     setCompletedVideos(completedVideoIds);
+    const lastCompletedVideoId = Math.max(completedVideos);
+    const indexOfLastCompletedVideo = currentModule.videos.findIndex(
+      (video) => video.id === lastCompletedVideoId
+    );
     setCurrentVideo(
       movementVideos.find(
         (video) =>
-          video.id === currentModule.videos[indexOfLastVideoCompleted + 1].id
+          video.id === currentModule.videos[indexOfLastCompletedVideo + 1].id
       )
     );
   }
@@ -62,7 +73,7 @@ export const MovementContextProvider = ({ children }) => {
         lastMovementModuleCompletions.length;
       const lastMovementModuleIndex = lastMovementModule.id - 1;
       if (lastModuleComplete) {
-        readyNextModule(lastMovementModuleIndex);
+        readyNextModule(lastMovementModuleIndex + 1);
       } else {
         readyUnfinishedMovementModule(
           lastMovementModule,
@@ -70,10 +81,7 @@ export const MovementContextProvider = ({ children }) => {
         );
       }
     } else {
-      setCurrentModule(movementModules[0]);
-      setCurrentVideo(
-        movementVideos.find((video) => video.id === currentModule.videos[0].id)
-      );
+      readyFirstModuleStart();
     }
   }
 
@@ -138,8 +146,8 @@ export const MovementContextProvider = ({ children }) => {
 
   const advanceProgress = () => {
     if (completedVideos === playlistLength) {
-      const lastMovementModuleIndex = currentModule.id - 1
-      readyNextModule(lastMovementModuleIndex)
+      const lastMovementModuleIndex = currentModule.id - 1;
+      readyNextModule(lastMovementModuleIndex);
     } else {
       setCurrentVideo(
         movementVideos.find(
@@ -215,8 +223,6 @@ export const MovementContextProvider = ({ children }) => {
 
     return videosLength;
   }
-
-  
 
   const resetModule = () => {
     setTimeout(() => {
