@@ -5,10 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API_URL } from "@env";
 import { OnboardContext } from "./onboard.context";
-import {
-  patchSkippedMovementUnits,
-  patchCompletedMovementUnits,
-} from "./movement/movement.service";
 import { EducationContext } from "./education/education.context";
 import { ProfileContext } from "./profile/profile-context";
 import { OutcomeContext } from "./outcome.context";
@@ -192,19 +188,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       patchExpoPushToken();
     }
   }, [user, expoPushToken]);
-
-  // TODO get these out of here
-  useEffect(() => {
-    if (skippedMovementVideos) {
-      patchSkippedMovementUnits(uid, skippedMovementVideos);
-    }
-  }, [skippedMovementVideos]);
-
-  useEffect(() => {
-    if (completedMovementVideos) {
-      patchCompletedMovementUnits(uid, completedMovementVideos);
-    }
-  }, [completedMovementVideos]);
 
   return (
     <AuthenticationContext.Provider
