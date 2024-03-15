@@ -3,7 +3,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { Header, UnitTitle, UnitSubtitle, TitleSection } from "../../education/components/education-unit.styles";
 
 export const MovementPlaylistHeader = () => {
-    const { currentModule, playlistLength} = useContext(MovementContext);
+    const { currentModule, getPlaylistLength} = useContext(MovementContext);
     const { name, videos } = currentModule;
 
     return(
@@ -13,7 +13,7 @@ export const MovementPlaylistHeader = () => {
                     {name}
                 </UnitTitle>
                 <UnitSubtitle>
-                    {playlistLength} MIN • {videos.length} VIDEOS
+                    {getPlaylistLength(videos)} MIN • {videos.length} VIDEOS
                 </UnitSubtitle>
             </TitleSection>
         </Header>

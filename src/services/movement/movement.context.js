@@ -195,6 +195,23 @@ export const MovementContextProvider = ({ children }) => {
     );
   };
 
+  function getPlaylistLength(videos) {
+    const videoArray = videos.map((video) => {
+      const the_video = movementVideos.find((item) => item.id === video.id);
+      const length = Math.ceil(the_video.length / 60);
+
+      return length;
+    });
+
+    const videoLength = videoArray.reduce(
+      (previousVideoRange, currentVideoRange) =>
+        previousVideoRange + currentVideoRange,
+      0
+    );
+
+    return videoLength;
+  }
+
   //   const newVideos = currentModule.videos.map((video) =>
   //     video.id === currentVideo.id
   //       ? {
@@ -231,6 +248,7 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
+        getPlaylistLength,
         getMovementModuleCompletions,
         completeVideo,
         completeSkippedMovementUnit,
