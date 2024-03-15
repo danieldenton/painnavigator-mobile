@@ -84,7 +84,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
             )}
           </CardTextSection>
           <CardIconSection>
-            {completedVideos > 0 && (
+            {numOfCompletedVideos > 0 && (
               <Icon>
                 <AnimatedCircularProgress
                   size={70}

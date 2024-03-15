@@ -145,7 +145,7 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   const advanceProgress = () => {
-    if (completedVideos === playlistLength) {
+    if (numOfCompletedVideos === playlistLength) {
       const lastMovementModuleIndex = currentModule.id - 1;
       readyNextModule(lastMovementModuleIndex);
     } else {
@@ -168,6 +168,7 @@ export const MovementContextProvider = ({ children }) => {
       status: completed,
     };
     postMovementModuleCompletion(module, uid);
+    setCompletedVideos([...completedVideos, currentVideo.id])
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];
       const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);
