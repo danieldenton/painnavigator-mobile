@@ -50,7 +50,6 @@ export const MovementContextProvider = ({ children }) => {
           video.id === currentModule.videos[indexOfLastCompletedVideo + 1].id
       )
     );
-    console.log(currentVideo);
   }
 
   function readyUnfinishedMovementModule(
@@ -154,6 +153,7 @@ export const MovementContextProvider = ({ children }) => {
 
   const advanceProgress = () => {
     if (numOfCompletedVideos === playlistLength) {
+      console.log('advance')
       const lastMovementModuleIndex = currentModule.id - 1;
       readyNextModule(lastMovementModuleIndex);
     } else {
@@ -162,13 +162,14 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  const completeVideo = () => {
+  const completeVideo = (uid) => {
     const completed = 0;
     const module = {
       module_id: currentModule.id,
       video_id: currentVideo.id,
       status: completed,
     };
+    console.log('complete')
     postMovementModuleCompletion(module, uid);
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];

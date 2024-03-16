@@ -7,6 +7,7 @@ import { NextUp } from "../../education/components/education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
+import { AuthenticationContext } from "../../../services/authentication.context";
 
 export const MovementUnit = () => {
   const {
@@ -18,11 +19,12 @@ export const MovementUnit = () => {
     switchVideo,
     skipVideo,
   } = useContext(MovementContext);
+  const { uid } =useContext(AuthenticationContext)
   const { source } = currentVideo;
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
   const movementVideo = useRef(null);
-  allVideosCompleted = numOfVideosCompleted === playlistLength;
+  const allVideosCompleted = numOfVideosCompleted === playlistLength;
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
@@ -60,7 +62,7 @@ export const MovementUnit = () => {
         completeVideo();
       }, 1000);
     } else {
-      completeVideo();
+      completeVideo(uid);
     }
   }, [status.didJustFinish]);
 
