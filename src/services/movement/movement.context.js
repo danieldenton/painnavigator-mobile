@@ -17,6 +17,9 @@ export const MovementContextProvider = ({ children }) => {
   const playlistLength = currentModule.videos.length;
   const moduleComplete = numOfCompletedVideos === playlistLength;
   const [isMovement, setIsMovement] = useState(false);
+  const incompleteVideos = currentModule.videos.filter(
+    (video) => !completedVideos.includes(video.id)
+  );
   const [movementProgram, setMovementProgram] = useState(1);
 
   const movementModulesComplete = currentModule?.id < 37;
@@ -37,7 +40,7 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   function readyNextVideo() {
-    const lastCompletedVideoId = Math.max(completedVideos);
+    const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
     const indexOfLastCompletedVideo = currentModule.videos.findIndex(
       (video) => video.id === lastCompletedVideoId
     );
@@ -47,6 +50,7 @@ export const MovementContextProvider = ({ children }) => {
           video.id === currentModule.videos[indexOfLastCompletedVideo + 1].id
       )
     );
+    console.log(currentVideo);
   }
 
   function readyUnfinishedMovementModule(
@@ -256,6 +260,7 @@ export const MovementContextProvider = ({ children }) => {
         playlistLength,
         completedVideos,
         numOfCompletedVideos,
+        incompleteVideos,
         moduleComplete,
         resetModule,
         skipVideo,

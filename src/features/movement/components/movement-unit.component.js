@@ -13,7 +13,7 @@ export const MovementUnit = () => {
     completeVideo,
     numOfVideosCompleted,
     playlistLength,
-    currentModule,
+    incompleteVideos,
     currentVideo,
     switchVideo,
     skipVideo,
@@ -22,10 +22,7 @@ export const MovementUnit = () => {
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
   const movementVideo = useRef(null);
-  const incompleteVideos = currentModule.videos.filter(
-    (video) => !video.completed
-  );
-  const allVideosCompleted = numOfVideosCompleted === playlistLength;
+  allVideosCompleted = numOfVideosCompleted === playlistLength;
   const upNextList = incompleteVideos.filter(
     (video) => video.id !== currentVideo.id
   );
@@ -64,7 +61,6 @@ export const MovementUnit = () => {
       }, 1000);
     } else {
       completeVideo();
-      resetVideo();
     }
   }, [status.didJustFinish]);
 
