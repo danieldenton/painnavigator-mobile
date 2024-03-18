@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { movementVideos } from "../data/movement-videos-data.json";
+import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 import { Card } from "react-native-paper";
 import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";

@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { movementModules } from "../../features/movement/data/movement-modules-data.json";
-import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
+import { movementModules } from "./movement-modules-data.json";
+import { movementVideos } from "./movement-videos-data.json"
 
 export const MovementContext = createContext();
 
@@ -113,7 +113,7 @@ export const MovementContextProvider = ({ children }) => {
       }
     }
   }
-
+  console.log(incompleteVideos);
   async function getMovementModuleCompletions(uid) {
     console.log;
     try {
@@ -153,7 +153,7 @@ export const MovementContextProvider = ({ children }) => {
 
   const advanceProgress = () => {
     if (numOfCompletedVideos === playlistLength) {
-      console.log('advance')
+      console.log("advance");
       const lastMovementModuleIndex = currentModule.id - 1;
       readyNextModule(lastMovementModuleIndex);
     } else {
@@ -169,7 +169,7 @@ export const MovementContextProvider = ({ children }) => {
       video_id: currentVideo.id,
       status: completed,
     };
-    console.log('complete')
+    console.log("complete");
     postMovementModuleCompletion(module, uid);
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];

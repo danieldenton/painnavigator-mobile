@@ -6,6 +6,7 @@ import { View } from "react-native";
 
 export const MovementPlaylist = ({ navigation }) => {
     const { completedVideos, currentModule, switchVideo, incompleteVideos } = useContext(MovementContext);
+    console.log(incompleteVideos)
 
     const playlistTiles = currentModule.videos.map((video, index) => (
         completedVideos.includes(video.id) ? (
