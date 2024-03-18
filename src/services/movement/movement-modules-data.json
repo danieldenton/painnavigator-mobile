@@ -5,20 +5,16 @@
             "name": "Foundations 1",
             "videos": [
                 { 
-                    "id": 63, 
-                    "completed": false
+                    "id": 63
                 },
                 {
-                    "id": 64,
-                    "completed": false
+                    "id": 64
                 },
                 {
-                    "id": 67,
-                    "completed": false
+                    "id": 67
                 },
                 {
-                    "id": 68,
-                    "completed": false
+                    "id": 68
                 } 
             ]
         },
@@ -27,20 +23,16 @@
             "name": "Foundations: Breathing",
             "videos": [
                 {
-                    "id": 69,
-                    "completed": false
+                    "id": 69
                 },
                 {
-                    "id": 70,
-                    "completed": false
+                    "id": 70
                 },
                 {
-                    "id": 71,
-                    "completed": false
+                    "id": 71
                 }, 
                 {
-                    "id": 72,
-                    "completed": false
+                    "id": 72
                 }
             ]
         },
