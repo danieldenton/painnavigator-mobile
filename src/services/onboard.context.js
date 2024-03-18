@@ -50,7 +50,7 @@ export const OnboardContextProvider = ({ children }) => {
 
   const handleEducationProgram = () => {
     const lowBackPainPossiblePrograms = [1, 7, 8, 9];
-    const lowBackPainPossibleProgramsHopesToAchieveOnly = [3, 4, 5, 6];
+    const lowBackPainPossibleProgramsHopesToAchieveOnlyStrengthAndPrevention = [3, 4, 5, 6];
     const hopesToAchieveStrengthAndPreventionOnly =
       onboardingData.hopesToAchieve.length === 1 &&
       onboardingData.hopesToAchieve[0] === "Strength & Prevention";
@@ -60,7 +60,7 @@ export const OnboardContextProvider = ({ children }) => {
       if (hopesToAchieveStrengthAndPreventionOnly) {
         if (onboardingData.typeOfPain === "Low Back Pain") {
           handlePossibleEducationPrograms(
-            lowBackPainPossibleProgramsHopesToAchieveOnly
+            lowBackPainPossibleProgramsHopesToAchieveOnlyStrengthAndPrevention
           );
         } else {
           setEducationProgram(11);

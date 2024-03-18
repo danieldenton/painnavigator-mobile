@@ -79,6 +79,7 @@ export const MovementContextProvider = ({ children }) => {
         lastMovementModule.videos.length ===
         lastMovementModuleCompletions.length;
       const lastMovementModuleIndex = lastMovementModule.id - 1;
+      console.log(lastMovementCompletion, lastMovementModule, lastMovementModuleCompletions)
       if (lastModuleComplete) {
         readyNextModule(lastMovementModuleIndex);
       } else {
@@ -113,7 +114,7 @@ export const MovementContextProvider = ({ children }) => {
       }
     }
   }
-  console.log(incompleteVideos);
+  
   async function getMovementModuleCompletions(uid) {
     console.log;
     try {

@@ -8,7 +8,6 @@ import { OnboardContext } from "./onboard.context";
 import { EducationContext } from "./education/education.context";
 import { ProfileContext } from "./profile/profile-context";
 import { OutcomeContext } from "./outcome.context";
-import { MovementContext } from "./movement/movement.context";
 import { WellnessCoachContext } from "./wellness-coach.context";
 import { timeZonedTodaysDate } from "../utils";
 
@@ -30,11 +29,12 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
 
-  async function postUser(strippedOnboardingData) {
+  async function postUser(uid, onboardingData) {
     const userData = {
       uid: uid,
-      ...strippedOnboardingData,
+      ...onboardingData,
     };
+    console.log(userData)
     await axios.post(`${API_URL}/api/v2/users`, { user: userData });
   }
 
@@ -128,7 +128,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
         };
-        postUser(strippedOnboardingData);
+        postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
       })
       .catch((e) => {
