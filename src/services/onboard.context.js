@@ -25,6 +25,7 @@ export const OnboardContextProvider = ({ children }) => {
   const [providerId, setProviderId] = useState(null);
   const [tour, setTour] = useState(null);
   const { educationProgram, setEducationProgram } = useContext(EducationContext)
+  console.log(providerId)
 
   const handlePossibleEducationPrograms = (possiblePrograms) => {
     const painInjectionsAndSpineSurgery =
@@ -37,6 +38,7 @@ export const OnboardContextProvider = ({ children }) => {
       onboardingData.painInjections === "No" &&
       onboardingData.spineSurgery === "No";
     // the "else" condition covers noPainInjectionsButSpineSurgery
+    console.log(painInjectionsAndSpineSurgery)
     if (painInjectionsAndSpineSurgery) {
       setEducationProgram(possiblePrograms[0]);
     } else if (painInjectionsButNoSpineSurgery) {
@@ -105,6 +107,7 @@ export const OnboardContextProvider = ({ children }) => {
         setOnboardingData,
         onboardingData,
         setProviderId,
+        providerId,
         tour,
         setTour,
       }}

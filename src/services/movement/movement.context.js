@@ -2,17 +2,17 @@ import React, { createContext, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
-import { movementVideos } from "./movement-videos-data.json"
+import { movementVideos } from "./movement-videos-data.json";
 
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
   const [currentModule, setCurrentModule] = useState(movementModules[0]);
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const [currentVideo, setCurrentVideo] = useState(currentModule.videos[0].id);
   const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
-  const [completedVideos, setCompletedVideos] = useState([null]);
+  const [completedVideos, setCompletedVideos] = useState([]);
   const numOfCompletedVideos = completedVideos.length;
   const playlistLength = currentModule.videos.length;
   const moduleComplete = numOfCompletedVideos === playlistLength;
@@ -24,12 +24,12 @@ export const MovementContextProvider = ({ children }) => {
 
   const movementModulesComplete = currentModule?.id < 37;
 
-  function readyFirstModuleStart() {
-    setCurrentModule(movementModules[0]);
-    setCurrentVideo(
-      movementVideos.find((video) => video.id === currentModule.videos[0].id)
-    );
-  }
+  // function readyFirstModuleStart() {
+  //   setCurrentModule(movementModules[0]);
+  //   setCurrentVideo(
+  //     movementVideos.find((video) => video.id === currentModule.videos[0].id)
+  //   );
+  // }
 
   function readyNextModule(lastMovementModuleIndex) {
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
@@ -65,7 +65,7 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   function parseMovementProgress(data) {
-    if (data) {
+    if (data.length !== 0) {
       const reversedData = data.reverse();
       const lastMovementCompletion = reversedData[0];
       const lastMovementModule = movementModules.find(
@@ -79,7 +79,11 @@ export const MovementContextProvider = ({ children }) => {
         lastMovementModule.videos.length ===
         lastMovementModuleCompletions.length;
       const lastMovementModuleIndex = lastMovementModule.id - 1;
-      console.log(lastMovementCompletion, lastMovementModule, lastMovementModuleCompletions)
+      console.log(
+        lastMovementCompletion,
+        lastMovementModule,
+        lastMovementModuleCompletions
+      );
       if (lastModuleComplete) {
         readyNextModule(lastMovementModuleIndex);
       } else {
@@ -88,8 +92,9 @@ export const MovementContextProvider = ({ children }) => {
           lastMovementModuleCompletions
         );
       }
-    } else {
-      readyFirstModuleStart();
+    // } else {
+    //   console.log("start");
+    //   readyFirstModuleStart();
     }
   }
 
@@ -114,9 +119,8 @@ export const MovementContextProvider = ({ children }) => {
       }
     }
   }
-  
+
   async function getMovementModuleCompletions(uid) {
-    console.log;
     try {
       const response = await axios.get(
         `${API_URL}/api/v2/movement_module_completions?uid=${uid}`

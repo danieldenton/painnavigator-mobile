@@ -21,7 +21,6 @@ export const ProviderCodeScreen = ({ navigation }) => {
       const response = await axios.get(
         `${API_URL}/api/v1/providers/${providerCode}`
       );
-      const provider_id = response.data.data.attributes.id;
       setProviderId(provider_id);
       setError(null);
       navigation.navigate("Explanation");
