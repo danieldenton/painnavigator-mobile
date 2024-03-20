@@ -38,9 +38,9 @@ export const MovementContextProvider = ({ children }) => {
       movementVideos.find((video) => video.id === currentModule.videos[0].id)
     );
   }
-
+console.log(completedVideos, "hey")
   function readyNextVideo() {
-    const lastCompletedVideoId = completedVideos[0];
+    const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
     const indexOfLastCompletedVideo = currentModule.videos.findIndex(
       (video) => video.id === lastCompletedVideoId
     );
@@ -61,7 +61,8 @@ export const MovementContextProvider = ({ children }) => {
     const completedVideoIds = lastMovementModuleCompletions.map(
       (completion) => completion.attributes.video_id
     );
-    setCompletedVideos(completedVideoIds);
+    const completedVideoIdsInOrder = completedVideoIds.reverse()
+    setCompletedVideos(completedVideoIdsInOrder);
     readyNextVideo();
   }
 
