@@ -16,7 +16,7 @@ export const ContactScreen = ({ navigation }) => {
     const send = () => {
         axios.post(`${API_URL}/api/v1/contact_us`, { body: body, email: userInfo.email, name: userInfo.first_name })
         .then((response) => {})
-        .catch(resp => console.log(resp));
+        .catch(resp => console.log(response));
     };
 
     return (

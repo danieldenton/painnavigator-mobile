@@ -29,6 +29,10 @@ export const MovementUnit = () => {
     (video) => video.id !== currentVideo.id
   );
 
+  useEffect(() => {
+console.log(currentVideo)
+  }, [currentVideo])
+
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
       key={video.id}
@@ -59,7 +63,7 @@ export const MovementUnit = () => {
         movementVideo.current.dismissFullscreenPlayer();
       }
       setTimeout(() => {
-        completeVideo();
+        completeVideo(uid);
       }, 1000);
     } else {
       completeVideo(uid);

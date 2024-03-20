@@ -53,7 +53,7 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, playlistLength, numOfCompletedVideos } =
+  const { currentModule, playlistLength, numOfCompletedVideos, moduleComplete } =
     useContext(MovementContext);
   const { name } = currentModule;
 
@@ -69,6 +69,11 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
       circleProgress.current.reAnimate(0, moduleProgress * 100, 1000);
     }
   }, [isFocused, isAndroid]);
+
+  useEffect(() => {
+console.log(moduleComplete)
+  }, [moduleComplete])
+
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Movement")}>

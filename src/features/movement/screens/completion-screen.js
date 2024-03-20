@@ -7,7 +7,7 @@ import { CompletionComponent } from "../components/completion.component";
 import * as ScreenOrientation from "expo-screen-orientation"
 
 export const CompletionScreen = ({ navigation, completionMessage }) => {
-  const { resetModule } = useContext(MovementContext);
+  // const { resetModule } = useContext(MovementContext);
 
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
@@ -21,7 +21,6 @@ export const CompletionScreen = ({ navigation, completionMessage }) => {
           title={"Back to Dashboard"}
           onPress={() => {
             navigation.navigate("Today");
-            resetModule();
           }}
         />
       </ButtonSection>
