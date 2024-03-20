@@ -70,10 +70,6 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     }
   }, [isFocused, isAndroid]);
 
-  useEffect(() => {
-console.log(moduleComplete)
-  }, [moduleComplete])
-
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Movement")}>
