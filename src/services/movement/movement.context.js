@@ -169,6 +169,7 @@ export const MovementContextProvider = ({ children }) => {
       video_id: currentVideo.id,
       status: completed,
     };
+    console.log(module)
     postMovementModuleCompletion(module, uid);
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];

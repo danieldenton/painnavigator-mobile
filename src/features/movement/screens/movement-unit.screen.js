@@ -39,7 +39,7 @@ export const MovementUnitScreen = ({ navigation }) => {
         previousPage={moduleComplete ? navigation.navigate("Today") : null}
         orientation={true}
       />
-      <MovementUnit />
+      <MovementUnit navigation={navigation} />
     </SafeView>
   );
 };

@@ -9,7 +9,7 @@ import { VideoPlayer } from "../../../components/video-player/video-player.compo
 import { SkipButton } from "./skip-button.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 
-export const MovementUnit = () => {
+export const MovementUnit = ({ navigation }) => {
   const {
     completeVideo,
     numOfVideosCompleted,
@@ -26,16 +26,16 @@ export const MovementUnit = () => {
   const movementVideo = useRef(null);
   const allVideosCompleted = numOfVideosCompleted === playlistLength;
   const upNextList = incompleteVideos.filter(
-    (video) => video.id !== currentVideo.id
+    (video) => video !== currentVideo.id
   );
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
-      key={video.id}
+      key={video}
       upNext={index === 0 && true}
       firstVideo={index === 0 && true}
       switchVideo={switchVideo}
-      videoId={video.id}
+      videoId={video}
     />
   ));
 
@@ -60,6 +60,7 @@ export const MovementUnit = () => {
       }
       setTimeout(() => {
         completeVideo(uid);
+        navigation.navigate("Completion")
       }, 1000);
     } else {
       completeVideo(uid);
