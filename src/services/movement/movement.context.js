@@ -8,7 +8,7 @@ export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
   const [currentModule, setCurrentModule] = useState(movementModules[0]);
-  const [currentVideo, setCurrentVideo] = useState(currentModule.videos[0].id);
+  const [currentVideo, setCurrentVideo] = useState(currentModule.videos[0]);
   const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
@@ -18,7 +18,7 @@ export const MovementContextProvider = ({ children }) => {
   const moduleComplete = numOfCompletedVideos === playlistLength;
   const [isMovement, setIsMovement] = useState(false);
   const incompleteVideos = currentModule.videos.filter(
-    (video) => !completedVideos.includes(video.id)
+    (video) => !completedVideos.includes(video)
   );
   const [movementProgram, setMovementProgram] = useState(1);
 
@@ -27,7 +27,7 @@ export const MovementContextProvider = ({ children }) => {
   // function readyFirstModuleStart() {
   //   setCurrentModule(movementModules[0]);
   //   setCurrentVideo(
-  //     movementVideos.find((video) => video.id === currentModule.videos[0].id)
+  //     movementVideos.find((video) => video.id === currentModule.videos[0])
   //   );
   // }
 
@@ -35,19 +35,19 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
     setCompletedVideos([]);
     setCurrentVideo(
-      movementVideos.find((video) => video.id === currentModule.videos[0].id)
+      movementVideos.find((video) => video.id === currentModule.videos[0])
     );
   }
 
   function readyNextVideo() {
     const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
     const indexOfLastCompletedVideo = currentModule.videos.findIndex(
-      (video) => video.id === lastCompletedVideoId
+      (video) => video === lastCompletedVideoId
     );
     setCurrentVideo(
       movementVideos.find(
         (video) =>
-          video.id === currentModule.videos[indexOfLastCompletedVideo + 1].id
+          video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
       )
     );
   }
@@ -60,7 +60,7 @@ export const MovementContextProvider = ({ children }) => {
     const completedVideoIds = lastMovementModuleCompletions.map(
       (completion) => completion.attributes.video_id
     );
-    const completedVideoIdsInOrder = completedVideoIds.reverse()
+    const completedVideoIdsInOrder = completedVideoIds.reverse();
     setCompletedVideos(completedVideoIdsInOrder);
     readyNextVideo();
   }

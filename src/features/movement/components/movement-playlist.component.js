@@ -9,22 +9,22 @@ export const MovementPlaylist = ({ navigation }) => {
     
 
     const playlistTiles = currentModule.videos.map((video, index) => (
-        completedVideos.includes(video.id) ? (
+        completedVideos.includes(video) ? (
             <CompletedPlaylistTile
-                key={video.id}
+                key={video}
                 firstVideo={index === 0 && true}
                 upLast={index === currentModule.videos.length - 1 ? true : false}
-                videoId={video.id}
+                videoId={video}
             />
         ) : (
             <PlaylistTile 
-                key={video.id}
+                key={video}
                 lastVideo={index === currentModule.videos.length - 1 ? true : false}
-                upNext={video.id === incompleteVideos[0].id && true}
+                upNext={video === incompleteVideos[0] && true}
                 firstVideo={index === 0 && true}
                 navigation={navigation}
                 switchVideo={switchVideo}
-                videoId={video.id}
+                videoId={video}
             />
         )
     ));
