@@ -11,7 +11,7 @@ export const MovementUnitScreen = ({ navigation }) => {
     getMovementModuleCompletions,
     moduleComplete,
     setIsMovement,
-    currentModule
+    currentModule,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [completionMessage, setCompletionMessage] = useState(
@@ -27,8 +27,9 @@ export const MovementUnitScreen = ({ navigation }) => {
       );
     }
   }, []);
-  
-console.log(moduleComplete)
+  // useEffect(() => {
+  //   navigation.navigate("Completion");
+  // }, [moduleComplete]);
   return (
     <SafeView>
       <NavigationBarLeft
@@ -38,14 +39,7 @@ console.log(moduleComplete)
         previousPage={moduleComplete ? navigation.navigate("Today") : null}
         orientation={true}
       />
-      {moduleComplete ? (
-        <CompletionScreen
-          navigation={navigation}
-          completionMessage={completionMessage}
-        />
-      ) : (
-        <MovementUnit />
-      )}
+      <MovementUnit />
     </SafeView>
   );
 };

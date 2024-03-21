@@ -29,10 +29,6 @@ export const MovementUnit = () => {
     (video) => video.id !== currentVideo.id
   );
 
-  useEffect(() => {
-console.log(currentVideo)
-  }, [currentVideo])
-
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
       key={video.id}
