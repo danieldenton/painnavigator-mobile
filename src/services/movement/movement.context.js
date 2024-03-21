@@ -211,7 +211,7 @@ export const MovementContextProvider = ({ children }) => {
 
   function getPlaylistLength(videos) {
     const videoArray = videos.map((video) => {
-      const the_video = movementVideos.find((item) => item.id === video.id);
+      const the_video = movementVideos.find((item) => item.id === video);
       const length = Math.ceil(the_video.length / 60);
 
       return length;
@@ -225,8 +225,6 @@ export const MovementContextProvider = ({ children }) => {
 
     return videosLength;
   }
-
-  const resetModule = () => {};
 
   const switchVideo = (videoId) => {
     const newVideoData = movementVideos.find((video) => video.id === videoId);
@@ -257,7 +255,6 @@ export const MovementContextProvider = ({ children }) => {
         numOfCompletedVideos,
         incompleteVideos,
         moduleComplete,
-        resetModule,
         skipVideo,
         switchVideo,
         setCompletedMovementVideos,
