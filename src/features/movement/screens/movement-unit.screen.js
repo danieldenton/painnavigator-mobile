@@ -34,10 +34,9 @@ export const MovementUnitScreen = ({ navigation }) => {
     if (moduleComplete) {
       navigation.navigate("Completed", { completionMessage: completionMessage });
     } else {
-      // console.log(currentVideo)
+      console.log(currentModule)
     }
-
-  }, [currentVideo])
+  }, [currentModule])
 
   return (
     <SafeView>
