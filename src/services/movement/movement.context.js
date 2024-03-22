@@ -40,16 +40,27 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   function readyNextVideo() {
-    const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
-    const indexOfLastCompletedVideo = currentModule.videos.findIndex(
-      (video) => video === lastCompletedVideoId
-    );
-    setCurrentVideo(
-      movementVideos.find(
-        (video) =>
-          video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
-      )
-    );
+    if (completedVideos.length > 0) {
+      const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
+      const indexOfLastCompletedVideo = currentModule.videos.findIndex(
+        (video) => video === lastCompletedVideoId
+      );
+      setCurrentVideo(
+        movementVideos.find(
+          (video) =>
+            video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
+        )
+      );
+      console.log(
+        lastCompletedVideoId,
+        indexOfLastCompletedVideo,
+        currentVideo
+      );
+    } else {
+      setCurrentVideo(
+        movementVideos.find((video) => video.id === currentModule.videos[1])
+      );
+    }
   }
 
   function readyUnfinishedMovementModule(
@@ -164,13 +175,13 @@ export const MovementContextProvider = ({ children }) => {
 
   const completeVideo = (uid) => {
     const completed = 0;
-    const module = {
+    const completion = {
       module_id: currentModule.id,
       video_id: currentVideo.id,
       status: completed,
     };
-    console.log(module)
-    postMovementModuleCompletion(module, uid);
+  
+    postMovementModuleCompletion(completion, uid);
     if (!completedMovementVideos.includes(currentVideo.id)) {
       const newCompletedModules = [...completedMovementVideos, currentVideo.id];
       const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);

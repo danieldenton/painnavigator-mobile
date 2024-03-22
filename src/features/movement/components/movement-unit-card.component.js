@@ -53,7 +53,7 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, playlistLength, numOfCompletedVideos, moduleComplete } =
+  const { currentModule, playlistLength, numOfCompletedVideos } =
     useContext(MovementContext);
   const { name } = currentModule;
 

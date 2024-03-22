@@ -5,7 +5,8 @@ import { SafeView } from "../../../components/safe-area.component";
 import { CompletionComponent } from "../components/completion.component";
 import * as ScreenOrientation from "expo-screen-orientation"
 
-export const CompletionScreen = ({ navigation, completionMessage }) => {
+export const CompletionScreen = ({ navigation, route }) => {
+  const { completionMessage } = route.params
 
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)

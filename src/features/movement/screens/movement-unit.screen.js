@@ -5,6 +5,7 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
+import { CompletionComponent } from "../components/completion.component";
 
 export const MovementUnitScreen = ({ navigation }) => {
   const {
@@ -12,6 +13,7 @@ export const MovementUnitScreen = ({ navigation }) => {
     moduleComplete,
     setIsMovement,
     currentModule,
+    currentVideo
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [completionMessage, setCompletionMessage] = useState(
@@ -27,9 +29,16 @@ export const MovementUnitScreen = ({ navigation }) => {
       );
     }
   }, []);
-  // useEffect(() => {
-  //   navigation.navigate("Completion");
-  // }, [moduleComplete]);
+
+  useEffect(() => {
+    if (moduleComplete) {
+      navigation.navigate("Completed", { completionMessage: completionMessage });
+    } else {
+      // console.log(currentVideo)
+    }
+
+  }, [currentVideo])
+
   return (
     <SafeView>
       <NavigationBarLeft
@@ -39,7 +48,7 @@ export const MovementUnitScreen = ({ navigation }) => {
         previousPage={moduleComplete ? navigation.navigate("Today") : null}
         orientation={true}
       />
-      <MovementUnit navigation={navigation} />
+      <MovementUnit />
     </SafeView>
   );
 };
