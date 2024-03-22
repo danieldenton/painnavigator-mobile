@@ -21,7 +21,7 @@ export const MovementUnitScreen = ({ navigation }) => {
   useEffect(() => {
     setIsMovement(true);
     getMovementModuleCompletions(uid);
-    if (currentModule?.id < 37) {
+    if (currentModule?.id > 37) {
       setCompletionMessage(
         "You've completed ALL of the movement units in your program! You can revisit any of these videos at anytime. They can be found in the 'Units' section in the side menu."
       );
