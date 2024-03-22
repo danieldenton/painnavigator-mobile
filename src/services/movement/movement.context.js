@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
@@ -24,12 +24,19 @@ export const MovementContextProvider = ({ children }) => {
 
   const movementModulesComplete = currentModule?.id < 37;
 
-  // function readyFirstModuleStart() {
-  //   setCurrentModule(movementModules[0]);
-  //   setCurrentVideo(
-  //     movementVideos.find((video) => video.id === currentModule.videos[0])
-  //   );
-  // }
+  useEffect(() => {
+    if (completedVideos.length > 0) {
+      if (completedVideos.length === playlistLength) {
+        setTimeout(() => {
+          console.log("advance");
+          const lastMovementModuleIndex = currentModule.id - 1;
+          readyNextModule(lastMovementModuleIndex);
+        }, 1000);
+      } else {
+        readyNextVideo();
+      }
+    }
+  }, [completedVideos])
 
   function readyNextModule(lastMovementModuleIndex) {
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
@@ -51,10 +58,7 @@ export const MovementContextProvider = ({ children }) => {
             video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
         )
       );
-      console.log(
-        lastCompletedVideoId,
-        indexOfLastCompletedVideo
-      );
+      console.log(lastCompletedVideoId, indexOfLastCompletedVideo);
     } else {
       setCurrentVideo(
         movementVideos.find((video) => video.id === currentModule.videos[1])
@@ -157,35 +161,15 @@ export const MovementContextProvider = ({ children }) => {
     }
   }
 
-  const advanceProgress = () => {
-    setCompletedVideos([...completedVideos, currentVideo.id]);
-    if (completedVideos.length === playlistLength) {
-      setTimeout(() => {
-        console.log("advance");
-        const lastMovementModuleIndex = currentModule.id - 1;
-        console.log(lastMovementModuleIndex)
-        readyNextModule(lastMovementModuleIndex);
-      }, 1000);
-    } else {
-      readyNextVideo();
-    }
-  };
-
   const completeVideo = (uid) => {
+    setCompletedVideos([...completedVideos, currentVideo.id]);
     const completed = 0;
     const completion = {
       module_id: currentModule.id,
       video_id: currentVideo.id,
       status: completed,
     };
-  
     postMovementModuleCompletion(completion, uid);
-    // if (!completedMovementVideos.includes(currentVideo.id)) {
-    //   const newCompletedModules = [...completedMovementVideos, currentVideo.id];
-    //   const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);
-    //   setCompletedMovementVideos(sortedData);
-    // }
-    advanceProgress();
   };
 
   const skipVideo = async (uid) => {
