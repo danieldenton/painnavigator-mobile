@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
 import { movementVideos } from "./movement-videos-data.json";
+import { timeZonedTodaysDate, formatBackendCreatedAtDate } from "../../utils";
 
 export const MovementContext = createContext();
 
@@ -15,7 +16,11 @@ export const MovementContextProvider = ({ children }) => {
   const [completedVideos, setCompletedVideos] = useState([]);
   const numOfCompletedVideos = completedVideos.length;
   const playlistLength = currentModule.videos.length;
-  const [moduleComplete, setModuleComplete] = useState(false)
+  const [moduleComplete, setModuleComplete] = useState(false);
+  const [lastModuleCompleted, setLastModuleCompleted] = useState({
+    moduleId: null,
+    dateCompleted: null,
+  });
   const [isMovement, setIsMovement] = useState(false);
   const incompleteVideos = currentModule.videos.filter(
     (video) => !completedVideos.includes(video)
@@ -29,8 +34,8 @@ export const MovementContextProvider = ({ children }) => {
       if (completedVideos.length === playlistLength) {
         setTimeout(() => {
           const lastMovementModuleIndex = currentModule.id - 1;
-          readyNextModule(lastMovementModuleIndex);
-          setModuleComplete(true)
+          readyNextModule(lastMovementModuleIndex, timeZonedTodaysDate);
+          setModuleComplete(true);
         }, 1000);
       } else {
         readyNextVideo();
@@ -38,7 +43,11 @@ export const MovementContextProvider = ({ children }) => {
     }
   }, [completedVideos]);
 
-  function readyNextModule(lastMovementModuleIndex) {
+  function readyNextModule(lastMovementModuleIndex, date) {
+    setLastModuleCompleted({
+      moduleId: lastMovementModuleIndex + 1,
+      dateCompleted: date,
+    });
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
     setCompletedVideos([]);
     setCurrentVideo(
@@ -85,6 +94,9 @@ export const MovementContextProvider = ({ children }) => {
       const lastMovementModule = movementModules.find(
         (module) => module.id === lastMovementCompletion.attributes.module_id
       );
+      const lastMovementModuleCompletionDate = formatBackendCreatedAtDate(
+        lastMovementCompletion.attributes.created_at
+      );
       const lastMovementModuleCompletions = reversedData.filter(
         (completion) =>
           completion.attributes.module_id === lastMovementModule.id
@@ -94,7 +106,10 @@ export const MovementContextProvider = ({ children }) => {
         lastMovementModuleCompletions.length;
       const lastMovementModuleIndex = lastMovementModule.id - 1;
       if (lastModuleComplete) {
-        readyNextModule(lastMovementModuleIndex);
+        readyNextModule(
+          lastMovementModuleIndex,
+          lastMovementModuleCompletionDate
+        );
       } else {
         readyUnfinishedMovementModule(
           lastMovementModule,
@@ -263,7 +278,8 @@ export const MovementContextProvider = ({ children }) => {
         isMovement,
         setIsMovement,
         movementModulesComplete,
-        setModuleComplete
+        setModuleComplete,
+        lastModuleCompleted
       }}
     >
       {children}

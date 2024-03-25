@@ -75,7 +75,12 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
   }, [isFocused, isAndroid]);
 
   return (
-    <TouchableOpacity onPress={() => (setModuleComplete(false), navigation.navigate("Movement"))}>
+    <TouchableOpacity
+      onPress={() => (
+        setModuleComplete(false),
+        navigation.navigate("Movement")
+      )}
+    >
       <ModuleCard>
         <ModuleCardContent>
           <CardTextSection>

@@ -45,7 +45,11 @@ export const TodayScreen = ({ navigation }) => {
   const { painJournalToday, getPainJournals } = useContext(PainJournalContext);
   const { moodJournalToday, getMoodJournals } = useContext(MoodJournalContext);
   const { foodJournalToday, getFoodJournals } = useContext(FoodJournalContext);
-  const { movementModulesComplete, getMovementModuleCompletions } = useContext(MovementContext);
+  const {
+    movementModulesComplete,
+    getMovementModuleCompletions,
+    lastModuleCompleted,
+  } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
     educationProgress,
@@ -54,15 +58,14 @@ export const TodayScreen = ({ navigation }) => {
     lastEducationModuleId,
     lastCompletedEducationModuleDate,
   } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages, messages } =
-    useContext(WellnessCoachContext);
+  const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
 
   useEffect(() => {
     getUser();
     getEducationModuleCompletions(uid);
-    getMovementModuleCompletions(uid)
+    getMovementModuleCompletions(uid);
     getDailyPainScores(uid);
     getFoodJournals();
     getMoodJournals();
@@ -143,7 +146,17 @@ export const TodayScreen = ({ navigation }) => {
           {movementModulesComplete ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-              <MovementUnitCard navigation={navigation} isFocused={isFocused} />
+              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ? (
+                <DailyGoalCompleted
+                  type={"movementModule"}
+                  moduleId={lastModuleCompleted.moduleId}
+                />
+              ) : (
+                <MovementUnitCard
+                  navigation={navigation}
+                  isFocused={isFocused}
+                />
+              )}
             </>
           ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
