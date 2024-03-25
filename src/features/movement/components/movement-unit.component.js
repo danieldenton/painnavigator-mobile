@@ -9,7 +9,7 @@ import { VideoPlayer } from "../../../components/video-player/video-player.compo
 import { SkipButton } from "./skip-button.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 
-export const MovementUnit = () => {
+export const MovementUnit = ({ navigation, completionMessage }) => {
   const {
     completeVideo,
     numOfVideosCompleted,
@@ -19,7 +19,7 @@ export const MovementUnit = () => {
     switchVideo,
     skipVideo,
   } = useContext(MovementContext);
-  const { uid } =useContext(AuthenticationContext)
+  const { uid } = useContext(AuthenticationContext);
   const { source } = currentVideo;
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
@@ -58,9 +58,10 @@ export const MovementUnit = () => {
       if (allVideosCompleted) {
         movementVideo.current.dismissFullscreenPlayer();
       }
-      setTimeout(() => {
-        completeVideo(uid);
-      }, 1000);
+      navigation.navigate("Completed", {
+        completionMessage: completionMessage,
+      });
+      completeVideo(uid);
     } else {
       completeVideo(uid);
     }

@@ -53,8 +53,12 @@ const Icon = styled.View`
 `;
 
 export const MovementUnitCard = ({ navigation, isFocused }) => {
-  const { currentModule, playlistLength, numOfCompletedVideos } =
-    useContext(MovementContext);
+  const {
+    currentModule,
+    playlistLength,
+    numOfCompletedVideos,
+    setModuleComplete,
+  } = useContext(MovementContext);
   const { name } = currentModule;
 
   const moduleProgress = numOfCompletedVideos / playlistLength;
@@ -70,9 +74,8 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     }
   }, [isFocused, isAndroid]);
 
-
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Movement")}>
+    <TouchableOpacity onPress={() => (setModuleComplete(false), navigation.navigate("Movement"))}>
       <ModuleCard>
         <ModuleCardContent>
           <CardTextSection>

@@ -5,7 +5,6 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
-import { CompletionComponent } from "../components/completion.component";
 
 export const MovementUnitScreen = ({ navigation }) => {
   const {
@@ -13,12 +12,12 @@ export const MovementUnitScreen = ({ navigation }) => {
     moduleComplete,
     setIsMovement,
     currentModule,
-    currentVideo,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [completionMessage, setCompletionMessage] = useState(
     "You completed a movement unit! You’re on your way to mastering new skills and redefining your relationship with pain."
   );
+  const destination = moduleComplete ? "Today" : "MovementPlaylist"
 
   useEffect(() => {
     setIsMovement(true);
@@ -30,30 +29,22 @@ export const MovementUnitScreen = ({ navigation }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (moduleComplete) {
-      navigation.navigate("Completed", {
-        completionMessage: completionMessage,
-      });
-      console.log("hey");
-    } else {
-      console.log(currentModule);
-    }
-  }, [currentModule]);
-
   return (
     <SafeView>
       <NavigationBarLeft
         screen={"Movement"}
         navigation={navigation}
-        destination={"MovementPlaylist"}
-        previousPage={moduleComplete ? navigation.navigate("Today") : null}
+        destination={destination}
         orientation={true}
       />
-      <MovementUnit
-        navigation={navigation}
-        completionMessage={completionMessage}
-      />
+      {moduleComplete ? (
+        <CompletionScreen
+          navigation={navigation}
+          completionMessage={completionMessage}
+        />
+      ) : (
+        <MovementUnit />
+      )}
     </SafeView>
   );
 };

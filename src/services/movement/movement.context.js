@@ -15,7 +15,7 @@ export const MovementContextProvider = ({ children }) => {
   const [completedVideos, setCompletedVideos] = useState([]);
   const numOfCompletedVideos = completedVideos.length;
   const playlistLength = currentModule.videos.length;
-  const moduleComplete = numOfCompletedVideos === playlistLength;
+  const [moduleComplete, setModuleComplete] = useState(false)
   const [isMovement, setIsMovement] = useState(false);
   const incompleteVideos = currentModule.videos.filter(
     (video) => !completedVideos.includes(video)
@@ -28,15 +28,15 @@ export const MovementContextProvider = ({ children }) => {
     if (completedVideos.length > 0) {
       if (completedVideos.length === playlistLength) {
         setTimeout(() => {
-          console.log("advance");
           const lastMovementModuleIndex = currentModule.id - 1;
           readyNextModule(lastMovementModuleIndex);
+          setModuleComplete(true)
         }, 1000);
       } else {
         readyNextVideo();
       }
     }
-  }, [completedVideos])
+  }, [completedVideos]);
 
   function readyNextModule(lastMovementModuleIndex) {
     setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
@@ -58,7 +58,6 @@ export const MovementContextProvider = ({ children }) => {
             video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
         )
       );
-      console.log(lastCompletedVideoId, indexOfLastCompletedVideo);
     } else {
       setCurrentVideo(
         movementVideos.find((video) => video.id === currentModule.videos[1])
@@ -162,14 +161,16 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   const completeVideo = (uid) => {
-    setCompletedVideos([...completedVideos, currentVideo.id]);
-    const completed = 0;
-    const completion = {
-      module_id: currentModule.id,
-      video_id: currentVideo.id,
-      status: completed,
-    };
-    postMovementModuleCompletion(completion, uid);
+    if (!completedVideos.includes(currentVideo.id)) {
+      setCompletedVideos([...completedVideos, currentVideo.id]);
+      const completed = 0;
+      const completion = {
+        module_id: currentModule.id,
+        video_id: currentVideo.id,
+        status: completed,
+      };
+      postMovementModuleCompletion(completion, uid);
+    }
   };
 
   const skipVideo = async (uid) => {
@@ -262,6 +263,7 @@ export const MovementContextProvider = ({ children }) => {
         isMovement,
         setIsMovement,
         movementModulesComplete,
+        setModuleComplete
       }}
     >
       {children}

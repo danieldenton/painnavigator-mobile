@@ -96,10 +96,7 @@ const UnreadIconContainer = styled.View`
   margin-right: -4px;
 `;
 
-export const TodayNavBar = ({
-  navigation,
-  hasUnreadMessages,
-}) => {
+export const TodayNavBar = ({ navigation, hasUnreadMessages }) => {
   return (
     <NavContainer>
       <LeftPressableArea
@@ -111,22 +108,21 @@ export const TodayNavBar = ({
       </LeftPressableArea>
       <HeaderSection></HeaderSection>
       <RightSection>
-          <RightPressableArea
-            accessibilityLabel={"messages"}
-            testID={"messages"}
-            onPress={() => {
-              navigation.navigate("WellnessCoach"),
-                track(MESSAGE_EVENTS.VIEW_MESSAGE_FROM_WELLNESS_COACH);
-            }}
-          >
-            {hasUnreadMessages ? (
-              <UnreadIconContainer>
-                <UnreadMessageIcon testID={"unread-messages"} />
-              </UnreadIconContainer>
-            ) : (
-              <MessageIcon />
-            )}
-          </RightPressableArea>
+        <RightPressableArea
+          accessibilityLabel={"messages"}
+          testID={"messages"}
+          onPress={() => {
+            navigation.navigate("WellnessCoach");
+          }}
+        >
+          {hasUnreadMessages ? (
+            <UnreadIconContainer>
+              <UnreadMessageIcon testID={"unread-messages"} />
+            </UnreadIconContainer>
+          ) : (
+            <MessageIcon />
+          )}
+        </RightPressableArea>
       </RightSection>
     </NavContainer>
   );

@@ -3,14 +3,12 @@ import { ModuleButton } from "../../../components/button.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { SafeView } from "../../../components/safe-area.component";
 import { CompletionComponent } from "../components/completion.component";
-import * as ScreenOrientation from "expo-screen-orientation"
+import * as ScreenOrientation from "expo-screen-orientation";
 
-export const CompletionScreen = ({ navigation, route }) => {
-  const { completionMessage } = route.params
-
+export const CompletionScreen = ({ navigation, completionMessage }) => {
   useEffect(() => {
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
-  }, [])
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+  }, []);
 
   return (
     <SafeView>
