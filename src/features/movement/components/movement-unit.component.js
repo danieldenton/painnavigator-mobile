@@ -9,7 +9,7 @@ import { VideoPlayer } from "../../../components/video-player/video-player.compo
 import { SkipButton } from "./skip-button.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 
-export const MovementUnit = ({ navigation, completionMessage }) => {
+export const MovementUnit = () => {
   const {
     completeVideo,
     numOfVideosCompleted,
