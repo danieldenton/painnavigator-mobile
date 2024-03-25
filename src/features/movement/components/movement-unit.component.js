@@ -58,9 +58,6 @@ export const MovementUnit = ({ navigation, completionMessage }) => {
       if (allVideosCompleted) {
         movementVideo.current.dismissFullscreenPlayer();
       }
-      navigation.navigate("Completed", {
-        completionMessage: completionMessage,
-      });
       completeVideo(uid);
     } else {
       completeVideo(uid);
