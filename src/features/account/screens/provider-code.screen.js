@@ -33,12 +33,14 @@ export const ProviderCodeScreen = ({ navigation }) => {
   }
 
   const handleEmailPress = () => {
-    const emailAddress = 'support@painnavigator.io';
-    const subject = 'Pain Navigator Referral Code';
+    const emailAddress = "support@painnavigator.io";
+    const subject = "Pain Navigator Referral Code";
     const body = "I need help with my referral code.";
-  
-    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
+
+    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
     Linking.openURL(mailtoUrl);
   };
 
@@ -50,19 +52,17 @@ export const ProviderCodeScreen = ({ navigation }) => {
         screen={""}
       />
       <View style={{ flex: 0.5 }}>
+        <View style={styles.rerferralHeaderWrapper}><Text style={styles.referralHeader}>Enter your referral code</Text></View>
         <View style={styles.referralMessageWrapper}>
+          
           <Text style={styles.referralMessage}>
-            Enter your referral code from the clinic that you received the
-            referral from. Check your text messages for the code or email
-            </Text>
-            <TouchableOpacity
-              onPress={() => onPress={handleEmailPress}}
-            >
-              <Text style={styles.linkText}>support@painnavigator.io</Text>
-            </TouchableOpacity>
-            <Text style={styles.referralMessage}>
-            with questions.
+            from the clinic that you received the referral from. Check your text
+            messages for the code or email
           </Text>
+          <TouchableOpacity onPress={() => (onPress = { handleEmailPress })}>
+            <Text style={styles.linkText}>support@painnavigator.io</Text>
+          </TouchableOpacity>
+          <Text style={styles.referralMessage}>with questions.</Text>
         </View>
       </View>
       <AuthTextInput
