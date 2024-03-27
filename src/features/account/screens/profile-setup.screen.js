@@ -93,7 +93,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
           disabled={onboardPages[step].disabled}
           title={"Next"}
           onPress={() => {
-            console.log(step)
             step === 6
               ? (handleEducationProgram(), navigation.navigate("Register"))
               // : step === 9 && onboardingData.typeOfPain !== "Low Back Pain"
