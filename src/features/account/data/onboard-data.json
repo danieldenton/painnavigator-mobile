@@ -47,11 +47,6 @@
             "helpText": null
         },
         {
-            "id": "Mid Back Pain",
-            "option": "Mid Back Pain",
-            "helpText": null
-        },
-        {
             "id": "Neck Pain",
             "option": "Neck Pain",
             "helpText": null
@@ -65,23 +60,7 @@
             "id": "Hip Pain",
             "option": "Hip Pain",
             "helpText": null
-        },
-        {
-            "id": "Knee Pain",
-            "option": "Knee Pain",
-            "helpText": null
-        },
-        {
-            "id": "Foot Pain",
-            "option": "Foot Pain",
-            "helpText": null
-        },
-        {
-            "id": "Other",
-            "option": "Other",
-            "helpText": null
         }
-
     ]
 }
 

@@ -10,7 +10,6 @@ import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { TypeOfPain } from "../components/type-of-pain";
-import { OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
 
@@ -69,12 +68,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
       ),
       disabled: spineSurgery ? false : true,
     },
-    {
-      component: (
-        <OtherTypeOfPain setState={setOnboardingData} value={typeOfPain} />
-      ),
-      disabled: typeOfPain ? false : true,
-    },
   ];
 
   const handleOtherPainType = () => {
@@ -100,18 +93,15 @@ export const ProfileSetupScreen = ({ navigation }) => {
           disabled={onboardPages[step].disabled}
           title={"Next"}
           onPress={() => {
-            step >= 11
+            console.log(step)
+            step === 6
               ? (handleEducationProgram(), navigation.navigate("Register"))
-              : step === 9 && onboardingData.typeOfPain !== "Low Back Pain"
-              ? handleOtherPainType()
+              // : step === 9 && onboardingData.typeOfPain !== "Low Back Pain"
+              // ? handleOtherPainType()
               : nextStep();
           }}
         />
-        {step === 12 ? (
-          <ProgressDots progress={10} total={10} />
-        ) : (
-          <ProgressDots progress={step + 1} total={12} />
-        )}
+        <ProgressDots progress={step + 1} total={8} />
       </ButtonSection>
     </SafeView>
   );
