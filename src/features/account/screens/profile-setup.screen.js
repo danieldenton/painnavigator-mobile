@@ -5,15 +5,10 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
-
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
 import { HopeToAchieve } from "../components/hope-to-achieve.component";
-import { Anxious } from "../../../components/onboard-coutcome/anxious";
-import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worrying";
-import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
-import { Depressed } from "../../../components/onboard-coutcome/depressed";
 import { TypeOfPain } from "../components/type-of-pain";
 import { OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
@@ -33,10 +28,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
   const {
     enjoymentOfLife,
     activityInterference,
-    anxious,
-    unableToStopWorrying,
-    littleInterestOrPleasure,
-    depressed,
     typeOfPain,
     hopesToAchieve,
     painInjections,
@@ -59,32 +50,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
         />
       ),
       disabled: false,
-    },
-    {
-      component: <Anxious setState={setOnboardingData} value={anxious} />,
-      disabled: anxious ? false : true,
-    },
-    {
-      component: (
-        <UnableToStopWorrying
-          setState={setOnboardingData}
-          value={unableToStopWorrying}
-        />
-      ),
-      disabled: unableToStopWorrying ? false : true,
-    },
-    {
-      component: (
-        <LittleInterestOrPleasure
-          setState={setOnboardingData}
-          value={littleInterestOrPleasure}
-        />
-      ),
-      disabled: littleInterestOrPleasure ? false : true,
-    },
-    {
-      component: <Depressed setState={setOnboardingData} value={depressed} />,
-      disabled: depressed ? false : true,
     },
     { component: <AlmostThere />, disabled: false },
     {

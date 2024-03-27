@@ -1,5 +1,11 @@
 import { useState, useContext } from "react";
-import { View, Text, TouchableOpacity, Linking } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Linking,
+  ScrollView,
+} from "react-native";
 import axios from "axios";
 import { API_URL } from "@env";
 import { OnboardContext } from "../../../services/onboard.context";
@@ -46,15 +52,20 @@ export const ProviderCodeScreen = ({ navigation }) => {
 
   return (
     <SafeView style={{ flex: 1 }}>
-      <NavigationBarLeft
-        destination={"Onboard"}
-        navigation={navigation}
-        screen={""}
-      />
-      <View style={{ flex: 0.5 }}>
-        <View style={styles.rerferralHeaderWrapper}><Text style={styles.referralHeader}>Enter your referral code</Text></View>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <NavigationBarLeft
+          destination={"Onboard"}
+          navigation={navigation}
+          screen={"referral code"}
+        />
+
+        <View style={styles.rerferralHeaderWrapper}>
+          <Text style={styles.referralHeader}>Enter your referral code</Text>
+        </View>
         <View style={styles.referralMessageWrapper}>
-          
           <Text style={styles.referralMessage}>
             from the clinic that you received the referral from. Check your text
             messages for the code or email
@@ -64,30 +75,31 @@ export const ProviderCodeScreen = ({ navigation }) => {
           </TouchableOpacity>
           <Text style={styles.referralMessage}>with questions.</Text>
         </View>
-      </View>
-      <AuthTextInput
-        accessibilityLabel={"referral-code-input"}
-        value={providerCode}
-        autoCapitalize="characters"
-        onChangeText={(providerCode) => setProviderCode(providerCode)}
-        keyboardType="visible-password"
-        testID={"code-input"}
-      />
-      <View style={styles.codeGraphicWrapper}>
-        <CodeGraphic />
-      </View>
-      <ButtonSection>
-        <View style={{ marginBottom: 32 }}>
-          {error && <ErrorMessage error={error} />}
-          <JournalButton
-            disabled={providerCode.length === 6 ? false : true}
-            title={"Submit"}
-            onPress={() => {
-              checkProviderCode(providerCode);
-            }}
-          />
+
+        <AuthTextInput
+          accessibilityLabel={"referral-code-input"}
+          value={providerCode}
+          autoCapitalize="characters"
+          onChangeText={(providerCode) => setProviderCode(providerCode)}
+          keyboardType="visible-password"
+          testID={"code-input"}
+        />
+        <View style={styles.codeGraphicWrapper}>
+          <CodeGraphic />
         </View>
-      </ButtonSection>
+        <ButtonSection>
+          <View style={{ marginBottom: 32 }}>
+            {error && <ErrorMessage error={error} />}
+            <JournalButton
+              disabled={providerCode.length === 6 ? false : true}
+              title={"Submit"}
+              onPress={() => {
+                checkProviderCode(providerCode);
+              }}
+            />
+          </View>
+        </ButtonSection>
+      </ScrollView>
     </SafeView>
   );
 };

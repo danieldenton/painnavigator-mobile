@@ -78,7 +78,7 @@ export const styles = StyleSheet.create({
   },
   referralHeader: {
     fontFamily: "Inter_500Medium",
-    fontSize: 18,
+    fontSize: 20,
   },
   referralMessageWrapper: {
     alignItems: "center",
@@ -90,7 +90,6 @@ export const styles = StyleSheet.create({
     flexWrap: 'wrap',
     fontFamily: "Inter_400Regular",
     fontSize: 18,
-    
     lineHeight: 26,
   },
   explanationMessageWrapper: {
