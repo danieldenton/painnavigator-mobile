@@ -20,9 +20,10 @@ export const OnboardContextProvider = ({ children }) => {
   });
   const [providerId, setProviderId] = useState(null);
   const [tour, setTour] = useState(null);
-  const { educationProgram, setEducationProgram } = useContext(EducationContext)
+  const { educationProgram, setEducationProgram } =
+    useContext(EducationContext);
 
-  const handlePossibleEducationPrograms = (possiblePrograms) => {
+  const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
       onboardingData.painInjections !== "No" &&
       onboardingData.spineSurgery !== "No";
@@ -33,41 +34,25 @@ export const OnboardContextProvider = ({ children }) => {
       onboardingData.painInjections === "No" &&
       onboardingData.spineSurgery === "No";
     // the "else" condition covers noPainInjectionsButSpineSurgery
-    // console.log(painInjectionsAndSpineSurgery)
     if (painInjectionsAndSpineSurgery) {
-      setEducationProgram(possiblePrograms[0]);
+      setEducationProgram(1);
     } else if (painInjectionsButNoSpineSurgery) {
-      setEducationProgram(possiblePrograms[1]);
+      setEducationProgram(7);
     } else if (neitherPainInjectionsNorSpineSurgery) {
-      setEducationProgram(possiblePrograms[2]);
+      setEducationProgram(8);
     } else {
-      setEducationProgram(possiblePrograms[3]);
+      setEducationProgram(9);
     }
   };
 
   const handleEducationProgram = () => {
-    const lowBackPainPossiblePrograms = [1, 7, 8, 9];
-    const lowBackPainPossibleProgramsHopesToAchieveOnlyStrengthAndPrevention = [3, 4, 5, 6];
-    const hopesToAchieveStrengthAndPreventionOnly =
-      onboardingData.hopesToAchieve.length === 1 &&
-      onboardingData.hopesToAchieve[0] === "Strength & Prevention";
     if (providerId === 8) {
       setEducationProgram(2);
     } else {
-      if (hopesToAchieveStrengthAndPreventionOnly) {
-        if (onboardingData.typeOfPain === "Low Back Pain") {
-          handlePossibleEducationPrograms(
-            lowBackPainPossibleProgramsHopesToAchieveOnlyStrengthAndPrevention
-          );
-        } else {
-          setEducationProgram(11);
-        }
+      if (onboardingData.typeOfPain === "Low Back Pain") {
+        handlePossibleEducationPrograms();
       } else {
-        if (onboardingData.typeOfPain === "Low Back Pain") {
-          handlePossibleEducationPrograms(lowBackPainPossiblePrograms);
-        } else {
-          setEducationProgram(10);
-        }
+        setEducationProgram(10);
       }
     }
   };
