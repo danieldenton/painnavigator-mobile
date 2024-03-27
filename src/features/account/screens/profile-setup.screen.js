@@ -13,7 +13,6 @@ import { TypeOfPain } from "../components/type-of-pain";
 import { OtherTypeOfPain } from "../components/other-type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
-import { AlmostThere } from "../components/almost-there.component";
 
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
@@ -51,7 +50,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
       ),
       disabled: false,
     },
-    { component: <AlmostThere />, disabled: false },
     {
       component: (
         <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve} />
