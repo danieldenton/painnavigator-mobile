@@ -130,19 +130,6 @@ export const TodayScreen = ({ navigation }) => {
           ) : (
             <DailyPainScore navigation={navigation} />
           )}
-          {!completedAllEducationModules ? (
-            <SubHeader title={"TODAY'S EDUCATION"} size={14} />
-          ) : null}
-          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
-            <DailyGoalCompleted
-              type={"module"}
-              moduleId={lastEducationModuleId}
-            />
-          )}
-          {!completedAllEducationModules ? (
-            <EducationUnitCard navigation={navigation} />
-          ) : null}
-
           {movementModulesComplete ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
@@ -158,6 +145,18 @@ export const TodayScreen = ({ navigation }) => {
                 />
               )}
             </>
+          ) : null}
+          {!completedAllEducationModules ? (
+            <SubHeader title={"TODAY'S EDUCATION"} size={14} />
+          ) : null}
+          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
+            <DailyGoalCompleted
+              type={"module"}
+              moduleId={lastEducationModuleId}
+            />
+          )}
+          {!completedAllEducationModules ? (
+            <EducationUnitCard navigation={navigation} />
           ) : null}
           <SubHeader title={"DAILY ACTIVITIES"} size={14} />
           <View style={{ marginBottom: 16 }}>
