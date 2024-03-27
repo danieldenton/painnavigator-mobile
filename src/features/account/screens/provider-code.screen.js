@@ -21,14 +21,26 @@ export const ProviderCodeScreen = ({ navigation }) => {
       const response = await axios.get(
         `${API_URL}/api/v1/providers/${providerCode}`
       );
-      setProviderId(provider_id);
-      setError(null);
+      setProviderId(response.data.data.id);
+      if (error) {
+        setError(null);
+      }
       navigation.navigate("Explanation");
     } catch (error) {
       setError("Please enter a valid code");
       console.error(error);
     }
   }
+
+  const handleEmailPress = () => {
+    const emailAddress = 'support@painnavigator.io';
+    const subject = 'Pain Navigator Referral Code';
+    const body = "I need help with my referral code.";
+  
+    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+    Linking.openURL(mailtoUrl);
+  };
 
   return (
     <SafeView style={{ flex: 1 }}>
@@ -43,16 +55,16 @@ export const ProviderCodeScreen = ({ navigation }) => {
         </View>
         <View style={styles.referralMessageWrapper}>
           <Text style={styles.referralMessage}>
-            Enter your referral code from the clinic that you received the
+            from the clinic that you received the
             referral from. Check your text messages for the code or email
-            support@painnavigator.io with questions.”
-            {/* Enter your referral code from the clinic that you received the referral from. Check your text messages for the code or email{" "}
+            </Text>
             <TouchableOpacity
-              onPress={() => Linking.openURL("https://painnavigator.io/")}
+              onPress={() => onPress={handleEmailPress}}
             >
-              <Text style={styles.linkText}>painnavigator.io</Text>
-            </TouchableOpacity>{" "}
-            to get one! */}
+              <Text style={styles.linkText}>support@painnavigator.io</Text>
+            </TouchableOpacity>
+            <Text style={styles.referralMessage}>
+            with questions.
           </Text>
         </View>
       </View>
