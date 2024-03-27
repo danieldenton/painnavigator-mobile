@@ -8,13 +8,11 @@ import {
   SkipQuestionButton,
   SkipQuestionText,
 } from "../../../components/skip-question.component";
-import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../../amplitude-events";
 import * as ScreenOrientation from "expo-screen-orientation";
 
 export const OnboardScreen = ({ navigation }) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const { setError } = useContext(OnboardContext);
+  const { setError, error } = useContext(OnboardContext);
 
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
@@ -27,6 +25,12 @@ export const OnboardScreen = ({ navigation }) => {
     }
   };
 
+  const handleOldErrors = () => {
+    if (error) {
+      setError(null);
+    }
+  };
+
   return (
     <SafeView>
       <OnboardSwiper onPageScroll={onPageScroll} />
@@ -35,15 +39,13 @@ export const OnboardScreen = ({ navigation }) => {
           title={"Sign Up"}
           onPress={() => {
             navigation.navigate("Provider");
-            track(ONBOARD_EVENTS.CHOSE_SIGN_UP);
-            setError(null);
+            handleOldErrors();
           }}
         />
         <SkipQuestionButton
           onPress={() => {
             navigation.navigate("Login");
-            track(ONBOARD_EVENTS.CHOSE_LOGIN);
-            setError(null);
+            handleOldErrors();
           }}
         >
           <SkipQuestionText>LOGIN</SkipQuestionText>

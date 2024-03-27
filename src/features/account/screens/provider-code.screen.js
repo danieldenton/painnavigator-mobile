@@ -43,14 +43,16 @@ export const ProviderCodeScreen = ({ navigation }) => {
         </View>
         <View style={styles.referralMessageWrapper}>
           <Text style={styles.referralMessage}>
-            Enter your referral code from our website or the partner you
-            received this app from below. If you dont have a code, visit{" "}
+            Enter your referral code from the clinic that you received the
+            referral from. Check your text messages for the code or email
+            support@painnavigator.io with questions.”
+            {/* Enter your referral code from the clinic that you received the referral from. Check your text messages for the code or email{" "}
             <TouchableOpacity
               onPress={() => Linking.openURL("https://painnavigator.io/")}
             >
               <Text style={styles.linkText}>painnavigator.io</Text>
             </TouchableOpacity>{" "}
-            to get one!
+            to get one! */}
           </Text>
         </View>
       </View>

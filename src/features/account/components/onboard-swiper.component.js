@@ -49,7 +49,7 @@ export const OnboardSwiper = ({ onPageScroll }) => {
                             <CongratulationsMessage>
                                 Through this app, you'll learn how to
                                 redefine your relationship with
-                                chronic lower back pain.
+                                chronic pain.
                             </CongratulationsMessage>
                         </CongratulationsMessageWrapper>
                     </MessageSection>
