@@ -72,14 +72,6 @@ export const OnboardGraphicWrapper = styled.View`
 `;
 
 export const styles = StyleSheet.create({
-  rerferralHeaderWrapper: {
-    alignItems: "center",
-    marginTop: isAndroid ? 6 : 16,
-  },
-  referralHeader: {
-    fontFamily: "Inter_500Medium",
-    fontSize: isAndroid ? 23 : 25,
-  },
   referralMessageWrapper: {
     alignItems: "center",
     marginTop: 8,

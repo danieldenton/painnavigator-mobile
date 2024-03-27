@@ -50,12 +50,9 @@ export const ProviderCodeScreen = ({ navigation }) => {
         screen={""}
       />
       <View style={{ flex: 0.5 }}>
-        <View style={styles.rerferralHeaderWrapper}>
-          <Text style={styles.referralHeader}>Enter Your Referral Code</Text>
-        </View>
         <View style={styles.referralMessageWrapper}>
           <Text style={styles.referralMessage}>
-            from the clinic that you received the
+            Enter your referral code from the clinic that you received the
             referral from. Check your text messages for the code or email
             </Text>
             <TouchableOpacity
