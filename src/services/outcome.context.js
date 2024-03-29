@@ -5,7 +5,6 @@ import { API_URL } from "@env";
 export const OutcomeContext = createContext();
 
 export const OutcomeContextProvider = ({ children }) => {
-  const [outcomeStep, setOutcomeStep] = useState(0);
   const [outcomeData, setOutcomeData] = useState({
     recommendation: 5,
     enjoymentOfLife: 5,
@@ -43,8 +42,6 @@ export const OutcomeContextProvider = ({ children }) => {
   return (
     <OutcomeContext.Provider
       value={{
-        outcomeStep,
-        setOutcomeStep,
         setOutcomeData,
         outcomeData,
         completeProgram,

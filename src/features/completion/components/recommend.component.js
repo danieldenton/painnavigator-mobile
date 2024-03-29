@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication.context";
 import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
+import { OutcomeContext } from "../../../services/outcome.context";
 
 export const Recommend = () => {
-  const { outcomeData, setOutcomeData } = useContext(AuthenticationContext);
+  const { outcomeData, setOutcomeData } = useContext(OutcomeContext);
   const { recommendation } = outcomeData;
 
   return (
