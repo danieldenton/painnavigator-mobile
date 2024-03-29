@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
@@ -21,7 +21,8 @@ export const OutcomeScreen = ({ navigation }) => {
     outcomeData,
     setOutcomeData,
     nextStep,
-    previousStep
+    previousStep,
+    step
   } = useContext(AuthenticationContext);
   const {
     enjoymentOfLife,
