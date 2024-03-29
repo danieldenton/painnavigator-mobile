@@ -39,7 +39,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 85,
+      "versionCode": 86,
       "permissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
