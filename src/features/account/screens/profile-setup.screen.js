@@ -100,7 +100,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
               : nextStep();
           }}
         />
-        <ProgressDots progress={step + 1} total={8} />
+        <ProgressDots progress={step + 1} total={7} />
       </ButtonSection>
     </SafeView>
   );
