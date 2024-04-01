@@ -384,7 +384,7 @@
         {
           "id": 1,
           "name": "Foundations 1",
-          "videos": [63, 140, 141]
+          "videos": [63, 134, 135]
         },
         {
           "id": 2,
@@ -393,173 +393,173 @@
         },
         {
           "id": 3,
-          "name:": "",
-          "videos": []
+          "name:": "Foundations 2",
+          "videos": [134, 135, 136]
         },
         {
           "id": 4,
-          "name:": "",
-          "videos": []
+          "name:": "Foundations: Movement",
+          "videos": [73, 74, 75]
         },
         {
           "id": 5,
-          "name:": "",
-          "videos": []
+          "name:": "Foundations 3",
+          "videos": [134, 135, 136]
         },
         {
           "id": 6,
-          "name:": "",
-          "videos": []
+          "name:": "Foundations: In the Garden",
+          "videos": [76, 71, 77]
         },
         {
           "id": 7,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing 1",
+          "videos": [78, 134, 136]
         },
         {
           "id": 8,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing: Awareness",
+          "videos": [81, 74, 82]
         },
         {
           "id": 9,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing 2",
+          "videos": [83, 134, 136]
         },
         {
           "id": 10,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing: Breathing",
+          "videos": [84, 85, 72]
         },
         {
           "id": 11,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing 3",
+          "videos": [86, 134, 136]
         },
         {
           "id": 12,
-          "name:": "",
-          "videos": []
+          "name:": "Progressing: Gratitude",
+          "videos": [87, 88, 89]
         },
         {
           "id": 13,
-          "name:": "",
-          "videos": []
+          "name:": "Strength 1",
+          "videos": [90, 91, 92]
         },
         {
           "id": 14,
-          "name:": "",
-          "videos": []
+          "name:": "Strength: Movement",
+          "videos": [93, 85, 75]
         },
         {
           "id": 15,
-          "name:": "",
-          "videos": []
+          "name:": "Strength 2",
+          "videos": [94, 91, 92]
         },
         {
           "id": 16,
-          "name:": "",
-          "videos": []
+          "name:": "Strength: Energy Ball",
+          "videos": [95, 88, 96]
         },
         {
           "id": 17,
-          "name:": "",
-          "videos": []
+          "name:": "Strength 3",
+          "videos": [97, 91, 92]
         },
         {
           "id": 18,
-          "name:": "",
-          "videos": []
+          "name:": "Strength: Water",
+          "videos": [98, 99, 100, 101]
         },
         {
           "id": 19,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance 1",
+          "videos": [102, 103, 92]
         },
         {
           "id": 20,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance: Present",
+          "videos": [104, 105, 106]
         },
         {
           "id": 21,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance 2",
+          "videos": [107, 103, 92]
         },
         {
           "id": 22,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance: Letting Go",
+          "videos": [108, 99, 100, 109]
         },
         {
           "id": 23,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance 3",
+          "videos": [110, 103, 92]
         },
         {
           "id": 24,
-          "name:": "",
-          "videos": []
+          "name:": "Endurance: Awareness",
+          "videos": [111, 105, 82]
         },
         {
           "id": 25,
-          "name:": "",
-          "videos": []
+          "name:": "Core 1",
+          "videos": [112, 113, 114, 115]
         },
         {
           "id": 26,
-          "name:": "",
-          "videos": []
+          "name:": "Core: Fearlessness",
+          "videos": [116, 117, 100, 118]
         },
         {
           "id": 27,
-          "name:": "",
-          "videos": []
+          "name:": "Core 2",
+          "videos": [119, 113, 114, 115]
         },
         {
           "id": 28,
-          "name:": "",
-          "videos": []
+          "name:": "Core: Gratitude",
+          "videos": [120, 121, 122, 89]
         },
         {
           "id": 29,
-          "name:": "",
-          "videos": []
+          "name:": "Core 3",
+          "videos": [123, 113, 114, 115]
         },
         {
           "id": 30,
-          "name:": "",
-          "videos": []
+          "name:": "Core: Water",
+          "videos": [124, 117, 100, 101]
         },
         {
           "id": 31,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering 1",
+          "videos": [125, 91, 126, 127]
         },
         {
           "id": 32,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering: Present",
+          "videos": [128, 121, 122, 106]
         },
         {
           "id": 33,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering 2",
+          "videos": [129, 91, 126, 127]
         },
         {
           "id": 34,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering: Letting Go",
+          "videos": [130, 131, 99, 109]
         },
         {
           "id": 35,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering 3",
+          "videos": [132, 91, 126, 127]
         },
         {
           "id": 36,
-          "name:": "",
-          "videos": []
+          "name:": "Mastering: Fearlessness",
+          "videos": [133, 131, 99, 118]
         }
     ]
     },
