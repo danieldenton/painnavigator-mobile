@@ -17,6 +17,8 @@ export const MovementUnit = () => {
     currentVideo,
     switchVideo,
     skipVideo,
+    completedVideos,
+    currentModule
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const { source } = currentVideo;

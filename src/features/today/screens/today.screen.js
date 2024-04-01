@@ -49,6 +49,8 @@ export const TodayScreen = ({ navigation }) => {
     movementModulesComplete,
     getMovementModuleCompletions,
     lastModuleCompleted,
+    movementProgress,
+    movementProgram
   } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
@@ -66,11 +68,14 @@ export const TodayScreen = ({ navigation }) => {
     getUser();
     getEducationModuleCompletions(uid);
     getMovementModuleCompletions(uid);
-    getDailyPainScores(uid);
     getFoodJournals();
     getMoodJournals();
     getPainJournals();
   }, []);
+
+  useEffect(() => {
+    getDailyPainScores(uid);
+  }, [movementProgram])
 
   useEffect(() => {
     getMessages(uid);
@@ -137,6 +142,7 @@ export const TodayScreen = ({ navigation }) => {
                 <DailyGoalCompleted
                   type={"movementModule"}
                   moduleId={lastModuleCompleted.moduleId}
+                  movementProgram={movementProgram}
                 />
               ) : (
                 <MovementUnitCard

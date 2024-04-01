@@ -47,11 +47,11 @@ const DailyGoalMessage = styled.Text`
   font-family: Inter_400Regular;
 `;
 
-export const DailyGoalCompleted = ({ type, moduleId }) => {
+export const DailyGoalCompleted = ({ type, moduleId, movementProgram }) => {
   const module = moduleId
     ? type === "module"
       ? educationModules.find((module) => module.id === moduleId)
-      : movementModules.find((module) => module.id === moduleId)
+      : [movementProgram - 1].modules.find((module) => module.id === moduleId)
     : { name: "" };
 
   return (

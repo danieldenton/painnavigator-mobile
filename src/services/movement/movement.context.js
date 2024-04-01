@@ -45,7 +45,7 @@ export const MovementContextProvider = ({ children }) => {
       moduleId: lastMovementModuleIndex + 1,
       dateCompleted: date,
     });
-    setCurrentModule(movementModules[lastMovementModuleIndex + 1]);
+    setCurrentModule(movementModules[movementProgram - 1].modules[lastMovementModuleIndex + 1]);
     setCompletedVideos([]);
     setCurrentVideo(
       movementVideos.find((video) => video.id === currentModule.videos[0])
@@ -88,7 +88,7 @@ export const MovementContextProvider = ({ children }) => {
     if (data.length !== 0) {
       const reversedData = data.reverse();
       const lastMovementCompletion = reversedData[0];
-      const lastMovementModule = movementModules.find(
+      const lastMovementModule = movementModules[movementProgram - 1].modules.find(
         (module) => module.id === lastMovementCompletion.attributes.module_id
       );
       const lastMovementModuleCompletionDate = formatBackendCreatedAtDate(
@@ -114,7 +114,7 @@ export const MovementContextProvider = ({ children }) => {
         );
       }
     } else {
-      setCurrentModule(movementModules[0])
+      setCurrentModule(movementModules[movementProgram - 1].modules[0])
       setCurrentVideo(currentModule.videos[0])
     }
   }
