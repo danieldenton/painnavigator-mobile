@@ -121,21 +121,21 @@ export const MovementContextProvider = ({ children }) => {
 
   function parseMovementVideoCompletions(data) {
     if (data.length !== 0) {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].attributes.status === "completed") {
-          setCompletedMovementVideos(
-            ...completedMovementVideos,
-            data[i].attributes.video_id
-          );
-        } else if (data[i].attributes.status === "skipped") {
-          setSkippedMovementVideos(
-            ...skippedMovementVideos,
-            data[i].attributes
-          );
-        } else {
-          continue;
-        }
-      }
+      // for (let i = 0; i < data.length; i++) {
+      //   if (data[i].attributes.status === "completed") {
+      //     setCompletedMovementVideos(
+      //       ...completedMovementVideos,
+      //       data[i].attributes.video_id
+      //     );
+      //   } else if (data[i].attributes.status === "skipped") {
+      //     setSkippedMovementVideos(
+      //       ...skippedMovementVideos,
+      //       data[i].attributes
+      //     );
+      //   } else {
+      //     continue;
+      //   }
+      // }
     }
   }
 
