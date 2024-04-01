@@ -64,13 +64,9 @@ export const OnboardContextProvider = ({ children }) => {
   };
 
   const previousStep = () => {
-    if (step === 12) {
-      setStep(8);
-    } else {
-      setStep((prevPage) => {
-        return prevPage - 1;
-      });
-    }
+    setStep((prevPage) => {
+      return prevPage - 1;
+    });
   };
 
   return (
