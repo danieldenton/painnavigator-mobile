@@ -23,14 +23,6 @@ export const OnboardContextProvider = ({ children }) => {
   const [tour, setTour] = useState(null);
   const { educationProgram, setEducationProgram } =
     useContext(EducationContext);
-  const { movementProgram, setMovementProgram } = useContext(MovementContext);
-
-  const handleMovementProgram = () => {
-    const typesOfPain = ["Low Back Pain", "Neck Pain", "Shoulder Pain", "Hip Pain"]
-    const indexOfTypeOfPain = typesOfPain.indexOf(onboardingData.typeOfPain)
-    const movementProgramId = indexOfTypeOfPain + 1
-    setMovementProgram(movementProgramId)
-  };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
