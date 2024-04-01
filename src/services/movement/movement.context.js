@@ -254,6 +254,8 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
+        movementProgram,
+        setMovementProgram,
         getPlaylistLength,
         getMovementModuleCompletions,
         completeVideo,

@@ -31,7 +31,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     painInjections,
     spineSurgery,
   } = onboardingData;
-
+console.log(typeOfPain)
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
     {

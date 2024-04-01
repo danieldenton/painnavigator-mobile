@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
 import { EducationContext } from "./education/education.context";
+import { MovementContext } from "./movement/movement.context";
 
 export const OnboardContext = createContext();
 
@@ -22,6 +23,11 @@ export const OnboardContextProvider = ({ children }) => {
   const [tour, setTour] = useState(null);
   const { educationProgram, setEducationProgram } =
     useContext(EducationContext);
+  const { movementProgram, setMovementProgram } = useContext(MovementContext);
+
+  const handleMovementProgram = () => {
+    
+  };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =

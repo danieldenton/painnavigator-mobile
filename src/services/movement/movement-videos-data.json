@@ -634,6 +634,87 @@
           "source": "https://res.cloudinary.com/painnavigator/video/upload/v1651079322/For%20Mobile%20App/Yoga%20and%20Mindfulness/Mastering/Mastering:%20Fearlessness:%20Breathing.mp4",
           "type": "video",
           "group": "movement"
+        },
+        {
+          "id": 134,
+          "name": "Pendulum Stretch",
+          "length": 167,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993275/For%20Mobile%20App/Thumbnails/Pendulum_Stretch_Thumbnail_tukpou.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711552104/For%20Mobile%20App/Exercise/Shoulder/Pendulum%20Stretch.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 135,
+          "name": "Shoulder Blade Squeeze",
+          "length": 243,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993273/For%20Mobile%20App/Thumbnails/Shoulder_Blade_Squeeze_Thumbnail_psyqby.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711552128/For%20Mobile%20App/Exercise/Shoulder/Shoulder%20Blade%20Squeeze.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 136,
+          "name": "Alternative Pec Stretch",
+          "length": 193,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993275/For%20Mobile%20App/Thumbnails/Alt_Pec_Stretch_Thumbnail_arwt11.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711552126/For%20Mobile%20App/Exercise/Shoulder/Alternative%20Pec%20Stretch.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 137,
+          "name": "Hip Circles",
+          "length": 209,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993445/For%20Mobile%20App/Thumbnails/Hip_Circles_Thumbnail_l6payw.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711488113/For%20Mobile%20App/Exercise/Hip/Hip%20Circles.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 138,
+          "name": "Hip Flexor Stretch",
+          "length": 247,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993444/For%20Mobile%20App/Thumbnails/Hip_Flexor_Thumbnail_fou1wv.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711488282/For%20Mobile%20App/Exercise/Hip/Hip%20Flexor%20Stretch.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 139,
+          "name": "Hamstring Stretch ",
+          "length": 308,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993443/For%20Mobile%20App/Thumbnails/Hamstring_Stretch_Thumbnail_krvwoy.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711487967/For%20Mobile%20App/Exercise/Hip/Hamstring%20Stretch.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 140,
+          "name": "Neck Rotation",
+          "length": 176,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993731/For%20Mobile%20App/Thumbnails/Neck_Rotation_Thumbnail_a8xkw2.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711488274/For%20Mobile%20App/Exercise/Neck/Neck%20Rotation.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 141,
+          "name": "Upper Trapezius stretch",
+          "length": 304,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993730/For%20Mobile%20App/Thumbnails/Upper_Trap_Stretch_Thumbnail_oawrcf.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711488398/For%20Mobile%20App/Exercise/Neck/Upper%20Trapezius%20Stretch.mp4",
+          "type": "video",
+          "group": "movement"
+        },
+        {
+          "id": 142,
+          "name": "Neck Retraction",
+          "length": 94,
+          "thumbnail": "https://res.cloudinary.com/painnavigator/image/upload/v1711993856/For%20Mobile%20App/Thumbnails/Neck_Retraction_Thumbnail_yibfvt.png",
+          "source": "https://res.cloudinary.com/painnavigator/video/upload/v1711488219/For%20Mobile%20App/Exercise/Neck/Neck%20Retraction.mp4",
+          "type": "video",
+          "group": "movement"
         }
     ]
 }
