@@ -8,23 +8,20 @@ import { timeZonedTodaysDate, formatBackendCreatedAtDate } from "../../utils";
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-  const [currentModule, setCurrentModule] = useState(movementModules[0]);
-  const [currentVideo, setCurrentVideo] = useState(currentModule.videos[0]);
+  const [currentModule, setCurrentModule] = useState({});
+  const [currentVideo, setCurrentVideo] = useState({});
   const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
   const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
   const [savedMovementVideos, setSavedMovementVideos] = useState([]);
   const [completedVideos, setCompletedVideos] = useState([]);
-  const numOfCompletedVideos = completedVideos.length;
-  const playlistLength = currentModule.videos.length;
+  const numOfCompletedVideos = completedVideos?.length;
+  const playlistLength = currentModule.videos?.length;
   const [moduleComplete, setModuleComplete] = useState(false);
   const [lastModuleCompleted, setLastModuleCompleted] = useState({
     moduleId: null,
     dateCompleted: null,
   });
   const [isMovement, setIsMovement] = useState(false);
-  const incompleteVideos = currentModule.videos.filter(
-    (video) => !completedVideos.includes(video)
-  );
   const [movementProgram, setMovementProgram] = useState(1);
 
   const movementModulesComplete = currentModule?.id < 37;
@@ -116,6 +113,9 @@ export const MovementContextProvider = ({ children }) => {
           lastMovementModuleCompletions
         );
       }
+    } else {
+      setCurrentModule(movementModules[0])
+      setCurrentVideo(currentModule.videos[0])
     }
   }
 
@@ -265,7 +265,6 @@ export const MovementContextProvider = ({ children }) => {
         playlistLength,
         completedVideos,
         numOfCompletedVideos,
-        incompleteVideos,
         moduleComplete,
         skipVideo,
         switchVideo,

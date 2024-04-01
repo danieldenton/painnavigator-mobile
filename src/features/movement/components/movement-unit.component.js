@@ -14,7 +14,6 @@ export const MovementUnit = () => {
     completeVideo,
     numOfVideosCompleted,
     playlistLength,
-    incompleteVideos,
     currentVideo,
     switchVideo,
     skipVideo,
@@ -25,6 +24,9 @@ export const MovementUnit = () => {
   const [fullscreenStatus, setFullscreenStatus] = useState();
   const movementVideo = useRef(null);
   const allVideosCompleted = numOfVideosCompleted === playlistLength;
+  const incompleteVideos = currentModule.videos.filter(
+    (video) => !completedVideos.includes(video)
+  );
   const upNextList = incompleteVideos.filter(
     (video) => video !== currentVideo.id
   );
