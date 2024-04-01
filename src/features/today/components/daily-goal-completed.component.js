@@ -51,7 +51,7 @@ export const DailyGoalCompleted = ({ type, moduleId, movementProgram }) => {
   const module = moduleId
     ? type === "module"
       ? educationModules.find((module) => module.id === moduleId)
-      : [movementProgram - 1].modules.find((module) => module.id === moduleId)
+      : movementModules[movementProgram - 1].modules.find((module) => module.id === moduleId)
     : { name: "" };
 
   return (
