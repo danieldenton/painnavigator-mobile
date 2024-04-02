@@ -28,11 +28,15 @@ export const MovementContextProvider = ({ children }) => {
   const movementModulesComplete = currentModule?.id < 37;
 
   useEffect(() => {
+    console.log(currentVideo)
+  }, [currentVideo])
+
+  useEffect(() => {
     if (completedVideos.length > 0) {
       if (completedVideos.length === playlistLength) {
         setTimeout(() => {
           const lastMovementModuleIndex = currentModule.id - 1;
-          readyNextModule(lastMovementModuleIndex, timeZonedTodaysDate);
+          readyNextModule(lastMovementModuleIndex);
           setModuleComplete(true);
         }, 1000);
       } else {
@@ -41,10 +45,10 @@ export const MovementContextProvider = ({ children }) => {
     }
   }, [completedVideos]);
 
-  function readyNextModule(lastMovementModuleIndex, date) {
+  function readyNextModule(lastMovementModuleIndex) {
     setLastModuleCompleted({
       moduleId: lastMovementModuleIndex + 1,
-      dateCompleted: date,
+      dateCompleted: timeZonedTodaysDate,
     });
     setCurrentModule(
       movementModules[movementProgram - 1].modules[lastMovementModuleIndex + 1]
