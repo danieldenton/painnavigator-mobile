@@ -10,7 +10,6 @@ export const MovementPlaylist = ({ navigation }) => {
     const incompleteVideos = currentModule.videos.filter(
     (video) => !completedVideos.includes(video)
   );
-    
 
     const playlistTiles = currentModule.videos.map((video, index) => (
         completedVideos.includes(video) ? (

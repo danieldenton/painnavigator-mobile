@@ -1,8 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
 import { movementVideos } from "./movement-videos-data.json";
+import { AuthenticationContext } from "../authentication.context";
 import { timeZonedTodaysDate, formatBackendCreatedAtDate } from "../../utils";
 
 export const MovementContext = createContext();
@@ -22,9 +23,16 @@ export const MovementContextProvider = ({ children }) => {
     dateCompleted: null,
   });
   const [isMovement, setIsMovement] = useState(false);
-  const [movementProgram, setMovementProgram] = useState(null);
+  const { movementProgram, uid } = useContext(AuthenticationContext);
 
   const movementModulesComplete = currentModule?.id < 37;
+
+  useEffect(() => {
+    if (movementProgram != null) {
+      console.log(movementProgram, "!!!!");
+      getMovementModuleCompletions(uid);
+    }
+  }, [movementProgram]);
 
   useEffect(() => {
     if (completedVideos.length > 0) {
@@ -56,7 +64,7 @@ export const MovementContextProvider = ({ children }) => {
 
   function readyNextVideo() {
     const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
-    const indexOfLastCompletedVideo = currentModule.videos.findIndex(
+    const indexOfLastCompletedVideo = currentModule.videos.indexOf(
       (video) => video === lastCompletedVideoId
     );
     setCurrentVideo(
@@ -111,9 +119,11 @@ export const MovementContextProvider = ({ children }) => {
           lastMovementModuleCompletions
         );
       }
-    } else {
+    } else if (movementProgram != null) {
       setCurrentModule(movementModules[movementProgram - 1].modules[0]);
-      setCurrentVideo(currentModule.videos[0]);
+      setCurrentVideo(
+        movementModules[movementProgram - 1].modules[0].videos[0]
+      );
     }
   }
 
@@ -174,6 +184,7 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   const completeVideo = (uid) => {
+    console.log(currentVideo);
     if (!completedVideos.includes(currentVideo.id)) {
       setCompletedVideos([...completedVideos, currentVideo.id]);
       const completed = 0;
@@ -252,10 +263,8 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
-        movementProgram,
-        setMovementProgram,
-        getPlaylistLength,
         getMovementModuleCompletions,
+        getPlaylistLength,
         completeVideo,
         completeSkippedMovementUnit,
         currentModule,

@@ -6,7 +6,6 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { OnboardContext } from "./onboard.context";
 import { EducationContext } from "./education/education.context";
-import { MovementContext } from "./movement/movement.context";
 import { ProfileContext } from "./profile/profile-context";
 import { OutcomeContext } from "./outcome.context";
 import { WellnessCoachContext } from "./wellness-coach.context";
@@ -19,9 +18,8 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const uid = user?.user.uid;
-
+  const [movementProgram, setMovementProgram] = useState(null);
   const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
-  const { setMovementProgram } = useContext(MovementContext);
   const { setEducationProgram, educationProgram, setEducationProgress } =
     useContext(EducationContext);
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
@@ -57,6 +55,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         ? data.education_progress.education_progress
         : data.education_progress.progress;
       setUserInfo(data.profile);
+      console.log(data.movement_program);
       setMovementProgram(data.movement_program);
       setEducationProgram(data.education_program);
       setEducationProgress(eProgress);
@@ -196,6 +195,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         patchLastDateOnApp,
         resetPassword,
+        movementProgram,
       }}
     >
       {children}

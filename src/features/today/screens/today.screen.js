@@ -33,11 +33,11 @@ import {
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
 import { timeZonedTodaysDate } from "../../../utils";
+import { PurpleCheckMark } from "../../../icons";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
-    AuthenticationContext
-  );
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp, movementProgram } =
+    useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
@@ -49,7 +49,6 @@ export const TodayScreen = ({ navigation }) => {
     movementModulesComplete,
     getMovementModuleCompletions,
     lastModuleCompleted,
-    movementProgram
   } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
@@ -67,15 +66,10 @@ export const TodayScreen = ({ navigation }) => {
     getUser();
     getDailyPainScores(uid);
     getEducationModuleCompletions(uid);
-   
     getFoodJournals();
     getMoodJournals();
     getPainJournals();
   }, []);
-
-  useEffect(() => {
-    getMovementModuleCompletions(uid);
-  }, [movementProgram])
 
   useEffect(() => {
     getMessages(uid);
