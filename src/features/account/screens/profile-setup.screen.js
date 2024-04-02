@@ -31,6 +31,7 @@ export const ProfileSetupScreen = ({ navigation }) => {
     painInjections,
     spineSurgery,
   } = onboardingData;
+  const spineSurgeryQuestion = typeOfPain === "Low Back Pain" ? 6 : 5;
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
@@ -70,15 +71,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
     },
   ];
 
-  const handleOtherPainType = () => {
-    if (onboardingData.typeOfPain === "Other") {
-      setStep(12);
-      onboardingData.typeOfPain = "";
-    } else {
-      navigation.navigate("Register");
-    }
-  };
-
   return (
     <SafeView>
       <NavigationBarLeft
@@ -93,14 +85,12 @@ export const ProfileSetupScreen = ({ navigation }) => {
           disabled={onboardPages[step].disabled}
           title={"Next"}
           onPress={() => {
-            step === 6
+            step === spineSurgeryQuestion
               ? (handleEducationProgram(), navigation.navigate("Register"))
-              // : step === 9 && onboardingData.typeOfPain !== "Low Back Pain"
-              // ? handleOtherPainType()
               : nextStep();
           }}
         />
-        <ProgressDots progress={step + 1} total={7} />
+        <ProgressDots progress={step + 1} total={spineSurgeryQuestion + 1} />
       </ButtonSection>
     </SafeView>
   );
