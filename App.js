@@ -152,11 +152,13 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <ProfileContextProvider>
           <EducationContextProvider>
-            <OnboardContextProvider>
-              <OutcomeContextProvider>
-                <WellnessCoachContextProvider>
-                  <AuthenticationContextProvider expoPushToken={expoPushToken}>
-                    <MovementContextProvider>
+            <MovementContextProvider>
+              <OnboardContextProvider>
+                <OutcomeContextProvider>
+                  <WellnessCoachContextProvider>
+                    <AuthenticationContextProvider
+                      expoPushToken={expoPushToken}
+                    >
                       <DailyPainContextProvider>
                         <BookmarksContextProvider>
                           <SmartGoalContextProvider>
@@ -172,11 +174,11 @@ export default function App() {
                           </SmartGoalContextProvider>
                         </BookmarksContextProvider>
                       </DailyPainContextProvider>
-                    </MovementContextProvider>
-                  </AuthenticationContextProvider>
-                </WellnessCoachContextProvider>
-              </OutcomeContextProvider>
-            </OnboardContextProvider>
+                    </AuthenticationContextProvider>
+                  </WellnessCoachContextProvider>
+                </OutcomeContextProvider>
+              </OnboardContextProvider>
+            </MovementContextProvider>
           </EducationContextProvider>
         </ProfileContextProvider>
       </ThemeProvider>

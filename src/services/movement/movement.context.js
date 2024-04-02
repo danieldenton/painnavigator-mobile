@@ -23,16 +23,9 @@ export const MovementContextProvider = ({ children }) => {
     dateCompleted: null,
   });
   const [isMovement, setIsMovement] = useState(false);
-  const { movementProgram, uid } = useContext(AuthenticationContext);
+  const [movementProgram, setMovementProgram] = useState(null);
 
   const movementModulesComplete = currentModule?.id < 37;
-
-  useEffect(() => {
-    if (movementProgram != null) {
-      console.log(movementProgram, "!!!!");
-      getMovementModuleCompletions(uid);
-    }
-  }, [movementProgram]);
 
   useEffect(() => {
     if (completedVideos.length > 0) {
@@ -64,15 +57,12 @@ export const MovementContextProvider = ({ children }) => {
 
   function readyNextVideo() {
     const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
-    const indexOfLastCompletedVideo = currentModule.videos.indexOf(
-      (video) => video === lastCompletedVideoId
+    const indexOfLastCompletedVideo = currentModule.videos.indexOf(lastCompletedVideoId);
+    const nextVideo = movementVideos.find(
+      (video) =>
+        video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
     );
-    setCurrentVideo(
-      movementVideos.find(
-        (video) =>
-          video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
-      )
-    );
+    setCurrentVideo(nextVideo);
   }
 
   function readyUnfinishedMovementModule(
@@ -184,7 +174,6 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   const completeVideo = (uid) => {
-    console.log(currentVideo);
     if (!completedVideos.includes(currentVideo.id)) {
       setCompletedVideos([...completedVideos, currentVideo.id]);
       const completed = 0;
@@ -264,6 +253,8 @@ export const MovementContextProvider = ({ children }) => {
     <MovementContext.Provider
       value={{
         getMovementModuleCompletions,
+        movementProgram,
+        setMovementProgram,
         getPlaylistLength,
         completeVideo,
         completeSkippedMovementUnit,
