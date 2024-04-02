@@ -22,7 +22,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const uid = user?.user.uid;
 
   const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
-  const { setMovementProgram, movementProgram, getMovementModuleCompletions } = useContext(MovementContext);
+  const { setMovementProgram } = useContext(MovementContext);
   const { setEducationProgram, educationProgram, setEducationProgress } =
     useContext(EducationContext);
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
@@ -174,12 +174,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   useEffect(() => {
     saveUser(user);
   }, [user]);
-
-  useEffect(() => {
-    if (movementProgram != null) {
-      getMovementModuleCompletions(uid);
-    }
-  }, [movementProgram]);
 
   // TODO fix this.
   useEffect(() => {

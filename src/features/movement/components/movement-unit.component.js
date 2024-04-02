@@ -32,6 +32,7 @@ export const MovementUnit = () => {
   const upNextList = incompleteVideos.filter(
     (video) => video !== currentVideo.id
   );
+  console.log(currentVideo)
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile

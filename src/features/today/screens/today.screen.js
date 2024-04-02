@@ -36,7 +36,7 @@ import { timeZonedTodaysDate } from "../../../utils";
 import { PurpleCheckMark } from "../../../icons";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp, movementProgram } =
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } =
     useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
@@ -49,6 +49,7 @@ export const TodayScreen = ({ navigation }) => {
     movementModulesComplete,
     getMovementModuleCompletions,
     lastModuleCompleted,
+    movementProgram
   } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
@@ -70,6 +71,13 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals();
     getPainJournals();
   }, []);
+
+  useEffect(() => {
+    if (movementProgram != null) {
+      getMovementModuleCompletions(uid);
+    }
+  }, [movementProgram]);
+
 
   useEffect(() => {
     getMessages(uid);
