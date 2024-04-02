@@ -57,6 +57,7 @@ export const MovementContextProvider = ({ children }) => {
     setCurrentVideo(
       movementVideos.find((video) => video.id === currentModule.videos[0])
     );
+    console.log(currentVideo, currentModule.videos[0])
   }
 
   function readyNextVideo() {
