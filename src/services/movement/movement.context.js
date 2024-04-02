@@ -45,10 +45,10 @@ export const MovementContextProvider = ({ children }) => {
     }
   }, [completedVideos]);
 
-  function readyNextModule(lastMovementModuleIndex) {
+  function readyNextModule(lastMovementModuleIndex, date) {
     setLastModuleCompleted({
       moduleId: lastMovementModuleIndex + 1,
-      dateCompleted: timeZonedTodaysDate,
+      dateCompleted: date,
     });
     setCurrentModule(
       movementModules[movementProgram - 1].modules[lastMovementModuleIndex + 1]
