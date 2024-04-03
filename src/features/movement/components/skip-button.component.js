@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { AuthenticationContext } from "../../../services/authentication.context";
 
 const SkipButtonWrapper = styled.View`
     align-items: flex-end;
@@ -22,11 +23,12 @@ const SkipButtonText = styled.Text`
     font-size: 14px;
 `;
 
-export const SkipButton = ({ handlePress, resetVideo }) => {
+export const SkipButton = ({ skipVideo, resetVideo }) => {
+    const { uid } = useContext(AuthenticationContext)
     return (
         <SkipButtonWrapper>
             <SkipButtonTouchable
-                onPress={() => {handlePress(); resetVideo();}}
+                onPress={() => {skipVideo(uid); resetVideo();}}
             >
                 <SkipButtonText>
                     SKIP VIDEO

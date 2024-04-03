@@ -1,24 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
+import { View } from "react-native";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ExpandableCard } from "../components/expandable-card.component";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { movementVideos } from "../../movement/data/movement-videos-data.json";
+import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 import { Scroll } from "../../../components/scroll.component";
-import { View } from "react-native";
-import { getMovementUnits } from "../../../services/movement/movement.service";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
-    completedMovementModules,
-    completeMovementSkippedUnit,
-    skippedMovementModules,
-    savedMovementUnits,
+    getMovementModuleCompletions,
+    completedMovementVideos,
+    skippedMovementVideos,
+    savedMovementVideos,
     setIsMovement,
-    setCompletedMovementModules,
-    setSkippedMovementModules,
-    setSavedMovementUnits,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const [savedMovementModuleData, setSavedMovementModuleData] = useState([]);
@@ -30,34 +26,29 @@ export const MovementUnitsScreen = ({ navigation }) => {
 
   useEffect(() => {
     setIsMovement(true);
-    getMovementUnits(
-      uid,
-      setCompletedMovementModules,
-      setSkippedMovementModules,
-      setSavedMovementUnits
-    );
+    getMovementModuleCompletions(uid);
   }, []);
 
   useEffect(() => {
-    const data = savedMovementUnits?.map((module) =>
+    const data = savedMovementVideos?.map((module) =>
       movementVideos.find((item) => item.id === module)
     );
     setSavedMovementModuleData(data);
-  }, [savedMovementUnits]);
+  }, [savedMovementVideos]);
 
   useEffect(() => {
-    const data = completedMovementModules?.map((module) =>
-      movementVideos.find((item) => item.id === module)
+    const data = completedMovementVideos?.map((videoId) =>
+      movementVideos.find((item) => item.id === videoId)
     );
     setCompletedMovementModuleData(data);
-  }, [completedMovementModules]);
+  }, [completedMovementVideos]);
 
   useEffect(() => {
-    const data = skippedMovementModules?.map((module) =>
-      movementVideos.find((item) => item.id === module)
+    const data = skippedMovementVideos?.map((completion) =>
+      movementVideos.find((item) => item.id === completion.video_id)
     );
     setSkippedMovementModuleData(data);
-  }, [skippedMovementModules]);
+  }, [skippedMovementVideos]);
 
   const movementExpandableCardData = [
     {
@@ -84,7 +75,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
         navigation={navigation}
         title={card.title}
         units={card.units}
-        completeSkippedUnit={completeMovementSkippedUnit}
         key={idx}
       />
     );

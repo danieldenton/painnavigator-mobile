@@ -3,9 +3,8 @@ import { NavigationBar } from "../../../components/journals/navigation-bar.compo
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { Provider } from 'react-native-paper';
 import { SafeView } from "../../../components/safe-area.component";
-import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { NewMoodJournalEntry } from "../components/new-mood-journal-entry.component";
-import { MOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewMoodJournalScreen = ({ navigation }) => {
     const { currentPage, previousPage, resetMoodJournal } = useContext(MoodJournalContext);
@@ -27,7 +26,6 @@ export const NewMoodJournalScreen = ({ navigation }) => {
                     resetJournal={resetMoodJournal}
                     setVisible={setVisible}
                     visible={visible} 
-                    trackExitEvent={MOOD_JOURNAL_EVENTS.EXIT_MOOD_JOURNAL}
                 />
             </SafeView>
         </Provider>

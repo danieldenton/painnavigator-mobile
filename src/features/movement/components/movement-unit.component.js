@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { View } from "react-native";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { VideoInfo } from "./video-info.component";
 import { PlaylistTile } from "./playlist-tile.component";
@@ -6,47 +7,55 @@ import { NextUp } from "../../education/components/education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
-import { View } from "react-native";
-import { track } from "@amplitude/analytics-react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
+import { AuthenticationContext } from "../../../services/authentication.context";
+import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 
 export const MovementUnit = () => {
   const {
     completeVideo,
-    completedVideos,
-    currentModule,
+    numOfCompletedVideos,
+    playlistLength,
     currentVideo,
+    setCurrentVideo,
     switchVideo,
     skipVideo,
+    completedVideos,
+    currentModule,
   } = useContext(MovementContext);
+  const { uid } = useContext(AuthenticationContext);
   const { source } = currentVideo;
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
   const movementVideo = useRef(null);
+  const allVideosCompleted = numOfCompletedVideos === playlistLength;
   const incompleteVideos = currentModule.videos.filter(
-    (video) => !video.completed
+    (video) => !completedVideos.includes(video)
   );
-  const allVideosCompleted =
-    completedVideos === currentModule.videos.length - 1;
   const upNextList = incompleteVideos.filter(
-    (video) => video.id !== currentVideo.id
+    (video) => video !== currentVideo.id
   );
-  const trackEvent = MOVEMENT_UNIT_EVENTS.SWITCH_MOVEMENT_VIDEO_IN_LIST;
+
+  useEffect(() => {
+    if (numOfCompletedVideos === 0) {
+      const firstVideoOfModule = movementVideos.find(
+        (video) => video.id === currentModule.videos[0]
+      );
+      setCurrentVideo(firstVideoOfModule);
+    }
+  });
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
-      key={video.id}
+      key={video}
       upNext={index === 0 && true}
       firstVideo={index === 0 && true}
       switchVideo={switchVideo}
-      videoId={video.id}
-      trackEvent={trackEvent}
+      videoId={video}
     />
   ));
 
   function resetVideo() {
     if (!allVideosCompleted) {
-      track(MOVEMENT_UNIT_EVENTS.PLAY_NEXT_MOVEMENT_VIDEO);
       movementVideo.current.setStatusAsync({ positionMillis: 0 });
     }
   }
@@ -64,19 +73,9 @@ export const MovementUnit = () => {
       if (allVideosCompleted) {
         movementVideo.current.dismissFullscreenPlayer();
       }
-      setTimeout(() => {
-        completeVideo();
-      }, 1000);
-    } else {
-      completeVideo();
-      resetVideo();
     }
+    completeVideo(uid);
   }, [status.didJustFinish]);
-
-  const handlePress = () => {
-    skipVideo();
-    track(MOVEMENT_UNIT_EVENTS.SKIP_MOVEMENT_UNIT);
-  };
 
   return (
     <>
@@ -87,7 +86,7 @@ export const MovementUnit = () => {
         setStatus={setStatus}
         setFullscreenStatus={setFullscreenStatus}
       />
-      <SkipButton handlePress={handlePress} resetVideo={resetVideo} />
+      <SkipButton skipVideo={skipVideo} resetVideo={resetVideo} />
       <VideoInfo />
       {incompleteVideos.length > 1 && <NextUp />}
       <Scroll

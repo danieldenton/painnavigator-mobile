@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { track } from "@amplitude/analytics-react-native";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 import { AudioUnit } from "../components/audio-unit.component";
 import { VideoUnit } from "../components/video-unit.component";
 import { TextUnit } from "../components/text-unit.component";
@@ -17,8 +17,6 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { StackActions } from "@react-navigation/native";
 
-import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
-
 export const EducationUnitScreen = ({ navigation }) => {
   const {
     completeModule,
@@ -28,10 +26,8 @@ export const EducationUnitScreen = ({ navigation }) => {
     setEducationIntroStep,
   } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
+  const { uid } = useContext(AuthenticationContext);
   const { post_video_destination, type, skippable, id } = currentModule;
-
-  const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
-  const trackNavBarEvent = EDUCATION_UNIT_EVENTS.BACK_TO_DASHBOARD;
 
   useEffect(() => {
     setIsMovement(false);
@@ -39,8 +35,7 @@ export const EducationUnitScreen = ({ navigation }) => {
 
   const postVideoAction = () => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-    track(EDUCATION_UNIT_EVENTS.COMPLETE_EDUCATION_UNIT);
-    completeModule();
+    completeModule(uid);
     if (post_video_destination) {
       const PAIN_JOURNAL_HOME = post_video_destination === "PainJournalHome";
       navigation.dispatch(
@@ -76,7 +71,6 @@ export const EducationUnitScreen = ({ navigation }) => {
           destination={"Today"}
           navigation={navigation}
           orientation={true}
-          trackNavBarEvent={trackNavBarEvent}
         />
       ) : (
         <TextModuleNavBar
@@ -84,8 +78,6 @@ export const EducationUnitScreen = ({ navigation }) => {
           destination={"Today"}
           navigation={navigation}
           id={id}
-          trackEvent={trackEvent}
-          trackNavBarEvent={trackNavBarEvent}
         />
       )}
       {educationUnitTypeCheckForRender()}
@@ -106,7 +98,6 @@ export const EducationUnitScreen = ({ navigation }) => {
           <SkipQuestion
             module={true}
             onPress={() => {
-              track(EDUCATION_UNIT_EVENTS.SKIP_EDUCATION_UNIT);
               navigation.dispatch(StackActions.replace("Skipped"));
               skipModule();
             }}

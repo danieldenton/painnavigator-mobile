@@ -19,7 +19,7 @@ export const MovementNavigator = () => {
                 component={MovementUnitScreen}
             />
             <MovementStack.Screen 
-                name="Completed" 
+                name="CompletionScreen" 
                 component={CompletionScreen}
             />
         </MovementStack.Navigator>

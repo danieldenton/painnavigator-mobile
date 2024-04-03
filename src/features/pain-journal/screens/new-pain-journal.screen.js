@@ -5,7 +5,6 @@ import { NavigationBar } from "../../../components/journals/navigation-bar.compo
 import { ExitModal } from "../../../components/journals/exit-modal.component";
 import { NewPainJournalEntry } from "../components/new-pain-journal-entry.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
-import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 
 export const NewPainJournalScreen = ({ navigation }) => {
     const { currentPage, previousPage, resetPainJournal } = useContext(PainJournalContext);
@@ -27,7 +26,6 @@ export const NewPainJournalScreen = ({ navigation }) => {
                     resetJournal={resetPainJournal}
                     setVisible={setVisible}
                     visible={visible} 
-                    trackExitEvent={PAIN_JOURNAL_EVENTS.EXIT_PAIN_JOURNAL}
                 />
             </SafeView>
         </Provider>

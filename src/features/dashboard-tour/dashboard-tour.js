@@ -1,74 +1,47 @@
 import React, { useContext, useState } from "react";
 import { View, Text, Modal } from "react-native";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { OnboardContext } from "../../services/onboard.context";
 import { ModuleButton } from "../../components/button.component";
-import { tourObj, shortTour, noWCShortTour } from "./data/dashboard-tour-data";
+import { tourObj } from "./data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";
-import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom"
+import { DashboardTourComponentOnBottom } from "./dashboard-tour-comp-bottom";
 import { styles } from "./dashboard-styles";
 
 export const DashboardTour = () => {
-  const { tour, setTour, educationProgram, accessToWellnessCoach } = useContext(
-    AuthenticationContext
-  );
-
-  const customTour =
-    educationProgram !== 10
-      ? tour
-      : accessToWellnessCoach
-      ? shortTour[tour]
-      : noWCShortTour[tour];
-
-  const handleFinish = () => {
-    setTour(null);
-  };
+  const { tour, setTour } = useContext(OnboardContext);
+  const componentOnBottomIndices = [2, 3, 5];
+  const componentOnBottom = componentOnBottomIndices.includes(tour);
 
   return (
     <>
       <View style={styles.container}>
         <Modal animationType="slide" transparent={true} visible={tour !== null}>
           <View style={styles.modalBackground}>
-            {customTour !== 0 &&
-            customTour !== 2 &&
-            customTour !== 3 &&
-            customTour !== 5 ? (
-              <DashboardTourComponentOnTop
-                customTour={customTour}
-                tour={tour}
-              />
-            ) : null}
+            {!componentOnBottom? <DashboardTourComponentOnTop tour={tour} /> : null}
             <View
               style={[
                 styles.modalContainer,
-                { marginTop: tourObj[customTour]?.tourTextBubble },
+                { marginTop: tourObj[tour]?.tourTextBubble },
               ]}
             >
-              {customTour > 0 ? (
+              {tour > 0 ? (
                 <View
                   style={[
-                    customTour === 4
-                      ? styles.triangleRightTop
-                      : styles.triangle,
-                    customTour !== 2 && customTour !== 3 && customTour !== 5
-                      ? styles.topLeft
-                      : styles.bottom,
+                    tour === 4 ? styles.triangleRightTop : styles.triangleTop,
+                    componentOnBottom ? styles.triangleBottom : styles.triangleTopLeft 
                   ]}
                 />
               ) : null}
-              <Text style={styles.modalContent}>{tourObj[customTour]?.text}</Text>
+              <Text style={styles.modalContent}>{tourObj[tour]?.text}</Text>
               <ModuleButton
                 onPress={() => {
-                  customTour < 6
-                    ? tour === 3 && !accessToWellnessCoach
-                      ? setTour((tour) => tour + 2)
-                      : setTour((tour) => tour + 1)
-                    : handleFinish();
+                  tour < 6 ? setTour((tour) => tour + 1) : setTour(null);
                 }}
                 title={tour === 0 ? "LET'S GO!" : "GOT IT!"}
               />
             </View>
-            {customTour === 2 || customTour === 3 || customTour === 5 ? (
-              <DashboardTourComponentOnBottom customTour={customTour} />
+            {componentOnBottom ? (
+              <DashboardTourComponentOnBottom tour={tour} />
             ) : null}
           </View>
         </Modal>

@@ -1,106 +1,204 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { movementModules } from "../../features/movement/data/movement-modules-data.json";
-import { movementVideos } from "../../features/movement/data/movement-videos-data.json";
-import {
-  patchSavedMovementUnits,
-  patchSkippedMovementUnits,
-  patchCompletedMovementUnits,
-  post,
-} from "./movement.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
-import { track } from "@amplitude/analytics-react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../amplitude-events";
+import axios from "axios";
+import { API_URL } from "@env";
+import { movementModules } from "./movement-modules-data.json";
+import { movementVideos } from "./movement-videos-data.json";
+import { AuthenticationContext } from "../authentication.context";
+import { timeZonedTodaysDate, formatBackendCreatedAtDate } from "../../utils";
 
 export const MovementContext = createContext();
 
 export const MovementContextProvider = ({ children }) => {
-  const [movementProgress, setMovementProgress] = useState(1);
-  const [currentModule, setCurrentModule] = useState(
-    movementModules.find((module) => module.id === movementProgress)
-  );
+  const [currentModule, setCurrentModule] = useState({});
+  const [currentVideo, setCurrentVideo] = useState({});
+  const [completedMovementVideos, setCompletedMovementVideos] = useState([]);
+  const [skippedMovementVideos, setSkippedMovementVideos] = useState([]);
+  const [savedMovementVideos, setSavedMovementVideos] = useState([]);
+  const [completedVideos, setCompletedVideos] = useState([]);
+  const numOfCompletedVideos = completedVideos?.length;
+  const playlistLength = currentModule.videos?.length;
   const [moduleComplete, setModuleComplete] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState();
-  const [completedVideos, setCompletedVideos] = useState(0);
-  const [completedMovementModules, setCompletedMovementModules] =
-    useState(null);
-  const [skippedMovementModules, setSkippedMovementModules] = useState(null);
-  const [savedMovementUnits, setSavedMovementUnits] = useState([]);
-  const [lastMovement, setLastMovement] = useState(null);
+  const [lastModuleCompleted, setLastModuleCompleted] = useState({
+    moduleId: null,
+    dateCompleted: null,
+  });
   const [isMovement, setIsMovement] = useState(false);
-  const { uid } = useContext(AuthenticationContext);
+  const [movementProgram, setMovementProgram] = useState(null);
+  const movementProgramModules = movementProgram
+    ? movementModules.find((module) => module.id === movementProgram)
+    : null;
+
+  const movementModulesComplete = currentModule?.id < 37;
 
   useEffect(() => {
-    setCurrentModule(
-      movementModules.find((module) => module.id === movementProgress)
-    );
-  }, [movementProgress]);
-
-  useEffect(() => {
-    const allVideosCompleted = Object.values(currentModule.videos).every(
-      (value) => value.completed === true
-    );
-
-    if (allVideosCompleted) {
-      setModuleComplete(true);
-      advanceProgress();
-      return;
+    if (completedVideos.length > 0) {
+      if (completedVideos.length === playlistLength) {
+        setTimeout(() => {
+          const lastMovementModuleIndex = currentModule.id - 1;
+          readyNextModule(lastMovementModuleIndex);
+          setModuleComplete(true);
+        }, 1000);
+      } else {
+        readyNextVideo();
+      }
     }
+  }, [completedVideos]);
 
-    const nextVideoId = currentModule.videos.filter(
-      (video) => !video.completed
-    )[0].id;
-    const nextVideoData = movementVideos.find(
-      (video) => video.id === nextVideoId
+  function readyNextModule(lastMovementModuleIndex, date) {
+    setLastModuleCompleted({
+      moduleId: lastMovementModuleIndex + 1,
+      dateCompleted: date,
+    });
+
+    const nextMovementModule =
+      movementProgramModules.modules[lastMovementModuleIndex + 1];
+    setCurrentModule(nextMovementModule);
+    setCompletedVideos([]);
+  }
+
+  function readyNextVideo() {
+    const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
+    const indexOfLastCompletedVideo =
+      currentModule.videos.indexOf(lastCompletedVideoId);
+    const nextVideo = movementVideos.find(
+      (video) =>
+        video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
     );
-    setCurrentVideo(nextVideoData);
-  }, [currentModule]);
+    setCurrentVideo(nextVideo);
+  }
 
-  const advanceProgress = () => {
-    const STATUS_NOT_STARTED = 0;
+  function readyUnfinishedMovementModule(
+    lastMovementModule,
+    lastMovementModuleCompletions
+  ) {
+    setCurrentModule(lastMovementModule);
+    const completedVideoIds = lastMovementModuleCompletions.map(
+      (completion) => completion.attributes.video_id
+    );
+    const completedVideoIdsInOrder = completedVideoIds.reverse();
+    setCompletedVideos(completedVideoIdsInOrder);
+  }
+
+  function parseMovementProgress(data) {
+    if (data.length !== 0) {
+      const reversedData = data.reverse();
+      const lastMovementCompletion = reversedData[0];
+      const lastMovementModule = movementProgramModules.modules.find(
+        (module) => module.id === lastMovementCompletion.attributes.module_id
+      );
+      const lastMovementModuleCompletionDate = formatBackendCreatedAtDate(
+        lastMovementCompletion.attributes.created_at
+      );
+      const lastMovementModuleCompletions = reversedData.filter(
+        (completion) =>
+          completion.attributes.module_id === lastMovementModule.id
+      );
+      const lastModuleComplete =
+        lastMovementModule.videos.length ===
+        lastMovementModuleCompletions.length;
+      const lastMovementModuleIndex = lastMovementModule.id - 1;
+      if (lastModuleComplete) {
+        readyNextModule(
+          lastMovementModuleIndex,
+          lastMovementModuleCompletionDate
+        );
+      } else {
+        readyUnfinishedMovementModule(
+          lastMovementModule,
+          lastMovementModuleCompletions
+        );
+      }
+    } else if (movementProgram != null) {
+      setCurrentModule(movementProgramModules.modules[0]);
+      setCurrentVideo(
+        movementModules[movementProgram - 1].modules[0].videos[0]
+      );
+    }
+  }
+
+  function parseMovementVideoCompletions(data) {
+    if (data.length !== 0) {
+      const completedVideoData = data.filter(
+        (completion) => completion.attributes.status === "completed"
+      );
+      const completedVideoIds = completedVideoData.map((completion) => {
+        return completion.attributes.video_id;
+      });
+      setCompletedMovementVideos(completedVideoIds);
+      const skippedVideoData = data.filter(
+        (completion) => completion.attributes.status === "skipped"
+      );
+      const editedSkippedVideoData = skippedVideoData.map((completion) => {
+        return { id: completion.id, video_id: completion.attributes.video_id };
+      });
+      setSkippedMovementVideos(editedSkippedVideoData);
+    }
+  }
+
+  async function getMovementModuleCompletions(uid) {
+    try {
+      const response = await axios.get(
+        `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
+      );
+      parseMovementProgress(response.data.data);
+      parseMovementVideoCompletions(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function postMovementModuleCompletion(module, uid) {
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/v2/movement_module_completions`,
+        { movement_module: module, uid: uid }
+      );
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/api/v2/movement_module_completions/${completionId}`,
+        { movement_module: { status: 0 } }
+      );
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const completeVideo = (uid) => {
+    if (!completedVideos.includes(currentVideo.id)) {
+      setCompletedVideos([...completedVideos, currentVideo.id]);
+      const completed = 0;
+      const completion = {
+        module_id: currentModule.id,
+        video_id: currentVideo.id,
+        status: completed,
+      };
+      postMovementModuleCompletion(completion, uid);
+    }
+  };
+
+  const skipVideo = async (uid) => {
+    const skipped = 1;
     const module = {
       module_id: currentModule.id,
-      status: STATUS_NOT_STARTED,
+      video_id: currentVideo.id,
+      status: skipped,
     };
-    post(module, uid, setMovementProgress, setCurrentModule);
-  };
-
-  const completeVideo = () => {
-    track(MOVEMENT_UNIT_EVENTS.COMPLETE_MOVEMENT_UNIT);
-    setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!completedMovementModules.includes(currentVideo.id)) {
-      setCompletedMovementModules((prevCompleted) => [
-        ...prevCompleted,
-        currentVideo.id,
-      ]);
-    }
-
-    const newVideos = currentModule.videos.map((video) =>
-      video.id === currentVideo.id
-        ? {
-            ...video,
-            completed: true,
-          }
-        : video
-    );
-    setCurrentModule({ ...currentModule, videos: newVideos });
-  };
-
-  const completeMovementSkippedUnit = (unitId) => {
-    if (!completedMovementModules.includes(unitId)) {
-      const newCompletedModules = [...completedMovementModules, unitId];
-      const sortedData = newCompletedModules.sort(function (a, b) {
-        return a - b;
-      });
-      setCompletedMovementModules(sortedData);
-    }
-    setSkippedMovementModules((prevSkipped) =>
-      prevSkipped.filter((unit) => unit !== unitId)
-    );
+    setCompletedVideos([...completedVideos, currentVideo.id]);
+    const response = await postMovementModuleCompletion(module, uid);
+    return response;
   };
 
   function getPlaylistLength(videos) {
     const videoArray = videos.map((video) => {
-      const the_video = movementVideos.find((item) => item.id === video.id);
+      const the_video = movementVideos.find((item) => item.id === video);
       const length = Math.ceil(the_video.length / 60);
 
       return length;
@@ -115,87 +213,53 @@ export const MovementContextProvider = ({ children }) => {
     return videoLength;
   }
 
-  const resetModule = () => {
-    setTimeout(() => {
-      setModuleComplete(false);
-      setCompletedVideos(0);
-    }, 1000);
-  };
-
-  const skipVideo = () => {
-    setCompletedVideos((prevCompleted) => prevCompleted + 1);
-    if (!skippedMovementModules.includes(currentVideo.id)) {
-      setSkippedMovementModules((prevCompleted) => [
-        ...prevCompleted,
-        currentVideo.id,
-      ]);
-    }
-
-    const newVideos = currentModule.videos.map((video) =>
-      video.id === currentVideo.id
-        ? {
-            ...video,
-            completed: true,
-          }
-        : video
-    );
-    setCurrentModule({ ...currentModule, videos: newVideos });
-  };
-
   const switchVideo = (videoId) => {
     const newVideoData = movementVideos.find((video) => video.id === videoId);
     setCurrentVideo(newVideoData);
   };
 
   const saveMovementModule = (id) => {
-    setSavedMovementUnits((prevSaved) => [...prevSaved, id]);
+    setSavedMovementVideos((prevSaved) => [...prevSaved, id]);
   };
 
   const unsaveMovementModule = (id) => {
-    setSavedMovementUnits((prevSaved) =>
+    setSavedMovementVideos((prevSaved) =>
       prevSaved.filter((video) => video !== id)
     );
   };
 
-  useEffect(() => {
-    if (skippedMovementModules) {
-      patchSkippedMovementUnits(uid, skippedMovementModules);
-    }
-  }, [skippedMovementModules]);
-
-  useEffect(() => {
-    if (completedMovementModules) {
-      patchCompletedMovementUnits(uid, completedMovementModules);
-    }
-  }, [completedMovementModules]);
-
   return (
     <MovementContext.Provider
       value={{
+        getMovementModuleCompletions,
+        movementProgram,
+        movementProgramModules,
+        setMovementProgram,
+        getPlaylistLength,
         completeVideo,
-        completedVideos,
-        completeMovementSkippedUnit,
+        patchSkippedToCompleteMovementModuleCompletion,
         currentModule,
         currentVideo,
-        getPlaylistLength,
-        lastMovement,
+        setCurrentVideo,
+        playlistLength,
+        completedVideos,
+        numOfCompletedVideos,
         moduleComplete,
-        movementProgress,
-        resetModule,
-        setMovementProgress,
-        setLastMovement,
         skipVideo,
         switchVideo,
-        setCompletedMovementModules,
-        completedMovementModules,
-        setSkippedMovementModules,
-        skippedMovementModules,
-        setSavedMovementUnits,
-        savedMovementUnits,
+        setCompletedMovementVideos,
+        completedMovementVideos,
+        setSkippedMovementVideos,
+        skippedMovementVideos,
+        setSavedMovementVideos,
+        savedMovementVideos,
         saveMovementModule,
         unsaveMovementModule,
         isMovement,
         setIsMovement,
+        movementModulesComplete,
+        setModuleComplete,
+        lastModuleCompleted,
       }}
     >
       {children}

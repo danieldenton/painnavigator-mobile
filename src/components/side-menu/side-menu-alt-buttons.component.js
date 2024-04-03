@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { View } from "react-native";
 import { SignOutIcon, Units, ContactIcon } from "../../icons";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../services/authentication.context";
 
 export const AltMenuButtons = ({ navigation }) => {
     const { signOut } = useContext(AuthenticationContext);

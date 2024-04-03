@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import {
   AuthTextInput,
   InputLabel,
@@ -12,14 +13,13 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { View } from "react-native";
 import { ActivityIndicator } from "../../../components/activity-indicator.component";
-import { track } from "@amplitude/analytics-react-native";
-import { ONBOARD_EVENTS } from "../../../amplitude-events";
 
 export const Signup = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-  const { onboardingData, setOnboardingData, onRegister, error, userLoading } =
-    useContext(AuthenticationContext);
+  const { onRegister, userLoading } = useContext(AuthenticationContext);
+  const { onboardingData, setOnboardingData, error, setTour } =
+    useContext(OnboardContext);
   const { firstName, lastName, email } = onboardingData;
   const [showButton, setShowButton] = useState(true);
 
@@ -101,7 +101,7 @@ export const Signup = ({ navigation }) => {
             accessibilityLabel={"create-account-button"}
             title={"Create Account"}
             onPress={() => {
-              track(ONBOARD_EVENTS.COMPLETE_CREATE_ACCOUNT);
+              setTour(0)
               onRegister(password, repeatedPassword);
             }}
           />

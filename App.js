@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { LogBox } from "react-native";
-import * as Sentry from '@sentry/react-native';
-import { init } from "@amplitude/analytics-react-native";
-import { AMPLITUDE_API_KEY } from "@env";
+import * as Sentry from "@sentry/react-native";
 import * as Notifications from "expo-notifications";
 import * as TaskManager from "expo-task-manager";
 
@@ -31,12 +29,10 @@ Notifications.setNotificationHandler({
   }),
 });
 
-init(AMPLITUDE_API_KEY);
-
 Sentry.init({
   dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true
+  debug: true,
 });
 
 LogBox.ignoreLogs([
@@ -60,27 +56,29 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 
-import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
+import { AuthenticationContextProvider } from "./src/services/authentication.context";
+import { OnboardContextProvider } from "./src/services/onboard.context";
+import { OutcomeContextProvider } from "./src/services/outcome.context";
+import { DailyPainContextProvider } from "./src/services/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FavoriteActivitiesContextProvider } from "./src/services/favorite-activities/favorite-activities.context";
-import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
-import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
+import { FoodJournalContextProvider } from "./src/services/food-journal.context";
+import { MoodJournalContextProvider } from "./src/services/mood-journal.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
-import { WellnessCoachContextProvider } from "./src/services/wellness-coach/wellness-coach.context";
+import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";
 import { registerForPushNotificationsAsync } from "./src/expoPushNotificationRegister";
 
 Sentry.init({
-  dsn: 'https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256',
+  dsn: "https://3df4c4ed269645928046dfb2ed589dab@o1307008.ingest.sentry.io/6551256",
   enableInExpoDevelopment: true,
-  debug: true
+  debug: true,
 });
 
 const firebaseConfig = {
@@ -148,31 +146,37 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider expoPushToken={expoPushToken}>
-          <DailyPainContextProvider>
-            <ProfileContextProvider>
-              <BookmarksContextProvider>
-                <EducationContextProvider>
-                  <MovementContextProvider>
-                    <SmartGoalContextProvider>
-                      <PainJournalContextProvider>
-                        <FoodJournalContextProvider>
-                          <MoodJournalContextProvider>
-                            <WellnessCoachContextProvider>
-                              <FavoriteActivitiesContextProvider>
-                                <Navigation />
-                              </FavoriteActivitiesContextProvider>
-                            </WellnessCoachContextProvider>
-                          </MoodJournalContextProvider>
-                        </FoodJournalContextProvider>
-                      </PainJournalContextProvider>
-                    </SmartGoalContextProvider>
-                  </MovementContextProvider>
-                </EducationContextProvider>
-              </BookmarksContextProvider>
-            </ProfileContextProvider>
-          </DailyPainContextProvider>
-        </AuthenticationContextProvider>
+        <ProfileContextProvider>
+          <EducationContextProvider>
+            <MovementContextProvider>
+              <OnboardContextProvider>
+                <OutcomeContextProvider>
+                  <WellnessCoachContextProvider>
+                    <AuthenticationContextProvider
+                      expoPushToken={expoPushToken}
+                    >
+                      <DailyPainContextProvider>
+                        <BookmarksContextProvider>
+                          <SmartGoalContextProvider>
+                            <PainJournalContextProvider>
+                              <FoodJournalContextProvider>
+                                <MoodJournalContextProvider>
+                                  <FavoriteActivitiesContextProvider>
+                                    <Navigation />
+                                  </FavoriteActivitiesContextProvider>
+                                </MoodJournalContextProvider>
+                              </FoodJournalContextProvider>
+                            </PainJournalContextProvider>
+                          </SmartGoalContextProvider>
+                        </BookmarksContextProvider>
+                      </DailyPainContextProvider>
+                    </AuthenticationContextProvider>
+                  </WellnessCoachContextProvider>
+                </OutcomeContextProvider>
+              </OnboardContextProvider>
+            </MovementContextProvider>
+          </EducationContextProvider>
+        </ProfileContextProvider>
       </ThemeProvider>
     </>
   );

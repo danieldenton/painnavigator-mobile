@@ -6,13 +6,9 @@ import { MovementPlaylist } from "../components/movement-playlist.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
-import { track } from "@amplitude/analytics-react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const MovementPlaylistScreen = ({ navigation }) => {
-  const { currentModule } = useContext(MovementContext);
-  const { videos } = currentModule;
-  const numVideosCompleted = videos.filter((video) => video.completed).length;
+  const { numOfCompletedVideos } = useContext(MovementContext);
 
   return (
     <SafeView>
@@ -26,10 +22,9 @@ export const MovementPlaylistScreen = ({ navigation }) => {
       <ButtonSection>
         <ModuleButton
           onPress={() => (
-            track(MOVEMENT_UNIT_EVENTS.START_MOVEMENT_UNIT),
             navigation.navigate("MovementUnit", { navigation })
           )}
-          title={numVideosCompleted > 0 ? "Play Next" : "Play All"}
+          title={numOfCompletedVideos > 0 ? "Play Next" : "Play All"}
         />
       </ButtonSection>
     </SafeView>

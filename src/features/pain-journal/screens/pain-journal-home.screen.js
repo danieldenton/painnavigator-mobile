@@ -12,7 +12,6 @@ import { View } from "react-native";
 import { GraphGraphic } from "../../../graphics"; 
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import styled from "styled-components/native";
-import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
 import { formatDateNoYear } from "../../../utils";
 
 const HelpText = styled.Text`
@@ -46,7 +45,6 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
               destination={"ReviewPainJournal"}
               journal={journal}
               key={journal.id}
-              trackEvent={PAIN_JOURNAL_EVENTS.VIEW_PREVIOUS_PAIN_JOURNAL_ENTRY}
           />
       );
   });
@@ -82,7 +80,6 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
             title={"Add New Entry"}
             destination={"NewPainJournal"}
             navigation={navigation}
-            trackPainEvent={PAIN_JOURNAL_EVENTS.NEW_PAIN_JOURNAL_ENTRY}
           />
           {painJournals.length > 0 && (
             <SubHeader

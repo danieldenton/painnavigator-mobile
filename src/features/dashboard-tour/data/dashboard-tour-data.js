@@ -7,22 +7,16 @@ import {
   ProfileSetup,
 } from "../../today/components/small-daily-activities";
 import { isAndroid, isIPad } from "../../../utils";
-import { useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+
 
 const DailyActivities = () => {
-  const { accessToWellnessCoach } = useContext(AuthenticationContext);
   return (
     <>
-      {accessToWellnessCoach ? <WellnessCoach /> : null}
+      <WellnessCoach />
       <ProfileSetup />
     </>
   );
 };
-
-export const shortTour = [0, 1, 3, 4, 6];
-
-export const noWCShortTour = [0, 1, 3,  6];
 
 export const tourObj = [
   {
@@ -49,7 +43,7 @@ export const tourObj = [
   {
     id: 4,
     text: "Move daily or as often as you can! Daily recommended exercises are here.",
-    tourTextBubble: isAndroid ? 325 : isIPad ? 310 : 350,
+    tourTextBubble: isAndroid ? 325 : isIPad ? 310 : 367,
     tourComponentPlacement: 6,
     component: <MovementUnitCard />,
   },
@@ -63,7 +57,7 @@ export const tourObj = [
   {
     id: 6,
     text: "Any other activities will be updated automatically on the homepage. Just tap one to begin.",
-    tourTextBubble: isAndroid ? 455 : isIPad ? 455 : 495,
+    tourTextBubble: isAndroid ? 455 : isIPad ? 455 : 499,
     tourComponentPlacement: 6,
     component: <DailyActivities />,
   },

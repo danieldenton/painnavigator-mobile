@@ -1,19 +1,28 @@
-import React, { useContext, useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
-import { educationPrograms } from "./education-programs-data.json"
-import { AuthenticationContext } from "../authentication/authentication.context";
+import { educationPrograms } from "./education-programs-data.json";
+import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();
 
 export const EducationContextProvider = ({ children }) => {
+  const [educationProgram, setEducationProgram] = useState(1);
   const [educationProgress, setEducationProgress] = useState(1);
   const [currentModule, setCurrentModule] = useState({});
-  const [educationIntroStep, setEducationIntroStep] = useState(0)
+  const [educationIntroStep, setEducationIntroStep] = useState(0);
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
-  const { uid, educationProgram } = useContext(AuthenticationContext);
+  const educationProgramLength =
+    educationPrograms[educationProgram - 1].educationModuleIds;
+  const completedAllEducationModules =
+    educationProgress > educationProgramLength;
+  const lastCompletedEducationModule = educationModuleCompletionData[0];
+  const lastEducationModuleId = lastCompletedEducationModule?.module_id;
+  const lastCompletedEducationModuleDate = formatBackendCreatedAtDate(
+    lastCompletedEducationModule?.created_at
+  );
 
   const shorterProgram = educationProgram > 2 && educationProgram < 7;
   const additionalJournals =
@@ -33,7 +42,7 @@ export const EducationContextProvider = ({ children }) => {
     const module = educationModules.find(
       (unit) =>
         unit.id ===
-        educationPrograms[educationProgram - 1].educationModulesId[
+        educationPrograms[educationProgram - 1].educationModuleIds[
           educationProgress - 1
         ]
     );
@@ -95,7 +104,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  const completeModule = () => {
+  const completeModule = (uid) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
@@ -124,6 +133,7 @@ export const EducationContextProvider = ({ children }) => {
     <EducationContext.Provider
       value={{
         getEducationModuleCompletions,
+        setEducationProgram,
         setEducationProgress,
         currentModule,
         completeModule,
@@ -136,6 +146,10 @@ export const EducationContextProvider = ({ children }) => {
         shorterProgram,
         additionalJournals,
         moodJournalReady,
+        completedAllEducationModules,
+        lastCompletedEducationModule,
+        lastEducationModuleId,
+        lastCompletedEducationModuleDate,
       }}
     >
       {children}

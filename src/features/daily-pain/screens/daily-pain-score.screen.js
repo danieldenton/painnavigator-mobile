@@ -4,15 +4,11 @@ import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScoreComponent } from "../components/daily-pain-score.component";
 import { PainTrackerComponent } from "../components/pain-tracker.component";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
-import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
-import { isAndroid, timeZonedTodaysDate } from "../../../utils";
-// import { PAIN_JOURNAL_EVENTS } from "../../../amplitude-events";
+import { DailyPainContext } from "../../../services/daily-pain.context";
+import { isAndroid } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
-    const { uid } = useContext(AuthenticationContext);
-    const { dailyPainStep, setDailyPainStep, setDailyPainScores, dailyPainScores } = useContext(DailyPainContext)
+    const { dailyPainStep, setDailyPainStep } = useContext(DailyPainContext)
 
     const previousPage = () => {
         setDailyPainStep(0)

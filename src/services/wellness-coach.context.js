@@ -1,13 +1,10 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
-import add from 'date-fns/add';
+import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { AuthenticationContext } from "../authentication/authentication.context";
 
 export const WellnessCoachContext = createContext();
 
 export const WellnessCoachContextProvider = ({ children }) => {
-  const { uid } = useContext(AuthenticationContext);
   const [message, setMessage] = useState({
     recipient_id: "lIUG8ybEtuNPuir7cZi4l9EwRa83",
     body: "",
@@ -35,7 +32,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     }
   }, [messages]);
 
-  async function getMessages() {
+  async function getMessages(uid) {
     try {
       const response = await axios.get(`${API_URL}/api/v1/messages/${uid}`);
       const data = response.data.data.map((message) => message.attributes);
@@ -45,7 +42,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     }
   }
 
-  const patchWellnessCoachReminded = async () => {
+  const patchWellnessCoachReminded = async (uid) => {
     try {
       await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
         wellness_coach_reminded: true
@@ -55,7 +52,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     }
   };
 
-  const patchMessage = () => {
+  const patchMessage = (uid) => {
     axios
       .patch(`${API_URL}/api/v1/mark_conversation_read/${uid}`)
       .then((response) => {});
@@ -75,7 +72,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     }
   }
 
-  const clearUnreadMessages = () => {
+  const clearUnreadMessages = (uid) => {
     const newMessages = messages.map((message) =>
       message.status === "unread"
         ? {
@@ -85,7 +82,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
         : message
     );
     setMessages(newMessages);
-    patchMessage();
+    patchMessage(uid);
   };
 
   const resetMessage = () => {

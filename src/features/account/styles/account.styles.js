@@ -74,23 +74,22 @@ export const OnboardGraphicWrapper = styled.View`
 export const styles = StyleSheet.create({
   rerferralHeaderWrapper: {
     alignItems: "center",
-    marginTop: isAndroid ? 6 : 16,
+    marginTop: 8,
   },
   referralHeader: {
     fontFamily: "Inter_500Medium",
-    fontSize: isAndroid ? 23 : 25,
+    fontSize: 20,
   },
   referralMessageWrapper: {
     alignItems: "center",
-    marginTop: 16,
     marginLeft: 4,
     marginRight: 4,
   },
   referralMessage: {
     textAlign: "center",
+    flexWrap: 'wrap',
     fontFamily: "Inter_400Regular",
-    fontSize: isAndroid ? 15.5 : 18,
-    marginBottom: isAndroid ? 6 : 4,
+    fontSize: 18,
     lineHeight: 26,
   },
   explanationMessageWrapper: {
@@ -117,6 +116,6 @@ export const styles = StyleSheet.create({
   },
   codeGraphicWrapper: {
     alignItems: "center",
-    marginTop: isAndroid ? 45 : 65,
+    marginTop: 45,
   },
 });

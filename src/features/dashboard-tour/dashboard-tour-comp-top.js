@@ -2,24 +2,16 @@ import { View } from "react-native";
 import { styles } from "./dashboard-styles";
 import { tourObj } from "./data/dashboard-tour-data";
 
-export const DashboardTourComponentOnTop = ({ customTour, tour }) => {
+export const DashboardTourComponentOnTop = ({ tour }) => {
   return (
-    <View
-      style={
-        customTour < 4 || tour === 5
-          ? null
-          : customTour === 4
-          ? styles.messageContainer
-          : styles.menuContainer
-      }
-    >
+    <View style={tour < 4 ? null : tour === 4 ? styles.messageContainer : styles.menuContainer}>
       <View
         style={[
           styles.bubble,
-          { marginTop: tourObj[customTour]?.tourComponentPlacement },
+          { marginTop: tourObj[tour]?.tourComponentPlacement },
         ]}
       >
-        {tourObj[customTour]?.component}
+        {tourObj[tour]?.component}
       </View>
     </View>
   );

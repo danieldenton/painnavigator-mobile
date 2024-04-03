@@ -3,32 +3,31 @@ import { CompletedPlaylistTile, PlaylistTile } from "./playlist-tile.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
-import { MOVEMENT_UNIT_EVENTS } from "../../../amplitude-events";
 
 export const MovementPlaylist = ({ navigation }) => {
-    const { currentModule, switchVideo } = useContext(MovementContext);
-    const incompleteVideos = currentModule.videos.filter(video => !video.completed);
+    const { completedVideos, currentModule, switchVideo } = useContext(MovementContext);
 
-    const trackEvent = MOVEMENT_UNIT_EVENTS.START_MOVEMENT_UNIT
+    const incompleteVideos = currentModule.videos.filter(
+    (video) => !completedVideos.includes(video)
+  );
 
     const playlistTiles = currentModule.videos.map((video, index) => (
-        video.completed ? (
+        completedVideos.includes(video) ? (
             <CompletedPlaylistTile
-                key={video.id}
+                key={video}
                 firstVideo={index === 0 && true}
                 upLast={index === currentModule.videos.length - 1 ? true : false}
-                videoId={video.id}
+                videoId={video}
             />
         ) : (
             <PlaylistTile 
-                key={video.id}
+                key={video}
                 lastVideo={index === currentModule.videos.length - 1 ? true : false}
-                upNext={video.id === incompleteVideos[0].id && true}
+                upNext={video === incompleteVideos[0] && true}
                 firstVideo={index === 0 && true}
                 navigation={navigation}
                 switchVideo={switchVideo}
-                videoId={video.id}
-                trackEvent={trackEvent}
+                videoId={video}
             />
         )
     ));

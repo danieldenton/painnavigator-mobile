@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { movementVideos } from "../data/movement-videos-data.json";
+import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 import { Card } from "react-native-paper";
 import { Selected } from "../../../icons";
 import { TouchableOpacity } from "react-native";
 import { DottedLineSegement } from "../../../components/dotted-line-segment.component";
-import { handleTrackEvent } from "../../../utils";
 
 const PlaylistTileCard = styled(Card)`
     border-radius: 15px;
@@ -95,7 +94,7 @@ const PlaylistTileWrapper = styled.View`
 const ProgressTrackWrapper = styled.View`
 `;
 
-export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo, trackEvent }) => {
+export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVideo }) => {
     const { name, length, thumbnail } = movementVideos.find(video => video.id === videoId);
 
     const dots = [...Array(10)].map((element, index) => {
@@ -113,7 +112,6 @@ export const PlaylistTile = ({ videoId, upNext, firstVideo, navigation, switchVi
             </ProgressTrackWrapper>
             <TouchableOpacity
                 onPress={() => {
-                    handleTrackEvent();
                     switchVideo(videoId); 
                     navigation && navigation.navigate("MovementUnit")
                     }

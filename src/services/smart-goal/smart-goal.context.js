@@ -1,152 +1,230 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { destroyGoal, patchSmartGoal, patchSmartGoalUpdate, postSmartGoal, postSmartGoalUpdate } from "./smart-goal.service";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import axios from "axios";
+import { API_URL } from "@env";
+import { AuthenticationContext } from "../authentication.context";
 import { formatDate } from "../../utils";
 
 export const SmartGoalContext = createContext();
 
 export const SmartGoalContextProvider = ({ children }) => {
-    const [activeGoal, setActiveGoal] = useState(null);
-    const [changes, setChanges] = useState("");
-    const [reviewGoal, setReviewGoal] = useState(null);
-    const [finishedGoals, setFinishedGoals] = useState([]);
-    const [smartGoal, setSmartGoal] = useState({
-        goal: "",
-        steps: "",
-        reward: ""
-    });
-    const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
-    const [currentPage, setCurrentPage] = useState(0);
-    const { uid } = useContext(AuthenticationContext);
+  const [activeGoal, setActiveGoal] = useState(null);
+  const [changes, setChanges] = useState("");
+  const [reviewGoal, setReviewGoal] = useState(null);
+  const [finishedGoals, setFinishedGoals] = useState([]);
+  const [smartGoal, setSmartGoal] = useState({
+    goal: "",
+    steps: "",
+    reward: "",
+  });
+  const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const { uid } = useContext(AuthenticationContext);
+  const lastSmartGoalUpdate = formatDate(
+    activeGoal?.goal_updates[0]?.date_time_value
+  );
 
-    useEffect(() => {
-        setReviewGoal(activeGoal);
-    }, [activeGoal])
-
-    const cancelEdits = () => {
-        setReviewGoal(activeGoal);
-        setChanges("");
-    };
-
-    const changeSmartGoal = (change, state) => {
-        setSmartGoal(prevGoal => ({
-            ...prevGoal,
-            [state]: change
-        }));
-    };
-
-    const changeUpdate = (change) => {
-        setNewSmartGoalUpdate(change);
-    };
-
-    const createSmartGoal = () => {
-        postSmartGoal(uid, smartGoal, setActiveGoal);
-    };
-
-    const createSmartGoalUpdate = () => {
-        const id = activeGoal.id;
-        const updateWithId = {
-            smart_goal_id: parseInt(id),
-            goal_update: smartGoalUpdate
-        };
-        postSmartGoalUpdate(id, updateWithId, setActiveGoal);
-        setNewSmartGoalUpdate("");
-    };
-
-    const deleteGoal = () => {
-        destroyGoal(activeGoal.id);
-        setActiveGoal(null)
-    };
-
-    const editGoal = (change, state) => {
-        setReviewGoal(prevGoal => (
-            {
-                ...prevGoal,
-                [state]: change
-            }
-        ));
-    };
-
-    const editGoalUpdate = (change, idx) => {
-        setReviewGoal(prevGoal => (
-            {
-                ...prevGoal,
-                goalUpdates: prevGoal.goal_updates[idx].goal_update = change 
-            }   
-        ))
-    };
-
-    const saveEdits = () => {
-        setActiveGoal(reviewGoal);
-        patchSmartGoal(reviewGoal)
-        for (let i = 0; i < reviewGoal.goal_updates.length; i++) {
-            patchSmartGoalUpdate(reviewGoal.goal_updates[i])
-        }
-    };
-
-    const endJournalDate = () => {
-        const date = formatDate(Date.now())
-        setReviewGoal(prevState => ({
-            ...prevState,
-            end_date: date,
-            status: "finished"
-        }))
-
+  const getSmartGoals = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/v2/smart_goals`, {
+        params: { uid: uid },
+      });
+      const data = response.data.data.map((goal) => {
+        return goal.attributes;
+      });
+      const goal = data.find((goal) => goal.status === "active");
+      const finished = data.filter((goal) => goal.status === "finished");
+      setActiveGoal(goal);
+      setFinishedGoals(finished);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    const finishGoal = () => {
-        setFinishedGoals(prevGoals => [reviewGoal, ...prevGoals]);
-        patchSmartGoal(reviewGoal)
-        setActiveGoal(null), 10000
+  async function postSmartGoal() {
+    try {
+      const response = await axios.post(`${API_URL}/api/v1/smart_goals`, {
+        smart_goal: smartGoal,
+        uid: uid,
+      });
+      const data = response.data.data.attributes;
+      setActiveGoal(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function postSmartGoalUpdate(id, smartGoalUpdate) {
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/v1/smart_goal_updates`,
+        {
+          smart_goal_id: id,
+          smart_goal_update: smartGoalUpdate,
+        }
+      );
+      const data = response.data.data.attributes;
+      setActiveGoal(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function patchSmartGoal(smartGoal) {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/api/v1/smart_goals/${smartGoal.id}`,
+        smartGoal
+      );
+      return response.data.data.attributes;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const patchSmartGoalUpdate = async (smartGoalUpdate) => {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/api/v1/smart_goal_updates/${smartGoalUpdate.id}`,
+        smartGoalUpdate
+      );
+      return response.data.data.attributes;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const destroyGoal = (goalId) => {
+    axios
+      .delete(`${API_URL}/api/v1/smart_goals/${goalId}`)
+      .then((response) => {});
+  };
+
+  const cancelEdits = () => {
+    setReviewGoal(activeGoal);
+    setChanges("");
+  };
+
+  const changeSmartGoal = (change, state) => {
+    setSmartGoal((prevGoal) => ({
+      ...prevGoal,
+      [state]: change,
+    }));
+  };
+
+  const changeUpdate = (change) => {
+    setNewSmartGoalUpdate(change);
+  };
+
+  const createSmartGoal = () => {
+    postSmartGoal(uid);
+  };
+
+  const createSmartGoalUpdate = () => {
+    const id = activeGoal.id;
+    const updateWithId = {
+      smart_goal_id: parseInt(id),
+      goal_update: smartGoalUpdate,
     };
+    postSmartGoalUpdate(id, updateWithId);
+    setNewSmartGoalUpdate("");
+  };
 
-    const nextPage = () => {
-        setCurrentPage(prevPage => prevPage + 1);
-    };
+  const deleteGoal = () => {
+    destroyGoal(activeGoal.id);
+    setActiveGoal(null);
+  };
 
-    const previousPage = () => {
-        setCurrentPage(prevPage => prevPage - 1);
-    };
+  const editGoal = (change, state) => {
+    setReviewGoal((prevGoal) => ({
+      ...prevGoal,
+      [state]: change,
+    }));
+  };
 
-    const resetSmartGoal = () => {
-        setSmartGoal({
-            goal: "",
-            steps: "",
-            reward: ""
-        });
-        setCurrentPage(0);
-    };
+  const editGoalUpdate = (change, idx) => {
+    setReviewGoal((prevGoal) => ({
+      ...prevGoal,
+      goalUpdates: (prevGoal.goal_updates[idx].goal_update = change),
+    }));
+  };
 
-    return (
-        <SmartGoalContext.Provider
-            value={{
-                activeGoal,
-                changes,
-                changeUpdate,
-                cancelEdits,
-                deleteGoal,
-                editGoal,
-                editGoalUpdate,
-                changeSmartGoal,
-                createSmartGoal,
-                createSmartGoalUpdate,
-                currentPage,
-                setCurrentPage,
-                finishGoal,
-                finishedGoals,
-                nextPage,
-                previousPage,
-                saveEdits,
-                smartGoalUpdate,
-                smartGoal,
-                resetSmartGoal,
-                reviewGoal,
-                endJournalDate,
-                setFinishedGoals, 
-                setActiveGoal
-            }}
-        >
-            {children}
-        </SmartGoalContext.Provider>
-    );
+  const saveEdits = () => {
+    setActiveGoal(reviewGoal);
+    patchSmartGoal(reviewGoal);
+    for (let i = 0; i < reviewGoal.goal_updates.length; i++) {
+      patchSmartGoalUpdate(reviewGoal.goal_updates[i]);
+    }
+  };
+
+  const endJournalDate = () => {
+    const date = formatDate(Date.now());
+    setReviewGoal((prevState) => ({
+      ...prevState,
+      end_date: date,
+      status: "finished",
+    }));
+  };
+
+  const finishGoal = () => {
+    setFinishedGoals((prevGoals) => [reviewGoal, ...prevGoals]);
+    patchSmartGoal(reviewGoal);
+    setActiveGoal(null), 10000;
+  };
+
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const previousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const resetSmartGoal = () => {
+    setSmartGoal({
+      goal: "",
+      steps: "",
+      reward: "",
+    });
+    setCurrentPage(0);
+  };
+
+  useEffect(() => {
+    setReviewGoal(activeGoal);
+  }, [activeGoal]);
+
+  return (
+    <SmartGoalContext.Provider
+      value={{
+        getSmartGoals,
+        postSmartGoal,
+        activeGoal,
+        changes,
+        changeUpdate,
+        cancelEdits,
+        deleteGoal,
+        editGoal,
+        editGoalUpdate,
+        changeSmartGoal,
+        createSmartGoal,
+        createSmartGoalUpdate,
+        currentPage,
+        setCurrentPage,
+        finishGoal,
+        finishedGoals,
+        nextPage,
+        previousPage,
+        saveEdits,
+        smartGoalUpdate,
+        smartGoal,
+        resetSmartGoal,
+        reviewGoal,
+        endJournalDate,
+        setFinishedGoals,
+        setActiveGoal,
+        lastSmartGoalUpdate,
+      }}
+    >
+      {children}
+    </SmartGoalContext.Provider>
+  );
 };

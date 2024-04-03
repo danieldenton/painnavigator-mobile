@@ -3,26 +3,12 @@ import { JournalQuestion } from "../../../components/journal-question.component"
 import { IntensitySlider } from "../../../components/slider.component";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";
-import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
-import { AuthenticationContext } from '../../../services/authentication/authentication.context';
-import { patchDailyPainScore, postDailyPainScore } from '../../../services/daily-pain/daily-pain.service';
-import { track } from '@amplitude/analytics-react-native';
-import { DAILY_PAIN_EVENTS } from '../../../amplitude-events';
+import { DailyPainContext } from "../../../services/daily-pain.context";
+import { AuthenticationContext } from '../../../services/authentication.context';
 
 export const DailyPainScoreComponent = () => {
-    const { dailyPainScore, setDailyPainScore, setDailyPainStep } = useContext(DailyPainContext)
-    const { uid } = useContext(AuthenticationContext)
-
-    const handleDailyPainScore = () => {
-        if (dailyPainScore.id) {
-            setDailyPainScore(patchDailyPainScore(dailyPainScore))
-            track(DAILY_PAIN_EVENTS.EDIT_DAILY_PAIN_SCORE)
-        } else {
-            setDailyPainScore(postDailyPainScore(uid, dailyPainScore))
-            track(DAILY_PAIN_EVENTS.LOG_DAILY_PAIN_SCORE)
-        }  
-        setDailyPainStep(1)
-    }
+    const { dailyPainScore, setDailyPainScore, handleDailyPainScore } = useContext(DailyPainContext)  
+    const { uid } = useContext(AuthenticationContext) 
 
     return (
         <>
@@ -31,7 +17,7 @@ export const DailyPainScoreComponent = () => {
             <ButtonSection>
                 <JournalButton 
                     title={"Log Pain Score"} 
-                    onPress={() => handleDailyPainScore()}
+                    onPress={() => handleDailyPainScore(uid)}
                 /> 
             </ButtonSection>  
         </>

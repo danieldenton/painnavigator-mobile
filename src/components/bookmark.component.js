@@ -3,27 +3,26 @@ import { TouchableOpacity } from "react-native";
 import { BookmarkIcon, BookmarkedIcon } from "../icons";
 import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
 import * as Haptics from "expo-haptics";
-import { track } from "@amplitude/analytics-react-native";
 import { MovementContext } from "../services/movement/movement.context";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
-import { patchSavedMovementUnits } from "../services/movement/movement.service";
+import { AuthenticationContext } from "../services/authentication.context";
+import { patchSavedMovementVideos } from "../services/movement/movement.service";
 
-export const Bookmark = ({ id, trackEvent }) => {
+export const Bookmark = ({ id }) => {
   const { bookmarks, addToBookmarks, removeFromBookmarks } =
     useContext(BookmarksContext);
   const {
     saveMovementModule,
     unsaveMovementModule,
-    savedMovementUnits,
+    savedMovementVideos,
     isMovement,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const isBookmarked = bookmarks?.includes(id);
-  const isSavedMovement = savedMovementUnits?.includes(id);
+  const isSavedMovement = savedMovementVideos?.includes(id);
 
   useEffect(() => {
-    patchSavedMovementUnits(uid, savedMovementUnits);
-  }, [savedMovementUnits]);
+    patchSavedMovementVideos(uid, savedMovementVideos);
+  }, [savedMovementVideos]);
 
   return (
     <TouchableOpacity
@@ -31,9 +30,9 @@ export const Bookmark = ({ id, trackEvent }) => {
         isMovement
           ? isSavedMovement
             ? unsaveMovementModule(id)
-            : (saveMovementModule(id), track(trackEvent))
+            : saveMovementModule(id)
           : !isBookmarked
-          ? (addToBookmarks(id), track(trackEvent))
+          ? addToBookmarks(id)
           : removeFromBookmarks(id);
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       }}
