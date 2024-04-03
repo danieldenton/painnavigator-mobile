@@ -70,7 +70,7 @@ const NextRotated = styled.View`
     transform: rotate(90deg);
 `;
 
-export const ExpandableCard = ({ moduleType, navigation, title, units, completeSkippedUnit }) => {
+export const ExpandableCard = ({ moduleType, navigation, title, units }) => {
     const [expanded, setExpanded] = useState(false);
     const unitsPresent = units?.length;
 
@@ -79,7 +79,6 @@ export const ExpandableCard = ({ moduleType, navigation, title, units, completeS
             <OptionButton 
                 onPress={() => navigation.navigate("ReplayUnit", 
                     { 
-                        completeSkippedUnit: completeSkippedUnit,
                         moduleType: moduleType,
                         unit: unit, 
                         title: title 

@@ -196,12 +196,6 @@ export const MovementContextProvider = ({ children }) => {
     return response;
   };
 
-  const completeSkippedMovementUnit = (skippedMovementCompletionId) => {
-    patchSkippedToCompleteMovementModuleCompletion(
-      skippedMovementCompletionId
-    );
-  };
-
   function getPlaylistLength(videos) {
     const videoArray = videos.map((video) => {
       const the_video = movementVideos.find((item) => item.id === video);
@@ -243,7 +237,7 @@ export const MovementContextProvider = ({ children }) => {
         setMovementProgram,
         getPlaylistLength,
         completeVideo,
-        completeSkippedMovementUnit,
+        patchSkippedToCompleteMovementModuleCompletion,
         currentModule,
         currentVideo,
         setCurrentVideo,

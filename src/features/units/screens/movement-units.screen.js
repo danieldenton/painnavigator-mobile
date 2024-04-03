@@ -76,7 +76,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
         navigation={navigation}
         title={card.title}
         units={card.units}
-        completeSkippedUnit={completeMovementSkippedUnit}
         key={idx}
       />
     );
