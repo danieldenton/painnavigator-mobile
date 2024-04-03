@@ -25,12 +25,6 @@ export const NewSmartGoal = ({ navigation }) => {
     },
   ];
 
-  const handleCreateSmartGoal = () => {
-    track(pages[currentPage].trackEvent);
-    postSmartGoal();
-    navigation.navigate("SmartGoalCreated");
-  };
-
   return (
     <>
       <QuestionSection>{pages[currentPage].component}</QuestionSection>
