@@ -622,6 +622,33 @@ export const FoodJournalIcon = () => {
   );
 };
 
+export const Loading = () => {
+  return (
+    <Svg
+      width="144"  // 36 * 4 = 144
+      height="144" // 36 * 4 = 144
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <Circle
+        cx="18"
+        cy="18"
+        r="17"
+        fill="#16A28B"
+        stroke="#16A28B"
+        strokeWidth="2"
+      />
+      <Path
+        d="M11 17.5L15.5 22L24.5 13"
+        stroke="white"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </Svg>
+  );
+};
+
 export const Locked = () => {
   return (
     <Svg
