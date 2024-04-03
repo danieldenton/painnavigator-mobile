@@ -193,25 +193,12 @@ export const MovementContextProvider = ({ children }) => {
     };
     setCompletedVideos([...completedVideos, currentVideo.id]);
     const response = await postMovementModuleCompletion(module, uid);
-    return response
+    return response;
   };
 
-  const completeSkippedMovementUnit = (skippedMovementCompletion) => {
+  const completeSkippedMovementUnit = (skippedMovementCompletionId) => {
     patchSkippedToCompleteMovementModuleCompletion(
-      skippedMovementCompletion.id
-    );
-    if (!completedMovementVideos.includes(skippedMovementCompletion.video_id)) {
-      const newCompletedModules = [
-        ...completedMovementVideos,
-        skippedMovementCompletion.video_id,
-      ];
-      const sortedData = newCompletedModules.sort((a, b) => a.id - b.id);
-      setCompletedMovementVideos(sortedData);
-    }
-    setSkippedMovementVideos((prevSkipped) =>
-      prevSkipped.filter(
-        (skippedUnit) => skippedUnit.id !== skippedMovementCompletion.id
-      )
+      skippedMovementCompletionId
     );
   };
 
