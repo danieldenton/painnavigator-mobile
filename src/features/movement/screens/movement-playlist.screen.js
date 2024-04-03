@@ -8,7 +8,7 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
 export const MovementPlaylistScreen = ({ navigation }) => {
-  const { numOfCompletedVideos, currentVideo } = useContext(MovementContext);
+  const { numOfCompletedVideos } = useContext(MovementContext);
 
   return (
     <SafeView>

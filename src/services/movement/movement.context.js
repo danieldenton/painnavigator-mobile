@@ -132,7 +132,6 @@ export const MovementContextProvider = ({ children }) => {
         return { id: completion.id, video_id: completion.attributes.video_id };
       });
       setSkippedMovementVideos(editedSkippedVideoData);
-      console.log(completedVideoIds, editedSkippedVideoData);
     }
   }
 
@@ -194,7 +193,13 @@ export const MovementContextProvider = ({ children }) => {
     };
     setCompletedVideos([...completedVideos, currentVideo.id]);
     const response = await postMovementModuleCompletion(module, uid);
-    setSkippedVideos([...skippedMovementVideos, response.data.data.attributes]);
+    // setSkippedVideos([
+    //   ...skippedMovementVideos,
+    //   {
+    //     id: response.data.data.id,
+    //     video_id: response.data.data.attributes.video_id,
+    //   },
+    // ]);
   };
 
   const completeSkippedMovementUnit = (skippedMovementCompletion) => {
