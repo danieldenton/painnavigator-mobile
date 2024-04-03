@@ -25,7 +25,6 @@ PainNavigator is pain management application that provides a physical and psycho
 To add any new depencies use "yarn add" or "npx expo install". Do not use npm.
 To add a global depency in you GitPod you should use npm
 
-1. @amplitude/analytics-react-native ^1.1.0-beta.1 - Amplitude tracking to track user interactions with the app.
 2. @expo-google-fonts/inter ^0.2.2
 3. @expo-google-fonts/poppins ^0.2.2
 4. @expo/metro-runtime ^3.1.1

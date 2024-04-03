@@ -9,107 +9,114 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { GoalWrapper, UpdateWrapper, KeyboardView } from "./goal.styles";
 import { formatDate } from "../../../utils";
-import { track } from "@amplitude/analytics-react-native";
-import { SMART_GOAL_EVENTS } from "../../../amplitude-events";
 
 export const ReviewSmartGoal = ({ editing, goal, navigation, setEditing }) => {
-    const { goal: activeGoal, steps: activeSteps, reward: activeReward, date_time_value, goal_updates: activeUpdates } = goal;
-    const { editGoal, editGoalUpdate, reviewGoal, saveEdits, endJournalDate } = useContext(SmartGoalContext);
-    const { goal: editingGoal, steps: editSteps, reward: editReward, goal_updates: editUpdates } = reviewGoal;
+  const {
+    goal: activeGoal,
+    steps: activeSteps,
+    reward: activeReward,
+    date_time_value,
+    goal_updates: activeUpdates,
+  } = goal;
+  const { editGoal, editGoalUpdate, reviewGoal, saveEdits, endJournalDate } =
+    useContext(SmartGoalContext);
+  const {
+    goal: editingGoal,
+    steps: editSteps,
+    reward: editReward,
+    goal_updates: editUpdates,
+  } = reviewGoal;
 
-    const goalDetails = [
-        {
-            header: "Your SMART goal is:",
-            body: editing ? editingGoal : activeGoal,
-            state: "goal"
-        },
-        {
-            header: "Your steps to work up to this goal are:",
-            body: editing ? editSteps : activeSteps,
-            state: "steps"
-        },
-        {
-            header: "Your reward will be:",
-            body: editing ? editReward : activeReward,
-            state: "reward"
-        }
-    ]
+  const goalDetails = [
+    {
+      header: "Your SMART goal is:",
+      body: editing ? editingGoal : activeGoal,
+      state: "goal",
+    },
+    {
+      header: "Your steps to work up to this goal are:",
+      body: editing ? editSteps : activeSteps,
+      state: "steps",
+    },
+    {
+      header: "Your reward will be:",
+      body: editing ? editReward : activeReward,
+      state: "reward",
+    },
+  ];
 
-    const handleSaveChanges = () => {
-        saveEdits(); 
-        setEditing(false);
-        track(SMART_GOAL_EVENTS.SAVE_CHANGES_TO_SMART_GOAL_EDIT);
-    }
+  const handleSaveChanges = () => {
+    saveEdits();
+    setEditing(false);
+  };
 
-    const handleSmartGoalReached = () => {
-        navigation.navigate("SmartGoalReflection")
-        endJournalDate()
-        track(SMART_GOAL_EVENTS.COMPLETE_SMART_GOAL);
-    }
+  const handleSmartGoalReached = () => {
+    navigation.navigate("SmartGoalReflection");
+    endJournalDate();
+  };
 
-    
-    const smartGoalDetails = goalDetails.map((goalDetail, idx) => {
-        return <GoalTextSection 
-                edit={editGoal} 
-                editing={editing} 
-                header={goalDetail.header} 
-                body={goalDetail.body} 
-                state={goalDetail.state} 
-                key={idx} 
-            />
-    })
-
-    const updateElements = activeUpdates?.map((update, idx) => {
-        const date = formatDate(update.date_time_value);
-        let editUpdate = update.goal_update
-        return <GoalTextSection 
-                edit={editGoalUpdate}
-                editing={editing}
-                header={date} 
-                body={editing ? editUpdate : update.goal_update} 
-                key={update.id} 
-                state={idx}
-            />
-    });
-
+  const smartGoalDetails = goalDetails.map((goalDetail, idx) => {
     return (
-        <>
-            <KeyboardView>
-                <GoalWrapper>
-                    {smartGoalDetails}
-                </GoalWrapper>
-                <SubHeader title={"UPDATES"} size={14} />
-                    <DailyActivitiesTile 
-                        title={"Add New Update"} 
-                        destination={"NewSmartGoalUpdate"} 
-                        screenParams={"SmartGoal"}
-                        navigation={navigation} 
-                        icon={<Add />}
-                    />
-                <UpdateWrapper>
-                    <ScrollView style={{ marginBottom: 8 }}>
-                        {updateElements}
-                    </ScrollView>
-                </UpdateWrapper>
-            </KeyboardView>
-            
-                <ButtonSection>
-                {editing ?
-                    <JournalButton 
-                        title={"Save Changes"} 
-                        onPress={() => {
-                            handleSaveChanges()
-                        }}
-                    />
-                    :
-                    <JournalButton 
-                        title={"Smart Goal Reached"} 
-                        onPress={() => {
-                            handleSmartGoalReached()
-                        }}
-                    />
-                 }
-                </ButtonSection>
-        </>
+      <GoalTextSection
+        edit={editGoal}
+        editing={editing}
+        header={goalDetail.header}
+        body={goalDetail.body}
+        state={goalDetail.state}
+        key={idx}
+      />
     );
+  });
+
+  const updateElements = activeUpdates?.map((update, idx) => {
+    const date = formatDate(update.date_time_value);
+    let editUpdate = update.goal_update;
+    return (
+      <GoalTextSection
+        edit={editGoalUpdate}
+        editing={editing}
+        header={date}
+        body={editing ? editUpdate : update.goal_update}
+        key={update.id}
+        state={idx}
+      />
+    );
+  });
+
+  return (
+    <>
+      <KeyboardView>
+        <GoalWrapper>{smartGoalDetails}</GoalWrapper>
+        <SubHeader title={"UPDATES"} size={14} />
+        <DailyActivitiesTile
+          title={"Add New Update"}
+          destination={"NewSmartGoalUpdate"}
+          screenParams={"SmartGoal"}
+          navigation={navigation}
+          icon={<Add />}
+        />
+        <UpdateWrapper>
+          <ScrollView style={{ marginBottom: 8 }}>{updateElements}</ScrollView>
+        </UpdateWrapper>
+      </KeyboardView>
+
+      <ButtonSection>
+        {editing ? (
+          <JournalButton
+            title={"Save Changes"}
+            onPress={() => {
+              handleSaveChanges();
+            }}
+          />
+        ) : (
+          <JournalButton
+            title={"Smart Goal Reached"}
+            onPress={() => {
+              handleSmartGoalReached();
+            }}
+          />
+        )}
+      </ButtonSection>
+    </>
+  );
 };

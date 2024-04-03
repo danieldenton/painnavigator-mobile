@@ -17,8 +17,6 @@ import { ButtonSection } from "../../../components/journals/journal.styles";
 import { SkipQuestion } from "../../../components/skip-question.component";
 import { StackActions } from "@react-navigation/native";
 
-import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
-
 export const EducationUnitScreen = ({ navigation }) => {
   const {
     completeModule,

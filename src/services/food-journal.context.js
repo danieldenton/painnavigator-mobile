@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { AuthenticationContext } from "./authentication.context";
-import { FOOD_JOURNAL_EVENTS } from "../amplitude-events";
 import { formatDate, timeZonedTodaysDate } from "../utils";
 
 export const FoodJournalContext = createContext();
@@ -15,8 +14,6 @@ export const FoodJournalContextProvider = ({ children }) => {
     feelingBefore: "",
     feelingAfter: "",
   });
-  const [trackLogMealEvent, setTrackLogMealEvent] = useState("");
-  const [trackExitEvent, setTrackExitEvent] = useState("");
   const { uid } = useContext(AuthenticationContext);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   const foodJournalToday = lastFoodJournal === timeZonedTodaysDate;
@@ -103,22 +100,6 @@ export const FoodJournalContextProvider = ({ children }) => {
     });
   };
 
-  useEffect(() => {
-    if (meal === "Breakfast") {
-      setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.BREAKFAST_LOG_MEAL);
-      setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_BREAKFAST);
-    } else if (meal === "Lunch") {
-      setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.LUNCH_LOG_MEAL);
-      setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_LUNCH);
-    } else if (meal === "Dinner") {
-      setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.DINNER_LOG_MEAL);
-      setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_DINNER);
-    } else if (meal === "Snacks") {
-      setTrackLogMealEvent(FOOD_JOURNAL_EVENTS.SNACKS_LOG_MEAL);
-      setTrackExitEvent(FOOD_JOURNAL_EVENTS.EXIT_SNACKS);
-    }
-  }, [meal]);
-
   return (
     <FoodJournalContext.Provider
       value={{
@@ -130,8 +111,6 @@ export const FoodJournalContextProvider = ({ children }) => {
         foodJournals,
         loadFoodJournals,
         meal,
-        trackLogMealEvent,
-        trackExitEvent,
         resetFoodJournal,
         setFoodJournal,
         setFoodJournals,
