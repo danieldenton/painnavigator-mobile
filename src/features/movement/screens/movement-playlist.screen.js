@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { ModuleButton } from "../../../components/button.component";
 import { MovementPlaylistHeader } from "../components/movement-playlist-header.component";
@@ -8,7 +8,16 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { ButtonSection } from "../../../components/journals/journal.styles";
 
 export const MovementPlaylistScreen = ({ navigation }) => {
-  const { numOfCompletedVideos } = useContext(MovementContext);
+  const { numOfCompletedVideos, setCurrentVideo } = useContext(MovementContext);
+
+  useEffect(() => {
+    if (numOfVideosCompleted === 0) {
+      const firstVideoOfModule = movementVideos.find(
+        (video) => video.is === currentModule.videos[0]
+      );
+      setCurrentVideo(firstVideoOfModule);
+    }
+  });
 
   return (
     <SafeView>

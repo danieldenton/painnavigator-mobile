@@ -258,6 +258,7 @@ export const MovementContextProvider = ({ children }) => {
       value={{
         getMovementModuleCompletions,
         movementProgram,
+        movementProgramModules,
         setMovementProgram,
         getPlaylistLength,
         completeVideo,

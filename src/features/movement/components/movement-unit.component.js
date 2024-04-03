@@ -18,7 +18,7 @@ export const MovementUnit = () => {
     switchVideo,
     skipVideo,
     completedVideos,
-    currentModule
+    currentModule,
   } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const { source } = currentVideo;
@@ -32,7 +32,6 @@ export const MovementUnit = () => {
   const upNextList = incompleteVideos.filter(
     (video) => video !== currentVideo.id
   );
-  console.log(currentVideo)
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile
@@ -63,10 +62,8 @@ export const MovementUnit = () => {
       if (allVideosCompleted) {
         movementVideo.current.dismissFullscreenPlayer();
       }
-      completeVideo(uid);
-    } else {
-      completeVideo(uid);
     }
+    completeVideo(uid);
   }, [status.didJustFinish]);
 
   return (
