@@ -38,15 +38,15 @@ export const MovementUnitsScreen = ({ navigation }) => {
   }, [savedMovementVideos]);
 
   useEffect(() => {
-    const data = completedMovementVideos?.map((module) =>
-      movementVideos.find((item) => item.id === module)
+    const data = completedMovementVideos?.map((videoId) =>
+      movementVideos.find((item) => item.id === videoId)
     );
     setCompletedMovementModuleData(data);
   }, [completedMovementVideos]);
 
   useEffect(() => {
-    const data = skippedMovementVideos?.map((module) =>
-      movementVideos.find((item) => item.id === module)
+    const data = skippedMovementVideos?.map((completion) =>
+      movementVideos.find((item) => item.id === completion.video_id)
     );
     setSkippedMovementModuleData(data);
   }, [skippedMovementVideos]);

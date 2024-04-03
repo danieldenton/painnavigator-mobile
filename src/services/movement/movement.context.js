@@ -31,7 +31,6 @@ export const MovementContextProvider = ({ children }) => {
   const movementModulesComplete = currentModule?.id < 37;
 
   useEffect(() => {
-    console.log(currentModule, completedVideos)
     if (completedVideos.length > 0) {
       if (completedVideos.length === playlistLength) {
         setTimeout(() => {
@@ -42,16 +41,8 @@ export const MovementContextProvider = ({ children }) => {
       } else {
         readyNextVideo();
       }
-    // } else {
-    //   setCurrentVideo(
-    //     movementVideos.find((video) => video.id === currentModule.videos[0])
-    //   );
     }
-  }, [currentModule, completedVideos]);
-
-  useEffect(() => {
-    console.log(currentVideo)
-  }, [currentVideo])
+  }, [completedVideos]);
 
   function readyNextModule(lastMovementModuleIndex, date) {
     setLastModuleCompleted({
@@ -66,7 +57,6 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   function readyNextVideo() {
-    console.log(currentModule)
     const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
     const indexOfLastCompletedVideo =
       currentModule.videos.indexOf(lastCompletedVideoId);
@@ -87,7 +77,6 @@ export const MovementContextProvider = ({ children }) => {
     );
     const completedVideoIdsInOrder = completedVideoIds.reverse();
     setCompletedVideos(completedVideoIdsInOrder);
-    // readyNextVideo();
   }
 
   function parseMovementProgress(data) {
@@ -129,21 +118,21 @@ export const MovementContextProvider = ({ children }) => {
 
   function parseMovementVideoCompletions(data) {
     if (data.length !== 0) {
-      // for (let i = 0; i < data.length; i++) {
-      //   if (data[i].attributes.status === "completed") {
-      //     setCompletedMovementVideos(
-      //       ...completedMovementVideos,
-      //       data[i].attributes.video_id
-      //     );
-      //   } else if (data[i].attributes.status === "skipped") {
-      //     setSkippedMovementVideos(
-      //       ...skippedMovementVideos,
-      //       data[i].attributes
-      //     );
-      //   } else {
-      //     continue;
-      //   }
-      // }
+      const completedVideoData = data.filter(
+        (completion) => completion.attributes.status === "completed"
+      );
+      const completedVideoIds = completedVideoData.map((completion) => {
+        return completion.attributes.video_id;
+      });
+      setCompletedMovementVideos(completedVideoIds);
+      const skippedVideoData = data.filter(
+        (completion) => completion.attributes.status === "skipped"
+      );
+      const editedSkippedVideoData = skippedVideoData.map((completion) => {
+        return { id: completion.id, video_id: completion.attributes.video_id };
+      });
+      setSkippedMovementVideos(editedSkippedVideoData);
+      console.log(completedVideoIds, editedSkippedVideoData);
     }
   }
 
@@ -153,7 +142,7 @@ export const MovementContextProvider = ({ children }) => {
         `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
       );
       parseMovementProgress(response.data.data);
-      // parseMovementVideoCompletions(response.data.data);
+      parseMovementVideoCompletions(response.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -203,9 +192,9 @@ export const MovementContextProvider = ({ children }) => {
       video_id: currentVideo.id,
       status: skipped,
     };
+    setCompletedVideos([...completedVideos, currentVideo.id]);
     const response = await postMovementModuleCompletion(module, uid);
     setSkippedVideos([...skippedMovementVideos, response.data.data.attributes]);
-    advanceProgress();
   };
 
   const completeSkippedMovementUnit = (skippedMovementCompletion) => {
