@@ -8,13 +8,15 @@ import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
+import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 
 export const MovementUnit = () => {
   const {
     completeVideo,
-    numOfVideosCompleted,
+    numOfCompletedVideos,
     playlistLength,
     currentVideo,
+    setCurrentVideo,
     switchVideo,
     skipVideo,
     completedVideos,
@@ -25,13 +27,22 @@ export const MovementUnit = () => {
   const [status, setStatus] = useState({});
   const [fullscreenStatus, setFullscreenStatus] = useState();
   const movementVideo = useRef(null);
-  const allVideosCompleted = numOfVideosCompleted === playlistLength;
+  const allVideosCompleted = numOfCompletedVideos === playlistLength;
   const incompleteVideos = currentModule.videos.filter(
     (video) => !completedVideos.includes(video)
   );
   const upNextList = incompleteVideos.filter(
     (video) => video !== currentVideo.id
   );
+
+  useEffect(() => {
+    if (numOfCompletedVideos === 0) {
+      const firstVideoOfModule = movementVideos.find(
+        (video) => video.id === currentModule.videos[0]
+      );
+      setCurrentVideo(firstVideoOfModule);
+    }
+  });
 
   const playlistTiles = upNextList.map((video, index) => (
     <PlaylistTile

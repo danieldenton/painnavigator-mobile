@@ -265,6 +265,7 @@ export const MovementContextProvider = ({ children }) => {
         completeSkippedMovementUnit,
         currentModule,
         currentVideo,
+        setCurrentVideo,
         playlistLength,
         completedVideos,
         numOfCompletedVideos,
