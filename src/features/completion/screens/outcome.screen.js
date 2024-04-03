@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import React, { useContext, useState, useEffect } from "react";
+import { OutcomeContext } from "../../../services/outcome.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -12,18 +12,10 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SafeView } from "../../../components/safe-area.component";
-import { track } from "@amplitude/analytics-react-native";
-import { COMPLETION_EVENTS } from "../../../amplitude-events";
 
 export const OutcomeScreen = ({ navigation }) => {
-  const {
-    completeProgram,
-    outcomeData,
-    setOutcomeData,
-    nextStep,
-    previousStep,
-    step
-  } = useContext(AuthenticationContext);
+  const { completeProgram, outcomeData, setOutcomeData } =
+    useContext(OutcomeContext);
   const {
     enjoymentOfLife,
     activityInterference,
@@ -32,6 +24,8 @@ export const OutcomeScreen = ({ navigation }) => {
     littleInterestOrPleasure,
     depressed,
   } = outcomeData;
+  const [outcomeStep, setOutcomeStep] = useState(0);
+
 
   pages = [
     { component: <Recommend />, disabled: false },
@@ -78,11 +72,11 @@ export const OutcomeScreen = ({ navigation }) => {
     },
   ];
 
-  const handleCompletProgram = () => {
+  const handleCompleteProgram = () => {
     completeProgram();
     navigation.navigate("ProgramCompleted");
-    track(COMPLETION_EVENTS.COMPLETE_PROGRAM);
   };
+  console.log(outcomeStep);
 
   return (
     <SafeView>
@@ -90,18 +84,20 @@ export const OutcomeScreen = ({ navigation }) => {
         destination={"Today"}
         navigation={navigation}
         screen={"Outcome"}
-        previousPage={step > 0 ? previousStep() : null}
+        previousPage={
+          outcomeStep > 0 ? setOutcomeStep((outcomeStep) => outcomeStep - 1) : null
+        }
       />
-      {pages[step].component}
+      {pages[outcomeStep].component}
       <ButtonSection>
         <JournalButton
-          disabled={pages[step].disabled}
+          disabled={pages[outcomeStep].disabled}
           title={"Next"}
           onPress={() => {
-            step === 6 ? handleCompletProgram() : nextStep();
+            outcomeStep === 6 ? handleCompleteProgram() : setOutcomeStep(outcomeStep + 1);
           }}
         />
-        <ProgressDots progress={step + 1} total={7} />
+        <ProgressDots progress={outcomeStep + 1} total={7} />
       </ButtonSection>
     </SafeView>
   );
