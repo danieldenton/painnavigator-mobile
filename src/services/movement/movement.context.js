@@ -193,13 +193,7 @@ export const MovementContextProvider = ({ children }) => {
     };
     setCompletedVideos([...completedVideos, currentVideo.id]);
     const response = await postMovementModuleCompletion(module, uid);
-    // setSkippedVideos([
-    //   ...skippedMovementVideos,
-    //   {
-    //     id: response.data.data.id,
-    //     video_id: response.data.data.attributes.video_id,
-    //   },
-    // ]);
+    return response
   };
 
   const completeSkippedMovementUnit = (skippedMovementCompletion) => {
