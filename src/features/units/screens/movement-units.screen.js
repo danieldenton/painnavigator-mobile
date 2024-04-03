@@ -12,7 +12,6 @@ export const MovementUnitsScreen = ({ navigation }) => {
   const {
     getMovementModuleCompletions,
     completedMovementVideos,
-    completeMovementSkippedUnit,
     skippedMovementVideos,
     savedMovementVideos,
     setIsMovement,

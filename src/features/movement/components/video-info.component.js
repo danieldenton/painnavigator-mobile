@@ -9,7 +9,7 @@ export const VideoInfo = () => {
     const { id, name } = currentVideo;
     const { currentModule } = useContext(MovementContext);
     const { name: moduleName } = currentModule;
-    const upperCaseName = moduleName.toUpperCase()
+    const upperCaseName = moduleName?.toUpperCase()
 
     const trackEvent = MOVEMENT_UNIT_EVENTS.BOOKMARK_MOVEMENT_UNIT;
 
