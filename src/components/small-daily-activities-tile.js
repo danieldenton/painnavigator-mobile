@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { handleTrackEvent } from "../utils";
 
 const DailyActivitiesCard = styled(Card)`
   margin-top: 16px;
@@ -39,18 +38,15 @@ export const SmallDailyActivitiesTile = ({
   icon,
   screen,
   screenParams,
-  trackEvent,
 }) => {
-
   return (
     <TouchableOpacity
-      onPress={() => (
-        handleTrackEvent(trackEvent),
+      onPress={() =>
         navigation.navigate(destination, {
           screen: screen,
           params: { type: screenParams },
         })
-      )}
+      }
     >
       <DailyActivitiesCard>
         <ModuleCardContent>

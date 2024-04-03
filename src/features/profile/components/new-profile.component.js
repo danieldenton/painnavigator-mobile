@@ -13,8 +13,6 @@ import { Phone } from "../components/phone.component";
 import { ActivityLevel } from "../components/activity-level.component";
 import { StartingPainDuration } from "../components/starting-pain-duration.component";
 import { Gender } from "../components/gender.component";
-import { track } from "@amplitude/analytics-react-native";
-import { PROFILE_EVENTS } from "../../../amplitude-events";
 
 export const NewProfile = ({ navigation }) => {
   const { completeProfile, profileStep, nextProfileStep, profileData } =
@@ -26,50 +24,27 @@ export const NewProfile = ({ navigation }) => {
   const steps = [
     {
       step: <Phone />,
-      trackEvent: PROFILE_EVENTS.PHONE_NUMBER_ENTRY,
-      trackSkipEvent: PROFILE_EVENTS.PHONE_NUMBER_SKIP,
       submitCondition: phone.length === 10,
     },
     {
       step: <Dob />,
-      trackEvent: PROFILE_EVENTS.DOB_ENTRY,
-      trackSkipEvent: PROFILE_EVENTS.DOB_SKIP,
       submitCondition: dob.length === 8,
     },
     {
       step: <StartingPainDuration />,
-      trackEvent: PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_ENTRY,
-      trackSkipEvent: PROFILE_EVENTS.DURATION_OF_LOW_BACK_PAIN_SKIP,
       submitCondition: starting_pain_duration,
     },
     {
       step: <Gender />,
-      trackEvent: PROFILE_EVENTS.GENDER_IDENTITY_ENTRY,
-      trackSkipEvent: PROFILE_EVENTS.GENDER_IDENTITY_SKIP,
       submitCondition: gender,
     },
     {
       step: <ActivityLevel />,
-      trackEvent: PROFILE_EVENTS.ACTIVITY_LEVEL_ENTRY,
-      trackSkipEvent: PROFILE_EVENTS.ACTIVITY_LEVEL_SKIP,
       submitCondition: activity_level,
     },
   ];
 
-  const handleNextProfileStep = () => {
-    track(steps[profileStep].trackEvent);
-    nextProfileStep();
-  };
-
-  const handleSkipQuestion = () => {
-    track(steps[profileStep].trackSkipEvent);
-    nextProfileStep();
-  };
-
-  const handleCompleteProfile = () => {
-    completeProfile(uid);
-    navigation.navigate("JournalCreated", { type: "Profile" });
-  };
+  const handleCompleteProfile = () => {};
 
   return (
     <>
@@ -81,9 +56,9 @@ export const NewProfile = ({ navigation }) => {
           onPress={() => {
             {
               profileStep === 4
-                ? (track(steps[profileStep].trackEvent),
-                  handleCompleteProfile())
-                : handleNextProfileStep();
+                ? (completeProfile(uid),
+                  navigation.navigate("JournalCreated", { type: "Profile" }))
+                : nextProfileStep();
             }
           }}
         />
@@ -91,9 +66,9 @@ export const NewProfile = ({ navigation }) => {
           onPress={() => {
             {
               profileStep === 4
-                ? (track(steps[profileStep].trackSkipEvent),
-                  handleCompleteProfile())
-                : handleSkipQuestion();
+                ? (completeProfile(uid),
+                  navigation.navigate("JournalCreated", { type: "Profile" }))
+                : nextProfileStep();
             }
           }}
         />

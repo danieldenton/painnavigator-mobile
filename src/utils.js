@@ -1,7 +1,5 @@
 import { Platform } from "react-native";
 import * as Localization from "expo-localization";
-import { track } from "@amplitude/analytics-react-native";
-
 
 export const isAndroid = Platform.OS === "android";
 
@@ -54,15 +52,4 @@ export function formatDateNoYear(date_time_value) {
         date_time_value
       )
     : null;
-}
-
-export function handleTrackEvent(trackEvent) {
-  if (trackEvent) {
-    track(trackEvent);
-  }
-}
-export function handleTrackExitEvent(trackExitEvent) {
-  if (trackExitEvent) {
-    track(trackExitEvent);
-  }
 }

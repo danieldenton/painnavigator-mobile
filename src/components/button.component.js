@@ -4,7 +4,6 @@ import { Button as ReactPaperButton } from "react-native-paper";
 import { colors } from "../infrastructure/theme/colors";
 import { ButtonSection } from "./journals/journal.styles";
 import { AuthenticationContext } from "../services/authentication.context";
-import { handleTrackEvent } from "../utils";
 
 export const Button = styled(ReactPaperButton).attrs({
   color: colors.text.white,
@@ -59,7 +58,6 @@ export const ReviewJournalButton = ({
   setEditing,
   type,
   navigation,
-  trackEvent,
 }) => {
   const { uid } = useContext(AuthenticationContext);
 
@@ -68,7 +66,6 @@ export const ReviewJournalButton = ({
       <JournalButton
         title={"Save Changes"}
         onPress={() => {
-          handleTrackEvent(trackEvent);
           saveEdits(uid);
           setTimeout(() => {
             setEditing(false);

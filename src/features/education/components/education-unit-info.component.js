@@ -10,11 +10,8 @@ import {
   Summary,
 } from "./education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
-import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
-export const EducationUnitInfo = ({ id, name, summary, type }) => {
-  const trackEvent = EDUCATION_UNIT_EVENTS.BOOKMARK_EDUCATION_UNIT;
- 
+export const EducationUnitInfo = ({ id, name, summary, type }) => { 
   return (
     <>
         <ModuleTypeTitle>
@@ -26,7 +23,7 @@ export const EducationUnitInfo = ({ id, name, summary, type }) => {
         </TitleSection>
         {type === "video" && (
           <BookmarkSection>
-            <Bookmark id={id} trackEvent={trackEvent} />
+            <Bookmark id={id} />
           </BookmarkSection>
         )}
       </Header>

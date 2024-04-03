@@ -10,47 +10,55 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../utils";
-import { track } from "@amplitude/analytics-react-native";
-import { FOOD_JOURNAL_EVENTS } from "../../../amplitude-events";
-
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
-    const { foodJournals } = useContext(FoodJournalContext);
-    const lastFoodJournalDate = formatDate(foodJournals[0]?.date_time_value);
-    const navigateBackDestination = route?.params?.postVideoAction ? "Today" : "Journals";
+  const { foodJournals } = useContext(FoodJournalContext);
+  const lastFoodJournalDate = formatDate(foodJournals[0]?.date_time_value);
+  const navigateBackDestination = route?.params?.postVideoAction
+    ? "Today"
+    : "Journals";
 
-    const foodJournalElements = foodJournals?.map((journal) => {
-        return (
-            <JournalTile 
-                navigation={navigation}
-                destination={"ReviewFoodJournal"}
-                journal={journal}
-                key={journal.id}
-                trackEvent= {FOOD_JOURNAL_EVENTS.VEIW_PREVIOUS_FOOD_JOURNAL}
-            />
-        );
-    });
-
-    const handleTodaysFoodJournal = () => {
-        track(FOOD_JOURNAL_EVENTS.TODAYS_FOOD_JOURNAL)
-        navigation.navigate("ReviewFoodJournal", { journal: lastFoodJournalDate === foodJournalTimeZonedTodaysDate && foodJournals[0] })  
-     }
-
-    return(
-        <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={navigateBackDestination} screen={"Food Journal"} />
-            <GraphicWrapper>
-                <FoodGraphic />
-            </GraphicWrapper>
-            <TouchableOpacity 
-                onPress={() => handleTodaysFoodJournal()}
-            > 
-                <NewJournalEntry title={"Today's Food Journal"} />
-            </TouchableOpacity>
-            {foodJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />}
-            <Scroll style={{ marginBottom: 24 }}>
-                {foodJournalElements}
-            </Scroll>
-        </SafeView>
+  const foodJournalElements = foodJournals?.map((journal) => {
+    return (
+      <JournalTile
+        navigation={navigation}
+        destination={"ReviewFoodJournal"}
+        journal={journal}
+        key={journal.id}
+      />
     );
+  });
+
+  const handleTodaysFoodJournal = () => {
+    navigation.navigate("ReviewFoodJournal", {
+      journal:
+        lastFoodJournalDate === foodJournalTimeZonedTodaysDate &&
+        foodJournals[0],
+    });
+  };
+
+  return (
+    <SafeView>
+      <NavigationBarLeft
+        navigation={navigation}
+        destination={navigateBackDestination}
+        screen={"Food Journal"}
+      />
+      <GraphicWrapper>
+        <FoodGraphic />
+      </GraphicWrapper>
+      <TouchableOpacity onPress={() => handleTodaysFoodJournal()}>
+        <NewJournalEntry title={"Today's Food Journal"} />
+      </TouchableOpacity>
+      {foodJournals.length > 0 && (
+        <SubHeader
+          title={"PREVIOUS ENTRIES"}
+          size={14}
+          marginTop={34}
+          marginBottom={14}
+        />
+      )}
+      <Scroll style={{ marginBottom: 24 }}>{foodJournalElements}</Scroll>
+    </SafeView>
+  );
 };

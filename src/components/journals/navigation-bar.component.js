@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { track } from "@amplitude/analytics-react-native";
 import {
   Back,
   Close,
@@ -11,7 +10,6 @@ import {
   More,
   UnreadMessageIcon,
 } from "../../icons";
-import { MESSAGE_EVENTS } from "../../amplitude-events";
 import { EducationContext } from "../../services/education/education.context";
 import { Bookmark } from "../bookmark.component";
 
@@ -170,28 +168,20 @@ export const ReviewJournalNavigationBar = ({
   );
 };
 
-export const TextModuleNavBar = ({
-  destination,
-  navigation,
-  screen,
-  id,
-  trackEvent,
-  trackNavBarEvent,
-}) => {
+export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
   const { setEducationIntroStep, educationIntroStep } =
     useContext(EducationContext);
   return (
     <NavContainer>
       <LeftPressableArea
         accessibilityLabel={`go-to-${destination}`}
-        onPress={() => (
+        onPress={() =>
           id === 1 && educationIntroStep > 0
             ? setEducationIntroStep(
                 (educationIntroStep) => educationIntroStep - 1
               )
-            : navigation.navigate(destination),
-          track(trackNavBarEvent)
-        )}
+            : navigation.navigate(destination)
+        }
       >
         <Back />
       </LeftPressableArea>
@@ -199,9 +189,7 @@ export const TextModuleNavBar = ({
         <HeaderName>{screen.toUpperCase()}</HeaderName>
       </HeaderSection>
       <RightSection>
-        <RightArea>
-          {id !== 1 ? <Bookmark id={id} trackEvent={trackEvent} /> : null}
-        </RightArea>
+        <RightArea>{id !== 1 ? <Bookmark id={id} /> : null}</RightArea>
       </RightSection>
     </NavContainer>
   );
