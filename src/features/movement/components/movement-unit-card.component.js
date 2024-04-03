@@ -56,6 +56,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
   const {
     currentModule,
     playlistLength,
+    getPlaylistLength,
     numOfCompletedVideos,
     setModuleComplete,
   } = useContext(MovementContext);
@@ -85,7 +86,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
         <ModuleCardContent>
           <CardTextSection>
             <CardHeader>{name}</CardHeader>
-            <CardSubHeader>{playlistLength} MIN</CardSubHeader>
+            <CardSubHeader>{getPlaylistLength(currentModule.videos)} MIN</CardSubHeader>
             {numOfCompletedVideos > 0 && (
               <UnitProgress>
                 {numOfCompletedVideos}/{playlistLength} Videos Completed

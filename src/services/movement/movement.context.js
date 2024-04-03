@@ -204,13 +204,13 @@ export const MovementContextProvider = ({ children }) => {
       return length;
     });
 
-    const videosLength = videoArray.reduce(
+    const videoLength = videoArray.reduce(
       (previousVideoRange, currentVideoRange) =>
         previousVideoRange + currentVideoRange,
       0
     );
 
-    return videosLength;
+    return videoLength;
   }
 
   const switchVideo = (videoId) => {

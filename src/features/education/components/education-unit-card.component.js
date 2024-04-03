@@ -4,8 +4,6 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { EducationModuleIcon } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
-import { track } from "@amplitude/analytics-react-native";
-import { EDUCATION_UNIT_EVENTS } from "../../../amplitude-events";
 
 const ModuleCard = styled(Card)`
   margin-top: 16px;
@@ -46,10 +44,7 @@ export const EducationUnitCard = ({ navigation }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => (
-        navigation.navigate("Education", { navigation }),
-        track(EDUCATION_UNIT_EVENTS.START_EDUCATION_UNIT)
-      )}
+      onPress={() => navigation.navigate("Education", { navigation })}
     >
       <ModuleCard>
         <ModuleCardContent>
