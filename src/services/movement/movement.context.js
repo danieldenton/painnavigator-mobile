@@ -110,9 +110,8 @@ export const MovementContextProvider = ({ children }) => {
       }
     } else if (movementProgram != null) {
       setCurrentModule(movementProgramModules.modules[0]);
-      setCurrentVideo(
-        movementModules[movementProgram - 1].modules[0].videos[0]
-      );
+    } else {
+      setCurrentModule(movementModules[0].modules[0])
     }
   }
 
