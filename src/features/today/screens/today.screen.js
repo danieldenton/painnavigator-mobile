@@ -126,74 +126,70 @@ export const TodayScreen = ({ navigation }) => {
 
   return (
     <Provider>
-      {!currentModule.id ? (
-        <LoadingComponent />
-      ) : (
-        <SafeView>
-          <TodayNavBar
-            navigation={navigation}
-            hasUnreadMessages={hasUnreadMessages}
-          />
-          <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-            <Greeting name={userInfo.first_name} isFocused={isFocused} />
-            <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-            {painScoreToday ? (
-              <DailyGoalCompleted type={"Daily Pain Score"} />
-            ) : (
-              <DailyPainScore navigation={navigation} />
-            )}
-            {movementModulesComplete ? (
-              <>
-                <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-                {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ? (
-                  <DailyGoalCompleted
-                    type={"movementModule"}
-                    moduleId={lastModuleCompleted.moduleId}
-                    movementProgram={movementProgram}
-                  />
-                ) : (
-                  <MovementUnitCard
-                    navigation={navigation}
-                    isFocused={isFocused}
-                  />
-                )}
-              </>
+      <SafeView>
+        <TodayNavBar
+          navigation={navigation}
+          hasUnreadMessages={hasUnreadMessages}
+        />
+        <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+          <Greeting name={userInfo.first_name} isFocused={isFocused} />
+          <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
+          {painScoreToday ? (
+            <DailyGoalCompleted type={"Daily Pain Score"} />
+          ) : (
+            <DailyPainScore navigation={navigation} />
+          )}
+          {movementModulesComplete ? (
+            <>
+              <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
+              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ? (
+                <DailyGoalCompleted
+                  type={"movementModule"}
+                  moduleId={lastModuleCompleted.moduleId}
+                  movementProgram={movementProgram}
+                />
+              ) : (
+                <MovementUnitCard
+                  navigation={navigation}
+                  isFocused={isFocused}
+                />
+              )}
+            </>
+          ) : null}
+          {!completedAllEducationModules ? (
+            <SubHeader title={"TODAY'S EDUCATION"} size={14} />
+          ) : null}
+          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
+            <DailyGoalCompleted
+              type={"module"}
+              moduleId={lastEducationModuleId}
+            />
+          )}
+          {!completedAllEducationModules ? (
+            <EducationUnitCard navigation={navigation} />
+          ) : null}
+          <SubHeader title={"DAILY ACTIVITIES"} size={14} />
+          <View style={{ marginBottom: 16 }}>
+            {hasUnreadMessages ? (
+              <WellnessCoach navigation={navigation} />
             ) : null}
-            {!completedAllEducationModules ? (
-              <SubHeader title={"TODAY'S EDUCATION"} size={14} />
+            {!profileComplete && <ProfileSetup navigation={navigation} />}
+            {renderJournalDailyActivity()}
+            {renderSmartGoalDailyActivity()}
+            {painJournalToday ? (
+              <DailyGoalCompleted type={"Pain Journal"} />
             ) : null}
-            {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
-              <DailyGoalCompleted
-                type={"module"}
-                moduleId={lastEducationModuleId}
-              />
-            )}
-            {!completedAllEducationModules ? (
-              <EducationUnitCard navigation={navigation} />
+            {moodJournalToday ? (
+              <DailyGoalCompleted type={"Mood Journal"} />
             ) : null}
-            <SubHeader title={"DAILY ACTIVITIES"} size={14} />
-            <View style={{ marginBottom: 16 }}>
-              {hasUnreadMessages ? (
-                <WellnessCoach navigation={navigation} />
-              ) : null}
-              {!profileComplete && <ProfileSetup navigation={navigation} />}
-              {renderJournalDailyActivity()}
-              {renderSmartGoalDailyActivity()}
-              {painJournalToday ? (
-                <DailyGoalCompleted type={"Pain Journal"} />
-              ) : null}
-              {moodJournalToday ? (
-                <DailyGoalCompleted type={"Mood Journal"} />
-              ) : null}
-              {foodJournalToday ? (
-                <DailyGoalCompleted type={"Food Journal"} />
-              ) : null}
-            </View>
-          </Scroll>
-          <DashboardTour tour={tour} />
-          <WellnessCoachReminder navigation={navigation} />
-        </SafeView>
-      )}
+            {foodJournalToday ? (
+              <DailyGoalCompleted type={"Food Journal"} />
+            ) : null}
+          </View>
+        </Scroll>
+        <DashboardTour tour={tour} />
+        <WellnessCoachReminder navigation={navigation} />
+      </SafeView>
     </Provider>
   );
 };
