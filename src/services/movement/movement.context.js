@@ -121,14 +121,18 @@ export const MovementContextProvider = ({ children }) => {
         (completion) => completion.attributes.status === "completed"
       );
       const completedVideoIds = completedVideoData.map((completion) => {
-        return completion.attributes.video_id;
+        if (completion.attributes.video_id) {
+          return completion.attributes.video_id;
+        }
       });
       setCompletedMovementVideos(completedVideoIds);
       const skippedVideoData = data.filter(
         (completion) => completion.attributes.status === "skipped"
       );
       const editedSkippedVideoData = skippedVideoData.map((completion) => {
-        return { id: completion.id, video_id: completion.attributes.video_id };
+        if (completion.attributes.video_id) {
+          return { id: completion.id, video_id: completion.attributes.video_id };
+        }
       });
       setSkippedMovementVideos(editedSkippedVideoData);
     }

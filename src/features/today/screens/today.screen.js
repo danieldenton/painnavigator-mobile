@@ -33,8 +33,6 @@ import {
   SmartGoalUpdate,
 } from "../components/small-daily-activities";
 import { timeZonedTodaysDate } from "../../../utils";
-import { Selected } from "../../../icons";
-import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
@@ -52,7 +50,6 @@ export const TodayScreen = ({ navigation }) => {
     getMovementModuleCompletions,
     lastModuleCompleted,
     movementProgram,
-    currentModule,
   } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
@@ -94,6 +91,10 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
+  
+  useEffect(() => {
+    console.log("render for movement progress")
+  }, [lastModuleCompleted])
 
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
