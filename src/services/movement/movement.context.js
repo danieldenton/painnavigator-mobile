@@ -29,6 +29,7 @@ export const MovementContextProvider = ({ children }) => {
     : null;
 
   const movementModulesComplete = currentModule?.id < 37;
+  const movementProgress = currentModule.id
 
   useEffect(() => {
     if (completedVideos.length > 0) {
@@ -259,6 +260,7 @@ export const MovementContextProvider = ({ children }) => {
         movementModulesComplete,
         setModuleComplete,
         lastModuleCompleted,
+        movementProgress
       }}
     >
       {children}
