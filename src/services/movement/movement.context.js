@@ -3,8 +3,7 @@ import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
 import { movementVideos } from "./movement-videos-data.json";
-import { AuthenticationContext } from "../authentication.context";
-import { timeZonedTodaysDate, formatBackendCreatedAtDate } from "../../utils";
+import { formatBackendCreatedAtDate } from "../../utils";
 
 export const MovementContext = createContext();
 
@@ -29,6 +28,7 @@ export const MovementContextProvider = ({ children }) => {
     : null;
 
   const movementModulesComplete = currentModule?.id < 37;
+  const movementProgress = currentModule.id
 
   useEffect(() => {
     if (completedVideos.length > 0) {
@@ -259,6 +259,7 @@ export const MovementContextProvider = ({ children }) => {
         movementModulesComplete,
         setModuleComplete,
         lastModuleCompleted,
+        movementProgress
       }}
     >
       {children}

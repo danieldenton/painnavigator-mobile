@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { EducationContext } from "../../../services/education/education.context";
 import { MovementContext } from "../../../services/movement/movement.context";
-// import { movementChapters } from "../data/movement-chapter-data.json";
 import { 
     CurrentChapterCircle,
-    ChapterCircle,
     ChapterSection, 
     ChapterText, 
     EducationLineSegmentCompleted,
