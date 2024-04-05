@@ -1,5 +1,6 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { OutcomeContext } from "../../../services/outcome.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -7,16 +8,18 @@ import { Anxious } from "../../../components/onboard-coutcome/anxious";
 import { UnableToStopWorrying } from "../../../components/onboard-coutcome/unable-to-stop-worrying";
 import { LittleInterestOrPleasure } from "../../../components/onboard-coutcome/little-interest-or-pleasure";
 import { Depressed } from "../../../components/onboard-coutcome/depressed";
+import { SafeView } from "../../../components/safe-area.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
-import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { SafeView } from "../../../components/safe-area.component";
 
 export const OutcomeScreen = ({ navigation }) => {
   const { completeProgram, outcomeData, setOutcomeData } =
     useContext(OutcomeContext);
+    const { step, nextStep, previousStep } = useContext(OnboardContext)
   const {
+    recommendation,
     enjoymentOfLife,
     activityInterference,
     anxious,
@@ -24,11 +27,12 @@ export const OutcomeScreen = ({ navigation }) => {
     littleInterestOrPleasure,
     depressed,
   } = outcomeData;
-  const [outcomeStep, setOutcomeStep] = useState(0);
 
-
-  pages = [
-    { component: <Recommend />, disabled: false },
+  const outcomePages = [
+    {
+      component: <Recommend setState={setOutcomeData} value={recommendation} />,
+      disabled: false,
+    },
     {
       component: (
         <EnjoymentOfLife setState={setOutcomeData} value={enjoymentOfLife} />
@@ -76,7 +80,7 @@ export const OutcomeScreen = ({ navigation }) => {
     completeProgram();
     navigation.navigate("ProgramCompleted");
   };
-  console.log(outcomeStep);
+
 
   return (
     <SafeView>
@@ -84,20 +88,18 @@ export const OutcomeScreen = ({ navigation }) => {
         destination={"Today"}
         navigation={navigation}
         screen={"Outcome"}
-        previousPage={
-          outcomeStep > 0 ? setOutcomeStep((outcomeStep) => outcomeStep - 1) : null
-        }
+        previousPage={step > 0 ? previousStep : null}
       />
-      {pages[outcomeStep].component}
+      {outcomePages[step].component}
       <ButtonSection>
         <JournalButton
-          disabled={pages[outcomeStep].disabled}
+          disabled={outcomePages[step].disabled}
           title={"Next"}
           onPress={() => {
-            outcomeStep === 6 ? handleCompleteProgram() : setOutcomeStep(outcomeStep + 1);
+            step === 6 ? handleCompleteProgram() : nextStep();
           }}
         />
-        <ProgressDots progress={outcomeStep + 1} total={7} />
+        <ProgressDots progress={step + 1} total={7} />
       </ButtonSection>
     </SafeView>
   );

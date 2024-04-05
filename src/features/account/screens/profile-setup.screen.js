@@ -1,10 +1,5 @@
 import React, { useContext } from "react";
 import { OnboardContext } from "../../../services/onboard.context";
-import { ButtonSection } from "../../../components/journals/journal.styles";
-import { JournalButton } from "../../../components/button.component";
-import { ProgressDots } from "../../../components/progress-dots.component";
-import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
-import { SafeView } from "../../../components/safe-area.component";
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -12,11 +7,16 @@ import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { TypeOfPain } from "../components/type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
+import { SafeView } from "../../../components/safe-area.component";
+import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
+import { ButtonSection } from "../../../components/journals/journal.styles";
+import { JournalButton } from "../../../components/button.component";
+import { ProgressDots } from "../../../components/progress-dots.component";
+
 
 export const ProfileSetupScreen = ({ navigation }) => {
   const {
     step,
-    setStep,
     previousStep,
     nextStep,
     onboardingData,
