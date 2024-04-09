@@ -49,6 +49,7 @@ export const TodayScreen = ({ navigation }) => {
     movementModulesComplete,
     getMovementModuleCompletions,
     lastModuleCompleted,
+    moduleComplete,
     movementProgram,
   } = useContext(MovementContext);
   const {
@@ -73,9 +74,7 @@ export const TodayScreen = ({ navigation }) => {
   }, []);
 
   useEffect(() => {
-    if (movementProgram != null) {
-      getMovementModuleCompletions(uid);
-    }
+    getMovementModuleCompletions(uid);
   }, [movementProgram]);
 
   useEffect(() => {
@@ -91,10 +90,10 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
-  
+
   useEffect(() => {
-    console.log("render for movement progress")
-  }, [lastModuleCompleted])
+    console.log("render for movement progress");
+  }, [lastModuleCompleted]);
 
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
@@ -143,7 +142,7 @@ export const TodayScreen = ({ navigation }) => {
           {movementModulesComplete ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ? (
+              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate || moduleComplete ? (
                 <DailyGoalCompleted
                   type={"movementModule"}
                   moduleId={lastModuleCompleted.moduleId}
