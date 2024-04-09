@@ -91,10 +91,6 @@ export const TodayScreen = ({ navigation }) => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
 
-  useEffect(() => {
-    console.log("render for movement progress");
-  }, [lastModuleCompleted]);
-
   function renderJournalDailyActivity() {
     const userCompletedPainJournallUnit =
       educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
