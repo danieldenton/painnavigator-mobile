@@ -3,7 +3,6 @@ import { OnboardContext } from "../../../services/onboard.context";
 import { AvgPainPreStart } from "../components/avg-pain-pre-start.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
-import { HopeToAchieve } from "../components/hope-to-achieve.component";
 import { TypeOfPain } from "../components/type-of-pain";
 import { PainInjections } from "../components/pain-injections";
 import { SpineSurgery } from "../components/spine-surgery";
@@ -49,12 +48,6 @@ export const ProfileSetupScreen = ({ navigation }) => {
         />
       ),
       disabled: false,
-    },
-    {
-      component: (
-        <HopeToAchieve setState={setOnboardingData} value={hopesToAchieve} />
-      ),
-      disabled: hopesToAchieve.length > 0 ? false : true,
     },
     { component: <TypeOfPain />, disabled: typeOfPain ? false : true },
     {
