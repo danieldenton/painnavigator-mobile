@@ -7,7 +7,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 
 export const CompletionScreen = ({ navigation, completionMessage }) => {
   useEffect(() => {
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
   }, []);
 
   return (

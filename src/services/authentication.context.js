@@ -121,7 +121,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           starting_pain_score: onboardingData.startingPainScore,
           enjoyment_of_life: onboardingData.enjoymentOfLife,
           activity_interference: onboardingData.activityInterference,
-          hopes_to_achieve: onboardingData.hopesToAchieve,
           type_of_pain: onboardingData.typeOfPain,
           pain_injections: onboardingData.painInjections,
           spine_surgery: onboardingData.spineSurgery,
