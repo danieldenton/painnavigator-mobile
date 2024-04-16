@@ -1,27 +1,4 @@
 {
-    "hopesOptions": [
-        {
-            "id": "Less Pain",
-            "option": "Less Pain",
-            "helpText": null
-        },
-        {
-            "id": "Improved Function",
-            "option": "Improved Function",
-            "helpText": null
-        },
-        {
-            "id": "Improved Mood",
-            "option": "Improved Mood",
-            "helpText": null
-        },
-        {
-            "id": "Strength & Prevention",
-            "option": "Strength & Prevention",
-            "helpText": null
-        }
-    ],
-
     "injectionsAndSurgery": [
         {
             "id": "Yes and cleared for exercise",

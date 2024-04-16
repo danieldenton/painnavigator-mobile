@@ -26,11 +26,10 @@ export const ProfileSetupScreen = ({ navigation }) => {
     enjoymentOfLife,
     activityInterference,
     typeOfPain,
-    hopesToAchieve,
     painInjections,
     spineSurgery,
   } = onboardingData;
-  const spineSurgeryQuestion = typeOfPain === "Low Back Pain" ? 6 : 5;
+  const spineSurgeryQuestion = typeOfPain === "Low Back Pain" ? 5 : 4;
 
   const onboardPages = [
     { component: <AvgPainPreStart />, disabled: false },
