@@ -20,7 +20,7 @@
       "supportsTablet": true,
       "requireFullScreen": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "101",
+      "buildNumber": "102",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
@@ -39,7 +39,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 99,
+      "versionCode": 100,
       "permissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"

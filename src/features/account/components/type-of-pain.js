@@ -28,7 +28,7 @@ export const TypeOfPain = () => {
 
   return (
     <>
-      <JournalQuestion question={"Where is the location of your worst pain?"} />
+      <JournalQuestion question={"what location of pain are you currently working on managing most?"} />
       <View style={{ marginTop: isAndroid ? 5 : 20, marginBottom: 140 }}>
         {options}
       </View>
