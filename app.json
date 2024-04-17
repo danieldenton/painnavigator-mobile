@@ -20,7 +20,7 @@
       "supportsTablet": true,
       "requireFullScreen": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "103",
+      "buildNumber": "104",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"

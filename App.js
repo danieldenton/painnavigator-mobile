@@ -104,9 +104,9 @@ export default function App() {
   Notifications.registerTaskAsync(BACKGROUND_NOTIFICATIONS);
 
   useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token)
-    );
+    registerForPushNotificationsAsync()
+      .then((token) => setExpoPushToken(token ?? ''))
+      .catch((error) => setExpoPushToken(`${error}`));
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
@@ -119,10 +119,12 @@ export default function App() {
       });
 
     return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
-      Notifications.removeNotificationSubscription(responseListener.current);
+      notificationListener.current &&
+        Notifications.removeNotificationSubscription(
+          notificationListener.current
+        );
+      responseListener.current &&
+        Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
 
