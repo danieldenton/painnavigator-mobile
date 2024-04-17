@@ -105,7 +105,7 @@ export default function App() {
 
   useEffect(() => {
     registerForPushNotificationsAsync()
-      .then((token) => setExpoPushToken(token ?? ''))
+      .then((token) => setExpoPushToken(token))
       .catch((error) => setExpoPushToken(`${error}`));
 
     notificationListener.current =
