@@ -177,10 +177,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
 
   // TODO fix this.
   useEffect(() => {
-    if (user && expoPushToken) {
+    if (uid && expoPushToken) {
       patchExpoPushToken();
     }
-  }, [user, expoPushToken]);
+  }, [uid, expoPushToken]);
 
   return (
     <AuthenticationContext.Provider
