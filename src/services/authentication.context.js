@@ -125,6 +125,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           pain_injections: onboardingData.painInjections,
           spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
+          expo_push_token: expoPushToken
         };
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
