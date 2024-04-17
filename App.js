@@ -96,8 +96,8 @@ if (!firebase.apps.length) {
 }
 
 export default function App() {
-  const [expoPushToken, setExpoPushToken] = useState(null);
-  const [notification, setNotification] = useState(false);
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(undefined);
   const notificationListener = useRef();
   const responseListener = useRef();
 
