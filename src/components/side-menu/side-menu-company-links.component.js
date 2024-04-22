@@ -23,7 +23,7 @@ export const CompanyLinks = ({ navigation }) => {
       </LinkWrapper>
       <LinkWrapper style={{ marginTop: 12 }}>
         <LinkText style={{ color: "black" }}>
-          PainNavigator Version 2.0.3
+          PainNavigator Version 2.0.4
         </LinkText>
       </LinkWrapper>
     </ButtonSection>
