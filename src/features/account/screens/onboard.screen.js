@@ -9,6 +9,7 @@ import {
   SkipQuestionText,
 } from "../../../components/skip-question.component";
 import * as ScreenOrientation from "expo-screen-orientation";
+import { registerForPushNotificationsAsync } from "../../../expoPushNotificationRegister";
 
 export const OnboardScreen = ({ navigation }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -39,6 +40,7 @@ export const OnboardScreen = ({ navigation }) => {
           title={"Sign Up"}
           onPress={() => {
             navigation.navigate("Provider");
+            registerForPushNotificationsAsync();
             handleOldErrors();
           }}
         />
