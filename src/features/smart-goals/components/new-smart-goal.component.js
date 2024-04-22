@@ -34,7 +34,7 @@ export const NewSmartGoal = ({ navigation }) => {
           title={"Next"}
           onPress={() => {
             {
-              currentPage === 1 ? postSmartGoal() : nextPage();
+              currentPage === 1 ? (postSmartGoal(), navigation.navigate("SmartGoalCreated")) : nextPage();
             }
           }}
         />
