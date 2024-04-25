@@ -113,7 +113,7 @@ export const EducationContextProvider = ({ children }) => {
     setEducationProgress(educationProgress + 1);
   };
 
-  const skipModule = () => {
+  const skipModule = (uid) => {
     const module = {
       module_id: currentModule.id,
       status: 1,

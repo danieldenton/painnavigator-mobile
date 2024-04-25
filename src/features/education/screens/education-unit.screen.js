@@ -99,7 +99,7 @@ export const EducationUnitScreen = ({ navigation }) => {
             module={true}
             onPress={() => {
               navigation.dispatch(StackActions.replace("Skipped"));
-              skipModule();
+              skipModule(uid);
             }}
           />
         ) : null}
