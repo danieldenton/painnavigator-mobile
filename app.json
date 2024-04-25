@@ -25,7 +25,9 @@
         "UIBackgroundModes": [
           "remote-notification"
         ],
-        "NSMicrophoneUsageDescription": "Allow PainNavigator to access your microphone."
+        "NSMicrophoneUsageDescription": "Allow PainNavigator to access your microphone.",
+        "NSPrivacyAccessedAPICategoryDiskSpace": "PainNavigator uses to disk space only to keep the user logged in unless they choose to logout.",
+        "NSPrivacyAccessedAPICategoryFileTimestamp": "PainNavigator updates it's program daily so it creates timestamps to update according to user progress."
       }
     },
     "android": {
