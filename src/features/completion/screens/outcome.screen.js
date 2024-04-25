@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { OutcomeContext } from "../../../services/outcome.context";
 import { OnboardContext } from "../../../services/onboard.context";
+import { AuthenticationContext } from "../../../services/authentication.context";
 import { Recommend } from "../components/recommend.component";
 import { EnjoymentOfLife } from "../../../components/onboard-coutcome/enjoyment-of-life.component";
 import { ActivityInterference } from "../../../components/onboard-coutcome/activity-interference.component";
@@ -15,9 +16,10 @@ import { JournalButton } from "../../../components/button.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 
 export const OutcomeScreen = ({ navigation }) => {
+  const { uid } = useContext(AuthenticationContext);
   const { completeProgram, outcomeData, setOutcomeData } =
     useContext(OutcomeContext);
-    const { step, nextStep, previousStep } = useContext(OnboardContext)
+  const { step, nextStep, previousStep } = useContext(OnboardContext);
   const {
     recommendation,
     enjoymentOfLife,
@@ -56,7 +58,7 @@ export const OutcomeScreen = ({ navigation }) => {
       component: (
         <UnableToStopWorrying
           setState={setOutcomeData}
-          value={activityInterference}
+          value={unableToStopWorrying}
         />
       ),
       disabled: unableToStopWorrying ? false : true,
@@ -77,10 +79,9 @@ export const OutcomeScreen = ({ navigation }) => {
   ];
 
   const handleCompleteProgram = () => {
-    completeProgram();
+    completeProgram(uid);
     navigation.navigate("ProgramCompleted");
   };
-
 
   return (
     <SafeView>

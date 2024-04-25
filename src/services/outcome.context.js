@@ -34,7 +34,7 @@ export const OutcomeContextProvider = ({ children }) => {
     }
   };
 
-  const completeProgram = () => {
+  const completeProgram = (uid) => {
     patchCompletedProgram(uid);
     setCompletedProgram(true);
   };
