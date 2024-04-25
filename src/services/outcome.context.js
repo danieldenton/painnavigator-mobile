@@ -16,7 +16,7 @@ export const OutcomeContextProvider = ({ children }) => {
   });
   const [completedProgram, setCompletedProgram] = useState(false);
 
-  const patchCompletedProgram = async (uid, outcomeData) => {
+  const patchCompletedProgram = async (uid) => {
     try {
       await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
         completed_program: true,
@@ -35,7 +35,7 @@ export const OutcomeContextProvider = ({ children }) => {
   };
 
   const completeProgram = () => {
-    patchCompletedProgram(uid, outcomeData);
+    patchCompletedProgram(uid);
     setCompletedProgram(true);
   };
 
