@@ -20,12 +20,14 @@
       "supportsTablet": true,
       "requireFullScreen": true,
       "bundleIdentifier": "com.stephenavocado.PainNavigator",
-      "buildNumber": "107",
+      "buildNumber": "108",
       "infoPlist": {
         "UIBackgroundModes": [
           "remote-notification"
         ],
-        "NSMicrophoneUsageDescription": "Allow PainNavigator to access your microphone."
+        "NSMicrophoneUsageDescription": "Allow PainNavigator to access your microphone.",
+        "NSPrivacyAccessedAPICategoryDiskSpace": "Allow PainNavigator to use disk space for authentication to keep you logged in until you choose to logout.",
+        "NSPrivacyAccessedAPICategoryFileTimestamp": "Allow PainNavigator to timestamp your progress to update your program daily."
       }
     },
     "android": {
@@ -39,7 +41,7 @@
         "ACCESS_BACKGROUND_LOCATION"
       ],
       "icon": "./assets/icon.png",
-      "versionCode": 102,
+      "versionCode": 104,
       "permissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
