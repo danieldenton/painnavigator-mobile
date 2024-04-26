@@ -33,6 +33,23 @@ export const EducationUnitScreen = ({ navigation }) => {
     setIsMovement(false);
   }, []);
 
+  const typesOfComponents = [
+    {
+      type: "video",
+      component: <VideoUnit />,
+    },
+    {
+      type: "audio",
+      component: <AudioUnit unit={currentModule} />,
+    },
+    {
+      type: "text",
+      component: <TextUnit />,
+    },
+  ];
+
+  const componentObject = typesOfComponents.find((obj) => type === obj.type);
+
   const postVideoAction = () => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
     completeModule(uid);
@@ -48,18 +65,6 @@ export const EducationUnitScreen = ({ navigation }) => {
       );
     } else {
       navigation.dispatch(StackActions.replace("Completion"));
-    }
-  };
-
-  const educationUnitTypeCheckForRender = () => {
-    if (type === "video") {
-      return <VideoUnit />;
-    } else if (type === "audio") {
-      return <AudioUnit unit={currentModule} />;
-    } else if (type === "text") {
-      return <TextUnit />;
-    } else {
-      return <PNIntroUnit />;
     }
   };
 
@@ -80,7 +85,7 @@ export const EducationUnitScreen = ({ navigation }) => {
           id={id}
         />
       )}
-      {educationUnitTypeCheckForRender()}
+      {componentObject ? componentObject.component : <PNIntroUnit />}
       <ButtonSection>
         <ModuleButton
           onPress={() => {
