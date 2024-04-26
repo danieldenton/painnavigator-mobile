@@ -28,6 +28,7 @@ export const EducationUnitScreen = ({ navigation }) => {
   const { setIsMovement } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const { post_video_destination, type, skippable, id } = currentModule;
+  const pnIntroModule = id === 1 && educationIntroStep < 4;
 
   useEffect(() => {
     setIsMovement(false);
@@ -89,15 +90,13 @@ export const EducationUnitScreen = ({ navigation }) => {
       <ButtonSection>
         <ModuleButton
           onPress={() => {
-            {
-              id === 1 && educationIntroStep < 4
-                ? setEducationIntroStep(
-                    (educationIntroStep) => educationIntroStep + 1
-                  )
-                : postVideoAction();
-            }
+            pnIntroModule
+              ? setEducationIntroStep(
+                  (educationIntroStep) => educationIntroStep + 1
+                )
+              : postVideoAction();
           }}
-          title={id === 1 && educationIntroStep < 4 ? "Next" : "Mark Complete"}
+          title={pnIntroModule ? "Next" : "Mark Complete"}
         />
         {skippable ? (
           <SkipQuestion
