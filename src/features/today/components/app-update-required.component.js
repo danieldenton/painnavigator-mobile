@@ -24,7 +24,7 @@ export const AppUpdateRequired = () => {
         <Modal
           animationType="slide"
           transparent={true}
-          visible={!appUpdateRequired}
+          visible={appUpdateRequired}
         >
           <View style={styles.modalBackground}>
             <View
