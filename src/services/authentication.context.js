@@ -12,13 +12,13 @@ import { OutcomeContext } from "./outcome.context";
 import { WellnessCoachContext } from "./wellness-coach.context";
 import { timeZonedTodaysDate } from "../utils";
 
-
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
   const [lastDateOnApp, setLastDateOnApp] = useState("");
+  const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
 
   const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
@@ -65,6 +65,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       setCompletedProgram(data.completed_program === true);
       setLastDateOnApp(data.last_date_on_app);
       setWellnessCoachReminded(data.wellness_coach_reminded);
+      setAppUpdateRequired(data.app_update_required);
     } catch (error) {
       console.error(error);
     }
@@ -74,6 +75,16 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     try {
       await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
         last_date_on_app: timeZonedTodaysDate,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const patchAppUpdateRequired = async () => {
+    try {
+      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+        app_update_required: false,
       });
     } catch (error) {
       console.error(error);
@@ -125,11 +136,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           pain_injections: onboardingData.painInjections,
           spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
-          expo_push_token: expoPushToken
+          expo_push_token: expoPushToken,
         };
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
-        console.log(expoPushToken)
       })
       .catch((e) => {
         setError(e.toString());
@@ -198,6 +208,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         patchLastDateOnApp,
         resetPassword,
+        patchAppUpdateRequired,
+        appUpdateRequired,
+        setAppUpdateRequired,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { AuthenticationContext } from "./authentication.context";
