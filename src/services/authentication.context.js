@@ -209,6 +209,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         patchLastDateOnApp,
         resetPassword,
+        patchAppUpdateRequired,
+        appUpdateRequired,
+        setAppUpdateRequired,
       }}
     >
       {children}

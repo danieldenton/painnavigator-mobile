@@ -8,11 +8,12 @@ import { AuthenticationContext } from "../../../services/authentication.context"
 import { isAndroid } from "../../../utils";
 
 export const AppUpdateRequired = () => {
-  const { uid } = useContext(AuthenticationContext);
+  const { patchAppUpdateRequired, setAppUpdateRequired, appUpdateRequired } =
+    useContext(AuthenticationContext);
 
   const handleAppUpdateRequired = () => {
-    // patchAppUpdateRequireds
-    // setAppUpdateRequired(false)
+    patchAppUpdateRequired();
+    setAppUpdateRequired(false);
     // link to app stores
   };
 
@@ -34,7 +35,8 @@ export const AppUpdateRequired = () => {
             >
               <View style={styles.triangleRightTop} />
               <Text style={styles.modalContent}>
-                We've made some changes. Please update your PainNavigator app to procedd.
+                We've made some changes. Please update your PainNavigator app to
+                procedd.
               </Text>
               <ModuleButton
                 onPress={() => handleAppUpdateRequired()}
