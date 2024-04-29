@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { SubHeader } from "../../../components/typography.component";
+import { DailyGoalCompleted } from "./daily-goal-completed.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { timeZonedTodaysDate } from "../../../utils";
 

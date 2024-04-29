@@ -4,8 +4,6 @@ import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { EducationUnitCard } from "../../education/components/education-unit-card.component";
-import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
@@ -17,15 +15,14 @@ import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { FoodJournalContext } from "../../../services/food-journal.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
-import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { TodaysMovement } from "../components/todays-movement.compoentn";
+import { TodaysEducation } from "../components/todays-education.component";
 import { DailyPainScore } from "../components/daily-pain-scores.component";
 import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
@@ -40,12 +37,7 @@ export const TodayScreen = ({ navigation }) => {
   const { getFoodJournals } = useContext(FoodJournalContext);
   const { getMovementModuleCompletions, movementProgram } =
     useContext(MovementContext);
-  const {
-    getEducationModuleCompletions,
-    completedAllEducationModules,
-    lastEducationModuleId,
-    lastCompletedEducationModuleDate,
-  } = useContext(EducationContext);
+  const { getEducationModuleCompletions } = useContext(EducationContext);
   const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
@@ -88,18 +80,7 @@ export const TodayScreen = ({ navigation }) => {
           <Greeting name={userInfo.first_name} isFocused={isFocused} />
           <DailyPainScore navigation={navigation} />
           <TodaysMovement navigation={navigation} isFocused={isFocused} />
-          {!completedAllEducationModules ? (
-            <SubHeader title={"TODAY'S EDUCATION"} size={14} />
-          ) : null}
-          {lastCompletedEducationModuleDate === timeZonedTodaysDate && (
-            <DailyGoalCompleted
-              type={"module"}
-              moduleId={lastEducationModuleId}
-            />
-          )}
-          {!completedAllEducationModules ? (
-            <EducationUnitCard navigation={navigation} />
-          ) : null}
+          <TodaysEducation navigation={navigation} />F
           <DailyActivities navigation={navigation} />
         </Scroll>
         <DashboardTour tour={tour} />
