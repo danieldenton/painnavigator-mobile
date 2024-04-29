@@ -11,7 +11,9 @@ import { EducationContext } from "../../../services/education/education.context"
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { FoodJournalContext } from "../../../services/food-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { SubHeader } from "../../../components/typography.component";
+import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
 export const DailyActivities = ({ navigation }) => {
   const { painJournalToday } = useContext(PainJournalContext);
@@ -19,22 +21,21 @@ export const DailyActivities = ({ navigation }) => {
   const { profileComplete } = useContext(ProfileContext);
   const { foodJournalToday } = useContext(FoodJournalContext);
   const { moodJournalToday } = useContext(MoodJournalContext);
-  const userCompletedPainJournallUnit =
+  const { hasUnreadMessages } = useContext(WellnessCoachContext);
+  const userCompletedPainJournalUnit =
     educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
   const journaledToday =
-    userCompletedPainJournallUnit &&
-    foodJournalToday &&
-    moodJournalToday &&
-    painJournalToday;
+    foodJournalToday || moodJournalToday || painJournalToday;
   const userCompletedSmartGoalUnit =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
+  const showJournalTile = userCompletedPainJournalUnit && !journaledToday;
 
   return (
     <View style={{ marginBottom: 16 }}>
       <SubHeader title={"DAILY ACTIVITIES"} size={14} />
       {hasUnreadMessages ? <WellnessCoach navigation={navigation} /> : null}
       {!profileComplete && <ProfileSetup navigation={navigation} />}
-      {journaledToday ? <Journals navigation={navigation} /> : null}
+      {showJournalTile ? <Journals navigation={navigation} /> : null}
       {userCompletedSmartGoalUnit ? (
         <SmartGoalActivity navigation={navigation} />
       ) : null}

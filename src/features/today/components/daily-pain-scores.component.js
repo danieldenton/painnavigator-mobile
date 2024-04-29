@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalIcon } from "../../../icons";
 import { SubHeader } from "../../../components/typography.component";

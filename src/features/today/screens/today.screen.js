@@ -80,7 +80,7 @@ export const TodayScreen = ({ navigation }) => {
           <Greeting name={userInfo.first_name} isFocused={isFocused} />
           <DailyPainScore navigation={navigation} />
           <TodaysMovement navigation={navigation} isFocused={isFocused} />
-          <TodaysEducation navigation={navigation} />F
+          <TodaysEducation navigation={navigation} />
           <DailyActivities navigation={navigation} />
         </Scroll>
         <DashboardTour tour={tour} />

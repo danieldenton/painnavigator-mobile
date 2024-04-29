@@ -17,10 +17,13 @@ export const TodaysEducation = ({ navigation }) => {
         <>
           <SubHeader title={"TODAY'S EDUCATION"} size={14} />
           {lastCompletedEducationModuleDate === timeZonedTodaysDate ? (
-            <DailyGoalCompleted
-              type={"module"}
-              moduleId={lastEducationModuleId}
-            />
+            <>
+              <DailyGoalCompleted
+                type={"module"}
+                moduleId={lastEducationModuleId}
+              />
+              <EducationUnitCard navigation={navigation} />
+            </>
           ) : (
             <EducationUnitCard navigation={navigation} />
           )}
