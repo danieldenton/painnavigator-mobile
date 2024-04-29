@@ -4,7 +4,10 @@ import { DailyGoalCompleted } from "./daily-goal-completed.component";
 import { NewSmartGoal, SmartGoalUpdate } from "./small-daily-activities";
 import { timeZonedTodaysDate } from "../../../utils";
 
-export const SmartGoalActivity = ({ navigation }) => {
+export const SmartGoalActivity = ({
+  navigation,
+  userCompletedSmartGoalUnit,
+}) => {
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
   const activeSmartGoal = userCompletedSmartGoalUnit && activeGoal;
   const smartGoalUpdatedToday = lastSmartGoalUpdate === timeZonedTodaysDate;

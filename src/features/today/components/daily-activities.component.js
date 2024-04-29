@@ -37,7 +37,10 @@ export const DailyActivities = ({ navigation }) => {
       {!profileComplete && <ProfileSetup navigation={navigation} />}
       {showJournalTile ? <Journals navigation={navigation} /> : null}
       {userCompletedSmartGoalUnit ? (
-        <SmartGoalActivity navigation={navigation} />
+        <SmartGoalActivity
+          navigation={navigation}
+          userCompletedSmartGoalUnit={userCompletedSmartGoalUnit}
+        />
       ) : null}
       {painJournalToday ? <DailyGoalCompleted type={"Pain Journal"} /> : null}
       {moodJournalToday ? <DailyGoalCompleted type={"Mood Journal"} /> : null}

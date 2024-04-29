@@ -11,6 +11,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
+import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { FoodJournalContext } from "../../../services/food-journal.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -33,6 +34,7 @@ export const TodayScreen = ({ navigation }) => {
   const { getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
+  const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMoodJournals } = useContext(MoodJournalContext);
   const { getFoodJournals } = useContext(FoodJournalContext);
   const { getMovementModuleCompletions, movementProgram } =
@@ -49,6 +51,7 @@ export const TodayScreen = ({ navigation }) => {
     getFoodJournals();
     getMoodJournals();
     getPainJournals();
+    getSmartGoals();
   }, []);
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { PainJournalIcon } from "../../../icons";
 import { SubHeader } from "../../../components/typography.component";
 import { DailyPainContext } from "../../../services/daily-pain.context";
+import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
 export const DailyPainScore = ({ navigation }) => {
   const { painScoreToday } = useContext(DailyPainContext);
