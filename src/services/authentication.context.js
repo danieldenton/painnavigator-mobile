@@ -140,7 +140,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         };
         postUser(u.user.uid, strippedOnboardingData);
         setUser(u);
-        console.log(expoPushToken);
       })
       .catch((e) => {
         setError(e.toString());

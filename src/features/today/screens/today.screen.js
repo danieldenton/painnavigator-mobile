@@ -25,7 +25,7 @@ import { TodayNavBar } from "../../../components/journals/navigation-bar.compone
 import { DailyPainScore } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
-import { AppUpdateRequired } from "../components/app_update_required.component";
+import { AppUpdateRequired } from "../components/app-update-required.component";
 import {
   Journals,
   WellnessCoach,
@@ -180,7 +180,7 @@ export const TodayScreen = ({ navigation }) => {
         </Scroll>
         <DashboardTour tour={tour} />
         <WellnessCoachReminder navigation={navigation} />
-        <AppUpdateRequired />
+        <AppUpdateRequired />    
       </SafeView>
     </Provider>
   );

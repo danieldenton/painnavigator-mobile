@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, Modal } from "react-native";
+import { View, Text, Modal, Linking } from "react-native";
 import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
@@ -10,11 +10,12 @@ import { isAndroid } from "../../../utils";
 export const AppUpdateRequired = () => {
   const { patchAppUpdateRequired, setAppUpdateRequired, appUpdateRequired } =
     useContext(AuthenticationContext);
+  const linkToAppStore = "https://qrco.de/bcZpLu";
 
   const handleAppUpdateRequired = () => {
     patchAppUpdateRequired();
     setAppUpdateRequired(false);
-    // link to app stores
+    Linking.openURL(linkToAppStore);
   };
 
   return (
