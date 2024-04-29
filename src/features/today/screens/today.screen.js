@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { View } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
@@ -7,7 +6,6 @@ import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
-import { SmartGoalActivity } from "../components/smart-goal-activity.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
@@ -23,14 +21,11 @@ import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScore } from "../components/daily-pain-scores.component";
+import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-import {
-  Journals,
-  WellnessCoach,
-  ProfileSetup,
-} from "../components/small-daily-activities";
+
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
@@ -39,11 +34,11 @@ export const TodayScreen = ({ navigation }) => {
   );
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
-  const { userInfo, profileComplete } = useContext(ProfileContext);
+  const { userInfo } = useContext(ProfileContext);
 
-  const { painJournalToday, getPainJournals } = useContext(PainJournalContext);
-  const { moodJournalToday, getMoodJournals } = useContext(MoodJournalContext);
-  const { foodJournalToday, getFoodJournals } = useContext(FoodJournalContext);
+  const { getPainJournals } = useContext(PainJournalContext);
+  const { getMoodJournals } = useContext(MoodJournalContext);
+  const { getFoodJournals } = useContext(FoodJournalContext);
   const {
     movementModulesComplete,
     getMovementModuleCompletions,
@@ -53,8 +48,6 @@ export const TodayScreen = ({ navigation }) => {
   } = useContext(MovementContext);
   const {
     getEducationModuleCompletions,
-    educationProgress,
-    educationProgram,
     completedAllEducationModules,
     lastEducationModuleId,
     lastCompletedEducationModuleDate,
@@ -62,15 +55,6 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
-  const userCompletedPainJournallUnit =
-    educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
-  const journaledToday =
-    userCompletedPainJournallUnit &&
-    foodJournalToday &&
-    moodJournalToday &&
-    painJournalToday;
-  const userCompletedSmartGoalUnit =
-    educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
 
   useEffect(() => {
     getUser();
@@ -144,26 +128,7 @@ export const TodayScreen = ({ navigation }) => {
           {!completedAllEducationModules ? (
             <EducationUnitCard navigation={navigation} />
           ) : null}
-          <SubHeader title={"DAILY ACTIVITIES"} size={14} />
-          <View style={{ marginBottom: 16 }}>
-            {hasUnreadMessages ? (
-              <WellnessCoach navigation={navigation} />
-            ) : null}
-            {!profileComplete && <ProfileSetup navigation={navigation} />}
-            {journaledToday ? <Journals navigation={navigation} /> : null}
-            {userCompletedSmartGoalUnit ? (
-              <SmartGoalActivity navigation={navigation} />
-            ) : null}
-            {painJournalToday ? (
-              <DailyGoalCompleted type={"Pain Journal"} />
-            ) : null}
-            {moodJournalToday ? (
-              <DailyGoalCompleted type={"Mood Journal"} />
-            ) : null}
-            {foodJournalToday ? (
-              <DailyGoalCompleted type={"Food Journal"} />
-            ) : null}
-          </View>
+          <DailyActivities navigation={navigation} />
         </Scroll>
         <DashboardTour tour={tour} />
         <AppUpdateRequired />
