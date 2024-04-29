@@ -36,9 +36,8 @@ import {
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
-    AuthenticationContext
-  );
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp, AppUpdateRequired } =
+    useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
@@ -64,6 +63,13 @@ export const TodayScreen = ({ navigation }) => {
   const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
+  const userCompletedPainJournallUnit =
+    educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
+  const journaledToday =
+    userCompletedPainJournallUnit &&
+    foodJournalToday &&
+    moodJournalToday &&
+    painJournalToday;
 
   useEffect(() => {
     getUser();
@@ -91,19 +97,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
-
-  function renderJournalDailyActivity() {
-    const userCompletedPainJournallUnit =
-      educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
-    if (
-      userCompletedPainJournallUnit &&
-      foodJournalToday &&
-      moodJournalToday &&
-      painJournalToday
-    ) {
-      return <Journals navigation={navigation} />;
-    }
-  }
 
   function renderSmartGoalDailyActivity() {
     const userCompletedSmartGoalUnit =
@@ -139,7 +132,8 @@ export const TodayScreen = ({ navigation }) => {
           {movementModulesComplete ? (
             <>
               <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate || moduleComplete ? (
+              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ||
+              moduleComplete ? (
                 <DailyGoalCompleted
                   type={"movementModule"}
                   moduleId={lastModuleCompleted.moduleId}
@@ -171,7 +165,7 @@ export const TodayScreen = ({ navigation }) => {
               <WellnessCoach navigation={navigation} />
             ) : null}
             {!profileComplete && <ProfileSetup navigation={navigation} />}
-            {renderJournalDailyActivity()}
+            {journaledToday ? <Journals navigation={navigation} /> : null}
             {renderSmartGoalDailyActivity()}
             {painJournalToday ? (
               <DailyGoalCompleted type={"Pain Journal"} />
