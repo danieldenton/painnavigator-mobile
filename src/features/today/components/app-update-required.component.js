@@ -2,10 +2,8 @@ import React, { useContext } from "react";
 import { View, Text, Modal, Linking } from "react-native";
 import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
-import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 import { AuthenticationContext } from "../../../services/authentication.context";
-import { isAndroid } from "../../../utils";
 
 export const AppUpdateRequired = () => {
   const { patchAppUpdateRequired, setAppUpdateRequired, appUpdateRequired } =
