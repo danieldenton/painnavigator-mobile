@@ -93,7 +93,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     });
   };
 
-  const sendMessage = () => {
+  const sendMessage = (uid) => {
     const newMessage = {
       ...message,
       sender_id: uid,
