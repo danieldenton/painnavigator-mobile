@@ -5,7 +5,6 @@ import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
-import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
@@ -20,6 +19,7 @@ import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
+import { TodaysMovement } from "../components/todays-movement.compoentn";
 import { DailyPainScore } from "../components/daily-pain-scores.component";
 import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
@@ -33,19 +33,13 @@ export const TodayScreen = ({ navigation }) => {
     AuthenticationContext
   );
   const { tour } = useContext(OnboardContext);
-  const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
+  const { getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo } = useContext(ProfileContext);
-
   const { getPainJournals } = useContext(PainJournalContext);
   const { getMoodJournals } = useContext(MoodJournalContext);
   const { getFoodJournals } = useContext(FoodJournalContext);
-  const {
-    movementModulesComplete,
-    getMovementModuleCompletions,
-    lastModuleCompleted,
-    moduleComplete,
-    movementProgram,
-  } = useContext(MovementContext);
+  const { getMovementModuleCompletions, movementProgram } =
+    useContext(MovementContext);
   const {
     getEducationModuleCompletions,
     completedAllEducationModules,
@@ -92,30 +86,8 @@ export const TodayScreen = ({ navigation }) => {
         />
         <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
           <Greeting name={userInfo.first_name} isFocused={isFocused} />
-          <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-          {painScoreToday ? (
-            <DailyGoalCompleted type={"Daily Pain Score"} />
-          ) : (
-            <DailyPainScore navigation={navigation} />
-          )}
-          {movementModulesComplete ? (
-            <>
-              <SubHeader title={"TODAY'S MOVEMENT"} size={14} />
-              {lastModuleCompleted.dateCompleted === timeZonedTodaysDate ||
-              moduleComplete ? (
-                <DailyGoalCompleted
-                  type={"movementModule"}
-                  moduleId={lastModuleCompleted.moduleId}
-                  movementProgram={movementProgram}
-                />
-              ) : (
-                <MovementUnitCard
-                  navigation={navigation}
-                  isFocused={isFocused}
-                />
-              )}
-            </>
-          ) : null}
+          <DailyPainScore navigation={navigation} />
+          <TodaysMovement navigation={navigation} isFocused={isFocused} />
           {!completedAllEducationModules ? (
             <SubHeader title={"TODAY'S EDUCATION"} size={14} />
           ) : null}

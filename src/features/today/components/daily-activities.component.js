@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { View } from "react-native";
 import {
   Journals,
@@ -11,6 +11,7 @@ import { EducationContext } from "../../../services/education/education.context"
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { FoodJournalContext } from "../../../services/food-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { SubHeader } from "../../../components/typography.component";
 
 export const DailyActivities = ({ navigation }) => {
   const { painJournalToday } = useContext(PainJournalContext);
