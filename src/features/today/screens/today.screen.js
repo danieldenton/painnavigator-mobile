@@ -7,6 +7,7 @@ import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
+import { SmartGoalActivity } from "../components/smart-goal-activity.component";
 import { DailyGoalCompleted } from "../components/daily-goal-completed.component";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
@@ -19,29 +20,27 @@ import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { FoodJournalContext } from "../../../services/food-journal.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
-import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { SubHeader } from "../../../components/typography.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
-import { DailyPainScore } from "../components/daily-activities.component";
+import { DailyPainScore } from "../components/daily-pain-scores.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
 import {
   Journals,
   WellnessCoach,
-  NewSmartGoal,
   ProfileSetup,
-  SmartGoalUpdate,
 } from "../components/small-daily-activities";
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } =
-    useContext(AuthenticationContext);
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
+    AuthenticationContext
+  );
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo, profileComplete } = useContext(ProfileContext);
-  const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
+
   const { painJournalToday, getPainJournals } = useContext(PainJournalContext);
   const { moodJournalToday, getMoodJournals } = useContext(MoodJournalContext);
   const { foodJournalToday, getFoodJournals } = useContext(FoodJournalContext);
@@ -70,6 +69,8 @@ export const TodayScreen = ({ navigation }) => {
     foodJournalToday &&
     moodJournalToday &&
     painJournalToday;
+  const userCompletedSmartGoalUnit =
+    educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
 
   useEffect(() => {
     getUser();
@@ -97,22 +98,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
-
-  function renderSmartGoalDailyActivity() {
-    const userCompletedSmartGoalUnit =
-      educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
-    if (userCompletedSmartGoalUnit && activeGoal) {
-      if (lastSmartGoalUpdate === timeZonedTodaysDate) {
-        return <DailyGoalCompleted type={"Smart Goal Update"} />;
-      } else {
-        return <SmartGoalUpdate navigation={navigation} />;
-      }
-    } else if (educationProgress > 7) {
-      return <NewSmartGoal navigation={navigation} />;
-    } else {
-      return null;
-    }
-  }
 
   return (
     <Provider>
@@ -166,7 +151,9 @@ export const TodayScreen = ({ navigation }) => {
             ) : null}
             {!profileComplete && <ProfileSetup navigation={navigation} />}
             {journaledToday ? <Journals navigation={navigation} /> : null}
-            {renderSmartGoalDailyActivity()}
+            {userCompletedSmartGoalUnit ? (
+              <SmartGoalActivity navigation={navigation} />
+            ) : null}
             {painJournalToday ? (
               <DailyGoalCompleted type={"Pain Journal"} />
             ) : null}
@@ -179,8 +166,8 @@ export const TodayScreen = ({ navigation }) => {
           </View>
         </Scroll>
         <DashboardTour tour={tour} />
+        <AppUpdateRequired />
         <WellnessCoachReminder navigation={navigation} />
-        <AppUpdateRequired />    
       </SafeView>
     </Provider>
   );

@@ -1,4 +1,4 @@
-import { DailyPainScore } from "../../today/components/daily-activities.component";
+import { DailyPainScore } from "../../today/components/daily-pain-scores.component";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
