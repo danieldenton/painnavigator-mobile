@@ -7,7 +7,7 @@ import { styles } from "../../dashboard-tour/dashboard-styles";
 import { AuthenticationContext } from "../../../services/authentication.context";
 import { isAndroid } from "../../../utils";
 
-export const AppUpdateRequired = ({ navigation }) => {
+export const AppUpdateRequired = () => {
   const { uid } = useContext(AuthenticationContext);
 
   const handleAppUpdateRequired = () => {
