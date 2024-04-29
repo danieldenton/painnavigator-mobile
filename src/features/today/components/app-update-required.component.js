@@ -27,17 +27,15 @@ export const AppUpdateRequired = () => {
           visible={!appUpdateRequired}
         >
           <View style={styles.modalBackground}>
-            <DashboardTourComponentOnTop tour={4} />
             <View
               style={[
                 styles.modalContainer,
-                { marginTop: tourObj[4].tourTextBubble },
+                { marginTop: tourObj[2].tourTextBubble },
               ]}
             >
-              <View style={styles.triangleRightTop} />
               <Text style={styles.modalContent}>
                 We've made some changes. Please update your PainNavigator app to
-                procedd.
+                proceed.
               </Text>
               <ModuleButton
                 onPress={() => handleAppUpdateRequired()}

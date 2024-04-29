@@ -36,7 +36,7 @@ import {
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp, AppUpdateRequired } =
+  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } =
     useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { painScoreToday, getDailyPainScores } = useContext(DailyPainContext);
