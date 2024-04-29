@@ -88,7 +88,7 @@ export const MessageInput = ({
             <Pressable
               onPress={() => {
                 navigation.navigate("MessageSent");
-                sendMessage();
+                sendMessage(uid);
                 markUnread();
               }}
             >
