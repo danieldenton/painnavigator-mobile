@@ -52,6 +52,7 @@ export const TodayScreen = ({ navigation }) => {
     getMoodJournals();
     getPainJournals();
     getSmartGoals();
+    Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
 
   useEffect(() => {
@@ -67,10 +68,6 @@ export const TodayScreen = ({ navigation }) => {
       patchLastDateOnApp();
     }
   }, [lastDateOnApp]);
-
-  useEffect(() => {
-    Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
-  }, []);
 
   return (
     <Provider>
