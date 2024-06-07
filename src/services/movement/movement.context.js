@@ -62,6 +62,7 @@ export const MovementContextProvider = ({ children }) => {
         const nextVideo = movementVideos.find(
           (video) => video.id === currentModule.videos[i]
         );
+        setCurrentVideo(nextVideo);
       }
     }
   }
