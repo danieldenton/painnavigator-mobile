@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
 import { EducationContext } from "./education/education.context";
-import { MovementContext } from "./movement/movement.context";
 
 export const OnboardContext = createContext();
 
