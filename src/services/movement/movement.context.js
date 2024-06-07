@@ -26,7 +26,6 @@ export const MovementContextProvider = ({ children }) => {
   const movementProgramModules = movementProgram
     ? movementModules.find((module) => module.id === movementProgram)
     : null;
-  console.log(movementProgramModules.modules);
   const movementModulesComplete = currentModule?.id < 37;
   const movementProgress = currentModule.id;
 

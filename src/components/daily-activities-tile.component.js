@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { Add, FoodJournalIcon } from "../icons";
+import { OnboardContext } from "../services/onboard.context";
 
 const DailyActivitiesCard = styled(Card)`
   margin-top: 16px;
@@ -40,13 +41,16 @@ export const DailyActivitiesTile = ({
   screen,
   screenParams,
 }) => {
+  const { tour } = useContext(OnboardContext);
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate(destination, {
-          screen: screen,
-          params: { type: screenParams },
-        })
+        !tour
+          ? navigation.navigate(destination, {
+              screen: screen,
+              params: { type: screenParams },
+            })
+          : null
       }
     >
       <DailyActivitiesCard>

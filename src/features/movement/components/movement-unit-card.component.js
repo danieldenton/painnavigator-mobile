@@ -4,6 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { OnboardContext } from "../../../services/onboard.context";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { isAndroid } from "../../../utils";
 
@@ -60,6 +61,7 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
     numOfCompletedVideos,
     setModuleComplete,
   } = useContext(MovementContext);
+  const { tour } = useContext(OnboardContext);
   const { name } = currentModule;
 
   const moduleProgress = numOfCompletedVideos / playlistLength;
@@ -77,16 +79,19 @@ export const MovementUnitCard = ({ navigation, isFocused }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => (
-        setModuleComplete(false),
-        navigation.navigate("Movement")
-      )}
+      onPress={() =>
+        !tour
+          ? (setModuleComplete(false), navigation.navigate("Movement"))
+          : null
+      }
     >
       <ModuleCard>
         <ModuleCardContent>
           <CardTextSection>
             <CardHeader>{name}</CardHeader>
-            <CardSubHeader>{getPlaylistLength(currentModule.videos)} MIN</CardSubHeader>
+            <CardSubHeader>
+              {getPlaylistLength(currentModule.videos)} MIN
+            </CardSubHeader>
             {numOfCompletedVideos > 0 && (
               <UnitProgress>
                 {numOfCompletedVideos}/{playlistLength} Videos Completed

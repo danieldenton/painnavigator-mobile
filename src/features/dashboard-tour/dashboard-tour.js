@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { View, Text, Modal } from "react-native";
 import { OnboardContext } from "../../services/onboard.context";
 import { ModuleButton } from "../../components/button.component";
