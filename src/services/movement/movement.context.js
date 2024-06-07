@@ -203,20 +203,22 @@ export const MovementContextProvider = ({ children }) => {
   };
 
   function getPlaylistLength(videos) {
-    const videoArray = videos.map((video) => {
-      const the_video = movementVideos.find((item) => item.id === video);
-      const length = Math.ceil(the_video.length / 60);
+    if (videos) {
+      const videoArray = videos.map((video) => {
+        const the_video = movementVideos.find((item) => item.id === video);
+        const length = Math.ceil(the_video.length / 60);
 
-      return length;
-    });
+        return length;
+      });
 
-    const videoLength = videoArray.reduce(
-      (previousVideoRange, currentVideoRange) =>
-        previousVideoRange + currentVideoRange,
-      0
-    );
+      const videoLength = videoArray.reduce(
+        (previousVideoRange, currentVideoRange) =>
+          previousVideoRange + currentVideoRange,
+        0
+      );
 
-    return videoLength;
+      return videoLength;
+    }
   }
 
   const switchVideo = (videoId) => {

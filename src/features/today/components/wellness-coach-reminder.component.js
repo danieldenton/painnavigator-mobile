@@ -8,12 +8,15 @@ import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { AuthenticationContext } from "../../../services/authentication.context";
 
 export const WellnessCoachReminder = ({ navigation }) => {
-  const { wellnessCoachReminded, setWellnessCoachReminded, patchWellnessCoachReminded } =
-    useContext(WellnessCoachContext);
-    const { uid} = useContext(AuthenticationContext)
+  const {
+    wellnessCoachReminded,
+    setWellnessCoachReminded,
+    patchWellnessCoachReminded,
+  } = useContext(WellnessCoachContext);
+  const { uid } = useContext(AuthenticationContext);
 
   const handleWellnessCoachReminder = () => {
-    patchWellnessCoachReminded(uid)
+    patchWellnessCoachReminded(uid);
     setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
   };
