@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
@@ -26,9 +26,9 @@ export const MovementContextProvider = ({ children }) => {
   const movementProgramModules = movementProgram
     ? movementModules.find((module) => module.id === movementProgram)
     : null;
-
+  console.log(movementProgramModules.modules);
   const movementModulesComplete = currentModule?.id < 37;
-  const movementProgress = currentModule.id
+  const movementProgress = currentModule.id;
 
   useEffect(() => {
     if (completedVideos.length > 0) {
@@ -57,14 +57,13 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   function readyNextVideo() {
-    const lastCompletedVideoId = completedVideos[completedVideos.length - 1];
-    const indexOfLastCompletedVideo =
-      currentModule.videos.indexOf(lastCompletedVideoId);
-    const nextVideo = movementVideos.find(
-      (video) =>
-        video.id === currentModule.videos[indexOfLastCompletedVideo + 1]
-    );
-    setCurrentVideo(nextVideo);
+    for (let i = 0; i < currentModule.videos.length; i++) {
+      if (!completedVideos.includes(currentModule.videos[1])) {
+        const nextVideo = movementVideos.find(
+          (video) => video.id === currentModule.videos[i]
+        );
+      }
+    }
   }
 
   function readyUnfinishedMovementModule(
@@ -83,6 +82,7 @@ export const MovementContextProvider = ({ children }) => {
     if (data.length !== 0) {
       const reversedData = data.reverse();
       const lastMovementCompletion = reversedData[0];
+
       const lastMovementModule = movementProgramModules.modules.find(
         (module) => module.id === lastMovementCompletion.attributes.module_id
       );
@@ -111,7 +111,7 @@ export const MovementContextProvider = ({ children }) => {
     } else if (movementProgram != null) {
       setCurrentModule(movementProgramModules.modules[0]);
     } else {
-      setCurrentModule(movementModules[0].modules[0])
+      setCurrentModule(movementModules[0].modules[0]);
     }
   }
 
@@ -131,7 +131,10 @@ export const MovementContextProvider = ({ children }) => {
       );
       const editedSkippedVideoData = skippedVideoData.map((completion) => {
         if (completion.attributes.video_id) {
-          return { id: completion.id, video_id: completion.attributes.video_id };
+          return {
+            id: completion.id,
+            video_id: completion.attributes.video_id,
+          };
         }
       });
       setSkippedMovementVideos(editedSkippedVideoData);
@@ -263,7 +266,7 @@ export const MovementContextProvider = ({ children }) => {
         movementModulesComplete,
         setModuleComplete,
         lastModuleCompleted,
-        movementProgress
+        movementProgress,
       }}
     >
       {children}
