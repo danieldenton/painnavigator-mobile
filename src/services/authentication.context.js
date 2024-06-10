@@ -71,10 +71,11 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   }
 
-  const patchLastDateOnApp = async () => {
+  const patchLastDateOnAppAndAppVersion = async () => {
     try {
       await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
         last_date_on_app: timeZonedTodaysDate,
+        app_version: "2.0.6"
       });
     } catch (error) {
       console.error(error);
@@ -206,7 +207,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         signOut,
         expoPushToken,
         lastDateOnApp,
-        patchLastDateOnApp,
+        patchLastDateOnAppAndAppVersion,
         resetPassword,
         patchAppUpdateRequired,
         appUpdateRequired,
