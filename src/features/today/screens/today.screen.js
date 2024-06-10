@@ -27,7 +27,7 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnApp } = useContext(
+  const { uid, getUser, lastDateOnApp, patchLastDateOnAppAndAppVersion } = useContext(
     AuthenticationContext
   );
   const { tour } = useContext(OnboardContext);
@@ -65,7 +65,7 @@ export const TodayScreen = ({ navigation }) => {
 
   useEffect(() => {
     if (lastDateOnApp !== timeZonedTodaysDate) {
-      patchLastDateOnApp();
+      patchLastDateOnAppAndAppVersion();
     }
   }, [lastDateOnApp]);
 
