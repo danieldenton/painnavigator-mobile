@@ -75,7 +75,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     try {
       await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
         last_date_on_app: timeZonedTodaysDate,
-        app_version: "2.0.6"
+        app_version: "2.0.7"
       });
     } catch (error) {
       console.error(error);
