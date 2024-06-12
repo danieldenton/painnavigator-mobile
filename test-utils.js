@@ -1,70 +1,68 @@
-import React from 'react';
-import { render } from '@testing-library/react-native';
-import { ThemeProvider } from 'styled-components';
-import { theme } from "./src/infrastructure/theme"
-import { AuthenticationContext } from './src/services/authentication.context';
-import { ProfileContextProvider } from './src/services/profile/profile-context';
-import { BookmarksContextProvider } from './src/services/bookmarks/bookmarks.context';
-import { EducationContextProvider } from './src/services/education/education.context';
-import { MovementContextProvider } from './src/services/movement/movement.context';
-import { SmartGoalContext } from './src/services/smart-goal/smart-goal.context';
-import { PainJournalContextProvider } from './src/services/pain-journal/pain-journal.context';
-import { FoodJournalContextProvider } from './src/services/food-journal.context';
-import { MoodJournalContextProvider } from './src/services/mood-journal.context';
-import { WellnessCoachContextProvider} from './src/services/wellness-coach.context';
-import { FavoriteActivitiesContextProvider } from './src/services/favorite-activities/favorite-activities.context';
-import { NavigationContainer } from '@react-navigation/native';
+import React from "react";
+import { render } from "@testing-library/react-native";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./src/infrastructure/theme";
+import { ProfileContextProvider } from "./src/services/profile/profile-context";
+import { EducationContextProvider } from "./src/services/education/education.context";
+import { MovementContextProvider } from "./src/services/movement/movement.context";
+import { OnboardContextProvider } from "./src/services/onboard.context";
+import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
+import { AuthenticationContext } from "./src/services/authentication.context";
+import { DailyPainContextProvider } from "./src/services/daily-pain.context";
+import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
+import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
+import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
+import { FoodJournalContextProvider } from "./src/services/food-journal.context";
+import { MoodJournalContextProvider } from "./src/services/mood-journal.context";
+import { FavoriteActivitiesContextProvider } from "./src/services/favorite-activities/favorite-activities.context";
 
-const Providers = ({children}) => {
+const Providers = ({ children }) => {
+  const authenticationContextValueProvider = {
+    uid: "86VEnz5oaSSxMUOODN1VGxiqeMA2",
+  };
 
-  
-  const authenticationContextValueProvider =  {"user": {"user":{"uid":"bLoeq82MXWacR4N42bcweyrA08X2"}}}
-  // const smartGoalContextValueProvider = { "activeGoal": {
-  //   "id": 54,
-  //   "goal": "test",
-  //   "steps": "test",
-  //   "reward": "test",
-  //   "end_date": null,
-  //   "date_time_value": 1675737571419.8752,
-  //   "status": "active",
-  //   "goal_updates": []
-  //  }
-  // }
-
-    return (
-       <ThemeProvider theme={theme}>
-       <AuthenticationContext.Provider value={authenticationContextValueProvider}>
-         <ProfileContextProvider>
-           <BookmarksContextProvider>
-             <EducationContextProvider>
-               <MovementContextProvider>
-                 <SmartGoalContext.Provider>
-                   <PainJournalContextProvider>
-                     <FoodJournalContextProvider>
-                       <MoodJournalContextProvider>
-                         <WellnessCoachContextProvider>
-                           <FavoriteActivitiesContextProvider>
-                             <NavigationContainer>
-                             {children}
-                             </NavigationContainer>
-                           </FavoriteActivitiesContextProvider>
-                         </WellnessCoachContextProvider>
-                       </MoodJournalContextProvider>
-                     </FoodJournalContextProvider>
-                   </PainJournalContextProvider>
-                 </SmartGoalContext.Provider>
-               </MovementContextProvider>
-             </EducationContextProvider>
-           </BookmarksContextProvider>
-         </ProfileContextProvider>
-       </AuthenticationContext.Provider>
-     </ThemeProvider>
-    )
+  return (
+    <ThemeProvider theme={theme}>
+      <ProfileContextProvider>
+        <EducationContextProvider>
+          <MovementContextProvider>
+            <OnboardContextProvider>
+              <OutcomeContextProvider>
+                <WellnessCoachContextProvider>
+                  <AuthenticationContext.Provider
+                    value={authenticationContextValueProvider}
+                  >
+                    <DailyPainContextProvider>
+                      <BookmarksContextProvider>
+                        <SmartGoalContextProvider>
+                          <PainJournalContextProvider>
+                            <FoodJournalContextProvider>
+                              <MoodJournalContextProvider>
+                                <FavoriteActivitiesContextProvider>
+                                  <NavigationContainer>
+                                    {children}
+                                  </NavigationContainer>
+                                </FavoriteActivitiesContextProvider>
+                              </MoodJournalContextProvider>
+                            </FoodJournalContextProvider>
+                          </PainJournalContextProvider>
+                        </SmartGoalContextProvider>
+                      </BookmarksContextProvider>
+                    </DailyPainContextProvider>
+                  </AuthenticationContext.Provider>
+                </WellnessCoachContextProvider>
+              </OutcomeContextProvider>
+            </OnboardContextProvider>
+          </MovementContextProvider>
+        </EducationContextProvider>
+      </ProfileContextProvider>
+    </ThemeProvider>
+  );
 };
 
-const renderWithContext = (ui, options) => 
-	render(ui, { wrapper: Providers, ...options});
+const renderWithContext = (ui, options) =>
+  render(ui, { wrapper: Providers, ...options });
 
-export * from '@testing-library/react-native'
+export * from "@testing-library/react-native";
 
-export {renderWithContext as render}
+export { renderWithContext as render };
