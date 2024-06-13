@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_URL } from "@env";
-import { timeZonedTodaysDate } from "../../utils";
 
 export async function postUser(uid, onboardingData) {
   const userData = {
@@ -30,7 +29,7 @@ export async function getUser(uid) {
   }
 }
 
-export const patchLastDateOnAppAndAppVersion = async (uid) => {
+export const patchLastDateOnAppAndAppVersion = async (uid, timeZonedTodaysDate) => {
   try {
     await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
       last_date_on_app: timeZonedTodaysDate,

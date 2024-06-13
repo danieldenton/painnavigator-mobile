@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { postUser } from "./authentication";
 import { OnboardContext } from "../onboard.context";
 import { EducationContext } from "../education/education.context";
 
@@ -115,13 +116,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
-  // TODO fix this.
-  useEffect(() => {
-    if (uid && expoPushToken) {
-      patchExpoPushToken();
-    }
-  }, [uid, expoPushToken]);
-
   return (
     <AuthenticationContext.Provider
       value={{
@@ -134,7 +128,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         signOut,
         expoPushToken,
         lastDateOnApp,
-        patchLastDateOnAppAndAppVersion,
         resetPassword,
         setLastDateOnApp,
         appUpdateRequired,
