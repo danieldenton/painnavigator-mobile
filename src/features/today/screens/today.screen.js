@@ -5,7 +5,9 @@ import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { getUser, patchExpoPushToken } from "../../../services/authentication/authentication";
 import { OnboardContext } from "../../../services/onboard.context";
+import { OutcomeContext } from "../../../services/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
@@ -27,25 +29,44 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnAppAndAppVersion } = useContext(
-    AuthenticationContext
-  );
+  const { uid, setLastDateOnApp, lastDateOnApp, setAppUpdateRequired } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
+  const { setCompletedProgram } = useContext(OutcomeContext)
   const { getDailyPainScores } = useContext(DailyPainContext);
-  const { userInfo } = useContext(ProfileContext);
+  const { setUserInfo, userInfo, setProfileComplete } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMoodJournals } = useContext(MoodJournalContext);
   const { getFoodJournals } = useContext(FoodJournalContext);
-  const { getMovementModuleCompletions, movementProgram } =
+  const { getMovementModuleCompletions, setMovementProgram, movementProgram } =
     useContext(MovementContext);
-  const { getEducationModuleCompletions } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
+  const { getEducationModuleCompletions, setEducationProgram, setEducationProgress } = useContext(EducationContext);
+  const { getMessages, setWellnessCoachReminded, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
 
+  const loadUser = async () => {
+    try {
+      const userData = await getUser(uid);
+      const eProgress = userData.education_progress.education_progress
+      ? userData.education_progress.education_progress
+      : userData.education_progress.progress;
+    setUserInfo(userData.profile);
+    setMovementProgram(userData.movement_program);
+    setEducationProgram(userData.education_program);
+    setEducationProgress(eProgress);
+    setProfileComplete(userData.profile.profile_status === 1);
+    setCompletedProgram(userData.completed_program === true);
+    setLastDateOnApp(userData.last_date_on_app);
+    setWellnessCoachReminded(userData.wellness_coach_reminded);
+    setAppUpdateRequired(userData.app_update_required);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    getUser();
+    loadUser()
     getDailyPainScores(uid);
     getEducationModuleCompletions(uid);
     getFoodJournals();
@@ -54,6 +75,13 @@ export const TodayScreen = ({ navigation }) => {
     getSmartGoals();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
+
+  // TODO fix this.
+  useEffect(() => {
+    if (uid && expoPushToken) {
+      patchExpoPushToken();
+    }
+  }, [uid, expoPushToken]);
 
   useEffect(() => {
     getMovementModuleCompletions(uid);

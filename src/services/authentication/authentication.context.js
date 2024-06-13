@@ -4,11 +4,6 @@ import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { OnboardContext } from "../onboard.context";
 import { EducationContext } from "../education/education.context";
-import { MovementContext } from "../movement/movement.context";
-import { ProfileContext } from "../profile/profile-context";
-import { OutcomeContext } from "../outcome.context";
-import { WellnessCoachContext } from "../wellness-coach.context";
-import { timeZonedTodaysDate } from "../../utils";
 
 export const AuthenticationContext = createContext();
 
@@ -18,14 +13,9 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
-
-  const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
-  const { setMovementProgram } = useContext(MovementContext);
-  const { setEducationProgram, educationProgram, setEducationProgress } =
+  const { educationProgram} =
     useContext(EducationContext);
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
-  const { setCompletedProgram } = useContext(OutcomeContext);
-  const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
 
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
@@ -136,7 +126,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     <AuthenticationContext.Provider
       value={{
         uid,
-        getUser,
         isAuthenticated: !!user,
         onLogin,
         onRegister,
@@ -147,7 +136,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         lastDateOnApp,
         patchLastDateOnAppAndAppVersion,
         resetPassword,
-        patchAppUpdateRequired,
+        setLastDateOnApp,
         appUpdateRequired,
         setAppUpdateRequired,
       }}
