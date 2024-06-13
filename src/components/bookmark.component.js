@@ -4,7 +4,7 @@ import { BookmarkIcon, BookmarkedIcon } from "../icons";
 import { BookmarksContext } from "../services/bookmarks/bookmarks.context";
 import * as Haptics from "expo-haptics";
 import { MovementContext } from "../services/movement/movement.context";
-import { AuthenticationContext } from "../services/authentication.context";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { patchSavedMovementVideos } from "../services/movement/movement.service";
 
 export const Bookmark = ({ id }) => {

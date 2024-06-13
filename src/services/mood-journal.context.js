@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { moodJournalQuestions } from "../features/mood-journal/data/mood-journal-question-data.json";
-import { AuthenticationContext } from "./authentication.context";
+import { AuthenticationContext } from "./authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../utils";
 
 export const MoodJournalContext = createContext();

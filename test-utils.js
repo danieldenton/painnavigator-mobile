@@ -8,7 +8,7 @@ import { MovementContextProvider } from "./src/services/movement/movement.contex
 import { OnboardContextProvider } from "./src/services/onboard.context";
 import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
-import { AuthenticationContext } from "./src/services/authentication.context";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain.context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
@@ -31,9 +31,7 @@ const Providers = ({ children }) => {
             <OnboardContextProvider>
               <OutcomeContextProvider>
                 <WellnessCoachContextProvider>
-                  <AuthenticationContext.Provider
-                    value={authenticationContextValueProvider}
-                  >
+                  <AuthenticationContextProvider>
                     <DailyPainContextProvider>
                       <BookmarksContextProvider>
                         <SmartGoalContextProvider>
@@ -51,7 +49,7 @@ const Providers = ({ children }) => {
                         </SmartGoalContextProvider>
                       </BookmarksContextProvider>
                     </DailyPainContextProvider>
-                  </AuthenticationContext.Provider>
+                  </AuthenticationContextProvider>
                 </WellnessCoachContextProvider>
               </OutcomeContextProvider>
             </OnboardContextProvider>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { AuthenticationContext } from "../authentication.context";
+import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate } from "../../utils";
 
 export const SmartGoalContext = createContext();

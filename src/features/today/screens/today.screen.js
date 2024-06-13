@@ -4,7 +4,7 @@ import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { OnboardContext } from "../../../services/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";

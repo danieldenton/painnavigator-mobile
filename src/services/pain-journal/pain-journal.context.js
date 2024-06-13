@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
-import { AuthenticationContext } from "../authentication.context";
+import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
 export const PainJournalContext = createContext();
