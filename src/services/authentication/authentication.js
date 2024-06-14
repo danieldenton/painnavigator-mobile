@@ -29,7 +29,7 @@ export const patchUser = async (uid, userUpdatesObject) => {
       app_version: "2.0.7",
       ...userUpdatesObject,
     };
-    const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, updates);
+    const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, userUpdatesObject);
     return response
   } catch (error) {
     console.error(error);

@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { postUser } from "./authentication";
+import { postUser, patchUser } from "./authentication";
 import { OnboardContext } from "../onboard.context";
 import { EducationContext } from "../education/education.context";
 
@@ -78,6 +78,31 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       });
   };
 
+  const updateUser = (userData) => {
+    let userUpdatesObject = {};
+    if (userData.expo_push_token !== expoPushToken) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        expo_push_token: expoPushToken,
+      };
+    }
+    if (userData.last_date_on_app !== timeZonedTodaysDate) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        last_date_on_app: timeZonedTodaysDate,
+      };
+    }
+    if (userData.app_version !== "2.0.7") {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        app_version: "2.0.7",
+      };
+    }
+    if (Object.keys(userUpdatesObject).length > 0) {
+      patchUser(uid, userUpdatesObject);
+    }
+  };
+
   const signOut = async () => {
     try {
       setUser(null);
@@ -124,6 +149,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onRegister,
         user,
         userLoading,
+        updateUser,
         signOut,
         expoPushToken,
         resetPassword,

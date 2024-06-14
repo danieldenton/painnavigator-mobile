@@ -5,12 +5,7 @@ import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import {
-  getUser,
-  patchUser,
-  patchExpoPushToken,
-  patchLastDateOnAppAndAppVersion,
-} from "../../../services/authentication/authentication";
+import { getUser } from "../../../services/authentication/authentication";
 import { OnboardContext } from "../../../services/onboard.context";
 import { OutcomeContext } from "../../../services/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
@@ -31,10 +26,11 @@ import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
+  const { uid, updateUser, setAppUpdateRequired } = useContext(
+    AuthenticationContext
+  );
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
   const { getDailyPainScores } = useContext(DailyPainContext);
@@ -55,28 +51,6 @@ export const TodayScreen = ({ navigation }) => {
     useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
-
-  const updateUser = (userData) => {
-    let userUpdatesObject = {};
-  
-    if (userData.expo_push_token !== expoPushToken) {
-      userUpdatesObject = {
-        ...userUpdatesObject,
-        expo_push_token: expoPushToken,
-      };
-    }
-  
-    if (userData.last_date_on_app !== timeZonedTodaysDate) {
-      userUpdatesObject = {
-        ...userUpdatesObject,
-        last_date_on_app: timeZonedTodaysDate, 
-      };
-    }
-  
-    if (Object.keys(userUpdatesObject).length > 0) { 
-      patchUser(uid, userUpdatesObject);
-    }
-  };
 
   const loadUser = async () => {
     try {
