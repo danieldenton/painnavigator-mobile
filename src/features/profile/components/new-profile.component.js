@@ -28,7 +28,7 @@ export const NewProfile = ({ navigation }) => {
     },
     {
       step: <Dob />,
-      submitCondition: dob.length === 8,
+      submitCondition: dob.length === 10,
     },
     {
       step: <StartingPainDuration />,
