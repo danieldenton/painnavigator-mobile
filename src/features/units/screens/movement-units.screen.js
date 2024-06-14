@@ -6,7 +6,7 @@ import { ExpandableCard } from "../components/expandable-card.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 import { Scroll } from "../../../components/scroll.component";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
