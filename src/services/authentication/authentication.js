@@ -25,10 +25,6 @@ export async function getUser(uid) {
 
 export const patchUser = async (uid, userUpdatesObject) => {
   try {
-    const updates = {
-      app_version: "2.0.7",
-      ...userUpdatesObject,
-    };
     const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, userUpdatesObject);
     return response
   } catch (error) {
