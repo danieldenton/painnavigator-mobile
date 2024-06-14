@@ -78,7 +78,8 @@ export const MovementContextProvider = ({ children }) => {
     setCompletedVideos(completedVideoIdsInOrder);
   }
 
-  function parseMovementProgress(data) {
+  async function parseMovementProgress(data) {
+    await data
     if (data.length !== 0) {
       const reversedData = data.reverse();
       const lastMovementCompletion = reversedData[0];
