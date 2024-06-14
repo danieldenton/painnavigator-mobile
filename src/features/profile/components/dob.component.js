@@ -5,7 +5,7 @@ import { ProfileContext } from "../../../services/profile/profile-context";
 
 export const Dob = () => {
     const { changeProfileEntry, profileData, dobFormat } = useContext(ProfileContext);
-
+    console.log(profileData.phone)
     return (
         <>
             <JournalQuestion 

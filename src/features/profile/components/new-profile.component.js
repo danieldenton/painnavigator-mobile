@@ -24,7 +24,7 @@ export const NewProfile = ({ navigation }) => {
   const steps = [
     {
       step: <Phone />,
-      submitCondition: phone.length === 10,
+      submitCondition: phone.length === 13,
     },
     {
       step: <Dob />,
