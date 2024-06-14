@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { AuthTextInput, InputLabel } from "../../../components/text-input.component";
 import { JournalButton } from "../../../components/button.component";
 import { ErrorMessage, InputWrapper, ForgotPassword, ForgotPasswordWrapper } from "../styles/account.styles";

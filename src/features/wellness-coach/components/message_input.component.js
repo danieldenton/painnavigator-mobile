@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { TextInput } from "react-native-paper";
 import { SendIcon } from "../../../icons";
 import { Pressable } from "react-native";

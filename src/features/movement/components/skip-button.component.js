@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 const SkipButtonWrapper = styled.View`
     align-items: flex-end;

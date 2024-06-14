@@ -15,7 +15,7 @@ import {
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
 import { OutcomeContext } from "../../../services/outcome.context";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {
     const { uid } = useContext(AuthenticationContext)

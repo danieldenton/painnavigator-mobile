@@ -7,7 +7,7 @@ import { NextUp } from "../../education/components/education-unit.styles";
 import { Scroll } from "../../../components/scroll.component";
 import { VideoPlayer } from "../../../components/video-player/video-player.component";
 import { SkipButton } from "./skip-button.component";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { movementVideos } from "../../../services/movement/movement-videos-data.json"
 
 export const MovementUnit = () => {

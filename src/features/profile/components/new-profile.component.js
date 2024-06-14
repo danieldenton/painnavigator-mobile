@@ -7,7 +7,7 @@ import { SkipQuestion } from "../../../components/skip-question.component";
 import { ProgressDots } from "../../../components/progress-dots.component";
 import { JournalButton } from "../../../components/button.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Dob } from "../components/dob.component";
 import { Phone } from "../components/phone.component";
 import { ActivityLevel } from "../components/activity-level.component";
@@ -24,11 +24,11 @@ export const NewProfile = ({ navigation }) => {
   const steps = [
     {
       step: <Phone />,
-      submitCondition: phone.length === 10,
+      submitCondition: phone.length === 13,
     },
     {
       step: <Dob />,
-      submitCondition: dob.length === 8,
+      submitCondition: dob.length === 10,
     },
     {
       step: <StartingPainDuration />,

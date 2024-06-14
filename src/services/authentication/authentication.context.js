@@ -2,95 +2,33 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
-import { API_URL } from "@env";
-import { OnboardContext } from "./onboard.context";
-import { EducationContext } from "./education/education.context";
-import { MovementContext } from "./movement/movement.context";
-import { ProfileContext } from "./profile/profile-context";
-import { OutcomeContext } from "./outcome.context";
-import { WellnessCoachContext } from "./wellness-coach.context";
-import { timeZonedTodaysDate } from "../utils";
+import { postUser, getUser, patchUser } from "./authentication";
+import { OnboardContext } from "../onboard.context";
+import { ProfileContext } from "../profile/profile-context";
+import { MovementContext } from "../movement/movement.context";
+import { EducationContext } from "../education/education.context";
+import { OutcomeContext } from "../outcome.context";
+import { WellnessCoachContext } from "../wellness-coach.context";
+import { timeZonedTodaysDate } from "../../utils";
+
 
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
-  const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
-
+  const { onboardingData, setError, providerId } = useContext(OnboardContext);
   const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
   const { setMovementProgram } = useContext(MovementContext);
-  const { setEducationProgram, educationProgram, setEducationProgress } =
+  const { educationProgram, setEducationProgram, setEducationProgress } =
     useContext(EducationContext);
-  const { onboardingData, setError, providerId } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
+  const {  setWellnessCoachReminded} = useContext(WellnessCoachContext)
 
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
-
-  async function postUser(uid, onboardingData) {
-    const userData = {
-      uid: uid,
-      ...onboardingData,
-    };
-    await axios.post(`${API_URL}/api/v2/users`, { user: userData });
-  }
-
-  const patchExpoPushToken = async () => {
-    try {
-      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-        expo_push_token: expoPushToken,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  async function getUser() {
-    try {
-      const response = await axios.get(`${API_URL}/api/v2/users/${uid}`);
-      const data = response.data.data.attributes;
-      const eProgress = data.education_progress.education_progress
-        ? data.education_progress.education_progress
-        : data.education_progress.progress;
-      setUserInfo(data.profile);
-      setMovementProgram(data.movement_program);
-      setEducationProgram(data.education_program);
-      setEducationProgress(eProgress);
-      setProfileComplete(data.profile.profile_status === 1);
-      setCompletedProgram(data.completed_program === true);
-      setLastDateOnApp(data.last_date_on_app);
-      setWellnessCoachReminded(data.wellness_coach_reminded);
-      setAppUpdateRequired(data.app_update_required);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const patchLastDateOnAppAndAppVersion = async () => {
-    try {
-      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-        last_date_on_app: timeZonedTodaysDate,
-        app_version: "2.0.7"
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const patchAppUpdateRequired = async () => {
-    try {
-      await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
-        app_update_required: false,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const onLogin = (email, password) => {
     setUserLoading(true);
@@ -150,12 +88,59 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
       });
   };
 
+  const updateUser = (userData) => {
+    let userUpdatesObject = {};
+    if (userData.expo_push_token !== expoPushToken) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        expo_push_token: expoPushToken,
+      };
+    }
+    if (userData.last_date_on_app !== timeZonedTodaysDate) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        last_date_on_app: timeZonedTodaysDate,
+      };
+    }
+    if (userData.app_version !== "2.0.8") {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        app_version: "2.0.8",
+      };
+    }
+    if (Object.keys(userUpdatesObject).length > 0) {
+      patchUser(uid, userUpdatesObject);
+    }
+  };
+
   const signOut = async () => {
     try {
       setUser(null);
       await AsyncStorage.removeItem("@user");
     } catch (e) {
       console.log("error clearing user", e);
+    }
+  };
+
+  const loadUserData = async () => {
+    try {
+      const userData = await getUser(uid);
+
+      const eProgress = userData.education_progress.education_progress
+        ? userData.education_progress.education_progress
+        : userData.education_progress.progress;
+      setUserInfo(userData.profile);
+      setMovementProgram(userData.movement_program);
+      setEducationProgram(userData.education_program);
+      setEducationProgress(eProgress);
+      setProfileComplete(userData.profile.profile_status === 1);
+      setCompletedProgram(userData.completed_program === true);
+      setWellnessCoachReminded(userData.wellness_coach_reminded);
+      setAppUpdateRequired(userData.app_update_required);
+
+      updateUser(userData);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -187,29 +172,20 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     saveUser(user);
   }, [user]);
 
-  // TODO fix this.
-  useEffect(() => {
-    if (uid && expoPushToken) {
-      patchExpoPushToken();
-    }
-  }, [uid, expoPushToken]);
-
   return (
     <AuthenticationContext.Provider
       value={{
         uid,
-        getUser,
         isAuthenticated: !!user,
         onLogin,
         onRegister,
         user,
         userLoading,
+        loadUserData,
+        updateUser,
         signOut,
         expoPushToken,
-        lastDateOnApp,
-        patchLastDateOnAppAndAppVersion,
         resetPassword,
-        patchAppUpdateRequired,
         appUpdateRequired,
         setAppUpdateRequired,
       }}

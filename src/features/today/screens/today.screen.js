@@ -4,8 +4,10 @@ import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
-import { AuthenticationContext } from "../../../services/authentication.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { getUser } from "../../../services/authentication/authentication";
 import { OnboardContext } from "../../../services/onboard.context";
+import { OutcomeContext } from "../../../services/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
@@ -24,12 +26,9 @@ import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, getUser, lastDateOnApp, patchLastDateOnAppAndAppVersion } = useContext(
-    AuthenticationContext
-  );
+  const { uid, loadUserData } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo } = useContext(ProfileContext);
@@ -45,7 +44,7 @@ export const TodayScreen = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    getUser();
+    loadUserData();
     getDailyPainScores(uid);
     getEducationModuleCompletions(uid);
     getFoodJournals();
@@ -62,12 +61,6 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     getMessages(uid);
   }, [isFocused]);
-
-  useEffect(() => {
-    if (lastDateOnApp !== timeZonedTodaysDate) {
-      patchLastDateOnAppAndAppVersion();
-    }
-  }, [lastDateOnApp]);
 
   return (
     <Provider>
