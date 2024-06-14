@@ -102,10 +102,10 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         last_date_on_app: timeZonedTodaysDate,
       };
     }
-    if (userData.app_version !== "2.0.7") {
+    if (userData.app_version !== "2.0.8") {
       userUpdatesObject = {
         ...userUpdatesObject,
-        app_version: "2.0.7",
+        app_version: "2.0.8",
       };
     }
     if (Object.keys(userUpdatesObject).length > 0) {
