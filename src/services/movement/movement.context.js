@@ -32,11 +32,9 @@ export const MovementContextProvider = ({ children }) => {
   useEffect(() => {
     if (completedVideos.length > 0) {
       if (completedVideos.length === playlistLength) {
-        setTimeout(() => {
-          const lastMovementModuleIndex = currentModule.id - 1;
-          readyNextModule(lastMovementModuleIndex);
-          setModuleComplete(true);
-        }, 1000);
+        const lastMovementModuleIndex = currentModule.id - 1;
+        readyNextModule(lastMovementModuleIndex);
+        setModuleComplete(true);
       } else {
         readyNextVideo();
       }
@@ -79,7 +77,7 @@ export const MovementContextProvider = ({ children }) => {
   }
 
   async function parseMovementProgress(data) {
-    await data
+    await data;
     if (data.length !== 0) {
       const reversedData = data.reverse();
       const lastMovementCompletion = reversedData[0];
