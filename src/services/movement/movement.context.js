@@ -57,7 +57,7 @@ export const MovementContextProvider = ({ children }) => {
 
   function readyNextVideo() {
     for (let i = 0; i < currentModule.videos.length; i++) {
-      if (!completedVideos.includes(currentModule.videos[1])) {
+      if (!completedVideos.includes(currentModule.videos[i])) {
         const nextVideo = movementVideos.find(
           (video) => video.id === currentModule.videos[i]
         );
