@@ -11,7 +11,6 @@ export const AuthenticationContext = createContext();
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [userLoading, setUserLoading] = useState(null);
   const [user, setUser] = useState(null);
-  const [lastDateOnApp, setLastDateOnApp] = useState("");
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
   const { educationProgram} =
@@ -127,9 +126,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         userLoading,
         signOut,
         expoPushToken,
-        lastDateOnApp,
         resetPassword,
-        setLastDateOnApp,
         appUpdateRequired,
         setAppUpdateRequired,
       }}

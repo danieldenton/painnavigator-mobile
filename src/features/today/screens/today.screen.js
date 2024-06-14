@@ -7,6 +7,7 @@ import { EducationContext } from "../../../services/education/education.context"
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import {
   getUser,
+  patchUser,
   patchExpoPushToken,
   patchLastDateOnAppAndAppVersion,
 } from "../../../services/authentication/authentication";
@@ -33,8 +34,7 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 import { timeZonedTodaysDate } from "../../../utils";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, setLastDateOnApp, lastDateOnApp, setAppUpdateRequired } =
-    useContext(AuthenticationContext);
+  const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
   const { getDailyPainScores } = useContext(DailyPainContext);
@@ -56,6 +56,28 @@ export const TodayScreen = ({ navigation }) => {
 
   const isFocused = useIsFocused();
 
+  const updateUser = (userData) => {
+    let userUpdatesObject = {};
+  
+    if (userData.expo_push_token !== expoPushToken) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        expo_push_token: expoPushToken,
+      };
+    }
+  
+    if (userData.last_date_on_app !== timeZonedTodaysDate) {
+      userUpdatesObject = {
+        ...userUpdatesObject,
+        last_date_on_app: timeZonedTodaysDate, 
+      };
+    }
+  
+    if (Object.keys(userUpdatesObject).length > 0) { 
+      patchUser(uid, userUpdatesObject);
+    }
+  };
+
   const loadUser = async () => {
     try {
       const userData = await getUser(uid);
@@ -69,17 +91,10 @@ export const TodayScreen = ({ navigation }) => {
       setEducationProgress(eProgress);
       setProfileComplete(userData.profile.profile_status === 1);
       setCompletedProgram(userData.completed_program === true);
-      setLastDateOnApp(userData.last_date_on_app);
       setWellnessCoachReminded(userData.wellness_coach_reminded);
       setAppUpdateRequired(userData.app_update_required);
 
-      if (userData.expo_push_token !== expoPushToken) {
-        patchExpoPushToken(uid, expoPushToken);
-      }
-
-      if (userData.last_date_on_app !== timeZonedTodaysDate) {
-        patchLastDateOnAppAndAppVersion(uid, timeZonedTodaysDate);
-      }
+      updateUser(userData);
     } catch (error) {
       console.error(error);
     }

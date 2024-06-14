@@ -4,14 +4,15 @@ import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { patchUser } from "../../../services/authentication/authentication";
 
 export const AppUpdateRequired = () => {
-  const { patchAppUpdateRequired, setAppUpdateRequired, appUpdateRequired } =
+  const { uid, setAppUpdateRequired, appUpdateRequired } =
     useContext(AuthenticationContext);
   const linkToAppStore = "https://qrco.de/bcZpLu";
 
   const handleAppUpdateRequired = () => {
-    patchAppUpdateRequired();
+    patchUser(uid, { app_update_required: false })
     setAppUpdateRequired(false);
     Linking.openURL(linkToAppStore);
   };
