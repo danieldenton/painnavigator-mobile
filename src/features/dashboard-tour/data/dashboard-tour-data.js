@@ -1,4 +1,5 @@
-import { DailyPainScore } from "../../today/components/daily-pain-scores.component";
+import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
+import { PainJournalIcon } from "../../../icons";
 import { EducationUnitCard } from "../../education/components/education-unit-card.component";
 import { MovementUnitCard } from "../../movement/components/movement-unit-card.component";
 import { MenuIcon, UnreadMessageIcon } from "../../../icons";
@@ -7,7 +8,6 @@ import {
   ProfileSetup,
 } from "../../today/components/small-daily-activities";
 import { isAndroid, isIPad } from "../../../utils";
-
 
 const DailyActivities = () => {
   return (
@@ -31,7 +31,14 @@ export const tourObj = [
     text: "To get the most out of the program, we recommend you log your pain score daily here.",
     tourTextBubble: 20,
     tourComponentPlacement: isAndroid ? 214 : isIPad ? 215 : 245,
-    component: <DailyPainScore />,
+    component: (
+      <DailyActivitiesTile
+        navigation={null}
+        destination={null}
+        title={"Log Your Daily Pain Score"}
+        icon={<PainJournalIcon />}
+      />
+    ),
   },
   {
     id: 3,

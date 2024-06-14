@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { postUser, patchUser } from "./authentication";
 import { OnboardContext } from "../onboard.context";
 import { EducationContext } from "../education/education.context";
+import { timeZonedTodaysDate } from "../../utils";
 
 export const AuthenticationContext = createContext();
 
