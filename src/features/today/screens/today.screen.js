@@ -28,54 +28,23 @@ import { WellnessCoachReminder } from "../components/wellness-coach-reminder.com
 import { AppUpdateRequired } from "../components/app-update-required.component";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, updateUser, setAppUpdateRequired } = useContext(
-    AuthenticationContext
-  );
+  const { uid, loadUserData } = useContext(AuthenticationContext);
   const { tour } = useContext(OnboardContext);
-  const { setCompletedProgram } = useContext(OutcomeContext);
   const { getDailyPainScores } = useContext(DailyPainContext);
-  const { setUserInfo, userInfo, setProfileComplete } =
-    useContext(ProfileContext);
+  const { userInfo } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMoodJournals } = useContext(MoodJournalContext);
   const { getFoodJournals } = useContext(FoodJournalContext);
-  const { getMovementModuleCompletions, setMovementProgram, movementProgram } =
+  const { getMovementModuleCompletions, movementProgram } =
     useContext(MovementContext);
-  const {
-    getEducationModuleCompletions,
-    setEducationProgram,
-    setEducationProgress,
-  } = useContext(EducationContext);
-  const { getMessages, setWellnessCoachReminded, hasUnreadMessages } =
-    useContext(WellnessCoachContext);
+  const { getEducationModuleCompletions } = useContext(EducationContext);
+  const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
 
-  const loadUser = async () => {
-    try {
-      const userData = await getUser(uid);
-
-      const eProgress = userData.education_progress.education_progress
-        ? userData.education_progress.education_progress
-        : userData.education_progress.progress;
-      setUserInfo(userData.profile);
-      setMovementProgram(userData.movement_program);
-      setEducationProgram(userData.education_program);
-      setEducationProgress(eProgress);
-      setProfileComplete(userData.profile.profile_status === 1);
-      setCompletedProgram(userData.completed_program === true);
-      setWellnessCoachReminded(userData.wellness_coach_reminded);
-      setAppUpdateRequired(userData.app_update_required);
-
-      updateUser(userData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    loadUser();
+    loadUserData();
     getDailyPainScores(uid);
     getEducationModuleCompletions(uid);
     getFoodJournals();

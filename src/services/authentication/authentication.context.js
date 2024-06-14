@@ -2,10 +2,15 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { postUser, patchUser } from "./authentication";
+import { postUser, getUser, patchUser } from "./authentication";
 import { OnboardContext } from "../onboard.context";
+import { ProfileContext } from "../profile/profile-context";
+import { MovementContext } from "../movement/movement.context";
 import { EducationContext } from "../education/education.context";
+import { OutcomeContext } from "../outcome.context";
+import { WellnessCoachContext } from "../wellness-coach.context";
 import { timeZonedTodaysDate } from "../../utils";
+
 
 export const AuthenticationContext = createContext();
 
@@ -14,13 +19,17 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [user, setUser] = useState(null);
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
-  const { educationProgram} =
-    useContext(EducationContext);
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
+  const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
+  const { setMovementProgram } = useContext(MovementContext);
+  const { educationProgram, setEducationProgram, setEducationProgress } =
+    useContext(EducationContext);
+  const { setCompletedProgram } = useContext(OutcomeContext);
+  const {  setWellnessCoachReminded} = useContext(WellnessCoachContext)
 
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
-  
+
   const onLogin = (email, password) => {
     setUserLoading(true);
     loginRequest(email, password)
@@ -113,6 +122,28 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
+  const loadUserData = async () => {
+    try {
+      const userData = await getUser(uid);
+
+      const eProgress = userData.education_progress.education_progress
+        ? userData.education_progress.education_progress
+        : userData.education_progress.progress;
+      setUserInfo(userData.profile);
+      setMovementProgram(userData.movement_program);
+      setEducationProgram(userData.education_program);
+      setEducationProgress(eProgress);
+      setProfileComplete(userData.profile.profile_status === 1);
+      setCompletedProgram(userData.completed_program === true);
+      setWellnessCoachReminded(userData.wellness_coach_reminded);
+      setAppUpdateRequired(userData.app_update_required);
+
+      updateUser(userData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const saveUser = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -150,6 +181,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onRegister,
         user,
         userLoading,
+        loadUserData,
         updateUser,
         signOut,
         expoPushToken,
