@@ -9,7 +9,7 @@ import { OnboardContextProvider } from "./src/services/onboard.context";
 import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { DailyPainContextProvider } from "./src/services/daily-pain.context";
+import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";

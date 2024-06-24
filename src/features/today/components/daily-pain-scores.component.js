@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalIcon } from "../../../icons";
 import { SubHeader } from "../../../components/typography.component";
-import { DailyPainContext } from "../../../services/daily-pain.context";
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
 export const DailyPainScore = ({ navigation }) => {

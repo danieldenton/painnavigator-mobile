@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { DailyPainContext } from "../../../services/daily-pain.context";
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { ButtonSection } from '../../../components/journals/journal.styles';
 import { JournalButton } from "../../../components/button.component";

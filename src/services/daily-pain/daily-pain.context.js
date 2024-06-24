@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
-import { formatDate, timeZonedTodaysDate } from "../utils";
+import { formatDate, timeZonedTodaysDate } from "../../utils";
 
 
 export const DailyPainContext = createContext();

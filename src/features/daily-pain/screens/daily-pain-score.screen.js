@@ -4,7 +4,7 @@ import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScoreComponent } from "../components/daily-pain-score.component";
 import { PainTrackerComponent } from "../components/pain-tracker.component";
-import { DailyPainContext } from "../../../services/daily-pain.context";
+import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { isAndroid } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
