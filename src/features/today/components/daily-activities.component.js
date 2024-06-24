@@ -9,7 +9,7 @@ import { SmartGoalActivity } from "../components/smart-goal-activity.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { EducationContext } from "../../../services/education/education.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
-import { FoodJournalContext } from "../../../services/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { SubHeader } from "../../../components/typography.component";

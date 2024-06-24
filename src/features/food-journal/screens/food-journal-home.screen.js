@@ -5,7 +5,7 @@ import { FoodGraphic } from "../../../graphics";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import { NewJournalEntry } from "../../../components/journals/new-journal-entry.component";
 import { JournalTile } from "../../../components/journal-tile.component";
-import { FoodJournalContext } from "../../../services/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";

@@ -66,7 +66,7 @@ import { EducationContextProvider } from "./src/services/education/education.con
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FavoriteActivitiesContextProvider } from "./src/services/favorite-activities/favorite-activities.context";
-import { FoodJournalContextProvider } from "./src/services/food-journal.context";
+import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
 import { MoodJournalContextProvider } from "./src/services/mood-journal.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
 import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
