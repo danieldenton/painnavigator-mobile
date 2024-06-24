@@ -1,6 +1,4 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
@@ -14,50 +12,39 @@ export const FoodJournalContextProvider = ({ children }) => {
     feelingBefore: "",
     feelingAfter: "",
   });
-  const { uid } = useContext(AuthenticationContext);
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   const foodJournalToday = lastFoodJournal === timeZonedTodaysDate;
 
-  const getFoodJournals = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/v2/food_journals`, {
-        params: { uid: uid },
-      });
-      setFoodJournals(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
-  async function postFoodJournal(journalEntry) {
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
-        food_journal: journalEntry,
-        uid: uid,
-      });
-      const data = response.data.data.attributes;
-      setFoodJournals((prevJournals) => [data, ...prevJournals]);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async function postFoodJournal(journalEntry) {
+  //   try {
+  //     const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
+  //       food_journal: journalEntry,
+  //       uid: uid,
+  //     });
+  //     const data = response.data.data.attributes;
+  //     setFoodJournals((prevJournals) => [data, ...prevJournals]);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
-  async function patchFoodJournal(journalId, journalEntry) {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v1/food_journals/${journalId}`,
-        { food_journal: journalEntry }
-      );
-      const data = response.data.data.attributes;
-      setFoodJournals((prevJournals) =>
-        prevJournals.map((journal) =>
-          journal.id === journalId ? data : journal
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  // async function patchFoodJournal(journalId, journalEntry) {
+  //   try {
+  //     const response = await axios.patch(
+  //       `${API_URL}/api/v1/food_journals/${journalId}`,
+  //       { food_journal: journalEntry }
+  //     );
+  //     const data = response.data.data.attributes;
+  //     setFoodJournals((prevJournals) =>
+  //       prevJournals.map((journal) =>
+  //         journal.id === journalId ? data : journal
+  //       )
+  //     );
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   const updateFoodJournal = (journalId) => {
     const mealEntry = {
@@ -87,10 +74,6 @@ export const FoodJournalContextProvider = ({ children }) => {
     }, 1000);
   };
 
-  const loadFoodJournals = () => {
-    getFoodJournals(setFoodJournals);
-  };
-
   const resetFoodJournal = () => {
     setMeal("");
     setFoodJournal({
@@ -103,13 +86,11 @@ export const FoodJournalContextProvider = ({ children }) => {
   return (
     <FoodJournalContext.Provider
       value={{
-        getFoodJournals,
         updateFoodJournal,
         changeEntry,
         completeFoodJournal,
         foodJournal,
         foodJournals,
-        loadFoodJournals,
         meal,
         resetFoodJournal,
         setFoodJournal,

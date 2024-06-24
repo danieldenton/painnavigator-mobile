@@ -4,7 +4,7 @@ import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { styles } from "../../dashboard-tour/dashboard-styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { patchUser } from "../../../services/authentication/authentication";
+import { patchUser } from "../../../services/authentication/authentication.service";
 
 export const AppUpdateRequired = () => {
   const { uid, setAppUpdateRequired, appUpdateRequired } =

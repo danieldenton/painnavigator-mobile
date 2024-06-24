@@ -4,7 +4,7 @@ import {
   getDailyPainScores,
   postDailyPainScore,
   patchDailyPainScore,
-} from "./daily-pain";
+} from "./daily-pain.service";
 
 export const DailyPainContext = createContext();
 

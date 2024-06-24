@@ -13,7 +13,7 @@ import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { MoodJournalContext } from "../../../services/mood-journal.context";
-import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
@@ -33,7 +33,6 @@ export const TodayScreen = ({ navigation }) => {
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMoodJournals } = useContext(MoodJournalContext);
-  const { getFoodJournals } = useContext(FoodJournalContext);
   const { getMovementModuleCompletions, movementProgram } =
     useContext(MovementContext);
   const { getEducationModuleCompletions } = useContext(EducationContext);
@@ -45,7 +44,7 @@ export const TodayScreen = ({ navigation }) => {
     loadUserData();
     loadDailyPainScores(uid);
     getEducationModuleCompletions(uid);
-    getFoodJournals();
+    getFoodJournals(uid);
     getMoodJournals();
     getPainJournals();
     getSmartGoals();
