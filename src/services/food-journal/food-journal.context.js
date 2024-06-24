@@ -1,6 +1,6 @@
-import React, { createContext, useState, useContext } from "react";
-import { AuthenticationContext } from "../authentication/authentication.context";
+import React, { createContext, useState } from "react";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
+import { postFoodJournal, patchFoodJournal } from "./food-journal.service";
 
 export const FoodJournalContext = createContext();
 
@@ -14,37 +14,6 @@ export const FoodJournalContextProvider = ({ children }) => {
   });
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   const foodJournalToday = lastFoodJournal === timeZonedTodaysDate;
-
-
-  // async function postFoodJournal(journalEntry) {
-  //   try {
-  //     const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
-  //       food_journal: journalEntry,
-  //       uid: uid,
-  //     });
-  //     const data = response.data.data.attributes;
-  //     setFoodJournals((prevJournals) => [data, ...prevJournals]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  // async function patchFoodJournal(journalId, journalEntry) {
-  //   try {
-  //     const response = await axios.patch(
-  //       `${API_URL}/api/v1/food_journals/${journalId}`,
-  //       { food_journal: journalEntry }
-  //     );
-  //     const data = response.data.data.attributes;
-  //     setFoodJournals((prevJournals) =>
-  //       prevJournals.map((journal) =>
-  //         journal.id === journalId ? data : journal
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 
   const updateFoodJournal = (journalId) => {
     const mealEntry = {
