@@ -1,8 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
-
+import {
+  getDailyPainScores,
+  postDailyPainScore,
+  patchDailyPainScore,
+} from "./daily-pain";
 
 export const DailyPainContext = createContext();
 
@@ -17,57 +19,20 @@ export const DailyPainContextProvider = ({ children }) => {
   const lastDailyPainScoreDate = formatDate(
     dailyPainScores[dailyPainScores.length - 1]?.date_time_value
   );
-  const painScoreToday = lastDailyPainScoreDate === timeZonedTodaysDate
+  const painScoreToday = lastDailyPainScoreDate === timeZonedTodaysDate;
 
-  async function getDailyPainScores(uid) {
-    try {
-      const response = await axios.get(`${API_URL}/api/v2/daily_pain_scores`, {
-        params: {
-          uid: uid,
-        },
-      });
-      setDailyPainScores(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const loadDailyPainScores = async (uid) => {
+    const painScores = await getDailyPainScores(uid);
+    setDailyPainScores(painScores);
+  };
 
-  async function postDailyPainScore(uid) {
-    try {
-      const response = await axios.post(`${API_URL}/api/v2/daily_pain_scores`, {
-        uid: uid,
-        score: dailyPainScore.score,
-        date_time_value: Date.now(),
-      });
-      setDailyPainStep(1)
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function patchDailyPainScore() {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v2/daily_pain_scores/${dailyPainScore.id}`,
-        {
-          score: dailyPainScore.score,
-          date_time_value: Date.now(),
-        }
-      );
-      setDailyPainStep(1)
-      return response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const handleDailyPainScore = (uid) => {
+  const handleDailyPainScore = async (uid) => {
     if (dailyPainScore.id) {
-      setDailyPainScore(patchDailyPainScore());
+      patchDailyPainScore(dailyPainScore);
     } else {
-      setDailyPainScore(postDailyPainScore(uid));
+      postDailyPainScore(uid, dailyPainScore);
     }
+    setDailyPainStep(1);
   };
 
   useEffect(() => {
@@ -86,9 +51,7 @@ export const DailyPainContextProvider = ({ children }) => {
   return (
     <DailyPainContext.Provider
       value={{
-        getDailyPainScores,
-        postDailyPainScore,
-        patchDailyPainScore,
+        loadDailyPainScores,
         handleDailyPainScore,
         dailyPainScore,
         setDailyPainScore,

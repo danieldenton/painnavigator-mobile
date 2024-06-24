@@ -27,8 +27,8 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, loadUserData } = useContext(AuthenticationContext);
+  const { loadDailyPainScores } = useContext(DailyPainContext)
   const { tour } = useContext(OnboardContext);
-  const { getDailyPainScores } = useContext(DailyPainContext);
   const { userInfo } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
@@ -43,7 +43,7 @@ export const TodayScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadUserData();
-    getDailyPainScores(uid);
+    loadDailyPainScores(uid);
     getEducationModuleCompletions(uid);
     getFoodJournals();
     getMoodJournals();
