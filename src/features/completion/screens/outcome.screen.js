@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { OutcomeContext } from "../../../services/outcome.context";
+import { OutcomeContext } from "../../../services/outcome/outcome.context";
 import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { Recommend } from "../components/recommend.component";
