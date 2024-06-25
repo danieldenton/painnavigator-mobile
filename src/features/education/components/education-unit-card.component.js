@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { EducationModuleIcon } from "../../../icons";
 import { EducationContext } from "../../../services/education/education.context";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 
 const ModuleCard = styled(Card)`
   margin-top: 16px;

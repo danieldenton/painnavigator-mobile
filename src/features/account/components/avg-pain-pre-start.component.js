@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { JournalQuestionAndIntensitySlider } from "../../../components/JournalQuestionAndIntensitySlider";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 
 export const AvgPainPreStart = () => {
   const { onboardingData, setOnboardingData } = useContext(OnboardContext);

@@ -57,7 +57,7 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { OnboardContextProvider } from "./src/services/onboard.context";
+import { OnboardContextProvider } from "./src/services/onboard/onboard.context";
 import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";

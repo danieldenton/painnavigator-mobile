@@ -5,7 +5,7 @@ import { Provider } from "react-native-paper";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";

@@ -5,7 +5,7 @@ import { theme } from "./src/infrastructure/theme";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { EducationContextProvider } from "./src/services/education/education.context";
 import { MovementContextProvider } from "./src/services/movement/movement.context";
-import { OnboardContextProvider } from "./src/services/onboard.context";
+import { OnboardContextProvider } from "./src/services/onboard/onboard.context";
 import { OutcomeContextProvider } from "./src/services/outcome.context";
 import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";

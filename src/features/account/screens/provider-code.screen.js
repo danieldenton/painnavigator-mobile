@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { API_URL } from "@env";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { AuthTextInput } from "../../../components/text-input.component";
