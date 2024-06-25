@@ -12,8 +12,8 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
-import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
+import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
 import { TodayNavBar } from "../../../components/journals/navigation-bar.component";
@@ -27,12 +27,11 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, loadUserData } = useContext(AuthenticationContext);
-  const { loadDailyPainScores } = useContext(DailyPainContext)
+  const { loadDailyPainScores } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { userInfo } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
-  const { getMoodJournals } = useContext(MoodJournalContext);
   const { getMovementModuleCompletions, movementProgram } =
     useContext(MovementContext);
   const { getEducationModuleCompletions } = useContext(EducationContext);
@@ -45,7 +44,7 @@ export const TodayScreen = ({ navigation }) => {
     loadDailyPainScores(uid);
     getEducationModuleCompletions(uid);
     getFoodJournals(uid);
-    getMoodJournals();
+    getMoodJournals(uid);
     getPainJournals();
     getSmartGoals();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
