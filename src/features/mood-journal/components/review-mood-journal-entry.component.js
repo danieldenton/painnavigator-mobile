@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { InputQuestion, IntensityQuestion } from "../../../components/review-journal-question.component";
 import { formatDate } from "../../../utils";
 import { View } from "react-native";

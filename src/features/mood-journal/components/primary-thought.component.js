@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { TextInputLarge } from "../../../components/text-input.component";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const PrimaryThought = () => {
     const { changeEntry, currentPageData, moodJournal } = useContext(MoodJournalContext);

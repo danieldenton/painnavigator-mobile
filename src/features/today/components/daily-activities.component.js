@@ -10,7 +10,7 @@ import { PainJournalContext } from "../../../services/pain-journal/pain-journal.
 import { EducationContext } from "../../../services/education/education.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { WellnessCoachContext } from "../../../services/wellness-coach.context";
 import { SubHeader } from "../../../components/typography.component";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";

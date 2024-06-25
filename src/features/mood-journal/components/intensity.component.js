@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { IntensitySlider } from "../../../components/slider.component";
  
 export const Intensity = () => {
