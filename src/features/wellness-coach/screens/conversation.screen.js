@@ -4,7 +4,7 @@ import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SentMessage, RecievedMessage, LinkMessage } from "../components/message.component";
 import { Scroll } from "../../../components/scroll.component";
-import { WellnessCoachContext } from "../../../services/wellness-coach.context";
+import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { MessageInput } from "../components/message_input.component";
 
 

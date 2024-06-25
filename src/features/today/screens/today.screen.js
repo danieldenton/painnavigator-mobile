@@ -9,7 +9,7 @@ import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { WellnessCoachContext } from "../../../services/wellness-coach.context";
+import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
@@ -35,7 +35,7 @@ export const TodayScreen = ({ navigation }) => {
   const { getMovementModuleCompletions, movementProgram } =
     useContext(MovementContext);
   const { getEducationModuleCompletions } = useContext(EducationContext);
-  const { getMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
+  const { loadMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
 
   const isFocused = useIsFocused();
 
@@ -55,7 +55,7 @@ export const TodayScreen = ({ navigation }) => {
   }, [movementProgram]);
 
   useEffect(() => {
-    getMessages(uid);
+    loadMessages(uid);
   }, [isFocused]);
 
   return (

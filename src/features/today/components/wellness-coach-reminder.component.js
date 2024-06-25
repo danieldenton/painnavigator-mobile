@@ -4,19 +4,17 @@ import { ModuleButton } from "../../../components/button.component";
 import { tourObj } from "../../dashboard-tour/data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "../../dashboard-tour/dashboard-tour-comp-top";
 import { styles } from "../../dashboard-tour/dashboard-styles";
-import { WellnessCoachContext } from "../../../services/wellness-coach.context";
+import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { patchUser } from "../../../services/authentication/authentication.service";
 
 export const WellnessCoachReminder = ({ navigation }) => {
-  const {
-    wellnessCoachReminded,
-    setWellnessCoachReminded,
-    patchWellnessCoachReminded,
-  } = useContext(WellnessCoachContext);
+  const { wellnessCoachReminded, setWellnessCoachReminded } =
+    useContext(WellnessCoachContext);
   const { uid } = useContext(AuthenticationContext);
 
   const handleWellnessCoachReminder = () => {
-    patchWellnessCoachReminded(uid);
+    patchUser(uid, { wellness_coach_reminded: true });
     setWellnessCoachReminded(true);
     navigation.navigate("WellnessCoach");
   };

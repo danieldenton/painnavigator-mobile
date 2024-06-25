@@ -23,10 +23,9 @@ export const OutcomeContextProvider = ({ children }) => {
       outcome_activity_interference: outcomeData.activityInterference,
       outcome_anxious: outcomeData.anxious,
       outcome_unable_to_stop_worrying: outcomeData.unableToStopWorrying,
-      outcome_little_interest_or_pleasure:
-        outcomeData.littleInterestOrPleasure,
+      outcome_little_interest_or_pleasure: outcomeData.littleInterestOrPleasure,
       outcome_depressed: outcomeData.depressed,
-    }
+    };
     patchUser(uid, data);
     setCompletedProgram(true);
   };

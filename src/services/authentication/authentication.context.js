@@ -8,7 +8,7 @@ import { ProfileContext } from "../profile/profile-context";
 import { MovementContext } from "../movement/movement.context";
 import { EducationContext } from "../education/education.context";
 import { OutcomeContext } from "../outcome/outcome.context";
-import { WellnessCoachContext } from "../wellness-coach.context";
+import { WellnessCoachContext } from "../wellness/wellness-coach.context";
 import { timeZonedTodaysDate } from "../../utils";
 
 
