@@ -1,4 +1,4 @@
-# PainNavigator 1.5.30
+# PainNavigator 2.0.8
 
 PainNavigator is a mobile app which utilizes the React-Native library and Expo for making native universal apps that run on iOS and Android. It employs a server that uses Ruby on the Rails framework deployed on Heroku.
 
