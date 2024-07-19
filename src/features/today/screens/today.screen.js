@@ -25,20 +25,20 @@ import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-import { setUser } from "@sentry/react-native";
+import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid } = useContext(AuthenticationContext);
   const { loadDailyPainScores } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
-  const { userInfo } = useContext(ProfileContext);
+  // const { userInfo } = useContext(ProfileContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
-  const { getMovementModuleCompletions, movementProgram } =
+  const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
     useContext(MovementContext);
   const { getEducationModuleCompletions } = useContext(EducationContext);
   const { loadMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
 
@@ -46,17 +46,16 @@ export const TodayScreen = ({ navigation }) => {
     const loadUserData = async () => {
       try {
         const data = await getUser(uid);
-        setUserData(data)
-  
-        // const eProgress = userData.education_progress.education_progress
-        //   ? userData.education_progress.education_progress
-        //   : userData.education_progress.progress;
-        // setMovementProgram(userData.movement_program);
-        // setEducationProgram(userData.education_program);
-        // setEducationProgress(eProgress);
-        // setProfileComplete(userData.profile.profile_status === 1);
-        // setCompletedProgram(userData.completed_program === true);
-        // setWellnessCoachReminded(userData.wellness_coach_reminded);
+        setUserData(data);
+        const eProgress = data.education_progress.education_progress
+          ? data.education_progress.education_progress
+          : data.education_progress.progress;
+        setMovementProgram(data.movement_program);
+        setEducationProgram(data.education_progress.progress);
+        setEducationProgress(eProgress);
+        setProfileComplete(data.profile.profile_status === 1);
+        setCompletedProgram(data.completed_program === true);
+        setWellnessCoachReminded(data.wellness_coach_reminded);
         // setAppUpdateRequired(userData.app_update_required);
         // updateUser(userData);
       } catch (error) {
@@ -87,22 +86,32 @@ export const TodayScreen = ({ navigation }) => {
 
   return (
     <Provider>
-      <SafeView>
-        <TodayNavBar
-          navigation={navigation}
-          hasUnreadMessages={hasUnreadMessages}
-        />
-        <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-          <Greeting name={userData.profile.first_name} isFocused={isFocused} />
-          <DailyPainScore navigation={navigation} />
-          <TodaysMovement navigation={navigation} isFocused={isFocused} />
-          <TodaysEducation navigation={navigation} />
-          <DailyActivities navigation={navigation} />
-        </Scroll>
-        <DashboardTour tour={tour} />
-        <AppUpdateRequired />
-        <WellnessCoachReminder navigation={navigation} />
-      </SafeView>
+      {userData ? (
+        <SafeView>
+          <TodayNavBar
+            navigation={navigation}
+            hasUnreadMessages={hasUnreadMessages}
+          />
+          <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+            <Greeting
+              name={userData.profile.first_name}
+              isFocused={isFocused}
+            />
+            <DailyPainScore
+              navigation={navigation}
+              painScoreLoggedToday={userData.pain_score_logged_today}
+            />
+            <TodaysMovement navigation={navigation} isFocused={isFocused} />
+            <TodaysEducation navigation={navigation} />
+            <DailyActivities navigation={navigation} />
+          </Scroll>
+          <DashboardTour tour={tour} />
+          <AppUpdateRequired />
+          <WellnessCoachReminder navigation={navigation} />
+        </SafeView>
+      ) : (
+        <LoadingComponent />
+      )}
     </Provider>
   );
 };

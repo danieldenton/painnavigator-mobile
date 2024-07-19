@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { PainJournalIcon } from "../../../icons";
 import { SubHeader } from "../../../components/typography.component";
-import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
-export const DailyPainScore = ({ navigation }) => {
-  const { painScoreToday } = useContext(DailyPainContext);
+export const DailyPainScore = ({ navigation, painScoreLoggedToday }) => {
   return (
     <>
       <SubHeader title={"TODAY'S PAIN SCORE"} size={14} />
-      {painScoreToday ? (
+      {painScoreLoggedToday ? (
         <DailyGoalCompleted type={"Daily Pain Score"} />
       ) : (
         <DailyActivitiesTile

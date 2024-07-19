@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { postUser, getUser, patchUser } from "./authentication.service";
+import { postUser, patchUser } from "./authentication.service";
 import { OnboardContext } from "../onboard/onboard.context";
 import { ProfileContext } from "../profile/profile-context";
 import { MovementContext } from "../movement/movement.context";
@@ -159,7 +159,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         isAuthenticated: !!user,
         onLogin,
         onRegister,
-        user,
         userLoading,
         updateUser,
         signOut,
