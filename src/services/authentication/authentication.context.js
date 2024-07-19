@@ -122,27 +122,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  const loadUserData = async () => {
-    try {
-      const userData = await getUser(uid);
-
-      const eProgress = userData.education_progress.education_progress
-        ? userData.education_progress.education_progress
-        : userData.education_progress.progress;
-      setUserInfo(userData.profile);
-      setMovementProgram(userData.movement_program);
-      setEducationProgram(userData.education_program);
-      setEducationProgress(eProgress);
-      setProfileComplete(userData.profile.profile_status === 1);
-      setCompletedProgram(userData.completed_program === true);
-      setWellnessCoachReminded(userData.wellness_coach_reminded);
-      setAppUpdateRequired(userData.app_update_required);
-
-      updateUser(userData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   const saveUser = async (value) => {
     try {
@@ -181,7 +161,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
         onRegister,
         user,
         userLoading,
-        loadUserData,
         updateUser,
         signOut,
         expoPushToken,

@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
+import { getUser } from "../../../services/authentication/authentication.service";
 import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -24,9 +25,10 @@ import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
+import { setUser } from "@sentry/react-native";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid, loadUserData } = useContext(AuthenticationContext);
+  const { uid } = useContext(AuthenticationContext);
   const { loadDailyPainScores } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { userInfo } = useContext(ProfileContext);
@@ -36,17 +38,38 @@ export const TodayScreen = ({ navigation }) => {
     useContext(MovementContext);
   const { getEducationModuleCompletions } = useContext(EducationContext);
   const { loadMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
+  const [userData, setUserData] = useState({})
 
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const data = await getUser(uid);
+        setUserData(data)
+  
+        // const eProgress = userData.education_progress.education_progress
+        //   ? userData.education_progress.education_progress
+        //   : userData.education_progress.progress;
+        // setMovementProgram(userData.movement_program);
+        // setEducationProgram(userData.education_program);
+        // setEducationProgress(eProgress);
+        // setProfileComplete(userData.profile.profile_status === 1);
+        // setCompletedProgram(userData.completed_program === true);
+        // setWellnessCoachReminded(userData.wellness_coach_reminded);
+        // setAppUpdateRequired(userData.app_update_required);
+        // updateUser(userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     loadUserData();
 
     // remove all of these
     loadDailyPainScores(uid);
     getEducationModuleCompletions(uid);
 
-    // journaled today handles
+    // journaled today handled
     getFoodJournals(uid);
     getMoodJournals(uid);
     getPainJournals();
@@ -70,7 +93,7 @@ export const TodayScreen = ({ navigation }) => {
           hasUnreadMessages={hasUnreadMessages}
         />
         <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-          <Greeting name={userInfo.first_name} isFocused={isFocused} />
+          <Greeting name={userData.profile.first_name} isFocused={isFocused} />
           <DailyPainScore navigation={navigation} />
           <TodaysMovement navigation={navigation} isFocused={isFocused} />
           <TodaysEducation navigation={navigation} />
