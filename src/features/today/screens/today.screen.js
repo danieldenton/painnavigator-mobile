@@ -36,7 +36,7 @@ export const TodayScreen = ({ navigation }) => {
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
     useContext(MovementContext);
-  const { getEducationModuleCompletions } = useContext(EducationContext);
+  const { getEducationModuleCompletions, setEducationProgram, setEducationProgress } = useContext(EducationContext);
   const { loadMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
 
