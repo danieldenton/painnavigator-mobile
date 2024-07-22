@@ -7,8 +7,8 @@ import { Greeting } from "../components/greeting.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { OnboardContext } from "../../../services/onboard/onboard.context";
+import { OutcomeContext } from "../../../services/outcome/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
-import { ProfileContext } from "../../../services/profile/profile-context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
@@ -28,16 +28,20 @@ import { AppUpdateRequired } from "../components/app-update-required.component";
 import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
-  const { uid } = useContext(AuthenticationContext);
+  const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
   const { loadDailyPainScores } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
-  // const { userInfo } = useContext(ProfileContext);
+  const { setCompletedProgram } = useContext(OutcomeContext)
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
     useContext(MovementContext);
-  const { getEducationModuleCompletions, setEducationProgram, setEducationProgress } = useContext(EducationContext);
-  const { loadMessages, hasUnreadMessages } = useContext(WellnessCoachContext);
+  const {
+    getEducationModuleCompletions,
+    setEducationProgram,
+    setEducationProgress,
+  } = useContext(EducationContext);
+  const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } = useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
@@ -53,11 +57,9 @@ export const TodayScreen = ({ navigation }) => {
         setMovementProgram(data.movement_program);
         setEducationProgram(data.education_progress.progress);
         setEducationProgress(eProgress);
-        setProfileComplete(data.profile.profile_status === 1);
-        setCompletedProgram(data.completed_program === true);
+        setCompletedProgram(data.completed_program);
         setWellnessCoachReminded(data.wellness_coach_reminded);
-        // setAppUpdateRequired(userData.app_update_required);
-        // updateUser(userData);
+        setAppUpdateRequired(data.app_update_required);
       } catch (error) {
         console.error(error);
       }
@@ -103,7 +105,10 @@ export const TodayScreen = ({ navigation }) => {
             />
             <TodaysMovement navigation={navigation} isFocused={isFocused} />
             <TodaysEducation navigation={navigation} />
-            <DailyActivities navigation={navigation} />
+            <DailyActivities
+              navigation={navigation}
+              profileComplete={userData.profile.profile_status === 1}
+            />
           </Scroll>
           <DashboardTour tour={tour} />
           <AppUpdateRequired />

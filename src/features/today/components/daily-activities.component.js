@@ -15,10 +15,9 @@ import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.
 import { SubHeader } from "../../../components/typography.component";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
-export const DailyActivities = ({ navigation }) => {
+export const DailyActivities = ({ navigation, profileComplete }) => {
   const { painJournalToday } = useContext(PainJournalContext);
   const { educationProgram, educationProgress } = useContext(EducationContext);
-  const { profileComplete } = useContext(ProfileContext);
   const { foodJournalToday } = useContext(FoodJournalContext);
   const { moodJournalToday } = useContext(MoodJournalContext);
   const { hasUnreadMessages } = useContext(WellnessCoachContext);
@@ -34,7 +33,7 @@ export const DailyActivities = ({ navigation }) => {
     <View style={{ marginBottom: 16 }}>
       <SubHeader title={"DAILY ACTIVITIES"} size={14} />
       {hasUnreadMessages ? <WellnessCoach navigation={navigation} /> : null}
-      {!profileComplete && <ProfileSetup navigation={navigation} />}
+      {!profileComplete ? <ProfileSetup navigation={navigation} /> : null}
       {showJournalTile ? <Journals navigation={navigation} /> : null}
       {userCompletedSmartGoalUnit ? (
         <SmartGoalActivity
