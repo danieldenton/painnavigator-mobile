@@ -16,10 +16,7 @@ export const DailyPainContextProvider = ({ children }) => {
   });
   const [dailyPainScores, setDailyPainScores] = useState([]);
   const [dailyPainStep, setDailyPainStep] = useState(0);
-  const lastDailyPainScoreDate = formatDate(
-    dailyPainScores[dailyPainScores.length - 1]?.date_time_value
-  );
-  const painScoreToday = lastDailyPainScoreDate === timeZonedTodaysDate;
+  const [painScoreLoggedToday, setPainScoreLoggedToday] = useState(false);
 
   const loadDailyPainScores = async (uid) => {
     const painScores = await getDailyPainScores(uid);
@@ -31,12 +28,13 @@ export const DailyPainContextProvider = ({ children }) => {
       patchDailyPainScore(dailyPainScore);
     } else {
       postDailyPainScore(uid, dailyPainScore);
+      setPainScoreLoggedToday(true);
     }
     setDailyPainStep(1);
   };
 
   useEffect(() => {
-    if (painScoreToday) {
+    if (painScoreLoggedToday) {
       setDailyPainScore(dailyPainScores[dailyPainScores.length - 1]);
       setDailyPainStep(1);
     } else {
@@ -59,7 +57,8 @@ export const DailyPainContextProvider = ({ children }) => {
         setDailyPainScores,
         dailyPainStep,
         setDailyPainStep,
-        painScoreToday,
+        painScoreLoggedToday,
+        setPainScoreLoggedToday,
       }}
     >
       {children}

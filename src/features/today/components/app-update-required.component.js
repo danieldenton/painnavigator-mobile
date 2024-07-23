@@ -7,12 +7,13 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { patchUser } from "../../../services/authentication/authentication.service";
 
 export const AppUpdateRequired = () => {
-  const { uid, setAppUpdateRequired, appUpdateRequired } =
-    useContext(AuthenticationContext);
+  const { uid, setAppUpdateRequired, appUpdateRequired } = useContext(
+    AuthenticationContext
+  );
   const linkToAppStore = "https://qrco.de/bcZpLu";
 
   const handleAppUpdateRequired = () => {
-    patchUser(uid, { app_update_required: false })
+    patchUser(uid, { app_update_required: false });
     setAppUpdateRequired(false);
     Linking.openURL(linkToAppStore);
   };

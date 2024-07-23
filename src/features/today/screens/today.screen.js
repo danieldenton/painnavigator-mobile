@@ -29,9 +29,10 @@ import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
-  const { loadDailyPainScores } = useContext(DailyPainContext);
+  const { loadDailyPainScores, setPainScoreLoggedToday } =
+    useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
-  const { setCompletedProgram } = useContext(OutcomeContext)
+  const { setCompletedProgram } = useContext(OutcomeContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
@@ -41,7 +42,8 @@ export const TodayScreen = ({ navigation }) => {
     setEducationProgram,
     setEducationProgress,
   } = useContext(EducationContext);
-  const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } = useContext(WellnessCoachContext);
+  const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
+    useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
@@ -54,6 +56,7 @@ export const TodayScreen = ({ navigation }) => {
         const eProgress = data.education_progress.education_progress
           ? data.education_progress.education_progress
           : data.education_progress.progress;
+        setPainScoreLoggedToday(data.pain_score_logged_today);
         setMovementProgram(data.movement_program);
         setEducationProgram(data.education_progress.progress);
         setEducationProgress(eProgress);
@@ -101,7 +104,6 @@ export const TodayScreen = ({ navigation }) => {
             />
             <DailyPainScore
               navigation={navigation}
-              painScoreLoggedToday={userData.pain_score_logged_today}
             />
             <TodaysMovement navigation={navigation} isFocused={isFocused} />
             <TodaysEducation navigation={navigation} />
