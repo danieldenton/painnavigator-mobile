@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import { formatDate, timeZonedTodaysDate } from "../../utils";
 import {
   getDailyPainScores,
   postDailyPainScore,
@@ -21,13 +20,18 @@ export const DailyPainContextProvider = ({ children }) => {
   const loadDailyPainScores = async (uid) => {
     const painScores = await getDailyPainScores(uid);
     setDailyPainScores(painScores);
+    if (painScoreLoggedToday) {
+      setDailyPainStep(1);
+    }
   };
 
   const handleDailyPainScore = async (uid) => {
+    let newPainScore;
     if (dailyPainScore.id) {
-      patchDailyPainScore(dailyPainScore);
+      newPainScore = await patchDailyPainScore(dailyPainScore);
     } else {
-      postDailyPainScore(uid, dailyPainScore);
+      newPainScore = await postDailyPainScore(uid, dailyPainScore);
+      setDailyPainScores([...dailyPainScores, newPainScore]);
       setPainScoreLoggedToday(true);
     }
     setDailyPainStep(1);

@@ -30,13 +30,8 @@ export const DescriptionHelpMessage = styled.Text`
 `;
 
 export const PainTrackerComponent = ({ navigation }) => {
-  const { loadDailyPainScores, dailyPainScores } = useContext(DailyPainContext);
-  const { uid } = useContext(AuthenticationContext);
-
-  useEffect(() => {
-    loadDailyPainScores(uid);
-  }, []);
-
+  const { dailyPainScores } = useContext(DailyPainContext);
+ 
   const startDate = formatDate(dailyPainScores[0]?.date_time_value);
 
   const graphData = dailyPainScores

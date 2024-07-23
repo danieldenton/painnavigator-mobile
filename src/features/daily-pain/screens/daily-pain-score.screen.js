@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Provider } from "react-native-paper";
-import { getDailyPainScores } from "../../../services/daily-pain/daily-pain.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { DailyPainScoreComponent } from "../components/daily-pain-score.component";
@@ -10,12 +9,13 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { isAndroid } from "../../../utils";
 
 export const DailyPainScoreScreen = ({ navigation }) => {
-  const { dailyPainStep, setDailyPainStep } = useContext(DailyPainContext);
+  const { dailyPainStep, setDailyPainStep, loadDailyPainScores } = useContext(DailyPainContext);
   const { uid } = useContext(AuthenticationContext);
 
   useEffect(() => {
-    getDailyPainScores(uid);
-  });
+    loadDailyPainScores(uid);
+  }, []);
+
 
   const previousPage = () => {
     setDailyPainStep(0);

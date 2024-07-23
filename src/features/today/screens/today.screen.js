@@ -29,7 +29,7 @@ import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
-  const { loadDailyPainScores, setPainScoreLoggedToday } =
+  const { setPainScoreLoggedToday } =
     useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
@@ -70,7 +70,7 @@ export const TodayScreen = ({ navigation }) => {
     loadUserData();
 
     // remove all of these
-    loadDailyPainScores(uid);
+    // loadDailyPainScores(uid);
     getEducationModuleCompletions(uid);
 
     // journaled today handled
