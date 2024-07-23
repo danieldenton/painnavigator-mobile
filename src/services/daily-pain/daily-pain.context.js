@@ -29,6 +29,7 @@ export const DailyPainContextProvider = ({ children }) => {
     let newPainScore;
     if (dailyPainScore.id) {
       newPainScore = await patchDailyPainScore(dailyPainScore);
+      setDailyPainScores([...dailyPainScores.slice(0, -1), newPainScore]);
     } else {
       newPainScore = await postDailyPainScore(uid, dailyPainScore);
       setDailyPainScores([...dailyPainScores, newPainScore]);
