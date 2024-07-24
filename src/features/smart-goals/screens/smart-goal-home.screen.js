@@ -14,7 +14,7 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getSmartGoals();
-  });
+  }, []);
 
   const finishedGoalElements = finishedGoals?.map((finishedGoal) => {
     return (
