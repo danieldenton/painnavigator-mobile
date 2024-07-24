@@ -65,12 +65,8 @@ export const TodayScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadUserData();
-
     // remove all of these
-    // getEducationModuleCompletions(uid);
-
-    // journaled today handled
-    getFoodJournals(uid);
+    // getFoodJournals(uid);
     getMoodJournals(uid);
     getPainJournals();
     getSmartGoals();

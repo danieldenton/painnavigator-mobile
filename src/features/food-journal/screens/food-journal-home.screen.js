@@ -5,18 +5,25 @@ import { FoodGraphic } from "../../../graphics";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import { NewJournalEntry } from "../../../components/journals/new-journal-entry.component";
 import { JournalTile } from "../../../components/journal-tile.component";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
+import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../utils";
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
   const { foodJournals } = useContext(FoodJournalContext);
+  const { uid } = useContext(AuthenticationContext);
   const lastFoodJournalDate = formatDate(foodJournals[0]?.date_time_value);
   const navigateBackDestination = route?.params?.postVideoAction
     ? "Today"
     : "Journals";
+
+  useEffect(() => {
+    getFoodJournals(uid);
+  });
 
   const foodJournalElements = foodJournals?.map((journal) => {
     return (
