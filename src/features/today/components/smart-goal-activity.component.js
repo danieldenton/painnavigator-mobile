@@ -11,13 +11,12 @@ export const SmartGoalActivity = ({
   activeSmartGoal,
 }) => {
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
-  const goal = (userCompletedSmartGoalUnit && activeGoal) || activeSmartGoal;
   const goalUpdatedToday =
     lastSmartGoalUpdate === timeZonedTodaysDate || smartGoalUpdatedToday;
 
   return (
     <>
-      {goal ? (
+      {activeGoal || activeSmartGoal ? (
         goalUpdatedToday ? (
           <DailyGoalCompleted type={"Smart Goal Update"} />
         ) : (

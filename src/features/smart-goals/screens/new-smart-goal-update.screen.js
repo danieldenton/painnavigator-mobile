@@ -67,7 +67,11 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
           </ButtonSection>
         </>
       ) : (
-        <ActivityIndicator size={"large"} />
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
+        />
       )}
     </SafeView>
   );

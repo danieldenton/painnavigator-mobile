@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ActivityIndicator } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { Audio } from "expo-av";
 import { Provider } from "react-native-paper";
@@ -12,7 +13,6 @@ import { DailyPainContext } from "../../../services/daily-pain/daily-pain.contex
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
-import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
 import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
@@ -32,14 +32,18 @@ export const TodayScreen = ({ navigation }) => {
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
   const { getPainJournals } = useContext(PainJournalContext);
-  const { getSmartGoals } = useContext(SmartGoalContext);
-  const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
-    useContext(MovementContext);
+  const {
+    getMovementModuleCompletions,
+    movementProgram,
+    movementProgress,
+    setMovementProgram,
+  } = useContext(MovementContext);
   const { setEducationProgram, setEducationProgress } =
     useContext(EducationContext);
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
+  let movementModule;
 
   const isFocused = useIsFocused();
 
@@ -68,7 +72,6 @@ export const TodayScreen = ({ navigation }) => {
     // getFoodJournals(uid);
     getMoodJournals(uid);
     getPainJournals();
-    // getSmartGoals();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
 
@@ -82,37 +85,43 @@ export const TodayScreen = ({ navigation }) => {
 
   return (
     <Provider>
-      {userData ? (
-        <SafeView>
-          <TodayNavBar
-            navigation={navigation}
-            hasUnreadMessages={hasUnreadMessages}
+      <SafeView>
+        {movementProgress ? (
+          <>
+            <TodayNavBar
+              navigation={navigation}
+              hasUnreadMessages={hasUnreadMessages}
+            />
+            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+              <Greeting
+                name={userData.profile.first_name}
+                isFocused={isFocused}
+              />
+              <DailyPainScore navigation={navigation} />
+              <TodaysMovement navigation={navigation} isFocused={isFocused} />
+              <TodaysEducation
+                navigation={navigation}
+                educationToday={userData.education_today}
+              />
+              <DailyActivities
+                navigation={navigation}
+                profileComplete={userData.profile.profile_status === 1}
+                smartGoalUpdatedToday={userData.smart_goal_updated_today}
+                activeSmartGoal={userData.active_smart_goal}
+              />
+            </Scroll>
+            <DashboardTour tour={tour} />
+            <AppUpdateRequired />
+            <WellnessCoachReminder navigation={navigation} />
+          </>
+        ) : (
+          <ActivityIndicator
+            size="large"
+            color="#37b29d"
+            style={{ flex: 1, justifyContent: "center" }}
           />
-          <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-            <Greeting
-              name={userData.profile.first_name}
-              isFocused={isFocused}
-            />
-            <DailyPainScore navigation={navigation} />
-            <TodaysMovement navigation={navigation} isFocused={isFocused} />
-            <TodaysEducation
-              navigation={navigation}
-              educationToday={userData.education_today}
-            />
-            <DailyActivities
-              navigation={navigation}
-              profileComplete={userData.profile.profile_status === 1}
-              smartGoalUpdatedToday={userData.smart_goal_updated_today}
-              activeSmartGoal={userData.active_smart_goal}
-            />
-          </Scroll>
-          <DashboardTour tour={tour} />
-          <AppUpdateRequired />
-          <WellnessCoachReminder navigation={navigation} />
-        </SafeView>
-      ) : (
-        <LoadingComponent />
-      )}
+        )}
+      </SafeView>
     </Provider>
   );
 };
