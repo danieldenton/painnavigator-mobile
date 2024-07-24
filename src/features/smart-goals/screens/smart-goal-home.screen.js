@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SubHeader } from "../../../components/typography.component";
@@ -9,7 +9,12 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { Add } from "../../../icons";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
-  const { activeGoal, finishedGoals } = useContext(SmartGoalContext);
+  const { activeGoal, finishedGoals, getSmartGoals } =
+    useContext(SmartGoalContext);
+
+  useEffect(() => {
+    getSmartGoals();
+  });
 
   const finishedGoalElements = finishedGoals?.map((finishedGoal) => {
     return (

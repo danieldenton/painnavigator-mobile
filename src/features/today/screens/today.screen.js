@@ -13,7 +13,6 @@ import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { SmartGoalContext } from "../../../services/smart-goal/smart-goal.context";
-import { getFoodJournals } from "../../../services/food-journal/food-journal.service";
 import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
@@ -69,7 +68,7 @@ export const TodayScreen = ({ navigation }) => {
     // getFoodJournals(uid);
     getMoodJournals(uid);
     getPainJournals();
-    getSmartGoals();
+    // getSmartGoals();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
 
