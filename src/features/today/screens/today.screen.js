@@ -102,6 +102,8 @@ export const TodayScreen = ({ navigation }) => {
             <DailyActivities
               navigation={navigation}
               profileComplete={userData.profile.profile_status === 1}
+              smartGoalUpdatedToday={userData.smart_goal_updated_today}
+              activeSmartGoal={userData.active_smart_goal}
             />
           </Scroll>
           <DashboardTour tour={tour} />

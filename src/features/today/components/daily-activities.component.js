@@ -8,14 +8,18 @@ import {
 import { SmartGoalActivity } from "../components/smart-goal-activity.component";
 import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { EducationContext } from "../../../services/education/education.context";
-import { ProfileContext } from "../../../services/profile/profile-context";
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { SubHeader } from "../../../components/typography.component";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
-export const DailyActivities = ({ navigation, profileComplete }) => {
+export const DailyActivities = ({
+  navigation,
+  profileComplete,
+  smartGoalUpdatedToday,
+  activeSmartGoal,
+}) => {
   const { painJournalToday } = useContext(PainJournalContext);
   const { educationProgram, educationProgress } = useContext(EducationContext);
   const { foodJournalToday } = useContext(FoodJournalContext);
@@ -39,6 +43,8 @@ export const DailyActivities = ({ navigation, profileComplete }) => {
         <SmartGoalActivity
           navigation={navigation}
           userCompletedSmartGoalUnit={userCompletedSmartGoalUnit}
+          smartGoalUpdatedToday={smartGoalUpdatedToday}
+          activeSmartGoal={activeSmartGoal}
         />
       ) : null}
       {painJournalToday ? <DailyGoalCompleted type={"Pain Journal"} /> : null}
