@@ -29,49 +29,45 @@ import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
-  const { setPainScoreLoggedToday } =
-    useContext(DailyPainContext);
+  const { setPainScoreLoggedToday } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
   const { getPainJournals } = useContext(PainJournalContext);
   const { getSmartGoals } = useContext(SmartGoalContext);
   const { getMovementModuleCompletions, movementProgram, setMovementProgram } =
     useContext(MovementContext);
-  const {
-    getEducationModuleCompletions,
-    setEducationProgram,
-    setEducationProgress,
-  } = useContext(EducationContext);
+  const { setEducationProgram, setEducationProgress } =
+    useContext(EducationContext);
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
 
+  const loadUserData = async () => {
+    try {
+      const data = await getUser(uid);
+      setUserData(data);
+      const eProgress = data.education_progress.education_progress
+        ? data.education_progress.education_progress
+        : data.education_progress.progress;
+      setPainScoreLoggedToday(data.pain_score_logged_today);
+      setMovementProgram(data.movement_program);
+      setEducationProgram(data.education_progress.progress);
+      setEducationProgress(eProgress);
+      setCompletedProgram(data.completed_program);
+      setWellnessCoachReminded(data.wellness_coach_reminded);
+      setAppUpdateRequired(data.app_update_required);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    const loadUserData = async () => {
-      try {
-        const data = await getUser(uid);
-        setUserData(data);
-        const eProgress = data.education_progress.education_progress
-          ? data.education_progress.education_progress
-          : data.education_progress.progress;
-        setPainScoreLoggedToday(data.pain_score_logged_today);
-        setMovementProgram(data.movement_program);
-        setEducationProgram(data.education_progress.progress);
-        setEducationProgress(eProgress);
-        setCompletedProgram(data.completed_program);
-        setWellnessCoachReminded(data.wellness_coach_reminded);
-        setAppUpdateRequired(data.app_update_required);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     loadUserData();
 
     // remove all of these
-    // loadDailyPainScores(uid);
-    getEducationModuleCompletions(uid);
+    // getEducationModuleCompletions(uid);
 
     // journaled today handled
     getFoodJournals(uid);
@@ -102,11 +98,12 @@ export const TodayScreen = ({ navigation }) => {
               name={userData.profile.first_name}
               isFocused={isFocused}
             />
-            <DailyPainScore
-              navigation={navigation}
-            />
+            <DailyPainScore navigation={navigation} />
             <TodaysMovement navigation={navigation} isFocused={isFocused} />
-            <TodaysEducation navigation={navigation} />
+            <TodaysEducation
+              navigation={navigation}
+              educationToday={userData.education_today}
+            />
             <DailyActivities
               navigation={navigation}
               profileComplete={userData.profile.profile_status === 1}
