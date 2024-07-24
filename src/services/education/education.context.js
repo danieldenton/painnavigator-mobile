@@ -104,12 +104,12 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  const completeModule = (uid) => {
+  const completeModule = async (uid) => {
     const module = {
       module_id: currentModule.id,
       status: 0,
     };
-    postEducationModule(uid, module);
+    response = await postEducationModule(uid, module);
     setTimeout(() => {
       setEducationProgress(educationProgress + 1);
     }, 1000);

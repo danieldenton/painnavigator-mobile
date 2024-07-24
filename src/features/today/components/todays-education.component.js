@@ -21,7 +21,9 @@ export const TodaysEducation = ({ navigation, educationToday }) => {
             <>
               <DailyGoalCompleted
                 type={"module"}
-                moduleId={lastEducationModuleId}
+                moduleId={
+                  lastEducationModuleId ? lastEducationModuleId : educationToday
+                }
               />
               <EducationUnitCard navigation={navigation} />
             </>
