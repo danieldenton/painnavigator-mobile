@@ -32,12 +32,12 @@ export const FoodJournalContextProvider = ({ children }) => {
     }));
   };
 
-  const completeFoodJournal = () => {
+  const completeFoodJournal = (uid) => {
     const mealEntry = {
       [meal.toLowerCase()]: JSON.stringify(foodJournal),
       date_time_value: Date.now(),
     };
-    postFoodJournal(mealEntry);
+    postFoodJournal(uid, mealEntry);
     setTimeout(() => {
       resetFoodJournal(false);
     }, 1000);

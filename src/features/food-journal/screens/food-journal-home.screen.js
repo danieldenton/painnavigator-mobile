@@ -23,10 +23,14 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
     : "Journals";
 
   const loadFoodJournals = async () => {
-    setIsLoading(true);
-    const journals = await getFoodJournals(uid);
-    setFoodJournals(journals);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const journals = await getFoodJournals(uid);
+      setFoodJournals(journals);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -55,6 +59,12 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
   return (
     <SafeView>
       {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
+        />
+      ) : (
         <>
           <NavigationBarLeft
             navigation={navigation}
@@ -77,12 +87,6 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
           )}
           <Scroll style={{ marginBottom: 24 }}>{foodJournalElements}</Scroll>
         </>
-      ) : (
-        <ActivityIndicator
-          size="large"
-          color="#37b29d"
-          style={{ flex: 1, justifyContent: "center" }}
-        />
       )}
     </SafeView>
   );

@@ -12,14 +12,14 @@ export const getFoodJournals = async (uid) => {
   }
 };
 
-export async function postFoodJournal(journalEntry) {
+export async function postFoodJournal(uid, journalEntry) {
   try {
     const response = await axios.post(`${API_URL}/api/v1/food_journals`, {
       food_journal: journalEntry,
       uid: uid,
     });
     const data = response.data.data.attributes;
-    setFoodJournals((prevJournals) => [data, ...prevJournals]);
+    return data;
   } catch (error) {
     console.error(error);
   }
