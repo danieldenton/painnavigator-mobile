@@ -15,11 +15,14 @@ export const FoodJournalContextProvider = ({ children }) => {
   const lastFoodJournal = formatDate(foodJournals[0]?.date_time_value);
   const foodJournalToday = lastFoodJournal === timeZonedTodaysDate;
 
-  const updateFoodJournal = (journalId) => {
+  const updateFoodJournal = async (journalId) => {
     const mealEntry = {
       [meal.toLowerCase()]: JSON.stringify(foodJournal),
     };
-    patchFoodJournal(journalId, mealEntry);
+    const data = await patchFoodJournal(journalId, mealEntry);
+    setFoodJournals((prevJournals) =>
+      prevJournals.map((journal) => (journal.id === journalId ? data : journal))
+    );
     setTimeout(() => {
       resetFoodJournal(false);
     }, 1000);

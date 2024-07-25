@@ -32,9 +32,7 @@ export async function patchFoodJournal(journalId, journalEntry) {
       { food_journal: journalEntry }
     );
     const data = response.data.data.attributes;
-    setFoodJournals((prevJournals) =>
-      prevJournals.map((journal) => (journal.id === journalId ? data : journal))
-    );
+    return data;
   } catch (error) {
     console.error(error);
   }
