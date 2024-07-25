@@ -19,6 +19,7 @@ export const SmartGoalContextProvider = ({ children }) => {
   });
   const [smartGoalUpdate, setNewSmartGoalUpdate] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const { uid } = useContext(AuthenticationContext);
   const lastSmartGoalUpdate = formatDate(
     activeGoal?.goal_updates[0]?.date_time_value
@@ -32,11 +33,13 @@ export const SmartGoalContextProvider = ({ children }) => {
 
   const loadSmartGoals = async () => {
     try {
+      setIsLoading(true);
       const data = await getSmartGoals(uid);
       const [goal, finished] = parseSmartGoalData(data);
       console.log;
       setActiveGoal(goal);
       setFinishedGoals(finished);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
     }

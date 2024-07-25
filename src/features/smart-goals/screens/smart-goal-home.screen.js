@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { ActivityIndicator } from "react-native";
 import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { SubHeader } from "../../../components/typography.component";
@@ -9,7 +10,7 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { Add } from "../../../icons";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
-  const { activeGoal, finishedGoals, loadSmartGoals } =
+  const { activeGoal, finishedGoals, loadSmartGoals, isLoading } =
     useContext(SmartGoalContext);
 
   useEffect(() => {
@@ -29,35 +30,45 @@ export const SmartGoalHomeScreen = ({ navigation }) => {
 
   return (
     <SafeView>
-      <NavigationBarLeft
-        destination={"Today"}
-        screen={"Smart Goals"}
-        navigation={navigation}
-      />
-      <SubHeader
-        title={"ONGOING GOALS"}
-        size={14}
-        marginTop={32}
-        marginBottom={14}
-      />
-      {activeGoal ? (
-        <OngoingGoalTile
-          navigation={navigation}
-          destination={"ReviewSmartGoal"}
-          goal={activeGoal}
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
         />
       ) : (
-        <DailyActivitiesTile
-          title={"Create a Smart Goal"}
-          destination={"NewSmartGoal"}
-          navigation={navigation}
-          icon={<Add />}
-        />
+        <>
+          <NavigationBarLeft
+            destination={"Today"}
+            screen={"Smart Goals"}
+            navigation={navigation}
+          />
+          <SubHeader
+            title={"ONGOING GOALS"}
+            size={14}
+            marginTop={32}
+            marginBottom={14}
+          />
+          {activeGoal ? (
+            <OngoingGoalTile
+              navigation={navigation}
+              destination={"ReviewSmartGoal"}
+              goal={activeGoal}
+            />
+          ) : (
+            <DailyActivitiesTile
+              title={"Create a Smart Goal"}
+              destination={"NewSmartGoal"}
+              navigation={navigation}
+              icon={<Add />}
+            />
+          )}
+          {finishedGoals.length > 0 && (
+            <SubHeader title={"FINISHED GOALS"} size={14} marginBottom={14} />
+          )}
+          {finishedGoalElements}
+        </>
       )}
-      {finishedGoals.length > 0 && (
-        <SubHeader title={"FINISHED GOALS"} size={14} marginBottom={14} />
-      )}
-      {finishedGoalElements}
     </SafeView>
   );
 };
