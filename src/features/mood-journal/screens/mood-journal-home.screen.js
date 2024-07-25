@@ -10,34 +10,54 @@ import { Scroll } from "../../../components/scroll.component";
 import { SubHeader } from "../../../components/typography.component";
 
 export const MoodJournalHomeScreen = ({ navigation }) => {
-    const { moodJournals } = useContext(MoodJournalContext);
+  const { loadMoodJournals, isLoading, moodJournals } =
+    useContext(MoodJournalContext);
 
-    const moodJournalElements = moodJournals?.map((journal) => {
-        return (
-            <JournalTile 
-                navigation={navigation}
-                destination={"ReviewMoodJournal"}
-                journal={journal}
-                key={journal.id}
-            />
-        );
-    });
-
-    return(
-        <SafeView>
-            <NavigationBarLeft navigation={navigation} destination={"Journals"} screen={"Mood Journal"} />
-            <GraphicWrapper style={{ marginLeft: -16 }}>
-                <MoodGraphic />
-            </GraphicWrapper>
-            <DailyActivitiesTile 
-              title={"Add New Entry"} 
-              destination={"NewMoodJournal"} 
-              navigation={navigation} 
-              />
-            {moodJournals.length > 0 && <SubHeader title={"PREVIOUS ENTRIES"} size={14} marginTop={34} marginBottom={14} />}
-            <Scroll style={{ marginBottom: 24 }}>
-                {moodJournalElements}
-            </Scroll>
-        </SafeView>
+  const moodJournalElements = moodJournals?.map((journal) => {
+    return (
+      <JournalTile
+        navigation={navigation}
+        destination={"ReviewMoodJournal"}
+        journal={journal}
+        key={journal.id}
+      />
     );
+  });
+
+  return (
+    <SafeView>
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
+        />
+      ) : (
+        <>
+          <NavigationBarLeft
+            navigation={navigation}
+            destination={"Journals"}
+            screen={"Mood Journal"}
+          />
+          <GraphicWrapper style={{ marginLeft: -16 }}>
+            <MoodGraphic />
+          </GraphicWrapper>
+          <DailyActivitiesTile
+            title={"Add New Entry"}
+            destination={"NewMoodJournal"}
+            navigation={navigation}
+          />
+          {moodJournals.length > 0 && (
+            <SubHeader
+              title={"PREVIOUS ENTRIES"}
+              size={14}
+              marginTop={34}
+              marginBottom={14}
+            />
+          )}
+          <Scroll style={{ marginBottom: 24 }}>{moodJournalElements}</Scroll>
+        </>
+      )}
+    </SafeView>
+  );
 };

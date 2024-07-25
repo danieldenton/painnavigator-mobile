@@ -1,11 +1,18 @@
 import React, { createContext, useState, useContext } from "react";
 import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
+import {
+  getMoodJournals,
+  postMoodJournal,
+  patchMoodJournal,
+  destroyMoodJournal,
+} from "./mood-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
 export const MoodJournalContext = createContext();
 
 export const MoodJournalContextProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [changes, setChanges] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const currentPageData = moodJournalQuestions[currentPage];
@@ -23,40 +30,15 @@ export const MoodJournalContextProvider = ({ children }) => {
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const moodJournalToday = lastMoodJournal === timeZonedTodaysDate;
 
-  // async function postMoodJournal(newMoodJournal) {
-  //   try {
-  //     const response = await axios.post(`${API_URL}/api/v1/mood_journals`, {
-  //       mood_journal: newMoodJournal,
-  //       uid: uid,
-  //     });
-  //     const data = response.data.data.attributes;
-  //     setMoodJournals((prevJournals) => [data, ...prevJournals]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  // async function patchMoodJournal() {
-  //   try {
-  //     const response = await axios.patch(
-  //       `${API_URL}/api/v1/mood_journals/${reviewJournal.id}`,
-  //       { mood_journal: reviewJournal }
-  //     );
-  //     const data = response.data.data.attributes;
-  //     setMoodJournals((prevJournals) =>
-  //       prevJournals.map((journal) =>
-  //         journal.id === reviewJournal.id ? data : journal
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  const destroyMoodJournal = () => {
-    axios
-      .delete(`${API_URL}/api/v1/mood_journals/${reviewJournal.id}`)
-      .then((response) => {});
+  const loadMoodJournals = async () => {
+    try {
+      setIsLoading(true);
+      const data = await getMoodJournals(uid);
+      setMoodJournals(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const cancelEdits = () => {
@@ -150,6 +132,8 @@ export const MoodJournalContextProvider = ({ children }) => {
   return (
     <MoodJournalContext.Provider
       value={{
+        loadMoodJournals,
+        isLoading,
         cancelEdits,
         changes,
         changeEntry,

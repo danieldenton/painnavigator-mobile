@@ -35,3 +35,9 @@ export async function patchMoodJournal(reviewJournal) {
     console.error(error);
   }
 }
+
+export const destroyMoodJournal = () => {
+  axios
+    .delete(`${API_URL}/api/v1/mood_journals/${reviewJournal.id}`)
+    .then((response) => {});
+};
