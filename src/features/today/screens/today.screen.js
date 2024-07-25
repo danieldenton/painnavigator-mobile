@@ -12,7 +12,6 @@ import { OutcomeContext } from "../../../services/outcome/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
-import { PainJournalContext } from "../../../services/pain-journal/pain-journal.context";
 import { getMoodJournals } from "../../../services/mood-journal/mood-journal.service";
 import { SafeView } from "../../../components/safe-area.component";
 import { Scroll } from "../../../components/scroll.component";
@@ -30,7 +29,6 @@ export const TodayScreen = ({ navigation }) => {
   const { setPainScoreLoggedToday } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const { getPainJournals } = useContext(PainJournalContext);
   const {
     getMovementModuleCompletions,
     movementProgram,
@@ -64,9 +62,7 @@ export const TodayScreen = ({ navigation }) => {
   useEffect(() => {
     loadUserData();
     // remove all of these
-    // getFoodJournals(uid);
     getMoodJournals(uid);
-    getPainJournals();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
   }, []);
 

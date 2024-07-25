@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
+import { getPainJournals } from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
@@ -27,13 +26,11 @@ export const PainJournalContextProvider = ({ children }) => {
   const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
   const painJournalToday = lastPainJournal === timeZonedTodaysDate;
 
-  const getPainJournals = async () => {
+  const loadPainJournals = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${API_URL}/api/v2/pain_journals`, {
-        params: { uid: uid },
-      });
-      setPainJournals(response.data);
+      const data = await getPainJournals(uid);
+      setPainJournals(data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -167,7 +164,7 @@ export const PainJournalContextProvider = ({ children }) => {
   return (
     <PainJournalContext.Provider
       value={{
-        getPainJournals,
+        loadPainJournals,
         cancelEdits,
         changes,
         changeEntry,
@@ -187,6 +184,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournals,
         setReviewJournal,
         painJournalToday,
+        isLoading
       }}
     >
       {children}

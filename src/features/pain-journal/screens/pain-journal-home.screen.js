@@ -24,7 +24,7 @@ const HelpText = styled.Text`
 `;
 
 export const PainJournalHomeScreen = ({ navigation, route }) => {
-  const { painJournals, getPainJournals, isLoading } =
+  const { painJournals, loadPainJournals, isLoading } =
     useContext(PainJournalContext);
   const { additionalJournals } = useContext(EducationContext);
   const NAVIGATE_BACK_DESTINATION = route?.params?.postVideoAction
@@ -52,7 +52,7 @@ export const PainJournalHomeScreen = ({ navigation, route }) => {
   });
 
   useEffect(() => {
-    getPainJournals();
+    loadPainJournals();
   }, []);
 
   const painJournalElements = painJournals?.map((journal) => {
