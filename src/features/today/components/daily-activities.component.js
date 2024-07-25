@@ -17,8 +17,9 @@ import { DailyGoalCompleted } from "./daily-goal-completed.component";
 export const DailyActivities = ({
   navigation,
   profileComplete,
-  smartGoalUpdatedToday,
+  journaledToday,
   activeSmartGoal,
+  smartGoalUpdatedToday,
 }) => {
   const { painJournalToday } = useContext(PainJournalContext);
   const { educationProgram, educationProgress } = useContext(EducationContext);
@@ -27,11 +28,12 @@ export const DailyActivities = ({
   const { hasUnreadMessages } = useContext(WellnessCoachContext);
   const userCompletedPainJournalUnit =
     educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
-  const journaledToday =
+  const _journaledToday =
     foodJournalToday || moodJournalToday || painJournalToday;
   const userCompletedSmartGoalUnit =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
-  const showJournalTile = userCompletedPainJournalUnit && !journaledToday;
+  const showJournalTile =
+    userCompletedPainJournalUnit && (!journaledToday || _journaledToday);
 
   return (
     <View style={{ marginBottom: 16 }}>
