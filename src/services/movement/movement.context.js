@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { getMovementModuleCompletions } from "./movement.service";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
@@ -140,17 +141,15 @@ export const MovementContextProvider = ({ children }) => {
     }
   }
 
-  async function getMovementModuleCompletions(uid) {
+  const loadMovementModuleCompletions = async (uid) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
-      );
-      parseMovementProgress(response.data.data);
-      parseMovementVideoCompletions(response.data.data);
-    } catch (error) {
-      console.error(error);
+      const data = await getMovementModuleCompletions(uid);
+      parseMovementProgress(data);
+      parseMovementVideoCompletions(data);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   async function postMovementModuleCompletion(module, uid) {
     try {
@@ -238,7 +237,7 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
-        getMovementModuleCompletions,
+        loadMovementModuleCompletions,
         movementProgram,
         movementProgramModules,
         setMovementProgram,
