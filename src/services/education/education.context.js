@@ -50,7 +50,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
-  const loadEducationMouleCOmpletions = async () => {
+  const loadEducationMouleCompletions = async () => {
     const data = await getEducationModuleCompletions(uid)
     setEducationModuleCompletionData(data)
   }
@@ -124,7 +124,7 @@ export const EducationContextProvider = ({ children }) => {
   return (
     <EducationContext.Provider
       value={{
-        getEducationModuleCompletions,
+        loadEducationMouleCompletions,
         setEducationProgram,
         setEducationProgress,
         currentModule,

@@ -5,7 +5,6 @@ import { ExpandableCard } from "../components/expandable-card.component";
 import { MovementContext } from "../../../services/movement/movement.context";
 import { EducationContext } from "../../../services/education/education.context";
 import { BookmarksContext } from "../../../services/bookmarks/bookmarks.context";
-import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { educationModules } from "../../education/data/education-module-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { View } from "react-native";
@@ -15,10 +14,9 @@ export const EducationUnitsScreen = ({ navigation }) => {
   const {
     educationModuleCompletionData,
     completeEducationSkippedUnit,
-    getEducationModuleCompletions,
+    loadEducationModuleCompletions,
   } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
-  const { uid } = useContext(AuthenticationContext);
   const [bookmarkedEducationModuleData, setBookmarkedEducationModuleData] =
     useState([]);
   const [completedEducationModuleData, setCompletedEducationModuleData] =
@@ -28,7 +26,7 @@ export const EducationUnitsScreen = ({ navigation }) => {
   );
 
   useEffect(() => {
-    getEducationModuleCompletions(uid);
+    loadEducationModuleCompletions();
     setIsMovement(false);
   }, []);
 
