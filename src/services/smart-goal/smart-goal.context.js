@@ -200,6 +200,7 @@ export const SmartGoalContextProvider = ({ children }) => {
   return (
     <SmartGoalContext.Provider
       value={{
+        isLoading,
         loadSmartGoals,
         postSmartGoal,
         activeGoal,
