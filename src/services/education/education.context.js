@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
-import { getEducationModuleCompletions } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json";
+import { getEducationModuleCompletions } from "./education.service";
 import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();

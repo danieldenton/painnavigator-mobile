@@ -24,7 +24,6 @@ import { DailyActivities } from "../components/daily-activities.component";
 import { DashboardTour } from "../../dashboard-tour/dashboard-tour";
 import { WellnessCoachReminder } from "../components/wellness-coach-reminder.component";
 import { AppUpdateRequired } from "../components/app-update-required.component";
-import { LoadingComponent } from "../components/loading.component";
 
 export const TodayScreen = ({ navigation }) => {
   const { uid, setAppUpdateRequired } = useContext(AuthenticationContext);
@@ -50,13 +49,10 @@ export const TodayScreen = ({ navigation }) => {
     try {
       const data = await getUser(uid);
       setUserData(data);
-      const eProgress = data.education_progress.education_progress
-        ? data.education_progress.education_progress
-        : data.education_progress.progress;
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
-      setEducationProgram(data.education_progress.progress);
-      setEducationProgress(eProgress);
+      setEducationProgram(data.education_program);
+      setEducationProgress(data.education_progress.progress);
       setCompletedProgram(data.completed_program);
       setWellnessCoachReminded(data.wellness_coach_reminded);
       setAppUpdateRequired(data.app_update_required);
@@ -120,7 +116,11 @@ export const TodayScreen = ({ navigation }) => {
         <ActivityIndicator
           size="large"
           color="#37b29d"
-          style={{ flex: 1, justifyContent: "center" }}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
         />
       )}
     </>
