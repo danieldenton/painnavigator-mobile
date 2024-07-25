@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { SafeView } from "../../../components/safe-area.component";
 import { TouchableOpacity, ActivityIndicator } from "react-native";
+import { SafeView } from "../../../components/safe-area.component";
 import { FoodGraphic } from "../../../graphics";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import { NewJournalEntry } from "../../../components/journals/new-journal-entry.component";

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { ActivityIndicator } from "react-native";
 import { DailyActivitiesTile } from "../../../components/daily-activities-tile.component";
 import { GraphicWrapper } from "../../../components/journals/journal.styles";
 import { JournalTile } from "../../../components/journal-tile.component";
@@ -12,6 +13,10 @@ import { SubHeader } from "../../../components/typography.component";
 export const MoodJournalHomeScreen = ({ navigation }) => {
   const { loadMoodJournals, isLoading, moodJournals } =
     useContext(MoodJournalContext);
+
+  useEffect(() => {
+    loadMoodJournals();
+  }, []);
 
   const moodJournalElements = moodJournals?.map((journal) => {
     return (
