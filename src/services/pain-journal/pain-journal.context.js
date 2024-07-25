@@ -132,7 +132,7 @@ export const PainJournalContextProvider = ({ children }) => {
       const data = await patchPainJournal(reviewJournal);
       setPainJournals((prevJournals) =>
         prevJournals.map((journal) =>
-          journal.id === updatedJournal.id ? data : journal
+          journal.id === reviewJournal.id ? data : journal
         )
       );
     } catch (err) {
