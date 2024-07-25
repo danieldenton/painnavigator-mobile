@@ -25,3 +25,17 @@ export async function postPainJournal(uid, newPainJournal) {
     console.error(error);
   }
 }
+
+export async function patchPainJournal(updatedJournal) {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/api/v1/pain_journals/${updatedJournal.id}`,
+        { pain_journal: updatedJournal }
+      );
+      const data = response.data.data.attributes;
+      return data
+      
+    } catch (error) {
+      console.error(error);
+    }
+  }

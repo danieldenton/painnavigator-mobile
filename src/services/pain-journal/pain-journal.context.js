@@ -1,6 +1,10 @@
 import React, { createContext, useState, useContext } from "react";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
-import { getPainJournals, postPainJournal } from "./pain-journal.service";
+import {
+  getPainJournals,
+  postPainJournal,
+  patchPainJournal,
+} from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
@@ -36,23 +40,6 @@ export const PainJournalContextProvider = ({ children }) => {
       console.error(error);
     }
   };
-
-  async function patchPainJournal(updatedJournal) {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v1/pain_journals/${journalId}`,
-        { pain_journal: painJournal }
-      );
-      const data = response.data.data.attributes;
-      setPainJournals((prevJournals) =>
-        prevJournals.map((journal) =>
-          journal.id === updatedJournal.id ? data : journal
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   const destroyPainJournal = (journalId) => {
     axios
@@ -140,16 +127,17 @@ export const PainJournalContextProvider = ({ children }) => {
     }));
   };
 
-  const saveEdits = () => {
-    const newJournals = painJournals.map((journal) =>
-      journal.id === reviewJournal.id
-        ? {
-            ...journal,
-            reviewJournal,
-          }
-        : journal
-    );
-    patchPainJournal(reviewJournal);
+  const saveEdits = async () => {
+    try {
+      const data = await patchPainJournal(reviewJournal);
+      setPainJournals((prevJournals) =>
+        prevJournals.map((journal) =>
+          journal.id === updatedJournal.id ? data : journal
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
