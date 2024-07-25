@@ -78,7 +78,7 @@ export const PainJournalContextProvider = ({ children }) => {
         resetPainJournal(false);
       }, 1000);
     } catch (err) {
-      console.log(errr);
+      console.log(err);
     }
   };
 

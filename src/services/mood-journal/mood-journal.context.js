@@ -120,18 +120,18 @@ export const MoodJournalContextProvider = ({ children }) => {
     setCurrentPage(0);
   };
 
-  const saveEdits = () => {
-    const newJournals = moodJournals.map((journal) =>
-      journal.id === reviewJournal.id
-        ? {
-            ...journal,
-            reviewJournal,
-          }
-        : journal
-    );
-    setMoodJournals(newJournals);
-    patchMoodJournal();
-    setChanges("");
+  const saveEdits = async () => {
+    try {
+      const data = await patchMoodJournal(reviewJournal);
+      setMoodJournals((prevJournals) =>
+        prevJournals.map((journal) =>
+          journal.id === reviewJournal.id ? data : journal
+        )
+      );
+      setChanges("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
