@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getMovementModuleCompletions } from "./movement.service";
+import { getMovementModuleCompletions, postMovementModuleCompletion } from "./movement.service";
 import axios from "axios";
 import { API_URL } from "@env";
 import { movementModules } from "./movement-modules-data.json";
@@ -151,18 +151,6 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  async function postMovementModuleCompletion(module, uid) {
-    try {
-      const response = await axios.post(
-        `${API_URL}/api/v2/movement_module_completions`,
-        { movement_module: module, uid: uid }
-      );
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
     try {
       const response = await axios.patch(
@@ -188,7 +176,7 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  const skipVideo = async (uid) => {
+  const skipVideo = (uid) => {
     const skipped = 1;
     const module = {
       module_id: currentModule.id,
@@ -196,8 +184,7 @@ export const MovementContextProvider = ({ children }) => {
       status: skipped,
     };
     setCompletedVideos([...completedVideos, currentVideo.id]);
-    const response = await postMovementModuleCompletion(module, uid);
-    return response;
+    postMovementModuleCompletion(module, uid);
   };
 
   function getPlaylistLength(videos) {

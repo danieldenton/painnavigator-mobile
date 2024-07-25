@@ -7,7 +7,18 @@ export async function getMovementModuleCompletions(uid) {
       `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
     );
     return response.data.data
-    
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function postMovementModuleCompletion(module, uid) {
+  try {
+    const response = await axios.post(
+      `${API_URL}/api/v2/movement_module_completions`,
+      { movement_module: module, uid: uid }
+    );
+    return response;
   } catch (error) {
     console.error(error);
   }
