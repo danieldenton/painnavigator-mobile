@@ -9,11 +9,11 @@ import { DailyActivitiesTile } from "../../../components/daily-activities-tile.c
 import { Add } from "../../../icons";
 
 export const SmartGoalHomeScreen = ({ navigation }) => {
-  const { activeGoal, finishedGoals, getSmartGoals } =
+  const { activeGoal, finishedGoals, loadSmartGoals } =
     useContext(SmartGoalContext);
 
   useEffect(() => {
-    getSmartGoals();
+    loadSmartGoals();
   }, []);
 
   const finishedGoalElements = finishedGoals?.map((finishedGoal) => {

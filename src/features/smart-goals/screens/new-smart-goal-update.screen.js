@@ -12,7 +12,7 @@ import { KeyboardView } from "../components/goal.styles";
 
 export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
   const {
-    getSmartGoals,
+    loadSmartGoals,
     activeGoal,
     smartGoalUpdate,
     changeUpdate,
@@ -21,7 +21,7 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
   const { type } = route.params;
 
   useEffect(() => {
-    getSmartGoals();
+    loadSmartGoals();
   }, []);
 
   return (

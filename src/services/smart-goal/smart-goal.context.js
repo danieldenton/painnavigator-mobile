@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
 import { API_URL } from "@env";
+import { getSmartGoals } from "./smart-goal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate } from "../../utils";
 
@@ -23,20 +24,21 @@ export const SmartGoalContextProvider = ({ children }) => {
     activeGoal?.goal_updates[0]?.date_time_value
   );
 
-  const getSmartGoals = async () => {
+  const parseSmartGoalData = (data) => {
+    const goal = data.find((goal) => goal.status === "active");
+    const finished = data.filter((goal) => goal.status === "finished");
+    return [goal, finished];
+  };
+
+  const loadSmartGoals = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/v2/smart_goals`, {
-        params: { uid: uid },
-      });
-      const data = response.data.data.map((goal) => {
-        return goal.attributes;
-      });
-      const goal = data.find((goal) => goal.status === "active");
-      const finished = data.filter((goal) => goal.status === "finished");
+      const data = await getSmartGoals(uid);
+      const [goal, finished] = parseSmartGoalData(data);
+      console.log;
       setActiveGoal(goal);
       setFinishedGoals(finished);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -195,7 +197,7 @@ export const SmartGoalContextProvider = ({ children }) => {
   return (
     <SmartGoalContext.Provider
       value={{
-        getSmartGoals,
+        loadSmartGoals,
         postSmartGoal,
         activeGoal,
         changes,
