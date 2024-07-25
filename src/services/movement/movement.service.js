@@ -24,6 +24,18 @@ export async function postMovementModuleCompletion(module, uid) {
   }
 }
 
+export async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/api/v2/movement_module_completions/${completionId}`,
+      { movement_module: { status: 0 } }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function patchSavedMovementVideos(uid, savedMovementVideos) {
   try {
     await axios.patch(`${API_URL}/api/v2/users/${uid}`, {

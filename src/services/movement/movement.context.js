@@ -1,7 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getMovementModuleCompletions, postMovementModuleCompletion } from "./movement.service";
-import axios from "axios";
-import { API_URL } from "@env";
+import {
+  getMovementModuleCompletions,
+  postMovementModuleCompletion,
+} from "./movement.service";
 import { movementModules } from "./movement-modules-data.json";
 import { movementVideos } from "./movement-videos-data.json";
 import { formatBackendCreatedAtDate } from "../../utils";
@@ -151,18 +152,6 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v2/movement_module_completions/${completionId}`,
-        { movement_module: { status: 0 } }
-      );
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   const completeVideo = (uid) => {
     if (!completedVideos.includes(currentVideo.id)) {
       setCompletedVideos([...completedVideos, currentVideo.id]);
@@ -230,7 +219,6 @@ export const MovementContextProvider = ({ children }) => {
         setMovementProgram,
         getPlaylistLength,
         completeVideo,
-        patchSkippedToCompleteMovementModuleCompletion,
         currentModule,
         currentVideo,
         setCurrentVideo,
