@@ -11,11 +11,10 @@ import { OutcomeContext } from "../outcome/outcome.context";
 import { WellnessCoachContext } from "../wellness/wellness-coach.context";
 import { timeZonedTodaysDate } from "../../utils";
 
-
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
-  const [userLoading, setUserLoading] = useState(null);
+  const [userLoading, setUserLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
@@ -25,7 +24,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const { educationProgram, setEducationProgram, setEducationProgress } =
     useContext(EducationContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const {  setWellnessCoachReminded} = useContext(WellnessCoachContext)
+  const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
 
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);
@@ -122,8 +121,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
     }
   };
 
-  
-
   const saveUser = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -135,10 +132,12 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
 
   const loadUser = async () => {
     try {
+      setUserLoading(true);
       const value = await AsyncStorage.getItem("@user");
       if (value !== null) {
         setUser(JSON.parse(value));
       }
+      setUserLoading(false);
     } catch (e) {
       console.log("error loading user", e);
     }

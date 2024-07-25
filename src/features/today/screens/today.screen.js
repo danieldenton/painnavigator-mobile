@@ -43,7 +43,6 @@ export const TodayScreen = ({ navigation }) => {
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
-  let movementModule;
 
   const isFocused = useIsFocused();
 
@@ -84,44 +83,46 @@ export const TodayScreen = ({ navigation }) => {
   }, [isFocused]);
 
   return (
-    <Provider>
-      <SafeView>
-        {userData && movementProgress ? (
-          <>
-            <TodayNavBar
-              navigation={navigation}
-              hasUnreadMessages={hasUnreadMessages}
-            />
-            <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-              <Greeting
-                name={userData.profile.first_name}
-                isFocused={isFocused}
-              />
-              <DailyPainScore navigation={navigation} />
-              <TodaysMovement navigation={navigation} isFocused={isFocused} />
-              <TodaysEducation
+    <>
+      {userData && movementProgress ? (
+        <Provider>
+          <SafeView>
+            <>
+              <TodayNavBar
                 navigation={navigation}
-                educationToday={userData.education_today}
+                hasUnreadMessages={hasUnreadMessages}
               />
-              <DailyActivities
-                navigation={navigation}
-                profileComplete={userData.profile.profile_status === 1}
-                smartGoalUpdatedToday={userData.smart_goal_updated_today}
-                activeSmartGoal={userData.active_smart_goal}
-              />
-            </Scroll>
-            <DashboardTour tour={tour} />
-            <AppUpdateRequired />
-            <WellnessCoachReminder navigation={navigation} />
-          </>
-        ) : (
-          <ActivityIndicator
-            size="large"
-            color="#37b29d"
-            style={{ flex: 1, justifyContent: "center" }}
-          />
-        )}
-      </SafeView>
-    </Provider>
+              <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
+                <Greeting
+                  name={userData.profile.first_name}
+                  isFocused={isFocused}
+                />
+                <DailyPainScore navigation={navigation} />
+                <TodaysMovement navigation={navigation} isFocused={isFocused} />
+                <TodaysEducation
+                  navigation={navigation}
+                  educationToday={userData.education_today}
+                />
+                <DailyActivities
+                  navigation={navigation}
+                  profileComplete={userData.profile.profile_status === 1}
+                  smartGoalUpdatedToday={userData.smart_goal_updated_today}
+                  activeSmartGoal={userData.active_smart_goal}
+                />
+              </Scroll>
+              <DashboardTour tour={tour} />
+              <AppUpdateRequired />
+              <WellnessCoachReminder navigation={navigation} />
+            </>
+          </SafeView>
+        </Provider>
+      ) : (
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
+        />
+      )}
+    </>
   );
 };
