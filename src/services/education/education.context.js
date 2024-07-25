@@ -1,6 +1,5 @@
 import React, { useEffect, useState, createContext } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
+import { getEducationModuleCompletions } from "./education.service";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json";
 import { formatBackendCreatedAtDate } from "../../utils";
@@ -51,21 +50,10 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
-  const getEducationModuleCompletions = async (uid) => {
-    try {
-      const response = await axios.get(
-        `${API_URL}/api/v2/education_module_completions`,
-        { params: { uid: uid } }
-      );
-      const dataToBeMapped = response.data.data;
-      const data = dataToBeMapped.map((completion) => {
-        return completion.attributes;
-      });
-      setEducationModuleCompletionData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const loadEducationMouleCOmpletions = async () => {
+    const data = await getEducationModuleCompletions(uid)
+    setEducationModuleCompletionData(data)
+  }
 
   const postEducationModule = async (uid, module) => {
     try {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SafeView } from "../../../components/safe-area.component";
 import { TouchableOpacity, ActivityIndicator } from "react-native";
 import { FoodGraphic } from "../../../graphics";
@@ -14,17 +14,19 @@ import { getFoodJournals } from "../../../services/food-journal/food-journal.ser
 import { formatDate, foodJournalTimeZonedTodaysDate } from "../../../utils";
 
 export const FoodJournalHomeScreen = ({ navigation, route }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { setFoodJournals, foodJournals } = useContext(FoodJournalContext);
   const { uid } = useContext(AuthenticationContext);
   const lastFoodJournalDate = formatDate(foodJournals[0]?.date_time_value);
   const navigateBackDestination = route?.params?.postVideoAction
     ? "Today"
     : "Journals";
-  let journals;
 
   const loadFoodJournals = async () => {
-    journals = await getFoodJournals(uid);
+    setIsLoading(true);
+    const journals = await getFoodJournals(uid);
     setFoodJournals(journals);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export const FoodJournalHomeScreen = ({ navigation, route }) => {
 
   return (
     <SafeView>
-      {journals ? (
+      {isLoading ? (
         <>
           <NavigationBarLeft
             navigation={navigation}
