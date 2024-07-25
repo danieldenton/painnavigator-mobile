@@ -8,6 +8,7 @@ import { formatDate, timeZonedTodaysDate } from "../../utils";
 export const PainJournalContext = createContext();
 
 export const PainJournalContextProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [changes, setChanges] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const currentPageData = painJournalQuestions[currentPage];
@@ -24,14 +25,16 @@ export const PainJournalContextProvider = ({ children }) => {
   const [reviewJournal, setReviewJournal] = useState({});
   const { uid } = useContext(AuthenticationContext);
   const lastPainJournal = formatDate(painJournals[0]?.date_time_value);
-  const painJournalToday = lastPainJournal === timeZonedTodaysDate
+  const painJournalToday = lastPainJournal === timeZonedTodaysDate;
 
   const getPainJournals = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(`${API_URL}/api/v2/pain_journals`, {
         params: { uid: uid },
       });
       setPainJournals(response.data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }

@@ -86,7 +86,7 @@ export const TodayScreen = ({ navigation }) => {
   return (
     <Provider>
       <SafeView>
-        {movementProgress ? (
+        {userData && movementProgress ? (
           <>
             <TodayNavBar
               navigation={navigation}
