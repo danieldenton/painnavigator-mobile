@@ -53,19 +53,24 @@ export const MoodJournalContextProvider = ({ children }) => {
     }));
   };
 
-  const completeMoodJournal = () => {
-    const cognitiveDistortions = findCognitiveDistortions();
+  const completeMoodJournal = async () => {
+    try {
+      const cognitiveDistortions = findCognitiveDistortions();
+      const newMoodJournal = {
+        feeling: moodJournal.feeling,
+        intensity: moodJournal.intensity,
+        situation: moodJournal.situation,
+        who_i_was_with: moodJournal.whoIWasWith,
+        primary_thought: moodJournal.primaryThought,
+        cognitive_distortions: cognitiveDistortions,
+        date_time_value: Date.now(),
+      };
+      const data = await postMoodJournal(uid, newMoodJournal);
+      setMoodJournals((prevJournals) => [...prevJournals, data]);
+    } catch (err) {
+      console.log(err);
+    }
 
-    const newMoodJournal = {
-      feeling: moodJournal.feeling,
-      intensity: moodJournal.intensity,
-      situation: moodJournal.situation,
-      who_i_was_with: moodJournal.whoIWasWith,
-      primary_thought: moodJournal.primaryThought,
-      cognitive_distortions: cognitiveDistortions,
-      date_time_value: Date.now(),
-    };
-    postMoodJournal(newMoodJournal);
     setTimeout(() => {
       resetMoodJournal(false);
     }, 1000);
