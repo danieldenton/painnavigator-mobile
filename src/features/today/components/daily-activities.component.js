@@ -30,10 +30,10 @@ export const DailyActivities = ({
     educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
   const _journaledToday =
     foodJournalToday || moodJournalToday || painJournalToday;
+  const showJournalTile =
+    userCompletedPainJournalUnit && !_journaledToday && !journaledToday
   const userCompletedSmartGoalUnit =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
-  const showJournalTile =
-    userCompletedPainJournalUnit && (!journaledToday || !_journaledToday);
 
   return (
     <View style={{ marginBottom: 16 }}>
