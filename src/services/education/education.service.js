@@ -16,3 +16,19 @@ export const getEducationModuleCompletions = async (uid) => {
     console.error(error);
   }
 };
+
+export const postEducationModule = async (uid, module) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/api/v2/education_module_completions`,
+      {
+        uid: uid,
+        education_module_completion: module,
+      }
+    );
+    const data = response.data.data.attributes;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};

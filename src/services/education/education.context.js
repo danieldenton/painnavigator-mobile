@@ -51,9 +51,9 @@ export const EducationContextProvider = ({ children }) => {
   }, [educationProgress]);
 
   const loadEducationMouleCompletions = async () => {
-    const data = await getEducationModuleCompletions(uid)
-    setEducationModuleCompletionData(data)
-  }
+    const data = await getEducationModuleCompletions(uid);
+    setEducationModuleCompletionData(data);
+  };
 
   const postEducationModule = async (uid, module) => {
     try {
@@ -97,7 +97,11 @@ export const EducationContextProvider = ({ children }) => {
       module_id: currentModule.id,
       status: 0,
     };
-    response = await postEducationModule(uid, module);
+    const data = await postEducationModule(uid, module);
+    setEducationModuleCompletionData((prevCompleted) => [
+      data,
+      ...prevCompleted,
+    ]);
     setTimeout(() => {
       setEducationProgress(educationProgress + 1);
     }, 1000);
