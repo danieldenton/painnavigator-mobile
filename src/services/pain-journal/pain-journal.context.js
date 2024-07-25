@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { painJournalQuestions } from "../../features/pain-journal/data/pain-journal-question-data.json";
-import { getPainJournals } from "./pain-journal.service";
+import { getPainJournals, postPainJournal } from "./pain-journal.service";
 import { AuthenticationContext } from "../authentication/authentication.context";
 import { formatDate, timeZonedTodaysDate } from "../../utils";
 
@@ -37,19 +37,6 @@ export const PainJournalContextProvider = ({ children }) => {
     }
   };
 
-  async function postPainJournal(newPainJournal) {
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/pain_journals`, {
-        pain_journal: newPainJournal,
-        uid: uid,
-      });
-      const data = response.data.data.attributes;
-      setPainJournals((prevJournals) => [data, ...prevJournals]);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   async function patchPainJournal(updatedJournal) {
     try {
       const response = await axios.patch(
@@ -85,23 +72,27 @@ export const PainJournalContextProvider = ({ children }) => {
     }));
   };
 
-  const completePainJournal = () => {
-    const copingStrategies = findCopingStrategies();
-
-    const newPainJournal = {
-      intensity: painJournal.intensity,
-      situation: painJournal.situation,
-      feeling: painJournal.feeling,
-      who_i_was_with: painJournal.whoIWasWith,
-      coping_strategies: copingStrategies,
-      notes: painJournal.notes,
-      intensity_after: painJournal.intensityAfter,
-      date_time_value: Date.now(),
-    };
-    postPainJournal(newPainJournal);
-    setTimeout(() => {
-      resetPainJournal(false);
-    }, 1000);
+  const completePainJournal = async () => {
+    try {
+      const copingStrategies = findCopingStrategies();
+      const newPainJournal = {
+        intensity: painJournal.intensity,
+        situation: painJournal.situation,
+        feeling: painJournal.feeling,
+        who_i_was_with: painJournal.whoIWasWith,
+        coping_strategies: copingStrategies,
+        notes: painJournal.notes,
+        intensity_after: painJournal.intensityAfter,
+        date_time_value: Date.now(),
+      };
+      const data = await postPainJournal(uid, newPainJournal);
+      setPainJournals((prevJournals) => [data, ...prevJournals]);
+      setTimeout(() => {
+        resetPainJournal(false);
+      }, 1000);
+    } catch (err) {
+      console.log(errr);
+    }
   };
 
   const deletePainJournal = () => {
@@ -184,7 +175,7 @@ export const PainJournalContextProvider = ({ children }) => {
         setPainJournals,
         setReviewJournal,
         painJournalToday,
-        isLoading
+        isLoading,
       }}
     >
       {children}

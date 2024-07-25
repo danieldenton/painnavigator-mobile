@@ -12,3 +12,16 @@ export const getPainJournals = async (uid) => {
     console.error(error);
   }
 };
+
+export async function postPainJournal(uid, newPainJournal) {
+  try {
+    const response = await axios.post(`${API_URL}/api/v1/pain_journals`, {
+      pain_journal: newPainJournal,
+      uid: uid,
+    });
+    const data = response.data.data.attributes;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
