@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json";
-import { getEducationModuleCompletions } from "./education.service";
+import { getEducationModuleCompletions, postEducationModule } from "./education.service";
 import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();
@@ -53,25 +53,6 @@ export const EducationContextProvider = ({ children }) => {
   const loadEducationMouleCompletions = async () => {
     const data = await getEducationModuleCompletions(uid);
     setEducationModuleCompletionData(data);
-  };
-
-  const postEducationModule = async (uid, module) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}/api/v2/education_module_completions`,
-        {
-          uid: uid,
-          education_module_completion: module,
-        }
-      );
-      const data = response.data.data.attributes;
-      setEducationModuleCompletionData((prevCompleted) => [
-        data,
-        ...prevCompleted,
-      ]);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const patchCompleteSkippedEducationModule = async (skippedModuleId) => {
