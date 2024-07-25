@@ -33,7 +33,7 @@ export const DailyActivities = ({
   const userCompletedSmartGoalUnit =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
   const showJournalTile =
-    userCompletedPainJournalUnit && (!journaledToday || _journaledToday);
+    userCompletedPainJournalUnit && (!journaledToday || !_journaledToday);
 
   return (
     <View style={{ marginBottom: 16 }}>
