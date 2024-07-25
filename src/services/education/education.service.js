@@ -32,3 +32,16 @@ export const postEducationModule = async (uid, module) => {
     console.error(error);
   }
 };
+
+export const patchCompleteSkippedEducationModule = async (skippedModuleId) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/api/v2/education_module_completions/${skippedModuleId}`,
+      { status: 0 }
+    );
+    const data = response.data.data.attributes;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
