@@ -16,13 +16,16 @@ export const DailyPainContextProvider = ({ children }) => {
   const [dailyPainScores, setDailyPainScores] = useState([]);
   const [dailyPainStep, setDailyPainStep] = useState(0);
   const [painScoreLoggedToday, setPainScoreLoggedToday] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadDailyPainScores = async (uid) => {
+    setIsLoading(true);
     const painScores = await getDailyPainScores(uid);
     setDailyPainScores(painScores);
     if (painScoreLoggedToday) {
       setDailyPainStep(1);
     }
+    setIsLoading(false);
   };
 
   const handleDailyPainScore = async (uid) => {
@@ -64,6 +67,7 @@ export const DailyPainContextProvider = ({ children }) => {
         setDailyPainStep,
         painScoreLoggedToday,
         setPainScoreLoggedToday,
+        isLoading
       }}
     >
       {children}
