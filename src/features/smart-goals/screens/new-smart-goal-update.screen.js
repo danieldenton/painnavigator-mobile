@@ -17,6 +17,7 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
     smartGoalUpdate,
     changeUpdate,
     createSmartGoalUpdate,
+    isLoading,
   } = useContext(SmartGoalContext);
   const { type } = route.params;
 
@@ -26,7 +27,13 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
 
   return (
     <SafeView>
-      {activeGoal ? (
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color="#37b29d"
+          style={{ flex: 1, justifyContent: "center" }}
+        />
+      ) : (
         <>
           <KeyboardView>
             <NavigationBarLeft
@@ -66,12 +73,6 @@ export const NewSmartGoalUpdateScreen = ({ navigation, route }) => {
             />
           </ButtonSection>
         </>
-      ) : (
-        <ActivityIndicator
-          size="large"
-          color="#37b29d"
-          style={{ flex: 1, justifyContent: "center" }}
-        />
       )}
     </SafeView>
   );
