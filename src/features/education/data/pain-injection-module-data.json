@@ -1,74 +1,77 @@
 {
-  "TPI": [
+  "painInjectionModuleData": [
     {
       "id": 1,
       "name": "Trigger Point Injections",
-      "summary_header": "What are Trigger Point Injections (TPI)?",
-      "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
-      "summary_header2": "When are They Used?",
-      "summary_2": "Trigger point injections may be recommended for patients experiencing:",
-      "bullets2": [
-        "Muscle pain, tenderness, spasms, or stiffness",
-        "Limited range of motion",
-        "Fibromyalgia or myofascial pain syndrome"
+      "type": "intro-text",
+      "group": "education",
+      "source": null,
+      "post_video_destination": null,
+      "skippable": false,
+      "TPIData": [
+        {
+          "summary_header": "What are Trigger Point Injections (TPI)?",
+          "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
+          "summary_header2": "When are They Used?",
+          "summary_2": "Trigger point injections may be recommended for patients experiencing:",
+          "bullets2": [
+            "Muscle pain, tenderness, spasms, or stiffness",
+            "Limited range of motion",
+            "Fibromyalgia or myofascial pain syndrome"
+          ]
+        },
+        {
+          "summary_header": "Before the Procedure",
+          "bullets": [
+            "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
+            "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
+            "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
+            "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
+          ],
+          "summary_header2": "How is the Procedure Done?",
+          "bullets2": [
+            "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
+            "Injection: Using a thin needle, the healthcare provider will inject a mixture of a local anesthetic (numbing medication) and sometimes a corticosteroid (anti-inflammatory medication) directly into the trigger point. The injection helps to relax the muscle and relieve pain.",
+            "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
+          ]
+        },
+        {
+          "summary_header": "What Can I Expect After the Injection?",
+          "bullets": [
+            "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
+            "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
+            "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed."
+          ],
+          "summary_header2": "How is the Procedure Done?",
+          "bullets2": [
+            "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
+            "Recovery: You may experience some mild soreness or bruising at the injection site, but this typically resolves within a few days",
+            "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
+          ],
+          "sub_bullets": [
+            "Patients may use ice/cold packs over the procedure site to help with soreness during the first 24 hours after the procedure.",
+            "After 24 hours, a heating pad may be useful",
+            "Massage may also help relieve procedure soreness.",
+            "Continue using any pain medications you have discussed with your healthcare provider."
+          ]
+        },
+        {
+          "summary_header": "Things to Keep in mind:",
+          "summary": "While trigger point injections are generally safe, potential risks and complications may include:",
+          "bullets": [
+            "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
+            "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
+            "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed."
+          ],
+          "summary_header2": "Results and followup:",
+          "bullets2": [
+            "The effectiveness of trigger point injections in relieving muscle pain and tension varies from person to person. Some individuals experience significant improvement in symptoms, while others may require multiple injections or additional treatments.",
+            "Bleeding",
+            "Your doctor will monitor your progress through your use of PainNavigator and will work with you to determine the best course of treatment."
+          ],
+          "summary_3": "If you have additional questions about risks, benefits, and expected outcomes of the procedure, talk to your healthcare provider before proceeding. They can provide personalized guidance based on your medical history and specific condition."
+        }
       ]
-    },
-    {
-      "id": 2,
-      "name": "Trigger Point Injections",
-      "summary_header": "Before the Procedure",
-      "bullets": [
-        "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
-        "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
-        "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
-        "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
-      ],
-      "summary_header2": "How is the Procedure Done?",
-      "bullets2": [
-        "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
-        "Injection: Using a thin needle, the healthcare provider will inject a mixture of a local anesthetic (numbing medication) and sometimes a corticosteroid (anti-inflammatory medication) directly into the trigger point. The injection helps to relax the muscle and relieve pain.",
-        "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Trigger Point Injections",
-      "summary_header": "What Can I Expect After the Injection?",
-      "bullets": [
-        "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
-        "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
-        "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed."
-      ],
-      "summary_header2": "How is the Procedure Done?",
-      "bullets2": [
-        "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
-        "Recovery: You may experience some mild soreness or bruising at the injection site, but this typically resolves within a few days",
-        "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
-      ],
-      "sub_bullets": [
-        "Patients may use ice/cold packs over the procedure site to help with soreness during the first 24 hours after the procedure.",
-        "After 24 hours, a heating pad may be useful",
-        "Massage may also help relieve procedure soreness.",
-        "Continue using any pain medications you have discussed with your healthcare provider."
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Trigger Point Injections",
-      "summary_header": "Things to Keep in mind:",
-      "summary": "While trigger point injections are generally safe, potential risks and complications may include:",
-      "bullets": [
-        "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
-        "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
-        "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed."
-      ],
-      "summary_header2": "Results and followup:",
-      "bullets2": [
-        "The effectiveness of trigger point injections in relieving muscle pain and tension varies from person to person. Some individuals experience significant improvement in symptoms, while others may require multiple injections or additional treatments.",
-        "Bleeding",
-        "Your doctor will monitor your progress through your use of PainNavigator and will work with you to determine the best course of treatment."
-      ],
-      "summary_3": "If you have additional questions about risks, benefits, and expected outcomes of the procedure, talk to your healthcare provider before proceeding. They can provide personalized guidance based on your medical history and specific condition."
     }
   ]
 }
