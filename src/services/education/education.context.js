@@ -97,7 +97,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  const refinePatchCompleteSkippedEducationModule = (data) => {
+  const sortPatchCompleteSkippedEducationModule = (data) => {
     const editedEducationModuleDate = educationModuleCompletionData.filter(
       (module) => module.id !== data.id
     );
@@ -112,7 +112,7 @@ export const EducationContextProvider = ({ children }) => {
         (module) => module.module_id === unitId
       );
       const data = await patchCompleteSkippedEducationModule(skippedModule.id);
-      const refinedData = refinePatchCompleteSkippedEducationModule(data);
+      const refinedData = sortPatchCompleteSkippedEducationModule(data);
       setEducationModuleCompletionData(refinedData);
     } catch (err) {
       console.log(err);

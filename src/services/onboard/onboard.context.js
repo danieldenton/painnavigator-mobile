@@ -23,6 +23,12 @@ export const OnboardContextProvider = ({ children }) => {
   const { educationProgram, setEducationProgram } =
     useContext(EducationContext);
 
+
+    const handleInjectionContent = () => {
+const providerPrefixesInjectionContent = "ASC" || "RSP" || "CPW" || "PPS"
+      if (providerCode.startsWith())
+    }
+
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
       onboardingData.painInjections !== "No" &&
