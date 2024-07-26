@@ -4,6 +4,7 @@ import { EducationContext } from "../education/education.context";
 export const OnboardContext = createContext();
 
 export const OnboardContextProvider = ({ children }) => {
+  const [providerCode, setProviderCode] = useState("");
   const [error, setError] = useState(null);
   const [step, setStep] = useState(0);
   const [onboardingData, setOnboardingData] = useState({
@@ -71,6 +72,8 @@ export const OnboardContextProvider = ({ children }) => {
   return (
     <OnboardContext.Provider
       value={{
+        providerCode,
+        setProviderCode,
         handleEducationProgram,
         educationProgram,
         setError,

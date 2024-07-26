@@ -19,8 +19,8 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, setProviderId, setError } = useContext(OnboardContext);
-  const [providerCode, setProviderCode] = useState("");
+  const { error, setProviderId, setError, providerCode, setProviderCode } =
+    useContext(OnboardContext);
 
   async function checkProviderCode(providerCode) {
     try {
