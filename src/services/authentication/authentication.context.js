@@ -19,9 +19,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const [appUpdateRequired, setAppUpdateRequired] = useState(false);
   const uid = user?.user.uid;
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
-  const { setUserInfo, setProfileComplete } = useContext(ProfileContext);
-  const { setMovementProgram } = useContext(MovementContext);
-  const { educationProgram, setEducationProgram, setEducationProgress } =
+  const { educationProgram, injectionModuleType } =
     useContext(EducationContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
   const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
@@ -74,6 +72,7 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
           pain_injections: onboardingData.painInjections,
           spine_surgery: onboardingData.spineSurgery,
           education_program: educationProgram,
+          injection_module_type: injectionModuleType,
           expo_push_token: expoPushToken,
         };
         postUser(u.user.uid, strippedOnboardingData);
