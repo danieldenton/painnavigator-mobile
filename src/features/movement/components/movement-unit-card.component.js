@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
 import { MovementModuleIcon } from "../../../icons";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { isAndroid } from "../../../utils";
 

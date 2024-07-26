@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { MenuButtonsWrapper, MenuButton } from "./side-menu.styles";
 import { EducationContext } from "../../services/education/education.context";
 
-import { OutcomeContext } from "../../services/outcome.context";
+import { OutcomeContext } from "../../services/outcome/outcome.context";
 import {
   JournalMenuIcon,
   Settings,

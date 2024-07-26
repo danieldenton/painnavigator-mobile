@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, Text, Modal } from "react-native";
-import { OnboardContext } from "../../services/onboard.context";
+import { OnboardContext } from "../../services/onboard/onboard.context";
 import { ModuleButton } from "../../components/button.component";
 import { tourObj } from "./data/dashboard-tour-data";
 import { DashboardTourComponentOnTop } from "./dashboard-tour-comp-top";

@@ -4,7 +4,7 @@ import { SingleSelectCheckBox } from "../../../components/checkbox/single-select
 import { View } from "react-native";
 import { typeOfPain } from "./../data/onboard-data.json";
 import { isAndroid } from "../../../utils";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 
 export const TypeOfPain = () => {
   const { onboardingData, setOnboardingData } = useContext(OnboardContext);

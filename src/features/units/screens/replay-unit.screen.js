@@ -11,12 +11,12 @@ import { TextUnit } from "../components/text-unit.component";
 import { AudioUnit } from "../components/audio-unit.component";
 import { StackActions } from "@react-navigation/native";
 import { MovementContext } from "../../../services/movement/movement.context";
+import { patchSkippedToCompleteMovementModuleCompletion } from "../../../services/movement/movement.service";
 
 export const ReplayUnitScreen = ({ route, navigation }) => {
   const { moduleType, unit, title } = route.params;
   const { type, id } = unit;
   const {
-    patchSkippedToCompleteMovementModuleCompletion,
     skippedMovementVideos,
   } = useContext(MovementContext);
   const [skippedVideoCompletionId, setSkippedVideoCompletionId] = useState(null)

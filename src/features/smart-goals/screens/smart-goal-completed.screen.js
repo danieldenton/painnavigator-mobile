@@ -14,7 +14,7 @@ import {
 } from "../../../components/completion/completion.styles";
 import { CongratsGraphic } from "../../../graphics";
 import { Scroll } from "../../../components/scroll.component";
-import { OutcomeContext } from "../../../services/outcome.context";
+import { OutcomeContext } from "../../../services/outcome/outcome.context";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const SmartGoalCompletedScreen = ({ navigation }) => {

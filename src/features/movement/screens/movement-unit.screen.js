@@ -6,15 +6,12 @@ import { NavigationBarLeft } from "../../../components/journals/navigation-bar.c
 import { SafeView } from "../../../components/safe-area.component";
 
 export const MovementUnitScreen = ({ navigation }) => {
-  const {
-    moduleComplete,
-    setIsMovement,
-    currentModule,
-  } = useContext(MovementContext);
+  const { moduleComplete, setIsMovement, currentModule } =
+    useContext(MovementContext);
   const [completionMessage, setCompletionMessage] = useState(
     "You completed a movement unit! You’re on your way to mastering new skills and redefining your relationship with pain."
   );
-  const destination = moduleComplete ? "Today" : "MovementPlaylist"
+  const destination = moduleComplete ? "Today" : "MovementPlaylist";
 
   useEffect(() => {
     setIsMovement(true);
@@ -27,20 +24,22 @@ export const MovementUnitScreen = ({ navigation }) => {
 
   return (
     <SafeView>
-      <NavigationBarLeft
-        screen={"Movement"}
-        navigation={navigation}
-        destination={destination}
-        orientation={true}
-      />
-      {moduleComplete ? (
-        <CompletionScreen
+      <>
+        <NavigationBarLeft
+          screen={"Movement"}
           navigation={navigation}
-          completionMessage={completionMessage}
+          destination={destination}
+          orientation={true}
         />
-      ) : (
-        <MovementUnit />
-      )}
+        {moduleComplete ? (
+          <CompletionScreen
+            navigation={navigation}
+            completionMessage={completionMessage}
+          />
+        ) : (
+          <MovementUnit />
+        )}
+      </>
     </SafeView>
   );
 };

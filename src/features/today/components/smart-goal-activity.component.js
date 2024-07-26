@@ -7,15 +7,17 @@ import { timeZonedTodaysDate } from "../../../utils";
 export const SmartGoalActivity = ({
   navigation,
   userCompletedSmartGoalUnit,
+  smartGoalUpdatedToday,
+  activeSmartGoal,
 }) => {
   const { activeGoal, lastSmartGoalUpdate } = useContext(SmartGoalContext);
-  const activeSmartGoal = userCompletedSmartGoalUnit && activeGoal;
-  const smartGoalUpdatedToday = lastSmartGoalUpdate === timeZonedTodaysDate;
+  const goalUpdatedToday =
+    lastSmartGoalUpdate === timeZonedTodaysDate || smartGoalUpdatedToday;
 
   return (
     <>
-      {activeSmartGoal ? (
-        smartGoalUpdatedToday ? (
+      {activeGoal || activeSmartGoal ? (
+        goalUpdatedToday ? (
           <DailyGoalCompleted type={"Smart Goal Update"} />
         ) : (
           <SmartGoalUpdate navigation={navigation} />

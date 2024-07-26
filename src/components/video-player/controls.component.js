@@ -47,7 +47,6 @@ export const VideoControlBar = forwardRef((props, ref) => {
     const seconds = Math.floor((duration / 1000) % 60);
     const minutes = Math.floor((duration / 1000 / 60) % 60);
     const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
-
     return minutes + ":" + formattedSeconds;
   }
 
@@ -76,11 +75,11 @@ export const VideoControlBar = forwardRef((props, ref) => {
   }, []);
 
   useEffect(() => {
-      if (orientation === 3 || orientation === 4) {
-        showFullscreen();
-      } else {
-        ref.current.dismissFullscreenPlayer();
-      }
+    if (orientation === 3 || orientation === 4) {
+      showFullscreen();
+    } else {
+      ref.current.dismissFullscreenPlayer();
+    }
   }, [orientation]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useEffect } from "react";
 import styled from "styled-components/native";
 import { useWindowDimensions } from "react-native";
 import { VideoControlBar } from "./controls.component";
@@ -15,10 +15,11 @@ const VideoScreen = styled(Video)`
 `;
 
 export const VideoPlayer = forwardRef((props, ref) => {
-  const { source, status, setStatus, type, setFullscreenStatus } =
-    props;
+  const { source, status, setStatus, type, setFullscreenStatus } = props;
   const window = useWindowDimensions();
   const height = type === "audio" ? 0 : (window.width / 1280) * 720;
+
+  useEffect(() => {}, []);
 
   function fullScreenStatus(status) {
     if (setFullscreenStatus) {

@@ -25,8 +25,10 @@ export async function getUser(uid) {
 
 export const patchUser = async (uid, userUpdatesObject) => {
   try {
-    const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, userUpdatesObject);
-    return response
+    const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, {
+      user: userUpdatesObject,
+    });
+    return response;
   } catch (error) {
     console.error(error);
   }

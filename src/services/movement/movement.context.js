@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
+import {
+  getMovementModuleCompletions,
+  postMovementModuleCompletion,
+} from "./movement.service";
 import { movementModules } from "./movement-modules-data.json";
 import { movementVideos } from "./movement-videos-data.json";
 import { formatBackendCreatedAtDate } from "../../utils";
@@ -140,41 +142,15 @@ export const MovementContextProvider = ({ children }) => {
     }
   }
 
-  async function getMovementModuleCompletions(uid) {
+  const loadMovementModuleCompletions = async (uid) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/v2/movement_module_completions?uid=${uid}`
-      );
-      parseMovementProgress(response.data.data);
-      parseMovementVideoCompletions(response.data.data);
-    } catch (error) {
-      console.error(error);
+      const data = await getMovementModuleCompletions(uid);
+      parseMovementProgress(data);
+      parseMovementVideoCompletions(data);
+    } catch (err) {
+      console.log(err);
     }
-  }
-
-  async function postMovementModuleCompletion(module, uid) {
-    try {
-      const response = await axios.post(
-        `${API_URL}/api/v2/movement_module_completions`,
-        { movement_module: module, uid: uid }
-      );
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function patchSkippedToCompleteMovementModuleCompletion(completionId) {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v2/movement_module_completions/${completionId}`,
-        { movement_module: { status: 0 } }
-      );
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  };
 
   const completeVideo = (uid) => {
     if (!completedVideos.includes(currentVideo.id)) {
@@ -189,7 +165,7 @@ export const MovementContextProvider = ({ children }) => {
     }
   };
 
-  const skipVideo = async (uid) => {
+  const skipVideo = (uid) => {
     const skipped = 1;
     const module = {
       module_id: currentModule.id,
@@ -197,8 +173,7 @@ export const MovementContextProvider = ({ children }) => {
       status: skipped,
     };
     setCompletedVideos([...completedVideos, currentVideo.id]);
-    const response = await postMovementModuleCompletion(module, uid);
-    return response;
+    postMovementModuleCompletion(module, uid);
   };
 
   function getPlaylistLength(videos) {
@@ -238,13 +213,12 @@ export const MovementContextProvider = ({ children }) => {
   return (
     <MovementContext.Provider
       value={{
-        getMovementModuleCompletions,
+        loadMovementModuleCompletions,
         movementProgram,
         movementProgramModules,
         setMovementProgram,
         getPlaylistLength,
         completeVideo,
-        patchSkippedToCompleteMovementModuleCompletion,
         currentModule,
         currentVideo,
         setCurrentVideo,

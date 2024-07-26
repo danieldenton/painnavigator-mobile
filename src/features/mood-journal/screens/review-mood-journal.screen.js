@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useRef, useState } from "react";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { ReviewJournalNavigationBar } from "../../../components/journals/navigation-bar.component";
 import { ReviewMoodJournalEntry } from "../components/review-mood-journal-entry.component";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { ReviewJournalButton } from "../../../components/button.component";
 import { Provider } from "react-native-paper";
 import { SafeView } from "../../../components/safe-area.component";

@@ -11,7 +11,7 @@ import { Intensity } from "./intensity.component";
 import { Situation } from "./situation.component";
 import { PrimaryThought } from "./primary-thought.component";
 import { CognitiveDistortions } from "./cognitive-distortions.component";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 
 export const NewMoodJournalEntry = ({ navigation }) => {
   const { completeMoodJournal, currentPage, moodJournal, nextPage } =

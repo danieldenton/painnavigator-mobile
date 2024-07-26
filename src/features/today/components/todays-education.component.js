@@ -5,7 +5,7 @@ import { DailyGoalCompleted } from "../components/daily-goal-completed.component
 import { EducationContext } from "../../../services/education/education.context";
 import { timeZonedTodaysDate } from "../../../utils";
 
-export const TodaysEducation = ({ navigation }) => {
+export const TodaysEducation = ({ navigation, educationToday }) => {
   const {
     completedAllEducationModules,
     lastEducationModuleId,
@@ -16,11 +16,14 @@ export const TodaysEducation = ({ navigation }) => {
       {!completedAllEducationModules ? (
         <>
           <SubHeader title={"TODAY'S EDUCATION"} size={14} />
-          {lastCompletedEducationModuleDate === timeZonedTodaysDate ? (
+          {lastCompletedEducationModuleDate === timeZonedTodaysDate ||
+          educationToday ? (
             <>
               <DailyGoalCompleted
                 type={"module"}
-                moduleId={lastEducationModuleId}
+                moduleId={
+                  lastEducationModuleId ? lastEducationModuleId : educationToday
+                }
               />
               <EducationUnitCard navigation={navigation} />
             </>

@@ -57,8 +57,8 @@ import {
 } from "@expo-google-fonts/inter";
 
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
-import { OnboardContextProvider } from "./src/services/onboard.context";
-import { OutcomeContextProvider } from "./src/services/outcome.context";
+import { OnboardContextProvider } from "./src/services/onboard/onboard.context"
+import { OutcomeContextProvider } from "./src/services/outcome/outcome.context";
 import { DailyPainContextProvider } from "./src/services/daily-pain/daily-pain.context";
 import { ProfileContextProvider } from "./src/services/profile/profile-context";
 import { BookmarksContextProvider } from "./src/services/bookmarks/bookmarks.context";
@@ -66,10 +66,10 @@ import { EducationContextProvider } from "./src/services/education/education.con
 import { MovementContextProvider } from "./src/services/movement/movement.context";
 import { PainJournalContextProvider } from "./src/services/pain-journal/pain-journal.context";
 import { FavoriteActivitiesContextProvider } from "./src/services/favorite-activities/favorite-activities.context";
-import { FoodJournalContextProvider } from "./src/services/food-journal.context";
-import { MoodJournalContextProvider } from "./src/services/mood-journal.context";
+import { FoodJournalContextProvider } from "./src/services/food-journal/food-journal.context";
+import { MoodJournalContextProvider } from "./src/services/mood-journal/mood-journal.context";
 import { SmartGoalContextProvider } from "./src/services/smart-goal/smart-goal.context";
-import { WellnessCoachContextProvider } from "./src/services/wellness-coach.context";
+import { WellnessCoachContextProvider } from "./src/services/wellness/wellness-coach.context";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation/index";

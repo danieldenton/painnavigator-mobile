@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { JournalQuestion } from "../../../components/journal-question.component";
 import { TextInputMedium } from "../../../components/text-input.component";
-import { MoodJournalContext } from "../../../services/mood-journal.context";
+import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export const Situation = () => {

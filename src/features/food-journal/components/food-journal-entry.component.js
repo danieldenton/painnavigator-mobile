@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { ButtonSection } from "../../../components/journals/journal.styles";
 import { JournalButton } from "../../../components/button.component";
 import { FoodJournalQuestionSection } from "./food-journal-question-section.component";
-import { FoodJournalContext } from "../../../services/food-journal.context";
+import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 export const FoodJournalEntry = ({ journalId, navigation }) => {
   const {
@@ -12,6 +13,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
     meal,
     foodJournal,
   } = useContext(FoodJournalContext);
+  const { uid } = useContext(AuthenticationContext);
   const { food, feelingBefore, feelingAfter } = foodJournal;
 
   const handleUpdateFoodJournal = () => {
@@ -20,7 +22,7 @@ export const FoodJournalEntry = ({ journalId, navigation }) => {
   };
 
   const handleCompleteFoodJournal = () => {
-    completeFoodJournal();
+    completeFoodJournal(uid);
     navigation.navigate("JournalCreated", { type: "FoodJournal" });
   };
 

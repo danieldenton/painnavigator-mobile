@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
-import { OnboardContext } from "../services/onboard.context";
+import { OnboardContext } from "../services/onboard/onboard.context";
 
 const DailyActivitiesCard = styled(Card)`
   margin-top: 16px;

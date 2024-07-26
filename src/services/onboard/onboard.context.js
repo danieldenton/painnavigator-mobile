@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { EducationContext } from "./education/education.context";
+import { EducationContext } from "../education/education.context";
 
 export const OnboardContext = createContext();
 

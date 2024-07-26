@@ -1,13 +1,18 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
-import { moodJournalQuestions } from "../features/mood-journal/data/mood-journal-question-data.json";
-import { AuthenticationContext } from "./authentication/authentication.context";
-import { formatDate, timeZonedTodaysDate } from "../utils";
+import React, { createContext, useState, useContext } from "react";
+import { moodJournalQuestions } from "../../features/mood-journal/data/mood-journal-question-data.json";
+import {
+  getMoodJournals,
+  postMoodJournal,
+  patchMoodJournal,
+  destroyMoodJournal,
+} from "./mood-journal.service";
+import { AuthenticationContext } from "../authentication/authentication.context";
+import { formatDate, timeZonedTodaysDate } from "../../utils";
 
 export const MoodJournalContext = createContext();
 
 export const MoodJournalContextProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [changes, setChanges] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const currentPageData = moodJournalQuestions[currentPage];
@@ -25,51 +30,15 @@ export const MoodJournalContextProvider = ({ children }) => {
   const lastMoodJournal = formatDate(moodJournals[0]?.date_time_value);
   const moodJournalToday = lastMoodJournal === timeZonedTodaysDate;
 
-  const getMoodJournals = async () => {
+  const loadMoodJournals = async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/v2/mood_journals`, {
-        params: { uid: uid },
-      });
-      setMoodJournals(response.data);
-    } catch (error) {
-      console.error(error);
+      setIsLoading(true);
+      const data = await getMoodJournals(uid);
+      setMoodJournals(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
     }
-  };
-
-  async function postMoodJournal(newMoodJournal) {
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/mood_journals`, {
-        mood_journal: newMoodJournal,
-        uid: uid,
-      });
-      const data = response.data.data.attributes;
-      setMoodJournals((prevJournals) => [data, ...prevJournals]);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function patchMoodJournal() {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/api/v1/mood_journals/${reviewJournal.id}`,
-        { mood_journal: reviewJournal }
-      );
-      const data = response.data.data.attributes;
-      setMoodJournals((prevJournals) =>
-        prevJournals.map((journal) =>
-          journal.id === reviewJournal.id ? data : journal
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const destroyMoodJournal = () => {
-    axios
-      .delete(`${API_URL}/api/v1/mood_journals/${reviewJournal.id}`)
-      .then((response) => {});
   };
 
   const cancelEdits = () => {
@@ -84,19 +53,24 @@ export const MoodJournalContextProvider = ({ children }) => {
     }));
   };
 
-  const completeMoodJournal = () => {
-    const cognitiveDistortions = findCognitiveDistortions();
+  const completeMoodJournal = async () => {
+    try {
+      const cognitiveDistortions = findCognitiveDistortions();
+      const newMoodJournal = {
+        feeling: moodJournal.feeling,
+        intensity: moodJournal.intensity,
+        situation: moodJournal.situation,
+        who_i_was_with: moodJournal.whoIWasWith,
+        primary_thought: moodJournal.primaryThought,
+        cognitive_distortions: cognitiveDistortions,
+        date_time_value: Date.now(),
+      };
+      const data = await postMoodJournal(uid, newMoodJournal);
+      setMoodJournals((prevJournals) => [...prevJournals, data]);
+    } catch (err) {
+      console.log(err);
+    }
 
-    const newMoodJournal = {
-      feeling: moodJournal.feeling,
-      intensity: moodJournal.intensity,
-      situation: moodJournal.situation,
-      who_i_was_with: moodJournal.whoIWasWith,
-      primary_thought: moodJournal.primaryThought,
-      cognitive_distortions: cognitiveDistortions,
-      date_time_value: Date.now(),
-    };
-    postMoodJournal(newMoodJournal);
     setTimeout(() => {
       resetMoodJournal(false);
     }, 1000);
@@ -146,24 +120,25 @@ export const MoodJournalContextProvider = ({ children }) => {
     setCurrentPage(0);
   };
 
-  const saveEdits = () => {
-    const newJournals = moodJournals.map((journal) =>
-      journal.id === reviewJournal.id
-        ? {
-            ...journal,
-            reviewJournal,
-          }
-        : journal
-    );
-    setMoodJournals(newJournals);
-    patchMoodJournal();
-    setChanges("");
+  const saveEdits = async () => {
+    try {
+      const data = await patchMoodJournal(reviewJournal);
+      setMoodJournals((prevJournals) =>
+        prevJournals.map((journal) =>
+          journal.id === reviewJournal.id ? data : journal
+        )
+      );
+      setChanges("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <MoodJournalContext.Provider
       value={{
-        getMoodJournals,
+        loadMoodJournals,
+        isLoading,
         cancelEdits,
         changes,
         changeEntry,

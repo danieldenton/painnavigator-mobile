@@ -9,3 +9,9 @@ jest.mock("./src/utils", () => ({
   formatDate: jest.fn((date) => date),
   isFocused: true,
 }));
+
+export const firebase = {
+  auth: jest.fn(() => ({
+    signInWithEmailAndPassword: jest.fn(),
+  }))
+};

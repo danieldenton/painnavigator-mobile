@@ -1,8 +1,11 @@
 import React, { useEffect, useState, createContext } from "react";
-import axios from "axios";
-import { API_URL } from "@env";
 import { educationModules } from "../../features/education/data/education-module-data.json";
 import { educationPrograms } from "./education-programs-data.json";
+import {
+  getEducationModuleCompletions,
+  postEducationModule,
+  patchCompleteSkippedEducationModule,
+} from "./education.service";
 import { formatBackendCreatedAtDate } from "../../utils";
 
 export const EducationContext = createContext();
@@ -51,92 +54,75 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress]);
 
-  const getEducationModuleCompletions = async (uid) => {
-    try {
-      const response = await axios.get(
-        `${API_URL}/api/v2/education_module_completions`,
-        { params: { uid: uid } }
-      );
-      const dataToBeMapped = response.data.data;
-      const data = dataToBeMapped.map((completion) => {
-        return completion.attributes;
-      });
-      setEducationModuleCompletionData(data);
-    } catch (error) {
-      console.error(error);
-    }
+  const loadEducationMouleCompletions = async () => {
+    const data = await getEducationModuleCompletions(uid);
+    setEducationModuleCompletionData(data);
   };
 
-  const postEducationModule = async (uid, module) => {
+  const completeModule = async (uid) => {
     try {
-      const response = await axios.post(
-        `${API_URL}/api/v2/education_module_completions`,
-        {
-          uid: uid,
-          education_module_completion: module,
-        }
-      );
-      const data = response.data.data.attributes;
+      const module = {
+        module_id: currentModule.id,
+        status: 0,
+      };
+      const data = await postEducationModule(uid, module);
       setEducationModuleCompletionData((prevCompleted) => [
         data,
         ...prevCompleted,
       ]);
-    } catch (error) {
-      console.error(error);
+      setTimeout(() => {
+        setEducationProgress(educationProgress + 1);
+      }, 1000);
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const patchCompleteSkippedEducationModule = async (skippedModuleId) => {
+  const skipModule = async (uid) => {
     try {
-      const response = await axios.patch(
-        `${API_URL}/api/v2/education_module_completions/${skippedModuleId}`,
-        { status: 0 }
-      );
-      const data = response.data.data.attributes;
-      const editedEducationModuleDate = educationModuleCompletionData.filter(
-        (module) => module.id !== data.id
-      );
-      const newCompletedModuleData = [data, ...editedEducationModuleDate];
-      const sortedData = newCompletedModuleData.sort((a, b) => a.id - b.id);
-      setEducationModuleCompletionData(sortedData);
-    } catch (error) {
-      console.error(error);
+      const module = {
+        module_id: currentModule.id,
+        status: 1,
+      };
+      const data = await postEducationModule(uid, module);
+      setEducationModuleCompletionData((prevCompleted) => [
+        data,
+        ...prevCompleted,
+      ]);
+      setTimeout(() => {
+        setEducationProgress(educationProgress + 1);
+      }, 1000);
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  const completeModule = (uid) => {
-    const module = {
-      module_id: currentModule.id,
-      status: 0,
-    };
-    postEducationModule(uid, module);
-    setTimeout(() => {
-      setEducationProgress(educationProgress + 1);
-    }, 1000);
-  };
-
-  const skipModule = (uid) => {
-    const module = {
-      module_id: currentModule.id,
-      status: 1,
-    };
-    postEducationModule(uid, module);
-    setTimeout(() => {
-      setEducationProgress(educationProgress + 1);
-    }, 1000);
-  };
-
-  const completeEducationSkippedUnit = (unitId) => {
-    const skippedModule = educationModuleCompletionData.find(
-      (module) => module.module_id === unitId
+  const refinePatchCompleteSkippedEducationModule = (data) => {
+    const editedEducationModuleDate = educationModuleCompletionData.filter(
+      (module) => module.id !== data.id
     );
-    patchCompleteSkippedEducationModule(skippedModule.id);
+    const newCompletedModuleData = [data, ...editedEducationModuleDate];
+    const sortedData = newCompletedModuleData.sort((a, b) => a.id - b.id);
+    return sortedData;
+  };
+
+  const completeEducationSkippedUnit = async (unitId) => {
+    try {
+      const skippedModule = educationModuleCompletionData.find(
+        (module) => module.module_id === unitId
+      );
+      const data = await patchCompleteSkippedEducationModule(skippedModule.id);
+      const refinedData = refinePatchCompleteSkippedEducationModule(data);
+      setEducationModuleCompletionData(refinedData);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <EducationContext.Provider
       value={{
-        getEducationModuleCompletions,
+        loadEducationMouleCompletions,
         setEducationProgram,
         setEducationProgress,
         currentModule,

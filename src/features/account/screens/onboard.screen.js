@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { OnboardContext } from "../../../services/onboard.context";
+import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { SafeView } from "../../../components/safe-area.component";
 import { OnboardSwiper } from "../components/onboard-swiper.component";
 import { ButtonSection } from "../../../components/journals/journal.styles";
