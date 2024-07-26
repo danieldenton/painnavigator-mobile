@@ -17,6 +17,7 @@ export const EducationContextProvider = ({ children }) => {
   const [educationIntroStep, setEducationIntroStep] = useState(0);
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
+  const [injectionModuleType, setInjectionModuleType] = useState(null);
   const educationProgramLength =
     educationPrograms[educationProgram - 1].educationModuleIds;
   const completedAllEducationModules =
@@ -140,6 +141,8 @@ export const EducationContextProvider = ({ children }) => {
         lastCompletedEducationModule,
         lastEducationModuleId,
         lastCompletedEducationModuleDate,
+        setInjectionModuleType,
+        injectionModuleType
       }}
     >
       {children}
