@@ -20,14 +20,27 @@ export const OnboardContextProvider = ({ children }) => {
   });
   const [providerId, setProviderId] = useState(null);
   const [tour, setTour] = useState(null);
-  const { educationProgram, setEducationProgram } =
+  const { educationProgram, setEducationProgram, setInjectionModuleType } =
     useContext(EducationContext);
 
-
-    const handleInjectionContent = () => {
-const providerPrefixesInjectionContent = "ASC" || "RSP" || "CPW" || "PPS"
-      if (providerCode.startsWith())
+  const handleInjectionContent = () => {
+    const providerPrefixes = "ASC" || "RSP" || "CPW" || "PPS";
+    if (providerCode.startsWith(providerPrefixes)) {
+      if (providerCode.endsWith("TPI")) {
+        setInjectionModuleType(1);
+      } else if (providerCode.endsWith("LES")) {
+        setInjectionModuleType(2);
+      } else if (providerCode.endsWith("LTE")) {
+        setInjectionModuleType(3);
+      } else if (providerCode.endsWith("LFI")) {
+        setInjectionModuleType(4);
+      } else if (providerCode.endsWith("SJI")) {
+        setInjectionModuleType(5);
+      } else if (providerCode.endsWith("LSC")) {
+        setInjectionModuleType(6);
+      }
     }
+  };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
@@ -55,6 +68,7 @@ const providerPrefixesInjectionContent = "ASC" || "RSP" || "CPW" || "PPS"
     if (providerId === 8) {
       setEducationProgram(2);
     } else {
+      handleInjectionContent()
       if (onboardingData.typeOfPain === "Low Back Pain") {
         handlePossibleEducationPrograms();
       } else {
