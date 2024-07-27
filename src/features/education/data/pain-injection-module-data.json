@@ -180,6 +180,18 @@
           ],
           "summary3": "If you have any questions or concerns about lumbar transforaminal epidural steroid injections, don't hesitate to discuss them with your healthcare provider. They're there to support you to ensure you have a clear understanding of the procedure."
         }
+      ],
+      "LFRData": [
+        {
+            "name": "Lumbar Facet Injections/ Medial Branch Blocks",
+            "summary_header": "What are lumbar facet injections/lumbar facet medial branch blocks (MBBs)?",
+            "summary": "Lumbar facet injections or lumbar facet medial branch blocks (MBBs) are specialized procedures aimed at alleviating lower back pain by targeting the facet joints in the spine.",
+            "summary_header2": "How it works",
+            "summary2": "During the procedure, a mixture of a numbing agent and/or anti-inflammatory medication (steroid) is carefully injected into and around the affected facet joints. This helps reduce inflammation and relieve pain associated with these joints.",
+            "summary_header3": "When is it used?",
+            "summary3": "Lumbar facet injections are commonly recommended for conditions such as facet joint osteoarthritis, facet joint syndrome, and other sources of facet joint inflammation or irritation"
+
+        }
       ]
     }
   ]
