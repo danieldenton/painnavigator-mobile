@@ -229,6 +229,22 @@
           "bullets2": [
             "Your healthcare provider will ask you to track your pain via PainNavigator daily until the time of your follow-up appointment/call."
           ]
+        },
+        {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
+          "summary_header": "Things to keep in mind:",
+          "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
+          "summary_header2": "Results and followup:",
+          "bullets2": [
+            "Results vary from person to person, but many patients experience significant relief after this injection.",
+            "This procedure is often used to diagnose lumbar facet disease and evaluate if you are a good candidate for another longer-term procedure called lumbar facet radiofrequency ablation. To see if you qualify, you will be asked to:"
+          ],
+          "sub_bullets2": [
+            "Document your pain daily on the PainNavigator mobile app",
+            "Undergo a repeat/second lumbar facet/medial branch injection to confirm your diagnosis.",
+            "To learn more about lumbar facet radiofrequency ablation, click here: (link)"
+          ],
+          "summary3": "Always feel free to ask your healthcare provider any questions or concerns you may have about lumbar facet injections. They're there to help you understand the procedure and ensure your comfort and well-being throughout the process."
         }
       ]
     }
