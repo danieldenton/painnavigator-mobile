@@ -1,8 +1,7 @@
 {
   "painInjectionModuleData": [
     {
-      "id": 1,
-      "name": "Trigger Point Injections",
+      "name": "Pain Injections",
       "type": "intro-text",
       "group": "education",
       "source": null,
@@ -10,10 +9,11 @@
       "skippable": false,
       "TPIData": [
         {
+          "name": "Trigger Point Injections",
           "summary_header": "What are Trigger Point Injections (TPI)?",
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
           "summary_header2": "When are They Used?",
-          "summary_2": "Trigger point injections may be recommended for patients experiencing:",
+          "summary2": "Trigger point injections may be recommended for patients experiencing:",
           "bullets2": [
             "Muscle pain, tenderness, spasms, or stiffness",
             "Limited range of motion",
@@ -21,6 +21,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "Before the Procedure",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -36,6 +37,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
@@ -56,6 +58,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "Things to Keep in mind:",
           "summary": "While trigger point injections are generally safe, potential risks and complications may include:",
           "bullets": [
@@ -69,7 +72,60 @@
             "Bleeding",
             "Your doctor will monitor your progress through your use of PainNavigator and will work with you to determine the best course of treatment."
           ],
-          "summary_3": "If you have additional questions about risks, benefits, and expected outcomes of the procedure, talk to your healthcare provider before proceeding. They can provide personalized guidance based on your medical history and specific condition."
+          "summary3": "If you have additional questions about risks, benefits, and expected outcomes of the procedure, talk to your healthcare provider before proceeding. They can provide personalized guidance based on your medical history and specific condition."
+        }
+      ],
+      "LESIData": [
+        {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "What are lumbar epidural stAeroid injections (LESI)?",
+          "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine.",
+          "summary_header2": "How it works",
+          "summary2": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is carefully injected into the epidural space near your spine. This helps calm down the irritated nerves and provides relief from pain.",
+          "summary_header3": "When is it used?",
+          "summary3": "LESI is commonly recommended for conditions like spinal stenosis, lumbar radiculopathy, herniated discs, sciatica, and other issues that cause nerve irritation and pain in the lower back and legs"
+        },
+        {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "Before the Procedure:",
+          "bullets": [
+            "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
+            "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
+            "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
+            "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
+          ],
+          "summary_header2": "How is the Procedure Done?",
+          "bullets2": [
+            "Preparation: You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
+            "Injection: The doctor will use X-ray guidance to ensure precise placement of the epidural needle. The healthcare provider will inject a mixture of a saline, local anesthetic, and/or a steroid (anti-inflammatory medication) into the epidural space surrounding the spinal nerves. During the injection, you may feel a brief zap or electrical sensation down one or both legs. This is normal and should get better immediately.",
+            "Post-Procedure: After the injection, you’ll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
+          ]
+        },
+        {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "What Can I Expect After the Injection?",
+          "bullets": [
+            "While you may not feel immediate relief, many patients notice improvement within a few days as the medication starts working.",
+            "Take it easy the day of the injection and gradually resume your normal activities as you feel comfortable starting the following day.",
+            "For procedural soreness:"
+          ],
+          "sub_bullets": [
+            "Patients may use ice/cold packs over the procedure site to help with soreness in the first 24 hours after the procedure.",
+            "After 24 hours, a heating pad may be useful.",
+            "Massage may also help relieve procedure soreness.",
+            "Continue using any pain medications you have discussed with your healthcare provider."
+          ]
+        },
+        {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "Things to keep in mind:",
+          "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
+          "summary_header2": "Results and followup:",
+          "bullets": [
+            "Results vary from person to person, but many patients experience significant relief after one or a series of injections.",
+            "Your doctor will monitor your progress through your use of PainNavigator and work with you to determine the best course of treatment."
+          ],
+          "summary3": "Always feel free to ask your healthcare provider any questions or concerns you may have about lumbar epidural steroid injections. They're there to help you understand the procedure to ensure your comfort and well-being throughout the process."
         }
       ]
     }
