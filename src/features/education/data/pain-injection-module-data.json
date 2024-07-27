@@ -304,6 +304,62 @@
 
           "summary3": "If you have any questions or worries about lumbar facet radiofrequency ablation, talk to your doctor. They're there to help you understand and make sure you feel comfortable."
         }
+      ],
+      "SJIData": [
+        {
+          "name": "Sacroiliac Joint Injections",
+          "summary_header": "What are sacroiliac joint injections (SIJ injections)?",
+          "summary": "Sacroiliac joint injections (SIJ injections) with pain and swelling in the lower back and buttocks. They're given in a joint where the spine connects to the hips.",
+          "summary_header2": "How it works",
+          "summary2": "During the shot, doctors use a mix of numbing medicine and anti-inflammatory medicine (steroid) to calm down the pain and swelling in the joint.",
+          "summary_header3": "When is it used?",
+          "summary3": "SIJ injections are commonly recommended for pain coming from the SI joint, which will cause  pain in the lower back and buttocks that doesn't get better with more conservative treatments like exercise and/or medications."
+        },
+        {
+          "name": "Sacroiliac Joint Injections",
+          "summary_header": "Before the Procedure:",
+          "bullets": [
+            "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
+            "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
+            "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
+            "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
+          ],
+          "summary_header2": "What to expect during the procedure:",
+          "bullets2": [
+            "Preparation: You'll be asked to lay down on your belly in a comfortable position. The injection site will be cleaned, and you will be given a numbing medication to minimize discomfort.",
+            "Procedure: The doctor will use fluoroscopy (X-ray guidance) to guide a needle into the sacroiliac joint. A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected into the joint to numb the area.",
+            "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15-30 minutes, and you can typically go home the same day"
+          ]
+        },
+        {
+          "name": "Sacroiliac Joint Injections",
+          "summary_header": "What Can I Expect After the Procedure?",
+          "bullets": [
+            "You might not feel better right away, but many people start feeling relief within a few days.",
+            "For procedural soreness:"
+          ],
+          "sub_bullets": [
+            "Patients may use ice/cold packs over the procedure site to help with soreness in the first 24 hours after the procedure",
+            "After 24 hours, a heating pad may be useful.",
+            "Massage may also help relieve procedure soreness.",
+            "Continue using any pain medications you have discussed with your healthcare provider"
+          ],
+          "bullets2": [
+            "Your healthcare provider will ask you to track your pain via PainNavigator daily until the time of your follow-up appointment/call."
+          ]
+        },
+        {
+          "name": "Sacroiliac Joint Injections",
+          "summary_header": "Things to keep in mind:",
+          "summary": "Although complications are rare, it's essential to be aware of potential risks like infection, bleeding, or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
+          "summary_header2": "Results and followup:",
+          "bullets2": [
+            "Responses to TFESIs can vary, but many patients experience significant pain relief that can last for several weeks to months.",
+            "Your doctor will monitor your progress through your use of PainNavigator and work with you to determine the best course of treatment."
+          ],
+
+          "summary3": "If you have questions about sacroiliac joint injections, don't hesitate to ask your doctor. They're there to help you feel better!"
+        }
       ]
     }
   ]
