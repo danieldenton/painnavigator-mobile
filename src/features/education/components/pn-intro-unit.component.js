@@ -10,9 +10,15 @@ import {
   EducationSummaryStepThree,
   EducationSummaryStepFour,
 } from "./pn-intro-steps.component";
+import {
+  InjectionStepOne,
+  InjectionStepTwo,
+  InjectionStepThree,
+  InjectionStepFour,
+} from "./injection-steps.component";
 
 export const PNIntroUnit = () => {
-  const { currentModule, educationIntroStep } = useContext(EducationContext);
+  const { currentModule, educationIntroStep, injectionModuleType } = useContext(EducationContext);
   const { pnIntroData } = currentModule;
   const scrollViewRef = useRef();
 
@@ -28,6 +34,13 @@ export const PNIntroUnit = () => {
     <EducationSummaryStepTwo data={pnIntroData[2]} />,
     <EducationSummaryStepThree data={pnIntroData[3]} />,
     <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
+  ];
+
+  const injectionIntroStepComponents = [
+    <InjectionStepOne />,
+    <InjectionStepTwo />,
+    <InjectionStepThree />,
+    <InjectionStepFour />,
   ];
 
   return (

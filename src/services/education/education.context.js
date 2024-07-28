@@ -56,7 +56,6 @@ export const EducationContextProvider = ({ children }) => {
           ]
       );
     }
-
     if (module) {
       setCurrentModule(module);
     }
