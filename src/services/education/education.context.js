@@ -46,7 +46,7 @@ export const EducationContextProvider = ({ children }) => {
   useEffect(() => {
     let module;
     if (educationProgress === 1 && injectionModuleType) {
-      module = painInjectionModules
+      module = painInjectionModules[injectionModuleType]
     } else {
       module = educationModules.find(
         (unit) =>
@@ -60,7 +60,7 @@ export const EducationContextProvider = ({ children }) => {
     if (module) {
       setCurrentModule(module);
     }
-  }, [educationProgress]);
+  }, [educationProgress, injectionModuleType]);
 
   const loadEducationMouleCompletions = async () => {
     const data = await getEducationModuleCompletions(uid);

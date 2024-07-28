@@ -34,20 +34,21 @@ export const TodayScreen = ({ navigation }) => {
     movementProgress,
     setMovementProgram,
   } = useContext(MovementContext);
-  const { setEducationProgram, setEducationProgress } =
+  const { setEducationProgram, setEducationProgress, setInjectionModuleType } =
     useContext(EducationContext);
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
-console.log(uid)
+
   const loadUserData = async () => {
     try {
       const data = await getUser(uid);
       setUserData(data);
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
+      setInjectionModuleType(data.injection_module_type)
       setEducationProgram(data.education_program);
       setEducationProgress(data.education_progress.progress);
       setCompletedProgram(data.completed_program);
