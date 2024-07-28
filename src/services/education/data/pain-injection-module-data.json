@@ -2,7 +2,7 @@
   "painInjectionModules": [
     {
       "name": "Trigger Point Injections",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -74,7 +74,7 @@
     },
     {
       "name": "Lumbar Epidural Steroid Injection (LESI)",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -131,7 +131,7 @@
     },
     {
       "name": "Lumbar Transforaminal Epidural Steroid Injections",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -188,7 +188,7 @@
     },
     {
       "name": "Lumbar Facet Injections/ Medial Branch Blocks",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -258,7 +258,7 @@
     },
     {
       "name": "Lumbar Facet Radiofrequency Ablation",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -320,7 +320,7 @@
     },
     {
       "name": "Sacroiliac Joint Injections",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
@@ -379,7 +379,7 @@
     },
     {
       "name": "Lumbar Spinal Cord Stimulator Trials ",
-      "type": "injection-text",
+      "type": "intro-text",
       "group": "education",
       "source": null,
       "post_video_destination": null,
