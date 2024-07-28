@@ -68,7 +68,6 @@ export const OnboardContextProvider = ({ children }) => {
     if (providerId === 8) {
       setEducationProgram(2);
     } else {
-      handleInjectionContent()
       if (onboardingData.typeOfPain === "Low Back Pain") {
         handlePossibleEducationPrograms();
       } else {
@@ -108,6 +107,7 @@ export const OnboardContextProvider = ({ children }) => {
         providerId,
         tour,
         setTour,
+        handleInjectionContent
       }}
     >
       {children}

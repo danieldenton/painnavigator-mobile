@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
-import { educationModules } from "./data/education-module-data.json"
-import { painInjectionModuleData } from "./data/pain-injection-module-data.json"
+import { educationModules } from "./data/education-module-data.json";
+import { painInjectionModuleData } from "./data/pain-injection-module-data.json";
 import { educationPrograms } from "./data/education-programs-data.json";
 import {
   getEducationModuleCompletions,
@@ -44,16 +44,25 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
-    if (injectionModuleType) {
-
+    let module;
+    if (educationProgress === 1 && injectionModuleType) {
+      module = painInjectionModuleData.find(
+        (unit) =>
+          unit.id ===
+          educationPrograms[educationProgram - 1].educationModuleIds[
+            educationProgress - 1
+          ]
+      );
+    } else {
+      module = educationModules.find(
+        (unit) =>
+          unit.id ===
+          educationPrograms[educationProgram - 1].educationModuleIds[
+            educationProgress - 1
+          ]
+      );
     }
-    const module = educationModules.find(
-      (unit) =>
-        unit.id ===
-        educationPrograms[educationProgram - 1].educationModuleIds[
-          educationProgress - 1
-        ]
-    );
+
     if (module) {
       setCurrentModule(module);
     }
@@ -146,7 +155,7 @@ export const EducationContextProvider = ({ children }) => {
         lastEducationModuleId,
         lastCompletedEducationModuleDate,
         setInjectionModuleType,
-        injectionModuleType
+        injectionModuleType,
       }}
     >
       {children}
