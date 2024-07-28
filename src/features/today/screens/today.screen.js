@@ -41,7 +41,7 @@ export const TodayScreen = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
 
   const isFocused = useIsFocused();
-
+console.log(uid)
   const loadUserData = async () => {
     try {
       const data = await getUser(uid);

@@ -22,7 +22,6 @@ export const Signup = ({ navigation }) => {
     useContext(OnboardContext);
   const { firstName, lastName, email } = onboardingData;
   const [showButton, setShowButton] = useState(true);
-
   return (
     <>
       <NavigationBarLeft

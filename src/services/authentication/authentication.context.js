@@ -4,11 +4,7 @@ import "firebase/compat/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { postUser, patchUser } from "./authentication.service";
 import { OnboardContext } from "../onboard/onboard.context";
-import { ProfileContext } from "../profile/profile-context";
-import { MovementContext } from "../movement/movement.context";
 import { EducationContext } from "../education/education.context";
-import { OutcomeContext } from "../outcome/outcome.context";
-import { WellnessCoachContext } from "../wellness/wellness-coach.context";
 import { timeZonedTodaysDate } from "../../utils";
 
 export const AuthenticationContext = createContext();
@@ -21,8 +17,6 @@ export const AuthenticationContextProvider = ({ children, expoPushToken }) => {
   const { onboardingData, setError, providerId } = useContext(OnboardContext);
   const { educationProgram, injectionModuleType } =
     useContext(EducationContext);
-  const { setCompletedProgram } = useContext(OutcomeContext);
-  const { setWellnessCoachReminded } = useContext(WellnessCoachContext);
 
   const loginRequest = (email, password) =>
     firebase.auth().signInWithEmailAndPassword(email, password);

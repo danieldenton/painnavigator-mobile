@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -19,14 +19,8 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const {
-    error,
-    setProviderId,
-    setError,
-    providerCode,
-    setProviderCode,
-    handleInjectionContent,
-  } = useContext(OnboardContext);
+  const { error, setProviderId, setError, providerCode, setProviderCode, handleInjectionContent } =
+    useContext(OnboardContext);
 
   async function checkProviderCode() {
     try {
@@ -34,20 +28,16 @@ export const ProviderCodeScreen = ({ navigation }) => {
         `${API_URL}/api/v1/providers/${providerCode}`
       );
       setProviderId(response.data.data.id);
+      handleInjectionContent()
+      if (error) {
+        setError(null);
+      }
+      navigation.navigate("Explanation");
     } catch (error) {
       setError("Please enter a valid code");
       console.error(error);
     }
   }
-
-  const handleProviderCode = () => {
-    checkProviderCode();
-    handleInjectionContent();
-    if (error) {
-      setError(null);
-    }
-    navigation.navigate("Explanation");
-  };
 
   const handleEmailPress = () => {
     const emailAddress = "support@painnavigator.io";
@@ -105,7 +95,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
               disabled={providerCode.length === 6 ? false : true}
               title={"Submit"}
               onPress={() => {
-                handleProviderCode();
+                checkProviderCode();
               }}
             />
           </View>
