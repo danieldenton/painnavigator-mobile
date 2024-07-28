@@ -26,18 +26,7 @@ const introStyles = StyleSheet.create({
   },
 });
 
-export const EducationSummaryStepZero = ({ data }) => {
-  return (
-    <>
-      <Text style={introStyles.summary}>{data.summary}</Text>
-      <Text style={introStyles.summaryAboveBullets}>{data.summary_2}</Text>
-      <BulletList bullets={data.steps} />
-      <Text style={introStyles.summary}>{data.summary_3}</Text>
-    </>
-  );
-};
-
-export const EducationSummaryStepOne = ({ summary }) => {
+export const InjectionStepOne = ({ summary }) => {
   const firstHalfSummary = summary.slice(0, 394);
   const boldText = summary.slice(394, 409);
   const secondHalfSummary = summary.slice(409, 1104);
@@ -50,7 +39,7 @@ export const EducationSummaryStepOne = ({ summary }) => {
     </Text>
   );
 };
-export const EducationSummaryStepTwo = ({ data }) => {
+export const InjectionStepTwo = ({ data }) => {
   return (
     <>
       <Text style={introStyles.summaryAboveBullets}>{data.summary}</Text>
@@ -60,7 +49,7 @@ export const EducationSummaryStepTwo = ({ data }) => {
   );
 };
 
-export const EducationSummaryStepThree = ({ data }) => {
+export const InjectionStepThree = ({ data }) => {
   return (
     <>
       <Text style={introStyles.summaryAboveBullets}>{data.summary}</Text>
@@ -69,6 +58,6 @@ export const EducationSummaryStepThree = ({ data }) => {
   );
 };
 
-export const EducationSummaryStepFour = ({ summary }) => {
+export const InjectionStepFour = ({ summary }) => {
   return <Text style={introStyles.summary}>{summary}</Text>;
 };

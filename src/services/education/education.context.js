@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
-import { educationModules } from "../../features/education/data/education-module-data.json";
-import { educationPrograms } from "./education-programs-data.json";
+import { educationModules } from "./data/education-module-data.json"
+import { painInjectionModuleData } from "./data/pain-injection-module-data.json"
+import { educationPrograms } from "./data/education-programs-data.json";
 import {
   getEducationModuleCompletions,
   postEducationModule,

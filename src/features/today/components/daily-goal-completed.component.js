@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { Selected } from "../../../icons";
-import { educationModules } from "../../education/data/education-module-data.json";
+import { educationModules } from "../../../services/education/data/education-module-data.json"
 import { movementModules } from "../../../services/movement/movement-modules-data.json";
 
 const DailyGoalCard = styled(Card)`

@@ -4,13 +4,11 @@ import { Scroll } from "../../../components/scroll.component";
 import { EducationContext } from "../../../services/education/education.context";
 import { Header, TitleSection, UnitTitle } from "./education-unit.styles";
 import {
-  EducationSummaryStepZero,
-  EducationSummaryStepOne,
-  EducationSummaryStepTwo,
-  EducationSummaryStepThree,
-  EducationSummaryStepFour,
-} from "./pn-intro-steps.component";
-
+  InjectionStepOne,
+  InjectionStepTwo,
+  InjectionStepThree,
+  InjectionStepFour,
+} from "./injection-steps.component";
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep } = useContext(EducationContext);
   const { pnIntroData } = currentModule;
