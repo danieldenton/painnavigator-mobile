@@ -44,6 +44,9 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
+    if (injectionModuleType) {
+
+    }
     const module = educationModules.find(
       (unit) =>
         unit.id ===
