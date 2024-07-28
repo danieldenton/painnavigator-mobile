@@ -27,12 +27,14 @@ export const OnboardContextProvider = ({ children }) => {
     const providerPrefixes = "ASC" || "RSP" || "CPW" || "PPS";
     if (providerCode.startsWith(providerPrefixes)) {
       if (providerCode.endsWith("TPI")) {
-        setInjectionModuleType(1);
+        setInjectionModuleType(0);
       } else if (providerCode.endsWith("LES")) {
-        setInjectionModuleType(2);
+        setInjectionModuleType(1);
       } else if (providerCode.endsWith("LTE")) {
-        setInjectionModuleType(3);
+        setInjectionModuleType(2);
       } else if (providerCode.endsWith("LFI")) {
+        setInjectionModuleType(3);
+      } else if (providerCode.endsWith("LFR")) {
         setInjectionModuleType(4);
       } else if (providerCode.endsWith("SJI")) {
         setInjectionModuleType(5);
