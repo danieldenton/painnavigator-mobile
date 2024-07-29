@@ -88,17 +88,20 @@
       "skippable": false,
       "pnIntroData": [
         {
-          "name": "What are lumbar epidural steroid injections (LESI)?",
-          "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine.",
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "What are lumbar epidural steroid injections (LESI)?",
+          "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine."
         },
         {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "How it works",
           "summary": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is carefully injected into the epidural space near your spine. This helps calm down the irritated nerves and provides relief from pain.",
           "summary_header2": "When is it used?",
           "summary2": "LESI is commonly recommended for conditions like spinal stenosis, lumbar radiculopathy, herniated discs, sciatica, and other issues that cause nerve irritation and pain in the lower back and legs"
         },
         {
-          "name": "Before the Procedure:",
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
@@ -107,8 +110,9 @@
           ]
         },
         {
-          "summary_header2": "How is the Procedure Done?",
-          "bullets2": [
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "summary_header": "How is the Procedure Done?",
+          "bullets": [
             "Preparation: You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: The doctor will use X-ray guidance to ensure precise placement of the epidural needle. The healthcare provider will inject a mixture of a saline, local anesthetic, and/or a steroid (anti-inflammatory medication) into the epidural space surrounding the spinal nerves. During the injection, you may feel a brief zap or electrical sensation down one or both legs. This is normal and should get better immediately.",
             "Post-Procedure: After the injection, you’ll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."

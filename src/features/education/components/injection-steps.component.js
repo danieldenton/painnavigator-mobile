@@ -12,7 +12,7 @@ const introStyles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Inter_700Bold",
     marginTop: 20,
-    marginBottom: 16
+    marginBottom: 16,
   },
   summary: {
     fontSize: 16,
@@ -31,6 +31,7 @@ const introStyles = StyleSheet.create({
 export const InjectionSteps = ({ data }) => {
   const { injectionModuleType, educationIntroStep } =
     useContext(EducationContext);
+  console.log(educationIntroStep);
   return (
     <>
       <Text style={introStyles.summary_header}>{data.summary_header}</Text>
@@ -41,7 +42,9 @@ export const InjectionSteps = ({ data }) => {
 
       {data.bullets ? (
         <>
-          {educationIntroStep === 1  || educationIntroStep === 5 ? (
+          {educationIntroStep === 1 ||
+          educationIntroStep === 5 ||
+          (educationIntroStep === 4 && injectionModuleType === 1) ? (
             <BulletList bullets={data.bullets} />
           ) : (
             <BoldIntroBulletList bullets={data.bullets} />
@@ -81,8 +84,6 @@ export const InjectionSteps = ({ data }) => {
       {data.summary3 ? (
         <Text style={introStyles.boldSummary}>{data.summary3}</Text>
       ) : null}
-
-      {data.bullets3 ? <BulletList bullets={data.bullets3} /> : null}
     </>
   );
 };
