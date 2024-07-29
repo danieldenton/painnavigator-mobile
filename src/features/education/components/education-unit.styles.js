@@ -27,6 +27,7 @@ export const ModuleTypeTitle = styled.Text`
 export const UnitTitle = styled.Text`
   font-size: 25px;
   font-family: Poppins_600SemiBold;
+  text-align: center;
 `;
 
 export const UnitSubtitle = styled.Text`

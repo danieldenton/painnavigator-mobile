@@ -15,7 +15,6 @@ const introStyles = StyleSheet.create({
     textAlign: 'center'
   },
   summary: {
-    marginTop: 20,
     fontSize: 16,
     fontFamily: "Inter_400Regular",
     lineHeight: 28,
