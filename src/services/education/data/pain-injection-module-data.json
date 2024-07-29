@@ -13,9 +13,11 @@
           "name": "Trigger Point Injections",
           "summary_header": "What are Trigger Point Injections (TPI)?",
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
-          "summary_header2": "When are They Used?",
-          "summary2": "Trigger point injections may be recommended for patients experiencing:",
-          "bullets2": [
+        },
+        {
+          "summary_header": "When are They Used?",
+          "summary": "Trigger point injections may be recommended for patients experiencing:",
+          "bullets": [
             "Muscle pain, tenderness, spasms, or stiffness",
             "Limited range of motion",
             "Fibromyalgia or myofascial pain syndrome"
@@ -30,7 +32,7 @@
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
             "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
           ],
-          "summary_header2": "How is the Procedure Done?",
+          "summary_header2": "What to expect during the procedure",
           "bullets2": [
             "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
             "Injection: Using a thin needle, the healthcare provider will inject a mixture of a local anesthetic (numbing medication) and sometimes a corticosteroid (anti-inflammatory medication) directly into the trigger point. The injection helps to relax the muscle and relieve pain.",
