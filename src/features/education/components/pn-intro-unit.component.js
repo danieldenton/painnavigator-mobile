@@ -30,13 +30,15 @@ export const PNIntroUnit = () => {
     }
   }, [educationIntroStep]);
 
-  const educationIntroStepComponents = [
-    <EducationSummaryStepZero data={pnIntroData[0]} />,
-    <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
-    <EducationSummaryStepTwo data={pnIntroData[2]} />,
-    <EducationSummaryStepThree data={pnIntroData[3]} />,
-    <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
-  ];
+  const educationIntroStepComponents = !injectionModuleType
+    ? [
+        <EducationSummaryStepZero data={pnIntroData[0]} />,
+        <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
+        <EducationSummaryStepTwo data={pnIntroData[2]} />,
+        <EducationSummaryStepThree data={pnIntroData[3]} />,
+        <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
+      ]
+    : null;
 
   return (
     <>

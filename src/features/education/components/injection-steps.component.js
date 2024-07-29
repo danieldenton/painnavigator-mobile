@@ -30,6 +30,9 @@ const introStyles = StyleSheet.create({
 });
 
 export const InjectionSteps = ({ data }) => {
+  const { injectionModuleType, educationIntroStep } =
+    useContext(EducationContext);
+    console.log(educationIntroStep)
   return (
     <>
       <Text style={introStyles.summary_header}>{data.summary_header}</Text>
@@ -38,13 +41,19 @@ export const InjectionSteps = ({ data }) => {
         <Text style={introStyles.summary}>{data.summary}</Text>
       ) : null}
 
-      {injectionModuleType === 0 ? (
-        <BoldIntroBulletList bullets={data.bullets} />
-      ) : (
-        <BulletList bullets={data.bullets} />
-      )}
+      {data.bullets ? (
+        <>
+          {educationIntroStep === 2 ? (
+            <BulletList bullets={data.bullets} />
+          ) : (
+            <BoldIntroBulletList bullets={data.bullets} />
+          )}
+        </>
+      ) : null}
 
-      {data.sub_bullets ? <SubStepBullets subBullets={data.bullets} /> : null}
+      {data.sub_bullets ? (
+        <SubStepBullets subBullets={data.sub_bullets} />
+      ) : null}
 
       {data.summary_header2 ? (
         <Text style={introStyles.summary_header}>{data.summary_header2}</Text>
@@ -54,7 +63,13 @@ export const InjectionSteps = ({ data }) => {
         <Text style={introStyles.summary}>{data.summary2}</Text>
       ) : null}
 
-      {data.bullets2 ? <BoldIntroBulletList bullets={data.bullets2} /> : null}
+      {data.bullets2 ? (
+        educationIntroStep <= 1 ? (
+          <BoldIntroBulletList bullets={data.bullets2} />
+        ) : (
+          <BulletList bullets={data.bullets2} />
+        )
+      ) : null}
 
       {data.subBullets ? (
         <SubStepBullets subBullets={data.subBullets2} />
@@ -68,7 +83,7 @@ export const InjectionSteps = ({ data }) => {
         <Text style={introStyles.summary}>{data.summary3}</Text>
       ) : null}
 
-      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets3} /> : null}
+      {data.bullets3 ? <BulletList bullets={data.bullets3} /> : null}
     </>
   );
 };
@@ -115,7 +130,6 @@ export const InjectionStepTwo = ({ data }) => {
 };
 
 export const InjectionStepThree = ({ data }) => {
-  const { injectionModuleType } = useContext(EducationContext);
   return (
     <>
       <Text style={introStyles.summary_header}>{data.summary_header}</Text>
