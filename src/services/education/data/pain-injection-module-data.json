@@ -226,11 +226,15 @@
         {
           "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "What are lumbar facet injections/lumbar facet medial branch blocks (MBBs)?",
-          "summary": "Lumbar facet injections or lumbar facet medial branch blocks (MBBs) are specialized procedures aimed at alleviating lower back pain by targeting the facet joints in the spine.",
-          "summary_header2": "How it works",
-          "summary2": "During the procedure, a mixture of a numbing agent and/or anti-inflammatory medication (steroid) is carefully injected into and around the affected facet joints. This helps reduce inflammation and relieve pain associated with these joints.",
-          "summary_header3": "When is it used?",
-          "summary3": "Lumbar facet injections are commonly recommended for conditions such as facet joint osteoarthritis, facet joint syndrome, and other sources of facet joint inflammation or irritation"
+          "summary": "Lumbar facet injections or lumbar facet medial branch blocks (MBBs) are specialized procedures aimed at alleviating lower back pain by targeting the facet joints in the spine."
+        },
+
+        {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
+          "summary_header": "How it works",
+          "summary": "During the procedure, a mixture of a numbing agent and/or anti-inflammatory medication (steroid) is carefully injected into and around the affected facet joints. This helps reduce inflammation and relieve pain associated with these joints.",
+          "summary_header2": "When is it used?",
+          "summary2": "Lumbar facet injections are commonly recommended for conditions such as facet joint osteoarthritis, facet joint syndrome, and other sources of facet joint inflammation or irritation"
         },
         {
           "name": "Lumbar Facet Injections/ Medial Branch Blocks",
@@ -240,16 +244,19 @@
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
             "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
-          ],
-          "summary_header2": "What to expect during the procedure:",
-          "bullets2": [
+          ]
+        },
+        {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
+          "summary_header": "What to expect during the procedure:",
+          "bullets": [
             "Preparation:You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: The doctor will use X-ray guidance (fluoroscopy) to ensure precise placement of the needle(s) into the facet joint space(s). A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected."
           ],
-          "sub_bullets2": [
+          "sub_bullets": [
             "You may feel brief pressure or ache while the medication is being injected."
           ],
-          "bullets3": [
+          "bullets2": [
             "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
           ]
         },
