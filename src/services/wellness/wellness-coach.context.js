@@ -14,7 +14,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
   const [wellnessCoachReminded, setWellnessCoachReminded] = useState(true);
 
   useEffect(() => {
-    const messagesRecieved = messages.filter(
+    const messagesRecieved = messages?.filter(
       (message) => message.sender_id === 1
     );
     const unreadMessagesRecieved = messagesRecieved.filter(
