@@ -44,7 +44,7 @@ export const InjectionSteps = ({ data }) => {
         <>
           {educationIntroStep === 1 ||
           educationIntroStep === 5 ||
-          (educationIntroStep === 4 && injectionModuleType === 1) ? (
+          (educationIntroStep === 4) ? (
             <BulletList bullets={data.bullets} />
           ) : (
             <BoldIntroBulletList bullets={data.bullets} />

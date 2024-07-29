@@ -158,11 +158,14 @@
         {
           "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "What are lumbar transforaminal epidural steroid injections (TFESI)?",
-          "summary": "Lumbar transforaminal epidural steroid injections (TFESIs) are specialized treatments aimed at reducing lower back and leg pain caused by nerve inflammation in the spine.",
-          "summary_header2": "How it works",
-          "summary2": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is precisely injected into the epidural space near the affected nerve roots. This helps reduce inflammation and provides relief from pain.",
-          "summary_header3": "When is it used?",
-          "summary3": "TFESIs are commonly recommended for conditions such as lumbar radiculopathy (sciatica), herniated discs, and spinal stenosis, where nerve irritation in the lower back leads to pain, tingling, or numbness in the legs."
+          "summary": "Lumbar transforaminal epidural steroid injections (TFESIs) are specialized treatments aimed at reducing lower back and leg pain caused by nerve inflammation in the spine."
+        },
+        {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
+          "summary_header": "How it works",
+          "summary": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is precisely injected into the epidural space near the affected nerve roots. This helps reduce inflammation and provides relief from pain.",
+          "summary_header2": "When is it used?",
+          "summary2": "TFESIs are commonly recommended for conditions such as lumbar radiculopathy (sciatica), herniated discs, and spinal stenosis, where nerve irritation in the lower back leads to pain, tingling, or numbness in the legs."
         },
         {
           "name": "Lumbar Transforaminal Epidural Steroid Injections",
@@ -172,9 +175,12 @@
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
             "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
-          ],
-          "summary_header2": "How is the Procedure Done?",
-          "bullets2": [
+          ]
+        },
+        {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
+          "summary_header": "How is the Procedure Done?",
+          "bullets": [
             "Preparation:You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: Using fluoroscopy (X-ray guidance) for accuracy, the doctor will insert a needle near the affected nerve root and deliver the medication directly into the epidural space. During the injection, you may feel a brief zap or electrical sensation go down one or both legs. This is normal and should get better immediately.",
             "Post-Procedure: After the injection, you’ll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
@@ -200,7 +206,7 @@
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
-          "bullets": [
+          "bullets2": [
             "Responses to TFESIs can vary, but many patients experience significant pain relief that can last for several weeks to months",
             "Your doctor will monitor your progress through your use of PainNavigator and work with you to determine the best course of treatment"
           ],
