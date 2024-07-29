@@ -10,13 +10,7 @@ import {
   EducationSummaryStepThree,
   EducationSummaryStepFour,
 } from "./pn-intro-steps.component";
-import {
-  InjectionSteps,
-  InjectionStepOne,
-  InjectionStepTwo,
-  InjectionStepThree,
-  InjectionStepFour,
-} from "./injection-steps.component";
+import { InjectionSteps } from "./injection-steps.component";
 
 export const PNIntroUnit = () => {
   const { currentModule, educationIntroStep, injectionModuleType } =
@@ -30,15 +24,16 @@ export const PNIntroUnit = () => {
     }
   }, [educationIntroStep]);
 
-  const educationIntroStepComponents = !injectionModuleType
-    ? [
-        <EducationSummaryStepZero data={pnIntroData[0]} />,
-        <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
-        <EducationSummaryStepTwo data={pnIntroData[2]} />,
-        <EducationSummaryStepThree data={pnIntroData[3]} />,
-        <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
-      ]
-    : null;
+  const educationIntroStepComponents =
+    injectionModuleType !== null
+      ? null
+      : [
+          <EducationSummaryStepZero data={pnIntroData[0]} />,
+          <EducationSummaryStepOne summary={pnIntroData[1].summary} />,
+          <EducationSummaryStepTwo data={pnIntroData[2]} />,
+          <EducationSummaryStepThree data={pnIntroData[3]} />,
+          <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
+        ];
 
   return (
     <>
@@ -52,7 +47,7 @@ export const PNIntroUnit = () => {
               <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
             </TitleSection>
           </Header>
-          {injectionModuleType ? (
+          {injectionModuleType !== null ? (
             <InjectionSteps data={pnIntroData[educationIntroStep]} />
           ) : (
             educationIntroStepComponents[educationIntroStep]
