@@ -11,7 +11,6 @@ const introStyles = StyleSheet.create({
   summary_header: {
     fontSize: 20,
     fontFamily: "Inter_700Bold",
-    fontWeight: "bold",
     marginTop: 16,
   },
   summary: {
@@ -20,11 +19,10 @@ const introStyles = StyleSheet.create({
     fontFamily: "Inter_400Regular",
     lineHeight: 28,
   },
-  summaryAboveBullets: {
-    marginTop: 8,
-    marginBottom: 10,
+  boldSummary: {
+    marginTop: 16,
     fontSize: 16,
-    fontFamily: "Inter_400Regular",
+    fontFamily: "Inter_700Bold",
     lineHeight: 28,
   },
 });
@@ -32,7 +30,6 @@ const introStyles = StyleSheet.create({
 export const InjectionSteps = ({ data }) => {
   const { injectionModuleType, educationIntroStep } =
     useContext(EducationContext);
-    console.log(educationIntroStep)
   return (
     <>
       <Text style={introStyles.summary_header}>{data.summary_header}</Text>
@@ -43,7 +40,7 @@ export const InjectionSteps = ({ data }) => {
 
       {data.bullets ? (
         <>
-          {educationIntroStep === 2 ? (
+          {educationIntroStep === 2 && injectionModuleType !== 0 ? (
             <BulletList bullets={data.bullets} />
           ) : (
             <BoldIntroBulletList bullets={data.bullets} />
@@ -64,7 +61,8 @@ export const InjectionSteps = ({ data }) => {
       ) : null}
 
       {data.bullets2 ? (
-        educationIntroStep <= 1 ? (
+        educationIntroStep === 1 ||
+        (educationIntroStep == 2 && injectionModuleType === 0) ? (
           <BoldIntroBulletList bullets={data.bullets2} />
         ) : (
           <BulletList bullets={data.bullets2} />
@@ -80,84 +78,14 @@ export const InjectionSteps = ({ data }) => {
       ) : null}
 
       {data.summary3 ? (
-        <Text style={introStyles.summary}>{data.summary3}</Text>
+        educationIntroStep === 3 ? (
+          <Text style={introStyles.boldSummary}>{data.summary3}</Text>
+        ) : (
+          <Text style={introStyles.summary}>{data.summary3}</Text>
+        )
       ) : null}
 
       {data.bullets3 ? <BulletList bullets={data.bullets3} /> : null}
     </>
   );
-};
-
-export const InjectionStepOne = ({ data }) => {
-  return (
-    <>
-      <Text style={introStyles.summary_header}>{data.summary_header}</Text>
-      <Text style={introStyles.summary}>{data.summary}</Text>
-      <Text style={introStyles.summary_header}>{data.summary_header2}</Text>
-      <Text style={introStyles.summary}>{data.summary2}</Text>
-      {data.bullets2 ? (
-        <BulletList bullets={data.bullets2} />
-      ) : (
-        <>
-          <Text style={introStyles.summary_header}>{data.summary_header3}</Text>
-          {data.summary3 ? (
-            <Text style={introStyles.summary}>{data.summary3}</Text>
-          ) : (
-            <BulletList bullets={data.bullets3} />
-          )}
-        </>
-      )}
-    </>
-  );
-};
-
-export const InjectionStepTwo = ({ data }) => {
-  return (
-    <>
-      <Text style={introStyles.summary_header}>{data.summary_header}</Text>
-      <BoldIntroBulletList bullets={data.bullets} />
-      <Text style={introStyles.summary_header}>{data.summary_header2}</Text>
-      <BoldIntroBulletList bullets={data.bullets2} />
-      {data.sub_bullets2 ? (
-        <SubStepBullets subBullets={data.sub_bullets2} />
-      ) : null}
-      {data.summary_header3 ? (
-        <Text style={introStyles.summary_header}>{data.summary_header3}</Text>
-      ) : null}
-      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets3} /> : null}
-    </>
-  );
-};
-
-export const InjectionStepThree = ({ data }) => {
-  return (
-    <>
-      <Text style={introStyles.summary_header}>{data.summary_header}</Text>
-      {injectionModuleType === 0 ? (
-        <BoldIntroBulletList bullets={data.bullets} />
-      ) : (
-        <BulletList bullets={data.bullets} />
-      )}
-      {data.sub_bullets ? <SubStepBullets subBullets={data.bullets} /> : null}
-      {data.summary_header2 ? (
-        <Text style={introStyles.summary_header}>{data.summary_header2}</Text>
-      ) : null}
-      <BoldIntroBulletList bullets={data.bullets2} />
-      {data.subBullets ? (
-        <SubStepBullets subBullets={data.subBullets2} />
-      ) : null}
-
-      {data.sub_bullets2 ? (
-        <SubStepBullets subBullets={data.sub_bullets2} />
-      ) : null}
-      {data.summary_header3 ? (
-        <Text style={introStyles.summary_header}>{data.summary_header3}</Text>
-      ) : null}
-      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets3} /> : null}
-    </>
-  );
-};
-
-export const InjectionStepFour = ({ data }) => {
-  return <Text style={introStyles.summary}>{summary}</Text>;
 };

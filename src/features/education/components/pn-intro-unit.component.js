@@ -17,7 +17,7 @@ export const PNIntroUnit = () => {
     useContext(EducationContext);
   const { pnIntroData } = currentModule;
   const scrollViewRef = useRef();
-  console.log(injectionModuleType);
+
   useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({ y: 0, animated: true });
