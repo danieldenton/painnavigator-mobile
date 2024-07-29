@@ -59,7 +59,7 @@ export const EducationContextProvider = ({ children }) => {
     if (module) {
       setCurrentModule(module);
     }
-  }, [educationProgress, injectionModuleType]);
+  }, [injectionModuleType, educationProgress]);
 
   const loadEducationMouleCompletions = async () => {
     const data = await getEducationModuleCompletions(uid);
