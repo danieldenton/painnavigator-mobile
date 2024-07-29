@@ -7,8 +7,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+           "name": "Trigger Point Injections",
           "summary_header": "What are Trigger Point Injections (TPI)?",
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
           "summary_header2": "When are They Used?",
@@ -20,6 +21,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "Before the Procedure",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -35,6 +37,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
@@ -47,7 +50,7 @@
             "Recovery: You may experience some mild soreness or bruising at the injection site, but this typically resolves within a few days",
             "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
           ],
-          "sub_bullets": [
+          "sub_bullets2": [
             "Patients may use ice/cold packs over the procedure site to help with soreness during the first 24 hours after the procedure.",
             "After 24 hours, a heating pad may be useful",
             "Massage may also help relieve procedure soreness.",
@@ -55,6 +58,7 @@
           ]
         },
         {
+          "name": "Trigger Point Injections",
           "summary_header": "Things to Keep in mind:",
           "summary": "While trigger point injections are generally safe, potential risks and complications may include:",
           "bullets": [
@@ -79,8 +83,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+         "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "What are lumbar epidural stAeroid injections (LESI)?",
           "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine.",
           "summary_header2": "How it works",
@@ -89,6 +94,7 @@
           "summary3": "LESI is commonly recommended for conditions like spinal stenosis, lumbar radiculopathy, herniated discs, sciatica, and other issues that cause nerve irritation and pain in the lower back and legs"
         },
         {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -104,6 +110,7 @@
           ]
         },
         {
+         "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "While you may not feel immediate relief, many patients notice improvement within a few days as the medication starts working.",
@@ -118,6 +125,7 @@
           ]
         },
         {
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
@@ -136,8 +144,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "What are lumbar transforaminal epidural steroid injections (TFESI)?",
           "summary": "Lumbar transforaminal epidural steroid injections (TFESIs) are specialized treatments aimed at reducing lower back and leg pain caused by nerve inflammation in the spine.",
           "summary_header2": "How it works",
@@ -146,6 +155,7 @@
           "summary3": "TFESIs are commonly recommended for conditions such as lumbar radiculopathy (sciatica), herniated discs, and spinal stenosis, where nerve irritation in the lower back leads to pain, tingling, or numbness in the legs."
         },
         {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -161,6 +171,7 @@
           ]
         },
         {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "While immediate relief may not occur, many patients experience decreased pain within a few days as the medication takes effect.",
@@ -175,6 +186,7 @@
           ]
         },
         {
+          "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
@@ -193,8 +205,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "What are lumbar facet injections/lumbar facet medial branch blocks (MBBs)?",
           "summary": "Lumbar facet injections or lumbar facet medial branch blocks (MBBs) are specialized procedures aimed at alleviating lower back pain by targeting the facet joints in the spine.",
           "summary_header2": "How it works",
@@ -203,6 +216,7 @@
           "summary3": "Lumbar facet injections are commonly recommended for conditions such as facet joint osteoarthritis, facet joint syndrome, and other sources of facet joint inflammation or irritation"
         },
         {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -223,6 +237,7 @@
           ]
         },
         {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "Many patients notice improvement in their lower back pain that day or within a few days as the medication takes effect. You can gradually resume your normal activities as you feel comfortable.",
@@ -240,6 +255,7 @@
           ]
         },
         {
+          "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
@@ -263,8 +279,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+          "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "What are lumbar facet/medial branch radiofrequency ablations (RFAs)?",
           "summary": "Lumbar facet/medial branch radiofrequency ablation (RFA) is a procedure to help with chronic low back pain by stopping the pain signals from the facet joints in the spine.",
           "summary_header2": "How it works",
@@ -276,6 +293,7 @@
           ]
         },
         {
+          "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -291,6 +309,7 @@
           ]
         },
         {
+          "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": ["For procedural soreness:"],
           "sub_bullets": [
@@ -306,6 +325,7 @@
           ]
         },
         {
+          "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection, bleeding, or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
@@ -325,8 +345,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+          "name": "Sacroiliac Joint Injections",
           "summary_header": "What are sacroiliac joint injections (SIJ injections)?",
           "summary": "Sacroiliac joint injections (SIJ injections) with pain and swelling in the lower back and buttocks. They're given in a joint where the spine connects to the hips.",
           "summary_header2": "How it works",
@@ -335,6 +356,7 @@
           "summary3": "SIJ injections are commonly recommended for pain coming from the SI joint, which will cause  pain in the lower back and buttocks that doesn't get better with more conservative treatments like exercise and/or medications."
         },
         {
+          "name": "Sacroiliac Joint Injections",
           "summary_header": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
@@ -350,6 +372,7 @@
           ]
         },
         {
+          "name": "Sacroiliac Joint Injections",
           "summary_header": "What Can I Expect After the Procedure?",
           "bullets": [
             "You might not feel better right away, but many people start feeling relief within a few days.",
@@ -366,6 +389,7 @@
           ]
         },
         {
+          "name": "Sacroiliac Joint Injections",
           "summary_header": "Things to keep in mind:",
           "summary": "Although complications are rare, it's essential to be aware of potential risks like infection, bleeding, or allergic reactions. Your healthcare provider will discuss these with you beforehand to ensure you're well-informed.",
           "summary_header2": "Results and followup:",
@@ -384,8 +408,9 @@
       "source": null,
       "post_video_destination": null,
       "skippable": false,
-      "data": [
+      "pnIntroData": [
         {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What are lumbar spinal cord stimulator trials?",
           "summary": "Lumbar spinal cord stimulator (SCS) trials are tests to check if a device can help manage lower back and leg pain. The stimulator is a small device that sends gentle electrical pulses to your spine to reduce pain signals.",
           "summary_header2": "How do they work?",
@@ -394,6 +419,7 @@
           "summary3": "Doctors suggest SCS trials for people with long-lasting lower back and leg pain that hasn't gotten better with other treatments such as exercise, medications, injections, and/or spine surgeries."
         },
         {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What to expect during the SCS trial?",
           "summary": "Preparation:",
           "bullets": [
@@ -416,6 +442,7 @@
           ]
         },
         {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What can I expect after the SCS trial?",
           "bullets": [
             "You'll talk to your doctor about how the trial went. If it helped, you might get a permanent device put in later.",
@@ -423,6 +450,7 @@
           ]
         },
         {
+
           "summary_header": "Things to keep in mind:",
           "bullets": [
             "The trial isn't permanent and doesn't need surgery.",

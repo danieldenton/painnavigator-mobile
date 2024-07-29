@@ -11,6 +11,7 @@ import {
   EducationSummaryStepFour,
 } from "./pn-intro-steps.component";
 import {
+  InjectionSteps,
   InjectionStepOne,
   InjectionStepTwo,
   InjectionStepThree,
@@ -18,10 +19,11 @@ import {
 } from "./injection-steps.component";
 
 export const PNIntroUnit = () => {
-  const { currentModule, educationIntroStep, injectionModuleType } = useContext(EducationContext);
+  const { currentModule, educationIntroStep, injectionModuleType } =
+    useContext(EducationContext);
   const { pnIntroData } = currentModule;
   const scrollViewRef = useRef();
-
+  console.log(injectionModuleType);
   useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({ y: 0, animated: true });
@@ -36,13 +38,6 @@ export const PNIntroUnit = () => {
     <EducationSummaryStepFour summary={pnIntroData[4].summary} />,
   ];
 
-  const injectionIntroStepComponents = [
-    <InjectionStepOne />,
-    <InjectionStepTwo />,
-    <InjectionStepThree />,
-    <InjectionStepFour />,
-  ];
-
   return (
     <>
       <Scroll
@@ -55,7 +50,11 @@ export const PNIntroUnit = () => {
               <UnitTitle>{pnIntroData[educationIntroStep].name}</UnitTitle>
             </TitleSection>
           </Header>
-          {educationIntroStepComponents[educationIntroStep]}
+          {injectionModuleType ? (
+            <InjectionSteps data={pnIntroData[educationIntroStep]} />
+          ) : (
+            educationIntroStepComponents[educationIntroStep]
+          )}
         </View>
       </Scroll>
     </>

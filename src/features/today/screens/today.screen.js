@@ -58,7 +58,7 @@ export const TodayScreen = ({ navigation }) => {
       console.error(error);
     }
   };
-
+console.log(uid)
   useEffect(() => {
     loadUserData();
     Audio.setAudioModeAsync({ playsInSilentModeIOS: true });

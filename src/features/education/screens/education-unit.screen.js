@@ -24,12 +24,15 @@ export const EducationUnitScreen = ({ navigation }) => {
     skipModule,
     educationIntroStep,
     setEducationIntroStep,
+    educationProgress,
+    injectionModuleType
   } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const { post_video_destination, type, skippable, id } = currentModule;
-  const pnIntroModule = id === 1 && educationIntroStep < 4;
-
+  const introLength = injectionModuleType ? 3 : 4
+  const pnIntroModule = educationProgress === 1 && educationIntroStep < introLength
+console.log(injectionModuleType)
   useEffect(() => {
     setIsMovement(false);
   }, []);
