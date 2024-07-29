@@ -328,9 +328,11 @@
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
             "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
-          ],
-          "summary_header2": "What to expect during the procedure:",
-          "bullets2": [
+          ]
+        },
+        {
+          "summary_header": "What to expect during the procedure:",
+          "bullets": [
             "Preparation: You'll be asked to lay down on your belly in a comfortable position. The injection site will be cleaned, and you will be given a numbing medication to minimize discomfort.",
             "Procedure: The doctor will use fluoroscopy (X-ray guidance) to ensure precise placement of the specialized needle(s) around the facet joint space(s). A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected into the joint to numb the area. The specialized needle will then send heat to the nerves to stop them from working.",
             "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 30-45 minutes, and you can typically go home the same day."
