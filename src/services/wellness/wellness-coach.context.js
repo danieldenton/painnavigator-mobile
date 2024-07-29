@@ -17,7 +17,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
     const messagesRecieved = messages?.filter(
       (message) => message.sender_id === 1
     );
-    const unreadMessagesRecieved = messagesRecieved.filter(
+    const unreadMessagesRecieved = messagesRecieved?.filter(
       (message) => message.status === "unread"
     );
 

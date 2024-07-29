@@ -10,11 +10,13 @@
       "skippable": false,
       "pnIntroData": [
         {
-          "name": "What are Trigger Point Injections (TPI)?",
+          "name": "Trigger Point Injections",
+          "summary_header": "What are Trigger Point Injections (TPI)?",
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension."
         },
         {
-          "name": "Function and Usages",
+          "name": "Trigger Point Injections",
+          "summary_header": "Function and Usages",
           "summary": "Trigger point injections may be recommended for patients experiencing:",
           "bullets": [
             "Muscle pain, tenderness, spasms, or stiffness",
@@ -23,7 +25,8 @@
           ]
         },
         {
-          "name": "Before the Procedure",
+          "name": "Trigger Point Injections",
+          "summary_header": "Before the Procedure",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
@@ -32,7 +35,8 @@
           ]
         },
         {
-          "name": "What to expect during the procedure",
+          "name": "Trigger Point Injections",
+          "summary_header": "What to expect during the procedure",
           "bullets": [
             "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
             "Injection: Using a thin needle, the healthcare provider will inject a mixture of a local anesthetic (numbing medication) and sometimes a corticosteroid (anti-inflammatory medication) directly into the trigger point. The injection helps to relax the muscle and relieve pain.",
@@ -40,7 +44,8 @@
           ]
         },
         {
-          "name": "What to Expect After the Procedure",
+          "name": "Trigger Point Injections",
+          "summary_header": "What to Expect After the Procedure",
           "bullets": [
             "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
             "Recovery: You may experience some mild soreness or bruising at the injection site, but this typically resolves within a few days.",
@@ -83,23 +88,25 @@
       "skippable": false,
       "pnIntroData": [
         {
-          "name": "Lumbar Epidural Steroid Injection (LESI)",
-          "summary_header": "What are lumbar epidural stAeroid injections (LESI)?",
+          "name": "What are lumbar epidural steroid injections (LESI)?",
           "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine.",
-          "summary_header2": "How it works",
-          "summary2": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is carefully injected into the epidural space near your spine. This helps calm down the irritated nerves and provides relief from pain.",
-          "summary_header3": "When is it used?",
-          "summary3": "LESI is commonly recommended for conditions like spinal stenosis, lumbar radiculopathy, herniated discs, sciatica, and other issues that cause nerve irritation and pain in the lower back and legs"
         },
         {
-          "name": "Lumbar Epidural Steroid Injection (LESI)",
-          "summary_header": "Before the Procedure:",
+          "summary_header": "How it works",
+          "summary": "During the procedure, a combination of a numbing agent and anti-inflammatory medication (steroid) is carefully injected into the epidural space near your spine. This helps calm down the irritated nerves and provides relief from pain.",
+          "summary_header2": "When is it used?",
+          "summary2": "LESI is commonly recommended for conditions like spinal stenosis, lumbar radiculopathy, herniated discs, sciatica, and other issues that cause nerve irritation and pain in the lower back and legs"
+        },
+        {
+          "name": "Before the Procedure:",
           "bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
             "Transportation: Arrange for someone to drive you home after the procedure, as you may not be able to drive yourself."
-          ],
+          ]
+        },
+        {
           "summary_header2": "How is the Procedure Done?",
           "bullets2": [
             "Preparation: You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
