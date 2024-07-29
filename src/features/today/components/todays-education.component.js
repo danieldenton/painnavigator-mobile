@@ -10,6 +10,7 @@ export const TodaysEducation = ({ navigation, educationToday }) => {
     completedAllEducationModules,
     lastEducationModuleId,
     lastCompletedEducationModuleDate,
+    injectionModuleType,
   } = useContext(EducationContext);
   return (
     <>
@@ -22,7 +23,11 @@ export const TodaysEducation = ({ navigation, educationToday }) => {
               <DailyGoalCompleted
                 type={"module"}
                 moduleId={
-                  lastEducationModuleId ? lastEducationModuleId : educationToday
+                  injectionModuleType
+                    ? injectionModuleType
+                    : lastEducationModuleId
+                    ? lastEducationModuleId
+                    : educationToday
                 }
               />
               <EducationUnitCard navigation={navigation} />

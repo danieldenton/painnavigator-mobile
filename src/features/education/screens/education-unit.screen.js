@@ -32,7 +32,7 @@ export const EducationUnitScreen = ({ navigation }) => {
   const { post_video_destination, type, skippable, id } = currentModule;
   const introLength = injectionModuleType ? 3 : 4
   const pnIntroModule = educationProgress === 1 && educationIntroStep < introLength
-console.log(injectionModuleType)
+
   useEffect(() => {
     setIsMovement(false);
   }, []);

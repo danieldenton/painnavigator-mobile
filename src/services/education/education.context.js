@@ -45,7 +45,7 @@ export const EducationContextProvider = ({ children }) => {
 
   useEffect(() => {
     let module;
-    if (educationProgress === 1 && injectionModuleType) {
+    if (educationProgress === 1 && injectionModuleType !== null) {
       module = painInjectionModules[injectionModuleType]
     } else {
       module = educationModules.find(
