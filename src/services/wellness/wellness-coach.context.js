@@ -21,7 +21,7 @@ export const WellnessCoachContextProvider = ({ children }) => {
       (message) => message.status === "unread"
     );
 
-    if (unreadMessagesRecieved.length > 0) {
+    if (unreadMessagesRecieved?.length > 0) {
       setHasUnreadMessages(true);
     } else {
       setHasUnreadMessages(false);
