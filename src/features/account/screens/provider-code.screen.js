@@ -19,8 +19,14 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, setProviderId, setError, providerCode, setProviderCode, handleInjectionContent } =
-    useContext(OnboardContext);
+  const {
+    error,
+    setProviderId,
+    setError,
+    providerCode,
+    setProviderCode,
+    handleInjectionContent,
+  } = useContext(OnboardContext);
 
   async function checkProviderCode() {
     try {
@@ -28,7 +34,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
         `${API_URL}/api/v1/providers/${providerCode}`
       );
       setProviderId(response.data.data.id);
-      handleInjectionContent()
+      handleInjectionContent();
       if (error) {
         setError(null);
       }
@@ -84,6 +90,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
           onChangeText={(providerCode) => setProviderCode(providerCode)}
           keyboardType="visible-password"
           testID={"code-input"}
+          autoComplete={"off"}
         />
         <View style={styles.codeGraphicWrapper}>
           <CodeGraphic />
