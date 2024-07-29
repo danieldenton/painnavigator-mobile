@@ -12,14 +12,16 @@ const introStyles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Inter_700Bold",
     marginTop: 20,
+    textAlign: 'center'
   },
   summary: {
     fontSize: 16,
     fontFamily: "Inter_400Regular",
     lineHeight: 28,
+    marginBottom: 16
   },
   boldSummary: {
-    marginTop: 16,
+    marginTop: 18,
     fontSize: 16,
     fontFamily: "Inter_700Bold",
     lineHeight: 28,
@@ -40,9 +42,10 @@ export const InjectionSteps = ({ data }) => {
       {data.bullets ? (
         <>
           {educationIntroStep === 1 || educationIntroStep === 2 ? (
-            <BoldIntroBulletList bullets={data.bullets} />
-          ) : (
             <BulletList bullets={data.bullets} />
+           
+          ) : (
+            <BoldIntroBulletList bullets={data.bullets} />
           )}
         </>
       ) : null}
