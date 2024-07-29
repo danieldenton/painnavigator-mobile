@@ -1,6 +1,7 @@
 {
   "painInjectionModules": [
     {
+      "id": 1,
       "name": "Trigger Point Injections",
       "type": "intro-text",
       "group": "education",
@@ -9,7 +10,7 @@
       "skippable": false,
       "pnIntroData": [
         {
-           "name": "Trigger Point Injections",
+          "name": "Trigger Point Injections",
           "summary_header": "What are Trigger Point Injections (TPI)?",
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
           "summary_header2": "When are They Used?",
@@ -77,6 +78,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Lumbar Epidural Steroid Injection (LESI)",
       "type": "intro-text",
       "group": "education",
@@ -85,7 +87,7 @@
       "skippable": false,
       "pnIntroData": [
         {
-         "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "What are lumbar epidural stAeroid injections (LESI)?",
           "summary": "A lumbar epidural steroid injection (LESI) is a specialized procedure to ease lower back and leg pain by reducing inflammation around irritated nerves in the spine.",
           "summary_header2": "How it works",
@@ -110,7 +112,7 @@
           ]
         },
         {
-         "name": "Lumbar Epidural Steroid Injection (LESI)",
+          "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "What Can I Expect After the Injection?",
           "bullets": [
             "While you may not feel immediate relief, many patients notice improvement within a few days as the medication starts working.",
@@ -138,6 +140,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Lumbar Transforaminal Epidural Steroid Injections",
       "type": "intro-text",
       "group": "education",
@@ -199,6 +202,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Lumbar Facet Injections/ Medial Branch Blocks",
       "type": "intro-text",
       "group": "education",
@@ -273,6 +277,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Lumbar Facet Radiofrequency Ablation",
       "type": "intro-text",
       "group": "education",
@@ -339,6 +344,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Sacroiliac Joint Injections",
       "type": "intro-text",
       "group": "education",
@@ -402,6 +408,7 @@
       ]
     },
     {
+      "id": 1,
       "name": "Lumbar Spinal Cord Stimulator Trials ",
       "type": "intro-text",
       "group": "education",
@@ -450,7 +457,6 @@
           ]
         },
         {
-
           "summary_header": "Things to keep in mind:",
           "bullets": [
             "The trial isn't permanent and doesn't need surgery.",
