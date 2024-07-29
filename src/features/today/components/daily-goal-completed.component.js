@@ -50,7 +50,8 @@ const DailyGoalMessage = styled.Text`
 `;
 
 export const DailyGoalCompleted = ({ type, moduleId, movementProgram }) => {
-  const { injectionModuleType } = useContext(EducationContext)
+  const { injectionModuleType, educationProgress } =
+    useContext(EducationContext);
   const module = moduleId
     ? type === "module"
       ? educationModules.find((module) => module.id === moduleId)
@@ -58,13 +59,22 @@ export const DailyGoalCompleted = ({ type, moduleId, movementProgram }) => {
           (module) => module.id === moduleId
         )
     : { name: "" };
-
+  const injectionIntroTitle =
+    educationProgress === 2 && injectionModuleType !== null
+      ? painInjectionModules[injectionModuleType].name
+      : null;
   return (
     <>
       <DailyGoalCard>
         <DailyGoalCardContent>
           <CardTextSection>
-            <CardHeader>{moduleId ? module.name : `${type} Logged`}</CardHeader>
+            <CardHeader>
+              {injectionIntroTitle
+                ? injectionIntroTitle
+                : moduleId
+                ? module.name
+                : `${type} Logged`}
+            </CardHeader>
           </CardTextSection>
           <CardIconSection>
             <Selected />
