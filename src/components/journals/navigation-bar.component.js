@@ -169,14 +169,14 @@ export const ReviewJournalNavigationBar = ({
 };
 
 export const TextModuleNavBar = ({ destination, navigation, screen, id }) => {
-  const { setEducationIntroStep, educationIntroStep } =
+  const { setEducationIntroStep, educationIntroStep, educationProgress } =
     useContext(EducationContext);
   return (
     <NavContainer>
       <LeftPressableArea
         accessibilityLabel={`go-to-${destination}`}
         onPress={() =>
-          id === 1 && educationIntroStep > 0
+          educationProgress === 1 && educationIntroStep > 0
             ? setEducationIntroStep(
                 (educationIntroStep) => educationIntroStep - 1
               )

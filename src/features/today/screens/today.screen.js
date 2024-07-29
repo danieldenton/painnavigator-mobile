@@ -34,7 +34,7 @@ export const TodayScreen = ({ navigation }) => {
     movementProgress,
     setMovementProgram,
   } = useContext(MovementContext);
-  const { setEducationProgram, setEducationProgress } =
+  const { setEducationProgram, setEducationProgress, setInjectionModuleType } =
     useContext(EducationContext);
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
@@ -48,6 +48,7 @@ export const TodayScreen = ({ navigation }) => {
       setUserData(data);
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
+      setInjectionModuleType(data.injection_module_type)
       setEducationProgram(data.education_program);
       setEducationProgress(data.education_progress.progress);
       setCompletedProgram(data.completed_program);

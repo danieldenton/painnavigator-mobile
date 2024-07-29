@@ -19,15 +19,16 @@ import { CodeGraphic } from "../../../graphics";
 import { styles } from "../styles/account.styles";
 
 export const ProviderCodeScreen = ({ navigation }) => {
-  const { error, setProviderId, setError } = useContext(OnboardContext);
-  const [providerCode, setProviderCode] = useState("");
+  const { error, setProviderId, setError, providerCode, setProviderCode, handleInjectionContent } =
+    useContext(OnboardContext);
 
-  async function checkProviderCode(providerCode) {
+  async function checkProviderCode() {
     try {
       const response = await axios.get(
         `${API_URL}/api/v1/providers/${providerCode}`
       );
       setProviderId(response.data.data.id);
+      handleInjectionContent()
       if (error) {
         setError(null);
       }
@@ -94,7 +95,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
               disabled={providerCode.length === 6 ? false : true}
               title={"Submit"}
               onPress={() => {
-                checkProviderCode(providerCode);
+                checkProviderCode();
               }}
             />
           </View>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, createContext } from "react";
-import { educationModules } from "../../features/education/data/education-module-data.json";
-import { educationPrograms } from "./education-programs-data.json";
+import { educationModules } from "./data/education-module-data.json";
+import { painInjectionModules } from "./data/pain-injection-module-data.json";
+import { educationPrograms } from "./data/education-programs-data.json";
 import {
   getEducationModuleCompletions,
   postEducationModule,
@@ -17,6 +18,7 @@ export const EducationContextProvider = ({ children }) => {
   const [educationIntroStep, setEducationIntroStep] = useState(0);
   const [educationModuleCompletionData, setEducationModuleCompletionData] =
     useState([]);
+  const [injectionModuleType, setInjectionModuleType] = useState(null);
   const educationProgramLength =
     educationPrograms[educationProgram - 1].educationModuleIds;
   const completedAllEducationModules =
@@ -42,17 +44,22 @@ export const EducationContextProvider = ({ children }) => {
       : educationProgress > 26;
 
   useEffect(() => {
-    const module = educationModules.find(
-      (unit) =>
-        unit.id ===
-        educationPrograms[educationProgram - 1].educationModuleIds[
-          educationProgress - 1
-        ]
-    );
+    let module;
+    if (educationProgress === 1 && injectionModuleType !== null) {
+      module = painInjectionModules[injectionModuleType]
+    } else {
+      module = educationModules.find(
+        (unit) =>
+          unit.id ===
+          educationPrograms[educationProgram - 1].educationModuleIds[
+            educationProgress - 1
+          ]
+      );
+    }
     if (module) {
       setCurrentModule(module);
     }
-  }, [educationProgress]);
+  }, [educationProgress, injectionModuleType]);
 
   const loadEducationMouleCompletions = async () => {
     const data = await getEducationModuleCompletions(uid);
@@ -97,7 +104,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   };
 
-  const refinePatchCompleteSkippedEducationModule = (data) => {
+  const sortPatchCompleteSkippedEducationModule = (data) => {
     const editedEducationModuleDate = educationModuleCompletionData.filter(
       (module) => module.id !== data.id
     );
@@ -112,7 +119,7 @@ export const EducationContextProvider = ({ children }) => {
         (module) => module.module_id === unitId
       );
       const data = await patchCompleteSkippedEducationModule(skippedModule.id);
-      const refinedData = refinePatchCompleteSkippedEducationModule(data);
+      const refinedData = sortPatchCompleteSkippedEducationModule(data);
       setEducationModuleCompletionData(refinedData);
     } catch (err) {
       console.log(err);
@@ -140,6 +147,8 @@ export const EducationContextProvider = ({ children }) => {
         lastCompletedEducationModule,
         lastEducationModuleId,
         lastCompletedEducationModuleDate,
+        setInjectionModuleType,
+        injectionModuleType,
       }}
     >
       {children}

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "react-native-paper";
 import styled from "styled-components/native";
 import { Selected } from "../../../icons";
-import { educationModules } from "../../education/data/education-module-data.json";
+import { educationModules } from "../../../services/education/data/education-module-data.json";
+import { painInjectionModules } from "../../../services/education/data/pain-injection-module-data.json";
 import { movementModules } from "../../../services/movement/movement-modules-data.json";
+import { EducationContext } from "../../../services/education/education.context";
 
 const DailyGoalCard = styled(Card)`
   margin-top: 16px;
@@ -48,10 +50,13 @@ const DailyGoalMessage = styled.Text`
 `;
 
 export const DailyGoalCompleted = ({ type, moduleId, movementProgram }) => {
+  const { injectionModuleType } = useContext(EducationContext)
   const module = moduleId
     ? type === "module"
       ? educationModules.find((module) => module.id === moduleId)
-      : movementModules[movementProgram - 1].modules.find((module) => module.id === moduleId)
+      : movementModules[movementProgram - 1].modules.find(
+          (module) => module.id === moduleId
+        )
     : { name: "" };
 
   return (

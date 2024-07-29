@@ -24,11 +24,14 @@ export const EducationUnitScreen = ({ navigation }) => {
     skipModule,
     educationIntroStep,
     setEducationIntroStep,
+    educationProgress,
+    injectionModuleType
   } = useContext(EducationContext);
   const { setIsMovement } = useContext(MovementContext);
   const { uid } = useContext(AuthenticationContext);
   const { post_video_destination, type, skippable, id } = currentModule;
-  const pnIntroModule = id === 1 && educationIntroStep < 4;
+  const introLength = injectionModuleType !== null ? 3 : 4
+  const pnIntroModule = educationProgress === 1 && educationIntroStep < introLength
 
   useEffect(() => {
     setIsMovement(false);
@@ -47,6 +50,10 @@ export const EducationUnitScreen = ({ navigation }) => {
       type: "text",
       component: <TextUnit />,
     },
+    {
+      type: "intro-text",
+      component: <PNIntroUnit />
+    }
   ];
 
   const componentObject = typesOfComponents.find((obj) => type === obj.type);
@@ -86,7 +93,7 @@ export const EducationUnitScreen = ({ navigation }) => {
           id={id}
         />
       )}
-      {componentObject ? componentObject.component : <PNIntroUnit />}
+      {componentObject.component}
       <ButtonSection>
         <ModuleButton
           onPress={() => {

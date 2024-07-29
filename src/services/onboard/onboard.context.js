@@ -4,6 +4,7 @@ import { EducationContext } from "../education/education.context";
 export const OnboardContext = createContext();
 
 export const OnboardContextProvider = ({ children }) => {
+  const [providerCode, setProviderCode] = useState("");
   const [error, setError] = useState(null);
   const [step, setStep] = useState(0);
   const [onboardingData, setOnboardingData] = useState({
@@ -19,8 +20,30 @@ export const OnboardContextProvider = ({ children }) => {
   });
   const [providerId, setProviderId] = useState(null);
   const [tour, setTour] = useState(null);
-  const { educationProgram, setEducationProgram } =
-    useContext(EducationContext);
+  const {
+    educationProgram,
+    setEducationProgram,
+    setInjectionModuleType,
+    injectionModuleType,
+  } = useContext(EducationContext);
+
+  const handleInjectionContent = () => {
+    if (providerCode.endsWith("TPI")) {
+      setInjectionModuleType(0);
+    } else if (providerCode.endsWith("LES")) {
+      setInjectionModuleType(1);
+    } else if (providerCode.endsWith("LTE")) {
+      setInjectionModuleType(2);
+    } else if (providerCode.endsWith("LFI")) {
+      setInjectionModuleType(3);
+    } else if (providerCode.endsWith("LFR")) {
+      setInjectionModuleType(4);
+    } else if (providerCode.endsWith("SJI")) {
+      setInjectionModuleType(5);
+    } else if (providerCode.endsWith("LSC")) {
+      setInjectionModuleType(6);
+    }
+  };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
@@ -71,6 +94,8 @@ export const OnboardContextProvider = ({ children }) => {
   return (
     <OnboardContext.Provider
       value={{
+        providerCode,
+        setProviderCode,
         handleEducationProgram,
         educationProgram,
         setError,
@@ -85,6 +110,7 @@ export const OnboardContextProvider = ({ children }) => {
         providerId,
         tour,
         setTour,
+        handleInjectionContent,
       }}
     >
       {children}
