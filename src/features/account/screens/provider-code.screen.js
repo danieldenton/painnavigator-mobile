@@ -90,7 +90,7 @@ export const ProviderCodeScreen = ({ navigation }) => {
           onChangeText={(providerCode) => setProviderCode(providerCode)}
           keyboardType="visible-password"
           testID={"code-input"}
-          autoComplete={"off"}
+          autoComplete={"one-time-code"}
         />
         <View style={styles.codeGraphicWrapper}>
           <CodeGraphic />

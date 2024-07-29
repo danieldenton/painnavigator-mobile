@@ -380,7 +380,7 @@
         {
           "name": "Sacroiliac Joint Injections",
           "summary_header": "What are sacroiliac joint injections (SIJ injections)?",
-          "summary": "Sacroiliac joint injections (SIJ injections) with pain and swelling in the lower back and buttocks. They're given in a joint where the spine connects to the hips.",
+          "summary": "Sacroiliac joint injections (SIJ injections) with pain and swelling in the lower back and buttocks. They're given in a joint where the spine connects to the hips."
         },
         {
           "name": "Sacroiliac Joint Injections",
@@ -450,27 +450,30 @@
         {
           "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What are lumbar spinal cord stimulator trials?",
-          "summary": "Lumbar spinal cord stimulator (SCS) trials are tests to check if a device can help manage lower back and leg pain. The stimulator is a small device that sends gentle electrical pulses to your spine to reduce pain signals.",
-          "summary_header2": "How do they work?",
-          "summary2": "During the trial, thin wires are placed through needles into the epidural space, on the back part of the spine. These wires connect to a small device outside your body. The device sends tiny electric pulses (which may feel like a light comfortable tingling) to your nerves, which can help ease your pain.",
-          "summary_header3": "When is it used?",
-          "summary3": "Doctors suggest SCS trials for people with long-lasting lower back and leg pain that hasn't gotten better with other treatments such as exercise, medications, injections, and/or spine surgeries."
+          "summary": "Lumbar spinal cord stimulator (SCS) trials are tests to check if a device can help manage lower back and leg pain. The stimulator is a small device that sends gentle electrical pulses to your spine to reduce pain signals."
+        },
+        {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
+          "summary_header": "How do they work?",
+          "summary": "During the trial, thin wires are placed through needles into the epidural space, on the back part of the spine. These wires connect to a small device outside your body. The device sends tiny electric pulses (which may feel like a light comfortable tingling) to your nerves, which can help ease your pain.",
+          "summary_header2": "When is it used?",
+          "summary2": "Doctors suggest SCS trials for people with long-lasting lower back and leg pain that hasn't gotten better with other treatments such as exercise, medications, injections, and/or spine surgeries."
         },
         {
           "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What to expect during the SCS trial?",
-          "summary": "Preparation:",
-          "bullets": [
+          "bullets": ["Preparation:"],
+          "sub_bullets": [
             "You will speak to your doctor and a representative from the spinal cord stimulator company. They will help set expectations and goals for the length of your trial.",
             "You will lay comfortably on your stomach and the procedure area will be cleaned. You will be given numbing medication to ease discomfort."
           ],
-          "summary_header2": "Procedure:",
-          "bullets2": [
+          "bullets2":["Procedure:"],
+          "sub_bullets2": [
             "The doctor will place needles into the epidural space on the back part of your spine. Thin spinal cord stimulator wires will then be placed and then connected to the outside device.",
             "The needles will be removed before the end of the procedure. The wires and external device will be secured to your back."
           ],
-          "summary_header3": "Post-procedure",
-          "bullets3": [
+          "bullets3": ["Post-procedure"],
+          "sub_bullets3": [
             "The whole process usually takes about 1-2 hours, and you can typically go home the same day.",
             "In recovery, you will receive more information from the spinal cord stimulator representative about goals and expectations for your trial.",
             "Your doctor will talk to you about antibiotics if needed, as well as any pain medication you may take.",
@@ -488,14 +491,18 @@
           ]
         },
         {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "Things to keep in mind:",
           "bullets": [
             "The trial isn't permanent and doesn't need surgery.",
             "During the trial, you'll need to be careful not to damage the wires. Your doctor will provide instructions on how to best care for the SCS wires.",
             "Your healthcare provider will discuss benefits and risks in more detail with you."
-          ],
-          "summary_header2": "Results and followup:",
-          "bullets2": [
+          ]
+        },
+        {
+          "name": "Lumbar Spinal Cord Stimulator Trials ",
+          "summary_header": "Results and followup:",
+          "bullets": [
             "Many people experience less pain and increased activity during the trial. It is very important to keep track of your pain scores as well as activity and quality of life improvements during the length of the trial. Use PainNavigator to track your progress",
             "Your doctor will keep an eye on you and monitor your progress on PainNavigator to talk about what to do next based on how the trial went."
           ],

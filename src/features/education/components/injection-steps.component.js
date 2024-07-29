@@ -44,7 +44,8 @@ export const InjectionSteps = ({ data }) => {
         <>
           {educationIntroStep === 1 ||
           educationIntroStep === 5 ||
-          (educationIntroStep === 4) ? (
+          educationIntroStep === 4 ||
+          (educationIntroStep === 3 && injectionModuleType === 6) ? (
             <BulletList bullets={data.bullets} />
           ) : (
             <BoldIntroBulletList bullets={data.bullets} />
@@ -65,18 +66,18 @@ export const InjectionSteps = ({ data }) => {
       ) : null}
 
       {data.bullets2 ? (
-        educationIntroStep === 1 && injectionModuleType === 0 ||
-        (educationIntroStep === 2 && injectionModuleType === 0 ||
-          educationIntroStep === 3 && injectionModuleType === 3
-        ) ? (
+        (educationIntroStep === 1 && injectionModuleType === 0) ||
+        (educationIntroStep === 2 && injectionModuleType === 0) ||
+        (educationIntroStep === 3 && injectionModuleType === 3) ||
+        (educationIntroStep === 2 && injectionModuleType === 6) ? (
           <BoldIntroBulletList bullets={data.bullets2} />
         ) : (
           <BulletList bullets={data.bullets2} />
         )
       ) : null}
 
-      {data.subBullets ? (
-        <SubStepBullets subBullets={data.subBullets2} />
+      {data.sub_bullets2 ? (
+        <SubStepBullets subBullets={data.sub_bullets2} />
       ) : null}
 
       {data.summary_header3 ? (
@@ -85,6 +86,10 @@ export const InjectionSteps = ({ data }) => {
 
       {data.summary3 ? (
         <Text style={introStyles.boldSummary}>{data.summary3}</Text>
+      ) : null}
+      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets2} /> : null}
+      {data.sub_bullets3 ? (
+        <SubStepBullets subBullets={data.sub_bullets2} />
       ) : null}
     </>
   );
