@@ -65,7 +65,7 @@ export const InjectionSteps = ({ data }) => {
       ) : null}
 
       {data.bullets2 ? (
-        educationIntroStep === 1 ||
+        educationIntroStep === 1 && injectionModuleType === 0 ||
         (educationIntroStep === 2 && injectionModuleType === 0 ||
           educationIntroStep === 3 && injectionModuleType === 3
         ) ? (

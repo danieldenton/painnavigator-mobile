@@ -308,11 +308,14 @@
         {
           "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "What are lumbar facet/medial branch radiofrequency ablations (RFAs)?",
-          "summary": "Lumbar facet/medial branch radiofrequency ablation (RFA) is a procedure to help with chronic low back pain by stopping the pain signals from the facet joints in the spine.",
-          "summary_header2": "How it works",
-          "summary2": "During the procedure, a special needle sends heat to the nerves that send pain signals from the facet joints. This stops the nerves from working and can help relieve pain for many months or longer.",
-          "summary_header3": "When is it used?",
-          "bullets3": [
+          "summary": "Lumbar facet/medial branch radiofrequency ablation (RFA) is a procedure to help with chronic low back pain by stopping the pain signals from the facet joints in the spine."
+        },
+        {
+          "name": "Lumbar Facet Radiofrequency Ablation",
+          "summary_header": "How it works",
+          "summary": "During the procedure, a special needle sends heat to the nerves that send pain signals from the facet joints. This stops the nerves from working and can help relieve pain for many months or longer.",
+          "summary_header2": "When is it used?",
+          "bullets2": [
             "Lumbar facet RFA are commonly recommended for conditions such as facet joint osteoarthritis, facet joint syndrome, and other sources of facet joint inflammation or irritation",
             "In most cases, you have already gone one or two lumbar facet joint/medial branch injections to confirm your diagnosis of lumbar facet disease."
           ]
