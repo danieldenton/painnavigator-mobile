@@ -14,7 +14,7 @@
           "summary": "A trigger point injection (TPI) is a medical procedure used to relieve muscle pain and discomfort caused by small, tender knots or areas of tight muscle fibers that can develop in muscles throughout the body, often as a result of injury, overuse, or muscle tension.",
         },
         {
-          "summary_header": "When are They Used?",
+          "name": "Function and Usages",
           "summary": "Trigger point injections may be recommended for patients experiencing:",
           "bullets": [
             "Muscle pain, tenderness, spasms, or stiffness",

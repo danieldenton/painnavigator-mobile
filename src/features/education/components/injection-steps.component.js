@@ -12,13 +12,11 @@ const introStyles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Inter_700Bold",
     marginTop: 20,
-    textAlign: 'center'
   },
   summary: {
     fontSize: 16,
     fontFamily: "Inter_400Regular",
     lineHeight: 28,
-    textAlign: 'center'
   },
   boldSummary: {
     marginTop: 16,
