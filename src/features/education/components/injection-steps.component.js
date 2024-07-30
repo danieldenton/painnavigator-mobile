@@ -53,6 +53,10 @@ export const InjectionSteps = ({ data }) => {
         </>
       ) : null}
 
+      {data.bold_bullets ? (
+        <BoldIntroBulletList bullets={data.bullets} />
+      ) : null}
+
       {data.sub_bullets ? (
         <SubStepBullets subBullets={data.sub_bullets} />
       ) : null}
@@ -76,6 +80,10 @@ export const InjectionSteps = ({ data }) => {
         )
       ) : null}
 
+      {data.bold_bullets2 ? (
+        <BoldIntroBulletList bullets={data.bullets} />
+      ) : null}
+
       {data.sub_bullets2 ? (
         <SubStepBullets subBullets={data.sub_bullets2} />
       ) : null}
@@ -87,7 +95,7 @@ export const InjectionSteps = ({ data }) => {
       {data.summary3 ? (
         <Text style={introStyles.boldSummary}>{data.summary3}</Text>
       ) : null}
-      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets2} /> : null}
+      {data.bullets3 ? <BoldIntroBulletList bullets={data.bullets3} /> : null}
       {data.sub_bullets3 ? (
         <SubStepBullets subBullets={data.sub_bullets2} />
       ) : null}

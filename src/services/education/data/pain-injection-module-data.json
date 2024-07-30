@@ -27,7 +27,7 @@
         {
           "name": "Trigger Point Injections",
           "summary_header": "Before the Procedure",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -37,7 +37,7 @@
         {
           "name": "Trigger Point Injections",
           "summary_header": "What to expect during the procedure",
-          "bullets": [
+          "bold_bullets": [
             "Preparation: You may be asked to lay down or sit in a comfortable position. The healthcare provider will identify the trigger points by palpating (pressing on) the affected muscles to locate areas of tenderness or tension.",
             "Injection: Using a thin needle, the healthcare provider will inject a mixture of a local anesthetic (numbing medication) and sometimes a corticosteroid (anti-inflammatory medication) directly into the trigger point. The injection helps to relax the muscle and relieve pain.",
             "Post-Procedure: After the injection, you may be asked to move the affected muscle to help distribute the medication. You'll be monitored for a short period to ensure there are no immediate complications. Patients can return home the same day."
@@ -46,7 +46,7 @@
         {
           "name": "Trigger Point Injections",
           "summary_header": "What to Expect After the Procedure",
-          "bullets": [
+          "bold_bullets": [
             "Pain Relief: Many patients experience immediate relief from muscle pain and tension after the injection due to the numbing medication. The corticosteroid may provide longer-lasting relief by reducing inflammation in the muscle.",
             "Recovery: You may experience some mild soreness or bruising at the injection site, but this typically resolves within a few days.",
             "For procedural soreness:"
@@ -102,7 +102,7 @@
         {
           "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "Before the Procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -112,7 +112,7 @@
         {
           "name": "Lumbar Epidural Steroid Injection (LESI)",
           "summary_header": "How is the Procedure Done?",
-          "bullets": [
+          "bold_bullets": [
             "Preparation: You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: The doctor will use X-ray guidance to ensure precise placement of the epidural needle. The healthcare provider will inject a mixture of a saline, local anesthetic, and/or a steroid (anti-inflammatory medication) into the epidural space surrounding the spinal nerves. During the injection, you may feel a brief zap or electrical sensation down one or both legs. This is normal and should get better immediately.",
             "Post-Procedure: After the injection, you’ll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
@@ -170,7 +170,7 @@
         {
           "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "Before the Procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -180,7 +180,7 @@
         {
           "name": "Lumbar Transforaminal Epidural Steroid Injections",
           "summary_header": "How is the Procedure Done?",
-          "bullets": [
+          "bold_bullets": [
             "Preparation:You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: Using fluoroscopy (X-ray guidance) for accuracy, the doctor will insert a needle near the affected nerve root and deliver the medication directly into the epidural space. During the injection, you may feel a brief zap or electrical sensation go down one or both legs. This is normal and should get better immediately.",
             "Post-Procedure: After the injection, you’ll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
@@ -239,7 +239,7 @@
         {
           "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "Before the Procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -249,14 +249,14 @@
         {
           "name": "Lumbar Facet Injections/ Medial Branch Blocks",
           "summary_header": "What to expect during the procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Preparation:You will be asked to lay down on your belly. A healthcare provider will clean your skin to reduce risk of infection. You’ll be made comfortable and numbed to minimize any discomfort.",
             "Injection: The doctor will use X-ray guidance (fluoroscopy) to ensure precise placement of the needle(s) into the facet joint space(s). A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected."
           ],
           "sub_bullets": [
             "You may feel brief pressure or ache while the medication is being injected."
           ],
-          "bullets2": [
+          "bold_bullets2": [
             "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15 to 30 minutes, and you can typically go home the same day."
           ]
         },
@@ -323,7 +323,7 @@
         {
           "name": "Lumbar Facet Radiofrequency Ablation",
           "summary_header": "Before the Procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -332,7 +332,7 @@
         },
         {
           "summary_header": "What to expect during the procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Preparation: You'll be asked to lay down on your belly in a comfortable position. The injection site will be cleaned, and you will be given a numbing medication to minimize discomfort.",
             "Procedure: The doctor will use fluoroscopy (X-ray guidance) to ensure precise placement of the specialized needle(s) around the facet joint space(s). A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected into the joint to numb the area. The specialized needle will then send heat to the nerves to stop them from working.",
             "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 30-45 minutes, and you can typically go home the same day."
@@ -392,7 +392,7 @@
         {
           "name": "Sacroiliac Joint Injections",
           "summary_header": "Before the Procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Medical History: Your doctor will ask about your medical history, including any previous surgeries, allergies, or medications you're taking.",
             "Instructions: Follow instructions given by your doctor regarding eating, drinking, or taking medications before the procedure.",
             "Clothing: Wear loose, comfortable clothing that allows easy access to the area where the procedure will be performed.",
@@ -402,7 +402,7 @@
         {
           "name": "Sacroiliac Joint Injections",
           "summary_header": "What to expect during the procedure:",
-          "bullets": [
+          "bold_bullets": [
             "Preparation: You'll be asked to lay down on your belly in a comfortable position. The injection site will be cleaned, and you will be given a numbing medication to minimize discomfort.",
             "Procedure: The doctor will use fluoroscopy (X-ray guidance) to guide a needle into the sacroiliac joint. A mixture of a numbing agent and/or anti-inflammatory medication (steroid) is then injected into the joint to numb the area.",
             "Post-Procedure: After the injection, you'll be monitored for a short period to ensure there are no immediate complications. The whole process usually takes about 15-30 minutes, and you can typically go home the same day"
@@ -472,7 +472,7 @@
             "The doctor will place needles into the epidural space on the back part of your spine. Thin spinal cord stimulator wires will then be placed and then connected to the outside device.",
             "The needles will be removed before the end of the procedure. The wires and external device will be secured to your back."
           ],
-          "bullets3": ["Post-procedure"],
+          "bullets3": ["Post-procedure:"],
           "sub_bullets3": [
             "The whole process usually takes about 1-2 hours, and you can typically go home the same day.",
             "In recovery, you will receive more information from the spinal cord stimulator representative about goals and expectations for your trial.",
