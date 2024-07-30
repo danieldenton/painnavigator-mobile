@@ -462,17 +462,17 @@
         {
           "name": "Lumbar Spinal Cord Stimulator Trials ",
           "summary_header": "What to expect during the SCS trial?",
-          "bullets": ["Preparation:"],
+          "bold_bullets": ["Preparation:"],
           "sub_bullets": [
             "You will speak to your doctor and a representative from the spinal cord stimulator company. They will help set expectations and goals for the length of your trial.",
             "You will lay comfortably on your stomach and the procedure area will be cleaned. You will be given numbing medication to ease discomfort."
           ],
-          "bullets2":["Procedure:"],
+          "bold_bullets2":["Procedure:"],
           "sub_bullets2": [
             "The doctor will place needles into the epidural space on the back part of your spine. Thin spinal cord stimulator wires will then be placed and then connected to the outside device.",
             "The needles will be removed before the end of the procedure. The wires and external device will be secured to your back."
           ],
-          "bullets3": ["Post-procedure:"],
+          "bold_bullets3": ["Post-procedure:"],
           "sub_bullets3": [
             "The whole process usually takes about 1-2 hours, and you can typically go home the same day.",
             "In recovery, you will receive more information from the spinal cord stimulator representative about goals and expectations for your trial.",

@@ -10,6 +10,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 import { OnboardContext } from "../../../services/onboard/onboard.context";
 import { OutcomeContext } from "../../../services/outcome/outcome.context";
 import { DailyPainContext } from "../../../services/daily-pain/daily-pain.context";
+import { ProfileContext } from "../../../services/profile/profile-context"
 import { MovementContext } from "../../../services/movement/movement.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
 import { SafeView } from "../../../components/safe-area.component";
@@ -28,6 +29,7 @@ export const TodayScreen = ({ navigation }) => {
   const { setPainScoreLoggedToday } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
+  const { setUserInfo} = useContext(ProfileContext)
   const {
     loadMovementModuleCompletions,
     movementProgram,
@@ -46,6 +48,10 @@ export const TodayScreen = ({ navigation }) => {
     try {
       const data = await getUser(uid);
       setUserData(data);
+      // if (data.pain_score_logged_today) {
+        
+      // }
+      setUserInfo(data.profile)
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
       setInjectionModuleType(data.injection_module_type)
