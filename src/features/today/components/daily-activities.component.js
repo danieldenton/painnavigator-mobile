@@ -11,6 +11,7 @@ import { EducationContext } from "../../../services/education/education.context"
 import { FoodJournalContext } from "../../../services/food-journal/food-journal.context";
 import { MoodJournalContext } from "../../../services/mood-journal/mood-journal.context";
 import { WellnessCoachContext } from "../../../services/wellness/wellness-coach.context";
+import { ProfileContext } from "../../../services/profile/profile-context";
 import { SubHeader } from "../../../components/typography.component";
 import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
@@ -26,6 +27,7 @@ export const DailyActivities = ({
   const { foodJournalToday } = useContext(FoodJournalContext);
   const { moodJournalToday } = useContext(MoodJournalContext);
   const { hasUnreadMessages } = useContext(WellnessCoachContext);
+  const { profileComplete } = useContext(ProfileContext)
   const userCompletedPainJournalUnit =
     educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
   const _journaledToday =
