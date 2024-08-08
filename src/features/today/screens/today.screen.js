@@ -29,7 +29,7 @@ export const TodayScreen = ({ navigation }) => {
   const { setPainScoreLoggedToday } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const { setUserInfo} = useContext(ProfileContext)
+  const { setUserInfo, setProfileComplete } = useContext(ProfileContext)
   const {
     loadMovementModuleCompletions,
     movementProgram,
@@ -51,7 +51,6 @@ export const TodayScreen = ({ navigation }) => {
       // if (data.pain_score_logged_today) {
         
       // }
-      setUserInfo(data.profile)
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
       setInjectionModuleType(data.injection_module_type)
@@ -101,7 +100,6 @@ export const TodayScreen = ({ navigation }) => {
                 />
                 <DailyActivities
                   navigation={navigation}
-                  profileComplete={userData.profile.profile_status === 1}
                   journaledToday={userData.journaled_today}
                   activeSmartGoal={userData.active_smart_goal}
                   smartGoalUpdatedToday={userData.smart_goal_updated_today}

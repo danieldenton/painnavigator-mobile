@@ -27,13 +27,13 @@ export const DailyActivities = ({
   const { foodJournalToday } = useContext(FoodJournalContext);
   const { moodJournalToday } = useContext(MoodJournalContext);
   const { hasUnreadMessages } = useContext(WellnessCoachContext);
-  const { profileComplete } = useContext(ProfileContext)
+  const { userInfo } = useContext(ProfileContext);
   const userCompletedPainJournalUnit =
     educationProgram === 2 ? educationProgress > 2 : educationProgress > 4;
   const _journaledToday =
     foodJournalToday || moodJournalToday || painJournalToday;
   const showJournalTile =
-    userCompletedPainJournalUnit && !_journaledToday && !journaledToday
+    userCompletedPainJournalUnit && !_journaledToday && !journaledToday;
   const userCompletedSmartGoalUnit =
     educationProgram === 2 ? educationProgress > 5 : educationProgress > 7;
 
@@ -41,7 +41,8 @@ export const DailyActivities = ({
     <View style={{ marginBottom: 16 }}>
       <SubHeader title={"DAILY ACTIVITIES"} size={14} />
       {hasUnreadMessages ? <WellnessCoach navigation={navigation} /> : null}
-      {!profileComplete ? <ProfileSetup navigation={navigation} /> : null}
+      {/* check below to see if falsey */}
+      {userInfo.profile_status === 0 ? <ProfileSetup navigation={navigation} /> : null}
       {showJournalTile ? <Journals navigation={navigation} /> : null}
       {userCompletedSmartGoalUnit ? (
         <SmartGoalActivity
