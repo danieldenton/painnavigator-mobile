@@ -17,7 +17,6 @@ import { DailyGoalCompleted } from "./daily-goal-completed.component";
 
 export const DailyActivities = ({
   navigation,
-  profileComplete,
   journaledToday,
   activeSmartGoal,
   smartGoalUpdatedToday,
