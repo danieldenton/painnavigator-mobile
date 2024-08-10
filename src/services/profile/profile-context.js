@@ -15,8 +15,6 @@ export const ProfileContextProvider = ({ children }) => {
     activity_level: "",
   });
   const [profileStep, setProfileStep] = useState(0);
-  const [profileComplete, setProfileComplete] = useState(false);
-
   const cancelEdits = () => {
     setReviewProfile(userInfo);
     setChanges("");
@@ -94,7 +92,6 @@ export const ProfileContextProvider = ({ children }) => {
         editProfile,
         nextProfileStep,
         previousProfileStep,
-        profileComplete,
         profileData,
         profileStep,
         resetProfileStep,
