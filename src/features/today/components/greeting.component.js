@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import styled from "styled-components/native";
 import { todaysDate, timeZone, isFocused } from "../../../utils";
+import { ProfileContext } from "../../../services/profile/profile-context";
 
 const GreetingWrapper = styled.View``;
 
@@ -10,7 +11,9 @@ const GreetingText = styled.Text`
   font-size: 31px;
 `;
 
-export const Greeting = ({ name }) => {
+export const Greeting = () => {
+  const { userInfo } = useContext(ProfileContext);
+  const { name } = userInfo
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
