@@ -29,7 +29,7 @@ export const TodayScreen = ({ navigation }) => {
   const { setPainScoreLoggedToday } = useContext(DailyPainContext);
   const { tour } = useContext(OnboardContext);
   const { setCompletedProgram } = useContext(OutcomeContext);
-  const { setUserInfo, userInfo } = useContext(ProfileContext);
+  const { setUserInfo } = useContext(ProfileContext);
   const {
     loadMovementModuleCompletions,
     movementProgram,
