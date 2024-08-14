@@ -6,7 +6,6 @@ export async function patchUser(uid, userUpdate, setUserInfo, setProfileComplete
     const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, { user: userUpdate });
     const data = response.data.data.attributes;
     setUserInfo(data.profile);
-    setProfileComplete(true);
   } catch (error) {
     console.error(error);
   }
