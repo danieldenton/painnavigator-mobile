@@ -13,7 +13,7 @@ const GreetingText = styled.Text`
 
 export const Greeting = () => {
   const { userInfo } = useContext(ProfileContext);
-  const { name } = userInfo
+  const { first_name } = userInfo
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const Greeting = () => {
   return (
     <GreetingWrapper>
       <GreetingText>{greeting},</GreetingText>
-      <GreetingText>{name}</GreetingText>
+      <GreetingText>{first_name}</GreetingText>
     </GreetingWrapper>
   );
 };
