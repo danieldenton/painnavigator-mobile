@@ -55,7 +55,6 @@ export const SettingsScreen = ({ navigation }) => {
               <>
                 <ProfileOptionsButtons
                   navigation={navigation}
-                  profileComplete={userInfo.profile_status}
                   currentModule={currentModule}
                 />
                 <DeleteProfile />

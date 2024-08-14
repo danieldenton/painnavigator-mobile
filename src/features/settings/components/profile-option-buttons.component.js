@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext} from "react";
 import { View } from "react-native";
 import { ReviewOptionButton } from "../../../components/review-journal-question.component";
+import { ProfileContext } from "../../../services/profile/profile-context";
+
 
 export const ProfileOptionsButtons = ({
   navigation,
-  profileComplete,
   currentModule,
 }) => {
+  const { userInfo } = useContext(ProfileContext)
+  const { profile_status } = userInfo
+  
   const profileButtonOptions = [
     {
       id: 1,
       option: "Finish Setting Up Profile",
       destination: "ProfileSetup",
-      show: !profileComplete ? true : false,
+      show: !profile_status ? true : false,
     },
     {
       id: 2,
