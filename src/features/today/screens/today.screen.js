@@ -41,13 +41,22 @@ export const TodayScreen = ({ navigation }) => {
   const { loadMessages, hasUnreadMessages, setWellnessCoachReminded } =
     useContext(WellnessCoachContext);
   const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isFocused = useIsFocused();
 
   const loadUserData = async () => {
     try {
+      setIsLoading(true);
       const data = await getUser(uid);
-      setUserData(data);
+      // setUserData(data);
+      setUserData({
+        educationToday: data.education_today,
+        journaledToday: data.journaled_today,
+        painScoreLoggedToday: data.pain_score_logged_today,
+        activeSmartGoal: data.active_smart_goal,
+        smartGoalUpdatedToday: data.smart_goal_updated_today,
+      });
       setUserInfo(data.profile);
       setPainScoreLoggedToday(data.pain_score_logged_today);
       setMovementProgram(data.movement_program);
@@ -57,6 +66,7 @@ export const TodayScreen = ({ navigation }) => {
       setCompletedProgram(data.completed_program);
       setWellnessCoachReminded(data.wellness_coach_reminded);
       setAppUpdateRequired(data.app_update_required);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +87,7 @@ export const TodayScreen = ({ navigation }) => {
 
   return (
     <>
-      {userData && movementProgress ? (
+      {!isLoading && movementProgress ? (
         <Provider>
           <SafeView>
             <>
@@ -91,13 +101,13 @@ export const TodayScreen = ({ navigation }) => {
                 <TodaysMovement navigation={navigation} isFocused={isFocused} />
                 <TodaysEducation
                   navigation={navigation}
-                  educationToday={userData.education_today}
+                  educationToday={userData?.educationToday}
                 />
                 <DailyActivities
                   navigation={navigation}
-                  journaledToday={userData.journaled_today}
-                  activeSmartGoal={userData.active_smart_goal}
-                  smartGoalUpdatedToday={userData.smart_goal_updated_today}
+                  journaledToday={userData?.journaledToday}
+                  activeSmartGoal={userData?.activeSmartGoal}
+                  smartGoalUpdatedToday={userData?.smartGoalUpdatedToday}
                 />
               </Scroll>
               <DashboardTour tour={tour} />
