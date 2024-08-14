@@ -99,7 +99,6 @@ export const ProfileContextProvider = ({ children }) => {
         saveEdits,
         setReviewProfile,
         setUserInfo,
-        setProfileComplete,
         updateProfile,
         userInfo,
         postPhoneFormat,
