@@ -24,7 +24,6 @@ export const OnboardContextProvider = ({ children }) => {
     educationProgram,
     setEducationProgram,
     setInjectionModuleType,
-    injectionModuleType,
   } = useContext(EducationContext);
 
   const handleInjectionContent = () => {

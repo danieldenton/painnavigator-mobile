@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { educationModules } from "./data/education-module-data.json";
 import { painInjectionModules } from "./data/pain-injection-module-data.json";
 import { educationPrograms } from "./data/education-programs-data.json";
@@ -46,7 +46,7 @@ export const EducationContextProvider = ({ children }) => {
   useEffect(() => {
     let module;
     if (educationProgress === 1 && injectionModuleType !== null) {
-      module = painInjectionModules[injectionModuleType]
+      module = painInjectionModules[injectionModuleType];
     } else {
       module = educationModules.find(
         (unit) =>
@@ -61,7 +61,7 @@ export const EducationContextProvider = ({ children }) => {
     }
   }, [educationProgress, injectionModuleType]);
 
-  const loadEducationMouleCompletions = async () => {
+  const loadEducationModuleCompletions = async (uid) => {
     const data = await getEducationModuleCompletions(uid);
     setEducationModuleCompletionData(data);
   };
@@ -129,7 +129,7 @@ export const EducationContextProvider = ({ children }) => {
   return (
     <EducationContext.Provider
       value={{
-        loadEducationMouleCompletions,
+        loadEducationModuleCompletions,
         setEducationProgram,
         setEducationProgress,
         currentModule,
