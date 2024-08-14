@@ -78,7 +78,7 @@ export const ProfileContextProvider = ({ children }) => {
   };
 
   const updateProfile = (userId, data) => {
-    patchUser(userId, data, setUserInfo, setProfileComplete);
+    patchUser(userId, data, setUserInfo);
   };
 
 

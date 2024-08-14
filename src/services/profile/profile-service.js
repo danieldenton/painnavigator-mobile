@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL } from "@env";
 
-export async function patchUser(uid, userUpdate, setUserInfo, setProfileComplete) {
+export async function patchUser(uid, userUpdate, setUserInfo) {
   try {
     const response = await axios.patch(`${API_URL}/api/v2/users/${uid}`, { user: userUpdate });
     const data = response.data.data.attributes;
