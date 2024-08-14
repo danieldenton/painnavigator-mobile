@@ -4,13 +4,13 @@ import { SafeView } from "../../../components/safe-area.component";
 import { NavigationBarLeft } from "../../../components/journals/navigation-bar.component";
 import { ExpandableCard } from "../components/expandable-card.component";
 import { MovementContext } from "../../../services/movement/movement.context";
-import { movementVideos } from "../../../services/movement/movement-videos-data.json"
+import { movementVideos } from "../../../services/movement/movement-videos-data.json";
 import { Scroll } from "../../../components/scroll.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { getMovementModuleCompletions } from "../../../services/movement/movement.service";
 
 export const MovementUnitsScreen = ({ navigation }) => {
   const {
-    getMovementModuleCompletions,
     completedMovementVideos,
     skippedMovementVideos,
     savedMovementVideos,
