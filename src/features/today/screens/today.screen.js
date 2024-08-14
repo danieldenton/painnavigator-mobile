@@ -86,9 +86,7 @@ export const TodayScreen = ({ navigation }) => {
                 hasUnreadMessages={hasUnreadMessages}
               />
               <Scroll style={{ paddingRight: 16, paddingLeft: 16 }}>
-                <Greeting
-                  isFocused={isFocused}
-                />
+                <Greeting isFocused={isFocused} />
                 <DailyPainScore navigation={navigation} />
                 <TodaysMovement navigation={navigation} isFocused={isFocused} />
                 <TodaysEducation

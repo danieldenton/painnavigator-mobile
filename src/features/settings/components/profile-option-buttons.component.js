@@ -1,16 +1,12 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { View } from "react-native";
 import { ReviewOptionButton } from "../../../components/review-journal-question.component";
 import { ProfileContext } from "../../../services/profile/profile-context";
 
+export const ProfileOptionsButtons = ({ navigation, currentModule }) => {
+  const { userInfo } = useContext(ProfileContext);
+  const { profile_status } = userInfo;
 
-export const ProfileOptionsButtons = ({
-  navigation,
-  currentModule,
-}) => {
-  const { userInfo } = useContext(ProfileContext)
-  const { profile_status } = userInfo
-  
   const profileButtonOptions = [
     {
       id: 1,
