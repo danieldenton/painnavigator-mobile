@@ -20,29 +20,43 @@ export const OnboardContextProvider = ({ children }) => {
   });
   const [providerId, setProviderId] = useState(null);
   const [tour, setTour] = useState(null);
-  const {
-    educationProgram,
-    setEducationProgram,
-    setInjectionModuleType,
-  } = useContext(EducationContext);
+  const { educationProgram, setEducationProgram, setInjectionModuleType } =
+    useContext(EducationContext);
 
   const handleInjectionContent = () => {
-    if (providerCode.endsWith("TPI")) {
-      setInjectionModuleType(0);
-    } else if (providerCode.endsWith("LES")) {
-      setInjectionModuleType(1);
-    } else if (providerCode.endsWith("LTE")) {
-      setInjectionModuleType(2);
-    } else if (providerCode.endsWith("LFI")) {
-      setInjectionModuleType(3);
-    } else if (providerCode.endsWith("LFR")) {
-      setInjectionModuleType(4);
-    } else if (providerCode.endsWith("SJI")) {
-      setInjectionModuleType(5);
-    } else if (providerCode.endsWith("LSC")) {
-      setInjectionModuleType(6);
+    const injectionModuleTypes = [
+      "TPI",
+      "LES",
+      "LTE",
+      "LFI",
+      "LFR",
+      "SJI",
+      "LSC",
+    ];
+    const injectionModuleCode = providerCode.slice(-3);
+    const injectionIndex = injectionModuleTypes.indexOf(injectionModuleCode);
+    if (injectionIndex) {
+      setInjectionModuleType(injectionIndex);
     }
   };
+
+  // const handleInjectionContent = () => {
+  //   if (providerCode.endsWith("TPI")) {
+  //     setInjectionModuleType(0);
+  //   } else if (providerCode.endsWith("LES")) {
+  //     setInjectionModuleType(1);
+  //   } else if (providerCode.endsWith("LTE")) {
+  //     setInjectionModuleType(2);
+  //   } else if (providerCode.endsWith("LFI")) {
+  //     setInjectionModuleType(3);
+  //   } else if (providerCode.endsWith("LFR")) {
+  //     setInjectionModuleType(4);
+  //   } else if (providerCode.endsWith("SJI")) {
+  //     setInjectionModuleType(5);
+  //   } else if (providerCode.endsWith("LSC")) {
+  //     setInjectionModuleType(6);
+  //   }
+  // };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
