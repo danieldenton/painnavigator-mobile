@@ -35,28 +35,10 @@ export const OnboardContextProvider = ({ children }) => {
     ];
     const injectionModuleCode = providerCode.slice(-3);
     const injectionIndex = injectionModuleTypes.indexOf(injectionModuleCode);
-    if (injectionIndex) {
+    if (injectionIndex !== null) {
       setInjectionModuleType(injectionIndex);
     }
   };
-
-  // const handleInjectionContent = () => {
-  //   if (providerCode.endsWith("TPI")) {
-  //     setInjectionModuleType(0);
-  //   } else if (providerCode.endsWith("LES")) {
-  //     setInjectionModuleType(1);
-  //   } else if (providerCode.endsWith("LTE")) {
-  //     setInjectionModuleType(2);
-  //   } else if (providerCode.endsWith("LFI")) {
-  //     setInjectionModuleType(3);
-  //   } else if (providerCode.endsWith("LFR")) {
-  //     setInjectionModuleType(4);
-  //   } else if (providerCode.endsWith("SJI")) {
-  //     setInjectionModuleType(5);
-  //   } else if (providerCode.endsWith("LSC")) {
-  //     setInjectionModuleType(6);
-  //   }
-  // };
 
   const handlePossibleEducationPrograms = () => {
     const painInjectionsAndSpineSurgery =
