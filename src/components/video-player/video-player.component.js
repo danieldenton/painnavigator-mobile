@@ -19,8 +19,6 @@ export const VideoPlayer = forwardRef((props, ref) => {
   const window = useWindowDimensions();
   const height = type === "audio" ? 0 : (window.width / 1280) * 720;
 
-  useEffect(() => {}, []);
-
   function fullScreenStatus(status) {
     if (setFullscreenStatus) {
       setFullscreenStatus(() => status.fullscreenUpdate);
